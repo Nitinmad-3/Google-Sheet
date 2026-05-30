@@ -1,0 +1,1141 @@
+Source-PDF: D:\Review\New folder\Healthcare prediction bridge\A unifying nonlinear probabilistic epidemic model in space and time.pdf
+Relative-Path: New folder\Healthcare prediction bridge\A unifying nonlinear probabilistic epidemic model in space and time.pdf
+--------------------------------------------------------------------------------
+
+1
+Vol.:(0123456789)
+Scientific Reports |        (2021) 11:13860  
+| https://doi.org/10.1038/s41598-021-93388-1
+www.nature.com/scientificreports
+A unifying nonlinear probabilistic 
+epidemic model in space and time
+Roberto Beneduci1,2*, Eleonora Bilotta1 & Pietro Pantano1
+Covid-19 epidemic dramatically relaunched the importance of mathematical modelling in supporting 
+governments decisions to slow down the disease propagation. On the other hand, it remains a 
+challenging task for mathematical modelling. The interplay between different models could be 
+a key element in the modelling strategies. Here we propose a continuous space-time non-linear 
+probabilistic model from which we can derive many of the existing models both deterministic and 
+stochastic as for example SI, SIR, SIR stochastic, continuous-time stochastic models, discrete 
+stochastic models, Fisher–Kolmogorov model. A partial analogy with the statistical interpretation 
+of quantum mechanics provides an interpretation of the model. Epidemic forecasting is one of its 
+possible applications; in principle, the model can be used in order to locate those regions of space 
+where the infection probability is going to increase. The connection between non-linear probabilistic 
+and non-linear deterministic models is analyzed. In particular, it is shown that the Fisher–Kolmogorov 
+equation is connected to linear probabilistic models. On the other hand, a generalized version of the 
+Fisher–Kolmogorov equation is derived from the non-linear probabilistic model and is shown to be 
+characterized by a non-homogeneous time-dependent diffusion coefficient (anomalous diffusion) 
+which encodes information about the non-linearity of the probabilistic model.
+In December 2019, the novel SARS-CoV-2 (that shaped the Covid-19 disease) was detected in a patient working 
+in the fish reservoir of Wuhan (Hubei, China). The virus has produced 118268575 infected and 2624677 deaths 
+(World Health Center, 12 March 2021), thus creating a pandemic spread worldwide. While national govern-
+ments took steps to protect people with extreme safety measures, it was soon understood that the SARS-CoV-2 
+virus is characterized by a peculiar behaviour compared with previous coronaviruses1, 2, 4 opening several sci-
+entific questions about how to model the SARS-CoV-2 virus. Some of its peculiarities are connected with: long 
+incubation period, role of the asymptomatic individuals3, intensity of transmission5, 6 possible role of kids in 
+the contagion. That dramatically called attention to the relevance of mathematical modeling for the description 
+and the forecasting of the epidemic and, most importantly, relaunched its relevance in supporting governments 
+decisions about the kind of measures to be activated and the right choice of their timing in order to slow down 
+the disease propagation.
+Several factors should play a role in modelling epidemics in general. Some of those factors becomes par-
+ticularly relevant in the case of the Covid-19 epidemic as for example spatial heterogeneity7–9, heterogeneity of 
+population10 (age, health conditions, etc.) and role of susceptible3. In particular, spatial heterogeneity assumes a 
+key role in coping with COVID-19 epidemic. Indeed, mathematical models are being used by governments to 
+make decisions about the quarantine measures to be adopted in order to slow down the epidemic evolution. In 
+its turn, quarantine is inevitably connected to the economic dynamics of nations and regions and the world is 
+witnessing the enormous damages that the lockdown (which has been necessary in order to stop the epidemic 
+evolution) has caused. In this framework, spatial models assume a key role since they can be used to differentiate 
+the lockdown measures in the different regions (and/or cities) of a given country. That would potentially reduce 
+the economic damages.
+Scientific studies on Epidemics started from the ground-breaking works of Bernoulli11 (1760), En’ko (1889), 
+(reported in Dietz12), Ross13 (1911), Lotka (1923), Kostitzin (1934), Volterra (1938) (reported in Scudo14), Ker-
+mack and McKendrick15 (1927) and then a lot of mathematical models ranging from stochastic to deterministic 
+models (see Bauer16; Bailey17; Diekmann18; Isham19; Keeling and Rohani20; Riley21 for systematic expositions).
+Despite the increasing number of important papers5, 22–32 (just to cite some of them) on the mathematical 
+modelling of the novel COVID-19 pandemic, a general theoretical framework to model and forecast the epi-
+demic evolution is still lacking. It has been pointed out that the choice of a model (for example, deterministic 
+or stochastic) depends, among others, on the epidemic under investigation, on the scale one decides to focus 
+on as well as on the evolution step of the epidemic. Recently31 it has been suggested that a good strategy in 
+OPEN
+1Department of Physics, University of Calabria, Rende, CS  87036, Italy. 2Istituto Nazionale di Fisica Nucleare, 
+gruppo collegato Cosenza, Rende, CS 87036, Italy. *email: roberto.beneduci@unical.it
+
+2
+Vol:.(1234567890)
+Scientific Reports |        (2021) 11:13860  | 
+https://doi.org/10.1038/s41598-021-93388-1
+www.nature.com/scientificreports/
+the modelling of Covid-19 epidemics would be to use different types of parsimonious models at the different 
+steps of the epidemic. That would require an understanding of the relationships between the different models. 
+Several efforts have been devoted to this problem33–35. Moreover, it has been observed that understanding the 
+limit of a model is a very important aspect of mathematical modelling and that a model too rich in details is not 
+helpful if data are uncertain and/or the model assumptions are not adequate to the phenomenology it aims to 
+describe36, 37. All of that underlines the relevance of a unified approach to epidemic modelling. Here we propose 
+a novel approach which is inspired by the statistical interpretation of quantum mechanics39 and that goes in this 
+direction. In particular we propose a continuous non-linear space-time model of the epidemic embodied into a 
+probability transition kernel that includes as particular cases several of the most important epidemic models as 
+for example SIR, SI, time-continuous stochastic models, time-discrete stochastic models, SIR stochastic model 
+and diffusion models. In particular a generalized version of the Fisher–Kolmogorov model displaying anomalous 
+diffusion is derived.
+The approach we propose in the present paper should be interesting in itself from the theoretical viewpoint 
+since all those models are shown to be particular cases of a “mother model” from which they are derived under 
+precise assumptions but it could also be relevant to epidemic forecasting (see next section) and in order to deal 
+with the problems we outlined above, i.e., using different models simultaneously, choosing the appropriate model 
+to be used at the different steps of the epidemic (the choice being linked to the approximation needed to derive 
+the model from the “mother model”), pinpointing the limit of the various models. Those are problems deserv-
+ing a future work; here we limit ourselves to present the model and its potentialities and to show how several 
+other models can be derived from it. For example, we provide a connection between diffusion and probabilistic 
+models and show that more general versions of the Fisher–Kolmogorov equation are connected to probabilistic 
+non-linear models. Moreover, the two-dimensional Fisher–Kolmogorov equation is derived from a linear version 
+of the probabilistic mother model (which is obtained by assuming the probability density of susceptible to be 
+constant). This last result confirms and extends the results in Mollison34 where it is shown that the non-linearity 
+of the Fisher–Kolmogorov model is not sufficient to fully encode the non-linearity of the stochastic model it 
+aims to emulate33. Anyway it seems to be relevant that more general version of the Fisher–Kolmogorov equation 
+are connected to non-linear probabilistic models. Later (see the comment after Eq. (15)) the time dependence 
+of the diffusion coefficient is shown to play a role in encoding the non-linearity. That is of general physical 
+interest. We recall that the lack of an exact and clear derivation of the Fisher–Kolmogorov equation has been 
+pointed out33. Finally, it has been observed34 that in order to justify the use of deterministic models, the latter 
+should be interpreted as approximations of stochastic models and not the other way around. Our results should 
+be relevant to this problems as well. Although the present work suggests a general theoretical framework for 
+epidemic modelling, it has been motivated by the Covid-19 emergency that we use as a reference point for our 
+argumentation. Potential applications of the model concern the localization of those regions of space where the 
+infection probability is going to increase (see next section); that will be the topic of a future work.
+Results
+The probabilistic model. 
+In order to illustrate the rationale of the model we can look at Fig. 1 which shows 
+the spread of the COVID-19 on a global scale from the 22th of February to the 20th of May 2020. A logarithm 
+density plot of the number of infected people using a geo-referenced map is shown in Fig. 1 which highlights 
+the east-west direction of the virus propagation from China to Europe and then to America, with an increasing 
+propagation of the outbreak. Let  be the surface of the earth we focus on. A point in the surface is denoted by 
+x = (x, y) ∈ . We assume there are positive definite functions ψI
+t (x), ψR
+t (x), ψS
+t (x), ∈L1(, d2x) representing 
+sub-probability densities and describing the state of the epidemic at time t. In particular, ψI
+t (x) is the sub-probabil-
+ity density for the infected, ψR
+t (x) the sub-probability density for the recovered (infected which turn into immune) 
+and ψS
+t (x) the sub-probability density for the susceptible. The probability density functions are assumed to be 
+derivable with respect to the time variable. Moreover, we assume ψS
+0(x) + ψI
+0(x) = ψS
+t (x) + ψI
+t (x) + ψR
+t (x) for 
+every t and 
+
+(ψS
+0(x) + ψI
+0(x)) dx = 1 . As a consequence we are not considering births and deaths. It is worth 
+noticing that the existence of ψI
+t , ψR
+t  and ψS
+t  is a theoretical assumption; the actual infected distribution is just 
+an instantiation of the random process associated to the infected distribution. Anyway, an approximation of ψI
+t , 
+ψR
+t  and ψS
+t  can be obtained through density estimation methods as for example the kernel density estimation38 
+(KDE) which provides a differentiable probability density function.
+We suggest a partial analogy with the interpretation of quantum mechanics39 where the state of a particle is 
+described by a probability cloud which is given by the square of the modulo of the wave function  . In particular, 
+|(t, x)|2 ∈L2(R) is a probability density function and 
+
+ |(t, x)|2 dx is interpreted as the probability that the 
+particle is found to be in  at time t. No further specification is required. Analogously, the state of the epidemic 
+is defined by three probability clouds (ψI, ψS, ψR) and 
+
+ ψI
+t (x) d2x is interpreted as the probability that an 
+infected is in the region  ⊂ at time t. No further specification will be required in the present approach. The 
+statistical interpretation of quantum mechanics39 introduces the concept of ensemble of identical copies of the 
+particle in order to explain the meaning of the function  . To be more precise,  describes an infinite ensemble 
+of copies of the particle; each copy being prepared by the same experimental arrangement. The function ||2 
+then gives the statistical distribution of the position of the particle among the copies of the conceptual ensem-
+ble. We can adapt such an interpretation in the present context by interpreting ψI as follows: suppose there is a 
+mechanism which encodes the nature of the epidemic as well as the contingent circumstances it is determined 
+from; suppose such a mechanism can be used to produce an individual; he/she will be an infected with probability 
+
+ ψI
+t (x) , a susceptible with probability 
+
+ ψS
+t (x) and a recovered with probability 
+
+ ψR
+t (x) ; think of an infinite 
+ensemble of copies of the same production mechanism each one producing an individual. Then ψI , ψS , ψR give 
+respectively the space distribution of the infected, susceptible and recovered among the copies of the ensemble 
+
+3
+Vol.:(0123456789)
+Scientific Reports |        (2021) 11:13860  | 
+https://doi.org/10.1038/s41598-021-93388-1
+www.nature.com/scientificreports/
+and 
+
+ ψI
+t (x d2x is interpreted as the probability that a copy of the ensemble is made of an infected located in 
+the set  . That provides a possible interpretation of the state of the epidemic as we have defined it and is helpful, 
+we think, in order to explains the role that ψI plays in the present paper.
+In quantum mechanics, the dynamics of the system is determined by a deterministic evolution equations for 
+ (the Schroedinger equation). Pushing further the analogy with quantum mechanics, the dynamics of the epi-
+demic is given by the evolution equations for ψI and ψS [see Eq. (6) and (8)]. Note that a deterministic evolution 
+for the probability density does not mean that the epidemic evolves deterministically. It is a probabilistic process.
+One could ask what is the connection between the state of the epidemic as we have defined it and the actual 
+observation of the epidemic. Suppose we are able to generate an individual as many times as we want as we 
+discussed previously. Suppose we use such a generation procedure to provide a family of ensembles E1, . . . Ek 
+each one made of N copies of the individual according to the state ( ψI
+t , ψS
+t  , ψR
+t  ). The ensembles Ei can be con-
+sidered as instantiations of the epidemic with N individuals. The distribution of the infected, σ I
+j  (number of 
+infected over surface), corresponding to the instantiation Ej is in general different from the distribution of the 
+infected σ I
+i  corresponding to Ei . Despite the number of infected (susceptible) in a given region will be different 
+in any instantiation, the expected number of infected (susceptible) in a given region  is meaningful from the 
+statistical viewpoint and is given by N
+
+ ψI
+t (x) d2x ( N
+
+ ψS
+t (x) d2x ). By the law of large numbers, the prob-
+ability that the number of infected in Ei differs from N
+
+ ψI
+t (x) d2x can be made arbitrarily small by choosing 
+N sufficiently large.
+We remark that in the present paper the focus is on the probability density functions ψI
+t , ψS
+t  , ψR
+t  which, by 
+analogy with quantum mechanics, define the state of the epidemic. The approach is then phenomenological as 
+opposed to mechanistic; we assume the existence of probability density functions describing the probabilistic 
+distribution of infected, susceptible, and recovered (the state of the epidemic) and limit ourselves to describe 
+their time evolution for which we postulate a deterministic law (see below). The main aim of the present paper 
+is to show that this approach defines a non-linear probabilistic model from which many of the existing models 
+can be derived providing at the same time a unifying framework.
+Moreover, the model could be used to describe the evolution of the infected spatial probability density in 
+order to locate those regions of space where the probability of infection is going to increase or to decrease. That 
+could be very helpful to governments as we remarked in the introduction and will be the topic of a future paper.
+Now, we proceed to define the evolution equation for the state of the epidemic. We provide a non-linear 
+evolution for the sub-probability distributions.
+In the following, α(t) denotes the probability rate that infected turn to immune; it is assumed to be con-
+tinuous and such that,  t
+0 α(τ) dτ = p(t) ≤1 , for all t ∈R+ , where p(t) is the probability that an infected 
+turns into immune during the time interval [0, t]. The probability rate α can be used to connect ψR and ψI : 
+ψR
+t (x2) =
+ t
+0 α(τ)ψI
+τ(x2)dτ . The space dependence of α can also be included if necessary. Moreover we assume 
+there are no births and deaths and no displacements of the individuals (see the comments after Eq. (3) and before 
+Figure 1.   Qualitative illustration of the spatio-temporal evolution of COVID-19. The software Wolfram 
+Mathematica (version 11.3) has been used to estimate ψI from the data about the space distribution of the 
+infected. The software uses the kernel density estimation method38 to estimate ψI . Then, the same software 
+has been used in order to generate a sampling, i.e., a set of points on the surface  distributed according to ψI . 
+That has been done at several instant of time. The image illustrates qualitatively the expansion of the infected 
+population. The infected cloud on the ocean is an artifact.
+
+4
+Vol:.(1234567890)
+Scientific Reports |        (2021) 11:13860  | 
+https://doi.org/10.1038/s41598-021-93388-1
+www.nature.com/scientificreports/
+Eq. (5) for further details). The epidemic propagation is encoded into a kernel W(t, x2, x1) which describes the 
+transition probability rate of the infection from x1 to x2 at time t. In particular,
+is interpreted as the conditional probability that a susceptible in the neighbourhood centered in x2 with radius 
+d2x2 gets infected during the time interval [τ, τ + dτ] if an infected is present in x1 at time τ . Then,
+is interpreted as the probability that a susceptible in the neighbourhood centered in x2 with radius d2x2 gets 
+infected by the infected contained in the neighbourhood centered in x1 with radius d2x1 during the time interval 
+[τ, τ + dτ] . Hence,
+gives the probability of new infected in the neighbourhood centered in x2 with radius d2x2 during the time 
+interval [0, t]. Since in the same time interval there is a probability that the infected turn into recovered, we have
+where ψR
+t (x2) =
+ t
+0 α(τ)ψI
+τ(x2)dτ . The previous probabilities can be interpreted by resorting to the idea of con-
+ceptual ensemble we introduced above. In particular, one can think of the ensemble of infinite copies of a single 
+individual with each copy generated according to the state of the epidemic by the procedure described above; each 
+individual being fixed in his/her position with the susceptible that can become infected and the infected that can 
+become recovered according to the probabilities introduced above. In the case of an instantiation of the epidemic 
+with N individuals fixed in their positions and supposing N sufficiently large, the evolution of the population 
+densities ( σ I , σ S , σ R ) can be approximated by using the previous probabilities (see also Fig. 3 on this last point).
+Note that, at variance with the second member of Eq. (3), the first member does not depend on α . The role of 
+α is to give the probability that infected turn into recovered while the first member gives the probability of new 
+infected which depends on α only indirectly: a higher α means a lower ψI
+τ . The flux diagram in Fig. 2 illustrates 
+the variation of the sub-probability distributions during an infinitesimal time interval dτ.
+By (3) we obtain,
+with,
+One can think of
+as the transition probability that a susceptible in 2 gets infected during the time interval (τ, τ + dτ) if in x1 
+there is an infected. Note that µ(·)(τ, x1) is absolutely continuous with respect to 
+
+(·) ψS
+τ (x2) dx2 and W(τ, x2, x1) 
+is the the Radon-Nikodym derivative of µ(·)(τ, x1) with respect to 
+
+(·) ψS
+τ (x2) dx2 . That seems quite natural since 
+
+2 ψS
+τ (x2) dx2 = 0 implies that no susceptible can be infected inside 2 . Moreover, it provides an interpretation 
+[d2x2ψS
+τ (x2)W(τ, x2, x1)dτ]
+(1)
+[d2x2ψS
+τ (x2)W(τ, x2, x1)dτ](ψI
+τ(x1) d2x1)
+(2)
+d2x2
+
+
+ t
+0
+ψS
+τ (x2)W(τ, x2, x1)ψI
+τ(x1) dτ d2x1
+(3)
+d2x2
+
+
+ t
+0
+ψS
+τ (x2)W(τ, x2, x1)ψI
+τ(x1) dτ d2x1 = d2x2[ψI
+t (x2) −ψI
+0(x2) + ψR
+t (x2)].
+(4)
+ψI
+t (x2) = ψI
+0(x2) −ψR
+t (x2) +
+
+
+ t
+0
+ψS
+τ (x2)W(τ, x2, x1)ψI
+τ(x1) dτ d2x1
+= ψI
+0(x2) −
+ t
+0
+α(τ)ψI
+τ(x2) dτ +
+
+
+ t
+0
+ψS
+τ (x2)W(τ, x2, x1)ψI
+τ(x1) dτ d2x1
+ψS
+0(x) + ψI
+0(x) = ψS
+t (x) + ψI
+t (x) + ψR
+t (x)
+
+
+
+ψS
+0(x) + ψI
+0(x) = ψS
+t (x) + ψI
+t (x) + ψR
+t (x)
+
+d2x = 1.
+µ2(τ, x1) dτ :=
+
+2
+[W(τ, x2, x1)dτ]ψS
+τ (x2)d2x2
+Figure 2.   Evolution of the sub-probability densities during an infinitesimal time interval dτ . Here, 
+a dτ =
+
+ ψS
+τ (x2)W(τ, x2, x1)ψI
+τ(x1)d2x1 dτ and b dτ = α(τ)ψI
+τ(x2)dτ . The arrows represent the direction of 
+the probability fluxes.
+
+5
+Vol.:(0123456789)
+Scientific Reports |        (2021) 11:13860  | 
+https://doi.org/10.1038/s41598-021-93388-1
+www.nature.com/scientificreports/
+in terms of transition probability and explains the role that the susceptible probability density ψS plays in the 
+definition of W.
+It is worth remarking that the kernel is intended to provide a phenomenological description of the evolution. 
+We are assuming there are no displacement of the individuals. We just assume the existence of the transition 
+probability (1).
+Supposing ǫ sufficiently small, we can use (4) to derive the evolution from the state at time t to the state at 
+time t + ǫ,
+Then, we can derive an integro-differential equation for the infected sub-probability density ψI
+t  . Indeed 
+ψI
+t+ǫ(x2) = ψI
+t (x2) + ǫ ∂ψIt (x2)
+∂t
++ o(ǫ) so that
+In order to derive the differential equation for the susceptible sub-probability density we write the susceptible 
+sub-probability density at time t + ǫ as a function of the susceptible sub-probability density at time t,
+where the first term in the second member is the sub-probability density at time t and the second term is the 
+probability density of the new infected produced in x2 in the time interval [t, t + ǫ] . Then, by using the Taylor 
+expansion for ψS
+t+ǫ(x2) , we obtain
+It is interesting to note that an equation similar to Eq. (6) and describing the evolution of the total size of 
+an infective population I(t, ξ) in a deterministic framework can be found in Diekmann18 (see exercise 
+8.21, page 219). It is derived in a different framework where I(t, x) =
+ t
+−∞e−α(x)(t−τ)i(τ, x) dτ and i is the 
+expected number of new infected per unit of time. The kernel A(t, x, y) defines the evolution of i. In particular, 
+i(t, x) = S(t, x)
+ ∞
+0
+
+ A(τ, x, y)i(t −τ, y) dy dτ where S denotes the density of susceptible and a particular 
+form of the kernel is assumed, A(t, x, y) = β(x, y)e−ατ . Note that in the present paper i assumes the form 
+(5)
+ψI
+t+ǫ(x2) =
+
+
+ t+ǫ
+0
+K(τ, x2, x1)ψI
+τ(x1) dτ d2x1
+=
+
+
+ t
+0
+K(τ, x2, x1)ψI
+τ(x1) dτ d2x1 +
+
+
+ t+ǫ
+t
+K(τ, x2, x1)ψI
+τ(x1) dτ d2x1
+= ψI
+t (x2) −α(t)ψI
+t (x2) ǫ + ǫψS
+t (x2)
+
+
+W(t, x2, x1)ψI
+t (x1) d2x1
+(6)
+∂ψI
+t (x2)
+∂t
+= −α(t)ψI
+t (x2) + ψS
+t (x2)
+
+
+W(t, x2, x1)ψI
+t (x1) d2x1
+(7)
+ψS
+t+ǫ(x2) = ψS
+t (x2) −
+
+
+ t+ǫ
+t
+ψS
+τ (x2)W(τ, x2, x1) ψI
+τ(x1) d2x1dτ
+(8)
+∂ψS
+t (x2)
+∂t
+= −ψS
+t (x2)
+
+
+W(t, x2, x1)ψI
+t (x1)d2x1.
++△
+x
+x
+⍴
+⍴+△
+x
+x
+△
+△
+△
+△
+△
+Figure 3.   The upper part of the figure illustrates a hypothetical evolution of the normalized density of infected 
+ρI = σ I/N (density of infected over the total number of individuals) from time t to time t + t and shows 
+that during the time interval t it can evolve in different possible ways because of the probabilistic nature 
+of the system. That is not the case of the sub-probability density ψI whose evolution is unique (lower part 
+of the figure). Note also that N
+
+ ψI
+t (x) dx can be very different from the number of infected contained in 
+ at time t (compare, for example, the yellow curve in the upper part of the figure with the red curve in the 
+lower part). Only in the case N is very large (deterministic limit of the model) the evolution of the normalized 
+density ρI follows, with a high probability, the evolution of the probability density ψI and the probability that 
+N
+
+ ψI
+t (x) dx coincides with the number of infected in the region  at time t is high. Going back to the upper 
+part of the figure, it is worth remarking that the deterministic models choose one of the possible evolutions for 
+the normalized density of infected, ρI . For example, in the Kendall model40 a system of differential equations 
+for ρI
+t is postulated; it is equivalent (up to some restrictions on the structure of the kernel: the kernel is not 
+time dependent and depends on the difference x −y ) to the system of differential equations for the probability 
+density ψI
+t we derived in the present work; such a postulate is sound only if N is sufficiently large.
+
+6
+Vol:.(1234567890)
+Scientific Reports |        (2021) 11:13860  | 
+https://doi.org/10.1038/s41598-021-93388-1
+www.nature.com/scientificreports/
+
+ ψS
+τ (x)W(τ, x, y)ψI
+τ(y) d2y . An equivalent, less general, system of differential equations for the evolution 
+of the normalized densities ρI
+t = σ I/N and ρS
+t = σ S/N of infected and the susceptible (density over the total 
+number of individuals) in a deterministic model can be found in Kendall40. For N very large we recover a general-
+ized version of the Kendall model since ρI , ρI , ρR provide an approximation of the sub-probability densities ψI , 
+ψS and ψR . Therefore, Kendall’s model can be considered as a particular deterministic limit of the probabilistic 
+model we suggest (see Fig. 3 for more details). An equation similar to Eq. (8) can be found in the deterministic 
+model proposed by Thieme41 which is based on a different approach and where the kernel ˆk differs from W and 
+assumes a different meaning. In particular, i(t, x) =
+
+
+ t
+0
+ ∞
+0
+I(t −τ, c, y) ˆk(x; dy dc dτ) where i is defined as 
+the infective influence, I is the density of the infected and c denotes the age class. Then, the differential equation 
+for the susceptible takes the form ∂ψSt (x)
+∂t
+= η(ψI
+t (x)) i(t, x) which compared with Eq. (8) shows the differences 
+between ˆk and W. We remark that, at variance with the space models just cited, in the present paper, Eqs. (6) 
+and (8) refer to a probabilistic model and take on a particular meaning which is connected to the evolution of 
+the sub-probability density functions describing the epidemic. They are assumed to grasp the law governing the 
+evolution of the epidemic and then to provide the exact description of its evolution. We are assuming the exist-
+ence of such a law which is encoded into the kernel W. Moreover, the integro-differential Eqs. (6) and (8) are 
+derived in a probabilistic framework based on conditional probabilities. The probabilistic nature of the model 
+and the differences with deterministic models is depicted in Fig. 3 below.
+Extending further the analogy with quantum mechanics we can think of W as the analogous of the Hamil-
+tonian operator in quantum mechanics which describes the interaction between the different particles of the 
+system. Here W takes into account the interaction between infected and susceptible.
+Note that Eqs. (6) and (8) define a non linear system of differential equations. The probabilistic framework 
+we introduced is very general and is shown to contain several well known models that can be derived from it. 
+We start with a generalized version of the Fisher–Kolmogorov model (Eq. (14)). Next we discretize the space 
+coordinate and obtain a model which is continuous in time and discrete in space (Eqs. (16) and (18)). By 
+neglecting the space effects, we derive the SIR and SI models (Eqs. (29) and (31)). By discretization of the time 
+coordinate we obtain a general time-discrete stochastic model (Eq. (20)) from which the SIR stochastic model 
+can be derived (Eq. 22).
+Derivation of a generalized version of the Fisher–Kolmogorov model. 
+The Fisher–Kolmogorov 
+equation
+where ρt(x) denotes the density (or frequency) of a population is a particular kind of drift-diffusion equa-
+tion that has been used in order to describe the frequency of a mutant gene in a population42 (Fisher 1937). 
+Later, a more general version has been studied by Kolmogorov43 et al. (1937). We derive a generalization of the 
+Fisher–Kolmogorov equation for the infected probability density ψI that, assuming the stochastic fluctuations 
+can be neglected, can be used to derive the evolution of the infected density of a population of N individuals. 
+Then, under some stronger hypothesis, we derive the 2-dimensional version of Eq. (9).
+Let us suppose that W(t, x2, x1) depends only on the distance between x2 and x1 and  = R2 . Then Eq. (5) 
+becomes
+where z = x2 −x1 . Furthermore suppose that in the time interval ǫ , ǫW is different from zero only for very small 
+distances, |z| , and consider the second order Taylor expansion of ψI
+t (x2 −z) around x2,
+where H denotes the Hessian matrix. By replacing ψI
+t (x2 −z) in Eq. (10) by its Taylor expansion and considering 
+that W is an even function of the components of the vector z = (z1, z2) , we obtain
+where
+and
+(9)
+∂ρ
+∂t −D ∂2ρ
+∂x2 = η(1 −ρ)ρ
+(10)
+ψI
+t+ǫ(x2) = ψI
+t (x2) −α(t)ψI
+t (x2) ǫ + ǫψS
+t (x2)
+
+
+W(|x2 −x1|)ψI
+t (x1) d2x1
+= ψI
+t (x2) −α(t)ψI
+t (x2) ǫ + ǫψS
+t (x2)
+
+
+W(|z|)ψI
+t (x2 −z) d2z
+ψI
+t (x2 −z) ≈ψI
+t (x2) −∇xψI
+t (x2) · z + 1
+2 zT · H(ψI
+t (x2))z
+(11)
+ψI
+t+ǫ(x2) = ψI
+t (x2) −α(t)ψI
+t (x2) ǫ+
++ ǫψS
+t (x2)
+
+
+W(|z|)
+
+ψI
+t (x2)) + ∇xψI
+t (x2) · z + 1
+2 zT · H(ψI
+t (x2))z
+
+d2z
+(12)
+= ψI
+t (x2) −ǫα(t)ψI
+t (x2) + ǫaψS
+t (x2)ψI
+t (x2) + ǫDt(x2) ∇2
+xψI
+t (x2)
+a =
+
+
+W(|z|) d2z
+
+7
+Vol.:(0123456789)
+Scientific Reports |        (2021) 11:13860  | 
+https://doi.org/10.1038/s41598-021-93388-1
+www.nature.com/scientificreports/
+Hence,
+Now, supposing the removed can be neglected with respect to the susceptible, we have ψS
+t (x2) = ψS
+0(x2) −ψI
+t (x2) 
+which, once replaced in the previous equation, gives
+By renaming the terms we obtain
+where η := (aψS
+0(x2) −α) and µ = a . Equation (14) is a two dimensional drift-diffusion equation which gen-
+eralizes the Fisher–Kolmogorov equation and it is worth remarking that it has been derived from a non-linear 
+probabilistic model.
+A comment is in order since Eq. (14) describes the evolution of a probability density while the Fisher–Kol-
+mogorov equation refers to the deterministic evolution of the population density. Nevertheless, assuming that 
+the infected population is sufficiently large that the stochastic effects can be neglected, an analogous equation can 
+be derived for the infected population density which, in this case, can be approximated by the expected number 
+of infected ρI
+t (x) = NψI
+t (x) . One obtains from (14),
+where, γ =
+µ
+Nη.
+We obtain the Fisher–Kolmogorov equation by assuming α = 0 (which is equivalent to neglecting the 
+removed) and by assuming ψS
+t (x2) ( ρS
+t (x) ) constant and uniform. Those are reasonable assumptions if one is 
+interested to study a single patch for sufficiently small time-intervals during which the susceptible are assumed 
+to be uniformly distributed and the infected can be neglected with respect to the susceptible which can therefore 
+be considered constant in time (the probabilistic model becomes linear under these hypothesis).
+Thus, the Fisher–Kolmogorov equation is derived from a linear probabilistic model (the probability density of 
+the susceptible is constant) and this extends previous results obtained by Mollison34 who showed that although 
+the Fisher–Kolmogorov model is nonlinear, it is insufficient to grasp the full nonlinearity of the phenomena. In 
+our opinion, it is relevant that a generalized version of the Fisher–Kolmogorov equation which is characterized 
+by the time dependence of the diffusion coefficient (see Eqs. (14) and 15) is instead derived from a non-linear 
+probabilistic model. That indeed suggests that the information about the non-linearity of the epidemic evolu-
+tion could be fully encrypted in the time dependence of the diffusion coefficient Dt(x) (anomalous diffusion); 
+the latter being necessary for the probabilistic model to be non-linear (see Eq. (13)). It is worth remarking that 
+anomalous diffusion has been recognized to be very relevant in many biological and physical systems. For 
+example, it has been shown to be characteristic of the motion of single messenger RNA molecule in a living 
+Escherichia coli bacterium48. A possible explanation for anomalous diffusion of the kind D ∝tα in biological 
+systems can be given by continuous-time random-walk models. The derivation of Eq. (14) from the non-linear 
+probabilistic model seems to suggest another possible reason for anomalous diffusion, i.e., non-linearity of the 
+probabilistic model. Moreover, Eqs. (13) seems to suggest that more general kinds of anomalous diffusion are 
+possible. Those are problems deserving further investigation.
+Discretization of the model. 
+Now we pass to consider the discretized version of the model. We obtain a 
+general stochastic space-discrete model and, by neglecting the space effects, we obtain the SIR and SI models. If 
+we discretize the time as well, we obtain a time-discrete stochastic model from which the stochastic SIR model 
+can be derived.
+Space discretization.  Suppose we can divide  into n subsets (not necessarily of the same size) {1, . . . , n} . We 
+will use the symbol  = {1, 2, . . . , n} to denote this family of subsets and σj to denote the area of j . A meaning-
+ful discretization procedure requires that the functions, ψI , W, etc. are sufficiently regular and the subsets j suf-
+ficiently small that ψI , W, etc. can be considered constant in each subset j . The function ψI
+t (x) is then replaced 
+by the n-dimensional sub-stochastic vector pI(t) = (pI
+1(t), . . . , pI
+n(t)) where pI
+j (t) := σjψI
+t (j) is the probability 
+at time t to find an infected in the region j . An analogous argument applies to the susceptible density which is 
+replaced by the sub-stochastic vector (pS
+1(t), . . . , pS
+n(t)) . The discretized version of the kernel W is a n × n matrix 
+
+Wt = {Wt(j, i)}i,j=1,...,n and the evolution operator is obtained by multiplying Eq. (4) by σj,
+(13)
+Dt(x2) = ψS
+t (x2)
+
+
+W(|z|)(z1)2 d2z = ψS
+t (x2)
+
+
+W(|z|)(z2)2 d2z.
+∂ψI
+t (x2)
+∂t
+= (aψS
+t (x2) −α(t))ψI
+t (x2) + Dt(x2)∇2
+xψI
+t (x2).
+∂ψI
+t (x2)
+∂t
+−Dt(x2)∇2
+xψI
+t (x2) = [(aψS
+0(x2) −α(t)) −aψI
+t (x2)]ψI
+t (x2).
+(14)
+∂ψI
+t (x2)
+∂t
+−Dt(x2)∇2
+xψI
+t (x2)) = η
+
+1 −µ
+η ψI
+t (x2)
+
+ψI
+t (x2)
+(15)
+∂ρI
+t (x2)
+∂t
+−Dt(x2)∇2
+xρI
+t (x2)) = η
+
+1 −γρI
+t (x2)
+
+ρI
+t (x2)
+
+8
+Vol:.(1234567890)
+Scientific Reports |        (2021) 11:13860  | 
+https://doi.org/10.1038/s41598-021-93388-1
+www.nature.com/scientificreports/
+where 
+Wτ is the matrix {Wτ(j, i)}i,j=1,...,n.
+The evolution from time t to time t + ǫ is given by
+where the second Eq. (17) is obtained by multiplying the discrete version of Eq. (7) by σj . By using again the 
+Taylor expansion of pI
+j (t + ǫ) and pS
+j (t + ǫ) and assuming ǫ sufficiently small, we obtain
+Space‑time discretization and derivation of the SIR stochastic model.  It is worth remarking that the discrete time 
+version of Eqs. (17) provides a discrete time stochastic process. By choosing ǫ sufficiently small,
+where pS
+j (t) n
+i=1 ǫWt(j, i)pI
+i (t) is interpreted as the probability that a new infected is produced during the time 
+interval ǫ . The process in now discrete in time with the time intervals that are multiples of ǫ.
+Once we have discretized the time, the SIR stochastic model44–46 (also known as the general stochastic 
+epidemic) can be derived. Indeed, if for every region, we neglect the contribution from the other regions, 
+Wt(j, i) = δijβi(t) , we obtain
+Now, let us denote by nj and sj the number of infected and susceptible in the region j respectively and assume 
+ǫ sufficiently small to have nj(t + ǫ) −nj(t) ∈{−1, 0, 1} . Then, we can give the following interpretation of the 
+probabilistic model: for every fixed j, nj and sj are random variables with expected values NpI
+j and NpS
+j respectively, 
+the transition probability from the state (nj(t), sj(t)) to the state (nj(t) + 1, sj(t) −1) is given by pS
+j (t) ǫβj(t)pI
+j (t) 
+while the transition probability from the state (nj(t), sj(t)) to the state (nj(t) −1, sj(t)) is given by ǫαpI
+j (t) and the 
+transition probability from the state (nj(t), sj(t)) to the state (nj(t), sj(t)) is given by 1 −pS
+j (t)ǫβjpI
+j (t) −ǫαpI
+j (t) . 
+Note that the transition probabilities are derived from the general model; they are not assumed by definition.
+Derivation of SIR and SI models.  Finally, we note that deterministic SIR and SI models can be obtained by 
+neglecting the space effects. In order to show that, we assume N sufficiently large for the stochastic effects to be 
+neglected and re-write Eqs. (18) in terms of the number of infected nj(t) = NpI
+j (t) and the number of susceptible 
+sj(t) = NpS
+j (t) in the j-th region. We obtain,
+(16)
+pI
+j (t) = pI
+j (0) −
+ t
+0
+α(t)pI
+j (τ)dτ +
+n
+
+i=1
+ t
+0
+pS
+j (τ)Wτ(j, i)pI
+i (τ) dτ
+= pI
+j (0) −
+ t
+0
+α(t)pI
+j (τ)dτ +
+ t
+0
+pS
+j (τ)(
+WτpI(τ))j dτ
+(17)
+pI
+j (t + ǫ) = pI
+j (t) −
+ t+ǫ
+t
+α(t)pI
+j (t) dt +
+ t+ǫ
+t
+pS
+j (t)
+n
+
+i=1
+Wt(j, i)pI
+i (t) dt
+pS
+j (t + ǫ) = pS
+j (t) −
+ t+ǫ
+t
+pS
+j (t)
+n
+
+i=1
+Wt(j, i)pI
+i (t) dt
+(18)
+dpI
+j (t)
+dt
+= −α(t)pI
+j (t) + pS
+j (t)
+n
+
+i=1
+Wt(j, i)pI
+i (t)
+= −α(t)pI
+j (t) + pS
+j (t)(
+WtpI(t))j
+(19)
+dpS
+j (t)
+dt
+= −pS
+j (t)
+n
+
+i=1
+Wt(j, i)pI
+i (t)
+= −pS
+j (t)(
+WtpI(t))j
+(20)
+pI
+j (t + ǫ) = (1 −ǫα(t))pI
+j (t) + pS
+j (t)
+n
+
+i=1
+ǫWt(j, i)pI
+i (t)
+(21)
+pS
+j (t + ǫ) = pS
+j (t) −pS
+j (t)
+n
+
+i=1
+ǫWt(j, i)pI
+i (t)
+(22)
+pI
+j (t + ǫ) = (1 −ǫα(t))pI
+j (t) + pS
+j (t)ǫβj(t)pI
+j (t)
+(23)
+pS
+j (t + ǫ) = pS
+j (t) −pS
+j (t)ǫβj(t)pI
+j (t)
+(24)
+˙nj(t) = dnj(t)
+dt
+= N
+dpI
+j
+dt
+
+9
+Vol.:(0123456789)
+Scientific Reports |        (2021) 11:13860  | 
+https://doi.org/10.1038/s41598-021-93388-1
+www.nature.com/scientificreports/
+where, t(j, i) = 1
+N Wt(j, i).
+If we neglect the contribution of the other regions, i.e., t(j, i) ≈δjicj(t) , (which means that we are neglecting 
+the space effects on the evolution of the epidemic), the system of differential equations becomes
+which coincides with the equations for infected and susceptible of an SIR model with time-dependent parameters 
+cj(t) , α(t) and with birth rate and death rate equal to zero (we assume that deaths and births compensate each 
+other). SIR models are particular cases of the stochastic model we have introduced. If moreover, we neglect the 
+removed, we obtain an SI model
+In particular, the relation between infected and susceptible is sj(t) = sj(0) −nj(t) where sj(0) is the number of 
+susceptible at time t = 0 and the equation for the infected becomes
+where k = cj(t)sj(0) and a = sj(0) , which is a logistic equation with time-dependent parameters. Assuming cj(t) 
+time-independent we obtain the Verhulst logistic Eq. 47 (Verhulst 1838) whose solution is the sigmoid function
+where q = a−nj(0)
+nj(0)  and nj(0) is the number of infected at time t = 0.
+Discussion
+We have proposed a general space-time continuous probabilistic model where the state of the epidemic is given by 
+three sub-probability density functions. The latter are interpreted by analogy with the statistical interpretation of 
+quantum mechanics. Then, we showed that many important stochastic and deterministic models can be derived 
+as particular cases. That should be helpful from the theoretical viewpoint since it can be used to analyze further 
+the relationships between different modelling approaches as well as their limits. For example, it has been shown 
+that the non-linearity of the Fisher–Kolmogorov equation is not sufficient to characterize the non-linearity of 
+the stochastic phenomena it aims to approximate33, 34. We strengthen and generalize such a result but also show 
+that a general version of the equation characterized by anomalous diffusion (the diffusion coefficient is space-
+time dependent) is more deeply connected to the non-linearity of the probabilistic model it is derived from. 
+That is of general interest from the physical viewpoint as well as for biological applications since it concerns the 
+relationships between non-linear stochastic and non-linear deterministic models. Moreover, anomalous diffusion 
+plays a relevant role in the diffusion of single messenger RNA molecules in living cells and in many other physi-
+cal and biological systems48–51. A possible explanation for anomalous diffusion of the kind D ∝tα in biological 
+systems can be given by continuous-time random-walk models. The derivation of Eq. (14) from the non-linear 
+probabilistic model seems to suggest another possible reason for anomalous diffusion, i.e., non-linearity of the 
+probabilistic model; it furthermore suggests that more general kinds of anomalous diffusion could be possible. 
+A future work will be devoted to push forward such investigations.
+Possible applications to Covid-19 epidemic concern the time evolution of the probability density ψI
+t  . The 
+density ψI
+t can be approximated by the kernel density estimation method (KDE) and its evolution is determined 
+by Eqs. (6) and (8). The knowledge of such evolution, which is encoded into the kernel W, would allow probabil-
+istic epidemic forecasting; it would allow to locate those regions of space where the probability of the infection is 
+(25)
+= −Nα(t)pI
+t(j) + NpS
+j (t)
+n
+
+i=1
+1
+N Wt(j, i)NpI
+t(i)
+
+(26)
+= −αnj + sj
+n
+
+i=1
+t(j, i)ni
+(27)
+˙sj(t) = dsj(t)
+dt
+= N
+dpS
+j
+dt
+(28)
+= −sj
+n
+
+i=1
+t(j, i)ni
+(29)
+˙nj(t) = −αnj(t) + sj(t)cj(t)nj(t)
+(30)
+˙sj(t) = −sj(t)cj(t)nj(t)
+(31)
+˙nj(t) = sj(t)cj(t)nj(t)
+(32)
+˙sj(t) = −sj(t)cj(t)nj(t)
+˙nj(t) = sj(0)cj(t)nj(t) −cj(t)n2
+j (t)
+= knj(t) −k
+an2
+j (t)
+nj(t) =
+a
+1 + qe−kt
+
+10
+Vol:.(1234567890)
+Scientific Reports |        (2021) 11:13860  | 
+https://doi.org/10.1038/s41598-021-93388-1
+www.nature.com/scientificreports/
+going to increase. All of that depends on our capacity to estimate the transition kernel W. It is a kind of inverse 
+problem that requires insight into the real scenarios. Concerning this last point, some preliminary work52 that 
+could be helpful and some applications53 of the kernel density estimation method based on ideas that could be 
+relevant, already exist but much more effort is necessary in order to estimate W starting from data. More math-
+ematical work is required as well. That will be the topic of a future work.
+Received: 19 March 2021; Accepted: 23 June 2021
+References
+	 1.	 Gorbalenya, A. E. et al. The species Severe acute respiratory syndrome-related coronavirus: classifying 2019-nCoV and naming it 
+SARS-CoV-2. Nat. Microbiol. 5, 536–544 (2020).
+	 2.	 Li, Q., et al. Early transmission dynamics in Wuhan, China, of novel coronavirus-infected pneumonia. N. Engl. J. Med.https://​doi.​
+org/​10.​1056/​nejmo​a2001​316
+	 3.	 Li, R. et al. Substantial undocumented infection facilitates the rapid dissemination of novel coronavirus (SARS-CoV-2). Science 
+368, 6490 (2020).
+	 4.	 Shereen, M. A., Khan, S., Kazmi, A., Bashir, N. & Siddique, R. COVID-19 infection: origin, transmission, and characteristics of 
+human coronaviruses. J. Adv. Res. 24, 91–98 (2020).
+	 5.	 Mizumoto, K. & Chowell, G. Transmission potential of the novel coronavirus (COVID-19) onboard the diamond Princess Cruises 
+Ship. Infect. Dis. Model. 5, 264 (2020).
+	 6.	 Shim, E., Tariq, A., Choi, W., Lee, Y. & Chowell, G. Transmission potential and severity of COVID-19 in South Korea. Int. J. Infect. 
+Dis. 93, 339–344 (2020).
+	 7.	 Thomas, L. J. et al. Spatial heterogeneity can lead to substantial local variations in COVID-19 timing and severity. PNAS 117(39), 
+24180–24187 (2020).
+	 8.	 Srivastava, A. & Chowell, G. Understanding Spatial Heterogeneity of COVID-19 Pandemic Using Shape Analysis of Growth Rate 
+Curves. MedRxivhttps://​doi.​org/​10.​1101/​2020.​05.​25.​20112​433 (2020).
+	 9.	 Becchetti, L., Conzo, G., Conzo, P., & Salustri, F. Understanding the heterogeneity of adverse COVID-19 outcomes: the role of 
+poor quality of air and lockdown decisions. (2020) Available at SSRNhttps://​doi.​org/​10.​2139/​ssrn.​35725​48
+	10.	 Sominsky, L., Walker, D. W. & Spencer, S. J. One size does not fit all patterns of vulnerability and resilience in the COVID-19 
+pandemic and why heterogeneity of disease matters. Brain Behav. Immun. 87, 1–3 (2020).
+	11.	 Bernoulli, D. (1766) Essai d-une nouvelle analyse de la mortalite causee par la petite verole. Mem. Math. Phys. Acad. Roy. Sci., 
+Paris, 1–45.
+	12.	 Dietz, K. The first epidemic model: a historical note on En’ko. P. D. Aust. J. Stat. 30, 56–65 (1988).
+	13.	 Ross, R. The Prevention of Malaria 2nd edn. (John Murray, London, 1911).
+	14.	 Scudo, F. M., Ziegler, J. R. The golden age of theoretical ecology: 1923-1940, Lecture Notes in Biomathematics, (Springer-Verlag, 
+Berlin Heidelberg, 1978).
+	15.	 Kermack, W. O. & McKendrick, A. G. Contribution to the mathematical theory of epidemics. Proc. R. Soc. 115A, 700–721 (1927).
+	16.	 Bauer, F. & Castillo, Chavez C. Mathematical Models in Population Biology and Epidemiology (Springer-Verlag, New York, 2010).
+	17.	 Bailey, N. T. J. The mathematical Theory of Infectious Diseases and its Applications (Charles Griffin and Company LTD, London, 
+1975).
+	18.	 Diekmann, O., Heesterbeek, H. & Britton, T. Mathematical Tools for Understanding Infectious Disease Dynamics (Princeton Uni-
+versity Press, Princeton and Oxford, 2013).
+	19.	 Isham, V. & Medley, V. (eds) Models for infectious human diseases: their structure and relation to data Vol. 6 (Cambridge University 
+Press, 1996).
+	20.	 Keeling, M. J. & Rohani, P. Modeling Infectious Diseases in Humans and Animals (Princeton University Press, Princeton and Oxford, 
+2008).
+	21.	 Riley, S. Large-Scale Spatial-Transmission Models of Infectious Disease Science 316, 1298–1301 (2007).
+	22.	 Lin, Q. et al. Conceptual model for the coronavirus disease 2019 (COVID-19) outbreak in Wuhan, China with individual reaction 
+and governmental action. Int. J. Inf. Dis. 93, 211–216 (2020).
+	23.	 Kucharski, A. J. et al. Early dynamics of transmission and control of COVID-19: a mathematical modelling study. Lancet Infect. 
+Dis. 20, 553–558 (2020).
+	24.	 Zhang, J. et al. Evolving epidemiology and transmission dynamics of coronavirus disease 2019 outside Hubei province, China: a 
+descriptive and modeling study. Lancet Infect. Dis. 20, 793–802 (2020).
+	25.	 Roosa, K. et al. Real-time forecasts of the COVID-19 epidemic in China from February 5th to February 24th. Infect. Disease Model. 
+5, 256 (2020).
+	26.	 Giordano, G. et al. Modelling the COVID-19 epidemic and implementation of population-wide interventions in Italy. Nat. Med. 
+26, 855–860 (2020).
+	27.	 Anastassopoulou, C., Russo, L., Tsakris, A. & Siettos, C. Data-based analysis, modelling and forecasting of the COVID-19 outbreak. 
+PLoS One 15, e0230405. https://​doi.​org/​10.​1371/​journ​al.​pone.​02304​05 (2020).
+	28.	 Wu, J. T. et al. Estimating clinical severity of COVID-19 from the transmission dynamics in Wuhan. China. Nat. Med 26, 506–510 
+(2020).
+	29.	 Anirudh, A. Mathematical modeling and the transmission dynamics inpredicting the Covid-19 - What next in combating the 
+pandemic. Infect. Dis. Model. 5, 366–374 (2020).
+	30.	 Ferguson, N. M. et al. Impact of non-pharmaceutical interventions (NPIs) to reduce COVID-19 mortality and healthcare demand 
+(Report 9 (Imperial College London, London, United Kingdom, 2020)https://​doi.​org/​10.​25561/​77482).
+	31.	 Bertozzi, A. L., Franco, E., Mohlerd, G., Shorte, M. B., Sledgef, D. The challenges of modeling and forecasting the spread of COVID-
+19. PNAS 117 (29), 16732-16738 (2020). www.​pnas.​org/​cgi/​doi/​10.​1073/​pnas.​20065​20117
+	32.	 Baguelin, M. et al. Tooling-up for infectious disease transmission modelling. Epidemics 32, 100395. https://​doi.​org/​10.​1016/j.​
+epidem.​2020.​100395 (2020).
+	33.	 Mollison, D. Spatial Contact Models for Ecological and Epidemic Spread. J. R. Stat. Soc. Ser. B 39, 283–326 (1977).
+	34.	 Mollison, D. Modelling biological invasions: chance, explanation, prediction and discussion. Philos. Trans. R. Soc. Lond. Ser. Biol. 
+Sci. 314, 675-692 (1986).
+	35.	 Mollison, D., Isham, V. & Grenfell, B. J. R. Stat. Soc. Ser. A 157, 115–149 (1994).
+	36.	 Siegenfeld, A. F., Taleb, N. N. & Bar-Yamb, Y. What models can and cannot tell us about COVID-19. PNAS 117(28), 16092–16095 
+(2020).
+	37.	 Roda, W. C., Varughese, M. B., Han, D. & Li, M. Y. Why is it difficult to accurately predict the COVID-19 epidemic?. Infect. Dis. 
+Model. 5, 271–281 (2020).
+	38.	 Givens, G. H. & Hoeting, J. A. Computational Statistics (Wiley and Sons Inc, Publications, Hoboken, New Jersey, 2013).
+	39.	 Ballentine, L. E. The statistical interpretation of quantum mechanics. Rev. Mod. Phys. 42, 358–380 (1970).
+
+11
+Vol.:(0123456789)
+Scientific Reports |        (2021) 11:13860  | 
+https://doi.org/10.1038/s41598-021-93388-1
+www.nature.com/scientificreports/
+	40.	 Kendall, D. G. Discussion of “Measles periodicity and community size” by M. S. Bartlett, J. Roy. Stat. Soc. A 120, 64–76 (1957).
+	41.	 Thieme, H. C. A model for the spatial spread of an epidemic. J. Math. Biol. 4, 337–351 (1977).
+	42.	 Fisher, R. A. The wave of advance of advantageous genes. Ann. Eug. 7, 355–369 (1937).
+	43.	 Kolmogorov, A., Petrovsky, I., Piscounov, N. Study of the diffusion equation with growth of the quantity of matter and its appli-
+cation to a biological problem. Bull. State Univ. Mos. pp. 1-25 (1937) (trans. by F. Oliveira-Pinto and B. W. Conolly, Applicable 
+mathematics of non-physical phenomena, Ellis Horwood, 169-184 (1982).
+	44.	 Bartlett, M. S. Some evolutionary stochastic processes. J. Roy. Stat. Soc. B 11, 211–229 (1949).
+	45.	 Allen, L. J. S. An Introduction to Stochastic Epidemic Models, in F. Brauer, P. van den Driessche, J. Wu (ed) Mathematical Epide-
+miology, Lecture Notes in Mathematics 1945, pp. 81–128 (Springer-Verlag, 2008).
+	46.	 Yan, P. Distribution Theory, Stochastic Processes and Infectious Disease Modelling, in F. Brauer, P. van den Driessche, J. Wu (ed) 
+Mathematical Epidemiology, Lecture Notes in Mathematics 1945, 229-291 (Springer-Verlag, 2008).
+	47.	 Verhulst, P. F. Notice sur la loi que la population poursuit dans son accroissement. Corresp. Math. Phys 10, 113–121 (1838).
+	48.	 Barkai, E., Garini, Y. & Metzler, R. Strange kinetics of single molecules in living cells. Phys. Today 65, 29–35 (2012).
+	49.	 Rais, D., Menšík, M., Paruzel, B., Toman, P. & Pfleger, J. Concept of the Time-Dependent Diffusion Coefficient of Polarons in 
+Organic Semiconductors and Its Determination from Time-Resolved Spectroscopy. J. Phys. Chem. C 122, 22876–22883 (2018).
+	50.	 Reynaud, O. Time-Dependent Diffusion MRI in Cancer: Tissue Modeling and Applications. Front. Phys. 5, 58. https://​doi.​org/​10.​
+3389/​fphy.​2017.​00058 (2017).
+	51.	 Woringer, M., Izedin, I., Favard, C., Berry, H. Anomalous Subdiffusion in Living Cells: Bridging the Gap Between Experiments 
+and Realistic Models Through Collaborative Challenges. Front. Phys. 8, Article 134 (2020) https://​doi.​org/​10.​3389/​fphy.​2020.​00134
+	52.	 Bertacchini, F., Bilotta, E. & Pantano, P. S. On the temporal spreading of the SARS-CoV-2. PloS One 15(10), e0240777 (2020).
+	53.	 Pantano, E., Pizzi, G., Bilotta, E. & Pantano, P. Enhancing store layout decision with agent-based simulations of consumers’ density. 
+Expert Syst. Appl. 182, 115231 (2021).
+Acknowledgements
+The present work was performed under the auspices of the GNFM (Gruppo Nazionale di Fisica Matematica).
+Author contributions
+All results are obtained through the discussion between R.B., E.B., P.P.. The authors contributed equally to the 
+development of the model. All authors wrote and reviewed the manuscript.
+Competing interests 
+The authors declare no competing interests.
+Additional information
+Correspondence and requests for materials should be addressed to R.B.
+Reprints and permissions information is available at www.nature.com/reprints.
+Publisher’s note  Springer Nature remains neutral with regard to jurisdictional claims in published maps and 
+institutional affiliations.
+Open Access  This article is licensed under a Creative Commons Attribution 4.0 International 
+License, which permits use, sharing, adaptation, distribution and reproduction in any medium or 
+format, as long as you give appropriate credit to the original author(s) and the source, provide a link to the 
+Creative Commons licence, and indicate if changes were made. The images or other third party material in this 
+article are included in the article’s Creative Commons licence, unless indicated otherwise in a credit line to the 
+material. If material is not included in the article’s Creative Commons licence and your intended use is not 
+permitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from 
+the copyright holder. To view a copy of this licence, visit http://​creat​iveco​mmons.​org/​licen​ses/​by/4.​0/.
+© The Author(s) 2021

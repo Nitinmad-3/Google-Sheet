@@ -1,0 +1,1741 @@
+Source-PDF: D:\Review\New folder\Main\Core quantumbiomed + health relevance\How quantum computing can enhance biomarker discovery.pdf
+Relative-Path: New folder\Main\Core quantumbiomed + health relevance\How quantum computing can enhance biomarker discovery.pdf
+--------------------------------------------------------------------------------
+
+Perspective
+How quantum computing
+can enhance biomarker discovery
+Frederik F. Flo¨ ther,1,2,* Daniel Blankenberg,3 Maria Demidik,4,5 Karl Jansen,4,5 Raga Krishnakumar,6
+Rajiv Krishnakumar,1,2 Nouamane Laanait,7 Laxmi Parida,8 Carl Y. Saab,3 and Filippo Utro8
+1QuantumBasel, Schorenweg 44b, Arlesheim 4144, Switzerland
+2Center for Quantum Computing and Quantum Coherence (QC2), University of Basel, Petersplatz 1, Basel 4001, Switzerland
+3Cleveland Clinic, 9500 Euclid Avenue, Cleveland, OH 44195, USA
+4Deutsches Elektronen-Synchrotron DESY, Platanenallee 6, Zeuthen 15738, Germany
+5Computation-Based Science and Technology Research Center, The Cyprus Institute, KavaﬁStreet 20, Nicosia 2121, Cyprus
+6Sandia National Laboratories, 7011 East Avenue, Livermore, CA 94550, USA
+7Elevance Health, 740 W Peachtree St. NW, Atlanta, GA 30308, USA
+8IBM Thomas J. Watson Research Center, 1101 Kitchawan Road, Yorktown Heights, NY 10598, USA
+*Correspondence: frederik.ﬂoether@quantumbasel.com
+https://doi.org/10.1016/j.patter.2025.101236
+SUMMARY
+Biomarkers play a central role in medicine’s gradual progress toward proactive, personalized precision diag-
+nostics and interventions. However, ﬁnding biomarkers that provide very early indicators of a change in
+health status, for example, for multifactorial diseases, has been challenging. The discovery of such bio-
+markers stands to beneﬁt signiﬁcantly from advanced information processing and means to detect complex
+correlations, which quantum computing offers. In this perspective, quantum algorithms, particularly in ma-
+chine learning, are mapped to key applications in biomarker discovery. The opportunities and challenges
+associated with the algorithms and applications are discussed. The analysis is structured according to
+different data types—multidimensional, time series, and erroneous data—and covers key data modalities
+in healthcare—electronic health records, omics, and medical images. An outlook is provided concerning
+open research challenges.
+INTRODUCTION
+A biomarker is a deﬁned characteristic that is measured as
+an indicator of normal or pathological biological processes
+or of response to an exposure or intervention.1 The study of
+biomarkers arguably dates back to at least the beginning of
+the 20th century, with Karl Landsteiner’s discovery of the
+ABO blood types in 1901 (recognized with the 1930 Nobel Prize
+in Physiology or Medicine). Biomarkers consist of both biolog-
+ical molecules2 and other medical signs that indicate dis-
+eases,3,4 in contrast to symptoms as well as more general
+medical endpoints. Biomarkers can be based on histological,
+molecular,
+physiological,
+and
+radiographic
+characteristics.
+They may also take the form of aggregate high-dimensional
+features.
+Common modalities of biomarkers include biomolecules,
+ﬁelds in electronic health records (EHRs), laboratory values,
+medical images, omics information, social determinants, and
+wearable data. Moreover, there are several application cate-
+gories of biomarkers, including diagnostic, monitoring, prog-
+nostic, predictive, response, safety, and susceptibility/risk.
+Hence, biomarkers are context dependent and use case speciﬁc
+in healthcare and clinical trial settings.
+For example, clinical trials in neurology and psychiatry are
+time-intensive, expensive, and subjective, and have lower suc-
+cess rates than other indications.5 Within neuropsychiatry, pain
+represents a large unmet need with respect to the lack of reliable
+biomarkers. Hence, quantitative and physiological biomarkers
+are urgently needed for a comprehensive and reliable diagnosis
+and assessment of pain in healthcare and clinical trials.6 This is
+THE BIGGER PICTURE
+Precision medicine is a lofty goal, and challenges abound. A key ingredient to facil-
+itate proactive interventions that keep an individual healthy is the detection of the earliest signals that the in-
+dividual’s health status is changing. Identiﬁcation of such biomarkers requires advanced algorithms and an-
+alytics. Enter quantum computing. While still an emerging technology, quantum algorithms, particularly
+quantum machine learning, can uncover patterns that classical techniques cannot. This could enable the dis-
+covery of novel biomarkers and thus accelerate progress toward precision medicine.
+ll
+OPEN ACCESS
+Patterns 6, June 13, 2025 ª 2025 The Authors. Published by Elsevier Inc.
+1
+This is an open access article under the CC BY license (http://creativecommons.org/licenses/by/4.0/).
+
+illustrative of the impact that better biomarkers can have across
+medicine.
+While the beginnings of quantum mechanics date back 100
+years, quantum computing is a new form of information process-
+ing, including novel hardware and software, that leverages
+quantum mechanical effects such as quantum entanglement,
+interference, and superposition. It is the only known form of
+computing that can provide, at least for certain problems, expo-
+nential speedups compared with classical approaches; for other
+problems, there may only be polynomial speedups or none at all,
+however.7 Hundreds of use cases are meanwhile being explored
+across industry and academia. Quantum computing is not just a
+faster way of addressing problems; it also represents an entirely
+different way to ﬁnd solutions. The beneﬁts also go beyond
+speed; depending on the application and the use case, the
+main beneﬁt could be accuracy,8 energy efﬁciency,9 or the ability
+to handle difﬁcult datasets (for instance, high-dimensional or
+highly noisy ones).10,11
+The focus of this review is on (gate-based) quantum
+computing and its potential for computational problems in
+biomarker discovery. Nevertheless, it is important to note that
+there are further quantum technologies with medical applica-
+tions and biomarker relevance, in particular, quantum anneal-
+ing12 and quantum sensing.13–15 Here, quantum computing
+and relevant quantum algorithms are ﬁrst summarized in the sec-
+tion ‘‘quantum computing’’ before the application of quantum al-
+gorithms to biomarker discovery problems is described in the
+section ‘‘quantum computing for biomarkers.’’ Open research
+challenges are discussed in the section ‘‘open research chal-
+lenges,’’ and conclusions are drawn in the section ‘‘conclusion.’’
+QUANTUM COMPUTING
+Quantum computing is a relatively nascent ﬁeld of research
+undergoing rapid and substantial development. By leveraging
+the fundamental properties of quantum mechanics, namely su-
+perposition and entanglement, quantum computing presents
+exciting opportunities to solve problems more efﬁciently than
+classical computing can. However, the quantum computers
+that are available currently are prone to errors and face limita-
+tions in both the number of quantum bits (qubits) and the
+connectivity between them. Overcoming these constraints is
+essential to implementing and correctly executing any algorithm.
+These constraints also introduce challenges in developing algo-
+rithms to achieve a quantum advantage with available quantum
+devices, commonly referred to as utility-scale or near-term
+quantum computers. Therefore, signiﬁcant efforts concentrate
+on utilizing near-term quantum computers, while research con-
+tinues on developing fault-tolerant quantum hardware that can
+operate reliably even in the presence of noise.
+In quantum computing, algorithms take advantage of Hilbert
+space. This is a high-dimensional vector space that represents
+the state of the qubits and is naturally suited for computing
+outcome probabilities (via an inner product). If the input of a quan-
+tum algorithm is classical data that is not represented by quantum
+states, then data embedding is required to perform operations on
+a quantum computer. While there are various ways to embed clas-
+sical data into quantum states, the number of available qubits re-
+stricts the feature space size of the data we can tackle with near-
+term devices. For instance, angle encoding16 or instantaneous
+quantum polynomial encoding17 requires a linear scaling of the
+number of qubits with respect to the number of features. Alterna-
+tively, amplitude encoding provides a logarithmic scaling in the
+number of qubits.16 However, without ancillary qubits, amplitude
+encoding results in deep circuits.18 In practice, when the feature
+space exceeds the capacity of available quantum hardware, clas-
+sical dimensionality reduction algorithms are applied as a pre-pro-
+cessing step in quantum pipelines. Still, with ongoing advance-
+ments in quantum computing, biomarker discovery and other
+quantum applications may eventually be performed without the
+need for signiﬁcant (classical) pre-processing.
+Quantum circuits are fundamental to the architecture of
+quantum computation, providing the framework through which
+quantum algorithms are designed and executed. At a high level,
+a quantum circuit is a sequence of quantum gates applied to
+qubits.Eachgateperformsaspeciﬁcoperation ononeormorequ-
+bits. Fault-tolerant quantum algorithms typically require running
+deep quantum circuits on tens of thousands to millions of qubits,
+making them unsuitable for near-term devices. However, varia-
+tional quantum algorithms (VQAs)19 utilize shallower circuits and
+can produce meaningful results. This characteristic has made
+VQAs highly popular for near-term quantum computing applica-
+tions. VQAs are hybrid quantum-classical algorithms that involve
+an iterative loop between quantum and classical hardware. First,
+quantum circuits that have parametrized gates, called the ans€atze
+or parametrized quantum circuits (PQCs), are employed to obtain
+samples from a quantum computer. Second, a classical computer
+optimizestheparametersofthequantum circuitwithrespecttothe
+loss function of the problem. Most quantum machine learning
+(QML) models belong to the class of VQAs and can be evaluated
+on quantum computers. Alternatively, quantum computers could
+be leveraged as sub-routines within classical algorithms. One
+example is the thermal state preparation during Boltzmann ma-
+chine training. However, the performance of VQAs is highly sensi-
+tive to hardware noise, necessitating the use of error mitigation
+techniques to partially counteract noise-induced errors.20
+The execution of quantum circuits is performed on quantum
+hardware through quantum processing units (QPUs), in analogy
+to central and graphics processing units. Another element is the
+quantum random access memory (QRAM), which is a quantum
+memory that stores a quantum state for later retrieval. Unlike
+QPUs, which are readily available via cloud computing platforms,
+hardware incorporating QRAM devices has not yet been demon-
+strated.
+Quantum computing is naturally suited for quantum data (which
+describes quantum states).However,it alsoholds great promise in
+solving problems using classical data. In particular, there has been
+muchprogressinthelastfew yearsinunderstandinghowquantum
+computers can solve computational problems that can be formu-
+lated as cryptography, ML, optimization, or simulation (of nature)
+problems.21 In this paper, we focus on analyzing classical data
+with the help of quantum algorithms, including multidimensional,
+time series, and erroneous data, which is discussed in detail in
+the section ‘‘quantum computing for biomarkers.’’
+QML
+QML integrates principles from quantum computing and ML,
+promising potential advances in learning from data. A recent
+ll
+OPEN ACCESS
+2
+Patterns 6, June 13, 2025
+Perspective
+
+benchmarking study22 provides a comprehensive evaluation of
+popular QML models on binary classiﬁcation problems. The
+study examines QML architectures compatible with near-term
+quantum devices such as quantum neural networks (QNNs),
+including quantum convolutional neural networks and quantum
+kernel methods (QKMs).
+The majority of QNNs are based on PQCs. The parameters of
+PQCs are optimized following the VQA paradigm. A typical QNN
+begins with data embedding, followed by a series of gates. One
+of the most general QNN models for classiﬁcation is the varia-
+tional quantum classiﬁer (VQC), which is essentially a PQC.
+Another example of a VQC is the circuit-centric quantum classi-
+ﬁer,23 one of the earliest proposed generic QNNs. The data re-
+uploading classiﬁer is a notable QNN architecture that was
+shown to have universal approximation properties.24 The data
+re-uploading classiﬁer features a processing layer composed
+of data encoding and unitary operations with trainable parame-
+ters. This layer is repeated a number of times, each layer having
+independent parameters.
+Recently, signiﬁcant attention has been given to leveraging
+quantum computers for evaluating kernel functions in kernel
+methods. Quantum kernels, based on feature maps (data encod-
+ings), could be used with classical maximum margin classiﬁers.
+To evaluate a quantum kernel function, a circuit is designed by
+ﬁrst applying a feature map and then its Hermitian conjugate. A
+prominent example of data-dependent quantum advantage in
+QML models is demonstrated through QKMs. Huang et al.25 es-
+tablished a relation between the potential advantage in predic-
+tive accuracy of a model for a given dataset and a quantum
+kernel. In addition, a projected quantum kernel classiﬁer was
+introduced.
+Although the predictive advantage of QML models for practi-
+cally relevant problems remains an open question and necessi-
+tates data embeddings that are difﬁcult to simulate classically,
+quantum models are expected to show better generalization
+than classical models, leveraging fewer data points.26 This is
+particularly intriguing in ﬁelds where constructing sufﬁciently
+large datasets to ensure satisfactory performance for ML models
+is challenging, as is the case in many healthcare settings.
+The ﬁndings by Bowles et al.22 highlight the signiﬁcance of
+experimental design for the performance of quantum models.
+Problem-agnostic implementations of QML models are unlikely
+to outperform their classical counterparts, highlighting the
+need for tailored approaches. Speciﬁcally, the embedding of
+classical data into Hilbert space and subsequent operations
+should be tailored to an application and available hardware.
+Additionally, for QML models based on VQAs, the barren plateau
+(BP) phenomenon should be addressed. A model experiences a
+BP when its loss landscape ﬂattens, and the variance of param-
+eters’ gradients decays exponentially as the system size in-
+creases,
+making
+gradient-based
+optimization
+challenging.
+Avoiding BPs in QML models commonly necessitates reducing
+the expressivity of the circuits, which also tends to make them
+more classically simulable (decreasing the potential of signiﬁcant
+quantum advantages).27,28 These insights underscore the impor-
+tance of use case-speciﬁc algorithm design for the potential
+beneﬁts of quantum computing.
+Despite the challenges in algorithm design, a variety of
+(machine) learning tasks are being explored with quantum algo-
+rithms. An overview of learning tasks, use case examples, and
+corresponding quantum algorithms (many of the algorithms
+may also be relevant to other learning tasks and use cases) is
+given in Table 1 and is further discussed below.
+Consider the example of dimensionality reduction, a key
+technique used to compress large and complex datasets while
+preserving key information. As quantum computing rapidly
+develops, quantum algorithms for reducing the feature space
+size are evolving alongside it. For instance, many classical
+dimensionality reduction algorithms have a quantum adaptation,
+such as quantum principal-component analysis (QPCA),29 quan-
+tum linear discriminant analysis (QLDA),31 quantum slow feature
+analysis (QSFA),32 and quantum isomap (QIsomap).33 A QPCA
+speedup on quantum data is highlighted in the work of Gordon
+et al.30 However, the majority of the quantum algorithms
+for dimensionality reduction still require further algorithmic ad-
+vancements and fault-tolerant hardware to achieve practical
+relevance.
+Many other
+learning tasks
+may beneﬁt
+from quantum
+computing.
+This
+includes
+supervised
+learning,
+regression
+analysis being one example, for instance via quantum linear
+regression.36–39 Likewise, unsupervised learning may beneﬁt
+from approaches such as quantum k-means (QK-means) clus-
+tering40,41 and quantum spectral clustering.42 Given the recent
+rise of generative artiﬁcial intelligence (AI) techniques, quantum
+generative models are receiving renewed interest, including
+QNNs,43
+quantum
+Boltzmann
+machines
+(QBMs),44,45
+and
+Table 1. Overview of machine learning and related tasks and examples of use cases and quantum algorithms
+Learning task
+Use cases
+Quantum algorithms
+Dimensionality reduction
+covariates for biomarker trait regression
+models
+QPCA,29,30 QLDA,31 QSFA,32 QIsomap33
+Classiﬁcation
+early disease stage prediction
+QNNs,23,24,34,35 QKMs17,25
+Regression
+disease risk prediction
+quantum linear regression36–39
+Clustering
+multi-omics data analysis
+QK-means,40,41 quantum spectral
+clustering42
+Generative learning
+synthetic medical images
+QNNs,43 QBMs,44,45 QGANs46
+Time series forecasting
+longitudinal patient studies, drug-
+resistance mechanisms
+QRC47
+Natural language processing
+clinical notes processing
+QLSTM48
+Optimization
+treatment optimization
+QAOA,49 QPSO,50 VQE51
+ll
+OPEN ACCESS
+Patterns 6, June 13, 2025
+3
+Perspective
+
+quantum generative adversarial networks (QGANs).46 As a ﬁnal
+example, natural language processing is an emerging area that
+has recently progressed through the emergence of quantum nat-
+ural language processing (QNLP).48,52
+QUANTUM COMPUTING FOR BIOMARKERS
+Quantum computing is not a silver bullet; it does not enable im-
+provements for every single computational task and thus not
+every problem in biomarker research. Therefore, it is important
+to categorize and narrow down which (important) problems in
+biomarker research are particularly suited in regard to the appli-
+cation of quantum algorithms. Related work has been conducted
+for the biological sciences,53 cell-centric therapeutics,54 clinical
+trials,55 digital health,56 and health and medicine.57
+In this section, we organize areas of opportunity in applying
+quantum computing to biomarker discovery along the lines of
+data types while discussing multiple healthcare data modalities
+for each data type. We chose this categorization instead of
+one explicitly centered on healthcare data for the following
+reasons. Quantum algorithm development advances at a fast
+pace, and research in that ﬁeld often makes explicit assumptions
+about data types as well as quantum computer accessibility. As
+such, by focusing on connecting data types to healthcare modal-
+ities, it is our hope that insights provided by this perspective
+retain relevance in the face of future developments in quantum
+algorithms. Moreover, this allows insights from the given
+perspective to have stronger cross-disciplinary relevance. Spe-
+ciﬁcally, in this paper, we organize around multidimensional
+data, time series data, and erroneous data. For each of the above
+data types, their occurrence in and relevance to different health-
+care data modalities are analyzed in the context of the applica-
+bility of quantum algorithms. Figure 1 illustrates the ﬂow of
+data through a hybrid quantum-classical computational pipeline
+for different types of data, healthcare data modalities, classical
+approaches and limitations, and pertinent quantum algorithms
+for selected use cases.
+After preparing the data for downstream analysis, classical
+dimensionality reduction techniques may be applied due to the
+limited number of available qubits of near-term quantum de-
+vices. These may differ between EHRs,58 omics data,59 and
+medical images.
+Clearly, the ﬂow illustrates that quantum computing algo-
+rithms are only inserted at very speciﬁc points of the compu-
+tational pipeline; most computational steps remain on clas-
+sical systems. Optimizing the quantum part requires, for
+example, adapting the algorithm to both the speciﬁcs of the
+device and the characteristics of the data. The classical
+data should be embedded into a Hilbert space via data en-
+coding techniques.60 Depending on the nature of the data
+and the speciﬁc problem at hand, it may be necessary to
+develop data encoding methods tailored to the application.
+Additionally, the quantum algorithm should account for the
+quantum device’s connectivity and its limitation. For instance,
+error
+mitigation
+and
+suppression
+protocols20
+should
+be
+considered prior to running the algorithm to address potential
+hardware-induced errors.
+Multidimensional data
+Recent technological developments have produced an abun-
+dance of data in the domains of healthcare and life sciences.61
+These are often correlated in intricate ways, which may
+Figure 1. Flow of data through a hybrid quantum-classical computational pipeline for different types of data and different healthcare data
+modalities
+The top part of the ﬁgure focuses on the categories multidimensional, time series, and erroneous data. The bottom part covers the modalities EHRs, omics, and
+medical images. Examples are given for pre-processing steps, quantum algorithms, classical algorithms and their limitations (in gray), and medical use case
+applications.
+ll
+OPEN ACCESS
+4
+Patterns 6, June 13, 2025
+Perspective
+
+necessitate a (quantum) network model approach62 and ML
+techniques such as (quantum) graph neural networks.35,63
+Furthermore, multidimensionality of data can occur due to
+different modalities and time changes for a set of samples and
+features. Medical imaging, next-generation sequencing, and
+other high-throughput instruments produce streams of multi-
+modal data that are referred to as ‘‘big data.’’ In the context of
+biomarker discovery, these massive data volumes acquire or-
+ders of magnitude more quantity and complexity when utilized
+in large-cohort analyses such as genome-wide association
+studies (GWASs). A key problem, however, arises in the dimen-
+sionality of the data. Even big data suffers from having too many
+features compared with the number of samples, which signiﬁ-
+cantly complicates data science.64 While there are solutions
+for increasing the number of samples, these are often still limited
+for biological datasets. Methods for dimensionality reduction
+and feature selection therefore become extremely important in
+handling big data so that the dimensionality can be returned to
+where there are many more samples than features. This then
+blurs the lines between big data and ‘‘small data,’’ which can
+be very limited in either the number of samples or the number
+of features. Small data with few samples is often encountered
+in population studies of rare diseases and conditions. Even
+though the underlying modality (e.g., whole-genome sequencing
+data) is more aptly classiﬁed as big data, the intrinsically limited
+number of samples (e.g., in the case of individuals diagnosed
+with a rare condition) constrains a biomarker discovery investi-
+gation to small data.
+In all regimes of data (big, small, and the entire spectrum in be-
+tween), quantum computing presents us with new opportunities
+(and a new set of challenges) to address persistent limitations of
+classical computational approaches. One notable example is
+overcoming the data and scale inefﬁciencies of modern classical
+ML. In the past decade, ML has made incredible advances pow-
+ered by massively scaling training data, computing budgets, and
+the sizes of deep neural networks. Recent theoretical results
+have shown, however, that the efﬁcacy of deep neural networks
+is tied to the number of samples accessible during the training
+phase and the effective dimension of the dataset. To illustrate
+this fundamental relationship, training current neural networks
+to achieve a robust generalization error on a dataset roughly
+the size and effective dimension of ImageNet would require a
+model with around 10–100 billion parameters,65 rivaling the
+size of some of the biggest large language models trained to
+date. Empirical studies by various research groups have
+conﬁrmed this unfavorable scaling of model size, data size,
+and computing budget for other data modalities such as natural
+language.66,67 Recent research in quantum computing points to
+the possibility of a new class of quantum algorithms that are both
+data and model size efﬁcient and able to generalize to new data
+with few data samples.34
+While there is evidence for more data-efﬁcient QML algo-
+rithms, the loading of classical data into quantum computers
+represents a new set of challenges that exists in both current
+and near-term quantum hardware. How quantum computers
+can access data is of central importance in the ﬁeld of QML. In
+fact, some early QML algorithms made assumptions around ac-
+cess to classical data that have been shown to lead to computa-
+tional advantages over their classical counterparts. However,
+once their data access assumptions were closely inspected
+and loosened, it was found that many of those computational
+speedups no longer hold.68 Going deeper into the topic of quan-
+tum access to data is beyond the scope of this perspective; suf-
+ﬁce it to say that for classical big data, data loading may erase
+computational quantum advantages. Different research efforts
+are under way, such as QRAMs69 on the hardware side and cor-
+esets70,71 on the algorithmic side, to address this challenge. For
+the time being, however, small data is a more natural ﬁt for exist-
+ing and planned quantum computers.
+EHRs
+The increasing adoption of EHRs has revolutionized biomedical
+research. EHRs provide rapid data availability, eliminating the
+need for extensive recruitment or data collection. Additionally,
+they support longitudinal tracking of patient health, facilitating
+disease progression analysis. Their ability to capture data from
+diverse patient populations also enhances the detection of sub-
+tle health trends.
+For the scope of this paper, EHRs are assumed to contain
+(typically structured) information such as diagnoses, immuniza-
+tion, laboratory measurements, medications, procedures, and
+vital sign data as well as unstructured doctor notes. They also
+increasingly integrate social determinants of health (SDOH)
+and wearable data. Medical images and omics, due to the explo-
+sive growth in their collection and relevance, are discussed
+separately in this paper.
+SDOH, encompassing economic stability, education, health-
+care access, neighborhood environment, and social context,
+signiﬁcantly impact health outcomes. While some SDOH data
+(e.g., age, location) can be extracted from EHRs, other data
+(e.g., social and behavioral determinants) is often missing. Since
+SDOH are strongly correlated with morbidity and mortality, inte-
+grating them with EHRs is crucial. However, the complex inter-
+play between health and social factors presents signiﬁcant
+analytical challenges.72
+The application of deep learning, ML, and AI to EHRs has
+yielded valuable medical insights, including accurate prediction
+of
+future
+health
+conditions.73,74
+AI-based
+approaches75,76
+broaden the understanding of biomarkers, particularly when
+EHRs are fused with other data sources.77 The construction of
+such multimodal datasets may itself also beneﬁt from AI tech-
+niques.78,79 Therefore, the increasing integration of EHRs in
+biomedical research suggests that QML holds immense poten-
+tial for advancing biomarker discovery. In particular, quantum
+computing could enhance the analysis of EHRs in small-cohort
+studies, such as clinical trials or rare disease research, by
+improving predictive accuracy from small datasets.
+Furthermore, QNLP shows promise in representing linguistic
+information more effectively than classical methods.48,52 For
+example, clinical notes may show that an epilepsy patient has
+been seizure-free,76 which would otherwise likely have to be indi-
+rectly inferred from the absence of medical codes. Therefore,
+QNLP methods may be applied in analyzing free-text doctor’s
+notes, which offer valuable insights.80
+Omics
+Handling sparse omics data is often a limitation for classic ML
+and statistical techniques in biomarker discovery. Quantum
+computing may actually provide a solution to some of these chal-
+lenges.
+ll
+OPEN ACCESS
+Patterns 6, June 13, 2025
+5
+Perspective
+
+Genomic, proteomic, and other omics data have revolution-
+ized our understanding of complex diseases. Spurred by techno-
+logical advances (including next-generation sequencing), omics
+often includes high-throughput empirical studies, producing raw
+data that necessitates multistep computational processing and
+sophisticated analysis before being amenable to interpretation.
+In the last decade, omics have become widely used in biomed-
+ical research to study disease mechanisms, identiﬁcation of bio-
+markers for therapeutic development, and diagnostics in the
+clinical setting.81,82 Although such large datasets can now be
+generated, biological data suffers from what is known as the
+‘‘curse of dimensionality,’’83 which makes it challenging to
+perform traditional ML, due to overﬁtting, and to properly train
+the model. Mitigation of this is aided by state-of-the-art methods
+in single-cell sequencing and spatial transcriptomics, which
+begin to address the issue of dimensionality by interrogating in-
+dividual cells rather than populations. While the number of pa-
+tients will not increase with single-cell analysis, having informa-
+tion from individual cells allows for more detailed biomarker
+identiﬁcation strategies, especially in diseases with heteroge-
+neous manifestations such as cancer. However, even with sin-
+gle-cell analysis, limited data and too many features continue
+to be problems, and addressing these problems requires tech-
+niques such as dimensionality reduction, feature selection, and
+clustering.84
+An example is biomarker discovery for the stratiﬁcation of pa-
+tients into different groups based on their susceptibility to a
+particular disease or their response to a speciﬁc drug. Often,
+such studies are limited in the number of available samples,
+but owing to the large number of features, the search space
+can be vast. Indeed, collecting omics data from patients is chal-
+lenging for many reasons, most notably the invasive nature of the
+medical procedures, their associated costs, and a lack of infra-
+structure. This is an area where quantum computing has already
+had demonstrable impact and will continue to be increasingly
+impactful as data availability increases and the hardware and
+software evolve.85,86
+Furthermore, with genome sequencing becoming increasingly
+democratized, methods such as GWAS and quantitative trait loci
+(QTLs) mapping are often used to identify genetic biomarkers of
+disease states or phenotypic variation in populations.81,87 How-
+ever, for approaches such as GWAS and QTL mapping to reach
+statistical signiﬁcance, let alone train predictive models, huge
+amounts of complex data would be required, and this is where
+quantum computing can provide potential alternatives to clas-
+sical algorithms.88 In addition, GWAS studies often require
+methods such as PCA to identify covariates for biomarker trait
+regression models.89 In cases where the covariance matrix of in-
+terest is of a low rank, QPCA29 and variants thereof30,90 can
+prove far more efﬁcient than their existing classical counterparts,
+albeit issues of data loading and quantum hardware fault toler-
+ance must be overcome ﬁrst.
+The interpretation of genetic variants in terms of biomarkers is
+typically limited by inherent correlations between causal and
+non-causal variants,91–93 requiring formal causal inference ap-
+proaches. The latter are notorious for their prohibitive computa-
+tional cost,94 except in cases with restrictive assumptions about
+the underlying causal structure. Quantum causal inference is an
+active area of research that could provide more powerful causal
+discovery algorithms than are currently available classically. So
+far, quantum speedups in causal inference have been obtained
+only for datasets whose statistics cannot be described entirely
+with classical means due to the presence of quantum corre-
+lations.95
+Another prevalent approach to biomarker discovery with
+omics data is through studies of how the transcription of
+one gene affects the transcription of its neighboring genes,
+whether it be through statistical approaches such as expres-
+sion QTLs or gaining predictive power from gene expression
+patterns through ML.96,97 An efﬁcient way to rapidly under-
+stand and analyze complex regulatory relationships between
+genes is through
+gene regulatory networks
+(GRNs).98,99
+GRNs are computationally efﬁcient since they only include
+pairwise interactions. Recently, a PQC model for a quantum
+single-cell GRN was proposed to try to allow for higher-order
+correlations and preserving the computational efﬁciency of
+GRNs.100 Authors have analyzed single-cell RNA sequencing
+data from lymphoblastoid cell lines originating from two data
+sources.101,102 Mixed results were found with the quantum
+models, with some correlations in accordance with previous
+ﬁndings, other correlations in contradiction to previous ﬁnd-
+ings, and even new correlations that were not present in the
+baseline model. This work is an example of how novel quan-
+tum computational models and algorithms, even when co-de-
+signed with omics problems, can lead to new insights and
+help bypass the data-uploading challenges described earlier.
+Moreover, an additional avenue to understand the co-expres-
+sion of genes is to implement methods to cluster gene-expres-
+sion datasets. While there are many techniques for clustering
+gene expression data,103 more traditional methods often make
+assumptions about the data or make a priori decisions about
+parameters that are not necessarily sound.104 To circumvent
+this, more complex algorithms such as genetic algorithms or
+particle swarm optimizers (PSOs) have more recently been
+explored for genomic clustering, with PSOs showing promising
+results with respect to validated accuracies compared with
+other methods.105 However, the disadvantage of this algorithm
+is that it does not guarantee a convergence to a global mini-
+mum106 and is prone to being trapped in local optima.107 Clas-
+sical techniques to overcome this drawback have been discov-
+ered,
+but
+their
+implementation
+can
+be
+computationally
+expensive.108 A potential solution to mitigate this issue is to
+use the quantum-behaved particle swarm optimization algo-
+rithm106,109 and its modiﬁed versions.110–112 The idea is to sup-
+pose that each point-particle is now a spinless one with quan-
+tum
+behavior
+that
+follows
+a
+corresponding
+Schro¨ dinger
+equation, which can then be used to perform the particles’ posi-
+tion and velocity updates at each iteration. Although the refer-
+ences cited have implemented these quantum-behaved PSO al-
+gorithms on classical computers, to our current knowledge, they
+have not been discussed in the context of being implemented on
+a quantum computer. It appears possible that furthering the un-
+derstanding of implementing quantum-behaved PSOs on quan-
+tum computers, in addition to exploring other quantum optimi-
+zation techniques (not necessarily focused on clustering) such
+as the quantum approximate optimization algorithm (QAOA)
+and the variational quantum eigensolver (VQE), could lead to
+quantum advantages.
+ll
+OPEN ACCESS
+6
+Patterns 6, June 13, 2025
+Perspective
+
+Medical images
+Medical images are a widely used approach for assessing injury,
+disease, and health. By using techniques such as X-ray, mag-
+netic resonance imaging (MRI), computed tomography (CT),
+positron emission tomography (PET), and ultrasound, imaging
+enables physicians and researchers to visualize internal struc-
+tures and functions of the human body. Qualitative medical im-
+aging involves the visual interpretation of images by trained
+healthcare professionals to identify and characterize abnormal-
+ities, lesions, or anatomical structures by focusing on subjective
+observations such as size, shape, texture, and density to make
+diagnostic assessments. This raises issues when it comes to de-
+cision-making with images.
+Even when looking for known features in medical images,
+professionals can miss details or ﬁnd speciﬁc images that are
+difﬁcult to interpret. While algorithms exist for dimensionality
+reduction and feature selection of images, the amount and
+diversity of data that need to be processed can often be a
+computational challenge and lead to insights being missed.
+This is where quantum computing could play a signiﬁcant role.
+Quantum algorithms,113 particularly QML,114 have shown prom-
+ise in this application space.
+Consider the case where a radiologist may identify the presence
+of a tumor in an MRI scan based on its appearance and contrast
+with surrounding tissues. Quantitative medical imaging involves
+the extraction of numerical or quantitative data from medical im-
+ages using computer-based algorithms and software tools.
+Here, subjective measurements of various parameters such as
+blood ﬂow, density, metabolic activity, and volume are obtained,
+which may allow for more precise and standardized assessments
+of disease severity, progression, and treatment response. An
+oncologist may use quantitative imaging techniques that can
+measure tumor size, shape, and growth rate to assess treatment
+efﬁcacy and predict patient outcomes. To be able to do this, sig-
+niﬁcant computing power and advanced computational tech-
+niques are needed; traditional approaches are often not sufﬁcient.
+Another issue that arises is when speciﬁc features are not
+known, and exploratory analysis is required for diagnosis, which
+exacerbates the computing problem. For example, although
+approximately 1.2% of the US population has active epilepsy,115
+only half of these cases have a determined cause. In cases
+where identiﬁcation is possible through known markers, MRI is
+commonly used to detect structural brain abnormalities, such
+as hippocampal sclerosis, cortical dysplasia, and brain tumors,
+which may be the underlying cause of epilepsy. In cases where
+structural abnormalities are not observed, PET can be used to
+detect areas of hypometabolism that may correspond to epilep-
+togenic zones (EZs). Single-photon emission CT can be used to
+visualize blood ﬂow changes during a seizure and between sei-
+zures, where the comparison of these images can aid in local-
+izing the EZ. Hybrid imaging combines several different imaging
+techniques, leveraging both structural and metabolic information
+to improve localization. Extensive analysis is still required, how-
+ever, to identify more markers that encompass a wider spectrum
+of epilepsy patients and provide more granular detail into the
+type and severity of the disease, which in turn requires massive
+amounts of data collection and processing.
+Reconstructing images from lower-dimensional and lower-res-
+olution data is another area of potential quantum enhancement.116
+For example, quantum techniques for volume-rendering medical
+imaging data more efﬁciently have been proposed.117 The chal-
+lenges in medical imaging go beyond image processing. Medical
+imaging equipment often comprises devices that require special-
+ized environments and maintenance. For instance, MRI machines
+need high-powered magnets and must be kept at a temperature of
+a few degrees kelvin. Lower-powered magnets that do not require
+such extreme environments because they beneﬁt from quantum
+algorithms that place lower demands on image resolution would
+be a boon for accessibility and equity.
+Time series data
+The models used in predicting future values of a time series given
+a set of past values are fundamentally different from predicting
+labels or a quantity given a set of features. This is because the
+former is an extrapolation whereas (in most cases) the latter is
+an interpolation. Thus, common models (ML or otherwise) used
+in classiﬁcation or regression problems usually do not perform
+well for time series prediction and forecasting, and time series
+data require other approaches.
+For many biomedical applications, analysis of time series data,
+also known as longitudinal data, presents a range of challenges
+for classical techniques, including ML models. Some of these
+challenges are algorithm selection, explainability, heteroge-
+neous data, inconsistent labeling and annotations, missing
+data, and unbalanced data.118 In addition, the many correlated
+variables typically found in biomarker data make it difﬁcult to
+elucidate causal pathways.119 Quantum computing techniques,
+particularly
+QML
+algorithms
+such
+as
+quantum
+reservoir
+methods,120 are actively researched to achieve enhanced time
+series processing.121
+There already exists a variety of techniques to tackle time
+series problems. For many examples, one can often obtain
+reasonable predictions by using relatively simple models such
+as autoregressive moving average models and their many vari-
+ants.122 For time series data with additional challenges, such
+as the ones mentioned at the start of this section, the current
+state-of-the-art is arguably the long short-term memory (LSTM)
+ML model,123 which is able to capture some properties, such
+as seasonality and highly correlated variables, much better
+than the more traditional models. However, a recent QML tech-
+nique that has also started to gain attention is quantum reservoir
+computing (QRC).124 Reservoir computing is a predecessor to
+recurrent neural networks (RNNs), where the hidden weights
+can be treated as a reservoir that projects the data into a
+higher-dimensional subspace, which can then be fed into a sim-
+ple linear model; quantum analogs exist.125 The reservoir (similar
+to the RNN) receives the time series data sequentially, and hence
+the dynamics of the reservoir are dependent on the previous time
+step. This reservoir can have many different forms, ranging from
+classical architectures like the echo state network126 to physical
+implementations.127,128 The advantage of reservoir computing
+versus RNNs is that since the majority of the randomly initialized
+parameters of this reservoir is ﬁxed from the start, the computa-
+tional cost of training them is much lower. However, this random-
+ness typically requires reservoirs to have many more parameters
+to achieve comparable accuracy. Still, the use of a quantum
+reservoir (e.g., by generating a random quantum circuit) can
+ll
+OPEN ACCESS
+Patterns 6, June 13, 2025
+7
+Perspective
+
+decrease the number of parameters required for the model to
+perform well.
+EHRs
+Time series analysis is particularly relevant to EHRs, given the lon-
+gitudinal nature of many of the components (e.g., laboratory
+values). To move closer to proactive medicine, one needs to be
+able to accurately predict the next points in a time series to
+achieve early diagnostics and interventions. EHRs suffer from
+many of the data challenges described earlier. For instance,
+many of the patients go in and out of healthcare systems, and
+as a result, approaches such as hidden Markov models (HMMs)
+are applied.129 Although these models are good candidates to
+handle noisy and highly variable signals, they tend to fall short
+for several reasons, including the high memory requirements to
+implement these models at scale and attempts to take into ac-
+count all the important variables. Using QRC or even a quantum
+version of HMMs could relieve this bottleneck around high-mem-
+ory requirements if the data can be encoded in an efﬁcient way.
+Furthermore, wearables represent another modality that is
+growing rapidly and starting to be integrated with EHRs.130
+These include chemical sensors that collect signals with electro-
+chemical and optical methods,131 as well as ﬁtness trackers and
+other devices that monitor digital biomarkers.132 They may also
+include quantum sensors that exploit quantum mechanical
+properties to achieve superior sensitivities, such as nitrogen-va-
+cancy-center-based magnetometry at the level of single neu-
+rons.133 By their nature, these wearables typically generate
+time series data and could thus beneﬁt from such quantum
+(ML) methods.
+Omics
+Omics time series data are particularly valuable for biomarker
+discovery, as they allow the observation of temporal patterns
+and gene-gene/protein-protein interactions. Examples includes
+disease progression/sub-typing134,135 and patient response to
+treatments.136–139
+Non-invasive approaches to use liquid biopsies allow one to
+capture a mixture of the omics proﬁle of cancer cells in a patient
+via cell-free DNA (cfDNA). Recently, studies have demonstrated
+the application of cfDNA to identify drug resistance mecha-
+nisms.140 Moreover, in the last few years several studies have
+shown that cfDNA fragmentomics’ characteristics differ in
+normal and diseased individuals without the need to distinguish
+the source of the cfDNA fragments, which makes it a promising
+novel biomarker in particular for early cancer detection.141,142
+Indeed, ML algorithms have been applied to such tasks with
+promising results to identify late-stage cancer141 but still fail to
+detect early signs in the development of the disease. Another
+recent application of omics time series is in the case of epilepsy
+post-surgical seizure recurrence,134 where omics data were
+used to subtype patients based on their treatment responses.
+In general, classical ML often cannot be easily applied to
+omics-based time series data due to issues such as small sam-
+ple numbers or missing data. Therefore, data imputation is
+required, and current imputation techniques often do not incor-
+porate time dependence, thereby leaving out critical information
+during imputation. Recent work has demonstrated that graph
+networks that model topology across samples can be hugely
+beneﬁcial in such cases.143 An example is the use of dynamic
+Bayesian networks for analysis of time series microbiome
+data,144 which has been demonstrated to be a critical biomarker
+for many disease states.145,146 Still, these topological methods
+quickly become computationally infeasible with increasingly
+high-dimensional and complicated datasets, which is where
+QML and quantum topological data analysis (QTDA)147 ap-
+proaches may be able to help, providing an orthogonal point of
+view and insights. Indeed, they could be used to differentiate
+with high accuracy between healthy individuals and cancer pa-
+tients in early stages of the disease, leading to more targeted
+and effective treatments.
+Medical images
+Medical image time series data occur across a continuum of mo-
+dalities, ranging from a set of snapshots separated in time to
+movie-likevideos. Acquiring image timeseriesdatafor biomarkers
+involvescapturing medical images overtime tomonitor changes in
+biological or physiological states. Examples of time-lapse series
+include (1) MRI or CT scans taken over weeks or months, showing
+the size and shape of a tumor changing in response to treatment
+andactingasabiomarkerforcancertherapyefﬁcacy;(2)retinalim-
+aging that tracks the progression of diabetic retinopathy via blood
+vessel leakage, aneurysms, and hemorrhages; and (3) PET scans
+of the brain, showing changes in glucose metabolism or amyloid
+plaque accumulation for neurodegenerative diseases such as Alz-
+heimer disease. Examples ofmovie-like imaging data include four-
+dimensional ultrasoundscans (thefourth dimension being time) for
+fetal development and function and functional MRI to observe
+changes in brain activity in response to stimuli.
+QRC techniques are relevant techniques for application to
+these problems. However, the quantum computers would have
+to be larger than the current generations or the initial image
+data would have to be downscaled with classical pre-processing
+techniques, such as passing the image through a residual
+network148 before sending it through the QRC model. Further
+investigation is required to understand whether the loss of infor-
+mation during the classical pre-processing would negate the po-
+tential advantages of using QRC and related quantum methods
+instead of classical techniques.
+Erroneous data
+Noise and errors often appear in the context of quantum
+computing due to the fragility of the quantum systems and their
+inherent tendency to decohere. A variety of approaches is being
+researched to handle or even leverage such noise10,149–152 and
+progress toward quantum error correction,153 arguably the
+holy grail of quantum computing. The focus of this discussion,
+however, is on handling noisy datasets where the labels are
+incorrect or missing, which represents a major challenge for
+classical algorithms.154–156 Such misannotations are also of
+concern when data are synthetically generated,157 an area that
+is also being explored with QGANs and related methods.158
+EHRs
+EHR data have been notoriously difﬁcult to analyze due to fac-
+tors such as errors, lack of interoperability, record gaps, and un-
+usually large or small data sizes. While leveraging such data may
+also allow better generalization behavior through classical
+models,73 QML has shown promise in dealing with such difﬁcult
+datasets even more effectively. For example, the usual presence
+of quantum noise may actually lead to a greater degree of global
+robustness and thus fairer models.159 Moreover, quantum
+ll
+OPEN ACCESS
+8
+Patterns 6, June 13, 2025
+Perspective
+
+transfer learning may be beneﬁcial when the (real-world) dataset
+of interest is particularly low or high dimensional.160 Quantum
+support vector machines have been applied to EHRs and
+have, for small datasets, been shown to be competitive with
+classical approaches in classifying ischemic heart disease161
+and predicting the persistence of rheumatoid arthritis pa-
+tients.162 Small datasets, for instance, for rare-disease or other
+very restricted cohorts, may in fact lead to some of the earliest
+quantum advantages, given that quantum generative and other
+QML models are particularly suitable for such a setting.26,163
+Finally, the process of imputation itself may be enhanced,
+leveraging quantum determinantal point processes.164
+Omics
+Erroneous omics data, often caused by sequencing errors,
+incomplete data, or misinterpretations, can signiﬁcantly hinder
+accurate analysis. These inaccuracies can lead to misdiagnosis,
+ineffective treatments and loss of trust in omics data. Quantum
+algorithms can enhance pattern matching/discovery and error
+correction in omics sequences, making it possible to identify
+and correct errors.88 A possible approach could be the use of
+QTDA, which helps characterize the shape and structure of the
+data in a high-dimensional space (involving Betti number and
+harmonic representations), making it more effective than tradi-
+tional methods in regard to identifying and correcting errors in
+complex omics data. Such techniques not only enhance the
+quality of the omics data but also accelerate the discovery of bio-
+markers.
+Medical images
+Erroneous data in medical imaging can lead to misdiagnoses,
+poor treatment outcomes, and overall inefﬁciencies in health-
+care. Examples include noise, artifacts, and image reconstruc-
+tion issues. Medical images can often display distortions caused
+by equipment limitations, environmental factors, and patient
+movements.
+Quantum algorithms that have been designed for noise reduc-
+tion and denoising165,166 may be able to more efﬁciently and
+effectively process noisy imaging data and distinguish between
+Figure 2. Overview of open research
+challenges in the application of quantum
+computing in biomarker discovery,
+validation, and adoption
+meaningful information and noise. Due
+to the large amount of data generated
+by
+medical
+image
+technology,
+the
+compression, storage, and reconstruc-
+tion of such data remain signiﬁcant chal-
+lenges. In many cases, raw imaging data
+(such as k-space data from MRI) are
+deleted shortly after acquisition. Quan-
+tum-assisted data compression, coupled
+with QML approaches, may be able to
+more effectively compress large medical
+images without losing critical informa-
+tion.167,168 Finally, as image reconstruc-
+tion is a complex task that is further
+complicated by erroneous data, recon-
+struction algorithms must be sufﬁciently
+robust to be able to handle noise and mistakes.169 Quantum al-
+gorithms and QML techniques may be more effective at detect-
+ing patterns in medical images, leading to increased capabilities
+in indicating and resolving such erroneous imaging data.
+OPEN RESEARCH CHALLENGES
+Quantum computers are swiftly moving from lab to industry. A
+broad range of improvements are nevertheless still necessary
+on the road to commercialization and widespread usage. Many
+of the open problems are cross-industry; better quantum hard-
+ware, algorithms, and software will enable more and more use
+cases. In this section, some of the challenges that are particularly
+relevant to biomarker discovery, validation, and adoption are
+outlined; an overview is provided in Figure 2.
+In the space of biomarker discovery, the loading of data is one
+key challenge. As described before, biomarker discovery often
+necessitates extracting insights from large classical datasets.
+Despite progress with QRAMs, breakthroughs in this area will
+unlock many more applications. Related to that, quantum algo-
+rithms remain an intensely researched area. New ones are being
+continually discovered; for instance, a study recently claimed an
+exponential advantage in pathﬁnding for graphs.170 Further-
+more, quantum federated learning represents another novel
+algorithmic area.171–174 The idea is to enhance federated
+learning models where different entities train a model while keep-
+ing their data decentralized. Given the growing importance
+federated learning has for healthcare and medicine, from allow-
+ing
+multi-institutional
+collaborations
+without
+patient
+data
+sharing175 to enabling digital health176 to enhancing the internet
+of medical things,177 this is a clear innovation opportunity.
+In the area of biomarker validation, a critical aspect concerns
+benchmarks. The challenge with demonstrating value from quan-
+tum computing is that the (classical) goal posts are often not
+clearly deﬁned and may shift (particularly in response to, or
+even inspired by, quantum algorithm advances). This makes it
+challenging to justify the efforts required to develop and use
+ll
+OPEN ACCESS
+Patterns 6, June 13, 2025
+9
+Perspective
+
+quantum algorithm-based tools. Connected with that, general-
+ization is a key issue due to individual biomarker variability result-
+ing from genetic and lifestyle factors.178 As aresult, more granular
+(quantum) models will have to be developed, which might again
+require more (classical) data and novel quantum algorithms.
+Finally, data security represents one essential area in regard to
+biomarker adoption. The high sensitivity of much medical data
+requires strict data processing standards and is not yet compat-
+ible with many quantum computing architectures that demand
+cloud transfer of data across the world. Similarly, clinical adop-
+tion requires a signiﬁcant amount of trust to be built, which in
+turn necessitates explainable models and easily replicable re-
+sults. This challenge, which is also closely linked to similar prob-
+lems with AI adoption, is exacerbated due to the abstract and
+inherently probabilistic nature of quantum computing.
+CONCLUSION
+In the long term, the hope is that discovery of better biomarkers
+helps pave the way toward proactive precision medicine. As
+opposed to lengthy reactive treatments, each individual may
+have a continually updated health status that is based on
+personalized biomarkers and indicates whenever interventions
+of any form could be advisable. To make this possible, bio-
+markers must not only be accurately connected with such a
+health status but must also be accessible in a cost-efﬁcient
+and easy manner. This is very challenging for diseases, including
+multifactorial ones such as Alzheimer disease and cancer, and
+rare conditions for which little data exist. These are areas where
+quantum computing applications are particularly promising.
+Clearly, there are also still discrepancies with respect to ac-
+cess to advanced forms of computing, such as quantum
+computing, across the world. While quantum computing in
+particular has been rapidly made more widely available, it is likely
+to remain relatively expensive for some time to come; today,
+typical costs are thousands of US dollars per QPU hour. Thus,
+democratization of such transformative technologies is an
+important issue that also needs to be considered to realize their
+full impact across the world.179
+ABOUT THE AUTHORS
+QuantumBasel, part of the uptownBasel innovation campus, is a
+center of competence for quantum computing and AI. The Univer-
+sity of Basel is Switzerland’s oldest university. Cleveland Clinic is
+an American nonproﬁt multispecialty academic medical center.
+DESY is a national accelerator and research center in Germany.
+The Cyprus Institute is a nonproﬁt research and educational insti-
+tution with a strong scientiﬁc and technological orientation. Sandia
+National Laboratories is a multimission laboratory managed and
+operated for the US Department of Energy’s National Nuclear Se-
+curity Administration. Elevance Health is an American health insur-
+ance provider. IBM is an American technology company.
+ACKNOWLEDGMENTS
+Sandia National Laboratories is a multimission laboratory managed and oper-
+ated by National Technology & Engineering Solutions of Sandia, LLC, a wholly
+owned subsidiary of Honeywell International Inc., for the US Department of En-
+ergy’s National Nuclear Security Administration under contract DE-NA0003525.
+This paper describes objective technical results and analysis. Any subjective
+views or opinions that might be expressed in the paper do not necessarily repre-
+sent the views of the US Department of Energy or the US government.
+DECLARATION OF INTERESTS
+The authors declare no competing interests.
+REFERENCES
+1. Biomarkers Deﬁnitions Working Group (2001). Biomarkers and surrogate
+endpoints: preferred deﬁnitions and conceptual framework. Clin. Phar-
+macol. Ther. 69, 89–95.
+2. Henry, N.L., and Hayes, D.F. (2012). Cancer biomarkers. Mol. Oncol. 6,
+140–146.
+3. Strimbu, K., and Tavel, J.A. (2010). What are biomarkers? Curr. Opin. HIV
+AIDS 5, 463–466.
+4. Aronson, J.K., and Ferner, R.E. (2017). Biomarkers—a general review.
+Curr. Protoc. Pharmacol. 76, 9–23.
+5. Thomas, D.W., Burns, J., Audette, J., Carroll, A., Dow-Hygelund, C., and Hay,
+M. (2016). Clinical development success rates 2006–2015. https://go.bio.org/
+rs/490-EHZ-999/images/Clinical%20Development%20Success%20Rates
+%202006-2015%20-%20BIO%2C%20Biomedtracker%2C%20Amplion%
+202016.pdf.
+6. Davis, K.D., Aghaeepour, N., Ahn, A.H., Angst, M.S., Borsook, D., Bren-
+ton, A., Burczynski, M.E., Crean, C., Edwards, R., Gaudilliere, B., et al.
+(2020). Discovery and validation of biomarkers to aid the development
+of safe and effective pain therapeutics: challenges and opportunities.
+Nat. Rev. Neurol. 16, 381–400.
+7. M. Horowitz and E. Grumbling, eds. (2019). Quantum Computing: Prog-
+ress and Prospects (The National Academies Press).
+8. Peral-Garcı´a, D., Cruz-Benito, J., and Garcı´a-Pen˜ alvo, F.J. (2024). Sys-
+tematic literature review: Quantum machine learning and its applications.
+Computer Science Review 51, 100619.
+9. Jaschke, D., and Montangero, S. (2023). Is quantum computing green?
+An estimate for an energy-efﬁciency quantum advantage. Quantum
+Sci. Technol. 8, 025001.
+10. Peters, E., Caldeira, J., Ho, A., Leichenauer, S., Mohseni, M., Neven, H.,
+Spentzouris, P., Strain, D., and Perdue, G.N. (2021). Machine learning of
+high dimensional data on a noisy quantum processor. npj Quantum Inf.
+7, 161.
+11. Marshall, S.C., Gyurik, C., and Dunjko, V. (2023). High dimensional quan-
+tum machine learning with small quantum computers. Quantum 7, 1078.
+12. Feleﬂy, T., Roukoz, C., Fares, G., Achkar, S., Yazbeck, S., Meyer, P., Kor-
+dahi, M., Azoury, F., Nasr, D.N., Nasr, E., et al. (2023). An explainable
+MRI-radiomic quantum neural network to differentiate between large
+brain metastases and high-grade glioma using quantum annealing for
+feature selection. J. Digit. Imag. 36, 2335–2346.
+13. Mauranyapin, N.P., Terrasson, A., and Bowen, W.P. (2022). Quantum
+biotechnology. Adv. Quantum Technol. 5, 2100139.
+14. Flo¨ ther, F.F., and Grifﬁn, P.F. (2023). How can quantum technologies be
+applied in healthcare, medicine and the life sciences? Res. dir. Quantum
+technol. 1, e7.
+15. Shams, M., Choudhari, J., Reyes, K., Prentzas, S., Gapizov, A., Shehryar,
+A., Affaf, M., Grezenko, H., Gasim, R.W., Mohsin, S.N., et al. (2023). The
+Quantum-Medical Nexus: Understanding the Impact of Quantum Tech-
+nologies on Healthcare. Cureus 15, e48077.
+16. Schuld, M., and Petruccione, F. (2018). Supervised Learning with Quan-
+tum Computers (Springer Cham).
+17. Havlı´cek, V., Co´ rcoles, A.D., Temme, K., Harrow, A.W., Kandala, A.,
+Chow, J.M., and Gambetta, J.M. (2019). Supervised learning with quan-
+tum-enhanced feature spaces. Nature 567, 209–212. https://doi.org/10.
+1038/s41586-019-0980-2.
+ll
+OPEN ACCESS
+10
+Patterns 6, June 13, 2025
+Perspective
+
+18. Nakaji, K., Uno, S., Suzuki, Y., Raymond, R., Onodera, T., Tanaka, T., Te-
+zuka, H., Mitsuda, N., and Yamamoto, N. (2022). Approximate amplitude
+encoding in shallow parameterized quantum circuits and its application
+to ﬁnancial market indicators. Phys. Rev. Res. 4, 023136. https://doi.
+org/10.1103/PhysRevResearch.4.023136.
+19. Cerezo, M., Arrasmith, A., Babbush, R., Benjamin, S.C., Endo, S., Fujii,
+K., McClean, J.R., Mitarai, K., Yuan, X., Cincio, L., and Coles, P.J.
+(2021). Variational quantum algorithms. Nat. Rev. Phys. 3, 625–644.
+https://doi.org/10.1038/s42254-021-00348-9.
+20. Cai, Z., Babbush, R., Benjamin, S.C., Endo, S., Huggins, W.J., Li, Y.,
+McClean, J.R., and O’Brien, T.E. (2023). Quantum error mitigation.
+Rev. Mod. Phys. 95, 045005. https://doi.org/10.1103/RevModPhys.95.
+045005.
+21. Bayerstadler, A., Becquin, G., Binder, J., Botter, T., Ehm, H., Ehmer, T.,
+Erdmann, M., Gaus, N., Harbach, P., Hess, M., et al. (2021). Industry
+quantum computing applications. EPJ Quantum Technol. 8, 25. https://
+doi.org/10.1140/epjqt/s40507-021-00114-x.
+22. Bowles, J., Ahmed, S., and Schuld, M. (2024). Better than classical? The
+subtle art of benchmarking quantum machine learning models. Preprint
+at arXiv. https://doi.org/10.48550/arXiv.2403.07059.
+23. Schuld, M., Bocharov, A., Svore, K.M., and Wiebe, N. (2020). Circuit-
+centric quantum classiﬁers. Phys. Rev. A 101, 032308. https://doi.org/
+10.1103/PhysRevA.101.032308.
+24. Pe´ rez-Salinas, A., Cervera-Lierta, A., Gil-Fuster, E., and Latorre, J.I.
+(2020). Data re-uploading for a universal quantum classiﬁer. Quantum
+4, 226. https://doi.org/10.22331/q-2020-02-06-226.
+25. Huang, H.Y., Broughton, M., Mohseni, M., Babbush, R., Boixo, S., Ne-
+ven, H., and McClean, J.R. (2021). Power of data in quantum machine
+learning. Nat. Commun. 12, 2631. https://doi.org/10.1038/s41467-021-
+22539-9.
+26. Caro, M.C., Huang, H.Y., Cerezo, M., Sharma, K., Sornborger, A., Cincio,
+L., and Coles, P.J. (2022). Generalization in quantum machine learning
+from few training data. Nat. Commun. 13, 4919.
+27. Cerezo, M., Larocca, M., Garcı´a-Martı´n, D., Diaz, N.L., Braccia, P., Fon-
+tana, E., Rudolph, M.S., Bermejo, P., Ijaz, A., Thanaslip, S., et al. (2023).
+Does provable absence of barren plateaus imply classical simulability?
+or, why we need to rethink variational quantum computing. Preprint at ar-
+Xiv. https://doi.org/10.48550/arXiv.2312.09121.
+28. Larocca, M., Thanasilp, S., Wang, S., Sharma, K., Biamonte, J., Coles,
+P.J., Cincio, L., McClean, J.R., Holmes, Z., and Cerezo, M. (2024). A re-
+view of barren plateaus in variational quantum computing. Preprint at ar-
+Xiv. https://doi.org/10.48550/arXiv.2405.00781.
+29. Lloyd, S., Mohseni, M., and Rebentrost, P. (2014). Quantum principal
+component analysis. Nat. Phys. 10, 631–633. https://doi.org/10.1038/
+nphys3029.
+30. Gordon, M.H., Cerezo, M., Cincio, L., and Coles, P.J. (2022). Covariance
+Matrix Preparation for Quantum Principal Component Analysis. PRX
+Quantum 3, 030334. https://doi.org/10.1103/PRXQuantum.3.030334.
+31. Yu, K., Lin, S., and Guo, G.D. (2023). Quantum dimensionality reduction
+by linear discriminant analysis. Phys. Stat. Mech. Appl. 614, 128554.
+https://doi.org/10.1016/j.physa.2023.128554.
+32. Kerenidis, I., and Luongo, A. (2020). Classiﬁcation of the MNIST data set
+with quantum slow feature analysis. Phys. Rev. A 101, 062327. https://
+doi.org/10.1103/PhysRevA.101.062327.
+33. Feng, W., Guo, G., Lin, S., and Xu, Y. (2024). Quantum Isomap algorithm
+for manifold learning. Phys. Rev. Appl. 22, 014049. https://doi.org/10.
+1103/PhysRevApplied.22.014049.
+34. Cong, I., Choi, S., and Lukin, M.D. (2019). Quantum convolutional neural
+networks. Nat. Phys. 15, 1273–1278.
+35. Ray, A., Madan, D., Patil, S., Pati, P., Rapsomaniki, M., Kohlakala, A.,
+Dlamini, T.R., Muller, S.J., Rhrissorrakrai, K., Utro, F., and Parida, L.
+(2024). Hybrid quantum-classical graph neural networks for tumor clas-
+siﬁcation in digital pathology. In 2024 IEEE International Conference on
+Quantum Computing and Engineering (QCE), 1 (IEEE), pp. 1611–1616.
+36. Wiebe, N., Braun, D., and Lloyd, S. (2012). Quantum Algorithm for Data
+Fitting. Phys. Rev. Lett. 109, 050505. https://doi.org/10.1103/PhysRev-
+Lett.109.050505.
+37. Wang, G. (2017). Quantum algorithm for linear regression. Phys. Rev. A
+96, 012335. https://doi.org/10.1103/PhysRevA.96.012335.
+38. Zhao, Z., Fitzsimons, J.K., and Fitzsimons, J.F. (2019). Quantum-assis-
+ted Gaussian process regression. Phys. Rev. A 99, 052331. https://doi.
+org/10.1103/PhysRevA.99.052331.
+39. Date, P., and Potok, T. (2021). Adiabatic quantum linear regression. Sci.
+Rep. 11, 21905. https://doi.org/10.1038/s41598-021-01445-6.
+40. Khan, S.U., Awan, A.J., and Vall-Llosera, G. (2019). K-means clustering
+on noisy intermediate scale quantum computers. Preprint at arXiv.
+https://doi.org/10.48550/arXiv.1909.12183.
+41. Arthur, D., and Date, P. (2021). Balanced k-means clustering on an adia-
+batic quantum computer. Quant. Inf. Process. 20, 294. https://doi.org/
+10.1007/s11128-021-03240-8.
+42. Kerenidis, I., and Landman, J. (2021). Quantum spectral clustering. Phys.
+Rev. A 103, 042415. https://doi.org/10.1103/PhysRevA.103.042415.
+43. Tian, J., Sun, X., Du, Y., Zhao, S., Liu, Q., Zhang, K., Yi, W., Huang, W.,
+Wang, C., Wu, X., et al. (2023). Recent advances for quantum neural net-
+works in generative learning. IEEE Trans. Pattern Anal. Mach. Intell. 45,
+12321–12340.
+44. Amin, M.H., Andriyash, E., Rolfe, J., Kulchytskyy, B., and Melko, R.
+(2018). Quantum Boltzmann Machine. Phys. Rev. X 8, 021050. https://
+doi.org/10.1103/PhysRevX.8.021050.
+45. T€uys€uz, C., Demidik, M., Coopmans, L., Rinaldi, E., Croft, V., Haddad, Y.,
+Rosenkranz, M., and Jansen, K. (2024). Learning to generate high-
+dimensional distributions with low-dimensional quantum Boltzmann ma-
+chines. Preprint at arXiv. https://doi.org/10.48550/arXiv.2410.16363.
+46. Baglio, J. (2024). Data augmentation experiments with style-based quan-
+tum generative adversarial networks on trapped-ion and superconduct-
+ing-qubit technologies. Preprint at arXiv. https://doi.org/10.48550/arXiv.
+2405.04401.
+47. Suzuki, Y., Gao, Q., Pradel, K.C., Yasuoka, K., and Yamamoto, N. (2022).
+Natural quantum reservoir computing for temporal information process-
+ing. Sci. Rep. 12, 1353.
+48. Di Sipio, R., Huang, J.H., Chen, S.Y.C., Mangini, S., and Worring, M.
+(2022). The dawn of quantum natural language processing. In ICASSP
+2022-2022 IEEE International Conference on Acoustics, Speech and
+Signal Processing (ICASSP) (IEEE), pp. 8612–8616.
+49. Choi, J., and Kim, J. (2019). A tutorial on quantum approximate optimiza-
+tion algorithm (QAOA): Fundamentals and applications. In 2019 interna-
+tional conference on information and communication technology conver-
+gence (ICTC) (IEEE), pp. 138–142.
+50. Flori, A., Oulhadj, H., and Siarry, P. (2022). QUAntum Particle Swarm
+Optimization: An auto-adaptive PSO for local and global optimization.
+Comput. Optim. Appl. 82, 525–559.
+51. Tilly, J., Chen, H., Cao, S., Picozzi, D., Setia, K., Li, Y., Grant, E., Wossnig,
+L., Rungger, I., Booth, G.H., and Tennyson, J. (2022). The variational
+quantum eigensolver: a review of methods and best practices. Phys.
+Rep. 986, 1–128.
+52. Guarasci, R., De Pietro, G., and Esposito, M. (2022). Quantum natural
+language processing: Challenges and opportunities. Appl. Sci. 12, 5651.
+53. Emani, P.S., Warrell, J., Anticevic, A., Bekiranov, S., Gandal, M., McCon-
+nell, M.J., Sapiro, G., Aspuru-Guzik, A., Baker, J.T., Bastiani, M., et al.
+(2021). Quantum computing at the frontiers of biological sciences. Nat.
+Methods 18, 701–709.
+54. Basu, S., Born, J., Bose, A., Capponi, S., Chalkia, D., Chan, T.A., Doga,
+H., Flother, F.F., Getz, G., Goldsmith, M., et al. (2023). Towards quantum-
+enabled cell-centric therapeutics. Preprint at arXiv. https://doi.org/10.
+48550/arXiv.2307.05734.
+55. Doga, H., Bose, A., Sahin, M.E., Bettencourt-Silva, J., Pham, A., and Kim,
+E. (2024). How can quantum computing be applied in clinical trial design
+and optimization? Trends Pharmacol. Sci. 45, 880–891.
+ll
+OPEN ACCESS
+Patterns 6, June 13, 2025
+11
+Perspective
+
+56. Gupta, R.S., Wood, C.E., Engstrom, T., Pole, J.D., and Shrapnel, S.
+(2024). Quantum Machine Learning for Digital Health? A Systematic Re-
+view. Preprint at arXiv. https://doi.org/10.48550/arXiv.2410.02446.
+57. Flo¨ ther, F.F. (2023). The state of quantum computing applications in
+health and medicine. Research Directions: Quantum Technologies 1,
+e10. https://doi.org/10.1017/qut.2023.4.
+58. Sorkhabi, L.B., Gharehchopogh, F.S., and Shahamfar, J. (2020). A sys-
+tematic approach for pre-processing electronic health records for min-
+ing: Case study of heart disease. Int. J. Data Min. Bioinf. 24, 97–120.
+59. Torres-Martos, A´ ., Bustos-Aibar, M., Ramı´rez-Mena, A., Ca´ mara-Sa´ n-
+chez, S., Anguita-Ruiz, A., Alcala´ , R., Aguilera, C.M., and Alcala´ -Fdez,
+J. (2023). Omics data preprocessing for machine learning: A case study
+in childhood obesity. Genesis 14, 248.
+60. Schuld, M., and Killoran, N. (2019). Quantum machine learning in feature
+hilbert spaces. Phys. Rev. Lett. 122, 040504.
+61. Shilo, S., Rossman, H., and Segal, E. (2020). Axes of a revolution: chal-
+lenges and promises of big data in healthcare. Nat. Med. 26, 29–38.
+62. Maniscalco, S., Borrelli, E.M., Cavalcanti, D., Foti, C., Glos, A., Gold-
+smith, M., Knecht, S., Korhonen, K., Malmi, J., Nyk€anen, A., et al.
+(2022). Quantum network medicine: rethinking medicine with network
+science and quantum algorithms. Preprint at arXiv. https://doi.org/10.
+48550/arXiv.2206.12405.
+63. Sagingalieva, A., Kordzanganeh, M., Kenbayev, N., Kosichkina, D., Tom-
+ashuk, T., and Melnikov, A. (2023). Hybrid quantum neural network for
+drug response prediction. Cancer 15, 2705.
+64. Prins, B.P., Kuchenbaecker, K.B., Bao, Y., Smart, M., Zabaneh, D., Fate-
+mifar, G., Luan, J., Wareham, N.J., Scott, R.A., Perry, J.R.B., et al. (2017).
+Genome-wide analysis of health-related biomarkers in the UK Household
+Longitudinal Study reveals novel associations. Sci. Rep. 7, 11008.
+65. Bubeck, S., and Sellke, M. (2023). A universal law of robustness via iso-
+perimetry. J. ACM 70, 1–18.
+66. Kaplan, J., McCandlish, S., Henighan, T., Brown, T.B., Chess, B., Child,
+R., Gray, S., Radford, A., Wu, J., and Amodei, D. (2020). Scaling laws for
+neural language models. Preprint at arXiv. https://doi.org/10.48550/ar-
+Xiv.2001.08361.
+67. Hoffmann, J., Borgeaud, S., Mensch, A., Buchatskaya, E., Cai, T., Ruth-
+erford, E., de Las Casas, D., Hendricks, L.A., Welbl, J., Clark, J., et al.
+(2022). Training compute-optimal large language models. Preprint at ar-
+Xiv. https://doi.org/10.48550/arXiv.2203.15556.
+68. Tang, E. (2021). Quantum Principal Component Analysis Only Achieves
+an Exponential Speedup Because of Its State Preparation Assumptions.
+Phys. Rev. Lett. 127, 060503. https://doi.org/10.1103/PhysRevLett.127.
+060503.
+69. Phalak, K., Chatterjee, A., and Ghosh, S. (2023). Quantum random ac-
+cess memory for dummies. Sensors 23, 7462.
+70. Harrow, A.W. (2020). Small quantum computers and large classical data
+sets. Preprint at arXiv. https://doi.org/10.48550/arXiv.2004.00026.
+71. Yogendran, B., Charlton, D., Beddig, M., Kolotouros, I., and Wallden, P.
+(2024). Big data applications on small quantum computers. Preprint at ar-
+Xiv. https://doi.org/10.48550/arXiv.2402.01529.
+72. Chen, M., Tan, X., and Padman, R. (2020). Social determinants of health
+in electronic health records and their impact on analysis and risk predic-
+tion: a systematic review. J. Am. Med. Inf. Assoc. 27, 1764–1773.
+73. Ravizza, S., Huschto, T., Adamov, A., Bo¨ hm, L., B€usser, A., Flo¨ ther, F.F.,
+Hinzmann, R., Ko¨ nig, H., McAhren, S.M., Robertson, D.H., et al. (2019).
+Predicting the early risk of chronic kidney disease in patients with dia-
+betes using real-world data. Nat. Med. 25, 57–59.
+74. Li, Y., Rao, S., Solares, J.R.A., Hassaine, A., Ramakrishnan, R., Canoy,
+D., Zhu, Y., Rahimi, K., and Salimi-Khorshidi, G. (2020). BEHRT: trans-
+former for electronic health records. Sci. Rep. 10, 7155.
+75. Adamson, B., Waskom, M., Blarre, A., Kelly, J., Krismer, K., Nemeth, S.,
+Gippetti, J., Ritten, J., Harrison, K., Ho, G., et al. (2023). Approach to ma-
+chine learning for extraction of real-world data variables from electronic
+health records. Front. Pharmacol. 14, 1180962.
+76. Singhal, P., Tan, A.L.M., Drivas, T., Johnson, K., Ritchie, M., and Beau-
+lieu-Jones, B. (2023). Opportunities and challenges for biomarker dis-
+covery using electronic health record data. Trends Mol. Med. 29,
+765–776.
+77. Mosley, J.D., Feng, Q., Wells, Q.S., Van Driest, S.L., Shaffer, C.M., Ed-
+wards, T.L., Bastarache, L., Wei, W.Q., Davis, L.K., McCarty, C.A.,
+et al. (2018). A study paradigm integrating prospective epidemiologic co-
+horts and electronic health records to identify disease biomarkers. Nat.
+Commun. 9, 3522.
+78. Mohsen, F., Ali, H., El Hajj, N., and Shah, Z. (2022). Artiﬁcial intelligence-
+based methods for fusion of electronic health records and imaging data.
+Sci. Rep. 12, 17981.
+79. Steyaert, S., Pizurica, M., Nagaraj, D., Khandelwal, P., Hernandez-Bous-
+sard, T., Gentles, A.J., and Gevaert, O. (2023). Multimodal data fusion for
+cancer biomarker discovery with deep learning. Nat. Mach. Intell. 5,
+351–362.
+80. Assale, M., Dui, L.G., Cina, A., Seveso, A., and Cabitza, F. (2019). The
+revival of the notes ﬁeld: leveraging the unstructured content in electronic
+health records. Front. Med. 6, 66.
+81. Tam, V., Patel, N., Turcotte, M., Bosse´ , Y., Pare´ , G., and Meyre, D. (2019).
+Beneﬁts and limitations of genome-wide association studies. Nat. Rev.
+Genet. 20, 467–484.
+82. Uffelmann, E., Huang, Q.Q., Munung, N.S., de Vries, J., Okada, Y., Mar-
+tin, A.R., Martin, H.C., Lappalainen, T., and Posthuma, D. (2021).
+Genome-wide association studies. Nat. Rev. Methods Primers 1, 59.
+83. Donoho, D.L. (2000). High-dimensional data analysis: The curses and
+blessings of dimensionality. AMS math challenges lecture. 1, 32.
+84. Pudjihartono, N., Fadason, T., Kempa-Liehr, A.W., and O’Sullivan, J.M.
+(2022). A review of feature selection methods for machine learning-based
+disease risk prediction. Front. Bioinform. 2, 927312.
+85. Nguyen, P.N. (2024). Biomarker discovery with quantum neural net-
+works: a case-study in CTLA4-activation pathways. BMC Bioinf. 25, 149.
+86. Saggi, M.K., Bhatia, A.S., Isaiah, M., Gowher, H., and Kais, S. (2024).
+Multi-Omic and quantum machine learning integration for lung sub-
+types classiﬁcation. Preprint at arXiv. https://doi.org/10.48550/arXiv.
+2410.02085.
+87. Albert, F.W., and Kruglyak, L. (2015). The role of regulatory variation in
+complex traits and disease. Nat. Rev. Genet. 16, 197–212.
+88. Na1e˛ cz-Charkiewicz, K., Charkiewicz, K., and Nowak, R.M. (2024). Quan-
+tum computing in bioinformatics: a systematic review mapping. Brief.
+Bioinform 25, bbae391.
+89. Price, A.L., Patterson, N.J., Plenge, R.M., Weinblatt, M.E., Shadick, N.A.,
+and Reich, D. (2006). Principal components analysis corrects for stratiﬁ-
+cation in genome-wide association studies. Nat. Genet. 38, 904–909.
+90. Li, Z., Chai, Z., Guo, Y., Ji, W., Wang, M., Shi, F., Wang, Y., Lloyd, S., and
+Du, J. (2021). Resonant quantum principal component analysis. Sci. Adv.
+7, eabg2589. https://doi.org/10.1126/sciadv.abg2589.
+91. Uffelmann, E., and Posthuma, D. (2021). Emerging methods and re-
+sources for biological interrogation of neuropsychiatric polygenic signal.
+Biol. Psychiatry. 89, 41–53.
+92. Holland, D., Frei, O., Desikan, R., Fan, C.C., Shadrin, A.A., Smeland,
+O.B., Sundar, V.S., Thompson, P., Andreassen, O.A., and Dale, A.M.
+(2020). Beyond SNP heritability: Polygenicity and discoverability of phe-
+notypes estimated with a univariate Gaussian mixture model. PLoS
+Genet. 16, e1008612.
+93. Slatkin, M. (2008). Linkage disequilibrium—understanding the evolu-
+tionary past and mapping the medical future. Nat. Rev. Genet. 9,
+477–485.
+94. Navascue´ s, M., and Wolfe, E. (2020). The Inﬂation Technique Completely
+Solves the Causal Compatibility Problem. J. Causal Inference 8, 70–91.
+https://doi.org/10.1515/jci-2018-0008.
+95. Chiribella, G., and Ebler, D. (2019). Quantum speedup in the identiﬁcation
+of cause–effect relations. Nat. Commun. 10, 1472.
+ll
+OPEN ACCESS
+12
+Patterns 6, June 13, 2025
+Perspective
+
+96. Nica, A.C., and Dermitzakis, E.T. (2013). Expression quantitative trait loci:
+present and future. Philos. Trans. R. Soc. Lond. B Biol. Sci. 368,
+20120362.
+97. Khalsan, M., Machado, L.R., Al-Shamery, E.S., Ajit, S., Anthony, K., Mu,
+M., and Agyeman, M.O. (2022). A survey of machine learning approaches
+applied to gene expression analysis for cancer prediction. IEEE Access
+10, 27522–27534.
+98. Chen, Z., Chen, S., and Qiang, X. (2022). Identiﬁcation of Biomarker in
+Brain-speciﬁc Gene Regulatory Network Using Structural Controllability
+Analysis. Front. Bioinform. 2, 812314.
+99. Zhang, Z., Sun, C., and Liu, Z.P. (2022). Discovering biomarkers of hepa-
+tocellular carcinoma from single-cell RNA sequencing data by coopera-
+tive games on gene regulatory network. Journal of Computational Sci-
+ence 65, 101881. https://doi.org/10.1016/j.jocs.2022.101881.
+100. Roman-Vicharra, C., and Cai, J.J. (2023). Quantum gene regulatory net-
+works. npj Quantum Inf. 9, 67. https://doi.org/10.1038/s41534-023-
+00740-6.
+101. Osorio, D., Yu, X., Yu, P., Serpedin, E., and Cai, J.J. (2019). Single-cell
+RNA sequencing of a European and an African lymphoblastoid cell line.
+Sci. Data 6, 112. https://doi.org/10.1038/s41597-019-0116-4.
+102. SoRelle, E.D., Dai, J., Bonglack, E.N., Heckenberg, E.M., Zhou, J.Y.,
+Giamberardino, S.N., Bailey, J.A., Gregory, S.G., Chan, C., and Luftig,
+M.A. (2021). Single-cell RNA-seq reveals transcriptomic heterogeneity
+mediated by host–pathogen dynamics in lymphoblastoid cell lines. Elife
+10, e62586. https://doi.org/10.7554/elife.62586.
+103. Al-Janabee, O., and Al-Sarray, B. (2023). Review of clustering for gene
+expression data. AIP Conf. Proc. 2516, 070019.
+104. Rodriguez, M.Z., Comin, C.H., Casanova, D., Bruno, O.M., Amancio,
+D.R., Costa, L.F., and Rodrigues, F.A. (2019). Clustering algorithms: A
+comparative approach. PLoS One 14, e0210236.
+105. Wang, D., Tan, D., and Liu, L. (2018). Particle swarm optimization algo-
+rithm: an overview. Soft Comput. 22, 387–408.
+106. Sun, J., Feng, B., and Xu, W. (2004). Particle swarm optimization with
+particles having quantum behavior. Proceedings of the 2004 Congress
+on Evolutionary Computation (IEEE Cat. No.04TH8753) 1, 325–331.
+107. Clerc, M., and Kennedy, J. (2002). The particle swarm - explosion, stabil-
+ity, and convergence in a multidimensional complex space. IEEE Trans.
+Evol. Comput. 6, 58–73. https://doi.org/10.1109/4235.985692.
+108. van den Bergh, F. (2001). An Analysis of Particle Swarm Optimizers (Uni-
+versity of Pretoria), PhD Thesis.
+109. Chen, W., Sun, J., Ding, Y., Fang, W., and Xu, W. (2008). Clustering of
+Gene Expression Data with Quantum-Behaved Particle Swarm Optimi-
+zation. In New Frontiers in Applied Artiﬁcial Intelligence, N.T. Nguyen,
+L. Borzemski, A. Grzech, and M. Ali, eds. (Springer Berlin Heidelberg),
+pp. 388–396.
+110. Sun, J., Chen, W., Fang, W., Wun, X., and Xu, W. (2012). Gene expression
+data analysis with the clustering method based on an improved quan-
+tum-behaved Particle Swarm Optimization. Eng. Appl. Artif. Intell. 25,
+376–391. https://doi.org/10.1016/j.engappai.2011.09.017.
+111. Dabba, A., Tari, A., and Meftali, S. (2020). Hybridization of Moth ﬂame
+optimization algorithm and quantum computing for gene selection in mi-
+croarray data. J. Ambient Intell. Hum. Comput. 12, 2731–2750. https://
+doi.org/10.1007/s12652-020-02434-9.
+112. Fallahi, S., and Taghadosi, M. (2022). Quantum-behaved particle swarm
+optimization based on solitons. Sci. Rep. 12, 13977. https://doi.org/10.
+1038/s41598-022-18351-0.
+113. Elaraby, A. (2022). Quantum medical images processing foundations and
+applications. IET Quantum Communication 3, 201–213.
+114. Wei, L., Liu, H., Xu, J., Shi, L., Shan, Z., Zhao, B., and Gao, Y. (2023).
+Quantum machine learning in medical image analysis: A survey. Neuro-
+computing 525, 42–53.
+115. Zack, M.M., and Kobau, R. (2017). National and state estimates of the
+numbers of adults and children with active epilepsy—United States,
+2015. MMWR Morb. Mortal. Wkly. Rep. 66, 821–825.
+116. Anuradha, R., Vandana, C., Singh, S.V., Singh, N., Emad, R., and Nitin, V.
+(2024). Integrating Quantum Computing for Enhanced Image Recon-
+struction in Medical Diagnostics. In 2024 International Conference on
+Communication, Computer Sciences and Engineering (IC3SE) (IEEE),
+pp. 1294–1298.
+117. Yang, L., Vetter, C., and Qiu, F. (2020). Volume rendering from three-
+dimensional medical data using quantum computing. US patent
+US20200242816A1.
+118. Cascarano, A., Mur-Petit, J., Herna´ ndez-Gonza´ lez, J., Camacho, M., de
+Toro Eadie, N., Gkontra, P., Chadeau-Hyam, M., Vitria` , J., and Lekadir, K.
+(2023). Machine and deep learning for longitudinal biomedical data: a re-
+view of methods and applications. Artif. Intell. Rev. 56, 1711–1771.
+119. Snyder-Mackler, N., Burger, J.R., Gaydosh, L., Belsky, D.W., Noppert,
+G.A., Campos, F.A., Bartolomucci, A., Yang, Y.C., Aiello, A.E., O’Rand,
+A., et al. (2020). Social determinants of health and survival in humans
+and other animals. Science 368, eaax9553.
+120. Mujal, P., Martı´nez-Pen˜ a, R., Giorgi, G.L., Soriano, M.C., and Zambrini,
+R. (2023). Time-series quantum reservoir computing with weak and pro-
+jective measurements. npj Quantum Inf. 9, 16.
+121. Daskin,
+A.
+(2022).
+A
+walk
+through
+of
+time
+series
+analysis
+on
+quantum computers. Preprint
+at arXiv.
+https://doi.org/10.48550/arXiv.
+2205.00986.
+122. Benjamin, M.A., Rigby, R.A., and Stasinopoulos, D.M. (2003). General-
+ized autoregressive moving average models. J. Am. Stat. Assoc. 98,
+214–223.
+123. Van Houdt, G., Mosquera, C., and Na´ poles, G. (2020). A review on the
+long short-term memory model. Artif. Intell. Rev. 53, 5929–5955.
+124. Mujal, P., Martı´nez-Pen˜ a, R., Nokkala, J., Garcı´a-Beni, J., Giorgi, G.L.,
+and Soriano, M.C. (2021). Opportunities in quantum reservoir computing
+and extreme learning machines. Advanced Quantum Technologies 4,
+2100027.
+125. Takaki, Y., Mitarai, K., Negoro, M., Fujii, K., and Kitagawa, M. (2021).
+Learning temporal data with a variational quantum recurrent neural
+network. Phys. Rev. A 103, 052414.
+126. Lukosevicius, M. (2012). A practical guide to applying echo state net-
+works. In Neural Networks: Tricks of the Trade, Second Edition
+(Springer), pp. 659–686.
+127. Fernando, C., and Sojakka, S. (2003). Pattern recognition in a bucket. In
+European conference on artiﬁcial life (Springer), pp. 588–597.
+128. Tanaka, G., Yamane, T., He´ roux, J.B., Nakane, R., Kanazawa, N.,
+Takeda, S., Numata, H., Nakano, D., and Hirose, A. (2019). Recent ad-
+vances in physical reservoir computing: A review. Neural Netw. 115,
+100–123.
+129. Komariah, K.S., and Sin, B.K. (2019). Health state modeling and predic-
+tion based on hidden Markov models. In 2019 Eleventh International
+Conference on Ubiquitous and Future Networks (ICUFN) (IEEE),
+pp. 245–250.
+130. Dinh-Le, C., Chuang, R., Chokshi, S., and Mann, D. (2019). Wearable
+health technology and electronic health record integration: scoping re-
+view and future directions. JMIR Mhealth Uhealth 7, e12861.
+131. Sempionatto, J.R., Lasalde-Ramı´rez, J.A., Mahato, K., Wang, J., and
+Gao, W. (2022). Wearable chemical sensors for biomarker discovery in
+the omics era. Nat. Rev. Chem 6, 899–915.
+132. Kourtis, L.C., Regele, O.B., Wright, J.M., and Jones, G.B. (2019). Digital
+biomarkers for Alzheimer’s disease: the mobile/wearable devices oppor-
+tunity. npj Digit. Med. 2, 9.
+133. Aslam, N., Zhou, H., Urbach, E.K., Turner, M.J., Walsworth, R.L., Lukin,
+M.D., and Park, H. (2023). Quantum sensors for biomedical applications.
+Nat. Rev. Phys. 5, 157–169.
+134. Hershberger, C.E., Louis, S., Busch, R.M., Vegh, D., Najm, I., Bazeley, P.,
+Eng, C., Jehi, L., and Rotroff, D.M. (2023). Molecular subtypes of epilepsy
+associated with post-surgical seizure recurrence. Brain Commun. 5,
+fcad251.
+ll
+OPEN ACCESS
+Patterns 6, June 13, 2025
+13
+Perspective
+
+135. Mihajlovic, K., Ceddia, G., Malod-Dognin, N., Novak, G., Kyriakis, D.,
+Skupin, A., and Przulj, N. (2024). Multi-omics integration of scRNA-seq
+time series data predicts new intervention points for Parkinson’s disease.
+Sci. Rep. 14, 10983.
+136. Parry, E.M., Leshchiner, I., Guie` ze, R., Johnson, C., Tausch, E., Parikh,
+S.A., Lemvigh, C., Brose´ us, J., Hergalant, S., Messer, C., et al. (2023).
+Evolutionary history of transformation from chronic lymphocytic leukemia
+to Richter syndrome. Nat. Med. 29, 158–169.
+137. Parsons, H.A., Messer, C., Santos, K., Danysh, B.P., Hughes, M.E., Patel,
+A., Jacobs, R.A., Slowik, K., Hess, J., Stewart, C., et al. (2023). Abstract
+3874: Genomic mechanisms of resistance to tyrosine kinase inhibitors
+(TKIs) in HER2+ metastatic breast cancer (HER2+ MBC). Cancer Res.
+83, 3874.
+138. Naeem, A., Li, L., Utro, F., Cha, J., Tsuji, J., Fernandes, S.M., Azevedo,
+R.S., Morelli, F., Wang, Z., Shupe, S.J., et al. (2023). Understanding
+Resistance Mechanisms and Growth Kinetics of CLL Treated with Cova-
+lent and Non-Covalent BTK Inhibitors. Blood 142, 4623.
+139. Burr, R., Leshchiner, I., Costantino, C.L., Blohmer, M., Sundaresan, T.,
+Cha, J., Seeger, K., Guay, S., Danysh, B.P., Gore, I., et al. (2024). Devel-
+opmental mosaicism underlying EGFR-mutant lung cancer presenting
+with multiple primary tumors. Nat. Cancer 5, 1681–1696.
+140. Khan, K.H., Cunningham, D., Werner, B., Vlachogiannis, G., Spiteri, I.,
+Heide, T., Mateos, J.F., Vatsiou, A., Lampis, A., Damavandi, M.D.,
+et al. (2018). Longitudinal Liquid Biopsy and Mathematical Modeling of
+Clonal Evolution Forecast Time to Treatment Failure in the PROSPECT-
+C Phase II Colorectal Cancer Clinical Trial. Cancer Discov. 8, 1270–
+1285. https://doi.org/10.1158/2159-8290.cd-17-0891.
+141. Mathios, D., Johansen, J.S., Cristiano, S., Medina, J.E., Phallen, J.,
+Larsen, K.R., Bruhm, D.C., Niknafs, N., Ferreira, L., Adleff, V., et al.
+(2021). Detection and characterization of lung cancer using cell-free
+DNA fragmentomes. Nat. Commun. 12, 5060.
+142. Rolfo, C., and Russo, A. (2023). Brave new world of cfDNA-omics for
+early cancer detection. J. Immunother. Cancer 11, e006309.
+143. Shi, M., and Mollah, S. (2021). NeTOIF: A Network-based Approach for
+Time-Series Omics Data Imputation and Forecasting. Preprint at bioRxiv.
+https://doi.org/10.48550/arXiv.2205.00986.
+144. Ruiz-Perez, D., Lugo-Martinez, J., Bourguignon, N., Mathee, K., Lerner,
+B., Bar-Joseph, Z., and Narasimhan, G. (2021). Dynamic bayesian net-
+works for integrating multi-omics time series microbiome data. mSys-
+tems 6, e0110520.
+145. Hou, K., Wu, Z.X., Chen, X.Y., Wang, J.Q., Zhang, D., Xiao, C., Zhu, D.,
+Koya, J.B., Wei, L., Li, J., and Chen, Z.S. (2022). Microbiota in health
+and diseases. Signal Transduct. Target. Ther. 7, 135.
+146. Buytaers, F.E., Berger, N., Van der Heyden, J., Roosens, N.H.C., and De
+Keersmaecker, S.C.J. (2024). The potential of including the microbiome
+as biomarker in population-based health studies: methods and beneﬁts.
+Front. Public Health 12, 1467121.
+147. Gyurik, C., Schmidhuber, A., King, R., Dunjko, V., and Hayakawa, R.
+(2024). Quantum computing and persistence in topological data analysis.
+Preprint at arXiv. https://doi.org/10.48550/arXiv.2410.21258.
+148. He, K., Zhang, X., Ren, S., and Sun, J. (2016). Deep residual learning for
+image recognition. In Proceedings of the IEEE conference on computer
+vision and pattern recognition (IEEE), pp. 770–778.
+149. Du, Y., Hsieh, M.H., Liu, T., Tao, D., and Liu, N. (2021). Quantum noise
+protects quantum classiﬁers against adversaries. Phys. Rev. Res. 3,
+023153.
+150. Resch, S., and Karpuzcu, U.R. (2021). Benchmarking quantum com-
+puters and the impact of quantum noise. ACM Comput. Surv. 54, 1–35.
+151. Kiwit, F.J., Wolf, M.A., Marso, M., Ross, P., Lorenz, J.M., Riofrı´o, C.A.,
+and Luckow, A. (2024). Benchmarking quantum generative learning: A
+study on scalability and noise resilience using QUARK. K€unstl. Intell.
+38, 379–385.
+152. Monzani, F., Ricci, E., Nigro, L., and Prati, E. (2024). Leveraging non-uni-
+tal noise for gate-based quantum reservoir computing. Preprint at arXiv.
+https://doi.org/10.48550/arXiv.2409.07886.
+153. Sivak, V.V., Eickbusch, A., Royer, B., Singh, S., Tsioutsios, I., Ganjam, S.,
+Miano, A., Brock, B.L., Ding, A.Z., Frunzio, L., et al. (2023). Real-time
+quantum error correction beyond break-even. Nature 616, 50–55.
+154. Karimi, D., Dou, H., Warﬁeld, S.K., and Gholipour, A. (2020). Deep
+learning with noisy labels: Exploring techniques and remedies in medical
+image analysis. Med. Image Anal. 65, 101759.
+155. Algan, G., and Ulusoy, I. (2021). Image classiﬁcation with deep learning in
+the presence of noisy labels: A survey. Knowl. Base Syst. 215, 106771.
+156. Song, H., Kim, M., Park, D., Shin, Y., and Lee, J.G. (2023). Learning from
+noisy labels with deep neural networks: A survey. IEEE Transact. Neural
+Networks Learn. Syst. 34, 8135–8153.
+157. Liang, W., Tadesse, G.A., Ho, D., Fei-Fei, L., Zaharia, M., Zhang, C., and
+Zou, J. (2022). Advances, challenges and opportunities in creating data
+for trustworthy AI. Nat. Mach. Intell. 4, 669–677.
+158. Khatun, A., Aydeniz, K.Y., Weinstein, Y.S., and Usman, M. (2024). Quan-
+tum Generative Learning for High-Resolution Medical Image Generation.
+Preprint at arXiv. https://doi.org/10.48550/arXiv.2406.13196.
+159. Guan, J., Fang, W., and Ying, M. (2022). Verifying fairness in quantum
+machine learning. In International Conference on Computer Aided Veriﬁ-
+cation (Springer), pp. 408–429.
+160. Otgonbaatar, S., Schwarz, G., Datcu, M., and Kranzlm€uller, D. (2023).
+Quantum transfer learning for real-world, small, and high-dimensional
+remotely sensed datasets. IEEE J. Sel. Top. Appl. Earth Obs. Remote
+Sens. 16, 9223–9230.
+161. Maheshwari, D., Ullah, U., Marulanda, P.A.O., Jurado, A.G.O., Gonzalez,
+I.D., Merodio, J.M.O., and Garcia-Zapirain, B. (2023). Quantum machine
+learning applied to electronic healthcare records for ischemic heart dis-
+ease classiﬁcation. Hum-Cent Comput Inf Sci 13.
+162. Krunic, Z., Flo¨ ther, F.F., Seegan, G., Earnest-Noble, N., and Omar, S.
+(2022). Quantum kernels for real-world predictions based on electronic
+health records. IEEE Trans. Quantum Eng. 3, 1–11.
+163. Hibat-Allah, M., Mauri, M., Carrasquilla, J., and Perdomo-Ortiz, A. (2024).
+A
+framework
+for
+demonstrating
+practical
+quantum
+advantage:
+comparing quantum against classical generative models. Commun.
+Phys. 7, 68.
+164. Kazdaghli, S., Kerenidis, I., Kieckbusch, J., and Teare, P. (2024).
+Improved clinical data imputation via classical and quantum determi-
+nantal point processes. Elife 12, RP89947.
+165. Wang, L., Liu, Y., Meng, F., Luan, T., Liu, W., Zhang, Z., and Yu, X. (2024).
+A quantum synthetic aperture radar image denoising algorithm based on
+grayscale morphology. iScience 27, 109627.
+166. Zhou, Y., Wong, Y.K., and Liang, Y.S. (2024). Quantum image denoising
+with machine learning: a novel approach to improve quantum image pro-
+cessing quality and reliability. In Sixteenth International Conference on
+Digital Image Processing (ICDIP 2024), 13274 (SPIE), pp. 427–435.
+167. Haque, M.E., Paul, M., Ulhaq, A., and Debnath, T. (2023). Advanced
+quantum image representation and compression using a DCT-EFRQI
+approach. Sci. Rep. 13, 4129.
+168. Deb, S.K., and Pan, W.D. (2024). Quantum Image Compression: Funda-
+mentals, Algorithms, and Advances. Computers 13, 185.
+169. Ben Yedder, H., Cardoen, B., and Hamarneh, G. (2021). Deep learning for
+biomedical image reconstruction: A survey. Artif. Intell. Rev. 54, 215–251.
+170. Li, J., and Tong, Y. (2024). Exponential Quantum Advantage for Path-
+ﬁnding in Regular Sunﬂower Graphs. Preprint at arXiv. https://doi.org/
+10.48550/arXiv.2407.14398.
+171. Li, W., Lu, S., and Deng, D.L. (2021). Quantum federated learning through
+blind quantum computing. Sci. China Phys. Mech. Astron. 64, 100312.
+172. Chehimi, M., and Saad, W. (2022). Quantum federated learning
+with quantum data. In ICASSP 2022-2022 IEEE International Conference
+on
+Acoustics,
+Speech
+and
+Signal
+Processing
+(ICASSP)
+(IEEE),
+pp. 8617–8621.
+173. Huang, R., Tan, X., and Xu, Q. (2022). Quantum federated learning with
+decentralized data. IEEE J. Sel. Top. Quant. Electron. 28, 1–10.
+ll
+OPEN ACCESS
+14
+Patterns 6, June 13, 2025
+Perspective
+
+174. Bhatia, A.S., Kais, S., and Alam, M.A. (2023). Federated quanvolutional
+neural network: a new paradigm for collaborative quantum learning.
+Quantum Sci. Technol. 8, 045032.
+175. Sheller, M.J., Edwards, B., Reina, G.A., Martin, J., Pati, S., Kotrotsou, A.,
+Milchenko, M., Xu, W., Marcus, D., Colen, R.R., and Bakas, S. (2020).
+Federated learning in medicine: facilitating multi-institutional collabora-
+tions without sharing patient data. Sci. Rep. 10, 12598.
+176. Rieke, N., Hancox, J., Li, W., Milletarı`, F., Roth, H.R., Albarqouni, S., Ba-
+kas, S., Galtier, M.N., Landman, B.A., Maier-Hein, K., et al. (2020). The
+future of digital health with federated learning. npj Digit. Med. 3, 119.
+177. Prasad, V.K., Bhattacharya, P., Maru, D., Tanwar, S., Verma, A., Singh,
+A., Tiwari, A.K., Sharma, R., Alkhayyat, A., Țurcanu, F.E., and Raboaca,
+M.S. (2022). Federated learning for the internet-of-medical-things: A sur-
+vey. Mathematics 11, 151.
+178. Enroth, S., Johansson, A˚ ., Enroth, S.B., and Gyllensten, U. (2014). Strong
+effects of genetic and lifestyle factors on biomarker variation and use of
+personalized cutoffs. Nat. Commun. 5, 4684.
+179. Seskir, Z.C., Umbrello, S., Coenen, C., and Vermaas, P.E. (2023).
+Democratization of quantum technologies. Quantum Sci. Technol. 8,
+024005.
+ll
+OPEN ACCESS
+Patterns 6, June 13, 2025
+15
+Perspective

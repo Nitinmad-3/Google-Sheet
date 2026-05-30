@@ -1,0 +1,955 @@
+Source-PDF: D:\Review\Paper\Clinical prediction bridge (your current query, improved)\highest priority clinical bridge directly about disease predictiondiagnosis\Quantum-assisted federated intelligent diagnosis algorithm with variational training supported by 5G networks.pdf
+Relative-Path: Paper\Clinical prediction bridge (your current query, improved)\highest priority clinical bridge directly about disease predictiondiagnosis\Quantum-assisted federated intelligent diagnosis algorithm with variational training supported by 5G networks.pdf
+--------------------------------------------------------------------------------
+
+1
+Vol.:(0123456789)
+Scientific Reports |        (2024) 14:26333  
+| https://doi.org/10.1038/s41598-024-71826-0
+www.nature.com/scientificreports
+Quantum‑assisted federated 
+intelligent diagnosis algorithm 
+with variational training supported 
+by 5G networks
+Arnaldo Rafael Camara Araujo 1,5, Ogobuchi Daniel Okey 2,5, Muhammad Saadi 3,5, 
+Pablo Adasme 4,5, Renata Lopes Rosa 1,5 & Demóstenes Zegarra Rodríguez 1,2,5*
+In the realm of intelligent healthcare, there is a growing ambition to reshape medical services through 
+the integration of artificial intelligence (AI). However, conventional machine learning faces inherent 
+challenges such as privacy issues, delayed updates, and protracted training times, particularly 
+due to the hesitance of medical institutions to directly share sensitive data, with possible noises. 
+In response to these concerns, a Quantum-Assisted Federated Intelligent Diagnosis Algorithm ( β
+-QuAFIDA) is proposed, applied into real medical data. Leveraging the capabilities of the 5G mobile 
+network, this approach works the connection between Internet of Medical Things (IoMT) devices 
+through the 5G, synchronizing training and updating the server model without disrupting their real-
+world applications. In our quest to safeguard patient data and enhance training efficiency, our study 
+employs an innovative heuristic approach marked by a nested loop structure. Specifically, the inner 
+loop is dedicated to training the beta-variational quantum eigensolver ( β-VQE) to approximate the 
+expectation values of the proposed algorithm; the outer loop trains the β-QuAFIDA to reduce the 
+relative entropy towards the target. This approach involves a balance between privacy considerations 
+and the urgency of training. Results demonstrate that representations with low-rank attained 
+through β-QuAFIDA offer an effective approach for acquiring low-rank states. This research signifies 
+a step forward in the synergy between AI and 5G technologies, presenting a novel avenue for the 
+advancement of intelligent healthcare.
+In the realm of intelligent healthcare, there is a growing ambition to reshape medical services through the inte-
+gration of artificial intelligence (AI). However, conventional machine learning faces inherent challenges such 
+as privacy issues, delayed updates, and protracted training times, particularly due to the hesitance of medical 
+institutions to directly share sensitive data, with or without noises. In response to these concerns, Federated 
+Learning (FL) has emerged as a promising paradigm that allows model training across decentralized devices 
+without sharing raw data. Additionally, FL, has other benefits, such as in preserving privacy, and the ability to 
+train models in distributed environments1.
+Despite the advantages of FL, it is essential to acknowledge the existing drawbacks, especially in the context 
+of healthcare applications. The decentralized nature of FL introduces communication overhead, vulnerability to 
+model inversion attacks, and potential for biased models. Moreover, FL may suffer from slow convergence and 
+increased computational costs as the number of participating devices grows2.
+However, Quantum computing has also found applications in intelligent healthcare. The significant promise 
+of Quantum computing lies in its potential for exponential speedup through quantum algorithms compared to 
+classical methods, paving the way for transformative advancements in healthcare-related computations.
+In the realm of intelligent healthcare, quantum computing has performing tasks, such as optimizing complex 
+algorithms, simulating intricate biological systems, or efficiently solving linear systems of equations. The unique 
+OPEN
+1Department of Computer Science, Federal University of Lavras, Lavras, MG, Brazil. 2Center for Engineering, 
+Modelling and Applied Sciences, CECS, Federal University of ABC, SÃ£o Paulo, Brazil. 3School of Science and 
+Technology, Department of Computer Science, Nottingham Trent University, Nottingham, England. 4Department 
+of Electrical Engineering, Faculty of Engineering, University of Santiago, Santiago, Chile. 5These authors 
+contributed equally: Arnaldo Rafael Camara Araujo, Ogobuchi Daniel Okey, Muhammad Saadi, Pablo Adasme, 
+Renata Lopes Rosa and Demóstenes Zegarra Rodríguez. *email: demostenes.zegarra@ufla.br
+
+2
+Vol:.(1234567890)
+Scientific Reports |        (2024) 14:26333  | 
+https://doi.org/10.1038/s41598-024-71826-0
+www.nature.com/scientificreports/
+computational capabilities of quantum algorithms bring forth the prospect of enhancing medical simulations, 
+accelerating data analysis in healthcare research, and optimizing the processing of vast datasets.
+Current quantum devices encounter notable limitations, marked by limited qubit counts and inherent noise 
+processes that restrict circuit depth. To address these challenges, Variational Quantum Algorithms (VQAs) have 
+emerged as a leading strategy. VQAs utilize classical optimizers to train parameterized quantum circuits, offering 
+a crucial method to alleviate the constraints imposed by existing quantum devices. Thus, this means that VQAs 
+help overcome the current limitations of quantum computers by optimizing their performance using classical 
+methods, making quantum computing more practical and accessible for various applications.
+The integration of VQA represents a groundbreaking frontier in the intersection of quantum computing 
+and machine learning. VQA leverages the principles of quantum mechanics to perform computations that 
+traditional classical algorithms may find challenging or infeasible. By intertwining variational methods with 
+quantum circuits, VQA introduces a powerful approach for solving optimization problems, machine learning 
+tasks, and simulations3.
+This integration holds the promise of unlocking unprecedented computational capabilities, potentially out-
+performing classical counterparts in specific domains. The exploration of VQA is at the forefront of research, 
+with ongoing efforts to harness quantum parallelism and entanglement for enhanced problem-solving and 
+optimization. In this rapidly evolving landscape, the integration of VQA opens avenues for novel applications, 
+from improving optimization processes to advancing machine learning methodologies in a quantum paradigm.
+Variational Quantum Neural Networks (VQNNs) emerge as a stride in the convergence of quantum comput-
+ing and machine learning. VQNNs extend the capabilities of VQA by introducing a neural network structure into 
+quantum circuits, enabling the incorporation of trainable parameters. This unique fusion of quantum and neural 
+network architectures holds the potential to revolutionize the landscape of quantum-enhanced machine learning.
+VQNNs introduce adaptability and learning capabilities to quantum circuits, allowing them to evolve and 
+optimize their performance for specific machine learning tasks. By leveraging the variational principles within 
+quantum circuits, VQNNs offer a versatile platform for tackling complex optimization problems, enhancing 
+machine learning models, and conducting simulations in a quantum environment.
+In this article, the challenges and limitations of FL are treated, with a specific focus on its application in intel-
+ligent healthcare. Additionally, the integration of VQA into the FL framework is explored, aiming to leverage 
+the capabilities of quantum computing for enhanced privacy, accelerated convergence, and improved model 
+generalization.
+The healthcare domain poses unique challenges for FL due to the sensitive nature of patient data. Privacy 
+concerns often hinder the willingness of medical institutions to collaborate and share data directly. This reluc-
+tance, in turn, impacts the effectiveness of FL in achieving robust and generalized models for medical diagnosis 
+and prognosis.
+Furthermore, the deployment of FL in healthcare is intricately connected with the communication between 
+devices using 5G technology. The communication between Internet of Medical Things (IoMT) devices is crucial 
+for the success of FL in healthcare applications. The low-latency and high-bandwidth characteristics of the 5G 
+network play a pivotal role in facilitating seamless communication among distributed medical devices.
+To address the challenges of FL in healthcare, a novel approach is proposed, termed β-Quantum-Assisted 
+Federated Intelligent Diagnosis Algorithm ( β-QuAFIDA). The β-QuAFIDA incorporates VQA to enhance the 
+FL framework, allowing for secure and efficient model training. Utilizing the 5G mobile network, our approach 
+establishes robust connections between IoMT devices, enabling the collaborative training of quantum-enhanced 
+models. The β-QuAFIDA tailors datasets for patients diagnosed with specific medical conditions, ensuring syn-
+chronized training and updating of server model without disrupting real-world applications.
+Coverage of article and contributions
+In response to the challenges, such as provide a win-assisted healthcare system, preserve patient privacy, predict 
+diagnostics for increasing their accuracy, use of quantum computing, which ensures the data security between 
+pars, and propose a framework with a 5G communication, our study proposes the β-QuAFIDA with Variational 
+Training. Leveraging the 5G mobile network. This not only accelerates the generation of vital medical data but 
+also significantly reduces communication times within the federated learning process.
+The β-QuAFIDA is meticulously crafted to cater specifically to patients diagnosed with distinct medical 
+conditions, ensuring synchronized training and updating the server model without disrupting real-world appli-
+cations. As we prioritize safeguarding patient data and optimizing training speed, our methodology employs a 
+heuristic approach characterized by a nested loop. The inner loop utilizes the β-variational quantum eigensolver 
+( β-VQE) to approximate the expectation values, while the outer loop trains to minimize relative entropy to the 
+target. This delicate balance between privacy considerations and the urgency of training forms the cornerstone 
+of our methodology.
+Our findings underscore the efficiency of low-rank representations obtained by β-VQE in learning low-rank 
+target states, covering classical data and low-temperature quantum tomography. Rigorous testing of our method 
+on both classical and quantum data, demonstrates the ability to obtain a high fidelity model. This research rep-
+resents a significant step toward variational training of models, ushering in new possibilities at the intersection 
+of AI and 5G technologies for the advancement of intelligent healthcare.
+In simple terms, our research proposes a method using advanced technologies like quantum computing and 
+5G communication to improve healthcare by securely sharing patient data for better diagnostic accuracy, all 
+while ensuring patient privacy and reducing communication times.
+The primary contributions of this paper are outlined as follows:
+
+3
+Vol.:(0123456789)
+Scientific Reports |        (2024) 14:26333  | 
+https://doi.org/10.1038/s41598-024-71826-0
+www.nature.com/scientificreports/
+•	 Introduction to a quantum federated learning framework, specifically crafted for intelligent diagnosis within 
+5G mobile networks. The β-QuAFIDA model’s accuracy remained consistent even in noisy environments.
+•	 Mitigation of computational costs through the β-Variational Quantum Eigensolver Optimization process.
+•	 Exploration of the encoding classical method information into quantum states, though the Quantum Circuit 
+Optimization process.
+The proposed framework utilizes the beta-Variational Quantum Eigensolver Optimization technique, a specific 
+quantum computing approach tailored for optimizing tasks within the healthcare system models. This tech-
+nique operates by leveraging quantum principles to select the most relevant quantum states with the highest 
+probabilities, thereby enhancing computational efficiency and convergence rates compared to classical machine 
+learning methods.
+One of the key advantages of employing quantum computing techniques like beta-Variational Quantum 
+Eigensolver Optimization over classical machine learning methods lies in their inherent ability to exploit quan-
+tum parallelism and entanglement. Quantum parallelism allows for the simultaneous evaluation of multiple 
+possibilities, leading to potentially exponential speedup in certain computational tasks. Additionally, entangle-
+ment enables quantum systems to represent and process information in ways that are not feasible with classical 
+approaches, thereby unlocking new avenues for optimization and problem-solving.
+Furthermore, the use of quantum techniques like beta-Variational Quantum Eigensolver Optimization offers 
+advantages in handling complex optimization problems commonly encountered in healthcare system models. 
+By efficiently navigating through high-dimensional parameter spaces and selecting optimal solutions, these 
+quantum approaches can significantly enhance the performance and scalability of healthcare analytics compared 
+to classical methods.
+The following sections in this document are structured as follows: Related works offers insights into the exist-
+ing body of work in the field, whereas Proposed System Model section elaborates on the procedural aspects of 
+the β-QuAFIDA. Performance Evaluation section showcases the outcomes of experiments conducted with the β
+-QuAFIDA algorithm. Ultimately, Discussions and Conclusions sections serve for summarizing the key findings 
+of our work, offering a potential view into future research possibilities in this field.
+Related works
+The FL in healthcare has been proposed with a focus on preserving patient privacy data in remote monitor-
+ing systems4. Additionally, FL can be seen as a machine learning (ML) framework designed to address privacy 
+concerns associated with acquiring authentic data5. Throughout the training, individuals participate in sharing 
+model-related data without directly disclosing their personal information. Alternatively, they send their model 
+parameters to a centralized server, which consolidates and returns refined parameters for local model refinement6.
+While this process leverages data contributions from all participants, transmitting model parameters alone 
+may introduce potential privacy risks. In response to certain apprehensions, a variety of methods are utilized, 
+such as secure aggregation, homomorphic encryption, and additional privacy safeguarding techniques7.
+The application of FL in smart healthcare offers intelligent and privacy-enhanced health services. FL is antici-
+pated to play a pivotal role in establishing large-scale collaborative healthcare systems, transitioning from central-
+ized health data analytics to distributed healthcare operations with privacy awareness. Zhang et al.8 introduced 
+a privacy-preserving system for diagnosing Alzheimer’s disease.By employing an approach based on Federated 
+Learning (FL), the system gathers user audio data via Internet of Things (IoT) devices situated in smart home 
+environments, thereby ensuring the integrity of data and confidentiality of models. Another framework9 is 
+designed for smart healthcare, in which it offers a privacy-preserving method to evaluate FL participants’ con-
+tributions, optimizing the FL model aggregation approach based on these evaluations.
+Quantum Federated Learning (QFL), an evolving domain within Quantum Machine Learning (QML), inte-
+grates traditional FL into the quantum scenarios. Ma et al.10 proposed QFL implementation utilizing blind 
+quantum computing guarantees data security between pairs. Empirical findings demonstrate the efficacy of 
+blind quantum computing in achieving QFL. However, it presents some challenge10, such as implement a hybrid 
+QML algorithm11. Nowadays, these implementations are not deeply explored in diverse scenarios and dataset.
+For instance, studies have investigated the impact of noise in quantum federated computing12, aiming to miti-
+gate its effects on model performance and convergence. Additionally, the optimal number of Quantum Clients13 
+and the configuration of distributed quantum systems have been topics of interest, with researchers exploring 
+different architectures to maximize efficiency and scalability.
+In the context of healthcare applications, related works have focused on leveraging Variational Quantum 
+Eigensolver (VQE) Optimization techniques14. These studies aim to optimize quantum circuits and algorithms 
+for efficient processing of medical data, thereby enhancing the accuracy and reliability of predictive models in 
+healthcare settings. However, the methods obtained an accuracy not superior to 85%.
+Furthermore, the selection and preprocessing of datasets play a crucial role in the success of QFL algorithms. 
+Researchers have explored various strategies for dataset curation and augmentation to ensure robust model train-
+ing and generalization across different healthcare domains15. Additionally, efforts have been made to develop 
+privacy-preserving techniques compatible with quantum computing frameworks16, ensuring the confidentiality 
+and integrity of sensitive medical data in federated learning environments.
+Expanding on the previous research, this study introduces a novel QFL algorithm and employs it to analyze 
+medical data for intelligent diagnosis in 5G mobile networks.
+
+4
+Vol:.(1234567890)
+Scientific Reports |        (2024) 14:26333  | 
+https://doi.org/10.1038/s41598-024-71826-0
+www.nature.com/scientificreports/
+Proposed system model
+The architectural framework for the healthcare system is simulated to work with IoMT devices, communicating 
+though 5G mobile network. This methodology ensures uninterrupted monitoring of patients’ health conditions, 
+providing timely updates to our machine learning model, the β-QuAFIDA, without perturbing its real-world 
+counterpart.
+In Figure 1, the decentralized training paradigm QFL process is shown. FL begins with a global model  ∈Rn , 
+and the model is sent to N local clients as identical copies 1, . . . , K , where  = 1 · . . . · K represents the 
+model parameters for the entire model. Subsequently, a client j ∈[N] = {1, . . . , N} with a local model j engages 
+in local training for a customizable number of epochs to derive a new (private and local) model ej  = j . The 
+set of trained client models {ejN
+j=1} is then aggregated to form a new global model e , replacing the initial  to 
+complete one FL cycle. This process iterates over several rounds.
+Thus, the process shown in Figure 1 involves training a global model that is then sent to multiple local clients 
+for further training. Each client improves the model based on its local data, and the updated models are then 
+combined to create a new global model. This cycle repeats over several rounds, improving the overall model 
+with each iteration.
+In the proposed framework, local clients function as quantum simulators. In which, circuit parameters 
+undergo training via a hybrid quantum-classical approach. During each training round, a designated number 
+of client nodes are chosen to execute the local training. Following the completion of client training, the central 
+node aggregates circuit parameters from all client nodes. For model aggregation, it is used the mean of the cli-
+ent models. The simulation framework, illustrated in Figure 1, in which the patients’ data are stored in a secure 
+dataset and only the parameters updates are transmitted to the global server.
+In this work, the Quantum Exact Simulation Toolkit (QuEST)17. It is an open source, hybrid multithreaded 
+GPU accelerated simulator of quantum circuits.
+The simulation framework, as depicted in Figure 2, seamlessly integrates the QuEST for quantum circuit 
+simulation, PennyLane18 with PyTorch for Variational Quantum Neural Networks (VQNNs) and β-Variational 
+Quantum Eigensolver Optimization ( β-VQE), followed by the Quantum Circuit Optimization. The framework 
+also employs the FLSim tool19 to simulate the Federated Learning, enhancing the synergy between quantum 
+and classical methodologies for optimized models in intelligent healthcare applications. The integration stage 
+ensures efficient collaboration, while the Federated Learning Simulation reflects decentralized training prac-
+tices, crucial for preserving medical data privacy. Pysim5G, a Python Simulator for Integrated Modelling 5G20, 
+is used to simulate the integration of 5G with the Internet of Medical Things (IoMT). The iterative Simulation 
+Execution captures the dynamics of the integrated model, including Quantum Circuit Optimization and β-VQE 
+Optimization, while subsequent analysis and evaluation provide insights into its effectiveness and impact on 
+advancing intelligent healthcare solutions.
+The proposed algorithm involves two types of participants: Quantum clients with a local data and a server. A 
+medical facility equipped with quantum-computing capabilities is referred to as a Quantum Client. Each Quan-
+tum client possesses local data and the algorithm, while the server maintains global parameters. The procedure 
+comprises the following steps: 
+Fig. 1.   Proposed β-Quantum-Assisted Federated Intelligent Diagnosis Algorithm ( β-QuAFIDA) model applied 
+in a healthcare system using 5G communication between IoMT devices.
+
+5
+Vol.:(0123456789)
+Scientific Reports |        (2024) 14:26333  | 
+https://doi.org/10.1038/s41598-024-71826-0
+www.nature.com/scientificreports/
+1.	 The server randomly selects n Quantum clients to participate in training, broadcasting initial parameters 
+to the Quantum clients. After receiving these parameters, each Quantum client initializes its local VQNN, 
+commences local training process, and updates its parameters accordingly.
+2.	 Subsequently, the server gathers the parameters sent back from the Quantum clients, aggregates them, and 
+then redistributes the aggregated parameters to all participants.
+3.	 The first two steps are repeated until termination conditions are satisfied, e.g., the loss function reaching a 
+specific threshold value.
+4.	 Upon reception of the final parameters from the server, all Quantum clients proceed to utilize them for 
+further training iterations.
+In the Quantum client is employed quantum circuits constructed using quantum gates to acquire patient diag-
+nosis results through simulations. A well-structured algorithm comprises linear and nonlinear components. 
+Single-qubit rotation gates and Controlled-NOT (CNOT) gates form the linear part, and non-trace-preserving 
+quantum operations form the nonlinear part.
+The training process involves the step of initializing the VQNN, in which parameters received from the server 
+are used to initialize the local network. After occurs the data encoding into quantum states. The Quantum evolu-
+tion ocurrs, in which the quantum state evolves through a quantum circuit. The training of the VQNN occurs, 
+where the Quantum clients train their local network by performing local iterations and updating parameters 
+using a local update algorithm.
+This process uses quantum circuits to simulate patient diagnosis results, with quantum gates performing 
+calculations and updates to improve the model.
+The training process employs the margin loss function, represented by (1).
+Here, ra , rp , and rn are the sample representations of xa , xp , and xn.
+The server has two main tasks: initializing a set of parameters for Quantum clients and aggregating parameters 
+returned by Quantum clients using the global update algorithm.
+The objective is to optimize the global loss function, as shown in the following:
+Where ωk represents the ratio of data per Quantum client to the total data, and Zk denotes the sample of data 
+stored in the k-th Quantum client.
+The parameters returned by Qauntum clients are aggregated using the weighted average algorithm, as given 
+in Eq. (3).
+The proposed algorithm is constructed using PennyLane21, a Python library designed for quantum machine 
+learning, and PyTorch to implement the proposed algorithm and process the medical data. The approach taken 
+is synchronous, which necessitates the server to await the completion of local iterations by each participating 
+Quantum client and the subsequent return of their parameters. Only after all Quantum clients have provided 
+their parameters does the server proceed to aggregate them.
+(1)
+Loss function =
+
+d(rp, ra),
+positive pair
+max(0, m −d(rn, ra)), negative pair
+(2)
+L(θ) =
+n
+
+k=1
+ωkL(θ; Zk)
+(3)
+θavg =
+n
+
+k=1
+ωkθk
+Fig. 2.   Simulation framework integrating QuEST, PennyLane with PyTorch, Quantum Circuit Optimization, β
+-VQE, Federated Learning, and IoMT with 5G using Pysim5G.
+
+6
+Vol:.(1234567890)
+Scientific Reports |        (2024) 14:26333  | 
+https://doi.org/10.1038/s41598-024-71826-0
+www.nature.com/scientificreports/
+The proposed β-QuAFIDA utilizes the capabilities of FL while integrating quantum computing techniques. 
+QFL expands the capabilities of classical FL into the realm of quantum computing.
+Quantum circuit optimization
+The goal of the optimization is to perform a combination of classical and quantum information processing. The 
+classical-to-quantum encoding is a crucial preparatory step for successful integration of classical and quantum 
+components in healthcare applications.
+The structure of the quantum circuit is defined as follows. The quantum functions employed should have a 
+definite gradient, as depicted in:
+where, the gradient can be expressed as the sum of identical linear transformations. ∇θif (x; θ) represents the gra-
+dient of the function f with respect to the parameter θi ; x is the input variable; θ represents the set of parameters 
+of the quantum circuit; L(bB)
+θi
+ denotes a quantum operator parameterized by θi and involving some observable 
+denoted by bB; x| and |x denote the braket notation representing the state x.
+Furthermore, the input state is obtained by combining the first i −1 unitary transform with the input unitary 
+transform:
+where, |ψi−1 represents the input state obtained after applying the unitary transforms; 
+bUi−1(θi−1) . . . bU1(θi)bU0(x) denotes a sequence of unitary transformations parameterized by θi−1 to θ1 and 
+applied to the input state |x ; |0 represents the initial state of the quantum system.
+Subsequently, all gates are combined after the i-th unitary transformation with the observable bB to obtain 
+a new observable bBi+1.
+where, bBi+1 represents the new observable obtained after combining gates; bUn(θn) . . . bUi+1(θi+1) denotes a 
+sequence of unitary transformations applied in reverse order; bU†
+n(θn) . . . bU†
+i+1(θi+1) represents the adjoint (or 
+conjugate transpose) of the unitary transformations.
+This transformation simplifies the case of multiple unitary gates into a single unitary gate, resulting in the 
+quantum function given by:
+where, f (x; θ) represents the quantum function; ψi−1 denotes the input state; Lθi(ˆBi+1) is the quantum operator 
+acting on the input state; θ represents the parameters of the quantum circuit; ˆBi+1 is the observable associated 
+with the i + 1 −th unitary transformation.
+The gradient is expressed as:
+∇θif (x; θ) represents the gradient of the quantum function with respect to the parameter θi ; ψi−1 denotes the 
+input state; Lθi(ˆBi+1) is the quantum operator acting on the input state with respect to the parameter θi ; θ 
+represents the parameters of the quantum circuit; ˆBi+1 is the observable associated with the i + 1 −th unitary 
+transformation.
+This shows that the gradient optimization of quantum circuits adjusts the parameters of the circuit without 
+modifying its structure.
+Consider a common Pauli gate22, which can be represented as:
+where θi is the unitary gate parameter, and ˆPi satisfies ˆP†
+i = ˆPi . The gradient of θi is given by:
+After replacing the equation with Eq. (10) into the expected function f (x, θi) , the result is :
+Involving the commutation relation, noted as [·, ·] , which adheres to [X, Y] = XY −YX . When dealing with 
+commutators involving Pauli operators, Eq. (13) can be deduced as follows:
+(4)
+∇θif (x; θ) = x|∇θiL(bB)
+θi
+|x,
+(5)
+|ψi−1 = bUi−1(θi−1) . . . bU1(θi)bU0(x)|0.
+(6)
+bBi+1 = bU†
+n(θn) . . . bU†
+i+1(θi+1)bBUi+1(θi+1) . . . bUn(θn).
+(7)
+f (x; θ) = ψi−1|Lθi(ˆBi+1)|ψi−1.
+(8)
+∇θif (x; θ) = ψi−1|∇θiLθi(ˆBi+1)|ψi−1.
+(9)
+bUi(θi) = exp
+
+−i θi
+2
+ˆPi
+
+,
+(10)
+∇θibUi(θi) = −i 1
+2
+ˆPibUi(θi) = −i 1
+2bUi(θi)ˆPi.
+(11)
+∇θif (x; θ) = i 1
+2ψi−1|bU†
+i (θi){ˆPi, ˆBi+1}bUi(θi)|ψi−1
+= i 1
+2ψi−1|bU†
+i (θi)[ˆPi, ˆBi+1]bUi(θi)|ψi−1,
+
+7
+Vol.:(0123456789)
+Scientific Reports |        (2024) 14:26333  | 
+https://doi.org/10.1038/s41598-024-71826-0
+www.nature.com/scientificreports/
+After substituting Eq. (13) in Eq. (12), the result is Eq. (14):
+This can be rewritten as a quantum function in Eq. (14):
+where, ∇θf (x; θ) represents the gradient of the quantum function with respect to the parameter θ ; f (x; θ) is 
+the quantum function evaluated at input x with parameters θ ; θ denotes the parameters of the quantum circuit.
+Here, the methods of encoding classical information into quantum states are explored, essential for the 
+proposed algorithm’s functionality.
+Amplitude encoding involves encoding an N-dimensional classical vector x into n qubits, where n = ⌈log2 N⌉ . 
+The encoded quantum state is given by:
+here |i represents a basis in the Hilbert space. The amplitude coding technique ensures that the normalization 
+condition required by quantum mechanics is satisfied, and classical data undergoes normalization before encod-
+ing. This method significantly reduces the number of qubits needed to encode classical data.
+Classical information can also be encoded into quantum states using rotation gates. The angles of these gates 
+are determined by the classical information x:
+where, |x represents the quantum state encoding classical information; 
+i denotes the tensor product operation 
+over each qubit; S(xi) represents the rotation gate applied to qubit i based on the classical information xi ; |0n is 
+the initial state of n qubits, typically representing the computational basis state; xi represents the i −th element 
+of the classical data vector x.
+Here, the number of qubits needed corresponds to the dimensionality of the classical data.
+Instantaneous Quantum Polynomial-style (IQP) encoding is another method for encoding classical informa-
+tion. The quantum state is given by:
+where r is the depth of the circuit, and H⊗n performs a Hadamard transform on all qubits. The encoding circuit 
+UZ(x) operates with bRZ gates for each pair of qubits in set S.
+In the defined set of three methods, the Angle Encoding is used for the transformation of classical informa-
+tion into quantum states. Additionally, Angle Encoding provides an efficient way to encode classical information 
+without the need to directly share sensitive data, potentially aligning with privacy concerns.
+It explains the process of combining classical and quantum information and highlights the encoding of clas-
+sical data into quantum states using rotation gates and other techniques.
+β‑variational quantum eigensolver optimization
+In this section an optimization of the algorithm introduced in23 is presented.
+Instead of randomly drawing from the entire set of computational basis states, a selection of the top R states 
+with the highest probabilities is used, controlled by a novel parameter α . Subsequently, pφ is renormalize based 
+on these selected states, resulting in a β-Variational Quantum Eigensolver density matrix with a constrained 
+rank of R:
+This adjusted methodology, now incorporating the α parameter, leads to truncated gradients for the variational 
+free energy. The advantage lies in the ability to heuristically choose small values for both R and α to mitigate 
+computational costs during optimization and improve convergence.
+The motivation for this optimization lies in enhancing computational efficiency and convergence during 
+the optimization process. The adjustment involves a strategic deviation, introducing a novel parameter, α , and 
+(12)
+[ˆPi, ˆBi] = −i
+
+bU†
+i (θi)π
+2
+ˆBbUi(θi), bU†
+i (θi)−π
+2
+ˆBbUi(θi)
+
+= −i
+
+bU†
+i (θi)π
+2
+ˆB, bUi(θi)
+
++ i
+
+bU†
+i (θi)−π
+2
+ˆB, bUi(θi)
+
+.
+(13)
+∇θif (x; θ) = 1
+2ψi−1|bU†
+i (θi + π
+2 )ˆBi+1bUi(θi + π
+2 )|ψi−1
+−1
+2ψi−1|bU†
+i (θi −π
+2 )ˆBi+1bUi(θi −π
+2 )|ψi−1.
+(14)
+∇θf (x; θ) = 1
+2
+
+f (x; θ + π
+2 ) −f (x; θ −π
+2 )
+
+.
+(15)
+|x =
+N
+
+i=1
+xi|i,
+(16)
+|x =
+
+i
+S(xi)|0n,
+(17)
+|x =
+
+UZ(x)H⊗nr|0n,
+(18)
+ρθ,φ =
+1
+R
+i=1 pφ(si)
+R
+
+j=1
+pφ(sj)Uθ|sjsj|U†
+θ .
+
+8
+Vol:.(1234567890)
+Scientific Reports |        (2024) 14:26333  | 
+https://doi.org/10.1038/s41598-024-71826-0
+www.nature.com/scientificreports/
+focusing on selecting the top states with the highest probabilities, thereby constraining the rank of the density 
+matrix. This modification aims to strike a balance between computational costs and algorithm performance. The 
+incorporation of α facilitates more controlled and efficient optimization, offering a nuanced approach to tailor 
+the algorithm to the specific requirements of the healthcare system model.
+After the initial training, local iterations are performed to refine the global parameters of the β-Variational 
+Quantum Eigensolver. This iterative process optimizes the performance of the β-Variational Quantum Eigen-
+solver based on the specific characteristics of the patient’s data. The global model is updated iteratively, incor-
+porating insights from each local iteration while preserving data anonymity.
+The nested-loop algorithm is performed for training a Quantum Boltzmann Machine (QBM) using a trun-
+cated rank β-Variational Quantum Eigensolver. The objective is to train the QBM to resemble a target dataset 
+embedded in η . The algorithm initiates with a basic ansatz for the QBM Hamiltonian Hw , such as a Heisenberg 
+model or a random spin-glass model.
+In the inner loop, the β-Variational Quantum Eigensolver ansatz ρθ,φ is trained to represent the QBM σw . In 
+the outer loop, ρθ,φ is utilized to compute approximate QBM statistics tr(Hrσw) ≈tr(Hrρθ∗,φ∗) . These statistics 
+are employed to train the QBM through gradient descent.
+Given that Hw undergoes slight changes between two QBM iterations, a warm-start strategy is employed for 
+the parameters θ, φ of the β-VQE ansatz ρθ,φ during the outer loop steps. The converged parameters of ρθ,φ from 
+one β-VQE inner loop are reused as the initial parameters for the next inner loop. Consequently, while the β
+-VQE may require a relatively long time in the first inner loop, it converges much faster in subsequent iterations.
+This optimization for the β-Variational Quantum Eigensolver selects the top states with the highest prob-
+abilities, constrained by a parameter α , to improve computational efficiency and convergence in healthcare 
+system models.
+Performance evaluation
+A synchronous method if the framework is performed, necessitating the server to wait for each participating 
+Quantum client to conclude its local iterations and return their parameters. Only after all Quantum clients have 
+submitted their parameters does the server aggregate them.
+Datasets and simulation environment
+To conduct our research, an openly available medical dataset was used, as the Fetal Health Datasets24 with 2126 
+fetal cardiotocograms (CTGs). The dataset comprises measurements of fetal heart rate (FHR) and uterine con-
+traction (UC) features obtained from cardiotocograms, which have been categorized by expert obstetricians. 
+This dataset represents information sourced from the IoMT.
+The experiments were performed using a quantum circuit with parameters optimized through federated 
+learning. The dataset was split into training and testing sets, with 80% used for training and 20% for testing. In 
+this wok, the performance of our model was evaluated using standard classification metrics, including accuracy, 
+precision, recall, and F1 score.
+The experiments were conducted to predict fetal health using a centralized training approach as well as train-
+ing with two, four, and eight Quantum Clients. For comparison, tests with a central training was also performed 
+to be compared with the distributed configuration, providing insights into the performance under different 
+distributed computing setups.
+For the fetal health prediction experiments, simulations were performed with varying settings to assess the 
+impact of different factors. The experiments involved different numbers of quantum clients, each trained with a 
+learning rate of 0.01, a batch size of 16, and a total of 300 iterations.
+Results
+The mean accuracy achieved through centralized training and Variational Quantum Neural Network employing 
+β-QuAFIDA on both the training and testing datasets are presented in Tables 1 and 2.
+The experimental results of accuracy of the proposed algorithm are provided in Figure 3. Additionally, is 
+shown the loss function defined in Eq. (1) according to the number of Iterations.
+The assessment of Noisy Intermediate-Scale Quantum (NISQ) computing holds significant importance in 
+the evaluation of Variational Quantum Neural Networks. Hence, we analyze four distinct types of single-qubit 
+quantum noise: bit flip noise, named of BF, phase flip noise named of PF, amplitude damping noise, AD, and 
+depolarization noise, named of DN. These noises are characterized by their respective Kraus matrix representa-
+tions Mk1 , defined by equations (19) until (22).
+Table 1.   Average Accuracy of β-QuAFIDA on Fetal Dataset.
+Algorithms
+Quantum clients
+Training (%)
+Testing (%)
+Central trained Variational QNN
+N/A
+84.76
+83.90
+Variational QNN using β-QuAFIDA
+2
+84.10
+83.98
+4
+84.23
+84.13
+8
+84.99
+83.75
+
+9
+Vol.:(0123456789)
+Scientific Reports |        (2024) 14:26333  | 
+https://doi.org/10.1038/s41598-024-71826-0
+www.nature.com/scientificreports/
+where, I, σx , σy , and σz represents the Pauli matrices. They indicates the robustness of quantum algorithms. The 
+formula for calculating fidelity between two states is given in the following.
+where ρ and σ represent the density matrices of the two mixed states. The fidelity of the quantum circuit is 
+assessed under single noise and a combination of two noises at p = 0.1 . B represents a Bloch operator, which is 
+used to quantify the distance between two quantum states. The Bloch operator is a function of density operators 
+that acts on the product 
+√ρσ√ρ
+2 to calculate the fidelity between the states ρ and σ.
+The results are summarized in Tables 3 and 4. Upon analyzing the obtained results, it is observed that the 
+fidelity of the local circuit decreases under various types of noise. However, it consistently maintains high values, 
+demonstrating good accuracy even in noisy environments.
+Table 3 presents the fidelities of the local β-QuAFIDA under different single-noise scenarios. It is evident that 
+even in the presence of various single noises, such as BF (Brownian noise, PF (Poissonian noise), AD (Ampli-
+tude damping noise), and DN (Dephasing noise), the fidelity remains relatively high. These results indicate the 
+robustness of the local β-QuAFIDA against different types of single noise. Regarding the relation to the Bloch 
+(19)
+Mk1 =
+
+1 −pI,
+Mk2 = √pσx,
+(BF Noise)
+(20)
+Mk1 =
+
+1 −pI,
+Mk2 = √pσy,
+(PF Noise)
+(21)
+Mk1 =
+
+1
+0
+0 √1 −p
+
+,
+Mk2 =
+
+0 √p
+0
+0
+
+,
+(AD Noise)
+(22)
+Mk1 =
+
+1 −pI,
+Mk2 =
+1
+√
+3
+σx,
+Mk3 =
+1
+√
+3
+σy,
+Mk4 =
+1
+√
+3
+σz.
+(DN Noise)
+(23)
+FS(ρ, σ) = B
+√ρσ√ρ
+2,
+Table 2.   Average Accuracies with and without Personalized Training.
+Quantum clients
+ Personalized training (%)
+No personalized training (%)
+2
+83.25
+82.17
+4
+83.93
+81.19
+8
+83.15
+80.94
+Loss Function
+1
+0.8
+0.6
+0.4
+0.2
+0
+1
+0.8
+0.6
+0.4
+0.2
+0
+(a)
+0
+100
+200
+Iterations
+(e)
+0.4
+0.3
+0.2
+0.1
+0
+0.4
+0.3
+0.2
+0.1
+(b)
+0
+100
+200
+Iterations
+(f)
+1
+0.8
+0.6
+0.4
+0.2
+0
+1
+0.8
+0.6
+0.4
+0.2
+(c)
+0
+100
+200
+Iterations
+(g)
+0.4
+0.3
+0.2
+0.1
+0
+0.4
+0.3
+0.2
+0.1
+(d)
+0
+100
+200
+Iterations
+(h)
+Loss Function
+Train 
+Test
+Loss Function
+Train 
+Test
+Train 
+Test
+Loss Function
+Train 
+Test
+Accuracy
+Accuracy
+0
+100
+200
+0 0
+100
+200
+0 0
+100
+200
+0 0
+100
+200
+Iterations
+Iterations
+Iterations
+Iterations
+Fig. 3.   Train/Test accuracy and respective Loss function for different configurations, in which (a) and (b) 
+represent a central training; (c) and (d) represent the use of two Quantum clientes; (e) and (f) represent four 
+Quantum clients; (g) and (h) represent eight Quantum clients.
+
+10
+Vol:.(1234567890)
+Scientific Reports |        (2024) 14:26333  | 
+https://doi.org/10.1038/s41598-024-71826-0
+www.nature.com/scientificreports/
+operator, the fidelity values reflect the ability of the quantum system to maintain coherence and preserve infor-
+mation encoded in the quantum states despite the presence of noise.
+Table 4, on the other hand, illustrates the fidelities of the local β-QuAFIDA under different mixed noise 
+conditions. Here, mixed noises refer to combinations of two types of noise. Despite the presence of mixed noises 
+like BF and PF, BF and AD, BF and DN, PF and AD, PF and DN, and AD and DN, the fidelity remains relatively 
+high in each case. Again, these results indicate the robustness and adaptability of the local β-QuAFIDA in han-
+dling mixed noise scenarios. In terms of the relation to the Bloch operator, the fidelity values provide insights 
+into how well the quantum states maintain their orientation and coherence in the presence of mixed noise, thus 
+reflecting their ability to effectively utilize the quantum properties encoded in the Bloch sphere representation.
+Discussions
+In this work was observed that the model’s accuracy remained consistent even in noisy environments, showcas-
+ing the robustness of the approach under challenging conditions. Fidelity analyses under various types of noise 
+quantified the performance of the local β-QuAFIDA algorithm, emphasizing the maintenance of high fidelity 
+levels even in the presence of diverse interference.
+Furthermore, the presented figures clearly illustrated the training evolution in terms of accuracy and loss 
+function across iterations. Satisfactory model convergence was observed, indicating the efficacy of the proposed 
+algorithm in the context of fetal diagnosis. The fidelity table under different noise configurations provided a 
+comprehensive view of the resilience of the β-QuAFIDA model in challenging environments.
+These results converge to support the viability and effectiveness of the proposed model, reinforcing its appli-
+cability in medical diagnostic scenarios. The discussion also underscored the importance of the FL approach in 
+preserving data privacy, a crucial aspect in health applications.
+In summary, the results analysis and interpretations presented in the discussion section emphasize the prom-
+ising application of the proposed algorithm in the context of fetal diagnosis, providing valuable insights for 
+advancing research in federated quantum machine learning in the healthcare domain.
+Conclusions
+In conclusion, the developed β-QuAFIDA algorithm exhibits significant promise for enhancing fetal health 
+prediction within the domain of federated quantum machine learning. The comprehensive evaluation and analy-
+sis of the proposed model demonstrated its robustness and effectiveness across various configurations, with a 
+particular emphasis on maintaining accuracy in the presence of quantum noise. The exploration of FL in the 
+quantum domain, specifically tailored for healthcare applications, marks advancements in the field. The integra-
+tion of classical and quantum computing techniques, as exemplified by the β-QuAFIDA algorithm, showcases 
+the potential for efficient and privacy-preserving medical diagnostic models. The potential privacy and security 
+challenges associated with federated learning using quantum computing in healthcare include protecting sen-
+sitive patient data during training and transmitting learning models between quantum clients. The proposed 
+framework addresses these challenges through the federated learning technique, which allows data to remain 
+localized on client devices while only updated learning models are shared between them. This helps mitigate 
+privacy and security risks by ensuring that sensitive patient data is not exposed to unauthorized third parties. 
+The study’s utilization of the Fetal Health Dataset in combination with federated quantum learning contributes 
+with insights into the model’s performance under different distributed computing setups. The experimentation 
+Table 3.   Fidelities of Local β-QuAFIDA Under Different Single-Noise.
+Noise
+Fidelity
+Without noise
+1
+BF
+0.9958
+PF
+0.9983
+AD
+0.9775
+DN
+0.9993
+Table 4.   Fidelities of Local β-QuAFIDA Under Different Mixed Noises.
+Noise
+Fidelity
+Without noise
+1
+BF and PF
+0.9890
+BF and AD
+0.9993
+BF and DN
+0.9456
+PF and AD
+0.9942
+PF and DN
+0.9976
+AD and DN
+0.9989
+
+11
+Vol.:(0123456789)
+Scientific Reports |        (2024) 14:26333  | 
+https://doi.org/10.1038/s41598-024-71826-0
+www.nature.com/scientificreports/
+with varying numbers of Quantum clients underscored the adaptability and scalability of the proposed algorithm. 
+Moreover, the fidelity analyses provided a quantitative measure of the algorithm’s resilience to different types 
+of noise, crucial for real-world applications where noise is an inherent challenge. The consistently high fidelity 
+levels, even in the presence of noise, reinforce the algorithm’s suitability for deployment in practical healthcare 
+scenarios. The iterative training process, coupled with personalized training approaches, further refines the global 
+parameters of the Variational Quantum Eigensolver, highlighting the adaptability of the model to specific patient 
+data characteristics. The beta-Variational Quantum Eigensolver Optimization contributes to improving the 
+efficiency and convergence of the algorithm by selecting the most relevant states with the highest probabilities, 
+limited by a parameter α , to enhance computational efficiency and convergence in healthcare system models. 
+This optimization allows for choosing heuristic small values for both R and α to mitigate computational costs 
+during optimization and improve convergence. However, one potential limitation to consider is the sensitivity 
+of the algorithm’s performance to the choice of these parameters. While heuristic selection can mitigate this 
+to some extent, the optimization process may still require careful parameter tuning. In light of these findings, 
+the β-QuAFIDA algorithm not only demonstrates a good performance in predictive accuracy but also aligns 
+with privacy concerns through its FL approach. The presented results lay a foundation for future research and 
+development in federated quantum machine learning for healthcare, paving the way for innovative applications 
+in intelligent diagnosis within 5G mobile networks. It demonstrates robustness and effectiveness across various 
+configurations, maintaining accuracy even in the presence of quantum noise, and highlights the potential for 
+efficient and privacy-preserving medical diagnostic models through its integration of classical and quantum 
+computing techniques. In future work, we intend to compare the performance of the proposed framework with 
+other machine learning methods in fetal health, as well as to evaluate the impact of different parameter settings 
+on algorithm performance. Additionally, we plan to test it on other healthcare datasets to evaluate its scalability. 
+As the healthcare industry increasingly integrates quantum technologies, the proposed algorithm’s potential 
+impact on personalized and efficient medical diagnostics remains a compelling avenue for further exploration 
+and refinement. The successful convergence of classical and quantum computing in the β-QuAFIDA model 
+positions it as a noteworthy contribution to the evolving landscape of quantum-assisted healthcare solutions.
+Data availability
+ The datasets analysed during the current study are available in the Fetal Health Datasets repository, https://​archi​
+ve.​ics.​uci.​edu/​datas​et/​193/​cardi​otoco​graphy. Correspondence and requests for materials should be addressed 
+to D.Z.R.
+Received: 18 February 2024; Accepted: 28 August 2024
+References
+	 1.	 Rauniyar, A. et al. Federated learning for medical applications: A taxonomy, current trends, challenges, and future research direc-
+tions. IEEE Internet Things J. 11(5), 7374–7398 (2023).
+	 2.	 You, L., Guo, Z., Zuo, B., Chang, Y. & Yuen, C. Slmfed: A stage-based and layer-wise mechanism for incremental federated learning 
+to assist dynamic and ubiquitous iot. IEEE Internet Things J.[SPACE]https://​doi.​org/​10.​1109/​JIOT.​2024.​33537​93 (2024).
+	 3.	 Cerezo, M. et al. Variational quantum algorithms. Nat. Rev. Phys. 3, 625–644. https://​doi.​org/​10.​1038/​s42254-​021-​00348-9 (2021).
+	 4.	 Gupta, D., Kayode, O., Bhatt, S., Gupta, M. & Tosun, A. S. Hierarchical federated learning based anomaly detection using digital 
+twins for smart healthcare. In 2021 IEEE 7th International Conference on Collaboration and Internet Computing (CIC), 16–25 (IEEE, 
+2021).
+	 5.	 Yazdinejad, A., Dehghantanha, A. & Srivastava, G. AP2FL: Auditable privacy-preserving federated learning framework for elec-
+tronics in healthcare. IEEE Trans. Consum. Electron. 70(1), 2527–2535 (2023).
+	 6.	 Qi, P. et al. Model aggregation techniques in federated learning: A comprehensive survey. Futur. Gener. Comput. Syst. 150, 272–293 
+(2023).
+	 7.	 Xu, R. et al. Tapfed: Threshold secure aggregation for privacy-preserving federated learning. IEEE Trans. Dependable Secure Comput. 
+21(5), 4309–4323 (2024).
+	 8.	 Zhang, J., Wang, Q., Wang, X., Qiao, L. & Liu, M. Preserving specificity in federated graph learning for FMRI-based neurological 
+disorder identification. Neural Netw. 169, 584–596 (2024).
+	 9.	 Thomas, G. A. S., Muthukaruppasamy, S., Kumar, S. S. & Saravanan, K. Future of medical research with a data-driven federated 
+learning approach. In Handbook on Federated Learning, 202–225 (CRC Press, 2024).
+	10.	 Ma, S., Zhu, C., Liu, X., Li, H. & Li, S. Universal blind quantum computation with improved brickwork states. Phys. Rev. A 109, 
+012606 (2024).
+	11.	 Mehta, A. et al. Characterizing hybrid quantum algorithms for quantum performance benchmarks. Bulletin of the American Physi-
+cal Society (2024).
+	12.	 Chehimi, M., Chen, S.Y.-C., Saad, W., Towsley, D. & Debbah, M. Foundations of quantum federated learning over classical and 
+quantum networks. IEEE Network 38(1), 124–130 (2023).
+	13.	 Chen, S.-Y., Xu, G., Chen, X.-B., Shang, T. & Yang, Y.-X. Quantum cooperative multicast in a quantum hybrid topology network. 
+Front. Phys. 10, 842035 (2022).
+	14.	 Brin, D. Convergence: Artificial Intelligence and Quantum Computing: Social, Economic, and Policy Impacts (Wiley, 2022).
+	15.	 Zhang, A., Xing, L., Zou, J. & Wu, J. C. Shifting machine learning for healthcare from development to deployment and from models 
+to data. Nat. Biomed. Eng. 6, 1330–1345 (2022).
+	16.	 Yan, F., Li, N., Iliyasu, A. M., Salama, A. S. & Hirota, K. Insights into security and privacy issues in smart healthcare systems based 
+on medical images. J. Inf. Secur. Appl. 78, 103621 (2023).
+	17.	 Jones, T., Brown, A., Bush, I. & Benjamin, S. C. Quest and high performance simulation of quantum computers. Sci. Rep. 9, 10736 
+(2019).
+	18.	 Antipov, A., Kiktenko, E. & Fedorov, A. Efficient realization of quantum primitives for Shor’s algorithm using Pennylane library. 
+PLoS ONE 17, e0271462 (2022).
+	19.	 Li, L., Wang, J. & Xu, C. Flsim: An extensible and reusable simulation framework for federated learning. In International Conference 
+on Simulation Tools and Techniques, 350–369 (Springer, 2020).
+
+12
+Vol:.(1234567890)
+Scientific Reports |        (2024) 14:26333  | 
+https://doi.org/10.1038/s41598-024-71826-0
+www.nature.com/scientificreports/
+	20.	 Oughton, E. J., Katsaros, K., Entezami, F., Kaleshi, D. & Crowcroft, J. An open-source techno-economic assessment framework 
+for 5g deployment. IEEE Access 7, 155930–155940 (2019).
+	21.	 Bergholm, V. et al. Pennylane: Automatic differentiation of hybrid quantum-classical computations. arXiv preprint[SPACE]arXiv:​
+1811.​04968 (2018).
+	22.	 Bravyi, S., Shaydulin, R., Hu, S. & Maslov, D. Clifford circuit optimization with templates and symbolic Pauli gates. Quantum 5, 
+580 (2021).
+	23.	 Liu, J.-G., Mao, L., Zhang, P. & Wang, L. Solving quantum statistical mechanics with variational autoregressive networks and 
+quantum circuits. Machine Learn. Sci. Technol. 2, 025011 (2021).
+	24.	 Campos, D. & Bernardes, J. Cardiotocography. UCI Machine Learning Repository (2010). https://​doi.​org/​10.​24432/​C51S4N.
+Acknowledgements
+This work was supported by The Brazilian National Council for Scientific and Technological Development 
+(CNPq), process numbers 404764/2021-5, 309443/2021-0; The Financier of Studies and Projects (FINEP), process 
+number 2817/22; and The São Paulo Research Foundation (FAPESP), process number 2022/10909-5.
+Author contributions
+M.S., P.A., R.L.R and D.Z.R conceived the experiment(s), A.R.C.A., O.D.O., M.S., P.A., R.L.R and D.Z.R. con-
+ducted the experiment(s), A.R.C.A., O.D.O., M.S., P.A., R.L.R and D.Z.R analysed the results. All authors 
+reviewed the manuscript.
+Competing interests 
+The authors declare no competing interests.
+Additional information
+Correspondence and requests for materials should be addressed to D.Z.R.
+Reprints and permissions information is available at www.nature.com/reprints.
+Publisher’s note  Springer Nature remains neutral with regard to jurisdictional claims in published maps and 
+institutional affiliations.
+Open Access   This article is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 
+4.0 International License, which permits any non-commercial use, sharing, distribution and reproduction in 
+any medium or format, as long as you give appropriate credit to the original author(s) and the source, provide 
+a link to the Creative Commons licence, and indicate if you modified the licensed material. You do not have 
+permission under this licence to share adapted material derived from this article or parts of it. The images or 
+other third party material in this article are included in the article’s Creative Commons licence, unless indicated 
+otherwise in a credit line to the material. If material is not included in the article’s Creative Commons licence and 
+your intended use is not permitted by statutory regulation or exceeds the permitted use, you will need to obtain 
+permission directly from the copyright holder. To view a copy of this licence, visit http://​creat​iveco​mmons.​org/​
+licen​ses/​by-​nc-​nd/4.​0/.
+© The Author(s) 2024

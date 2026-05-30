@@ -1,0 +1,872 @@
+Source-PDF: D:\Review\New folder\Main\Borderline\Quantum annealing algorithms for Boolean tensor networks.pdf
+Relative-Path: New folder\Main\Borderline\Quantum annealing algorithms for Boolean tensor networks.pdf
+--------------------------------------------------------------------------------
+
+1
+Vol.:(0123456789)
+Scientific Reports |         (2022) 12:8539  
+| https://doi.org/10.1038/s41598-022-12611-9
+www.nature.com/scientificreports
+Quantum annealing algorithms 
+for Boolean tensor networks
+Elijah Pelofske1*, Georg Hahn2, Daniel O’Malley1, Hristo N. Djidjev1,3 & Boian S. Alexandrov1
+Quantum annealers manufactured by D-Wave Systems, Inc., are computational devices capable of 
+finding high-quality heuristic solutions of NP-hard problems. In this contribution, we explore the 
+potential and effectiveness of such quantum annealers for computing Boolean tensor networks. 
+Tensors offer a natural way to model high-dimensional data commonplace in many scientific fields, 
+and representing a binary tensor as a Boolean tensor network is the task of expressing a tensor 
+containing categorical (i.e., {0, 1} ) values as a product of low dimensional binary tensors. A Boolean 
+tensor network is computed by Boolean tensor decomposition, and it is usually not exact. The aim 
+of such decomposition is to minimize the given distance measure between the high-dimensional 
+input tensor and the product of lower-dimensional (usually three-dimensional) tensors and matrices 
+representing the tensor network. In this paper, we introduce and analyze three general algorithms for 
+Boolean tensor networks: Tucker, Tensor Train, and Hierarchical Tucker networks. The computation of 
+a Boolean tensor network is reduced to a sequence of Boolean matrix factorizations, which we show 
+can be expressed as a quadratic unconstrained binary optimization problem suitable for solving on 
+a quantum annealer. By using a novel method we introduce called parallel quantum annealing, we 
+demonstrate that Boolean tensor’s with up to millions of elements can be decomposed efficiently 
+using a DWave 2000Q quantum annealer.
+Large-scale datasets are commonplace throughout many modern scientific disciplines, such as personalized 
+medicine, biology, space research, or climate research. Oftentimes, the underlying fundamental processes cre-
+ating the data, called latent (i.e., not directly observable), remain hidden1. Extracting such latent features can 
+reveal valuable information about hidden causality and previously unknown mechanisms and relations. Usually, 
+the high-dimensional data we observe (or generate) is sparse and stems from a lower dimensional latent space, 
+which allows us to reduce the dimensionality (and size) of the data.
+Factor analysis2 is among the most efficient methods for educing latent (hidden) features. In the two dimen-
+sional case, the task is to approximate some data matrix X ∈Rn×m as a product X ≈AB of two factor matrices, 
+where A ∈Rn×k , B ∈Rk×m where k ≪n, m is the rank of the factorization, and k, m, n ∈N . Depending on the 
+constraints imposed upon this decomposition, different types of factorization are obtained.
+For instance, imposing orthogonality on the factors results in the well known singular value decomposition 
+(SVD)3, while nonnegativity leads to non-negative matrix factorization (NMF)4. In a lot of applications, the vari-
+ables are simple dichotomies, that is {false, true}, and the data contains only binary values, {0, 1} . For example, in 
+relational databases, an object–attribute relation is represented by a Boolean variable, which takes value 1 (true), 
+if the object has the attribute, or 0 (false), otherwise. In this case, we need to change the constraints on the factor 
+matrices, that is, all the values of the factors have to be 0 or 1 as well as we need to go from simple arithmetic to 
+Boolean algebra: the “plus” and “times” operations become the logical operations “or” and “and”, respectively, 
+which results in a Boolean matrix product5.
+Boolean matrix factorization is a special case of factor analysis whereby the input data are given as a matrix 
+X ∈Bn×m , where B = {0, 1} . The task is to decompose X = AB into two binary matrices A ∈Bn×k and B ∈Bk×m , 
+where xij = ∨k
+l=1ailylj ∈B and ∨ is the logical “or” operation ( 1 + 1 = 1 ). The smallest integer k for which an 
+exact representation in the form of X = AB exists is called the Boolean rank of X.
+Tensor factorization is the high-dimensional generalization of matrix factorization6. Tensors (matrices of 
+dimension three or higher) offer a natural way to represent the high-dimensional data ubiquitous in many 
+modern scientific disciplines. The classical tensor factorization techniques such as Tucker decomposition (TD)7 
+and Canonical Polyadic Decompositions (CPD)8, with various constraints, can extract latent structures, which 
+allow for a new type of feature extraction in high-dimensional data. CPD allows for a representation with the 
+smallest number of parameters, but it is an NP-hard problem9 that can be ill-posed10. TD is not feasible for 
+OPEN
+1Los Alamos National Laboratory, Los Alamos, NM  87545, USA. 2Harvard T.H. Chan School of Public Health, 
+Boston, MA  02115, USA. 3Institute of Information and Communication Technologies, Bulgarian Academy of 
+Sciences, Sofia, Bulgaria. *email: epelofske@lanl.gov
+
+2
+Vol:.(1234567890)
+Scientific Reports |         (2022) 12:8539  | 
+https://doi.org/10.1038/s41598-022-12611-9
+www.nature.com/scientificreports/
+high-dimensional tensors, since the memory requirement and the number of operations grow exponentially 
+with the tensor dimension11. Therefore, tensor networks, which originated from quantum physics12,13, have been 
+introduced as low-rank approximation methods for high-dimensional tensors14,15.
+In this contribution, we consider Boolean tensor networks, a subbranch of tensor factorization that aims to 
+decompose tensors with binary entries into Boolean products of smaller binary tensors and matrices. Despite the 
+problem’s importance, it has been largely overlooked by computer scientists. Related Boolean tensor factorization 
+methods, such as CPD and TD, have been studied previously16,17, while Boolean tensor networks, have been con-
+sidered in quantum physics18,19. We propose three algorithms: a Tucker decomposition algorithm (which comes 
+as an iterative and recursive variant), a Tensor Train (TT) algorithm (again as iterative and recursive variant), 
+and a Hierarchical Tucker algorithm. All three algorithms decompose an input tensor in a tree-like fashion. At 
+their core, all three algorithms rely on solving the problem of Boolean matrix factorization, which is an NP-hard 
+problem and the most computationally expensive step.
+In our approach, we solve the Boolean matrix factorization problem on a quantum annealer, which seems 
+uniquely suited for this type of hard optimizations problems. For this end, we show that the task of factoring a 
+Boolean matrix can be expressed as a minimization of a higher order binary optimization problem (HUBO). 
+A HUBO is a higher-order generalization of quadratic unconstrained binary optimization (QUBO), and its 
+minimization is NP-hard. Importantly, for arbitrary order greater than two, HUBO can be transformed into an 
+equivalent quadratic unconstrained binary optimization problem with (at most) a polynomial increase in the 
+number of variables20.
+Quadratic unconstrained binary optimization, on the other hand, is the type of problem the D-Wave’s quan-
+tum annealer21–23 is designed to solve. Many important NP-hard graph problems such as maximum clique, 
+minimum vertex cover, graph partitioning and maximum cut can be easily converted into QUBOs and solved on 
+D-Wave24–28. Using the D-Wave 2000Q device situated at Los Alamos National Laboratory, which is employed for 
+all the experiments presented in this article, we aim to show that quantum annealing offers a viable tool for solv-
+ing large Boolean tensor network problems. In contrast to the present work, past research on utilizing quantum 
+annealing for matrix factorization has focused mostly on non-negative matrix factorization29,30.
+Our contribution is threefold: First, we present novel recursive algorithms for Hierarchical Tucker, Tucker, 
+and Tensor Train networks suitable for quantum annealers, which can also be applied to other types of Boolean 
+and non-Boolean tensor networks. These algorithms complement their iterative counterpart ready published in 
+the literature 14. Moreover, while the classical iterative versions were known previously, the quantum versions of 
+both the iterative and recursive algorithms are original work of this contribution. Second, for solving Boolean 
+matrix factorization on the quantum annealer, we design an algorithm whose required number of qubits depends 
+only on the matrix rank, rather than its dimensions, and thereby allows tensors of very large dimensions and 
+more than a million elements to be solved on current generation of quantum annealers as long as the tensor 
+rank is small. In contrast, most current implementations of quantum annealer algorithms can solve problems of 
+sizes less than 100. Third, we apply a parallel embedding technique introduced in the literature31 to the tensor 
+factorization problem, thus allowing us to solve a large number of low rank problems in parallel.
+This article is a journal version and substantial extension of a published conference paper32, where only the 
+algorithm for Hierarchical Tucker factorization was introduced and no on-chip parallelism was used.
+The article is structured as follows. Section “Methods” starts by introducing some basic notions of quantum 
+annealing (Section “Basics of quantum annealing”) and the Boolean matrix factorization algorithm which is at 
+the heart of the tensor decompositions (Section “Boolean matrix factorization”), after which we describe the 
+three algorithms allowing us to recursively decompose tensors into a series of lower-order tensors (Section “From 
+Boolean tensor networks to Boolean matrix factorization”). Section “Implementation on D-Wave” details how we 
+make use of the D-Wave 2000Q annealer (Section “Quantum annealing parameters”), and, in particular, how we 
+solve low rank problems in parallel (Section “Parallel quantum annealing”). Results from a series of experiments 
+on random input tensors is presented in Section “Experimental results”. The article concludes with a discussion 
+in Section “Conclusion”. The algorithms presented in this article have been implemented in Python and made 
+available on a Github repository33.
+Methods
+This section starts with a basic overview of quantum annealing (Section “Basics of quantum annealing”). We 
+proceed by introducing a method for Boolean matrix factorization that reformulates the factorization problem 
+into a problem solvable on the D-Wave 2000Q quantum annealer (Section “Boolean matrix factorization”). That 
+algorithm forms the basis of our tensor factorization algorithms, as it can be used to decompose any Boolean 
+tensor into a Boolean tensor network using quantum annealing.
+The Boolean matrix factorization algorithm consists of several phases reducing the current problem type 
+into a simpler one:
+•	 Boolean matrix factorization → Boolean matrix equation;
+•	 Boolean matrix equation → Boolean vector equation;
+•	 Boolean vector equation → HUBO problem;
+•	 HUBO problem → QUBO problem;
+•	 QUBO problem → quantum annealing.
+We illustrate this concept on three important tensor networks discussed in Section “From Boolean tensor net-
+works to Boolean matrix factorization”.
+
+3
+Vol.:(0123456789)
+Scientific Reports |         (2022) 12:8539  | 
+https://doi.org/10.1038/s41598-022-12611-9
+www.nature.com/scientificreports/
+Basics of quantum annealing. 
+As briefly outlined in Section “Introduction”, all of the tensor network 
+algorithms of Section “From Boolean tensor networks to Boolean matrix factorization” reduce the problem of 
+tensor factorization to the one of minimizing a quadratic unconstrained binary optimization (QUBO) problem, 
+a task which is NP-hard. We attempt this with the help of the D-Wave 2000Q quantum annealer, manufactured 
+by D-Wave Systems, Inc., which is briefly introduced in this section.
+The quantum annealers of D-Wave Systems, Inc., are hardware devices designed to compute high quality 
+solutions of NP-hard problems that can be expressed as the minimization of the following function,
+where hi ∈R and Jij ∈R are user-specified weights that define the problem under investigation. The unknown 
+variables x1, . . . , x¯n take only two values (states). If all xi ∈{0, 1} then Eq. (1) is called a QUBO (quadratic 
+unconstrained binary optimization) problem, and if all xi ∈{−1, +1} , then Eq. (1) is called an Ising problem. 
+Both the QUBO and Ising formulations are equivalent25. Many important NP-hard problems can be expressed 
+as the minimization of Eq. (1), see28.
+D-Wave quantum annealers attempt to minimize Eq. (1) by mapping each of the logical variables xi to one or 
+more physical qubits on the D-Wave quantum chip. During annealing, the Hamiltonian operator specifies the 
+evolution of the quantum system from the equal superposition of all qubit states to a state that corresponds to 
+low energy solutions of Eq. (1). This evolution of the quantum system can be described by:
+where the first term encodes an equal superposition of all states. The function to be minimized, given by Eq. (1), 
+is encoded in the second term. The dynamics with which the system transitions from the initial equal superposi-
+tion, in which all bitstring solutions are equally likely, to the solution of Eq. (1) is specified through the anneal 
+path. The anneal path is given by two functions A(s) and B(s) indexed by a parameter s ∈[0, 1] , called the anneal 
+fraction. At the start of the anneal, we have s = 0 and B(s) = 0 , meaning that all weight is on the initial super-
+position. Accordingly, at the end of the anneal, we have s = 1 and A(s) = 0 , meaning that the quantum system 
+has fully transitioned to the problem of Eq. (1) to be solved. The main idea of adiabatic quantum annealing lays 
+in the fact that if the aforementioned transition is performed slowly enough, the system will evolve to a solution 
+of Eq. (1) while always staying in the ground state34,35.
+The function given in Eq. (1) has monomials of maximal degree two, hence the “quadratic” in QUBO. How-
+ever, in many applications, one needs to minimize functions similar to Eq. (1), where the degrees of the mono-
+mials can be higher than two, in which case we speak of higher order binary optimization (HUBO). Conversion 
+of a HUBO of any order larger than two into a QUBO (having only monomials of degree at most two) is always 
+possible, and supported in the D-Wave SDK36.
+Experiment figures in this article were generated using Matplotlib, Networkx, and dwave_networkx37–39.
+Boolean matrix factorization. 
+The proposed idea of reformulating Boolean matrix factorization as a 
+quadratic unconstrained optimization problem solvable on D-Wave consists of several problem reduction steps 
+as follows.
+From Boolean matrix factorization to Boolean matrix equation.  We consider the task of factoring M ∈B˜n× ˜m as 
+the product M = A · B of two Boolean matrices A and B. This is done by iteratively solving
+where d(·, ·) denotes the Hamming distance. The initial values we employ for A and B vary depending on the 
+tensor decomposition algorithm. Amongst others, we use the output of a non-negative SVD (NNSVD), with 
+factors converted to Boolean factors via thresholding, as initial values40,41, or initialize A and B with randomly 
+generated Boolean entries. The precise choice is given in Section “From Boolean tensor networks to Boolean 
+matrix factorization”.
+From Boolean matrix equation to Boolean vector equation.  After noting that both aforementioned minimiza-
+tions (4) can be accomplished with the same subroutine after taking transposes, we are looking at the problem 
+B = arg minY d(M, AY) . Next, the latter equation can be decomposed into a set of independent column-wise 
+equations, leading to
+where Mi denotes the i-th column of matrix M and y = Yi . Next we show how such type of Boolean equation 
+can be further reduced into a HUBO and then to a QUBO problem suitable for a quantum annealer.
+(1)
+H(x1, . . . , x¯n) =
+¯n
+
+i=1
+hixi +
+
+i<j
+Jijxixj,
+(2)
+H(s) = −A(s)
+2
+n
+
+i=1
+σ x
+i + B(s)
+2
+
+
+n
+
+i=1
+hiσ z
+i +
+
+i≤j
+Jijσ z
+i σ z
+j
+
+,
+(3)
+A = arg min
+Y d(M, YB),
+(4)
+B = arg min
+Y d(M, AY),
+(5)
+Bi = arg min
+y
+d(Mi, Ay) for i ∈{1, . . . , ˜m},
+
+4
+Vol:.(1234567890)
+Scientific Reports |         (2022) 12:8539  | 
+https://doi.org/10.1038/s41598-022-12611-9
+www.nature.com/scientificreports/
+From Boolean vector equation to HUBO.  To solve Eq. (5), denote the set of all indices with entry true in column 
+Mi as Ti = {j : Mji = 1} , and the set of all indices with entry false in column Mi as Fi = {j : Mji = 0} . The Ham-
+ming distance d(Mi, Ay) can then be expressed as
+where the number of non-zero entries in column Mi is a constant C, the symbol ⊙ denotes an entrywise multipli-
+cation of two vectors, and f (x1, . . . , x˜n) = 1 −˜n
+i=1(1 −xi) . Importantly, since y1, . . . , ym are unknown, Eq. (6) 
+becomes a higher order polynomial in binary variables yi , thus making Eq. (6) a HUBO problem.
+From HUBO to QUBO.  In a HUBO, there are monomials of degree greater than two, e.g., x1x2x3 . One way 
+to convert a HUBO into a QUBO is to convert each monomial into a quadratic polynomial by introducing 
+auxiliary variables, e.g., u12 = x1x2 , which are substituted into the monomial, thereby reducing its degree. As 
+mentioned in Section “Basics of quantum annealing”, in our implementation we employ features included in the 
+D-Wave SDK for converting the HUBO of eq. (6) into a QUBO, in order to be able to solve it with the D-Wave 
+annealer. Further details of the D-Wave implementation are given in Section “Implementation on D-Wave”.
+Algorithmic details.  The complete Boolean matrix factorization algorithm is summarized in Algorithm 3.
+It relies on Algorithm 1, which formalizes the column-wise iterative factorization method of Eq. (4). For 
+each column Mi ( i ∈{1, . . . , r} ) of a given matrix M which is to be factored into a product AB, we construct 
+the HUBO expressing the distance between Mi and the corresponding column in the factorization AB. After 
+converting the HUBO into a QUBO Q, three cases are considered in preparation for solving Q on D-Wave. If 
+the QUBO is “empty” (i.e., only has zero coefficients), the solution is set to a random bitstring of appropriate 
+length. Otherwise, to save computational time, we look up if Q has been solved in a another problem previously. 
+For this, a global list T is utilized. If so, we look up the solution, otherwise we minimize Q with a D-Wave call 
+and add the best solution to T. For each sample returned by the D-Wave call, we post-process the solution using 
+majority vote. Post-processing is a necessary step in the case of broken chains, meaning that an embedded chain 
+(represented by linked physical qubits) disagree about the state of the logical variable (i.e. physical qubits in a 
+chain take values of both 0 and 1). Algorithm 1 returns a matrix with r columns, one for each column in M. Each 
+column i contains the QUBO solution (factorization) of Mi.
+(6)
+d(Mi, Ay) = C −
+
+j∈Ti
+f ((A⊤)j ⊙y) +
+
+j∈Fi
+f ((A⊤)j ⊙y),
+
+5
+Vol.:(0123456789)
+Scientific Reports |         (2022) 12:8539  | 
+https://doi.org/10.1038/s41598-022-12611-9
+www.nature.com/scientificreports/
+Using Algorithm 1, we can state the full matrix factorization in Algorithm 2, as follows. We start with a 
+Boolean matrix M to be factored, and two initial state Boolean matrices A and B. If M = A · B , where · denotes 
+the multiplication operation of two matrices, the factorization is complete and the algorithm stops. Otherwise, 
+we alternatively solve the coupled equations of Eq. (4) to iteratively approximate the two factors A and B. For the 
+single column factorization, Algorithm 1 is called, where ncol(M) denotes the number of columns of M. Both 
+coupled equations can be solved with Algorithm 1 after transposition of all matrices. The number of repeated 
+minima found and a cutoff on the number of iterations serve as termination criteria. The termination criteria of 
+repeated minima is implemented because it serves as an indication that the algorithm got stuck in a local mini-
+mum. The second termination criteria is used so that the algorithm is guaranteed to terminate. The algorithm 
+returns the two factors A and B, as well as a vector of Hamming distances.
+Since Algorithm 2 requires suitable initial state Boolean matrices, we refine the algorithm to work without 
+starting values. Algorithm 3 takes as input a Boolean matrix M to be factored, as well as the auxiliary parameters 
+chosen by the user Nstates, Randdur, Lc, Lh (in our experiments we set each of these parameters to fixed constants 
+as shown in the input of Algorithm 3). First, a non-negative SVD (NNSVD)40 is computed, and its result serves 
+as input to Algorithm 2. In order to obtain Boolean factors from NNSVD, we rounded each element of the result-
+ing A and B initial states to be binary (i.e. either 0 or 1). If M = A · B can be successfully factored, the result is 
+returned. Otherwise, a number of Nstates random matrices are generated as starting values for Algorithm 2. After 
+calling Algorithm 2, the results are saved, in particular the smallest Hamming distance obtained. After running 
+those Nstates attempts, each attempt using a very small number of iteration denoted by Randdur , the one achiev-
+ing the smallest Hamming distance is used one last time as starting point for Algorithm 2, this time using the 
+maximum allowed iteration parameters Lc, Lh . If any factorization successfully achieves an exact representation 
+M = A · B , it is returned, otherwise the Boolean matrices A, B achieving the minimal Hamming distance are 
+returned.
+
+6
+Vol:.(1234567890)
+Scientific Reports |         (2022) 12:8539  | 
+https://doi.org/10.1038/s41598-022-12611-9
+www.nature.com/scientificreports/
+From Boolean tensor networks to Boolean matrix factorization. 
+This section discusses our high 
+level algorithms, i.e., the reductions of Boolean tensor networks to Boolean matrix factorization. Boolean ten-
+sor network algorithms generally consist of sequences of the following three types of operations: unfolding and 
+reshaping, which reorder the elements of the tensor or matrix and which are described in more detail below, and 
+Boolean matrix factorization. The first two operations can be efficiently performed on a classical computer in 
+linear time. The third operation type, which is of a combinatorial type and NP-hard, we solve on the quantum 
+annealer.
+To illustrate our approach and evaluate its efficacy and efficiency on specific problems, we use three of the 
+most popular tensor network models. Those are the Tensor Train, Tucker, and Hierarchical Tucker networks, 
+illustrated in Fig. 1. We then describe algorithms for constructing such networks suitable for our approach. The 
+exact implementation of these algorithms can also be found on Github33.
+In all pseudocodes, we assume that our input tensor has the attributes .order (which returns the order as 
+integer) and .dimensions (which returns a list of tensor dimensions, with the list length being equal to the order). 
+Moreover, we denote with a[ : N] the subvector or subarray of a consisting of the first N elements (excluding 
+position N itself), and with a[N : ] the subvector or subarray of a consisting of all elements from position N 
+(included) onwards. Although all of our algorithms can use multi-rank factorization, for simplicity of the com-
+parisons in Section “Experimental results”, we assume each factorization rank is the same and given in advance, 
+and we assume that each tensor dimension size is the same. Finding the appropriate rank value is, in general, a 
+hard problem, and beyond the scope of this paper.
+Basic definitions.  Three basic operations occur throughout the tensor algorithms presented in the following 
+subsections. Those operations are briefly discussed in this section.
+All recursive implementations require the computation of a splitting point (denoted with the variable 
+split_point ). This is achieved with the help of a function split(T) for an input tensor T, which returns the 
+splitting point (an integer in the set {1, . . . , T.order} ) and four variables denoted with d1 , d2 and dims1 , dims2 . 
+The quantity d1 is the product of the dimensions up to split_point , and d2 is the product of the dimensions from 
+split_point + 1 up to T.order, while the lists of the corresponding dimensions are dims1 and dims2 . The precise 
+implementation of the function split differs between the three tensor algorithms we consider, and is given 
+individually.
+Moreover, our algorithms require the factorization rank of the input tensor, which we assume can be com-
+puted with a function rank, where the function rank takes a matrix (which is the unfolded tensor) as input 
+and returns a positive integer r (the rank). We do not specify further how to compute the rank for a tensor 
+(unfolded as a matrix), as this can be a computationally hard problem. In our experiments of Section “Experi-
+mental results”, the rank is always specified ahead of time (in order to compare the differences of factorization 
+when using different ranks).
+
+7
+Vol.:(0123456789)
+Scientific Reports |         (2022) 12:8539  | 
+https://doi.org/10.1038/s41598-022-12611-9
+www.nature.com/scientificreports/
+Finally, the unfolding operation used in Algorithms 4 to  7 is visualized in Fig. 2. It shows that a tensor of 
+order 3 can be unfolded by iterating alongside any of its dimensions, and “stitching” together the slices (which 
+are matrices in the example) to a new matrix. The unfolding operation generalizes to higher dimensions (also 
+called matrization or fattening of a tensor), in which case it reduces the dimension by one. Recursive application 
+allows one to reduce the dimension of any tensor until a matrix level is reached. The order in which a tensor 
+is unfolded is not unique, thus leading to several unfolded representations. The unfolding is carried out by a 
+function unfold.
+Algorithms 4 to  7 also rely on an operation called reshaping, which changes the shape (or the order) of 
+the tensor without changing the data and number of elements. Reshaping rearranges the elements of a matrix 
+into either matrices of other dimensions, or higher order tensors, see Fig. 3. A precise mathematical definition 
+of the unfolding and reshaping operations can be found in the literature6.
+Tensor train
+Tucker
+Hierarchical Tucker
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+Original tensor
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+Figure 1.   Decomposition of an original input tensor (left) using: Tensor train (top), Tucker (middle), and 
+Hierarchical Tucker algorithm. A heptagon symbolizes a 7-dimensional tensor, a circle encodes a 3-dimensional 
+tensor, and a square encodes a matrix.
+Figure 2.   Visualization of the unfolding operation. A higher-dimensional input tensor X (of dimension 3 in the 
+example) is unfolded into a matrix by “stitching” it together alongside any of the 3 dimensions.
+
+8
+Vol:.(1234567890)
+Scientific Reports |         (2022) 12:8539  | 
+https://doi.org/10.1038/s41598-022-12611-9
+www.nature.com/scientificreports/
+Tensor train algorithm.  A tensor train network for a tensor of order d is a linear product of a matrix, d −2 
+order-3 tensors, and another matrix (Fig. 1). We implement two versions of the tensor train algorithm, iterative 
+and recursive. Since the iterative version has been previously described in the literature, we show the phases of 
+the recursive algorithm, which is new, on an example order-8 tensor. In Fig. 4, the input tensor is first unfolded 
+into a matrix, that matrix is factored as a product of two matrices, then each of those matrices is converted into a 
+tensor-train-like structure by applying the same algorithm recursively, and finally the two parts are merged into 
+a single tensor train network. The tensor networks produced at the intermediate levels of the recursion do not 
+always have the structure of the tensor trains as illustrated on Fig. 1 since one or both of the matrices at its ends 
+can be replaced by order-3 tensors (in order to make future merging or contraction possible).
+Algorithm 4 gives more details of this procedure. The input to the algorithm is the tensor T to be factored, its 
+rank r, and a parameter rec, which determines if the tensor is being split at the midpoint of its dimension (result-
+ing in a recursive method), or at each dimension successively (effectively resulting in an iterative method). The 
+split_point for Algorithm 4 is defined as ⌈(T.order −γ )/2⌉ in the recursive case, where γ = 1 if all dimensions 
+in T equal the ranks in T from the second one onward, or γ = 0 otherwise. In the iterative case, the split_point is 
+defined as 1 + γ , where γ = 1 if the first dimension of T is equal to the first rank of T, or γ = 0 otherwise. After 
+the splitting point is computed, T is reshaped into an appropriate matrix M using two dimensions called d1 and 
+d2 (see Section “Basics of quantum annealing”). The matrix M is then factored into two matrices M1 and M2 with 
+the help of Algorithm 1. Afterwards, Algorithm 4 is called recursively on M1 (lines 4-7) and M2 (lines 11-14), 
+given the dimension of each is still large enough to allow for further decomposition. Here, T.dimension[0] refers 
+Figure 3.   Visualization of the reshaping operation. A matrix of dimensions d1d2 by d3 , where d1, d2, d3 ∈N , 
+can be reshaped into another matrix of different dimensions (right top and middle) or into am order-3 tensor 
+(right bottom).
+Figure 4.   The phases of the recursive tensor train algorithm. The octagon is an input order-8 tensor, rectangles 
+are matrices, and circles are order-3 tensors.
+
+9
+Vol.:(0123456789)
+Scientific Reports |         (2022) 12:8539  | 
+https://doi.org/10.1038/s41598-022-12611-9
+www.nature.com/scientificreports/
+to the dimension of the first component of T, and T.dimension[−1] refers to the dimension of the last compo-
+nent of T. Otherwise (lines 8-10 and 15-17), if the number of dimensions is three, the matrix is reshaped as an 
+order-3 tensor, or if it is two, then it is just left as a matrix. The algorithm returns the tensor train as a list of the 
+order-3 tensors and matrices, where TT1 + TT2 denotes the concatenation of the two lists given by TT1 and TT2.
+Tucker algorithm.  A Tucker network for a tensor of order d, dimensions n1, . . . , nd , and ranks r1, . . . , rd is a 
+product of an order-d tensor with dimensions r1, . . . , rd and d matrices with dimensions ri × ni , as shown on 
+Fig. 1. Our Tucker decomposition algorithm also comes in two flavors, an iterative and a recursive variant. 
+Algorithm 5 presents the iterative version. Its input consists of a tensor T to be factored, and a desired rank r. 
+The algorithm works by iterating through all possible orders from 1 to T.order. At the n’th iteration, the current 
+tensor Tn is reshaped into a matrix, which is then factored into a product M1 · M2 with the help of Algorithm 3. 
+The first (smaller) factor M1 is appended to the list of factors (initialized with the empty list at the start), which 
+the algorithm returns upon termination. The second factor M2 is reshaped appropriately again into a matrix, and 
+subsequently factored at the next iterations.
+The Tucker decomposition algorithm can also be formulated in a recursive fashion. Details are provided in 
+Algorithm 6. Its input consists of the tensor T to be factored, the desired rank r, and a parameter min_rec_ord , 
+defining the minimum recursive order for termination of the algorithm, which we set to 4 in our experiments. 
+The reason for introducing such a minimum recursive order is the fact that, upon reaching small orders, the 
+computational cost of the recursion increases dramatically due to very high recursion levels. The minimum 
+recursion order must be an even integer.
+The algorithm works similarly to Algorithm 5. After setting the splitting point to ⌈(T.order −γ )/2⌉ , where 
+γ = 1 if all dimensions in T equal the ranks in T from the second one onward or γ = 0 otherwise, we aim to split 
+T at that point into two tensors of lower dimension. This is done as usual by reshaping into a matrix M, which is 
+then factored into two factors M1 and M2 with the help of Algorithm 3. Given the splitting point is still larger than 
+
+10
+Vol:.(1234567890)
+Scientific Reports |         (2022) 12:8539  | 
+https://doi.org/10.1038/s41598-022-12611-9
+www.nature.com/scientificreports/
+the minimal order for continuing the recursion (parameter min_rec_ord ) the algorithm is called recursively for 
+M1 . For M2 , the recursion is called if the order of T1 is at least min_rec_ord . Otherwise, if the dimension does not 
+allow for a recursive call, M1 or M2 are decomposed with the help of iterative Tucker (Algorithm 5). Algorithm 6 
+returns the core and the factors of the decomposition as lists, where factor1 + factor2 denotes the concatenation 
+of the two lists given by factor1 and factor2.
+Hierarchical Tucker algorithm.  A Hierarchical Tucker network for a tensor of order d is a product of a matrix, 
+d −2 order-3 tensors, and d other matrices, connected using the binary-tree pattern shown in Fig. 1. Our 
+Boolean Hierarchical Tucker Network (BHTN) algorithm is a recursive one (see Fig. 5), consisting of a sequence 
+of reshaping and matrix factorization operations. We start with an order-d input tensor T. The task is to trans-
+form T into a BHTN HT, where HT denotes both the BHTN and its associated decomposition tree.
+Let T(n1, . . . , ns, q) denote the tensor at some recursion level, where ni is the size in the i-th dimension and q is 
+a rank used in the factorization at the higher-level recursion ( q = 1 initially). We define s2 = ⌊s
+2⌋ . Our algorithm, 
+given as pseudocode in Algorithm 7, performs a series of reshaping and splitting operations leading to the output 
+subtree HT, which is a BHTN of T. We begin by unfolding T into a matrix M = M(n1, . . . , ns2, ns2+1, . . . , nsq) . 
+As long as s > 3 , the following steps are executed.
+First, using the matrix factorization algorithm of Section “Boolean matrix factorization”, we split M into the 
+product of two matrices of given dimensions, that is
+where M1 and M2 denote matrices containing the elements of the left and right branches (subsubtree) of the 
+recursion (decomposition subtree HT), respectively, and r(1,s2) is the rank of the factorization. Additionally, we 
+will need to extract, from M2 , one order-3 tensor called the core, which will be the root of HT connecting the 
+left and right branches. The core also connects HT to its parent 3-d tensor.
+Next, both M1 and M2 are prepared for further factorization using two separate recursive calls, given their 
+orders ( d1 for M1 , d2 for M2 ) are larger than one. To be precise, the dimension q is transferred from the columns 
+to the rows of M2 using the reshape operation, yielding
+Leaving M1 unchanged, and extracting the core (shaped as matrix M21 ) from M2 yields
+Recursively applying this decomposition to each generated subtree, as well as reshaping M22 into an order-3 
+tensor, eventually yields
+where [k1, k2] := {k1, k1 + 1, . . . , k2} . Any tensor which is flattened out as a matrix can be decomposed in this 
+fashion so long as s > 3 . The decomposition is constructed explicitly for s ≤3 . Our algorithm relies on two 
+operations only, reshaping (see Section “Basics of quantum annealing”) and factorization (see Section “Boolean 
+matrix factorization”).
+(7)
+M →M1(n1, . . . , ns2, r(1,s2)) · M2(r(1,s2), ns2+1, . . . , nsq),
+(8)
+(7) →M1(n1, . . . , ns2, r(1,s2)) · M2(qr(1,s2), ns2+1, . . . , ns).
+(9)
+(8) →M1(n1, . . . , ns2, r(1,s2)) · M21(qr(1,s2), r(s2+1,s)) · M22(r(s2+1,s), ns2+1, . . . , ns).
+(10)
+(9) →HTleft([1, s2], r(1,s2)) × Tcore(q, r(1,s2), r(s2+1,s)) × HTright([s2 + 1, s], r(s2+1,s)) = HT([1, s], q),
+Figure 5.   Schematic of the recursion in Algorithm 7 for M1 and M2 . The root of the tree (the core) is either a 
+matrix, at the top of the recursion hierarchy, or an order-3 tensor that connects to its parent node and its two 
+children.
+
+11
+Vol.:(0123456789)
+Scientific Reports |         (2022) 12:8539  | 
+https://doi.org/10.1038/s41598-022-12611-9
+www.nature.com/scientificreports/
+Implementation on D‑Wave
+This section presents details on how we utilize D-Wave in our experiments (Section “Quantum annealing param-
+eters”), and how we solve multiple column factorization in parallel on the quantum annealer (Section “Parallel 
+quantum annealing”).
+Quantum annealing parameters. 
+Each of the algorithms presented in Sections “Tensor train algorithm” 
+to “Hierarchical Tucker algorithm” reduces the problem of computing a tensor network to the one of a binary 
+matrix factorization, an NP-hard task that can be expressed as a QUBO (see Section “Boolean matrix factoriza-
+tion”). To solve that QUBO, we map its coefficients onto the quantum chip of the D-Wave 2000Q annealer, and 
+set a number of quantum parameters such as the annealing time or the number of anneals.
+
+12
+Vol:.(1234567890)
+Scientific Reports |         (2022) 12:8539  | 
+https://doi.org/10.1038/s41598-022-12611-9
+www.nature.com/scientificreports/
+Since quantum technology is noisy, the results obtained with D-Wave 2000Q are not deterministic. Therefore, 
+up to several thousand anneals are usually performed, and the best solution (i.e., the one yielding the lowest 
+QUBO value) is chosen, after annealing, from the set of obtained bitstrings. The minor-embedding process relies 
+on constructing chains of physical qubits to represent logical variable states; however those chains might disagree 
+on the logical variable values (we call these instances chain breaks42). In these instances we need a method to 
+either resolve broken chains or discard anneals with broken chains. We use the following annealing parameters: 
+1.	 Annealing time: set to 1 microsecond;
+2.	 Number of anneals: varies according to the rank of the problem being solved: for rank r ∈{2, 3, 4, 5, 6, 7, 8} 
+we use the number of anneals {100, 200, 400, 600, 800, 1000, 3000};
+3.	 Chain strength: calculated using the uniform torque compensation function36 with a prefactor of 1.5.
+4.	 Chain break resolution is done using the majority vote function42, where the most common state in the chain 
+of measured qubits in a given anneal is used as the logical variable value for that solution.
+5.	 Everything else was set to default. Additionally, the parallel embedded QUBO coefficients were not normal-
+ized with respect to each other, which is a reasonable choice to make because all of the rank-3 QUBO’s are 
+similar to each other. Note however that for more heterogeneous problems it would make sense to normalize 
+the QUBO coefficients with respect to each other.
+These parameters values were determined empirically in order to obtain best annealing results over the set 
+of experiments we present in Section “Experimental results”. All other annealing parameters are kept at their 
+default values.
+The density and the size of the QUBOs generated from the HUBO to QUBO conversion process36 depend 
+heavily on the elements of column factorization subproblem represented by the HUBO. We are limited by the 
+quantum annealing hardware (specifically the LANL D-Wave 2000Q) to a minor-embedded complete graph 
+of size 65. Empirically, this corresponds to a maximum possible rank of 8 for arbitrary QUBO connectivity. 
+However, it is possible to factor tensors with higher rank if the QUBO sub-problems are sufficiently sparse. In 
+order to offer a comparison across all ranks, we limit the rank to 8 in our experiments and use a complete 65 
+node embedding for all rank comparison experiments in Section “Experimental results”. The complete 65 node 
+embedding (in addition to all discrete embeddings outlined in the following Section “Parallel quantum anneal-
+ing”) was computed using a single call to minorminer36,43 using default parameters. Importantly, using a fixed 
+embedding means that the high computational cost of minor-embedding is only incurred once (as opposed to 
+repeatedly computing a minor-embedding).
+Finally, the D-Wave SDK for HUBO to QUBO conversion36, requires the specification of a penalty factor 
+(called strength in the D-Wave documentation) used to rewrite higher order polynomial terms as quadratic 
+ones. This is necessary in order to ensure the ground state solutions of the HUBO are consistent with the ground 
+state solutions of the corresponding QUBO. This strength parameter was always chosen as the maximum of the 
+absolute value of any HUBO coefficient. This is a heuristic choice, which nevertheless yielded the ground state 
+solutions of the QUBOs we solved in Section “Experimental results”.
+Parallel quantum annealing. 
+The column factorization problems generated in Section “Boolean matrix 
+factorization” are small enough to be solved on only one of the so-called Chimera unit cells of the D-Wave 
+2000Q quantum annealer, meaning that we can solve several column factorizations in parallel. The idea of solv-
+ing problems of the type of Eq. (1) simultaneously on the D-Wave chip in one anneal has already been intro-
+duced in the literature31.
+Briefly, any rank-3 column factorization QUBO generated in Section “Boolean matrix factorization” will 
+form a maximal clique of size 4. The corresponding QUBO has 4 linear terms, as well as some of the (at most 
+16) quadratic terms. Each QUBO is solved on D-Wave 2000Q by mapping it onto the quantum hardware. The 
+chip of the D-Wave 2000Q situated at Los Alamos National Laboratory contains 2038 working hardware qubits, 
+arranged in a lattice of 256 K4,4 bipartite graphs. The expected number of working qubits for this size of Chimera 
+graph is 2048; the lower number of working qubit is due to hardware defects. This hardware graph can be seen 
+in Fig. 6. Each bipartite graph is called a unit cell, and contains 16 densely connected hardware qubits. The cells 
+themselves are sparsely connected. Due to calibration and manufacturing defects, some of the unit cells of the 
+D-Wave 2000Q device at Los Alamos National Laboratory contain less than 16 qubits (for instance, the green 
+and red squares in Fig. 6 show a complete and an incomplete unit cell, respectively). Importantly, each QUBO 
+occurring in Section “Boolean matrix factorization” can be embedded onto one of the unit cells alone (with the 
+exception of one unit cell which contains too many missing qubits to create an embedding), meaning we can 
+solve up to 255 column factorization problems (of rank-3) simultaneously in a single D-Wave call.
+In Section “Experimental results” we use the idea of parallel quantum annealing for the experiments looking 
+at tensor order and tensor dimension size (these experiments use a decomposition rank of 3). For all rank com-
+parisons we employ a fixed embedding of a complete 65 node graph. If there is a particular matrix factorization 
+problem with less than 255 column factorization QUBOs, that D-Wave backend call will only make use of that 
+number of sub-problems, not the full 255 sub problem embedding. Each use of the 255 sub problem minor-
+embeddings first employs a random shuffle of the assigned embedding to problems in order to reduce the effect 
+of persistent hardware biases.
+
+13
+Vol.:(0123456789)
+Scientific Reports |         (2022) 12:8539  | 
+https://doi.org/10.1038/s41598-022-12611-9
+www.nature.com/scientificreports/
+Experimental results
+This section presents our experimental results on randomly generated tensors. We investigate the scaling in both 
+runtime (QPU time in the case of the quantum annealer, and process CPU time for the classical case) required 
+to solve the generated QUBOs when solving the matrix factorization sub-problems, and error rate (defined as 
+the average number of Boolean mismatches between the input tensor and its proposed factorization, divided 
+by the total number of tensor elements) in two scenarios: once for each original input tensor, and once for a 
+noisy version which is obtained by flipping each bit in the input tensor independently with probability 0.001. 
+With this level of noise, the number of bits to be flipped can vary from zero for the smallest tensors (in which 
+case we intentionally flip one bit at random), to around one thousand bits for the largest tensors considered in 
+our experiments.
+To generate the tensors, we first generate a random tensor network of the given type (e.g., Tensor Train 
+or Tucker), and then compute the tensor that it represents, which serves as input to our algorithms. For each 
+network, each factor tensor or matrix is generated by sampling its binary entries from a Bernoulli distribution 
+with probability p (that is, entry 1 with probability p, and entry 0 with probability 1 −p ), where p is uniformly 
+chosen in [0.01, 0.99]. For each of the three types of tensor algorithms, and for each combination of tensor 
+parameters we investigate (order, dimension size, rank), we generate five different tensors, and then run the 
+respective algorithms on those tensors. In total, we generated 330 tensors (The number 330 comes from the 7 
+different ranks, 9 different tensor sizes, and 7 different tensor orders. Because these three axis share values, there 
+are two overlaps in tensors parameters; one at rank 3, order 4, size 8 (this parameter combination is shared by 
+the varying rank and size datasets) the second is rank 3, order 4, size 4 (this is shared by the varying order and 
+size datasets). For the second overlap we simply use the same data (and the same tensors) because the quantum 
+annealing technique (many disjoint small embeddings) is the same. For the second overlap, we do not use the 
+same embeddings or the same tensors between the two datasets. There are then 23 different tensor parameter 
+settings with only one crossover value where the same tensors, and data, are used. Therefore the total number of 
+tensors generated was (23 −1) · 5 · 3 = 330 ; the 3 comes from the 3 distinct tensor networks and the 5 comes 
+from the number of tensors generated at each parameter combination) without noise, and then added in noise 
+to create a corresponding 330 tensors with noise. All of our tensor algorithms can be used for multi-rank fac-
+torization, as well as varying dimension sizes. However for simplicity, we restrict both the dimension sizes and 
+the factorization ranks to be the same.
+The following sections investigate the behavior of the (iterative and recursive) Tensor Train, (iterative and 
+recursive) Tucker, as well as Hierarchical Tucker algorithms as a function of the rank (Section “Rank”), dimen-
+sion size (Section “Size in each dimension”), and order (Section “Order”) of the input tensor. We evaluate all 
+algorithms with respect to both error rate and runtime (QPU or CPU time to solve the QUBO sub-problems). 
+In particular, the computation time we report does not include the processing steps leading up to solving the 
+QUBO (in either the classical or quantum annealing case). For example, the time to convert the HUBO into a 
+QUBO, or the unembedding time, is not reported in these plots. Instead we specifically investigate the scaling 
+behavior of the required time to solve the QUBO sub-problems. We define the error rate to be the Hamming 
+distance between T (the original input tensor) and T′ (the reconstructed tensor from the found factors) divided 
+Figure 6.   The Chimera graph for the LANL D-Wave 2000Q machine with 256 unit cells. Complete unit cell in 
+green, and incomplete unit cell in red. Blue coloring on the connectivity graph shows the qubits and couplers 
+that are used in the 255 disjoint clique-4 minor-embeddings.
+
+14
+Vol:.(1234567890)
+Scientific Reports |         (2022) 12:8539  | 
+https://doi.org/10.1038/s41598-022-12611-9
+www.nature.com/scientificreports/
+by the total number of elements in T. Thus, an error rate of 0 means the algorithm found an exact factorization 
+of T. We report the mean metric (error rate or computation time) across the 5 test tensors for each scenario. 
+Note that, because the tensors were generated by the type of tensor algorithm, only the recursive and iterative 
+versions for the same tensor network type (Tucker or Tensor Train) are directly comparable to each other in the 
+following sections (Sections “Rank”, “Size in each dimension”, “Order”). For example, Hierarchical Tucker and 
+Tucker results used not only different initial tensors, but also different input constructions, meaning that those 
+results are not directly comparable (e.g., the amount of information content can be vastly different for tensors 
+corresponding to different network types). On the other hand, both the iterative and recursive versions of Ten-
+sor Train used exactly the same tensor input structure and the exact same 5 tensors, therefore those results are 
+directly comparable. The experimental section concludes with a comparison to the classical simulated annealing 
+algorithm in Section “Classical algorithm comparison”.
+Rank. 
+We start with an assessment of the accuracy as a function of the rank, while keeping the tensor order 
+4 and the dimension size 8 fixed. Figure 7 (top left) and Fig. 8 (top left) show results for all five methods under 
+investigation for the scenario without and with added noise, respectively. Three observations are noteworthy. 
+First, throughout all algorithms considered there does not seem to be an obvious dependence of the error on 
+the rank of the tensor. Second, the recursive versions of both Tucker and Tensor Train result in lower error rates 
+compared to the iterative versions. The likely reason for this finding is that a recursive version produces a tensor 
+network of a lower depth. Since each decomposition during the construction of a network adds error, that error 
+accumulates, and may get quite large at the leaves of the network. Therefore, it seems sensible that networks of 
+a lower diameter should in general produce better approximations of the original tensor. Third, when adding 
+noise, the error rate for most methods increases (the primary exception being Tensor Train Iterative).
+Figure 7.   Tensors with no noise. Mean error rate (left column) and mean QPU time (right column). Tensor 
+rank (top row), dimension size N (middle row), and tensor order (bottom row). The right most entry on the 
+x-axis shows the average across all previous quantities for each of the five tensor methods. Error bars indicate 
+minimum and maximum values.
+
+15
+Vol.:(0123456789)
+Scientific Reports |         (2022) 12:8539  | 
+https://doi.org/10.1038/s41598-022-12611-9
+www.nature.com/scientificreports/
+Similarly to the error rate comparison, Figs. 7 (top right) and  8 (top right) investigate the scaling in QPU 
+time as a function of the rank while keeping the order 4 and the dimension size 4 fixed, again for the scenario 
+without and with added noise, respectively. The runtime increases for all methods as the rank increases, which 
+is to be expected because as the rank increases we also increase the number of samples. When directly compar-
+ing the recursive and iterative versions of Tensor Train and Tucker, we see that the recursive version uses more 
+than or equal to the iterative version. Lastly, adding noise to the tensor makes the decomposition more difficult, 
+expressed in a higher QPU time throughout all methods and ranks.
+Averages for both error rates and QPU times confirm that the recursive versions are more accurate than the 
+iterative ones while being roughly equally fast.
+Size in each dimension. 
+Similarly to Section “Rank”, we investigate the scaling of both error rate and QPU 
+runtime as a function of the dimension size of the input tensor, while the rank is fixed to 3 and tensor order is 4. 
+Figures 7 (middle left) and  8 (middle left) shows the mean error rate results of this experiment for the scenario 
+without and with added noise, respectively. As observed in Section “Rank”, there is no obvious dependence of the 
+error on the dimension size, the recursive version of both Tucker and Tensor Train give a lower error rate than 
+the iterative version, and adding noise to the tensor decreases the accuracy throughout all methods, as expected. 
+This can also been seen by looking at the averages over all sizes.
+The mean QPU runtime as a function of the dimension size, reported in Fig. 7 (middle right) for the scenario 
+without noise and in Fig. 8 (middle right) for the scenario with added noise, shows a (weak, possibly linear) 
+Figure 8.   Tensors with noise. Mean error rate (left column) and mean QPU time (right column). Tensor 
+rank (top row), dimension size N (middle row), and tensor order (bottom row). The right most entry on the 
+x-axis shows the average across all previous quantities for each of the five tensor methods. Error bars indicate 
+minimum and maximum values.
+
+16
+Vol:.(1234567890)
+Scientific Reports |         (2022) 12:8539  | 
+https://doi.org/10.1038/s41598-022-12611-9
+www.nature.com/scientificreports/
+dependence on the dimension size, where noisy tensors again consistently require a higher runtime and have 
+larger error bars.
+Order. 
+Last, we investigate the scaling of error rates and QPU times as a function of the order of the tensor 
+while keeping the factorization rank 3 and the tensor dimension size 4 fixed. Results are displayed in Figs. 7 (bot-
+tom left) and  8 (bottom left) for the scenario without and with added noise, respectively. We observe a similar 
+picture as for the previous experiments, with no obvious dependence of the error on the order. We again observe 
+that the recursive versions of Tucker and Tensor Train result in lower error rates than their iterative counterparts, 
+which is also reflected in the averages across all orders.
+The mean QPU time for the scaling in the order of the input tensor is given in Fig. 7 (bottom left) for the 
+scenario without noise and in Fig. 8 (bottom left) for the scenario with added noise. We observe that the QPU 
+scaling behaves very similarly to the scaling in the dimension size of the tensor, exhibiting a seemingly (weak, 
+linear) increase. Importantly, QPU times for both the scaling in the tensor size and order are in the vicinity of 
+seconds, demonstrating that tensor decomposition with the help of quantum annealing is feasible in practice.
+Classical algorithm comparison. 
+We repeat the comparison of the Hierarchical Tucker, Tensor Train, 
+and Tucker decomposition algorithms using two classical heuristic methods to solve the QUBO’s generated by 
+the matrix factorization sub-routine, instead of the D-Wave quantum annealer. The first classical heuristic we 
+use is the implementation of simulated annealing provided by D-Wave Systems, Inc., available at https://​github.​
+com/​dwave​syste​ms/​dwave-​neal with all default settings (except for the number of samples). The second classical 
+heurisitc we use is a greedy steepest descent algorithm, also available on Github at https://​github.​com/​dwave​
+syste​ms/​dwave-​greedy. For a fair comparison, we use the same number of samples as with the quantum annealer 
+(for rank 3 this was 200 samples).
+We use the experimental setting introduced in Section “Experimental results”. As before, we report error 
+rates and either CPU or QPU times (in particular, the qpu-access-time for the QA backend solving the QUBO 
+sub-problems, and the cpu-process time for the classical solvers) depending on whether we look at a quantum 
+or classical implementation. We copy the setting of Section “Size in each dimension”, though we only consider 
+the largest tensor dimension size 12 therein and keep the order 4 and the rank 3 fixed. As an additional com-
+parison, we run the two classical methods using sequential QUBO solving (this means solving each of the small 
+QUBO’s one at a time) as well as the parallel method we use in the quantum annealing implementation (where 
+many disjoint QUBO’s are combined into a larger QUBO which is then solved as a single QUBO). We add this 
+sequential and parallel difference to the classical methods because we expect the sequential method to be faster 
+for classical methods; but we also expect the parallel method to be faster for quantum annealing. Therefore such 
+a comparison is warranted.
+Figure 9 (left) shows that quantum annealing results in lower error rates than greedy steepest descent. Moreo-
+ver, we observe that the recursive versions of the Tensor Train and Tucker algorithms result in lower error rates 
+than their iterative counterparts.
+We observe that simulated annealing (with default settings) takes significantly more computation time across 
+all tensor algorithms than greedy steepest descent or quantum annealing (Fig. 9, right). Interestingly, quantum 
+annealing and greedy steepest descent are comparable in terms of computation time.
+Conclusion
+This article considers Boolean tensor networks, or the factorization of a Boolean tensor into lower dimensional 
+tensors. At the lowest level, this task reduces to performing a large number of Boolean matrix factorizations. 
+Boolean matrix factorization is a hard optimization problem that we solve on the D-Wave 2000Q quantum 
+annealer, after reformulating it as quadratic unconstrained binary optimization.
+We show that Boolean input tensors can be efficiently decomposed into Boolean tensor networks of a cer-
+tain shape using a set of basic operations—unfolding, reshaping, and Boolean matrix factorization. The latter 
+is solved with the help of quantum annealing. We implement those operations in three methods, called Tensor 
+Train, Tucker, and Hierarchical Tucker algorithms, of which the recursive versions are a novel contribution of 
+this work. We show that at the lowest level of the recursion, several of the created QUBO problems can be solved 
+on the D-Wave 2000Q quantum annealer with the help of parallel quantum annealing in the same backend call.
+We experimentally demonstrate the viability of all three algorithms in an experimental study. On synthetically 
+generated Boolean input tensors of varying ranks, sizes, and orders, we show that our algorithms in connection 
+with quantum annealing allow one to accurately factor input tensors containing up to a million elements. We see 
+that the recursive versions of the Tucker and Tensor Train algorithms consistently result in lower error rates than 
+the iterative versions. A comparison to classical solvers, obtained by replacing the solving step of the quadratic 
+unconstrained binary optimization via D-Wave with simulated annealing, shows that the approach involving 
+the D-Wave 2000Q uses considerably less computation time in comparison to the classical simulated anneal-
+ing while returning comparable error rates. All of the algorithms presented in this paper are available online33.
+
+17
+Vol.:(0123456789)
+Scientific Reports |         (2022) 12:8539  | 
+https://doi.org/10.1038/s41598-022-12611-9
+www.nature.com/scientificreports/
+Data availability
+All datasets and code are available online at https://​github.​com/​lanl/​pyQBT​Ns.
+Received: 22 January 2022; Accepted: 26 April 2022
+References
+	 1.	 Everett, B. An Introduction to Latent Variable Models (Springer,  2013).
+	 2.	 Spearman, C. General intelligence, objectively determined and measured. Am. J. Psychol. 15, 1–10 (1961).
+	 3.	 Stewart, G. W. On the early history of the singular value decomposition. SIAM Rev. 35, 551–566 (1993).
+	 4.	 Lee, D. D. & Seung, H. S. Learning the parts of objects by non-negative matrix factorization. Nature 401, 788–791 (1999).
+	 5.	 Miettinen, P., Mielikäinen, T., Gionis, A., Das, G. & Mannila, H. The discrete basis problem. IEEE Trans. Knowl. Data Eng. 20, 
+1348–1362 (2008).
+	 6.	 Kolda, T. G. & Bader, B. W. Tensor decompositions and applications. SIAM Rev. 51, 455–500 (2009).
+	 7.	 Tucker, L. R. Some mathematical notes on three-mode factor analysis. Psychometrika 31, 279–311 (1966).
+	 8.	 Hitchcock, F. L. The expression of a tensor or a polyadic as a sum of products. J. Math. Phys. 6, 164–189 (1927).
+	 9.	 Håstad, J. Tensor rank is np-complete. J. Algorithms 11, 644–654 (1990).
+	10.	 De Silva, V. & Lim, L.-H. Tensor rank and the ill-posedness of the best low-rank approximation problem. SIAM J. Matrix Anal. 
+Appl. 30, 1084–1127 (2008).
+Figure 9.   Classical (simulated annealing and steepest descent algorithms) and quantum annealing 
+implementations (D-Wave 2000Q) of the five tensor algorithms Hierarchical Tucker (HT), Tensor Train Iterative 
+(TTI), Tensor Train Recursive (TTR), Tucker Iterative (TI), and Tucker Recursive (TR). The tensor parameters 
+are fixed to be rank 3, dimension size 12, and order 4. For D-Wave we report QPU time (in particular, qpu-
+access-time), whereas for classical computations we report CPU process time. Log scale on the y-axes. Each dot 
+is one tensor (5 tensors per algorithm), while lines connect the mean values for each algorithm.
+
+18
+Vol:.(1234567890)
+Scientific Reports |         (2022) 12:8539  | 
+https://doi.org/10.1038/s41598-022-12611-9
+www.nature.com/scientificreports/
+	11.	 Oseledets, I. A New Tensor Decomposition. Doklady Mathematics Vol. 80, 495–496 (Pleiades Publishing Ltd, 2009).
+	12.	 Penrose, R. Applications of negative dimensional tensors. Combin. Math. Appl. 1, 221–244 (1971).
+	13.	 Feynman, R. P. Quantum mechanical computers. Found. Phys. 16, 507–531 (1986).
+	14.	 Oseledets, I. V. & Tyrtyshnikov, E. E. Breaking the curse of dimensionality, or how to use svd in many dimensions. SIAM J. Sci. 
+Comput. 31, 3744–3759 (2009).
+	15.	 Oseledets, I. V. Tensor-train decomposition. SIAM J. Sci. Comput. 33, 2295–2317 (2011).
+	16.	 Miettinen, P. Boolean tensor factorizations. In IEEE 11th Intl Conference on Data Mining, 447–456 (IEEE, 2011).
+	17.	 O’Malley, D., Djidjev, H. N. & Alexandrov, B. S. Tucker-1 Boolean Tensor Factorization with Quantum Annealers. In Proceedings 
+of the 2020 International Conference on Rebooting Computing (ICRC), 58–65 (2020).
+	18.	 Biamonte, J. D., Clark, S. R. & Jaksch, D. Categorical tensor network states. AIP Adv. 1, 042172 (2011).
+	19.	 Biamonte, J. Lectures on Quantum Tensor Networks. arXiv:​1912.​10049 (2019).
+	20.	 Boros, E. & Hammer, P. Pseudo-Boolean optimization. Discret. Appl. Math. 123, 155–225 (2002).
+	21.	 McGeoch, C. C., Harris, R., Reinhardt, S. P. & Bunyk, P. I. Practical annealing-based quantum computing. Computer 52, 38–46 
+(2019).
+	22.	 Das, A. & Chakrabarti, B. K. Colloquium: Quantum annealing and analog quantum computation. Rev. Mod. Phys. 80, 1061–1081. 
+https://​doi.​org/​10.​1103/​RevMo​dPhys.​80.​1061 (2008).
+	23.	 Finnila, A., Gomez, M., Sebenik, C., Stenson, C. & Doll, J. Quantum annealing: A new method for minimizing multidimensional 
+functions. Chem. Phys. Lett. 219, 343–348. https://​doi.​org/​10.​1016/​0009-​2614(94)​00117-0 (1994).
+	24.	 Ushijima-Mwesigwa, H., Negre, C. F. & Mniszewski, S. M. Graph partitioning using quantum annealing on the d-wave system. In 
+Proceedings of the Second International Workshop on Post Moores Era Supercomputing, 22–29 (2017).
+	25.	 Chapuis, G., Djidjev, H., Hahn, G. & Rizk, G. Finding maximum cliques on the D-wave quantum annealer. J. Signal Process. Syst. 
+91, 363–377 (2019).
+	26.	 Pelofske, E., Hahn, G. & Djidjev, H. Solving large Minimum Vertex Cover problems on a quantum annealer. In Proceedings of the 
+Computing Frontiers Conference CF’19. arXiv:​1904.​00051, 1–16 (2019).
+	27.	 Jünger, M. et al. Quantum annealing versus digital computing: An experimental comparison. J. Exp. Algorithmics (JEA) 26, 1–30 
+(2021).
+	28.	 Lucas, A. Ising formulations of many NP problems. Front. Phys. 2, 1–27 (2014).
+	29.	 O’Malley, D., Vesselinov, V., Alexandrov, B. & Alexandrov, L. Nonnegative/binary matrix factorization with a d-wave quantum 
+annealer. PLoS ONE 13, e0206653 (2018).
+	30.	 Golden, J. & O’Malley, D. Reverse annealing for nonnegative/binary matrix factorization. PLoS ONE 16, e0244026 (2021).
+	31.	 Pelofske, E., Hahn, G. & Djidjev, H. N. Parallel quantum annealing. Sci. Rep. 12, 4499. https://​doi.​org/​10.​1038/​s41598-​022-​08394-8 
+(2022).
+	32.	 Pelofske, E., Hahn, G., O’Malley, D., Djidjev, H. N. & Alexandrov, B. S. Boolean hierarchical tucker networks on quantum anneal-
+ers. In Large-Scale Scientific Computing (eds Lirkov, I. & Margenov, S.) 351–358 (Springer, 2022).
+	33.	 Pelofske, E. lanl/pyqbtns: Release v1.0.0. https://​doi.​org/​10.​5281/​zenodo.​48765​27 (2021).
+	34.	 Albash, T. & Lidar, D. A. Adiabatic quantum computation. Rev. Mod. Phys. 90, 015002 (2018).
+	35.	 Hauke, P., Katzgraber, H. G., Lechner, W., Nishimori, H. & Oliver, W. D. Perspectives of quantum annealing: Methods and imple-
+mentations. Rep. Prog. Phys. 83, 054401 (2020).
+	36.	 D-Wave Systems. Dimod Github and Uniform Torque Compensation and Create a binary quadratic model from a higher order 
+polynomial Github and Minorminer Github (2020).
+	37.	 Hunter, J. D. Matplotlib: A 2d graphics environment. Comput. Sci. Eng. 9, 90–95. https://​doi.​org/​10.​1109/​MCSE.​2007.​55 (2007).
+	38.	 Caswell, T. A. et al. matplotlib/matplotlib: Rel: v3.5.1. https://​doi.​org/​10.​5281/​zenodo.​57734​80 (2021).
+	39.	 Hagberg, A. A., Schult, D. A. & Swart, P. J. Exploring network structure, dynamics, and function using networkx. In Varoquaux, 
+G., Vaught, T. & Millman, J. (eds.) Proceedings of the 7th Python in Science Confeence, pp. 11 – 15 (Pasadena, 2008).
+	40.	 The Nimfa developers. Nonnegative Double Singular Value Decomposition (2016).
+	41.	 Syed, A. M., Qazi, S. & Gillis, N. Improved SVD-based Initialization for Nonnegative Matrix Factorization using Low-Rank Cor-
+rection. http://​arxiv.​org/​abs/​1807.​04020 (2018).
+	42.	 Grant, E. K. & Humble, T. S. Benchmarking embedded chain breaking in quantum annealing. Quant. Sci. Technol. 1, 1–12 (2021).
+	43.	 Cai, J., Macready, W. G. & Roy, A. A practical heuristic for finding graph minors (2014).
+Acknowledgements
+This work has been supported by the US Department of Energy through the Los Alamos National Laboratory. 
+Los Alamos National Laboratory is operated by Triad National Security, LLC, for the National Nuclear Secu-
+rity Administration of U.S. Department of Energy (Contract No. 89233218CNA000001) and by the Labora-
+tory Directed Research and Development program of Los Alamos National Laboratory under project numbers 
+20190065DR, 20190020DR, 20180267ER and 20220656ER. The work of Hristo Djidjev has been also partially 
+supported by the Grant No. BG05M2OP001-1.001-0003, financed by the Science and Education for Smart 
+Growth Operational Program (2014-2020) and co-financed by the European Union through the European Struc-
+tural and Investment Funds.
+Author contributions
+E.P. ran all experiments, G.H. took care of manuscript writing, D.O. developed the core algorithm, H.N.D. and 
+B.S.A. developed the tensor algorithms. All authors reviewed the manuscript.
+Competing interests 
+The authors declare no competing interests.
+Additional information
+Correspondence and requests for materials should be addressed to E.P.
+Reprints and permissions information is available at www.nature.com/reprints.
+Publisher’s note  Springer Nature remains neutral with regard to jurisdictional claims in published maps and 
+institutional affiliations.
+
+19
+Vol.:(0123456789)
+Scientific Reports |         (2022) 12:8539  | 
+https://doi.org/10.1038/s41598-022-12611-9
+www.nature.com/scientificreports/
+Open Access  This article is licensed under a Creative Commons Attribution 4.0 International 
+License, which permits use, sharing, adaptation, distribution and reproduction in any medium or 
+format, as long as you give appropriate credit to the original author(s) and the source, provide a link to the 
+Creative Commons licence, and indicate if changes were made. The images or other third party material in this 
+article are included in the article’s Creative Commons licence, unless indicated otherwise in a credit line to the 
+material. If material is not included in the article’s Creative Commons licence and your intended use is not 
+permitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from 
+the copyright holder. To view a copy of this licence, visit http://​creat​iveco​mmons.​org/​licen​ses/​by/4.​0/.
+This is a U.S. Government work and not under copyright protection in the US; foreign copyright protection 
+may apply 2022

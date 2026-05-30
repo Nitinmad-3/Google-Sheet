@@ -1,0 +1,1062 @@
+Source-PDF: D:\Review\New folder\Main\Borderline\An integrated strategy based on radiomics and quantum machine learning diagnosis and clinical interpretation of pulmonary ground-glass nodules.pdf
+Relative-Path: New folder\Main\Borderline\An integrated strategy based on radiomics and quantum machine learning diagnosis and clinical interpretation of pulmonary ground-glass nodules.pdf
+--------------------------------------------------------------------------------
+
+RESEARCH
+Open Access
+© The Author(s) 2025. Open Access  This article is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 
+International License, which permits any non-commercial use, sharing, distribution and reproduction in any medium or format, as long as you 
+give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons licence, and indicate if you modified the 
+licensed material. You do not have permission under this licence to share adapted material derived from this article or parts of it. The images or 
+other third party material in this article are included in the article’s Creative Commons licence, unless indicated otherwise in a credit line to the 
+material. If material is not included in the article’s Creative Commons licence and your intended use is not permitted by statutory regulation or 
+exceeds the permitted use, you will need to obtain permission directly from the copyright holder. To view a copy of this licence, visit ​h​t​t​p​:​/​/​c​r​e​a​t​i​
+v​e​c​o​m​m​o​n​s​.​o​r​g​/​l​i​c​e​n​s​e​s​/​b​y​-​n​c​-​n​d​/​4​.​0​/.
+Huang et al. BMC Medical Imaging          (2025) 25:279 
+https://doi.org/10.1186/s12880-025-01813-y
+BMC Medical Imaging
+†Xianzhi Huang and Fangyi Xu contributed equally to this work.
+*Correspondence:
+Wending Zhao
+zhaowending@hyqubit.com
+Hongjie Hu
+hongjiehu@zju.edu.cn
+Full list of author information is available at the end of the article
+Abstract
+Purpose  Accurate classification of pulmonary pure ground-glass nodules (pGGNs) is essential for distinguishing 
+invasive adenocarcinoma (IVA) from adenocarcinoma in situ (AIS) and minimally invasive adenocarcinoma (MIA), 
+which significantly influences treatment decisions. This study aims to develop a high-precision integrated strategy 
+by combining radiomics-based feature extraction, Quantum Machine Learning (QML) models, and SHapley Additive 
+exPlanations (SHAP) analysis to improve diagnostic accuracy and interpretability in pGGN classification.
+Methods  A total of 322 pGGNs from 275 patients were retrospectively analyzed. The CT images was randomly 
+divided into training and testing cohorts (80:20), with radiomic features extracted from the training cohort. Three 
+QML models-Quantum Support Vector Classifier (QSVC), Pegasos QSVC, and Quantum Neural Network (QNN)-were 
+developed and compared with a classical Support Vector Machine (SVM). SHAP analysis was applied to interpret the 
+contribution of radiomic features to the models’ predictions.
+Results  All three QML models outperformed the classical SVM, with the QNN model achieving the highest 
+improvements (p < 0.05) in classification metrics, including accuracy (89.23%, 95% CI: 81.54% − 95.38%), sensitivity 
+(96.55%, 95% CI: 89.66% − 100.00%), specificity (83.33%, 95% CI: 69.44% − 94.44%), and area under the curve (AUC) 
+(0.937, 95% CI: 0.871 - 0.983), respectively. SHAP analysis identified Low Gray Level Run Emphasis (LGLRE), Gray Level 
+Non-uniformity (GLN), and Size Zone Non-uniformity (SZN) as the most critical features influencing classification.
+Conclusion  This study demonstrates that the proposed integrated strategy, combining radiomics, QML models, and 
+SHAP analysis, significantly enhances the accuracy and interpretability of pGGN classification, particularly in small-
+An integrated strategy based on radiomics 
+and quantum machine learning: diagnosis 
+and clinical interpretation of pulmonary 
+ground-glass nodules
+Xianzhi Huang1†, Fangyi Xu2,3†, Wenchao Zhu2,3, Lin Yao4, Jiahuan He5, Junhao Su6, Wending Zhao4* and 
+Hongjie Hu2,3*
+
+Page 2 of 12
+Huang et al. BMC Medical Imaging          (2025) 25:279 
+Introduction
+According to the classification standards set by the 
+International Association for the Study of Lung Cancer/
+American Thoracic Society/European Respiratory Soci
+ety (IASLC/ATS/ERS) [1], approximately 20% of lung 
+adenocarcinoma cases present as pure ground-glass 
+nodules (pGGNs), which include adenocarcinoma in 
+situ (AIS), minimally invasive adenocarcinoma (MIA), 
+and some invasive adenocarcinomas (IVA) [2]. Although 
+pGGNs typically appear as low-density lesions with 
+blurred margins on computed tomography (CT) images, 
+their biological behavior and pathological characteristics 
+vary significantly. AIS and MIA patients generally have 
+favorable prognoses and can be managed through fol
+low-up or sublobar resection, while IVA patients require 
+more aggressive interventions, such as lobectomy [3, 4]. 
+Therefore, accurately distinguishing the invasiveness of 
+pGGNs based on CT imaging is critical for optimizing 
+patient treatment plans, improving clinical outcomes, 
+and enhancing prognosis.
+However, classifying pGGNs in clinical practice poses 
+several challenges. First, the subtle imaging differences 
+among pGGNs, especially in the early stages, make it 
+difficult to rely solely on subjective interpretation by 
+radiologists, leading to potential diagnostic inconsisten
+cies that can impact treatment decisions. Furthermore, 
+although biopsy can provide more accurate pathologi
+cal information, the small size and complex location of 
+pGGNs make biopsy technically challenging, increasing 
+the risk of misdiagnosis or complications [5]. Addition
+ally, tumor heterogeneity means that a local biopsy may 
+not fully represent the pathological characteristics of the 
+entire lesion [6]. Thus, the need for non-invasive meth
+ods to accurately classify pGGNs remains an urgent chal
+lenge in clinical imaging diagnostics.
+In recent years, radiomics, as an emerging subject, has 
+made significant progress in medical imaging analysis 
+[7–9]. Using the classification of pGGNs as an example, 
+researchers have successfully developed classical Sup
+port Vector Machine (SVM) model to differentiate AIS/
+MIA, and IVA based on radiomic features extracted from 
+the nodules, which have been evaluated through the 
+receiver operating characteristic (ROC) curve, achieving 
+an area under the curve (AUC) of over 0.8 [10]. However, 
+most existing studies rely on large annotated datasets, 
+which are costly and time-consuming to acquire, and 
+their performance often diminishes in small-sample set
+tings. Furthermore, model interpretability and feature 
+robustness under varying imaging conditions remain 
+challenging.
+Quantum Machine Learning (QML) has demonstrated 
+advantages in processing small, high-dimensional data
+sets [11–14]. Leveraging quantum superposition and 
+entanglement, QML models maintain high classification 
+performance even with limited data [15–17]. Promising 
+results have been shown in small-sample medical data
+sets, including cardiovascular disease and brain tumor 
+classification [18, 19]. However, the application of QML 
+in pGGNs classification, particularly in combination 
+with radiomic features, is still in its infancy and remains 
+largely unexplored.
+This study introduces an integrated strategy that com
+bines radiomics, QML, and SHapley Additive exPlana
+tions (SHAP) analysis to address these challenges. In our 
+work, radiomic features were extracted from CT images 
+and three QML models-Quantum Support Vector Clas
+sifier (QSVC) [20], Pegasos QSVC [21], and Quantum 
+Neural Network (QNN) [22, 23]-were developed and 
+compared with a classical SVM proposed earlier [10] 
+for the classification of pGGNs. To increase the clinical 
+relevance, we employed the SHAP method [24, 25] to 
+interpret the prediction mechanisms of QML models, 
+analyzing the contribution of radiomic features to the 
+classification task. Furthermore, we introduced a gray-
+level visualization approach that qualitatively represents 
+feature differences to provide an intuitive understanding 
+of key distinctions between representative samples.
+Materials and methods
+The overall workflow is depicted in Fig.  1.
+Data collection
+In this study, we retrospectively analyzed the com
+plete clinical data and preoperative CT images of 1,610 
+patients who underwent surgical resection for pri
+mary lung adenocarcinoma at Sir Run Run Shaw Hos
+pital between January 2015 and October 2017 [10]. All 
+preoperative CT images were re-evaluated one by one 
+using the Picture Archiving and Communication Sys
+tem (PACS). Patients were excluded based on the fol
+lowing criteria: (1) nodules with solid components; (2) 
+nodule diameter larger than 3 cm; (3) a history of other 
+sample datasets. It offers a promising tool for early, non-invasive lung cancer diagnosis and helps clinicians make 
+more informed treatment decisions.
+Clinical trial number  Not applicable.
+Keywords  Quantum machine learning (QML) algorithms, Radiomics-based feature extraction, SHAP analysis, 
+Pulmonary ground-glass nodules (pGGNs) diagnosis
+
+Page 3 of 12
+Huang et al. BMC Medical Imaging          (2025) 25:279 
+malignant diseases; (4) poor-quality CT images; and (5) 
+patients who had undergone thoracic surgical interven
+tions, radiation, or chemotherapy. In total, 275 patients 
+(72 men and 203 women, age range 25 to 78 years) with 
+322 pure ground-glass nodules (pGGNs) were included 
+in this study.
+All surgical specimens were formalin-fixed and stained 
+with hematoxylin-eosin (HE). Two experienced patholo
+gists evaluated the slides using a multi-headed micro
+scope and discussed the findings until a consensus was 
+reached. Based on the 2015 World Health Organization 
+(WHO) classification of lung adenocarcinoma, each nod
+ule was classified as AIS/MIA (150, 46.6%) or IVA (172, 
+53.4%) [26, 27].
+All CT images were obtained utilizing multi-detector 
+spiral CT scanners (Siemens SOMATOM Definition 
+Flash, Siemens FORCE CT, Siemens Sensation 16, Sie
+mens Definition AS 40, and GE LightSpeed VCT). Scans 
+were performed from the thoracic inlet to the lung bases, 
+with patients trained to hold their breath during scan
+ning. Images were reconstructed using standard lung 
+window settings (mean, −500 HU; width, 1,500 HU) and 
+multi-planar reconstruction (MPR) techniques, including 
+coronal and sagittal reconstructions, using a post-pro
+cessing workstation.
+Radiomic feature extraction
+Segmentation data from 322 pGGNs were processed 
+using 3D-Slicer software [28], with two radiologists 
+reviewing and manually adjusting the segmented regions 
+of interest (ROIs) when necessary. The voxel resampling 
+was set to 0.7 × 0.7 × 0.7 mm3 instead of the commonly 
+used 1 × 1 × 1 mm3 to better preserve fine details of 
+small pGGNs. The original CT scans had an average spa
+tial resolution of approximately 0.7 × 0.7 × 1.2 mm3, and 
+resampling to 0.7 × 0.7 × 0.7 mm3 allowed us to main
+tain isotropy, minimize interpolation artifacts, and pre
+serve nodule morphology. Radiomic features were then 
+extracted using Pyradiomics [29] from the standardized 
+segmentation data, resulting in 960 features categorized 
+into nine groups. The dataset was randomly split into 
+training (80%) and testing (20%) cohorts. In the training 
+cohort, the contribution value (importance score) of each 
+of the 960 radiomic features was calculated using a Ran
+dom Forest (RF) algorithm with 4-fold cross-validation 
+for the classification of pGGN-like IVA from AIS/MIA. 
+All features were subsequently ranked in descending 
+order of their importance scores. To determine the most 
+informative subset of features, a sequential forward addi
+tion approach was employed: the ranked features were 
+added one by one as inputs to the SVM classifier, and 
+the overall training accuracy was recorded at each step 
+in each iteration. It was observed that the top 20 features 
+in each ranking provided the most substantial improve
+ments to model performance, while lower-ranked fea
+tures (with importance scores < 0.01) contributed 
+minimally. To ensure robustness and reduce variability, 
+only features that consistently appeared within the top 
+20 rankings in at least three of the four cross-validation 
+folds were retained. This criterion resulted in the iden
+tification of nine radiomic features-four from gray level 
+co-occurrence matrix (GLCM), four from gray level 
+size zone matrix (GLSZM), and one from gray level run 
+length matrix (GLRLM), capturing tumor structure and 
+voxel spatial distribution [26], as detailed in Fig. 2.
+Fig. 1  The integrated workflow of model development for pGGN classification
+ 
+
+Page 4 of 12
+Huang et al. BMC Medical Imaging          (2025) 25:279 
+QML classification model construction
+Three quantum models were employed in this research: 
+the QSVC, Pegasos QSVC, and QNN. QSVC [20] uses 
+quantum feature maps to project classical data into a 
+high-dimensional quantum space, enabling it to handle 
+complex feature relationships. It optimizes similarly 
+to classical SVM, making previously inseparable data 
+linearly separable. The quantum kernel, analogous to 
+classical kernel functions, computes inner products of 
+quantum states to measure data, expressed as: 
+	
+K(x, z) = |⟨ϕ(x)|ϕ(z)⟩|2
+(1)
+where x and z is the data point mapped into the quan
+tum space. The optimization problem in QSVC requires 
+to maximize the following loss function: 
+	
+L(α) =
+∑
+i
+αi −1
+2
+∑
+i,j
+yiyjαiαjK(xi, xj)
+(2)
+where α = {αi}t
+i=1 is the parameter used to optimize 
+the classification hyperplane, and y corresponds to the 
+label of data samples. To further enhance the efficiency of 
+data processing, we employed the Pegasos QSVC. Based 
+on sub-gradient descent, it updates the model iteratively 
+using small data batches (mini-batches), reducing com
+putational complexity and storage requirements com
+pared to classical algorithms [21].
+Additionally, we utilized the QNN for classification 
+model building. QNN [22, 23] combines the non-linear 
+properties of quantum states with the structure of clas
+sical neural networks. It typically consists of a quantum 
+feature map, an ansatz circuit, and a measurement step 
+(Fig. 3). First, the classical input data x is encoded into a 
+quantum state |ϕ(x)⟩ via the quantum feature map Uϕ(x) 
+from |0⟩. Then, the quantum state undergoes parameter
+ized transformations through the ansatz circuit, com
+posed of adjustable quantum gates such as rotation gates 
+(Rx(θ), Ry(θ), Rz(θ)) and CNOT gates. Finally, a mea
+surement is performed on the quantum state, collapsing 
+the quantum information back into classical data.
+In the experimental setup, the Qiskit [30] noiseless 
+simulator was utilized to construct and train the clas
+sification models. The dataset was randomly split into 
+training and testing cohorts in an 80:20 ratio. The hyper
+parameter optimization process for three QML models 
+has been further clarified. For QSVC, the regularization 
+parameter (C: 0.005, 0.05, 0.5, 5) and stopping tolerance 
+(tol: 1, 0.1, 0.01, 0.001) were explored. Pegasos QSVC was 
+optimized over C (1, 10, 100, 1000) and the number of 
+training steps (50, 100, 150, 200, 250, 300). For the QNN 
+model, optimization included ansatz circuits (RealAm
+plitudes, EfficientSU2), optimizers (COBYLA, SPSA, 
+NELDER_MEAD), and maximum iterations (100, 300, 
+500, 1000, 1500, 1600). Grid search was employed with 
+Fig. 3  Architecture diagram of generic QNN with n qubits. Here, the hadamard gate (H) corresponds to creating superpositions, the phase gate (P) 
+introduces phase shifts, and the parameterized gate (U) applies adjustable transformations to the quantum states
+ 
+Fig. 2  Summary of nine selected radiomic features
+ 
+
+Page 5 of 12
+Huang et al. BMC Medical Imaging          (2025) 25:279 
+5-fold cross-validation, and predictive accuracy was used 
+as the evaluation metric.
+Additionally, ablation studies were conducted to inves
+tigate the impact of different feature map designs, cho
+sen as the key adjustable component given the otherwise 
+fixed quantum algorithm structure, on the performance 
+of QNN model. Three types of feature maps with distinct 
+characteristics were compared: the ZFeatureMap, which 
+applies only Z-axis rotations and represents the simplest 
+encoding scheme; the PauliFeatureMap, which incorpo
+rates rotations around the X, Y, and Z axes to create a 
+richer quantum encoding space; and the ZZFeatureMap, 
+which not only includes Z rotations but also introduces 
+ZZ entanglement gates to capture more complex corre
+lations. This comparative analysis provided insights into 
+the influence of quantum gate designs on the expressivity 
+of quantum feature space and the classification perfor
+mance of models.
+Evaluation metrics and statistical analysis
+The performance of all QML models was assessed on 
+the testing cohort, with AIS/MIA labeled as the nega
+tive class (N) and IVA as the positive class (P). Evalua
+tion metrics included ROC-AUC [31], which assesses 
+overall classification performance, and the Kolmogorov-
+Smirnov (KS) statistic [32, 33], which measures the sepa
+ration between positive and negative classes. Accuracy, 
+sensitivity, specificity, and odds ratio were derived from 
+the confusion matrix [34, 35] to evaluate classification 
+quality. All metrics were calculated along with their cor
+responding 95% confidence intervals (CIs). A weighted 
+Z-test [36, 37] was used to evaluate AUC differences 
+between each QML algorithm and the classical SVM [10]
+in cross-study analysis, with Holm-Bonferroni [38] cor
+rection applied for multiple comparisons. Specifically, 
+adjusted significance thresholds were calculated sequen
+tially for each ranked p-value, and a result was considered 
+significant if its p-value was less than the corresponding 
+adjusted α.
+SHAP-based clinical interpretation
+The SHAP algorithm [39–41] was used to interpret the 
+predictions of QML models. Based on the Shapley value 
+from cooperative game theory, SHAP quantifies each fea
+ture’s contribution to model predictions by approximat
+ing the marginal effect of adding the feature to subsets 
+of other features. The model output f(x) is decomposed 
+into a baseline value ϕ0( the expected prediction with 
+no features) and feature attributions ϕi for each feature 
+xi, ensuring that the contributions sum to the actual 
+prediction: 
+	
+f(x) = ϕ0 +
+N
+∑
+i=1
+ϕi
+(3)
+To provide an overview of feature influence across the 
+dataset, global SHAP analysis was conducted to compute 
+normalized feature importance rankings and generate 
+SHAP summary plots. For individual predictions, SHAP 
+force plots were utilized to visualize the contributions 
+of specific features, offering insights into the underlying 
+mechanisms of the QML models.
+Results
+The models’ classification performance was first evalu
+ated using ROC curves (Fig. 4a). The AUC, quantifying 
+overall model performance, ranges from 0 to 1, with val
+ues closer to 1 indicating better classification. A progres
+sive improvement in AUC was observed from Pegasos 
+QSVC to QSVC, and finally to QNN. Additionally, the KS 
+statistic, shown in Fig. 4b, while a larger maximum differ
+ence between the KS curves indicates stronger class sepa
+ration. Among the three algorithms, QNN achieved the 
+highest KS value, with a classification threshold closest to 
+the ideal value of 0.5 for binary classification.
+Fig. 4c visually compares the evaluation metrics-accu
+racy, sensitivity, and specificity-among the QML mod
+els, while Table   1 summarizes all metrics, including 
+statistical significance tests for AUC values. The results 
+show that all three QML models outperform the classi
+cal SVM [10] across metrics, with QNN achieving the 
+highest improvements: +12.67% accuracy, +14.20% 
+sensitivity, and +13.33% specificity. Statistical analysis 
+using weighted Z-tests and Holm-Bonferroni correc
+tion revealed that both QSVC and QNN significantly 
+outperformed the classical SVM [10] in AUC. Among 
+three QML models, QNN exhibited the best predic
+tive performance, motivating further exploration. Addi
+tionally, ablation experiments were conducted on QNN 
+performance (Fig. 4d) and it was observed that the ZFea
+tureMap consistently achieved higher accuracy, recall, 
+specificity, and AUC values compared to PauliFeature
+Map and ZZFeatureMap, highlighting its advantage in 
+capturing discriminative patterns in this classification 
+task.
+Building upon these promising results, the SHAP algo
+rithm was then applied to provide a global explanation of 
+the QNN model’s predictions, quantifying the contribu
+tions of nine input radiomic features. Feature importance 
+was visualized in two plots: a bar plot ranking normalized 
+contributions (Fig. 5a) and a SHAP summary plot show
+ing the distribution of SHAP values (color-coded) for 
+each feature (Fig. 5b). From Fig. 5a, Low gray level run 
+emphasis (LGLRE) was identified as the most predictive 
+feature, with normalized importance of 1, followed by 
+
+Page 6 of 12
+Huang et al. BMC Medical Imaging          (2025) 25:279 
+Gray level Non-uniformity (GLN) and Size zone Non-
+uniformity (SZN). In contrast, Joint entropy (JEnt) and 
+Maximum probability (MP) showed lower contributions. 
+Fig. 5b reveals that higher LGLRE values (in red) increase 
+predictions for AIS/MIA, while lower values (in blue) 
+favor IVA. Conversely, lower GLN values support AIS/
+MIA predictions, and higher values favor IVA, a pattern 
+also observed for SZN.
+SHAP force plots (Figs.  6a-6d) were further used to 
+analyze representative samples-true positive (TP), true 
+negative (TN), false positive (FP), and false negative (FN). 
+For TP samples, high SZN and GLN values contributed 
+most to IVA predictions, reflecting tumor heterogene
+ity. In contrast, TN samples were driven by low GLN 
+and SZN values, aligning with the homogeneous texture 
+of AIS/MIA. LGLRE consistently influenced predictions 
+across TP and TN, with lower values supporting IVA 
+predictions and higher values favoring AIS/MIA. For FP 
+samples, abnormally low LGLRE values led to incorrect 
+IVA predictions, while FN samples were misclassified 
+as AIS/MIA due to low GLN and SZN values mask
+ing tumor invasiveness. To assess the grayscale intensity 
+Fig. 4  Classification performance evaluation of three QML predictive models: (a) ROC-AUC analysis. (b) KS statistical map. (c) Comparison of evaluation 
+metrics. (d) Classification performance of the QNN model using three different feature maps
+ 
+
+Page 7 of 12
+Huang et al. BMC Medical Imaging          (2025) 25:279 
+differences between TP and TN CT images, we employed 
+dynamic thresholds based on image statistics. These 
+thresholds are calculated as the mean ± k× standard 
+deviation (k = 0.2) of the pixel intensities. For the TP 
+samples, the thresholds ranged from 43.36 to 57.40, while 
+for the TN samples, they ranged from 57.31 to 70.28. 
+Grayscale distributions in TP and TN CT images (Fig. 6e) 
+aligned with radiomic features, with TP samples showing 
+more high-gray-level regions (red, > upper thresholds), 
+while TN samples exhibited continuous low-gray-level 
+regions (green, < lower thresholds), reflecting structural 
+and density differences. These gray-level distributions 
+align with radiomic feature trends, supporting the visual
+ization of feature differences.
+Discussion
+Our study proposes an innovative integrated strategy for 
+pGGNs diagnosis, combining radiomics-based feature 
+extraction, QML for model training, and SHAP analysis 
+for clinical interpretability. This approach addresses chal
+lenges associated with small-sample, high-dimensional 
+medical imaging datasets and achieves superior diagnos
+tic performance while ensuring interpretability.
+In recent years, radiomics has exhibited substantial 
+clinical utility. On one hand, it has been used to enhance 
+upstream image preprocessing steps such as segmenta
+tion and registration, where its sensitivity to algorith
+mic variability has been demonstrated in both prostate 
+magnetic resonance imaging (MRI) [42] and atlas-based 
+positron emission tomography (PET) workflows [43]. 
+On the other hand, it also serves as a powerful down
+stream tool for clinical risk stratification, particularly in 
+lung cancer, where its integration with deep learning has 
+improved malignancy assessment of ground glass nod
+ules (GGNs) [44]. Building on these advances, radiomics 
+methodologies have also been extended to a wide range 
+of other anatomical regions and tumor types, address
+ing broader diagnostic and prognostic challenges. For 
+Table 1  Performance comparison of QSVC, pegasos QSVC, QNN, and classical SVM models
+Model
+Accuracy (%,95% CI)
+Recall (%,95% 
+CI)
+Specificity 
+(%,95% CI)
+Odds ratio 
+(95% CI)
+AUC (95% CI) p-value 
+(AUC)
+Adjusted α( de
+fault=0.05)
+Sig
+nifi
+cant?
+QSVC
+84.62 (75.38–92.31)
+93.10 
+(82.76–100.00)
+77.78 
+(63.89–91.67)
+1.684 
+(0.693–4.092)
+0.929 
+(0.855–0.985)
+0.015*
+0.025
+True
+Pegasos QSVC
+86.15 (76.92–93.85)
+93.10 
+(82.76–100.00)
+80.56 
+(66.67–91.67)
+1.905 
+(0.766–4.737)
+0.918 
+(0.832–0.984)
+0.052
+0.050
+False
+QNN
+89.23 (81.54–95.38)
+96.55 
+(89.66–100.00)
+83.33 
+(69.44–94.44)
+2.536 
+(0.957–6.721)
+0.937 
+(0.871–0.983)
+0.003**
+0.017
+True
+Classical SVM
+76.56 (65.62–85.94)
+82.35 
+(67.65–94.12)
+70.00 
+(53.33–86.67)
+1.000
+0.833 
+(0.733- 0.934)
+-
+-
+-
+*: p < 0.05; **: p < 0.01
+Adjusted α computed using Holm-Bonferroni correction for multiple comparisons
+Classical SVM compared to itself yields a constant odds ratio of 1.000, which carries no meaningful interpretation
+Fig. 5  Global SHAP analysis of the QNN model: (a) normalized feature importance ranking; (b) SHAP summary plot showing the contribution of feature 
+values to model predictions. For clarity, the feature gray level non-uniformity (GLN) is distinguished by appending its associated filters
+ 
+
+Page 8 of 12
+Huang et al. BMC Medical Imaging          (2025) 25:279 
+instance, studies in glioblastoma have demonstrated 
+that MRI-based radiomics, when combined with RNA 
+sequencing data or used in multi-regional analyses, can 
+effectively predict patient survival and molecular markers 
+such as isocitrate dehydrogenase 1 (IDH1) mutation 
+status, underscoring its potential to capture tumor het
+erogeneity and inform personalized therapy [45, 46]. In 
+the pancreas, radiomics analysis based on CT images 
+Fig. 6  SHAP force plot analysis for representative samples: (a) TP; (b) TN; (c) FP; (d) FN. Each force plot visualizes the contribution of the top six features 
+to the classification decision. For clarity, the feature gray level non-uniformity (GLN) is distinguished by appending its associated filters. (e) Grayscale 
+distribution comparisons between TP and TN CT image samples. Dynamic thresholds based on image statistics were used to highlight regions of relative 
+intensity, with red and green overlays emphasizing the contrast between high and low intensity areas
+ 
+
+Page 9 of 12
+Huang et al. BMC Medical Imaging          (2025) 25:279 
+has demonstrated promising performance for subtype 
+classification and early versus late-stage, achieving high 
+predictive accuracy and reinforcing its potential for non
+invasive diagnostic support [47–49]. Recent studies have 
+also highlighted the value of radiomics in diverse tumor 
+types and anatomical regions, such as predicting distant 
+metastasis in clear cell renal cell carcinoma [50], assess
+ing progression-free survival in muscle-invasive blad
+der cancer [51], classifying Gleason scores in prostate 
+cancer [52], evaluating axillary lymph node metastasis 
+in breast cancer [53], and improving treatment efficacy 
+predictions in colorectal cancer [54]. However, classical 
+machine learning methods, such as SVM and random 
+forests, face limitations in generalizing when dealing 
+with small sample sizes and high-dimensional data [55]. 
+While deep learning can extract high-level features, it 
+typically requires large-scale training datasets to avoid 
+overfitting [56]. In this study, we integrate QML meth
+ods with radiomics, using quantum feature mapping to 
+enhance data representation [57]. This approach effec
+tively captures nonlinear relationships and improves 
+the modeling of tumor heterogeneity. Our experimental 
+results show that the QML model outperforms classical 
+machine learning models in terms of accuracy, sensitivity, 
+and specificity, with QNN achieving the best classifica
+tion performance. These results highlight the potential of 
+QML to provide more accurate predictions of early-stage 
+invasive adenocarcinoma, offering clinicians a reliable 
+tool for optimizing follow-up and treatment strategies.
+The other key advantage of this work is the use of SHAP 
+analysis to enhance the interpretability of QML models. 
+SHAP provides both global and individual-level insights 
+into how radiomic features contribute to classification 
+decisions, effectively bridging the gap between abstract 
+numerical data and clinical understanding. Among the 
+nine key radiomic features identified from the original 
+960 through rigorous feature selection, SHAP analysis 
+highlighted GLN and LGLRE as the most influential. This 
+aligns with previous research, which identified tumor 
+heterogeneity and structural complexity as key factors in 
+predicting invasive adenocarcinoma [58, 59]. Addition
+ally, JEnt and MP showed minimal contributions, further 
+validating QMLs ability to prioritize clinically relevant 
+features while disregarding less significant ones [60]. 
+These findings suggest that QML combined with SHAP 
+can effectively identify high-impact features while reduc
+ing noise, thereby enhancing both diagnostic reliability 
+and clinical interpretability. SHAP force plots further 
+deepened our understanding of individual predictions, 
+elucidating how specific radiomic features influenced 
+classification outcomes. For TP samples, high GLN val
+ues and low LGLRE values are more likely to indicate 
+invasive lesions, reflecting increased tumor complexity 
+and reduced low-density regions, which aligns with the 
+biological characteristics of lung cancer progression [61]. 
+Conversely, for TN samples, higher LGLRE and Joint 
+Energy (JEne) values indicate greater tissue uniformity 
+and more regular structure, consistent with the imaging 
+characteristics of benign or healthy tissue [62]. This inter
+pretability is critical for clinical adoption, as it provides 
+transparent and evidence-based predictions that align 
+with medical observations. Additionally, the visualiza
+tion of gray-level distributions mapped radiomic features 
+into intuitive image annotations. TP samples exhibited 
+dense high gray-level regions (red), corresponding to 
+tumor heterogeneity and high cellular density, while TN 
+samples displayed more extensive low gray-level regions 
+(green), indicative of tissue uniformity. By integrating 
+numerical data with visual insights, this approach bridges 
+the gap between computational predictions and medical 
+understanding.
+Despite these promising results, certain limitations 
+remain. The small sample size used in this study, while 
+effective for validating QML models, limits the general
+izability of the findings. Future research should focus on 
+expanding datasets through multi-center collaborations 
+to improve robustness and broader applicability [63, 64]. 
+Moreover, the extraction of radiomic features is sensitive 
+to image quality and scanning parameters, which may 
+introduce biases across different imaging environments. 
+Standardizing imaging protocols and feature extraction 
+methods is essential to minimize variability [65]. Addi
+tionally, while gray-level-based visualization methods 
+improve interpretability, they are primarily qualitative. 
+Integrating advanced deep learning techniques, such as 
+Class Activation Mapping (CAM) [66] and Gradient-
+weighted Class Activation Mapping (Grad-CAM) [67], 
+could enhance feature mapping accuracy and better illus
+trate the relationship between radiomic features and their 
+medical significance. Lastly, the scalability of QML mod
+els is constrained by current quantum hardware limita
+tions [68], which must be addressed to enable widespread 
+clinical application.
+Conclusion
+This research establishes a practical foundation for the 
+integration of radiomics, QML, and SHAP analysis in 
+medical imaging diagnostics. By combining the comple
+mentary strengths of high-performance models and 
+interpretability, this integrated strategy ensures transpar
+ency while maintaining diagnostic accuracy. The find
+ings underscore the potential of this approach to address 
+challenges in small-sample, high-dimensional datasets, 
+paving the way for the development of scalable, inter
+pretable, and clinically effective diagnostic workflows. 
+Ultimately, this work represents a significant step toward 
+advancing personalized medicine and informed clinical 
+
+Page 10 of 12
+Huang et al. BMC Medical Imaging          (2025) 25:279 
+decision-making, offering a promising framework for 
+future applications in non-invasive diagnostics.
+Abbreviations
+pGGNs	
+Pure ground-glass nodules
+IVA	
+Invasive adenocarcinoma
+AIS	
+Adenocarcinoma in situ
+MIA	
+Minimally invasive adenocarcinoma
+QML	
+Quantum Machine Learning
+SHAP	
+SHapley Additive exPlanations
+QSVC	
+Quantum Support Vector Classifier
+QNN	
+Quantum Neural Network
+SVM	
+Support Vector Machine
+AUC	
+Area under the curve
+LGLRE	
+Low Gray Level Run Emphasis
+GLN	
+Gray Level Non-uniformity
+SZN	
+Size Zone Non-uniformity
+IASLC	
+International Association for the Study of Lung Cancer
+ATS	
+American Thoracic Society
+ERS	
+European Respiratory Society
+CT	
+Computed tomography
+ROC	
+Receiver operating characteristic
+PACS	
+Picture Archiving and Communication System
+HE	
+Hematoxylin-eosin
+WHO	
+World Health Organization
+MPR	
+Multi-planar reconstruction
+ROIs	
+Regions of interest
+RF	
+Random Forest
+GLCM	
+Gray level co-occurrence matrix
+GLSZM	
+Gray level size zone matrix
+GLRLM	
+Gray level run length matrix
+KS	
+Kolmogorov-Smirnov
+CIs	
+Confidence intervals
+JEnt	
+Joint entropy
+MP	
+Maximum probability
+TP	
+True positive
+TN	
+True negative
+FP	
+False positive
+FN	
+False negative
+MRI	
+Magnetic resonance imaging
+PET	
+Positron emission tomography
+GGNs	
+Ground glass nodules
+IDH1	
+Isocitrate dehydrogenase 1
+JEne	
+Joint Energy
+CAM	
+Class Activation Mapping
+Grad-CAM	
+Gradient-weighted Class Activation Mapping
+Acknowledgements
+Not applicable.
+Author contributions
+XZH: Writing - original draft, Project administration, Conceptualization, 
+Investigation, Methodology, Funding acquisition, Data curation. FYX: 
+Conceptualization, Methodology, Data curation, Formal analysis, Investigation, 
+Funding acquisition, Resources. WCZ: Conceptualization, Investigation, 
+Data curation. LY: Visualization, Validation, Investigation, Data curation. 
+JHH: Software, Investigation. JHS: Data curation, Investigation. WDZ: 
+Conceptualization, Investigation, Projectadministration. HJH: Supervision, 
+Writing - review & editing, Project administration. All authors read and 
+approved the final manuscript.
+Funding
+This study was supported by Zhejiang Shuren University Basic Scientific 
+Research Special Funds (2023XZ018) and Fundamental Research Funds for the 
+Central Universities under grant 226-2024-00185.
+Data availability
+The datasets used and analysed during the current study are available from 
+the corresponding author on reasonable request.
+Declarations
+Ethical approval and consent to participate
+This study was approved by the institutional review committee of the Sir 
+Run Run Shaw Hospital (approval No.20190520-162) and was conducted in 
+accordance with the ethical principles of the Declaration of Helsinki. Informed 
+consent was waived for all participants in accordance with the guidelines of 
+the Council for International Organizations of Medical Sciences (CIOMS). To 
+ensure privacy and confidentiality, all participant data were fully anonymized 
+and deidentified. All procedures were conducted in accordance with the 
+relevant guidelines and regulations.
+Consent for publication
+All authors approved the final manuscript and the submission to this journal.
+Competing interests
+The authors declare no competing interests.
+Author details
+1Institute for Quantum Technology and Engineering Computing, School 
+of JiaYang, Zhejiang Shuren University, 8 Shuren Street, Hangzhou, 
+Zhejiang 310015, China
+2Department of Radiology, Sir Run Run Shaw Hospital, Zhejiang University 
+School of Medicine, 3 Qingchun East Road, Hangzhou, Zhejiang 
+310016, China
+3Medical Imaging International Scientific and Technological Cooperation 
+Base of Zhejiang Province, 3 Qingchun East Road, Hangzhou, 
+Zhejiang 310016, China
+4Huayi Boao (Beijing) Quantum Technology Co., Ltd., 1 Kegu Street, 
+Beijing 102600, China
+5Shulan International Medical College, Zhejiang Shuren University, 8 
+Shuren Street, Hangzhou, Zhejiang 310015, China
+6College of Information Science and Technology, Zhejiang Shuren 
+University, 8 Shuren Street, Hangzhou, Zhejiang 310015, China
+Received: 18 February 2025 / Accepted: 30 June 2025
+References
+1.	
+Travis WD, Brambilla E, Noguchi M, Nicholson AG, Geisinger KR, Yatabe Y, et 
+al. International association for the study of lung cancer/American Thoracic 
+Society/European Respiratory Society International multidisciplinary clas
+sification of lung adenocarcinoma. J Thorac Oncol. 2011;6(2):244–85. ​h​t​t​p​s​:​/​/​
+d​o​i​.​o​r​g​/​1​0​.​1​0​9​7​/​J​T​O​.​0​b​0​1​3​e​3​1​8​2​0​6​a​2​2​1.
+2.	
+Heidinger BH, Anderson KR, Nemec U, Costa DB, Gangadharan SP, Vander
+Laan PA, et al. Lung adenocarcinoma manifesting as pure ground-glass nod
+ules: Correlating CT size, volume, density, and roundness with histopatho
+logic invasion and size. J Thorac Oncol. 2017;12(8):1288–98. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​
+0​.​1​0​1​6​/​j​.​j​t​h​o​.​2​0​1​7​.​0​5​.​0​1​7.
+3.	
+She Y, Zhang L, Zhu H, Dai C, Xie D, Xie H, et al. The predictive value of CT-
+based radiomics in differentiating indolent from invasive lung adenocarci
+noma in patients with pulmonary nodules. Eur Radiol. 2018;28:5121–28. ​h​t​t​p​s​
+:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​0​7​/​s​0​0​3​3​0​-​0​1​8​-​5​5​0​9​-​9.
+4.	
+Yagi T, Yamazaki M, Ohashi R, Ogawa R, Ishikawa H, Yoshimura N, et al. HRCT 
+texture analysis for pure or part-solid ground-glass nodules: Distinguish
+ability of adenocarcinoma in situ or minimally invasive adenocarcinoma from 
+invasive adenocarcinoma. Jpn J Radiol. 2018;36:113–21. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​
+0​7​/​s​1​1​6​0​4​-​0​1​7​-​0​7​1​1​-​2.
+5.	
+Choi CM, Um SW, Yoo CG, Kim YW, Han SK, Shim YS, et al. Incidence and risk 
+factors of delayed pneumothorax after transthoracic needle biopsy of the 
+lung. Chest. 2004;126(5):1516–21. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​3​7​8​/​c​h​e​s​t​.​1​2​6​.​5​.​1​5​1​6.
+6.	
+Chen CH, Chang CK, Tu CY, Liao WC, Wu BR, Chou KT, et al. Radiomic features 
+analysis in computed tomography images of lung nodule classification. PLoS 
+One. 2018;13(2):e0192002. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​3​7​1​/​j​o​u​r​n​a​l​.​p​o​n​e​.​0​1​9​2​0​0​2.
+7.	
+Caballo M, Pangallo DR, Mann RM, Sechopoulos I. Deep learning-based 
+segmentation of breast masses in dedicated breast CT imaging: Radiomic 
+feature stability between radiologists and artificial intelligence. Comput Biol 
+Med. 2020;118:103629. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​1​6​/​j​.​c​o​m​p​b​i​o​m​e​d​.​2​0​2​0​.​1​0​3​6​2​9.
+
+Page 11 of 12
+Huang et al. BMC Medical Imaging          (2025) 25:279 
+8.	
+Chaddad A, Desrosiers C, Toews M, Abdulkarim B. Predicting survival time of 
+lung cancer patients using radiomic analysis. Oncotarget. 2017;8(61):104393. ​
+h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​8​6​3​2​/​o​n​c​o​t​a​r​g​e​t​.​2​2​2​5​1.
+9.	
+Son JY, Lee HY, Lee KS, Kim JH, Han J, Jeong JY, et al. Quantitative CT analysis 
+of pulmonary ground-glass opacity nodules for the distinction of invasive 
+adenocarcinoma from pre-invasive or minimally invasive adenocarcinoma. 
+PLoS One. 2014;9(8):e104066. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​3​7​1​/​j​o​u​r​n​a​l​.​p​o​n​e​.​0​1​0​4​0​6​6.
+10.	 Xu F, Zhu W, Shen Y, Wang J, Xu R, Outesh C, et al. Radiomic-based quantita
+tive CT analysis of pure ground-glass nodules to predict the invasiveness of 
+lung adenocarcinoma. Front Oncol. 2020;10:872. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​3​3​8​9​/​f​o​n​c​
+.​2​0​2​0​.​0​0​8​7​2.
+11.	 Ur Rasool R, Ahmad HF, Rafique W, Qayyum A, Qadir J, Anwar Z. Quantum 
+computing for healthcare: A review. Future Internet. 2023;15(3):94. ​h​t​t​p​s​:​/​/​d​o​i​
+.​o​r​g​/​1​0​.​3​3​9​0​/​f​​i​1​5​0​3​0​0​9​4.
+12.	 Chakraborty S, Das T, Sutradhar S, Das M, Deb S. An analytical review of quan
+tum neural network models and relevant research. 2020 5th International 
+Conference on Communication and Electronics Systems (ICCES). IEEE; 2020. 
+1395–400. Available from: ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​1​0​9​/​I​C​C​E​S​4​8​7​6​6​.​2​0​2​0​.​9​1​3​7​9​6​0.
+13.	 Mathur N, Landman J, Li YY, Strahm M, Kazdaghli S, Prakash A, et al. 
+Medical image classification via quantum neural networks. arXiv preprint 
+arXiv:210901831. 2021. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​4​8​5​5​0​/​a​r​X​i​v​.​2​1​0​9​.​0​1​8​3​1.
+14.	 Gao X, Zhang ZY, Duan LM. A quantum machine learning algorithm based 
+on generative models. Sci Adv. 2018;4(12):eaat9004. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​1​2​6​/​s​
+c​i​a​d​v​.​a​a​t​9​0​0​4.
+15.	 Matic A, Monnet M, Lorenz JM, Schachtner B, Messerer T. Quantum-classical 
+convolutional neural networks in radiological image classification. 2022 IEEE 
+International Conference on Quantum Computing and Engineering (QCE). 
+IEEE; 2022. p. 56–66. Available from: ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​1​0​9​/​Q​C​E​5​3​7​1​5​.​2​0​2​2​.​
+0​0​0​2​4.
+16.	 Sengupta K, Srivastava PR. Quantum algorithm for quicker clinical prognostic 
+analysis: An application and experimental study using CT scan images of 
+COVID-19 patients. Bmc Med Inform Decis. 2021;21:1–14. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​
+1​8​6​/​s​1​2​9​1​1​-​0​2​1​-​0​1​5​8​8​-​6.
+17.	 Gupta H, Varshney H, Sharma TK, Pachauri N, Verma OP. Comparative 
+performance analysis of quantum machine learning with deep learning for 
+diabetes prediction. Complex Intell Syst. 2022;8(4):3073–87. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​
+0​.​1​0​0​7​/​s​4​0​7​4​7​-​0​2​1​-​0​0​3​9​8​-​7.
+18.	 Prabhu S, Gupta S, Prabhu GM, Dhanuka AV, Bhat KV. QuCardio: Application 
+of quantum machine learning for detection of cardiovascular diseases. IEEE 
+Access. 2023;11:136122–35. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​1​0​9​/​A​C​C​E​S​S​.​2​0​2​3​.​3​3​3​8​1​4​5.
+19.	 Ajlouni N, Özyavaş A, Takaoğlu M, Takaoğlu F, Ajlouni F. Medical image 
+diagnosis based on adaptive hybrid quantum CNN. BMC Med Imag. 
+2023;23(1):126. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​1​8​6​/​s​1​2​8​8​0​-​0​2​3​-​0​1​0​8​4​-​5.
+20.	 Rebentrost P, Mohseni M, Lloyd S. Quantum support vector machine for big 
+data classification. Phys Rev E Letters. 2014;113(13):130503. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​
+.​1​1​0​3​/​P​h​y​s​R​e​v​L​e​t​t​.​1​1​3​.​1​3​0​5​0​3.
+21.	 Shalev-Shwartz S, Singer Y, Srebro N. Pegasos: Primal estimated sub-gradient 
+solver for svm. Proceedings of the 24th international conference on Machine 
+learning. 2007. p. 807–14. Available from: ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​1​4​5​/​1​2​7​3​4​9​6​.​1​2​
+7​3​5​9​8.
+22.	 Mari A, Bromley TR, Izaac J, Schuld M, Killoran N. Transfer learning in hybrid 
+classical-quantum neural networks. Quantum. 2020;4:340. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​
+2​2​3​3​1​/​q​-​2​0​2​0​-​1​0​-​0​9​-​3​4​0.
+23.	 Farhi E, Neven H. Classification with quantum neural networks on near term 
+processors. arXiv preprint arXiv:180206002. 2018. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​4​8​5​5​0​/​a​r​
+X​i​v​.​1​8​0​2​.​0​6​0​0​2.
+24.	 Yesilyaprak A, Kumar AK, Agrawal A, Furqan MM, Verma BR, Syed AB, et al. 
+Predicting long-term clinical outcomes of patients with recurrent pericarditis. 
+J Am Coll Cardiol. 2024;84(13):1193–204. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​1​6​/​j​.​j​a​c​c​.​2​0​2​4​.​0​
+5​.​0​7​2.
+25.	 Hu J, Xu J, Li M, Jiang Z, Mao J, Feng L, et al. Identification and validation 
+of an explainable prediction model of acute kidney injury with prognostic 
+implications in critically ill children: A prospective multicenter cohort study. 
+EClinicalMedicine. 2024;68. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​1​6​/​j​.​e​c​l​i​n​m​.​2​0​2​3​.​1​0​2​4​0​9.
+26.	 Rios Velazquez E, Parmar C, Liu Y, Coroller TP, Cruz G, Stringfield O, et al. 
+Somatic mutations drive distinct imaging phenotypes in lung cancer. Cancer 
+Res. 2017;77(14):3922–30. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​1​5​8​/​0​0​0​8​-​5​4​7​2​.​C​A​N​-​1​7​-​0​1​2​2.
+27.	 Xiang W, Xing Y, Jiang S, Chen G, Mao H, Labh K, et al. Morphological factors 
+differentiating between early lung adenocarcinomas appearing as pure 
+ground-glass nodules measuring ≤10 mm on thin-section computed 
+tomography. Cancer Imaging. 2014;14:1–8. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​1​8​6​/​s​4​0​6​4​4​-​0​
+1​4​-​0​0​3​3​-​x.
+28.	 Fedorov A, Beichel R, Kalpathy-Cramer J, Finet J, Fillion-Robin JC, Pujol S, et 
+al. 3D slicer as an image computing platform for the quantitative imaging 
+network. Magnetic Reson Imag. 2012;30(9):1323–41. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​1​6​/​j​
+.​m​r​i​.​2​0​1​2​.​0​5​.​0​0​1.
+29.	 Van Griethuysen JJ, Fedorov A, Parmar C, Hosny A, Aucoin N, Narayan V, et 
+al. Computational radiomics system to decode the radiographic phenotype. 
+Cancer Res. 2017;77(21):e104–e107. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​1​5​8​/​0​0​0​8​-​5​4​7​2​.​C​A​
+N​-​1​7​-​0​3​3​9
+30.	 Wichert A. Quantum artificial intelligence with Qiskit. CRC Press; 2024. Avail
+able from: ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​2​0​1​/​9​7​8​1​0​0​3​3​7​4​4​0​4​-​3.
+31.	 Tharwat A. Classification assessment methods. Applied computing and 
+informatics. 2021;17(1):168–92. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​1​6​/​j​.​a​c​i​.​2​0​1​8​.​0​8​.​0​0​3.
+32.	 Kolmogorov A. On the empirical determination of a distribution function. 
+Breakthroughs In Stat: Methodol And Distribution. 1992;106–13. ​h​t​t​p​s​:​/​/​d​o​i​.​o​
+r​g​/​1​0​.​1​0​0​7​/​9​7​8​-​1​-​4​6​1​2​-​4​3​8​0​-​9​_​1​0.
+33.	 Smirnov N. Table for estimating the goodness of fit of empirical distributions. 
+Ann Math Stat. 1948;19(2):279–81. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​2​1​4​/​a​o​m​s​/​1​1​7​7​7​3​0​2​5​
+6.
+34.	 Zhou J, Gandomi AH, Chen F, Holzinger A. Evaluating the quality of machine 
+learning explanations: A survey on methods and metrics. Electronics. 
+2021;10(5):593. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​3​3​9​0​/​e​l​e​c​t​r​o​n​i​c​s​1​0​0​5​0​5​9​3.
+35.	 Naidu G, Zuva T, Sibanda EM. A review of evaluation metrics in machine 
+learning algorithms. Computer Science On-line Conference. Springer; 2023. 
+p. 15–25. Available from: ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​0​7​/​9​7​8​-​3​-​0​3​1​-​3​5​3​1​4​-​7​_​2.
+36.	 Cochran WG. Problems arising in the analysis of a series of similar experi
+ments. Supplement To The J R Stat Soc. 1937;4(1):102–18. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​2​
+3​0​7​/​2​9​8​4​1​2​3.
+37.	 Hedges LV, Olkin I. Statistical methods for meta-analysis. Academic press; 
+2014.
+38.	 Holm S. A simple sequentially rejective multiple test procedure. Scand J Stat. 
+1979;65–70.
+39.	 Shapley LS. A value for n-person games. Contribution to the theory of games. 
+1953;2. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​5​1​5​/​9​7​8​1​4​0​0​8​8​1​9​7​0​-​0​1​8.
+40.	 Lundberg S, Lee SI. A unified approach to interpreting Model predictions. 
+Available from: ​h​t​t​p​s​:​/​/​a​r​x​i​v​.​o​r​g​/​a​b​s​/​1​7​0​5​.​0​7​8​7​4.
+41.	 Molnar C. Interpretable machine learning. 2020. Available from: ​h​t​t​p​s​:​/​/​c​h​r​i​s​t​
+o​p​h​m​.​g​i​t​h​u​b​.​i​o​/​i​n​t​e​r​p​r​e​t​a​b​l​e​-​m​l​-​b​o​o​k​/. Lulu. com.
+42.	 Cairone L, Benfante V, Bignardi S, Marinozzi F, Yezzi A, Tuttolomondo A, et 
+al. Robustness of radiomics features to varying segmentation algorithms in 
+magnetic resonance images. International Conference on Image Analysis and 
+Processing. Springer; 2022. p. 462–72. Available from: ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​0​7​
+/​9​7​8​-​3​-​0​3​1​-​1​3​3​2​1​-​3​_​4​1.
+43.	 Giaccone P, Benfante V, Stefano A, Cammarata FP, Russo G, Comelli A. PET 
+images atlas-based segmentation performed in native and in template 
+space: A radiomics repeatability study in mouse models. International Confer
+ence on Image Analysis and Processing. Springer; 2022. p. 351–61. Available 
+from: ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​0​7​/​9​7​8​-​3​-​0​3​1​-​1​3​3​2​1​-​3​_​3​1.
+44.	 Hu X, Gong J, Zhou W, Li H, Wang S, Wei M, et al. Computer-aided diagnosis 
+of ground glass pulmonary nodule by fusing deep learning and radiomics 
+features. Phys Med & Biol. 2021;66(6):065015. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​8​8​/​1​3​6​1​-​6​5​
+6​0​/​a​b​e​7​3​5.
+45.	 Sun Q, Chen Y, Liang C, Zhao Y, Lv X, Zou Y, et al. Biologic pathways underly
+ing prognostic radiomics phenotypes from paired MRI and RNA sequencing 
+in glioblastoma. Radiology. 2021;301(3):654–63. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​1​4​8​/​r​a​d​i​o​
+l​.​2​0​2​1​2​0​3​2​8​1.
+46.	 Li ZC, Bai H, Sun Q, Zhao Y, Lv Y, Zhou J, et al. Multiregional radiomics profiling 
+from multiparametric MRI: Identifying an imaging predictor of IDH1 mutation 
+status in glioblastoma. Cancer Med. 2018;7(12):5999–6009. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​
+1​0​0​2​/​c​a​m​4​.​1​8​6​3.
+47.	 Ren S, Zhao R, Zhang J, Guo K, Gu X, Duan S, et al. Diagnostic accuracy of 
+unenhanced CT texture analysis to differentiate mass-forming pancreatitis 
+from pancreatic ductal adenocarcinoma. Abdominal Radiol. 2020;45:1524–
+33. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​0​7​/​s​0​0​2​6​1​-​0​2​0​-​0​2​5​0​6​-​6.
+48.	 Ren S, Tang HJ, Zhao R, Duan S, Chen R, Wang ZQ. Application of unenhanced 
+computed tomography texture analysis to differentiate pancreatic adeno
+squamous carcinoma from pancreatic ductal adenocarcinoma. Curr Med Sci. 
+2022;42(1):217–25. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​0​7​/​s​1​1​5​9​6​-​0​2​2​-​2​5​3​5​-​2.
+49.	 Ren S, Qian L, Cao Y, Daniels M, Song L, Tian Y, et al. Computed tomography-
+based radiomics diagnostic approach for differential diagnosis between 
+early-and late-stage pancreatic ductal adenocarcinoma. World J Gastrointest 
+Oncol. 2024;16(4):1256–67. Available from: ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​4​2​5​1​/​w​j​g​o​.​v​1​6​.​i​
+4​.​1​2​5​6.
+
+Page 12 of 12
+Huang et al. BMC Medical Imaging          (2025) 25:279 
+50.	 Zhao Y, Liu G, Sun Q, Zhai G, Wu G, Li ZC. Validation of CT radiomics for pre
+diction of distant metastasis after surgical resection in patients with clear cell 
+renal cell carcinoma: Exploring the underlying signaling pathways. Eur Radiol. 
+2021;31:5032–40. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​0​7​/​s​0​0​3​3​0​-​0​2​0​-​0​7​5​9​0​-​2.
+51.	 Zhang S, Song M, Zhao Y, Xu S, Sun Q, Zhai G, et al. Radiomics nomogram for 
+preoperative prediction of progression-free survival using diffusion-weighted 
+imaging in patients with muscle-invasive bladder cancer. Eur J Radiol. 
+2020;131:109219. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​1​6​/​j​.​e​j​r​a​d​.​2​0​2​0​.​1​0​9​2​1​9.
+52.	 Liu F, Zhao Y, Song J, Tu G, Liu Y, Peng Y, et al. A hybrid classification model 
+with radiomics and CNN for high and low grading of prostate cancer Gleason 
+score on mp-MRI. Displays. 2024;83:102703. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​1​6​/​j​.​d​i​s​p​l​a​.​2​
+0​2​4​.​1​0​2​7​0​3.
+53.	 Sun Q, Lin X, Zhao Y, Li L, Yan K, Liang D, et al. Deep learning vs. radiomics for 
+predicting axillary lymph node metastasis of breast cancer using ultrasound 
+images: Don’t forget the peritumoral region. Front Oncol. 2020;10:53. ​h​t​t​p​s​:​/​/​
+d​o​i​.​o​r​g​/​1​0​.​3​3​8​9​/​f​o​n​c​.​2​0​2​0​.​0​0​0​5​3.
+54.	 Liu S, Zhang K, Hu X. Comparative efficacy and safety of Chinese medicine 
+injections combined with capecitabine and oxaliplatin chemotherapies in 
+treatment of colorectal cancer: A bayesian network meta-analysis. Front 
+Pharmacol. 2022;13:1004259. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​3​3​8​9​/​f​p​h​a​r​.​2​0​2​2​.​1​0​0​4​2​5​9.
+55.	 Vicini S, Bortolotto C, Rengo M, Ballerini D, Bellini D, Carbone I, et al. A nar
+rative review on current imaging applications of artificial intelligence and 
+radiomics in oncology: Focus on the three most common cancers. La radiolo
+gia medica. 2022;127(8):819–36. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​0​7​/​s​1​1​5​4​7​-​0​2​2​-​0​1​5​1​
+2​-​6.
+56.	 Rohilla S, Jadeja M, Pilli ES. Do more with less: deep learning in medical 
+imaging. In: Convolutional neural networks for medical image processing 
+applications. CRC Press; 2022. p. 109–32.
+57.	 Ullah U, Garcia-Zapirain B. Quantum machine learning revolution in health
+care: A systematic review of emerging perspectives and applications. IEEE 
+Access. 2024. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​1​0​9​/​A​C​C​E​S​S​.​2​0​2​4​.​3​3​5​3​4​6​1.
+58.	 Castello A, Russo C, Grizzi F, Qehajaj D, Lopci E. Prognostic impact of intratu
+moral heterogeneity based on fractal geometry analysis in operated NSCLC 
+patients. Mol Imag Biol. 2019;21:965–72. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​0​7​/​s​1​1​3​0​7​-​0​1​
+8​-​1​2​9​9​-​3.
+59.	 Bao X, Bian D, Yang X, Wang Z, Shang M, Jiang G, et al. Multiparametric 
+MRI for evaluation of pathological response to the neoadjuvant chemo-
+immunotherapy in resectable non-small-cell lung cancer. Eur Radiol. 
+2023;33(12):9182–93. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​0​7​/​s​0​0​3​3​0​-​0​2​3​-​0​9​8​1​3​-​8.
+60.	 Luo T, Yan M, Zhou M, Dekker A, Appelt AL, Ji Y, et al. Improved prognosti
+cation of overall survival after radiotherapy in lung cancer patients by an 
+interpretable machine learning model integrating lung and tumor radiomics 
+and clinical parameters. La radiologia medica. 2024;1–14. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​
+0​0​7​/​s​1​1​5​4​7​-​0​2​4​-​0​1​9​1​9​-​3.
+61.	 Grove O, Berglund AE, Schabath MB, Aerts HJ, Dekker A, Wang H, et al. Quan
+titative computed tomographic descriptors associate tumor shape complex
+ity and intratumor heterogeneity with prognosis in lung adenocarcinoma. 
+PLoS One. 2015;10(3):e0118261. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​3​7​1​/​j​o​u​r​n​a​l​.​p​o​n​e​.​0​1​1​8​2​6​
+1.
+62.	 Bashir U, Siddique MM, Mclean E, Goh V, Cook GJ. Imaging heterogeneity 
+in lung cancer: Techniques, applications, and challenges. Am J Roentgenol. 
+2016;207(3):534–43. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​2​2​1​4​/​A​J​R​.​1​5​.​1​5​8​6​4.
+63.	 Sprague S, Matta JM, Bhandari M, Athaca I, et al. Multicenter collaboration 
+in observational research: Improving generalizability and efficiency. JBJS. 
+2009;91(Supplement_3):80–86. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​2​1​0​6​/​J​B​J​S​.​H​.​0​1​6​2​3.
+64.	 Das MK. Multicenter studies: Relevance, design and implementation. Indian 
+Pediatr. 2022;59(7):571–79. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​0​7​/​s​1​3​3​1​2​-​0​2​2​-​2​5​6​1​-​y.
+65.	 Cobo M, Menéndez Fernández-Miranda P, Bastarrika G, Lloret Iglesias L. 
+Enhancing radiomics and deep learning systems through the standardization 
+of medical imaging workflows. Sci Data. 2023;10(1):732. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​
+3​8​/​s​4​1​5​9​7​-​0​2​3​-​0​2​6​4​1​-​x.
+66.	 Zhou B, Khosla A, Lapedriza A, Oliva A, Torralba A. Learning deep features for 
+discriminative localization. Proceedings of the IEEE conference on computer 
+vision and pattern recognition. 2016. p. 2921–29. Available from: ​h​t​t​p​s​:​/​/​d​o​i​.​o​
+r​g​/​1​0​.​1​1​0​9​/​c​v​p​r​.​2​0​1​6​.​3​1​9.
+67.	 Selvaraju RR, Cogswell M, Das A, Vedantam R, Parikh D, Batra D. Grad-cam: 
+Visual explanations from deep networks via gradient-based localization. 
+Proceedings of the IEEE international conference on computer vision. 2017. 
+p. 618–26. Available from: ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​1​0​9​/​i​c​c​v​.​2​0​1​7​.​7​4.
+68.	 Preskill J. Quantum computing in the NISQ era and beyond. Quantum. 
+2018;2:79. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​2​2​3​3​1​/​q​-​2​0​1​8​-​0​8​-​0​6​-​7​9.
+Publisher’s Note
+Springer Nature remains neutral with regard to jurisdictional claims in 
+published maps and institutional affiliations.

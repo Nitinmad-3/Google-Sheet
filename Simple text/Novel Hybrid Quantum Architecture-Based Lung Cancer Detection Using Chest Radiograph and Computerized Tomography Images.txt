@@ -1,0 +1,1310 @@
+Source-PDF: D:\Review\Paper\Clinical prediction bridge (your current query, improved)\clinical imaging diagnosis with quantumhybrid\Novel Hybrid Quantum Architecture-Based Lung Cancer Detection Using Chest Radiograph and Computerized Tomography Images.pdf
+Relative-Path: Paper\Clinical prediction bridge (your current query, improved)\clinical imaging diagnosis with quantumhybrid\Novel Hybrid Quantum Architecture-Based Lung Cancer Detection Using Chest Radiograph and Computerized Tomography Images.pdf
+--------------------------------------------------------------------------------
+
+Citation: Martis, J.E.; M S, S.; R, B.;
+Mutawa, A.M.; Murugappan, M.
+Novel Hybrid Quantum Architecture-
+Based Lung Cancer Detection Using
+Chest Radiograph and Computerized
+Tomography Images. Bioengineering
+2024, 11, 799. https://doi.org/
+10.3390/bioengineering11080799
+Academic Editor: Alan Wang
+Received: 20 June 2024
+Revised: 28 July 2024
+Accepted: 2 August 2024
+Published: 7 August 2024
+Copyright:
+© 2024 by the authors.
+Licensee MDPI, Basel, Switzerland.
+This article is an open access article
+distributed
+under
+the
+terms
+and
+conditions of the Creative Commons
+Attribution (CC BY) license (https://
+creativecommons.org/licenses/by/
+4.0/).
+bioengineering
+Article
+Novel Hybrid Quantum Architecture-Based Lung Cancer
+Detection Using Chest Radiograph and Computerized
+Tomography Images
+Jason Elroy Martis 1
+, Sannidhan M S 2
+, Balasubramani R 1
+, A. M. Mutawa 3,4,*
+and M. Murugappan 5,6,7,*
+1
+Department of ISE, NMAM Institute of Technology, Nitte Deemed to be University,
+Udupi 574110, Karnataka, India; balasubramani.r@nitte.edu.in (B.R.)
+2
+Department of CSE, NMAM Institute of Technology, Nitte Deemed to be University,
+Udupi 574110, Karnataka, India; sannidhan@nitte.edu.in
+3
+Computer Engineering Department, College of Engineering and Petroleum, Kuwait University,
+Safat 13060, Kuwait
+4
+Computer Sciences Department, University of Hamburg, 22527 Hamburg, Germany
+5
+Intelligent Signal Processing (ISP) Research Lab, Department of Electronics and Communication Engineering,
+Kuwait College of Science and Technology, Block 4, Doha 13133, Kuwait
+6
+Department of Electronics and Communication Engineering, School of Engineering, Vels Institute of Sciences,
+Technology, and Advanced Studies, Chennai 600117, Tamil Nadu, India
+7
+Center of Excellence for Unmanned Aerial Systems (CoEUAS), Universiti Malaysia Perlis,
+Arau 02600, Malaysia
+*
+Correspondence: dr.mutawa@ku.edu.kw (A.M.M.); m.murugappan@gmail.com (M.M.)
+Abstract: Lung cancer, the second most common type of cancer worldwide, presents signiﬁcant health
+challenges. Detecting this disease early is essential for improving patient outcomes and simplifying
+treatment. In this study, we propose a hybrid framework that combines deep learning (DL) with
+quantum computing to enhance the accuracy of lung cancer detection using chest radiographs (CXR)
+and computerized tomography (CT) images. Our system utilizes pre-trained models for feature
+extraction and quantum circuits for classiﬁcation, achieving state-of-the-art performance in various
+metrics. Not only does our system achieve an overall accuracy of 92.12%, it also excels in other crucial
+performance measures, such as sensitivity (94%), speciﬁcity (90%), F1-score (93%), and precision
+(92%). These results demonstrate that our hybrid approach can more accurately identify lung cancer
+signatures compared to traditional methods. Moreover, the incorporation of quantum computing
+enhances processing speed and scalability, making our system a promising tool for early lung cancer
+screening and diagnosis. By leveraging the strengths of quantum computing, our approach surpasses
+traditional methods in terms of speed, accuracy, and efﬁciency. This study highlights the potential of
+hybrid computational technologies to transform early cancer detection, paving the way for wider
+clinical applications and improved patient care outcomes.
+Keywords: lung tumor classiﬁcation; deep learning models; quantum layers; transfer learning
+models; hybrid quantum layer
+1. Introduction
+The lung is a vital organ for human health, and lung tumors, whether benign or
+malignant, pose a signiﬁcant threat by affecting its function and structure. Various causes
+and symptoms of lung tumors have been identiﬁed and reported in the standard research
+materials. Conducting research on lung tumors is crucial to understanding their mecha-
+nisms, diagnosis, treatment, and prevention. The early detection and diagnosis of lung
+tumors are essential, as they can beneﬁt patients, healthcare systems, and society by mini-
+mizing healthcare costs and the complications associated with advanced lung cancer and
+palliative care. Early intervention can enhance patients’ quality of life, reduce morbidity
+Bioengineering 2024, 11, 799. https://doi.org/10.3390/bioengineering11080799
+https://www.mdpi.com/journal/bioengineering
+
+Bioengineering 2024, 11, 799
+2 of 20
+and mortality, and improve survival chances before the tumor spreads or becomes resistant
+to treatment.
+Computerized tomography (CT) scans are valuable tools for detecting lung cancer, es-
+pecially in high-risk populations, such as smokers. CT scans provide detailed cross-sectional
+images of the lungs, allowing for better visualization and assessment of abnormalities com-
+pared to chest X-rays (CXR). However, lung tumors can sometimes be visible on CXR but
+are not clearly detectable on CT scans. This discrepancy may be due to several factors:
+(1) smaller tumors may be more visible on CXR than on CT scans; (2) the tumor’s location in
+the lung might affect its visibility, with CXR potentially showing tumors obscured or over-
+lapping with normal lung tissue on CT scans more clearly; (3) each imaging technique has
+its strengths and weaknesses. Therefore, using both CXR and CT scans is complementary
+and inﬂuential in clinical diagnosis, particularly in lung cancer detection [1,2].
+The process of manually identifying tumors is challenging, error-prone, and inconsis-
+tent [3]. Depending on the expertise of the radiologist and the prominence of the imaging
+technique, the response of the radiologist in identifying the tumor will vary. It is possible
+to identify tumors from various images more quickly, objectively, and precisely by using
+automated methods, especially deep learning (DL) models [3–5]. DL is an advanced tool in
+artiﬁcial intelligence (AI) that uses neural networks to learn from input data and perform
+tasks such as detection/classiﬁcation/prediction. In medical imaging, such as CT and
+CXR, DL techniques have been used to classify lung tumors [6]. The classiﬁcation of lung
+tumors is a challenging task that requires the accurate and reliable diagnosis of different
+types and subtypes of lung cancer, such as medium cell lung cancer and small cell lung
+cancer. In addition, classifying lung tumors requires a distinction to be made between
+benign nodules and other lung diseases. Through DL techniques, lung tumor classiﬁcation
+can be improved by mining signiﬁcant features from the input images (CT/CXR), devel-
+oping robust and efﬁcient DL models, improving performance and interpretability, and
+providing clinicians with decision support and guidance. By providing complementary
+information and perspectives about lung anatomy and pathology, CT and CXR images
+can enhance the accuracy of lung tumor classiﬁcation. CT images can reveal small lumps
+not visible on CXRs, providing detailed cross-sectional views of the lungs. While CXRs
+offer a broader overview of the lungs’ overall geometry, their resolution and projection can
+sometimes make abnormalities distinctly visible. By combining these imaging modalities,
+DL techniques can leverage the strengths of both to enhance the reliability of lung tumor
+classiﬁcation [6,7].
+In general, DL networks require substantial computing power and extended compu-
+tation times to process data, with performance closely tied to the size of the data and the
+precision of network hyperparameters. Misconﬁgured hyperparameters can signiﬁcantly
+diminish a model’s accuracy, reliability, robustness, and efﬁciency. Recent advances in
+quantum computing offer solutions to these challenges, enhancing the speed, accuracy, and
+scalability of DL models. By efﬁciently allocating computation resources, these methods
+not only accelerate processing speeds but also bolster the robustness and diagnostic ac-
+curacy of DL systems. Quantum computing leverages principles, such as superposition,
+entanglement, and interference to reﬁne classiﬁcation accuracy. The integration of quantum
+layers—such as parameterized quantum circuits (PQCs), which can be trained via classical
+or quantum optimization algorithms—introduces a novel component to traditional net-
+works. These layers have been shown to outperform classical counterparts in various tasks
+across different datasets, including digital recognition on the Modiﬁed National Institute of
+Standards and Technology (MNIST) database, breast cancer diagnosis, and phase transition
+detection [8,9]. With ongoing advancements, quantum layers are poised to play a crucial
+role in the evolution of quantum machine learning and artiﬁcial intelligence [10].
+In this study, we aim to overcome the shortcomings of existing methods for differen-
+tiating benign from malignant lung tumors. CT scans or CXR radiographs are currently
+used to diagnose lung tumors, but neither provides a comprehensive understanding of
+the complexity and diversity of these tumors. Additionally, existing methods use DL
+
+Bioengineering 2024, 11, 799
+3 of 20
+models that require extensive feature engineering and parameter tuning. Our framework
+leverages pre-trained transfer learning (TL) models that are ﬁne-tuned for lung tumor
+classiﬁcation based on CXR and CT images. In addition, we incorporate a hybrid quantum
+layer that enhances classiﬁcation performance by combining CT and CXR features. We
+evaluate our framework using two standard open-source datasets: ChestX-ray8 and the
+Lung Image Database Consortium image collection (LIDC-IDRI), which are extensively
+used in research. The proposed RepVGG model with the hybrid quantum layer achieves a
+noticeable classiﬁcation accuracy of over 92%, which is more than 3% higher than other
+standard methods.
+This research work includes the following contributions to the design of the pro-
+posed system:
+•
+There is a new framework proposed for lung tumor classiﬁcation. It leverages pre-
+trained TL models that have been ﬁne-tuned for lung tumor classiﬁcation and uses
+both CXR and CT images as inputs.
+•
+Hybrid quantum layers that combine CT and CXR data and enhance the TL model to
+improve classiﬁcation are introduced.
+•
+The proposed system has been evaluated on two standard datasets and has achieved
+state-of-the-art performance for lung tumor classiﬁcation.
+•
+The framework performs better than other methods which rely on either CXR or CT
+images alone or conventional machine learning methods.
+This article is organized as follows: Section 1 introduces the research topic, reviews
+the existing methods for lung cancer detection and classiﬁcation, and states the research
+questions. Section 2 presents a literature review related to the aims and objectives of the
+proposed system. The methodology of the proposed system is described in Section 3,
+including pre-processing steps, model architecture, training process, evaluation metrics,
+and experimental setups. The results of the experiments are presented and analyzed in
+Section 4, along with comparisons with other state-of-the-art systems and a discussion
+of the capabilities of the proposed system. Lastly, in Section 5, the article summarizes
+the major points, presents the novelty and signiﬁcance of the research, and makes some
+recommendations for future research.
+2. State-of-the-Art Research
+Many studies have used TL to classify lung nodules or cancers from CT images [11–20].
+TL is a technique that transfers the knowledge acquired from a source domain to a tar-
+get domain. It can be used to overcome challenges involving limited data in medical
+image analysis. Different studies have used different convolutional neural network (CNN)
+architectures and classifiers based on TL, such as VGG16, ResNet50-V2, DenseNet201, SVM,
+and RF [15–20]. The experimental results have demonstrated that TL can enhance the accu-
+racy and performance of lung cancer detection compared to conventional methods [16–18].
+Wang et al. [16] reported an accuracy improvement of up to 83% for classifying lung can-
+cer, highlighting the effectiveness of TL. Nishio et al. [17] achieved a sensitivity of 82%
+and speciﬁcity of 79%, demonstrating the impact of image size on TL performance. Da
+Nóbrega et al. [18] also showed that TL could bring the classiﬁcation accuracy of lung
+nodules to 85%. Some studies have also investigated the impacts of data augmentation,
+image size, and ensemble learning on TL [15,17–20]. The literature review shows that TL
+is a relevant and effective strategy for lung cancer detection. While most studies focus on
+applying TL to CT images for lung cancer detection, CXRs are equally important. They are
+more widely used and accessible, but they pose challenges for TL due to their low quality.
+However, CT images also have drawbacks [6,7]. Exploring TL for CXR images may require
+different techniques.
+Several studies have used DL techniques for lung disease classiﬁcation using both CXR
+and CT images, which can improve the detection of lung abnormalities, such as pneumonia,
+cancer, and COVID-19. Refs. [21–23] utilized different pre-trained CNN models to classify
+both types of images (CXR and CT scans), achieving high accuracy and reporting better
+
+Bioengineering 2024, 11, 799
+4 of 20
+results than other related works in their literature. In addition, the researchers have used
+a tuned VGG-19 model to detect COVID-19 using features extracted from both types of
+images, which achieved high accuracy of 81%, 83% sensitivity, and 82% speciﬁcity [24].
+The review by Shyni et al. [25] further supports the combination of CT and CXR images to
+provide faster and more accurate results along with data scarcity challenges. Their study
+reported a notable increase in diagnostic accuracy, where the combined approach achieved
+an accuracy of approximately 84%. This was a signiﬁcant improvement over models trained
+solely on CXR or CT images, which generally achieved accuracies of around 74% and 70%,
+respectively. Moreover, the sensitivity and speciﬁcity of the combined models reached as
+high as 83% and 85%, respectively, compared to 75% sensitivity and 77% speciﬁcity for
+models using only CXR images, and 69% sensitivity and 70% speciﬁcity for those using
+only CT images.
+Quantum computing has been shown to enhance the performance of DL network
+systems in various applications. QCNN is a novel DL technique that combines quantum
+and classical computing to process image data. In [26,27], the researchers demonstrated
+the advantages of QCNN over classic CNN in terms of accuracy and speed on different
+image classiﬁcation tasks. In [26], a reported 7% improvement in accuracy was noted, and
+in [27], accuracy was improved by 10% over traditional CNNs. Both articles also explored
+the correlation between the chaotic nature of the image and the QCNN performance and
+found that quantum entanglement plays a key role in improving classiﬁcation scores.
+Recently, researchers have proposed a variational quantum deep neural network (VQDNN)
+model that uses parametrized quantum circuits to achieve greater accuracy improvement
+of approximately 8% than classical neural networks on two datasets with limited qubits
+in image recognition [28]. In addition, the authors in [29,30] explore the use of hybrid TL
+techniques that combine a classical pre-trained network with a variational quantum circuit
+as the ﬁnal layer (classiﬁer) on small datasets. They evaluate different classical feature
+extractors with a quantum circuit as a classiﬁer on three image datasets: trash (recycling
+material), tuberculosis (TB) from CXR images, and cracks in concrete images. They show
+that the hybrid models outperform the classical models by demonstrating an improvement
+in accuracy rate of over 12% on all datasets, even with qubit constraints. In [31], the
+researchers introduce a new kind of transformational layer for image recognition, called a
+quantum convolution or quanvolution layer. Quanvolution layers use random quantum
+circuits to locally transform the input data, similar to classical convolution layers. They
+compare classical convolutional neural networks (CNNs), quantum convolutional neural
+networks (QCNNs), and CNNs with extra non-linearities on the MNIST dataset. They show
+that QCNNs have faster training and higher accuracy improvement of 9% over traditional
+CNNs, suggesting the potential of quanvolution layers for near-term quantum computing.
+A review of the existing literature found that DL techniques can help with the challeng-
+ing and important task of classifying lung diseases using medical images. Many studies
+have used TL to achieve better results than conventional methods for classifying lung
+nodules or cancers from CT/CXR images with different CNN architectures and classiﬁers.
+Many studies have also shown that QCNNs can outperform classic CNNs in accuracy for
+different image classiﬁcation tasks by increasing the speed of computation, and scalability,
+and reducing the computation power. Quantum computing can boost the performance of
+DL network systems in various applications. Some studies have used variational quantum
+circuits to enhance the performance of QCNNs. Based on these ﬁndings, we propose a new
+system that combines TL and QCNNs for classifying lung diseases using both CXR and CT
+images. We aim to use quantum computing to improve the performance of TL models for
+medical image analysis. Table 1 provides the summary of the literature review conducted.
+
+Bioengineering 2024, 11, 799
+5 of 20
+Table 1. Literature review summary.
+Reference
+Approach
+Key Findings
+Identiﬁed Gaps
+[11–20]
+TL
+TL enhances accuracy and performance for
+lung cancer detection. Different CNN
+architectures and classiﬁers used, such as
+VGG16, ResNet50-V2, DenseNet201, SVM,
+and RF.
+Limited data availability in medical
+image analysis. Need for techniques
+for CXR.
+[16]
+TL
+Accuracy improvement for lung cancer
+classiﬁcation. Reported accuracy up
+to 83%.
+Impact of image size on TL
+performance not fully explored.
+[17]
+TL
+Demonstrated the impact of image size on
+TL performance. Sensitivity 82%,
+speciﬁcity 79%.
+Need for optimization of TL models for
+different image sizes.
+[18]
+TL
+Enhanced classiﬁcation accuracy of lung
+nodules. Accuracy up to 85%.
+Requires further validation on
+larger datasets.
+[21–23]
+DL
+High accuracy for lung disease
+classiﬁcation from CXR and CT images.
+Achieved higher accuracy than other
+related works.
+Integration of pre-processing and
+augmentation techniques needs
+further exploration.
+[24]
+DL
+COVID-19 detection from CXR and CT
+images. Accuracy 81%, sensitivity 83%,
+speciﬁcity 82%.
+Limited by data scarcity and need for
+larger, diverse datasets.
+[25]
+DL
+Combined CT and CXR approach for
+COVID-19 diagnosis: accuracy 84%,
+sensitivity 83%, speciﬁcity 85%.
+Challenges in combining different
+image modalities for
+consistent performance.
+[27]
+QCNN
+Correlation between image chaos and
+QCNN performance. Reported a 10%
+accuracy improvement.
+Understanding the role of quantum
+entanglement in
+performance improvement.
+[28]
+VQDNN
+Better accuracy improvement on limited
+qubit datasets. Reported 8%
+accuracy improvement.
+Qubit limitations and practical
+implementation challenges.
+[29,30]
+Hybrid TL
+Improved accuracy with small datasets.
+Over 12% accuracy improvement.
+Need for more extensive testing across
+different types of datasets.
+[31]
+Quanvolution Layer
+Faster training and higher accuracy on
+MNIST. Reported 9%
+accuracy improvement.
+Integration with classical CNNs and
+practical deployment issues.
+3. Methodology
+This section outlines a proposed system that integrates TL and QCNNs to enhance
+lung disease classiﬁcation using chest X-ray (CXR) and computed tomography (CT) images.
+The process begins with acquiring and pre-processing extensive medical image datasets to
+ensure high quality and uniformity. Pre-trained CNN models, such as VGG16, ResNet50-
+V2, and DenseNet201, are ﬁne-tuned for speciﬁc lung disease classiﬁcation tasks. QCNNs
+are developed and integrated with these TL models to create a hybrid system that lever-
+ages both classical and quantum computing advantages. The hybrid models are trained,
+optimized, and evaluated to maximize performance metrics like accuracy, sensitivity, and
+speciﬁcity. Finally, the optimized model is prepared for deployment in clinical settings,
+ensuring scalability and seamless integration with existing medical systems. This approach
+aims to overcome data limitations and improve the accuracy and efﬁciency of lung disease
+detection. Figure 1 illustrates the overall working steps of the proposed system. This
+approach aims to overcome data limitations and improve the accuracy and efﬁciency of
+lung disease detection.
+
+Bioengineering 2024, 11, 799
+6 of 20
+ 
+Figure 1. Proposed system’s architecture.
+The proposed system, as depicted in Figure 1, has three main modules that work
+together: (1) image acquisition, (2) tuning of the TL model, and (3) quantum learning and
+classiﬁcation. The following subsections describe each module in detail.
+3.1. Input Image Description
+Images are collected from both CXR and CT scans during the image acquisition process.
+CXR and CT scans are used as the source of the images. The classiﬁcation task is challenging
+since CT scans and CXR belong to two different types of images. As a result, we train the
+network separately for CXR and CT scans, which improves the accuracy and efﬁciency of
+feature extraction. Images are converted to grayscale, with a range between 1 and 255. A
+mathematical formula for the image retrieval process is shown in Equations (1) and (2).
+Ix(x, y) ←dataset(CXR)
+(1)
+Ict(x, y) ←dataset(CT)
+(2)
+Here, Ix(x, y) is the image taken from a dataset of CXR by means of pixels. Similarly,
+Ict(x, y) stands for the images from the CT dataset. The values (x, y) are generic to represent
+the width and height of a single image, respectively. It is necessary to resize all images, since
+neural networks require them to have a ﬁxed size. Nevertheless, resizing has its trade-offs:
+reducing the size of an image reduces its quality, whereas making it larger increases training
+time and complexity. To ﬁnd a balance between computational cost and accuracy, based on
+experimental investigation, we use 1024 × 1024 pixels as the resized image size [32]. The
+relevant evidence for this is presented in the experimental trials conducted in Table 2.
+3.2. Tuning of Transfer Learning Model
+The purpose of this process is to categorize CXR and CT images into benign, normal,
+and malignant groups. Malignant tumors can spread beyond the body and pose a threat to
+other organs. Benign tumors are harmless growths that do not invade nearby tissues. An
+organ classiﬁed as normal works well and has no tumors. As explained in more detail in
+the following sections, we use a hybrid quantum model in this paper to classify the images.
+
+Bioengineering 2024, 11, 799
+7 of 20
+3.2.1. Feature Extraction
+Feature extraction is a crucial step in the ﬁeld of DL. It employs notable structures that
+enable the system to assess the structures according to their corresponding classes. TL is a
+quick training approach that hastens the extraction of features and avoids overﬁtting by
+manually training the system. TL involves using pre-trained models that are used for other
+classiﬁcation jobs. Using the knowledge gained, we can extrapolate it to suit our needs
+within a minimum training time. Figure 2 shows the architecture describing the internal
+structure of the TL model adopted for training.
+ 
+Figure 2. Leveraging transfer learning for feature extraction from CT and CXR images.
+As shown in Figure 2; ﬁrst, we used pretrained TL models like VGG16, VGG19,
+Inception-v3, Xception, ResNet50, and RepVGG to extract features [33–35]. We chose
+these models based on their variation in convolutional ﬁlter usage and the fact that they
+were developed for different classiﬁcation problems. Furthermore, we replaced the top
+classiﬁcation layer with our own classiﬁcation rule. Table 2 presents an overview of
+various pre-trained CNN models used for feature extraction in our study. Each model was
+evaluated based on its size, the number of hyperparameters, the speciﬁc layer used for
+feature extraction, the initial feature dimension, and the dimension after fusion.
+Table 2. Summary of pre-trained models used for feature extraction in our research.
+Model Name
+Size (MB)
+Hyperparameters (Million)
+Feature
+Extraction Layer
+Feature
+Dimension
+Dimension
+after Fusion
+VGG16
+528
+138.35
+Block5_conv3
+512
+1024
+VGG19
+549
+143.66
+Block5_conv4
+512
+1024
+InceptionV3
+92
+23.85
+mixed10
+2048
+4096
+Xception
+88
+22.91
+block14_sepconv2_act
+2048
+4096
+ResNet50
+99
+25.636
+conv5_block3_out
+2048
+4096
+RepVGG
+558
+11.68
+repvgg_block5
+2048
+4096
+
+Bioengineering 2024, 11, 799
+8 of 20
+These pre-trained classifiers are fine-tuned on the CXR and CT datasets separately to
+obtain optimal models serving to extract features from CXR and CT scans. Equations (3)–(5)
+explain the structure of how features are extracted and finetuned for our classiﬁcation purpose.
+a(l) = f (W(l) × x(l−1) + b(l))
+(3)
+ReLU(x) = max(0, x)
+(4)
+z = W( f ) ∗a(L) + b( f )
+(5)
+Here, x(l−1) is the input to the layer l (for the ﬁrst layer, x0 is the input image). W(l) and b(l)
+are the weights and biases of the layer l, respectively. f is the activation functions which are
+either ReLU or sigmoid. a(L) is the output of layer l after applying the activation function.
+L is the last pre-trained layer, W(f) and b(F) are the weights and biases of the ﬁnal fully
+connected layer, and z is the logits vector representing the raw model predictions. It is
+necessary to discard the last layer of each model in order to classify the model into our
+necessary classes. Finally, the CXR and CT datasets are stored separately because they have
+distinct feature sets. The following sections elaborate on some sample layers for image
+classiﬁcation that incorporate these features. Figure 3 illustrates how features are accessed
+from selected layers of a proposed TL framework.
+Figure 3. Visual analysis of different layers of TL framework.
+The visualization in Figure 3 showcases how various neural network layers process
+X-ray and CT scan images, highlighting distinct feature extraction methods for each type of
+imaging data.
+For X-rays, the sequence begins with the top convolutional layer of VGG16, which
+identiﬁes low-level features, such as edges and textures, essential for delineating anatomical
+structures. This is followed by the ReLU layer of VGG19, which enhances these features by
+removing negative values, thus improving the visibility of critical details like lesions or
+masses. The normalization layer of ResNet50 then adjusts the feature maps to a consistent
+scale, aiding in uniform feature interpretation across different X-ray images.
+In CT scans, the max pooling layer of InceptionV3 reduces spatial resolution but retains
+signiﬁcant features within each region, focusing the analysis on relevant aspects, such as
+
+Bioengineering 2024, 11, 799
+9 of 20
+tumors. The activation map from RepVGG synthesizes higher-level features, revealing
+complex tissue textures and enhancing the model’s ability to detect abnormalities.
+3.2.2. Merging of Features
+In this study, we utilize both computed tomography (CT) and chest X-ray (CXR)
+imaging modalities for each scan to maximize the diagnostic potential of the imaging data.
+Features are independently extracted from both the CT and CXR images to harness the
+unique diagnostic information each modality provides. The detailed set of procedures is
+explained as follows:
+•
+Feature Extraction Process:
+In this process, the set of features from the CT images uses a dedicated TL model
+optimized for CT data. These features typically capture detailed anatomical structures
+and potential abnormalities speciﬁc to CT imaging. Equation (6) depicts the mathematical
+formulation of this process,
+Fx ←< f x
+1 , f x
+2 , f x
+3 , . . . , f x
+n >←TL(Ix)
+(6)
+Similarly, a different set of features is extracted from the corresponding CXR images
+using another TL model that is speciﬁcally tuned to exploit the diagnostic strengths of
+CXR, such as overall lung geometry and certain types of lesions more visible in CXR. The
+extraction process is explained in Equation (7)
+Fct ←< f ct
+1 , f ct
+2 , f ct
+3 , . . . , f ct
+n >←TL(Ict)
+(7)
+•
+Feature Merging Strategy:
+The features extracted from both CT and CXR images are then merged to form a com-
+bined feature vector. This merging process involves concatenating the feature vectors from
+each modality. The process of feature merging is depicted in Equation (8) mathematically.
+Ftotal ←Fx + Fct ←
+< f x
+1 , f x
+2 , f x
+3 , . . . , f x
+n >
+< f ct
+1 , f ct
+2 , f ct
+3 , . . . , f ct
+n >
+	
+(8)
+In Equations (6)–(8), f x
+1 represents the single feature obtained from an CXR image.
+Similarly, f ct
+1 represents a single feature obtained from a CT image. Also, Fx and Fct
+represents the feature vector of CXR and CT scans, respectively. Ftotal stands for a simple
+concatenation of the features of both Fx and Fct.
+3.2.3. Dimensionality Reduction
+This step reduces the dimensionality of the data by applying a layer that transforms
+many input features into fewer output features. As part of our process, we use a singu-
+lar value decomposition (SVD) layer to compress the merged input features extracted
+from the TL models into ﬁve quantum features. The main reason for selecting SVD is
+due to its ability to optimally represent and denoise high-dimensional medical imaging
+data [36]. The number of features we chose is ﬁxed because it is appropriate for our needs.
+In Equations (9)–(12), we see the transformation function for singular value decomposi-
+tion (SVD).
+U,∑, V = SVD(originaldimensions)
+(9)
+U = M[entries×5]
+(10)
+∑= M[5×5]
+(11)
+5 × 5 = M[5×dimensions]
+(12)
+Here, U represents the complex unitary matrix having a column size of the reduced number
+of dimensions. ∑represents a natural number nonnegative diagonal matrix of 5 × 5. V stands
+
+Bioengineering 2024, 11, 799
+10 of 20
+for a complex unitary matrix of ﬁve rows having original dimensional columns. Note that
+for SVD, we will not be using V but VT which is its transpose.
+3.2.4. Quantum Layer
+Circuits with variable parameters, known as variational circuits, play an important
+role in quantum computing. They are analogous to neural networks in classical computing,
+which are powerful machine learning models [37–39]. In this study, we implemented a
+quantum variational circuit with ﬁve qubits, each representing a classical binary bit (0 or 1).
+Quantum states of electron spin can be determined by qubits in a magnetic ﬁeld, leading
+to spin-up (1) or spin-down (0) states. This spin state represents the fundamental binary
+information in quantum computing, similar to classical bits but with the added advantage
+of quantum superposition and entanglement.
+Our quantum variational circuit is composed of three key states: initial, parameterized,
+and measurement. In the initial state, all qubits are initialized to 0. This initialization
+ensures a known starting point for subsequent quantum operations.
+In the parameterized state, the quantum circuit receives two types of input parameters:
+input data and variational parameters. The input data represent the classical information
+to be processed, while the variational parameters are tunable parameters optimized during
+the training process to minimize the cost function. The classical data are inserted into
+these quantum circuits using quantum embeddings, which map classical data into high-
+dimensional Hilbert space, enabling the quantum circuit to process it. The ﬁnal state is the
+measurement state, where the quantum system is measured, and the resulting quantum
+states are collapsed into classical binary outcomes (0 or 1). The measurement results
+are used to evaluate the performance of the quantum circuit and adjust the variational
+parameters accordingly.
+Our quantum variational circuit architecture, as illustrated in Figure 4, integrates these
+three states into a cohesive framework. The ﬁgure provides a visual representation of the
+quantum circuit, detailing the ﬂow of information from initialization through parameteri-
+zation to measurement. This architecture leverages the principles of quantum mechanics
+to perform complex computations, offering the potential for signiﬁcant advancements
+in computational power and efﬁciency compared to classical methods. Classical data
+integration into quantum circuits is facilitated by quantum embeddings, which utilize
+Hilbert spaces for feature mapping. This approach allows the quantum variational circuit
+to process classical data within the quantum domain, harnessing the unique computational
+capabilities of quantum mechanics.
+ 
+Figure 4. The architecture of the quantum variational circuit with ﬁve qubits.
+Figure 4 illustrates the architecture of our proposed quantum circuit, detailing the
+initialization of qubits, the parameterization process, and the measurement outcomes. This
+comprehensive illustration underscores the intricate design and operational ﬂow of the
+quantum variational circuit implemented in this study.
+
+Bioengineering 2024, 11, 799
+11 of 20
+In Figure 4, H represents a Hadamard gate. P, also known as the phase gate or phase
+shift gate or S gate, is also a single-qubit operation. It changes the phase of a spin along a
+speciﬁc axis. The Hadamard gate is a single-qubit operation that maps the basis state |├ 0〉
+to (|├ 0〉+ |├ 1〉)/√2 and |├ 1〉to (|├ 0〉−|├ 1〉)/√2. The equations concerning the
+Hadamard gate and the P gate are shown in Equations (13) and (14), respectively [40].
+H =
+1
+√
+2
+1
+1
+1
+−1
+
+(13)
+S =
+1
+0
+0
+i
+
+(14)
+3.2.5. Fully Connected Layer
+A fully connected layer is one in which each neuron in one layer connects to every
+neuron in another layer. Most often, it is the last layer in a network that produces output.
+In hybrid quantum networks, a fully connected layer can be achieved by using quantum
+operations, such as controlled-NOT gates, Hadamard gates, and measurements [41,42].
+Quantum operations are unitary matrices that transform the quantum state of neurons. The
+measurement of a quantum state on a speciﬁc basis can provide the output of a quantum
+operation. It is a network architecture that allows any two users to share entanglement
+resources and perform quantum distribution without trusting any nodes [43]. In a fully
+connected quantum network, multiple users can communicate in a highly secure and
+efﬁcient manner. With QCNN, we leverage quantum advantages, such as superposition
+and entanglement, to extend the capabilities of classical CNNs. In QCNNs, three layers are
+present: quantum convolutional layers, pooling layers, and fully connected layers [44–46].
+In the quantum convolutional layer, data are ﬁltered using a quantum ﬁlter mask, and a
+new quantum state is generated. A coarse-graining operation is performed on the pooling
+layer to reduce the dimensionality of the data. In the fully connected layer, quantum
+operations and measurements are used to calculate the ﬁnal output. Figure 5 graphically
+illustrates our proposed architecture as it relates to measured qubits. Four layers, each
+made up of hundred, ﬁfty, twenty, and three neurons, are used in our fully connected layer
+to aid image classiﬁcation.
+Figure 5. The QCNN architecture with quantum operations and measurements.
+4. Experimental Results and Discussion
+In this section, we conduct various analyses to evaluate the performance of our hybrid
+quantum model. In each subsection, we present the results of different analyses.
+
+Bioengineering 2024, 11, 799
+12 of 20
+4.1. Dataset Description
+Two primary datasets are used in this study: ChestX-ray8 and LIDC-IDRI [47]. There
+are ﬁfteen classes of chest CXR in ChestX-ray8, some of which are benign, others malignant,
+and some are normal. The images are 1024 × 1024 pixels and there are 112,120 images
+in total. There is a variety of different sizes of nodules in the LIDC-IDRI dataset, which
+was acquired from clinically acquired CT images of the lungs. A total of 1018 slices were
+obtained from 1010 lung CT scans. This study used a subset of 5000 lung scans that
+covered nodules and regions without nodules to ensure comprehensive coverage and
+representativeness. This subset includes malignant (1000 images), benign (500 images),
+and normal (500 images). Preprocessing steps included normalization, resizing all images
+to a consistent resolution, and data augmentation techniques, such as rotation, ﬂipping,
+and scaling, to increase diversity and prevent overﬁtting. Poor-quality images or those
+with artifacts were removed. Inclusion criteria were clear labeling for ChestX-ray8 images
+and clear annotations for LIDC-IDRI scans. Exclusion criteria included ambiguous labels
+and low-quality scans. Table 3 presents a brief overview of the datasets after ﬁltering out
+elements suited to our study.
+Table 3. A summary of the ChestX-ray8 and LIDC-IDRI datasets used in this study.
+Dataset Name
+Class
+Number of Images
+Total
+ChestX-ray8
+Normal
+1000
+3000
+Pneumonia (benign)
+1000
+Nodule (malignant)
+1000
+LIDC-IDRI
+Malignant
+1000
+2000
+Benign
+500
+Normal
+500
+Visual Presentation of the Dataset Images
+In this section, we show examples from each of the three classes that we used in our
+study in order to illustrate the variety of images in the dataset. Figure 6 shows a selection
+of images from both datasets, representing different classes. The ﬁrst column shows images
+from the normal class; the second column shows images from the benign class; and the
+third column shows images from the malignant class. Similarly, the ﬁrst row represents
+CXR images corresponding to each class, while the second row represents CT images
+corresponding to each class.
+Figure 6. Sample images from the adopted datasets. (a) Normal, (b) benign, (c) malignant.
+
+Bioengineering 2024, 11, 799
+13 of 20
+Based on the analysis of Figure 6, we can visually observe a slight similarity be-
+tween the images indicating a particular pattern. Hence, merging features can improve a
+machine’s classiﬁcation accuracy.
+4.2. Analysis Concerning Image Size vs. Computational Cost
+In this section under Table 4, we describe the resource requirements for classifying lung
+samples based on image size. A set of three sizes is used, such as 1024 × 1024, 448 × 448,
+and 224 × 224. The smaller the image size, the fewer resources are needed. In addition, the
+third row (224 × 224) of the table has a large variance, resulting in less training time but a
+lower accuracy rate. The ﬁrst two variants, however, have a reasonable amount of accuracy
+with a difference of −2%, which is acceptable given the difference in training time.
+Table 4. Resource requirements for different image sizes. The upward arrow indicates that the larger
+the number the better.
+Image Size
+Resources
+Consumed (GB)
+Duration of
+Training (Hours)
+Accuracy (%) ↑
+1024 × 1024
+4.23
+3.24
+92.80
+448 × 448
+3.16
+2.32
+92.00
+224 × 224
+2.45
+1.45
+85.00
+4.3. Per Epoch Accuracy Analysis
+We ran our proposed architecture on a DL server on a dual Intel Xeon E5-2609V5 Tesla
+NVIDIA P100 GPU with a total of 3585 cores clocked at a maximum speed of 18.9 Teraﬂops
+and listed its different epochs. The system has a RAM capability of 128 GB running Ubuntu
+18.04 LTS. We used Keras as our framework, which runs on TensorFlow 2.10. Since the
+system ran on 550 epochs, Table 5 shows brief accuracy and loss values during speciﬁc
+epoch intervals of a certain hybrid quantum model containing RepVGG. The parameters
+chosen were training accuracy and training loss.
+Table 5. Accuracy and loss values for different epochs of a hybrid quantum model. The upward
+arrow indicates that the larger the number the better. The downward arrow indicates that the smaller
+the number the better.
+Epochs
+Accuracy (%) ↑
+Loss (%) ↓
+50
+10.52
+89.48
+100
+25.32
+74.68
+150
+50.78
+49.22
+200
+65.41
+34.59
+250
+81.45
+18.55
+300
+85.32
+14.68
+350
+86.87
+13.13
+400
+87.74
+12.26
+450
+89.25
+10.75
+500
+92.12
+7.88
+550
+90.15
+7.89
+According to Table 5, a maximum accuracy of 92.12% was reached at epochs 500
+with a loss percentage of 7.88%. A certain hybrid quantum model containing RepVGG
+showed brief accuracy and loss values during speciﬁc epoch intervals. Training accuracy
+and training loss were chosen as parameters. The plot in Figure 7 shows that the data are
+neither over-ﬁtted nor under-ﬁtted, as the training accuracy curve in Figure 7 follows a
+typical learning pattern. Likewise, the loss curve in Figure 7 shows a normal decrease as
+the epochs increased.
+
+Bioengineering 2024, 11, 799
+14 of 20
+Figure 7. Training and loss accuracy for different epochs of the system.
+4.4. Analysis Concerning Accuracy with and without Quantum Models
+Comparing the performance of the system with and without a quantum classiﬁer
+was conducted to demonstrate the effectiveness of the proposed architecture. A compara-
+tive analysis of the system without quantum classiﬁer (traditional) versus with quantum
+classiﬁer (hybrid) is presented in Table 6 [48–50].
+Table 6. Comparison of performance metrics between the system with and without the quantum clas-
+siﬁer.
+Model Name
+Overall
+Accuracy (%)
+Sensitivity (%)
+Speciﬁcity (%)
+F1-Score (%)
+Precision (%)
+MCC (%)
+Traditional
+VGG16
+85.21
+84
+86
+85
+84
+0.7
+VGG19
+87.54
+86
+88
+87
+87
+0.74
+InceptionV3
+76.52
+77
+76
+76
+75
+0.53
+Xception
+74.25
+75
+74
+74
+73
+0.48
+ResNet50
+65.25
+66
+65
+65
+64
+0.3
+RepVGG
+89.21
+89
+90
+89
+89
+0.78
+Hybrid
+VGG16
+89.21
+89
+90
+89
+89
+0.78
+VGG19
+89.16
+89
+90
+89
+88
+0.78
+InceptionV3
+89.78
+90
+89
+90
+90
+0.79
+Xception
+85.23
+85
+86
+85
+84
+0.7
+ResNet50
+83.12
+83
+84
+83
+82
+0.66
+RepVGG
+79.45
+80
+79
+79
+78
+0.58
+92.12
+93
+93
+96
+94
+0.84
+Based on the data in Table 6, our hybrid quantum system improves the overall accuracy
+of the system, with RepVGG leading the way with an overall rate of 92.12%. The results
+of this study indicate that quantum systems have an added beneﬁt over traditional DL
+systems. In addition, the marginal split of all the models’ misclassiﬁcations with and
+without the quantum system is shown in Table 7 [21].
+We also plotted the performance of each hybrid model used in our study through
+receiver operating characteristic (ROC) curves and confusion matrices. These visualizations
+provide a deeper insight into the effectiveness of each model used. The ROC plot is
+presented in Figure 8 and the confusion matrix is presented in Figure 9.
+
+Bioengineering 2024, 11, 799
+15 of 20
+Table 7. Comparative analysis of misclassiﬁed cases.
+System Type
+Model Name
+TP
+TN
+FP
+FN
+Traditional
+VGG16
+4050
+200
+450
+300
+VGG19
+4100
+150
+350
+300
+InceptionV3
+3500
+200
+1000
+300
+Xception
+3000
+700
+1000
+300
+ResNet50
+3000
+200
+1500
+300
+RepVGG
+4000
+500
+200
+300
+Hybrid
+VGG16
+4300
+150
+200
+350
+VGG19
+4200
+250
+200
+300
+InceptionV3
+4050
+200
+425
+325
+Xception
+4000
+175
+500
+325
+ResNet50
+3500
+500
+650
+350
+RepVGG
+4400
+200
+300
+100
+Figure 8. Performance evaluation of hybrid models using ROC curves.
+The ROC curves illustrate the true positive rate (sensitivity) against the false positive
+rate (1-speciﬁcity) for various threshold settings. A higher area under the curve (AUC)
+indicates better performance in distinguishing between classes. The ROC curves for
+our hybrid models demonstrate their superior ability to accurately classify lung tumor
+images, showcasing the beneﬁts of integrating quantum computing with traditional deep
+learning methods.
+Figure 9’s confusion matrices highlight the superior performance of our hybrid models,
+showing high true positives (TP) and true negatives (TN) while minimizing false positives
+(FP) and false negatives (FN). This indicates improved accuracy, precision, and recall
+compared to traditional models. The hybrid models, especially RepVGG with quantum
+layers, demonstrate signiﬁcant diagnostic improvements.
+
+Bioengineering 2024, 11, 799
+16 of 20
+ 
+ 
+ 
+Figure 9. Performance evaluation of hybrid models using confusion matrices.
+4.5. Comparision between Merging and Not Merging of Features
+Table 8 summarizes the classiﬁcation accuracy achieved by using features from indi-
+vidual models without merging and the improved accuracy obtained by merging features
+from different models. It also includes the feature dimensions before and after fusion.
+Table 8 demonstrates that merging features from different TL models signiﬁcantly im-
+proves classiﬁcation accuracy. This improvement across all models validates that merging
+features captures more detailed patterns, enhancing data representation and classiﬁca-
+tion performance.
+
+Bioengineering 2024, 11, 799
+17 of 20
+Table 8. Performance analysis of models with feature merging.
+Model Name
+Feature Dimension
+(Without Merging)
+Accuracy without
+Merging (%)
+Dimension
+after Fusion
+Accuracy with
+Merging (%)
+VGG16
+512
+84.5
+1024
+89.16
+VGG19
+512
+85
+1024
+89.78
+InceptionV3
+2048
+80.75
+4096
+85.23
+Xception
+2048
+78.5
+4096
+83.12
+ResNet50
+2048
+75
+4096
+79.45
+RepVGG
+2048
+87.5
+4096
+92.12
+4.6. State-of-the-Art Comparison
+We have also evaluated the classiﬁcation performance and strength of our hybrid
+quantum system against other existing state-of-the-art systems. A comprehensive compari-
+son of our system with classiﬁcation systems and traditional quantum systems is presented
+in this paper. The Table 9 shows the overall performance of the system.
+Table 9. Comparison of our hybrid quantum system with other state-of-the-art systems. The upward
+arrow indicates that the larger the number the better. The downward arrow indicates that the smaller
+the number the better.
+Technique
+Accuracy (%) ↑
+Computational Training Time
+(Hours) ↓
+QCNN [27]
+89.50
+2.8
+VQDNN [28]
+90.00
+2.52
+Hybrid TL [29]
+91.32
+3.23
+Quanvolution [31]
+88.24
+2.45
+Proposed system
+92.12
+2.32
+Based on the data presented in Table 9, our hybrid quantum system appears to perform
+better in terms of accuracy level and training time. As a result, our system performed better
+across the board, proving the strength of our proposed architecture in all areas.
+5. Conclusions
+In this paper, we propose a new framework for lung tumor classiﬁcation that uses
+both CT and CXR images as inputs and pre-trained TL models that are tailored to this task.
+The TL model has been improved by combining features learned from CT and CXR images
+with a hybrid quantum layer. On two standard datasets, ChestX-ray8 and LIDC-IDRI, we
+successfully classiﬁed lung tumors using our framework. In addition to our framework,
+other techniques relying on CXR or CT images alone or on conventional machine learning
+models do not achieve the same results. We demonstrate that lung tumor classiﬁcation can
+be improved using both imaging modalities and quantum computing. As a result, early
+detection, treatment, and outcome of lung cancer patients can be greatly improved.
+It is important to note that the following are some possible limitations of the work in
+relation to the conclusion of the paper:
+•
+There may be some types of lung cancer that are not suitable for the framework
+because of their distinct morphological or molecular characteristics.
+•
+It should be noted that the framework may not capture the diversity and intricacy of
+lung tumor staging, which may have a substantial impact on the patient’s outcome
+and management.
+•
+In settings with limited resources, the framework may be inaccessible or expensive,
+especially in situations where resources are limited.
+•
+We tested the proposed model with a small number of images taken from two different
+datasets. Nevertheless, the proposed framework needs to be standardized by testing
+it against a larger number of unknown or new data sets.
+
+Bioengineering 2024, 11, 799
+18 of 20
+•
+This study focuses solely on non-invasive imaging techniques and excludes biopsy, the
+deﬁnitive method for lung cancer diagnosis. While this approach reduces patient risk, it
+may not capture the comprehensive accuracy provided by biopsy. Future research could
+integrate these methods to enhance both early detection and diagnostic confirmation.
+We are planning on applying our model to other types of lung diseases as well as
+other imaging methods in the future. Furthermore, to further improve our framework’s
+performance, we can experiment with other quantum layers and optimization methods in
+order to further improve the performance of our framework.
+Author Contributions: Conceptualization, J.E.M., S.M.S., B.R., A.M.M. and M.M.; data curation,
+J.E.M. and S.M.S.; formal analysis, B.R.; investigation, B.R.; methodology, J.E.M., S.M.S. and B.R.;
+software, J.E.M., S.M.S. and B.R.; supervision, B.R., A.M.M. and M.M.; validation, A.M.M. and M.M.;
+visualization, B.R. and M.M.; writing—original draft, J.E.M., S.M.S. and M.M.; writing—review and edit-
+ing, A.M.M. and M.M. All authors have read and agreed to the published version of the manuscript.
+Funding: This research received no external funding.
+Institutional Review Board Statement: Not applicable.
+Informed Consent Statement: Not applicable.
+Data Availability Statement: The data supporting the ﬁndings of this study are available from the
+corresponding author upon reasonable request.
+Conﬂicts of Interest: The authors declare no conﬂicts of interest.
+References
+1.
+Althubiti, S.A.; Paul, S.; Mohanty, R.; Mohanty, S.N.; Alenezi, F.; Polat, K. Ensemble learning framework with GLCM texture
+extraction for early detection of lung cancer on CT images. Comput. Math. Methods Med. 2022, 2022, 2733965. [CrossRef] [PubMed]
+2.
+Westeel, V.; Foucher, P.; Scherpereel, A.; Domas, J.; Girard, P.; Trédaniel, J.; Wislez, M.; Dumont, P.; Quoix, E.; Raffy, O.; et al.
+Chest CT scan plus x-ray versus chest x-ray for the follow-up of completely resected non-small-cell lung cancer (IFCT-0302): A
+multicentre, open-label, randomised, phase 3 trial. Lancet Oncol. 2022, 23, 1180–1188. [CrossRef] [PubMed]
+3.
+Saber, A.; Sakr, M.; Abo-Seida, O.M.; Keshk, A.; Chen, H. A novel deep-learning model for automatic detection and classiﬁcation
+of breast cancer using the transfer-learning technique. IEEE Access 2021, 9, 71194–71209. [CrossRef]
+4.
+Sadad, T.; Rehman, A.; Munir, A.; Saba, T.; Tariq, U.; Ayesha, N.; Abbasi, R. Brain tumor detection and multi-classiﬁcation using
+advanced deep learning techniques. Microsc. Res. Tech. 2021, 84, 1296–1308. [CrossRef] [PubMed]
+5.
+Hu, Z.; Tang, J.; Wang, Z.; Zhang, K.; Zhang, L.; Sun, Q. Deep learning for image-based cancer detection and diagnosis A survey.
+Pattern Recognit. 2018, 83, 134–149. [CrossRef]
+6.
+Chaunzwa, T.L.; Hosny, A.; Xu, Y.; Shafer, A.; Diao, N.; Lanuti, M.; Christiani, D.C.; Mak, R.H.; Aerts, H.J.W.L. Deep learning
+classiﬁcation of lung cancer histology using CT images. Sci. Rep. 2021, 11, 5471. [CrossRef] [PubMed]
+7.
+Lakshmanaprabu, K.S.; Mohanty, S.N.; Shankar, K.; Arunkumar, N.; Ramirez, G. Optimal deep learning model for classiﬁcation
+of lung cancer on CT images. Futur. Gener. Comput. Syst. 2019, 92, 374–382. [CrossRef]
+8.
+Wei, S.; Chen, Y.; Zhou, Z.; Long, G. A quantum convolutional neural network on NISQ devices. AAPPS Bull. 2022, 32, 2.
+[CrossRef]
+9.
+Zhao, C.; Gao, X.-S. Qdnn: Deep neural networks with quantum layers. Quantum Mach. Intell. 2021, 3, 15. [CrossRef]
+10.
+Beer, K.; Bondarenko, D.; Farrelly, T.; Osborne, T.J.; Salzmann, R.; Scheiermann, D.; Wolf, R. Training deep quantum neural
+networks. Nat. Commun. 2020, 11, 808. [CrossRef]
+11.
+Kora, P.; Mohammed, S.; Surya Teja, M.J.; Usha Kumari, C.; Swaraja, K.; Meenakshi, K. Brain Tumor Detection with Transfer
+Learning. In Proceedings of the 2021 Fifth International Conference on I-SMAC (IoT in Social, Mobile, Analytics and Cloud)
+(I-SMAC), Palladam, India, 11–13 November 2021; pp. 443–446. [CrossRef]
+12.
+Mohite, A. Application of transfer learning technique for detection and classiﬁcation of lung cancer using CT images. Int. J. Sci.
+Res. Manag. 2021, 9, 621–634.
+13.
+Sundar, S.; Sumathy, S. Transfer learning approach in deep neural networks for uterine ﬁbroid detection. Int. J. Comput. Sci. Eng.
+2022, 25, 52–63. [CrossRef]
+14.
+Alkassar, S.; Abdullah, M.A.M.; Jebur, B.A. Automatic brain tumour segmentation using fully convolution network and transfer
+learning. In Proceedings of the 2019 2nd International Conference on Electrical, Communication, Computer, Power and Control
+Engineering (ICECCPCE), Mosul, Iraq, 13–14 February 2019; pp. 188–192.
+15.
+Humayun, M.; Sujatha, R.; Almuayqil, S.N.; Jhanjhi, N.Z. A transfer learning approach with a convolutional neural network for
+the classiﬁcation of lung carcinoma. Healthcare 2022, 10, 1058. [CrossRef] [PubMed]
+
+Bioengineering 2024, 11, 799
+19 of 20
+16.
+Wang, S.; Dong, L.; Wang, X.; Wang, X. Classiﬁcation of pathological types of lung cancer from CT images by deep residual neural
+networks with transfer learning strategy. Open Med. 2020, 15, 190–197. [CrossRef] [PubMed]
+17.
+Nishio, M.; Sugiyama, O.; Yakami, M.; Ueno, S.; Kubo, T.; Kuroda, T.; Togashi, K. Computer-aided diagnosis of lung nodule
+classiﬁcation between benign nodule, primary lung cancer, and metastatic lung cancer at different image size using deep
+convolutional neural network with transfer learning. PLoS ONE 2018, 13, e0200721. [CrossRef] [PubMed]
+18.
+Da Nóbrega, R.V.M.; Peixoto, S.A.; da Silva, S.P.P.; Rebouças Filho, P.P. Lung nodule classiﬁcation via deep transfer learning in
+CT lung images. In Proceedings of the 2018 IEEE 31st international symposium on computer-based medical systems (CBMS),
+Karlstad, Sweden, 18–21 June 2018; pp. 244–249.
+19.
+Phankokkruad, M. Ensemble transfer learning for lung cancer detection. In Proceedings of the 2021 4th International Conference
+on Data Science and Information Technology, Shanghai, China, 23–25 July 2021; pp. 438–442.
+20.
+Saikia, T.; Kumar, R.; Kumar, D.; Singh, K.K. An automatic lung nodule classiﬁcation system based on hybrid transfer learning
+approach. SN Comput. Sci. 2022, 3, 272. [CrossRef]
+21.
+Bhandary, A.; Prabhu, G.A.; Rajinikanth, V.; Thanaraj, K.P.; Satapathy, S.C.; Robbins, D.E.; Shasky, C.; Zhang, Y.-D.; Tavares,
+J.M.R.S.; Raja, N.S.M. Deep-learning framework to detect lung abnormality—A study with chest X-Ray and lung CT scan images.
+Pattern Recognit. Lett. 2019, 129, 271–278. [CrossRef]
+22.
+Ibrahim, D.M.; Elshennawy, N.M.; Sarhan, A.M. Deep-chest: Multi-classiﬁcation deep learning model for diagnosing COVID-19,
+pneumonia, and lung cancer chest diseases. Comput. Biol. Med. 2021, 132, 104348. [CrossRef]
+23.
+Yang, D.; Martinez, C.; Visuña, L.; Khandhar, H.; Bhatt, C.; Carretero, J. Detection and analysis of COVID-19 in medical images
+using deep learning techniques. Sci. Rep. 2021, 11, 19638. [CrossRef]
+24.
+Kamil, M.Y. A deep learning framework to detect COVID-19 disease via chest X-ray and CT scan images. Int. J. Electr. Comput.
+Eng. 2021, 11, 844–850. [CrossRef]
+25.
+Shyni, H.M.; Chitra, E. A comparative study of X-ray and CT images in COVID-19 detection using image processing and deep
+learning techniques. Comput. Methods Programs Biomed. Updat. 2022, 2, 100054. [CrossRef]
+26.
+Chen, G.; Chen, Q.; Long, S.; Zhu, W.; Yuan, Z.; Wu, Y. Quantum convolutional neural network for image classiﬁcation. Pattern
+Anal. Appl. 2023, 26, 655–667. [CrossRef]
+27.
+Sebastianelli, A.; Zaidenberg, D.A.; Spiller, D.; Le Saux, B.; Ullo, S.L. On circuit-based hybrid quantum neural networks for
+remote sensing imagery classiﬁcation. IEEE J. Sel. Topics Appl. Earth Obs. Remote Sens. 2021, 15, 565–580. [CrossRef]
+28.
+Wang, Y.; Wang, Y.; Chen, C.; Jiang, R.; Huang, W. Development of variational quantum deep neural networks for image
+recognition. Neurocomputing 2022, 501, 566–582. [CrossRef]
+29.
+Mogalapalli, H.; Abburi, M.; Nithya, B.; Bandreddi, S.K.V. Classical–quantum transfer learning for image classiﬁcation. SN
+Comput. Sci. 2022, 3, 20. [CrossRef]
+30.
+Subbiah, G.; Krishnakumar, S.S.; Asthana, N.; Balaji, P.; Vaiyapuri, T. Quantum transfer learning for image classiﬁcation.
+TELKOMNIKA Telecommun. Comput. Electron. Control 2023, 21, 113–122. [CrossRef]
+31.
+Henderson, M.; Shakya, S.; Pradhan, S.; Cook, T. Quanvolutional neural networks: Powering image recognition with quantum
+circuits. Quantum Mach. Intell. 2020, 2, 2. [CrossRef]
+32.
+Kayan, C.E.; Koksal, T.E.; Sevinc, A.; Gumus, A. Deep reproductive feature generation framework for the diagnosis of COVID-19
+and viral pneumonia using chest X-ray images. arXiv 2023, arXiv:2304.10677.
+33.
+Sannidhan, M.S.; Prabhu, G.A.; Chaitra, K.M.; Mohanty, J.R. Performance enhancement of generative adversarial network for
+photograph–sketch identiﬁcation. Soft Comput. 2023, 27, 435–452. [CrossRef]
+34.
+Ding, X.; Zhang, X.; Ma, N.; Han, J.; Ding, G.; Sun, J. Repvgg: Making vgg-style convnets great again. In Proceedings of the
+IEEE/CVF Conference on Computer Vision and Pattern Recognition, Nashville, TN, USA, 20–25 June 2021; pp. 13733–13742.
+35.
+Ghose, P.; Alavi, M.; Tabassum, M.; Uddin, A.; Biswas, M.; Mahbub, K.; Gaur, L.; Mallik, S.; Zhao, Z. Detecting COVID-19 infection
+status from chest X-ray and CT scan via single transfer learning-driven approach. Front. Genet. 2022, 13, 980338. [CrossRef]
+36.
+Kallel, F.; Sahnoun, M.; Ben Hamida, A.; Chtourou, K. CT scan contrast enhancement using singular value decomposition and
+adaptive gamma correction. Signal Image Video Process. 2018, 12, 905–913. [CrossRef]
+37.
+Sannidhan, S.M.; Martis, J.E.; Nayak, R.S.; Aithal, S.K.; Sudeepa, B.K. Detection of Antibiotic Constituent in Aspergillus ﬂavus
+Using Quantum Convolutional Neural Network. Int. J. E-Health Med. Commun. 2023, 14, 1–26. [CrossRef]
+38.
+Abbas, A.; Sutter, D.; Zoufal, C.; Lucchi, A.; Figalli, A.; Woerner, S. The power of quantum neural networks. Nat. Comput. Sci.
+2021, 1, 403–409. [CrossRef] [PubMed]
+39.
+Hou, Y.-Y.; Li, J.; Chen, X.-B.; Ye, C.-Q. A partial least squares regression model based on variational quantum algorithm. Laser
+Phys. Lett. 2022, 19, 095204. [CrossRef]
+40.
+Chalumuri, A.; Kune, R.; Manoj, B.S. A hybrid classical-quantum approach for multi-class classiﬁcation. Quantum Inf. Process.
+2021, 20, 119. [CrossRef]
+41.
+Coffey, M.W.; Deiotte, R.; Semi, T. Comment on “Universal quantum circuit for two-qubit transformations with three controlled-
+NOT gates” and “Recognizing small-circuit structure in two-qubit operators”. Phys. Rev. A 2008, 77, 066301. [CrossRef]
+42.
+Moore, C.; Nilsson, M. Parallel quantum computation and quantum codes. SIAM J. Comput. 2001, 31, 799–815. [CrossRef]
+43.
+Song, G.; Klappenecker, A. Optimal realizations of controlled unitary gates. arXiv 2002, arXiv:quant-ph/0207157. [CrossRef]
+44.
+Nakaji, K.; Tezuka, H.; Yamamoto, N. Quantum-enhanced neural networks in the neural tangent kernel framework. arXiv 2021,
+arXiv:2109.03786.
+
+Bioengineering 2024, 11, 799
+20 of 20
+45.
+Oh, S.; Choi, J.; Kim, J. A tutorial on quantum convolutional neural networks (QCNN). In Proceedings of the 2020 International
+Conference on Information and Communication Technology Convergence (ICTC), Jeju, Republic of Korea, 21–23 October 2020;
+pp. 236–239.
+46.
+Rajesh, V.; Naik, U.P.; Mohana. Quantum Convolutional Neural Networks (QCNN) using deep learning for computer vision
+applications. In Proceedings of the 2021 International Conference on Recent Trends on Electronics, Information, Communication
+& Technology (RTEICT), Bangalore, India, 27–28 August 2021; pp. 728–734.
+47.
+Zhou, Z.; Sodha, V.; Rahman Siddiquee, M.M.; Feng, R.; Tajbakhsh, N.; Gotway, M.B.; Liang, J. Models genesis: Generic
+autodidactic models for 3d medical image analysis. In Proceedings of the Medical Image Computing and Computer Assisted
+Intervention—MICCAI 2019: 22nd International Conference, Shenzhen, China, 13–17 October 2019; Proceedings, Part IV 22, 2019.
+pp. 384–393.
+48.
+Morid, M.A.; Borjali, A.; Del Fiol, G. A scoping review of transfer learning research on medical image analysis using ImageNet.
+Comput. Biol. Med. 2021, 128, 104115. [CrossRef]
+49.
+Alzubaidi, L.; Fadhel, M.A.; Al-Shamma, O.; Zhang, J.; Santamaría, J.; Duan, Y.; Oleiwi, S.R. Towards a better understanding of
+transfer learning for medical imaging: A case study. Appl. Sci. 2020, 10, 4523. [CrossRef]
+50.
+Veasey, B.P.; Broadhead, J.; Dahle, M.; Seow, A.; Amini, A.A. Lung nodule malignancy prediction from longitudinal CT scans
+with Siamese convolutional attention networks. IEEE Open J. Eng. Med. Biol. 2020, 1, 257–264. [CrossRef] [PubMed]
+Disclaimer/Publisher’s Note: The statements, opinions and data contained in all publications are solely those of the individual
+author(s) and contributor(s) and not of MDPI and/or the editor(s). MDPI and/or the editor(s) disclaim responsibility for any injury to
+people or property resulting from any ideas, methods, instructions or products referred to in the content.

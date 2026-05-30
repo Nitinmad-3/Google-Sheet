@@ -1,0 +1,1306 @@
+Source-PDF: D:\Review\Paper\Clinical prediction bridge (your current query, improved)\highest priority clinical bridge directly about disease predictiondiagnosis\A primer for quantum computing and its applications to healthcare and biomedical research.pdf
+Relative-Path: Paper\Clinical prediction bridge (your current query, improved)\highest priority clinical bridge directly about disease predictiondiagnosis\A primer for quantum computing and its applications to healthcare and biomedical research.pdf
+--------------------------------------------------------------------------------
+
+Review
+A primer for quantum computing and its applications to 
+healthcare and biomedical research
+Thomas J.S. Durant 
+, MD1,2, Elizabeth Knight, MS3, Brent Nelson, MD4,5, Sarah Dudgeon, MS6,  
+Seung J. Lee, PhD1,3, Dominic Walliman, PhD7, Hobart P. Young 
+, PhD1,  
+Lucila Ohno-Machado 
+, MD, PhD2, Wade L. Schulz 
+, MD, PhD,1,2 
+1Department of Laboratory Medicine, Yale School of Medicine, New Haven, CT 06520, United States, 2Biomedical Informatics and Data 
+Science, Yale School of Medicine, New Haven, CT 06510, United States, 3Yale School of Medicine, Yale University, New Haven, CT 06510, 
+United States, 4Newport Healthcare, Minneapolis, MN 55435, United States, 5Department of Psychiatry, University of Minnesota, 
+Minneapolis, MN 55454, United States, 6Computational Biology and Bioinformatics, Yale University, New Haven, CT 06510, United States, 
+7Domain of Science LTD, Bristol, BS37 6AG, United Kingdom
+Corresponding author: Wade L. Schulz, MD, PhD, Department of Laboratory Medicine, Yale School of Medicine, 55 Park St, New Haven, CT 06510, 
+United States (wade.schulz@yale.edu)
+Abstract
+Objectives: To introduce quantum computing technologies as a tool for biomedical research and highlight future applications within healthcare, 
+focusing on its capabilities, benefits, and limitations.
+Target Audience: Investigators seeking to explore quantum computing and create quantum-based applications for healthcare and biomedical 
+research.
+Scope: Quantum computing requires specialized hardware, known as quantum processing units, that use quantum bits (qubits) instead of clas
+sical bits to perform computations. This article will cover (1) proposed applications where quantum computing offers advantages to classical 
+computing in biomedicine; (2) an introduction to how quantum computers operate, tailored for biomedical researchers; (3) recent progress that 
+has expanded access to quantum computing; and (4) challenges, opportunities, and proposed solutions to integrate quantum computing in bio
+medical applications.
+Key words: quantum; quantum computing; biomedical research; healthcare; quantum annealing; universal gate-based quantum computing. 
+Introduction
+Quantum computing is an emerging field with the potential 
+to accelerate computation in many areas of science and tech
+nology.1,2 Based on the principles of quantum mechanics, 
+quantum computing uses a fundamentally different approach 
+than classical computing.3 Because of this, quantum com
+puters (QCs) have the potential to perform complex calcula
+tions more efficiently than classical computers, and thus may 
+offer promising applications within healthcare and biomedi
+cal research.4,5
+Quantum computing has several possible benefits over 
+classical computing in biomedical problems that have high 
+computational complexity (Table 1).6 For example, QCs can 
+be used to optimize solutions for complex problems that have 
+an inherently underlying quantum structure, such as simulat
+ing molecular interactions and protein folding.5,7,8 Similarly, 
+quantum algorithms, such as Grover’s algorithm, can search 
+large, unstructured datasets more efficiently than their classi
+cal counterparts, enabling more effective optimization of 
+complex problems in healthcare and biomedical research.4,9
+However, there are also notable drawbacks, including cur
+rent limitations in error correction, hardware scalability, and 
+the need for specialized programming skills to effectively use 
+quantum computing resources.10–12
+The accessibility of quantum resources has rapidly 
+expanded with the general availability of commercially avail
+able hardware, high-level programming languages, and 
+cloud-hosted resources, including central processing unit 
+(CPU)-based simulators and quantum processing units 
+(QPUs).13 Despite this progress, the practical application of 
+quantum computing to specific tasks remains a challenge, 
+with limited examples available for practitioners who may 
+not have extensive experience in low-level programming or 
+quantum concepts.11
+By harnessing the power of quantum computing, certain 
+problems that were previously intractable or extremely time- 
+consuming may lead to new insights and discoveries. 
+However, this may also work against many applications in 
+healthcare, particularly those that rely heavily on encryption 
+as a primary means to protect data. In this manuscript, we 
+present an overview of quantum computing principles, specif
+ically tailored to biomedical researchers. We provide exam
+ples of how and when quantum computing can be applied to 
+biomedical and healthcare applications. Lastly, we provide a 
+Received: March 1, 2024; Revised: May 29, 2024; Editorial Decision: May 30, 2024; Accepted: June 3, 2024 
+# The Author(s) 2024. Published by Oxford University Press on behalf of the American Medical Informatics Association.   
+This is an Open Access article distributed under the terms of the Creative Commons Attribution License (https://creativecommons.org/licenses/by/4.0/), which 
+permits unrestricted reuse, distribution, and reproduction in any medium, provided the original work is properly cited. 
+Journal of the American Medical Informatics Association, 2024, 31(8), 1774–1784 
+https://doi.org/10.1093/jamia/ocae149 
+Advance access publication 27 June 2024 
+Review 
+
+high-level overview of recent progress that has expanded 
+access to quantum computing, as well as the challenges, 
+opportunities, and proposed solutions to integrate quantum 
+solutions into biomedical computing.
+Impact of quantum computing on healthcare 
+and biomedical research
+The strength of quantum computing resides in its capacity to 
+simultaneously represent multiple possibilities through quan
+tum parallelism, which stems from the quantum properties of 
+superposition, entanglement, and interference, described fur
+ther in the following section.6 Computational complexity 
+theory serves as a framework for understanding the bounda
+ries and conditions in which quantum computing resources 
+can demonstrate a proven advantage (Figure 1).14 However, 
+it remains an open and crucial question as to whether QCs 
+can more efficiently solve problems that are intractable for 
+classical computers.15 Classical computational complexity 
+theory revolves around the P (polynomial time) and NP (non
+deterministic polynomial time) classes. Problems in P can be 
+solved quickly (in polynomial time) by classical computers, 
+whereas NP problems have solutions that can be verified 
+quickly but may not be solvable quickly. QCs introduce new 
+complexity classes, like BQP (bounded-error quantum poly
+nomial time).14 This class is significant because some prob
+lems that are believed to be outside of P (and potentially in 
+NP) for classical computers, like integer factorization, fall 
+into BQP, suggesting that QCs may be able to solve them effi
+ciently.14 These problems are of practical note since efficient 
+quantum solutions may lead to new efficiencies in genomic 
+data analysis, molecular simulation, or encryption technology 
+(or, potentially, breaking current encryption algorithms).16,17
+Quantum algorithms have also shown promise in machine 
+learning (ML); however, while some problems in ML can be 
+Table 1. Areas of application in healthcare and biomedical research.
+Area of application
+Description
+References
+Artificial intelligence  
+and machine learning
+Quantum computing brings novel algorithms for machine learning applications, 
+with recent publications demonstrating potential advantages for feature selection 
+and classification models.
+10,26–32,34–40,101,102
+Genomics
+Quantum computing may help with the analysis of large-scale genomic data, lead
+ing to improved understanding of genetic diseases and personalized medicine. 
+Quantum algorithms like Grover’s search algorithm and its variations may be 
+employed to search and analyze vast genomic databases more efficiently than 
+classical methods.
+25,41–47,103
+Protein folding
+Understanding protein folding is essential for the study of diseases related to protein 
+misfolding, such as Alzheimer’s and Parkinson’s. Quantum computing can poten
+tially improve the efficiency of predicting protein folding patterns. Algorithms 
+like the Quantum Approximate Optimization Algorithm (QAOA) can be used to 
+tackle optimization problems, including protein folding.
+48–52
+Drug discovery
+Quantum computing could significantly accelerate the drug discovery process by 
+simulating molecular interactions and predicting the behavior of drug candidates. 
+Quantum algorithms like the Variational Quantum Eigensolver (VQE) and 
+Quantum Phase Estimation Algorithms (QPEA) can be used to determine molecu
+lar ground-state energies, which is crucial for understanding molecular properties 
+and reactions.
+5,53–61
+Network analysis
+Network analysis in systems biology, utilized extensively in bioinformatics, involves 
+tasks like molecular modeling and mapping complex biological pathways. Quan
+tum computing has been applied to enhance community detection within net
+works, offering approaches that are comparable to classical methods. This has 
+been described using quantum annealing and other quantum-based algorithms, 
+which show promise in effectively partitioning networks into communities, a crit
+ical step in understanding biological and computational systems more deeply.
+62–66
+Cryptography
+Quantum computing poses a significant challenge to current encryption methods 
+like RSA, as quantum algorithms, such as Shor’s algorithm, can efficiently factor 
+large prime numbers, potentially undermining these encryption schemes58. Con
+versely, it also enables the development of quantum-resistant encryption techni
+ques, such as Quantum Key Distribution (QKD), which may enhance modern 
+cybersecurity.
+67,68,70,73
+P
+NPC
+PH
+NP-Problems
+Figure 1. Computational complexity theory has traditionally included 3 
+major complexity classes: polynomial-time (P), non-deterministic 
+polynomial-time (NP), and NP-complete (NPC), all of which are contained 
+in polynomial hierarchy (PH) space. Bounded-error quantum polynomial 
+time (BQP) is a complexity class that represents problems that should be 
+efficiently solved by a quantum computer. Problems that fall within this 
+space and the bounds of the BQP space itself remain an open question, 
+with recent literature indicating that it may not be constrained by the PH- 
+space. Depending on the bounds of the BQP-space, there may be 
+problems that will only be efficiently solved by quantum algorithms. 
+Figure adapted from Nielsen and Chuang6.
+Journal of the American Medical Informatics Association, 2024, Vol. 31, No. 8                                                                                                    
+1775 
+
+analyzed in terms of computational complexity theory, ML 
+as a whole is not defined by these classes.
+Despite our limited understanding of how and when to use 
+QCs to tackle real world problems, recent literature has only 
+just started to identify near-term areas where quantum com
+puting applications may achieve quantum advantage.4 In the 
+domain of biomedicine, there exists a wide range of computa
+tionally intractable problems that intuitively lend themselves 
+to quantum computing, with algorithms that appear to be 
+well-suited for these challenges (Table 1). As quantum com
+puting resources continue to mature, applied research in this 
+domain is expected to grow. We anticipate that, mirroring 
+the trends in ML, inter-disciplinary collaboration will speed 
+the development and use of quantum algorithms.
+How quantum computing works
+Quantum advantage
+Superposition and entanglement are widely recognized as 
+critical features in quantum computing, which may afford it 
+significant advantages over classical computing.6 In addition, 
+several other quantum phenomena, such as coherence, con
+textuality, interference, and superdense coding, may also play 
+pivotal roles.18 For the interested reader, further information 
+on additional quantum mechanical properties and how they 
+may be leveraged to accelerate computing can be found in 
+recent literature.18,19 In addition, it is important to note that 
+the following sections will focus on principles that are pri
+marily employed in gate-based QCs.
+Bits and qubits
+In classical computing, a bit is the fundamental unit of infor
+mation, represented by either a 0 or a 1 (Figure 2A).20 These 
+bits are used by traditional computing hardware to store data 
+and are manipulated through a series of mathematical and 
+logical operations to perform computational tasks. The most 
+notable feature of bits in this context is that bits can only be 
+in 1 of 2 states (0 or 1), and each bit exists in a state that is 
+independent from others such that the state of one bit does 
+not directly influence the state of another bit.6 In contrast, a 
+qubit, or quantum bit, is the fundamental unit of information 
+used in QCs (Figure 2B). Qubits are minimalistic, physical 
+systems where the 0 and 1 states are encoded onto a 2-level 
+quantum state that displays the unique properties of quantum 
+mechanics, including superposition, entanglement, and 
+interference.1
+Superposition and measurement
+Superposition refers to the ability of a quantum object to 
+simultaneously exist in a mixture of states.20 In contrast to 
+classical bits, this means that qubits can exist in a continuum 
+of states between 0 and 1. However, if a measurement is per
+formed, the probabilistic nature of states will cease to exist, 
+and the state of the qubit will resolve to a base state of 0 or 1 
+(Figure 2B).6 In the context of quantum computing, measure
+ment refers to the process of extracting classical information 
+from a quantum system, such as a qubit, by observing its 
+state. Measurement plays a crucial role in quantum comput
+ing, as it bridges the gap between the quantum realm and the 
+classical world.6,20 Importantly, the superposition state of a 
+qubit is unobservable, but the superposition state can be 
+manipulated prior to measurement which results in experi
+mentally observed differences in the probability of 
+outcomes.6,20
+x
+z
+y
+x
+z
+y
+x
+z
+y
+M
+65%
+35%
+Quantum Bit (qubit)
+0
+1
+A
+B
+Classical Binary System (bit)
+1
+0
+0
+1
+0
+Figure 2. (A) Classical bits, the fundamental units of information in classical computing, represent binary data as either a 0 or a 1, typically by utilizing voltage 
+levels within an electronic system. By flipping the voltage between 2 predefined levels, such as a high voltage to signify a 1 and a low voltage for a 0, the 
+state of a bit can be easily switched, stored, and transmitted. The use of voltage levels in this manner allows for a straightforward, reliable method of 
+encoding and processing digital information. (B) Quantum bits, or qubits, are the fundamental units of quantum computing, and unlike classical bits, they can 
+exist in a superposition of both 0 and 1 states simultaneously. This unique property is made possible by the principles of quantum mechanics, particularly 
+wave-particle duality and superposition. The actual state of a qubit can be described by a complex probability amplitude that defines the likelihood of 
+observing either a 0 or a 1 upon measurement. When a qubit is measured, its superposition collapses to one of the two classical states (0 or 1).
+1776                                                                                                    
+Journal of the American Medical Informatics Association, 2024, Vol. 31, No. 8 
+
+Entanglement
+The study of quantum systems has shown that, under specific 
+conditions, when 2 particles are prepared in close physical 
+proximity to each other, the superposition state of particle A 
+and particle B will strongly correlate with each other, even 
+after the particles are physically separated over large distan
+ces, which is known as entanglement.2 Experts in quantum 
+computing have shown that entanglement can be leveraged as 
+a key feature that may allow QCs to gain a computational 
+advantage over classical hardware for certain computational 
+problems.20
+In quantum computing, a system of n qubits can be pre
+pared in an entangled state such that their individual states 
+are no longer mathematically separable. When the 2 qubits 
+are measured, the possible results 00, 01, 10, or 11 will be 
+observed according to a probability distribution defined by 
+the entangled quantum state.1,6,20 This represents a novel 
+approach to computing, since the individual state of a classi
+cal bit does not directly influence other bits. If we consider a 
+system of n qubits, the quantum state is defined by 2n ampli
+tudes.1,20 In practice, the number of possible states in a sys
+tem of 300 qubits would be larger than the number of atoms 
+in the observable universe.6 While a similar principle applies 
+to classical computers, quantum computing can exploit this 
+characteristic without the need for the user to concurrently 
+manage all state permutations, which constitutes a distinct 
+advantage over classical computers.1,20
+Quantum computation and matrix representation
+Mathematically, qubits and their associated quantum proper
+ties can be described using linear algebra. Accordingly, the 
+2-level superposition state of a qubit can be described 
+mathematically as the following: 
+jψi ¼ αj0i þ βj1i:
+The j and i is called Dirac notation and it is used as a 
+reminder that the enclosed variable is a vector.6,20,21 In this 
+case, the following qubit states can be written as: 
+j0i ¼
+1
+0
+"
+#
+and j1i ¼
+0
+1
+"
+#
+:
+Here, α and β are complex numbers and are referred to as 
+amplitudes. The square of these amplitudes represents the 
+probability of a qubit being in either of the corresponding 
+states. The exact values of α and β cannot be precisely deter
+mined because, when a qubit is measured, the superposition 
+state of the qubit will collapse to either 0 with a probability 
+of α
+j j2 or 1 with a probability of βj j2. The probabilities sum 
+to 1 and therefore α
+j j2 þ βj j2 ¼ 1.
+Universal gate-based QCs
+Classical computers operate on traditional bits through oper
+ations called logic gates, such as AND, XOR, and NOT.22
+Logic gates are a hardware abstraction layer that represent 
+the fundamental logic upon which classical computer algo
+rithms are built.22 QCs can offer a similar layer of abstrac
+tion to leverage quantum states as a general-purpose register 
+(small storage areas inside a processing unit that temporarily 
+hold data for rapid access during processing).20 Computa
+tions on quantum states are facilitated by linear operators 
+referred to as quantum logic gates.6 QCs that follow this 
+paradigm are known as universal gate-based QCs.23 Classical 
+and quantum logic gates are similar in that both take a set of 
+inputs and produce an output. Some logic gates are analo
+gous between classical and quantum systems. For example, 
+the classical NOT gate (Figure 3A) and quantum Pauli X gate 
+(Figure 3B) and their corresponding truth tables demonstrate 
+that the logical output of these gates is equivalent.6
+While quantum and classical computing gates are concep
+tually analogous, there are also key differences. A significant 
+difference is the absence of conventional data flow through a 
+quantum gate. As quantum gates are applied to a register of 
+qubits, the state probabilities are changed, influencing the 
+eventual outcomes when these qubits are measured.20 The 
+measurement process translates the quantum information 
+into a classical form, which is read out to a classical register, 
+providing results that can be used as a computing resource.6
+Another key difference in quantum computing is that quan
+tum gates are reversible, meaning that for a given output 
+there is a known input.6 This follows a fundamental theorem 
+in quantum mechanics that information cannot be lost or 
+destroyed. This constraint is not true for all classical logic 
+gates, such as the AND gate.
+Despite these differences, both classical and quantum logic 
+gates are similarly combined into circuits. For the interested 
+reader, Nielsen and Chuang provides a comprehensive review 
+of the details associated with these quantum operations.6
+Quantum circuits can take complex forms, but a simple cir
+cuit can demonstrate a computation analogous to a classical 
+bit-flip (Figure 3C, D). Quantum circuits are read from left- 
+to-right, with the top line representing a quantum register 
+containing information associated with one qubit (Q). The 
+bottom-most line (C) represents a classical register consisting 
+of 1 bit for storing the qubit measurement (M). In this circuit, 
+qubit Q is initialized in a base state of j0i, flipped to a state of 
+j1i, and measured (M). The output of this quantum circuit 
+would yield a state of 1 on the classical register 100% of the 
+time (Figure 3C). If, after initialized, the Hadamard (H) gate 
+0
+M
+Q
+C
+1
+0
+M
+Q
+C
+1
+0
+50:50
+A
+A
+NOT Gate
+A
+Pauli X Gate
+A
+A
+A
+A
+A
+B
+A
+C
+D
+Figure 3. (A) The classical NOT gate, which inverts the input (A) to 
+produce the output (A) indicated in the adjacent truth table indicating 
+classical register output. (B) The quantum Pauli X gate, which operates on 
+a quantum bit (qubit) in state jAi and yields the inverted state jAi, 
+analogous to the classical NOT operation. Both gates demonstrate the 
+inversion principle where an input of 0 yields a classical register output of 
+1, and vice versa. (C) Quantum circuit diagram illustrating the initialization, 
+manipulation, and measurement of a single qubit. The qubit Q starts in 
+the ground state j0i, followed by the application of a Pauli-X gate (X) 
+which inverts the state to j1i. A measurement operation (M) is then 
+performed, the result of which is recorded in the classical register C. The 
+output is indicated as “1,” representing the classical bit obtained post- 
+measurement. (D) Quantum circuit diagram with the Hadamard (H) gate, 
+which encodes the input data into quantum superposition, resulting in a 
+probability of results post-measurement based on the inputs and circuit 
+composition.
+Journal of the American Medical Informatics Association, 2024, Vol. 31, No. 8                                                                                                    
+1777 
+
+is used to encode the data into quantum superposition, the 
+classical register from the circuit would yield a state of 0 
+approximately 50% of the time and 1 approximately 50% of 
+the time (Figure 3D).
+Similar to how qubits are represented in vector form, quan
+tum gates and circuits can also be represented with linear 
+algebraic matrices. The X-gate (ie, Pauli X Gate) can be writ
+ten as: 
+Pauli X 
+0 1
+1 0
+"
+#
+:
+Taken together with the qubit-vector representation, the 
+circuit described in Figure 3C would be written as: 
+j0i ¼
+0 1
+1 0
+"
+# 1
+0
+"
+#
+¼
+0
+1
+"
+#
+¼
+1i:
+j
+More detailed examples of the mathematical representa
+tion of quantum gates and circuits can be found in several 
+references and example circuits with their resulting output 
+simulated with software tools.6,24
+Applications of quantum computing in 
+healthcare and biomedical research
+Recent publications have increasingly described the applica
+tion of QCs in specialized areas of biomedical informatics, 
+such as ML, protein folding, and drug discovery.12,17 This 
+section offers a practical overview of promising research ave
+nues, open questions, and quantum-based computational 
+methods in biomedical informatics. However, it is important 
+to note, recent applications of quantum computing bioinfor
+matics are constrained by scale, as current QCs are limited in 
+size and error correction capabilities, preventing them from 
+handling full-sized datasets.25 Therefore, developing larger 
+and more fault-tolerant QCs remains essential for achieving 
+practical quantum advantage in these fields.
+Artificial intelligence and machine learning
+Quantum computing offers potential benefits in predictive 
+performance and computational scalability for artificial intel
+ligence (AI) and ML applications, particularly for tasks such 
+as classification, regression, clustering, and feature selec
+tion.10,26,27 However, because classical ML algorithms can
+not be directly implemented on quantum hardware, the 
+development of quantum machine learning (QML) algo
+rithms has become an area of focus in this emerging field.10
+Over the past decade, quantum adaptations of classical algo
+rithms have been described, such as quantum support vector 
+machines (QSVMs),28 quantum neural networks (QNNs),29
+variational quantum classifiers (VQCs),30 and quantum ker
+nel estimators,30 along with other QC-based algorithms with
+out clear classical analogs.31
+Recent applications of QML in biomedical and healthcare 
+research include evaluating brain MRI images,32 predicting 
+patient responses to cancer drugs,33 and detecting the pres
+ence or absence of diseases.34–36 In studies that have com
+pared classical ML and QML, the performance of QML 
+models are often similar or underperform, relative to classical 
+counterparts.32,34 It is suggested that future comparative 
+studies in this area may help identify datasets that better lev
+erage QML algorithms and identify optimization opportuni
+ties for QML algorithms.34,37
+There has also been research into reducing model complex
+ity and improving interpretability through quantum-based 
+feature selection.32,38,39 This work predominantly employs 
+quantum annealing (QA) for feature selection. For this 
+approach, correlations such as mutual information or Pear
+son correlation matrices are converted into quadratic uncon
+strained binary optimization (QUBO) problems, which 
+represent the total energy of the system.40 QA can then be 
+leveraged to minimize this energy, where the optimal features 
+correspond to the system’s ground state.32,38,39 But much 
+like QML, the benefits of quantum feature selection in terms 
+of performance, computational scalability, and feature stabil
+ity are yet to be fully established.32
+Genomics
+As the use of high-throughput sequencing continues to 
+increase, so does the need for robust and scalable data ana
+lytics solutions for genomic data.41 Given the raw size and 
+complexity of genomic data, it is an ideal candidate for 
+exploring QC-based solutions which may offer better accu
+racy and performance across many bioinformatics tasks.17
+To this end, recent publications have demonstrated the suc
+cessful implementation of quantum-based algorithms for de 
+novo and reference-based DNA sequence assembly.41–44
+Others have also implemented QC-based solutions for var
+iant detection,25 reconstruction of phylogenetic trees,45,46
+and the detection of epistatic interactions between genomic 
+single nucleotide polymorphisms.47 In these studies, the 
+authors demonstrate that QC-based methods are feasible and 
+accurate but note the limited ability to scale due to the limited 
+size and lack of error correction in current QCs.41
+Protein folding
+Predicting 3-dimensional structures of proteins is a widely 
+researched problem. Recent studies that have employed QC- 
+based algorithms typically frame this challenge as an optimi
+zation problem. The objective of this problem is to identify 
+the ground state energy representing the most stable protein 
+conformation based on a model of the protein’s interactions 
+and conformations.17,48,49 Numerous publications have eval
+uated this approach and investigated the use of adiabatic 
+algorithms, such as QA, and circuit-based algorithms, the lat
+ter of which often use variational quantum algorithms 
+(VQAs).48–50 Collectively, these works have demonstrated 
+that subsampled protein folding problems can be successfully 
+integrated and executed on modern QCs. These results are 
+encouraging as they suggest potential speed enhancements 
+over traditional optimization algorithms and are expected to 
+motivate further research into scaling these methods to larger 
+protein models as advancements in quantum computing tech
+nology occur.17,48,51,52
+Drug discovery
+Computer-aided drug discovery (CADD) plays an integral 
+role in the drug discovery and development process, encom
+passing tasks such as predicting drug-target interactions, per
+forming 
+energy 
+calculations, 
+and 
+conducting 
+virtual 
+screenings.53,54 Given the fundamental properties of quan
+tum mechanics, QC-based methods are seen as a promising 
+avenue of investigation for enhancing currently available 
+1778                                                                                                    
+Journal of the American Medical Informatics Association, 2024, Vol. 31, No. 8 
+
+CADD approaches.55 A number of CADD tasks have 
+recently been implemented on quantum-based hardware and 
+simulators.12 Lau et al investigated the use of QNNs for pre
+dicting mutational effects on drug binding properties, but 
+showed equivocal performance compared to classical neural 
+networks.5 In addition, variational quantum eigensolvers 
+(VQEs) were used to compute protein-ligand activation ener
+gies; however, this was done using QC-simulators under 
+noiseless conditions.56 Similarly, Kirsopp et al, also employed 
+VQEs for calculating protein-ligand binding energies and suc
+cessfully implemented their approach on IBM and Quantini
+uum QC hardware, demonstrating comparable results with 
+classical approaches.57 Additional studies have examined the 
+use of quantum computing for predicting molecular docking 
+configurations,58,59 QNNs for predicting molecular force 
+fields,60 and hybrid quantum generative adversarial networks 
+(qGANs) and quantum variational autoencoders (qVAEs) to 
+generate small and large drug molecules, respectively.61 As 
+with many of the other recent applications of quantum com
+puting, the work in this area remains exploratory and is often 
+implemented in simplified systems to highlight prototypical 
+use cases that work on available QC hardware.57
+Network analysis
+Network analysis, a common framework used in systems 
+biology, is extensively leveraged in bioinformatics for pur
+poses such as molecular modeling, mapping intracellular bio
+logical pathways, and representing neuronal pathways.62–64
+Detecting relationships among the constituents of complex 
+systems has evolved into a dedicated field of study, known as 
+community detection.65 This area focuses on the accurate 
+and efficient partitioning of networks into communities, lead
+ing to the development of graph partitioning algorithms to 
+address this NP-hard problem.63,65 To date, several publica
+tions have shown proof-of-concept implementations of 
+quantum-based 
+algorithms 
+for 
+community 
+detection. 
+Recently, Negre et al, described the implementation of QA 
+for community detection across various benchmark network 
+datasets, demonstrating that the quantum-based method was 
+comparable to classical methods.63 In biological applications, 
+Wierzbinski et al explored the use of D-Wave’s quantum 
+annealers for community detection within brain connec
+tomes. They compared this approach to the Louvain Com
+munity Detection Algorithm and demonstrated superior 
+performance with QA when using higher modularity as a 
+proxy for cluster quality.66
+Cryptography
+In the United States, protected health information (PHI) is 
+defined and regulated primarily by the Health Insurance Port
+ability and Accountability Act of 1996 (HIPAA) and the 
+Security Rule of 2003. These regulations mandate that PHI 
+be handled with care and confidentiality, often necessitating 
+the use of cryptography. Accordingly, the development of 
+quantum algorithms such as Shor’s and Grover’s, which can 
+solve mathematical problems foundational to many modern 
+public key cryptography algorithms, carries significant impli
+cations for the security of healthcare data.12 Recent publica
+tions have explored the use of both gate-based QCs and QA 
+for integer factorization, which is a core mathematical princi
+ple of Rivest–Shamir–Adleman (RSA)-based cryptographic 
+methods.67–69 However, currently available QCs do not yet 
+pose a meaningful threat to modern cryptography, and 
+cryptanalytically relevant QCs are unlikely to become avail
+able before 2030.70 Nonetheless, in response to these poten
+tial threats, governmental agencies have begun to develop 
+and release 4 quantum-resistant cryptographic algorithms, 
+with mandates to migrate federal systems to post-quantum 
+cryptographic methods by 2035.71,72 Despite these proactive 
+steps, there is a theoretical risk that data, if encrypted and 
+stored today, could later be decrypted by more advanced, 
+fault-tolerant QCs in future “harvest-decrypt attacks”.73
+Quantum hardware and software: current 
+state
+The field of quantum computing has undergone remarkable 
+advancement over the last decade, most notably evidenced by 
+the development of universal gate-based QCs by multiple 
+vendors including Microsoft, Honeywell, IBM, Google, and 
+IonQ.74–77 In recent years, these systems have been made 
+accessible via cloud-hosted platforms, which has enabled 
+developers to deploy quantum algorithms on a diverse assort
+ment of quantum hardware. The provision of cloud-based 
+quantum computing resources presents a novel avenue for 
+exploration within biomedical research. Given the acceler
+ated evolution of quantum computing, it will be essential for 
+researchers in their respective domains to identify potential 
+applications and assess where it confers an advantage over 
+classical computing. Accordingly, this section provides a 
+high-level overview of the hardware and software develop
+ment kits (SDKs) currently available to the research commun
+ity to facilitate the acquisition of practical, hands-on 
+experience with QCs.
+In terms of quantum hardware, the current landscape of 
+quantum computing can be divided into several paradigms 
+which sometimes overlap in their implementation: gate-based 
+quantum computing, QA, adiabatic quantum computing, 
+quantum simulation (with both gate-based and non-gate- 
+based variants), topological quantum computing, and 
+measurement-based 
+quantum 
+computing.78
+Gate-based 
+quantum computing implements operations via quantum 
+gates, drawing parallels to how classical computing operates 
+with bits.6 QA and adiabatic quantum computing direct 
+quantum systems to evolve naturally under specified energy 
+configurations, circumventing the necessity for gates.79
+Quantum simulation uses one quantum system to mimic 
+another and can be implemented with either gate-based or 
+non-gate-based approaches.19 Topological quantum comput
+ing leverages particular quasi-particles and their movement 
+patterns, providing inherent resistance to errors owing to 
+their unique properties.80 Conversely, measurement-based 
+quantum computing conducts computations by performing a 
+sequence of measurements on a pre-prepared, highly 
+entangled state, also known as a cluster state.81 Despite the 
+diversity of these paradigms, the close alignment of gate- 
+based systems with classical computing principles has led to 
+this being the predominant method employed and explored 
+by many quantum computing companies and algorithm 
+developers.74–76
+The availability of quantum computing resources varies 
+across vendors, but universal gate-based QPUs are most com
+mon. At the time of this writing, these QPUs typically possess 
+between 50 and 100 qubits, with some implementations 
+offering up to 400þ qubits (IBM Osprey).76 However, access 
+for most non-paid accounts is usually confined to QPUs with 
+Journal of the American Medical Informatics Association, 2024, Vol. 31, No. 8                                                                                                    
+1779 
+
+fewer qubits, for instance 5-10. While paid accounts are 
+available, their cost is prohibitive for many academic endeav
+ors. In response to this, cloud providers extend a variety of 
+academic subscriptions that allow researchers to secure dedi
+cated time on smaller QPUs, in addition to enabling quantum 
+computer simulations on classical computers. These simula
+tors widen the accessibility of quantum development as they 
+typically have shorter queue times and are generally offered 
+free of charge. Quantum simulators can be employed to test 
+and optimize algorithms iteratively using a selected quantum 
+software development kits (QSDKs) prior to submitting jobs 
+to actual quantum hardware, considering that queue times 
+for these shared and limited resources vary.
+Some vendors also provide access to non-gate-based QCs, 
+such as the QA platform offered by D-Wave (Advantage/ 
+LEAP).82 Diverging from gate-based QCs, the QA systems do 
+not typically rely on circuits or logic gates and are tailored 
+towards resolving optimization problems.83 Accordingly, 
+problems submitted to these quantum systems are repre
+sented as a specific mathematical function, such as a QUBO 
+problem, that can subsequently be mapped onto the QPU. 
+This mathematical function is then optimized through itera
+tive sampling of the quantum system toward a target energy 
+state. QA forms part of a subset of a larger quantum comput
+ing paradigm known as adiabatic quantum computing.84
+To interact with quantum hardware and build quantum 
+applications, QSDK and other layers of abstraction have 
+been developed (Figure 4). These SDKs offer abstractions and 
+tools for interfacing with quantum hardware, enabling devel
+opers to manipulate quantum algorithms, gates, and circuits 
+in higher level languages, such as Python and .NET. Exam
+ples of QSDKs include IBM’s Qiskit, Microsoft’s Quantum 
+Development Kit (QDK), and Google’s Cirq.74,85–88 While 
+the physical realization of qubits varies among vendors (eg, 
+superconductor and trapped ion), the application of quantum 
+logic gates remains consistent, facilitating a universal 
+approach to interact with the various gate-based systems. To 
+this end, QSDKs are designed to work both with specific 
+quantum hardware and across platforms; however, the 
+authors have observed that cross-platform compatibility and 
+performance is not universally consistent. There is hope that, 
+as QSDKs and specialized quantum libraries for methods 
+such as QML mature, this interoperability will continue to 
+improve.
+Overall, the current landscape of quantum computing is 
+characterized by a diverse array of quantum hardware and 
+QSDKs. This diversity of resources, marked by differences in 
+design and computational paradigms, offers unique capabil
+ities and constraints that researchers can leverage. QA-based 
+QCs, for example, can possess a substantial number of 
+qubits, reaching up to 5000. However, not all computational 
+problems are readily adaptable to the format required by 
+these non-gate-based systems. Gate-based QCs, conversely, 
+are seen as offering a more adaptable computing framework 
+that can function independently or in conjunction with an 
+analog-like structure. Nonetheless, these gate-based systems 
+grapple with issues related to scalability and are currently 
+limited in the number of qubits they can support in compari
+son to their non-gate-based counterparts. Ultimately, the 
+choice between gate-based and non-gate-based QCs hinges 
+on the specific requirements of the algorithm or task in ques
+tion, making the variety of available quantum computing 
+resources a substantial asset to the field. The continued evolu
+tion of these systems and development of their accompanying 
+software tools promise to further expand the possibilities of 
+quantum computing research and applications.
+Integrating quantum computing with today’s 
+data science platforms
+Historically, CPUs fulfilled the role of executing general- 
+purpose computing tasks, including those related to ML. 
+Physics
+Devices
+Logic Gates / Registers
+Micro Architecture
+Instruction Set Architecture
+Machine Code
+Low-Level Assembly
+High-level Library/SDK
+Algorithm
+Application
+Hardware
+Software
+Increasing Abstraction
+Classical
+Quantum
+Common Classical Algorithms: 
+Kruskal's Algorithm,  Dijkstra's 
+Algorithm, Binary Search Algorithm, 
+Quicksort Algorithm
+Common Q-Algorithms: Shor's 
+algorithm, Grover's algorithm, 
+Variational Quantum Eigensolver
+Common Python libraries: Pandas, 
+PyTorch, SciPy. 
+QISKit (IBM), Forest (Rigetti), Cirq 
+(Google), Quantum Development Kit 
+(Microsoft), Ocean (D-Wave). 
+x86 Assembly, ARM Assembly, RISC-V 
+Assembly, Microprocessor without 
+Interlocked Pipelined Stages. 
+Quantum Assembly Language 
+(QASM), OpenQASM, Quantum 
+Instruction Language, Quantum 
+Intermediate Representation
+Transistors are electrical components 
+used to implement bits - e.g., 
+metal-oxide-semiconductor 
+Qubits can be implemented using 
+various devise, such as superconduct-
+ing circuits, trapped ions, or photonic 
+systems.
+low) across an electrical component. 
+The abstraction of this is referred to as 
+a‘bit’. 
+Two-state quantum mechanical 
+system (e.g., spin up/down of an 
+electron). The abstraction of this is 
+referred to as a‘qubit’. 
+Figure 4. Hierarchical layers of abstraction in computer systems, both classical and quantum. Each layer represents a step up from the physical 
+components that execute basic operations to the sophisticated applications that interact with users. It illustrates how quantum computing parallels and 
+diverges from classical systems, providing a visual comparison of their distinct computing models at each abstraction level. Figure adapted from Fu et al.89
+1780                                                                                                    
+Journal of the American Medical Informatics Association, 2024, Vol. 31, No. 8 
+
+However, as ML models evolved in complexity and conse
+quently demanded increased computational capacity, the lim
+itations of relying solely on CPUs became apparent. In the 
+mid-2000s, ML researchers adapted graphics processing units 
+(GPUs) to substantially expedite the training process of deep 
+neural networks, which had been a considerable impediment 
+in the advancement of ML models.90 In response to this, 
+manufacturers released specialized GPUs and tensor process
+ing units (TPUs) tailored for ML applications.91 These inno
+vations provided more cost-efficient solutions for ML tasks, 
+enabling a greater capacity for model complexity and 
+performance.
+Just as the accessibility of GPUs for ML empowered organ
+izations to train more complex models, the availability of 
+QPUs will likely foster the development of more advanced 
+quantum algorithms, thereby catalyzing new applications 
+and use cases. Since not every computation or algorithm will 
+achieve higher speed or performance on quantum hardware, 
+QPUs should be viewed as an accelerator to CPU-based com
+puting and considered as complementary hardware, rather 
+than as a replacement for conventional computing systems. 
+Therefore, incorporating this emergent technology into 
+increasingly modular system architectures will enable devel
+opers to select the most suitable hardware based on the com
+putational tasks being devised.
+Challenges and opportunities
+One of the primary impediments to the progress of quantum 
+computing lies in achieving and maintaining quantum coher
+ence, or the quantum state, of qubits for extended periods.92
+Physical qubits exist in a delicate state and are sensitive to 
+environmental interference, which can introduce noise into 
+the system.6 Factors like imperfections in the physical qubit, 
+temperature fluctuations, and electromagnetic interference 
+can disrupt their state, leading to a phenomenon known as 
+decoherence.6,92 Efficient error correction mechanisms are 
+vital to the functionality of QCs. However, current error cor
+rection methods are resource-intensive, wherein some 
+approaches require a significant number of physical qubits to 
+protect a single logical qubit. Finally, building scalable quan
+tum systems that can effectively leverage quantum entangle
+ment and superposition to perform complex computations 
+remains a substantial technical hurdle, limiting the number of 
+qubits available in individual systems.
+Given these challenges, there is a need for robust evalua
+tion methods and benchmarking tools to assess quantum 
+computing performance.93 The DiVincenzo criteria act as 
+foundational guidelines, outlining the essential requirements 
+for a practical and reliable quantum computer.94 These crite
+ria emphasize the importance of coherence, scalability, error 
+rates, and the functionality of quantum gates, among other 
+aspects. Related to these criteria, benchmark metrics such as 
+quantum volume offer a comprehensive approach to provide 
+a unified measure of a device’s overall capability.95 Such met
+rics can be used to compare quantum computing systems by 
+normalizing the variations due to system design and func
+tional heterogeneities.
+In addition to the current limitations of quantum hard
+ware, direct applications of quantum-based algorithms to 
+real-world problems remain limited. Notable quantum algo
+rithms, such as Shor’s and Grover’s algorithms, demonstrate 
+theoretical benefits over their classical counterparts by 
+addressing well-defined tasks like factorization and unstruc
+tured search.9,96 Recent studies have shown proof of concept 
+applications that have theoretically achieved quantum 
+advantage over classical computing approaches.19,97,98 How
+ever, bridging the gap between theory and real-world use 
+remains challenging.
+Lastly, quantum computing is an inherently multidiscipli
+nary field that necessitates collaboration among experts from 
+computer science, mathematics, physics, and target applica
+tion areas, including biomedical research and healthcare. The 
+proliferation of cloud based QPUs and the provision of asso
+ciated development environments hold the potential to foster 
+collaborative efforts and information sharing across these 
+diverse fields. However, widespread adoption of quantum 
+computing hinges on numerous contributing factors, includ
+ing the maturation of dedicated software tools, a deeper 
+understanding of where and how quantum advantage can be 
+achieved, and the establishment of easily accessible quantum 
+computing infrastructures integrated with existing platforms.
+Conclusion
+Quantum computing holds significant promise in addressing 
+certain challenges encountered by classical computing, partic
+ularly concerning complex analyses and optimization.99 Tra
+ditionally, biomedical researchers have grappled with scaling 
+complex algorithms, such as those simulating chemical reac
+tions or biological structures. The computational complexity 
+of these analyses often overwhelms classical computing. The 
+sheer number of variables involved in these processes leads to 
+an exponential increase in the complexity of comprehensive 
+and accurate models.4,100 Classical simulation then becomes 
+computationally intractable, often necessitating the adoption 
+of simplified models and/or approximations. In these scenar
+ios, quantum computing offers a theoretical advantage in 
+that it can potentially solve certain problems that are compu
+tationally intractable for classical computers.5
+Despite the theoretical advantages of quantum computing 
+compared to its classical counterparts, tangible demonstra
+tion of these benefits for real-world, previously intractable 
+problems remains limited. Nevertheless, the emergence of 
+quantum computing resources presents an opportunity to 
+bolster collaborative endeavors across varied domains of 
+expertise. By emulating the interdisciplinary approach 
+adopted within AI and ML, there exists the potential to 
+broaden and deepen the application of quantum technology. 
+In parallel to the ongoing technological advancements, 
+exploratory initiatives within quantum algorithm and appli
+cation development may precipitate significant break
+throughs in biomedical research and healthcare, potentially 
+effecting profound changes in these fields.
+Author contributions
+Thomas J.S. Durant and Wade L. Schulz conducted the litera
+ture review and drafted the manuscript. Elizabeth Knight, 
+Brent Nelson, Seung J. Lee, Dominic Walliman, Hobart P. 
+Young, and Lucila Ohno-Machado, added critical discussion 
+points and edited the manuscript. Wade L. Schulz was the 
+principal investigator of this study; he provided the original 
+idea, overall supervision of this study, and critical editing of 
+the manuscript.
+Journal of the American Medical Informatics Association, 2024, Vol. 31, No. 8                                                                                                    
+1781 
+
+Funding
+This work was supported by National Institutes of Health 
+(NIH) grant number 1OT2OD032742-01.
+Conflicts of interest
+T.J.S.D. was a consultant for Roche, a diagnostics company 
+(fees). W.L.S. was a technical consultant to HugoHealth, a 
+personal health information platform (equity, fees); is a 
+cofounder of Refactor Health, an AI-augmented data man
+agement platform for healthcare (equity); is a consultant for 
+Detect, a point-of-care diagnostics company (equity, fees). B. 
+N. is a consultant for Refactor Health, an AI-augmented data 
+management platform for healthcare (equity). H.P.Y. is a 
+consultant for Refactor Health, an AI-augmented data man
+agement platform for healthcare (fees). S.D. consults for Roy
+alty Pharma (fees).
+Data availability
+No new data were generated or analyzed in support of this 
+research.
+References
+001. Ladd TD, Jelezko F, Laflamme R, et al. Quantum computers. 
+Nature. 
+2010;464(7285):45-53. 
+https://doi.org/10.1038/ 
+nature08812
+002. Alexeev Y, Bacon D, Brown KR, et al. Quantum computer sys
+tems for scientific discovery. PRX Quantum. 2021;2(1):017001.
+003. Feynman RP. Simulating physics with computers. Int J Theor 
+Phys. 1982;21(6-7):467-488.
+004. Emani PS, Warrell J, Anticevic A, et al. Quantum computing at 
+the frontiers of biological sciences. Nat Methods. 2021;18 
+(7):701-709.
+005. Lau B, Emani PS, Chapman J, et al. Insights from incorporating 
+quantum computing into drug design workflows. Bioinformatics. 
+2023;39(1):btac789.
+006. Nielsen MA, Chuang IL. Quantum Computation and Quantum 
+Information. Cambridge University Press; 2010.
+007. Cao Y, Romero J, Olson JP, et al. Quantum chemistry in the age 
+of quantum computing. Chem Rev. 2019;119(19):10856-10915.
+008. Brooks M. Quantum computers: what are they good for? Nature. 
+2023;617(7962):S1-S3.
+009. Grover LK. A fast quantum mechanical algorithm for database 
+search. In: Proceedings of the Twenty-Eighth Annual ACM Sym
+posium on Theory of Computing—STOC ’96. ACM Press; 
+1996:212–219. https://doi.org/10.1145/237814.237866
+010. Rani S, Kumar Pareek P, Kaur J, et al. Quantum machine learning 
+in healthcare: developments and challenges. In: 2023 IEEE Inter
+national Conference on Integrated Circuits and Communication 
+Systems (ICICACS). IEEE; 2023:1–7. https://doi.org/10.1109/ 
+ICICACS57338.2023.10100075
+011. Hoefler T, Haener T, Troyer M. Disentangling hype from practi
+cality: on realistically achieving quantum advantage. 2023. 
+Accessed August 13, 2023. http://arxiv.org/abs/2307.00523
+012. Fl€other FF, Griffin PF. The state of quantum computing applica
+tions in health and medicine. Res Dir Quantum Technol. 2023;1: 
+e10. https://doi.org/10.1017/qut.2023.4
+013. Ravi GS, Smith KN, Gokhale P, et al. Quantum computing in the 
+cloud: analyzing job and machine characteristics. In: 2021 IEEE 
+International 
+Symposium 
+on 
+Workload 
+Characterization 
+(IISWC). 
+IEEE; 
+2021:39–50. 
+https://doi.org/10.1109/ 
+IISWC53511.2021.00015
+014. Aaronson S. BQP and the polynomial hierarchy. In: Proceedings 
+of the Forty-Second ACM Symposium on Theory of Computing. 
+New York, NY: Association for Computing Machinery; 
+2010:141–50.
+015. Au-Yeung R, Chancellor N, Halffmann P. NP-hard but no longer 
+hard to solve? Using quantum computing to tackle optimization 
+problems. Front Quantum Sci Technol. 2023;2:1128576. https:// 
+doi.org/10.3389/frqst.2023.1128576
+016. Rasool RU, Ahmad HF, Rafique W, et al. Quantum computing 
+for healthcare: a review. Future Internet. 2023;15(3):94. https:// 
+doi.org/10.3390/fi15030094
+017. Pal S, Bhattacharya M, Lee S-S, et al. Quantum computing in the 
+next-generation computational biology landscape: from protein 
+folding to molecular dynamics. Mol Biotechnol. 2024;66 
+(2):163-178.
+018. Howard M, Wallman J, Veitch V, et al. Contextuality supplies 
+the ‘magic’ for quantum computation. Nature. 2014;510 
+(7505):351-355.
+019. Daley AJ, Bloch I, Kokail C, et al. Practical quantum advantage 
+in quantum simulation. Nature. 2022;607(7920):667-676.
+020. Hughes C, Isaacson J, Perry A, et al. Quantum Computing for 
+the Quantum Curious. Springer International Publishing; 2021. 
+https://doi.org/10.1007/978-3-030-61601-4
+021. Dirac PAM. A new notation for quantum mechanics. Math Proc 
+Camb Phil Soc. 1939;35(3):416-418.
+022. Mano MM, Ciletti MD. Digital Design (4th Edition). Prentice- 
+Hall, Inc. 2006.
+023. Singh S, Chawla P, Sarkar A, et al. Universal quantum computing 
+using single-particle discrete-time quantum walk. Sci Rep. 
+2021;11(1):11551.
+024. IBM Quantum Learning. Accessed January 25, 2024. https:// 
+learning.quantum.ibm.com/
+025. K€osoglu-Kind B, Loredo R, Grossi M, et al. A biological sequence 
+comparison algorithm using quantum computers. Sci Rep. 
+2023;13(1):14552.
+026. Brooks M. Towards quantum machine learning. Nature. Pub
+lished Online First: May 24, 2023. https://doi.org/10.1038/ 
+d41586-023-01718-2
+027. Houssein EH, Abohashima Z, Elhoseny M, et al. Machine learn
+ing in the quantum realm: the state-of-the-art, challenges, and 
+future vision. Expert Syst Appl. 2022;194:116512. https://doi. 
+org/10.1016/j.eswa.2022.116512
+028. Rebentrost P, Mohseni M, Lloyd S. Quantum support vector 
+machine for big data classification. Phys Rev Lett. 2014;113 
+(13):130503.
+029. Schuld M, Sweke R, Meyer JJ. Effect of data encoding on the 
+expressive power of variational quantum-machine-learning mod
+els. Phys Rev A. 2021;103(3):032430.
+030. Havlıcek V, Corcoles AD, Temme K, et al. Supervised learning 
+with quantum-enhanced feature spaces. Nature. 2019;567 
+(7747):209-212.
+031. Sergioli G, Giuntini R, Freytes H. A new quantum approach to 
+binary classification. PLoS One. 2019;14(5):e0216224.
+032. Felefly T, Roukoz C, Fares G, et al. An explainable MRI- 
+radiomic quantum neural network to differentiate between large 
+brain metastases and high-grade glioma using quantum annealing 
+for feature selection. J Digit Imaging. 2023;36(6):2335-2346.
+033. Sagingalieva A, Kordzanganeh M, Kenbayev N, et al. Hybrid 
+quantum neural network for drug response prediction. Cancers 
+(Basel). 2023;15(10):2705.
+034. Gupta H, Varshney H, Sharma TK, et al. Comparative perform
+ance analysis of quantum machine learning with deep learning 
+for diabetes prediction. Complex Intell Syst. 2022;8:3073-3087. 
+https://doi.org/10.1007/s40747-021-00398-7
+035. Maheshwari D, Ullah U, Marulanda PAO, et al. Quantum 
+machine learning applied to electronic healthcare records for 
+ischemic heart disease classification. Hum-Centric Comput Inf 
+Sci. 2023;13:1-15. https://doi.org/10.22967/HCIS.2023.13.006
+036. Abdulsalam G, Meshoul S, Shaiba H. Explainable heart disease 
+prediction using ensemble-quantum machine learning approach. 
+Intell Autom Soft Comput. 2023;36(1):761-779.
+1782                                                                                                    
+Journal of the American Medical Informatics Association, 2024, Vol. 31, No. 8 
+
+037. Liu J, Liu M, Liu J-P, et al. Towards provably efficient quantum 
+algorithms for large-scale machine-learning models. Nat Com
+mun. 2024;15(1):434.
+038. Choi J, Kim K, Park SH, et al. Investigation of factors regarding 
+the effects of COVID-19 pandemic on college students’ depres
+sion by quantum annealer. Sci Rep. 2024;14(1):4684.
+039. Vlasic A, Grant H, Certo S. An advantage using feature selection 
+with a quantum annealer. QIC. 2023;23(13&14):1091-1104.
+040. Li RY, Di Felice R, Rohs R, et al. Quantum annealing versus clas
+sical machine learning applied to a simplified computational biol
+ogy problem. NPJ Quantum Inf. 2018;4:14. https://doi.org/10. 
+1038/s41534-018-0060-8
+041. Varsamis GD, Karafyllidis IG, Gilkes KM, et al. Quantum gate 
+algorithm for reference-guided DNA sequence alignment. Com
+put Biol Chem. 2023;107:107959. https://doi.org/10.1016/j. 
+compbiolchem.2023.107959
+042. NałeRcz-Charkiewicz K, Nowak RM. Algorithm for DNA 
+sequence assembly by quantum annealing. BMC Bioinformatics. 
+2022;23(1):122.
+043. Boev AS, Rakitko AS, Usmanov SR, et al. Genome assembly 
+using quantum and quantum-inspired annealing. Sci Rep. 
+2021;11(1):13183.
+044. Sarkar A, Al-Ars Z, Bertels K. QuASeR: quantum accelerated de 
+novo DNA sequence reconstruction. PLoS One. 2021;16(4): 
+e0249850.
+045. Ellinas D, Jarvis P. Quantum simulation of phylogenetic trees. 
+arXiv. 2011. https://doi.org/10.48550/arXiv.1105.1582
+046. Onodera W, Hara N, Aoki S, et al. Phylogenetic tree reconstruc
+tion via graph cut presented using a quantum-inspired computer. 
+Mol Phylogenet Evol. 2023;178:107636. https://doi.org/10. 
+1016/j.ympev.2022.107636
+047. Hoffmann M, Poschenrieder JM, Incudini M, et al. Network 
+medicine-based epistasis detection in complex diseases: ready for 
+quantum computing. medRxiv. 2023. http://doi.org/10.1101/ 
+2023.11.07.23298205
+048. Robert A, Barkoutsos P, Woerner S, et al. Resource-efficient 
+quantum algorithm for protein folding. NPJ Quantum Inf. 
+2021;7(1):38.
+049. Perdomo-Ortiz A, Dickson N, Drew-Brook M, et al. Finding 
+low-energy conformations of lattice protein models by quantum 
+annealing. 
+Sci 
+Rep. 
+2012;2:571. 
+https://doi.org/10.1038/ 
+srep00571
+050. Chandarana P, Hegade NN, Montalban I, et al. Digitized coun
+terdiabatic quantum algorithm for protein folding. Phys Rev 
+Appl. 2023;20(1):014024.
+051. Wong R, Chang W-L. Fast quantum algorithm for protein struc
+ture prediction in hydrophobic-hydrophilic model. J Parallel Dis
+trib Comput. 2022;164:178-190. https://doi.org/10.1016/j.jpdc. 
+2022.03.011
+052. Fox DM, MacDermaid CM, Schreij AMA, et al. RNA folding 
+using quantum computers. PLoS Comput Biol. 2022;18(4): 
+e1010032.
+053. Bajorath J. Computer-aided drug discovery. F1000Res. 2015;4: 
+F1000 Faculty Rev-630.
+054. Sadybekov AV, Katritch V. Computational approaches stream
+lining drug discovery. Nature. 2023;616(7958):673-685.
+055. Santagati R, Aspuru-Guzik A, Babbush R, et al. Drug design on 
+quantum computers. Nat Phys. 2024;20:549-557. https://doi. 
+org/10.1038/s41567-024-02411-5
+056. Mensa S, Sahin E, Tacchino F, et al. Quantum machine learning 
+framework for virtual screening in drug discovery: a prospective 
+quantum advantage. Mach Learn Sci Technol. 2023;4:015023. 
+https://doi.org/10.1088/2632-2153/acb900
+057. Kirsopp JJM, Di Paola C, Manrique DZ, et al. Quantum compu
+tational quantification of protein–ligand interactions. Int J Quan
+tum Chem. 2022;122(22):e26975.
+058. Hamilton CS, Kruse R, Sansoni L, et al. Gaussian Boson sam
+pling. Phys Rev Lett. 2017;119(17):170501.
+059. Banchi L, Fingerhuth M, Babej T, et al. Molecular docking with 
+Gaussian Boson sampling. Sci Adv. 2020;6(23):eaax1950.
+060. Kiss O, Tacchino F, Vallecorsa S, et al. Quantum neural networks 
+force fields generation. Mach Learn Sci Technol. 2022;3:035004. 
+https://doi.org/10.1088/2632-2153/ac7d3c
+061. Li J, Alam M, Sha CM, et al. Invited: drug discovery approaches 
+using quantum machine learning. In: 2021 58th ACM/IEEE 
+Design Automation Conference (DAC). 2021:1356–1359. 
+https://doi.org/10.1109/DAC18074.2021.9586268
+062. Ma’ayan A. Introduction to network analysis in systems biology. 
+Sci Signal. 2011;4(190):tr5.
+063. Negre CFA, Ushijima-Mwesigwa H, Mniszewski SM. Detecting 
+multiple communities using quantum annealing on the D-Wave 
+system. PLoS One. 2020;15(2):e0227538.
+064. Weidner FM, Schwab JD, W€olk S, et al. Leveraging quantum 
+computing for dynamic analyses of logical networks in systems 
+biology. Patterns (NY). 2023;4(3):100705.
+065. Fortunato S. Community detection in graphs. Phys Rep. 
+2010;486(3-5):75-174.
+066. Wierzbinski M, Falco-Roget J, Crimi A. Community detection in 
+brain connectomes with hybrid quantum computing. Sci Rep. 
+2023;13(1):3446.
+067. Wang B, Hu F, Yao H, et al. Prime factorization algorithm based 
+on parameter optimization of Ising model. Sci Rep. 2020;10 
+(1):7106.
+068. Bhatia V, Ramkumar KR. An efficient quantum computing tech
+nique for cracking RSA using Shor’s algorithm. In: 2020 IEEE 
+5th International Conference on Computing Communication 
+and Automation (ICCCA). 2020:89–94. https://doi.org/10.1109/ 
+ICCCA49541.2020.9250806
+069. Rivest RL, Shamir A, Adleman L. A method for obtaining digital 
+signatures and public-key cryptosystems. Commun ACM. 
+1978;21(2):120-126. https://doi.org/10.1145/359340.359342
+070. National Academies of Sciences, Engineering, and Medicine, 
+Division on Engineering and Physical Sciences, Intelligence Com
+munity Studies Board, et al. Quantum Computing: Progress and 
+Prospects. National Academies Press; 2019.
+071. Young SD. National Security Memorandum on Promoting 
+United States Leadership in Quantum Computing While Mitigat
+ing Risks to Vulnerable Cryptographic Systems. The White 
+House. 2022. Accessed April 23, 2024. https://www.whitehouse. 
+gov/briefing-room/statements-releases/2022/05/04/national- 
+security-memorandum-on-promoting-united-states-leadership- 
+in-quantum-computing-while-mitigating-risks-to-vulnerable- 
+cryptographic-systems/
+072. NIST Announces First Four Quantum-Resistant Cryptographic 
+Algorithms. NIST. Published Online First: July 5, 2022.
+073. Ali A. A pragmatic analysis of pre- and post-quantum cyber 
+security scenarios. In: 2021 International Bhurban Conference 
+on Applied Sciences and Technologies (IBCAST). 2021:686–692. 
+https://doi.org/10.1109/IBCAST51254.2021.9393278
+074. Google Quantum AI. Accessed February 10, 2024. https://quan
+tumai.google/
+075. Azure Quantum j Azure Quantum Homepage. Accessed Febru
+ary 10, 2024. https://quantum.microsoft.com/
+076. IBM Quantum Computing. Accessed February 10, 2024. https:// 
+www.ibm.com/www.ibm.com/quantum
+077. Quantum Honeywell. Accessed February 10, 2024. https://www. 
+honeywell.com/us/en/company/quantum
+078. Gyongyosi L, Imre S. A survey on quantum computing technol
+ogy. Comput Sci Rev. 2019;31:51-71. https://doi.org/10.1016/j. 
+cosrev.2018.11.002
+079. Jain S. Solving the traveling salesman problem on the D-wave 
+quantum computer. Front Phys. 2021;9. https://doi.org/10.3389/ 
+fphy.2021.760783
+Journal of the American Medical Informatics Association, 2024, Vol. 31, No. 8                                                                                                    
+1783 
+
+080. Stern A, Lindner NH. Topological quantum computation—from 
+basic concepts to first experiments. Science. 2013;339 
+(6124):1179-1184.
+081. Raussendorf R, Browne DE, Briegel HJ. Measurement-based 
+quantum computation on cluster states. Phys Rev A. 2003;68 
+(2):022312.
+082. D-Wave Systems j The Practical Quantum Computing Company. 
+Accessed February 10, 2024. https://www.dwavesys.com/
+083. Boixo S, Rønnow TF, Isakov SV, et al. Evidence for quantum 
+annealing with more than one hundred qubits. Nat Phys. 
+2014;10(3):218-224. https://doi.org/10.1038/nphys2900
+084. Albash T, Lidar DA. Adiabatic quantum computation. Rev Mod 
+Phys. 2018;90(1):015002.
+085. OceanTM Developer Tools j D-Wave. Accessed February 10, 
+2024. https://www.dwavesys.com/solutions-and-products/ocean/
+086. Qiskit. GitHub. Accessed February 10, 2024. https://github.com/ 
+Qiskit
+087. Bradben. Get started with the Quantum Development Kit— 
+Azure Quantum. 2024. Accessed February 10, 2024. https:// 
+learn.microsoft.com/en-us/azure/quantum/install-overview-qdk
+088. PennyLane. Accessed February 10, 2024. https://pennylane.ai/
+089. Fu X, Rol MA, Bultink CC, et al. An experimental microarchitec
+ture for a superconducting quantum processor. In: Proceedings 
+of the 50th Annual IEEE/ACM International Symposium on 
+Microarchitecture. Association for Computing Machinery; 2017. 
+https://doi.org/10.1145/3123939.3123952
+090. Witt S. How Jensen Huang’s Nvidia Is Powering the A.I. Revolu
+tion j The New Yorker. Accessed February 10, 2024. https:// 
+www.newyorker.com/magazine/2023/12/04/how-jensen- 
+huangs-nvidia-is-powering-the-ai-revolution
+091. Wang YE, Wei G-Y, Brooks D. Benchmarking TPU, GPU, and 
+CPU Platforms for Deep Learning. 2019. Accessed February 10, 
+2024. http://arxiv.org/abs/1907.10701
+092. Bravyi S, Cross AW, Gambetta JM, et al. High-threshold and 
+low-overhead fault-tolerant quantum memory. 2023. Accessed 
+February 10, 2024. http://arxiv.org/abs/2308.07915
+093. Resch S, Karpuzcu UR. Benchmarking quantum computers and 
+the impact of quantum noise. ACM Comput Surv. 2022;54 
+(7):1-35.
+094. DiVincenzo DP. The physical implementation of quantum com
+putation. Fortschr Phys. 2000;48(9-11):771-783.
+095. Cross AW, Bishop LS, Sheldon S, et al.  Validating quantum com
+puters using randomized model circuits. Phys Rev A. 2019;100 
+(3):032328. https://doi.org/10.1103/PhysRevA.100.032328
+096. Shor PW. Polynomial-time algorithms for prime factorization 
+and discrete logarithms on a quantum computer. SIAM Rev. 
+1999;41(2):303-332.
+097. Arute F, Arya K, Babbush R, et al. Quantum supremacy using a 
+programmable superconducting processor. Nature. 2019;574 
+(7779):505-510. https://doi.org/10.1038/s41586-019-1666-5
+098. Kim Y, Eddins A, Anand S, et al. Evidence for the utility of quan
+tum computing before fault tolerance. Nature. 2023;618 
+(7965):500-505. https://doi.org/10.1038/s41586-023-06096-3
+099. Abbas A, Ambainis A, Augustino B, et al. Quantum optimiza
+tion: potential, challenges, and the path forward. 2023. Accessed 
+February 10, 2024. http://arxiv.org/abs/2312.02279
+100. Cheng H-P, Deumens E, Freericks JK, et al. Application of quan
+tum computing to biochemical systems: a look to the future. 
+Front Chem. 2020;8:587143. https://doi.org/10.3389/fchem. 
+2020.587143
+101. Sapova MD, Fedorov AK. Variational quantum eigensolver tech
+niques for simulating carbon monoxide oxidation. Commun 
+Phys. 2022;5(1):199.
+102. Kim Y, Choi J, Kim B, et al. Association between Prefrontal 
+fNIRS signals during cognitive tasks and college scholastic ability 
+test (CSAT) scores: analysis using a quantum annealing 
+approach. arXiv. 2024. https://doi.org/10.48550/arXiv.2402. 
+04287
+103. Fedorov AK, Gelfand MS. Towards practical applications in 
+quantum computational biology. Nat Comput Sci. 2021;1 
+(2):114-119.
+# The Author(s) 2024. Published by Oxford University Press on behalf of the American Medical Informatics Association.
+This is an Open Access article distributed under the terms of the Creative Commons Attribution License (https://creativecommons.org/licenses/by/4.0/), which permits 
+unrestricted reuse, distribution, and reproduction in any medium, provided the original work is properly cited.
+Journal of the American Medical Informatics Association, 2024, 31, 1774–1784
+https://doi.org/10.1093/jamia/ocae149
+Review
+1784                                                                                                    
+Journal of the American Medical Informatics Association, 2024, Vol. 31, No. 8 

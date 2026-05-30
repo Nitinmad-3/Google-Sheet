@@ -1,0 +1,1978 @@
+Source-PDF: D:\Review\New folder\Forecastingtime-series focused\Neurology\A quantum inspired machine learning approach for multimodal Parkinson’s disease screening.pdf
+Relative-Path: New folder\Forecastingtime-series focused\Neurology\A quantum inspired machine learning approach for multimodal Parkinson’s disease screening.pdf
+--------------------------------------------------------------------------------
+
+Nature Reviews Molecular Cell Biology
+nature reviews molecular cell biology
+https://doi.org/10.1038/s41580-025-00918-0
+Roadmap
+ Check for updates
+Advancing single-cell omics 
+and cell-based therapeutics 
+with quantum computing
+Aritra Bose 
+  1, Kahn Rhrissorrakrai 
+  1, Filippo Utro 
+  1, Laxmi Parida 
+  1 
+ & the Quantum for Healthcare Life  
+Sciences Consortium*
+Abstract
+The generation of highly accurate models of behaviours of 
+individual cells and cell populations through integration of 
+high-resolution assays with advanced computational tools would 
+transform precision medicine. Recent breakthroughs in single-cell and 
+spatial transcriptomics and multi-omics technologies, coupled with 
+artificial intelligence, are driving rapid progress in model development. 
+Complementing the advances in artificial intelligence, quantum 
+computing is maturing as a novel compute paradigm that may offer 
+potential solutions to overcome the computational bottlenecks 
+inherent to capturing cellular dynamics. In this Roadmap article, we 
+discuss the advancements and challenges in spatiotemporal single-cell 
+analysis, explore the possibility of quantum computing to address the 
+challenges and present a case study on how quantum computing may 
+be integrated into cell-based therapeutics. The specific confluence 
+of quantum and classical computing with high-resolution assays may 
+offer a crucial path towards the generation of transformative models 
+of cellular behaviours and perturbation responses.
+Sections
+Introduction
+Quantum computing in spatial 
+transcriptomics
+Temporal quantum 
+computational modelling in 
+single-cell transcriptomics
+Integrating single-cell 
+multi-omics and discovering 
+meaningful interactions
+Learning from limited samples
+A quantum-enabled 
+multimodal cellular model  
+use case
+Conclusion and future 
+perspective
+1IBM Research, Yorktown Heights, NY, USA. *A list of authors and their affiliations appears at the end of the paper. 
+ e-mail: parida@us.ibm.com
+
+Nature Reviews Molecular Cell Biology
+Roadmap
+and probability-based Bayesian methods, kernel methods, optimal 
+transport, tensor decomposition, ensemble learning, non-negative 
+matrix factorization, clustering using kernel methods and topologi-
+cal data analysis (TDA) and so on17. Although applications of these 
+methods to single-cell analyses have been impressive, important 
+limitations remain that hinder their application in the clinic29. Some 
+of these limitations are related to native properties of single-cell data, 
+e.g. innate complexity and scale28, whereas others are associated 
+with shortcomings of AI algorithms, for example, inability to learn 
+in sample-limited contexts, model overfitting, learning saturation30, 
+difficulty in capturing global contextual signals, poor generaliza-
+tion to out-of-distribution (OOD) data and quadratic time and space 
+complexity, among others. These challenges can be exacerbated in 
+combined multimodal settings, where AI models often fail to cap-
+ture fine-grained spatial resolution31, to generalize across batches 
+or experimental conditions32 or to resolve subtle temporal or spatial 
+trajectories33.
+Though AI has proven crucial for analysing (spatial) single-cell 
+data, the above noted limitations may prevent the full realization of 
+these spatial single-cell technologies. For certain classes of compu-
+tational problems, the solution may lie with quantum computing, 
+which is an emerging paradigm of high-performance computation 
+that departs from the conventional binary logic underpinning classical 
+computing (Fig. 1b). Instead, quantum computing leverages principles 
+of quantum mechanics34,35, such as superposition and entanglement, 
+to perform calculations. These principles are particularly attractive 
+for those problems whose complexity or memory requirements grow 
+exponentially.
+Several different quantum computing architectures are being 
+developed on distinct types of quibits, including neutral atom qubits36, 
+spin qubits37, topological qubits38, trapped-ion qubits39 and supercon-
+ducting qubits40–42. The scale of these quantum devices ranges from 
+tens to 1,000 qubits, and although they mainly remain susceptible 
+to noise43, the development of error correction techniques used to 
+protect quantum information is advancing44,45. These noisy devices 
+are termed prefault tolerant quantum devices (PFTQD), as opposed 
+to fault-tolerant quantum devices, in which error is corrected to 
+yield logical qubits45. Progress has been made beyond qubit counts 
+in quantum hardware43, such as dynamic circuits with mid-circuit 
+measurements46, improved fidelities of 1-qubit and 2-qubit gates47 and 
+increased execution speed of quantum circuits47. Moreover, advances in 
+error mitigation and error suppression techniques, when coupled with 
+circuit cutting and knitting techniques48,49, have enabled researchers 
+to scale up the size of their quantum experiments.
+These quantum computation advancements (Fig. 1b) demonstrate 
+progress towards a stage where quantum computers can solve certain 
+meaningful problems faster, cheaper or more accurately than classical 
+computers alone for selected applications40,50,51. Similarly, quantum 
+algorithms such as quantum optimization and quantum ML (QML) aim 
+to analyse datasets more efficiently or with better generalization than 
+classical algorithms52–54. Depending on the specific use case, quantum 
+algorithms may enable certain benefits in metrics such as accuracy, 
+energy efficiency, input data requirements and speed55.
+Driven by the rapid advancement in both quantum comput-
+ing and single-cell technologies, in this Roadmap, we consider the 
+potential of quantum computing to accelerate discovery in single-cell 
+and spatiotemporal single-cell analyses, particularly given certain 
+constraints faced by classical computing56–60. In the following five 
+sections, we discuss the advantages of and challenges faced by 
+Introduction
+Human physiology and diseases are fundamentally a function of the 
+states, behaviours and interactions of billions of individual cells. 
+Therefore, understanding the behaviours of individual cells or cell 
+collectives in a multitude of contexts, such as stimulation through 
+signalling molecules or exposure to therapeutic agents, has wide rang-
+ing implications to human wellness, diseases and ageing and is driving 
+technological innovation (Fig. 1). Consequently, technologies such as 
+single-cell sequencing, spatial transcriptomics and spatial proteomics 
+methods have been named ‘Method of the Year’ by Nature Methods 
+in 20131, 20212 and 20243, respectively. Moreover, recent consortia 
+efforts to develop biological atlases, such as The Cancer Genome 
+Atlas4, Human Tumour Atlas Network5, Human BioMolecular Atlas6, 
+Human Cell Atlas7,8 and Virtual Cell Atlas9, have generated the neces-
+sary resources to capture the molecular behaviours of cells and tissues 
+by creating vast repositories of genomic, transcriptomic, proteomic, 
+epigenomic, imaging and so on data. Although each of these modali-
+ties is individually informative, the true potential lies in the ability 
+to develop large multimodal models capable of discovering biologi-
+cal properties by integrating the orthogonal information contained 
+across assays (Fig. 1a). These multimodal methodologies are already 
+being deployed for applications such as generating single-cell maps 
+of metastatic breast cancer10, characterizing tumour evolution within 
+the three-dimensional microenvironmental context11 and building a 
+spatiotemporal atlas of the human maternal–foetal interface12.
+The integration of these high-resolution technologies can cap-
+ture a holistic perspective of the cellular and metabolic activities of 
+a malfunctioning tissue with single-cell precision, enabling the study 
+of spatiotemporal dynamics of gene expression, molecular interac-
+tions, signalling pathways and environmental factors13 with unprec-
+edented resolution. Studies demonstrating the clinical usefulness of 
+this perspective include those of cancer14, cardiovascular disease15, 
+and diabetes16. With the advent of spatial transcriptomics methods, 
+it is possible to detect, model and understand cellular microenviron-
+ments at exact spatial coordinates. This advancement enables explor-
+ing cell–cell interactions (CCIs) while incorporating intracellular and 
+extracellular information to gain insight into the molecular underpin-
+nings of complex diseases17, whose heterogeneous pathologies cannot 
+be described through single-protein effects.
+The breakthroughs made with these assays and consortia efforts 
+were only possible with a corresponding transformative application of 
+artificial intelligence (AI) and machine learning (ML) to biological prob-
+lems, which enabled new advancements in multimodal models, syn-
+thetic biology and protein structure prediction (Fig. 1b). For instance, 
+predicting the three-dimensional protein structure from sequence18 
+has been substantially improved through transformer networks19, 
+with profound effects on synthetic biology and attempts to generate 
+large protein complexes20,21, proteins and, specifically, enzymes22,23. 
+AI/ML models have been used to predict the effects of non-coding 
+genomic variants24, reach human-level performance with automated 
+whole-cell segmentation25 and match the accuracy of clinicians in 
+imaging diagnostics26,27.
+Computational methods used in spatial transcriptomics perform 
+multiple tasks, including integration of single-cell RNA sequencing 
+(scRNA-seq) data, cell-type annotation, cell segmentation, spatial 
+clustering, dimensionality reduction, inference of cell trajectories and 
+interactions and data visualization28. These tasks are often performed 
+using methods that can be broadly grouped together on the basis of 
+their underlying similarities, including graph-based deep learning 
+
+Nature Reviews Molecular Cell Biology
+Roadmap
+state-of-the-art algorithms in multiple domains and review quantum 
+computing analogues for those techniques, in addition to discussing 
+how they may be able to solve some of the identified challenges (Fig. 2 
+and Table 1). We address topics of quantum computing in spatial 
+transcriptomics, temporal quantum computational modelling in 
+single-cell transcriptomics, integration of single-cell multi-omics 
+and learning from limited numbers of samples. We finally provide a 
+framework for integrating quantum algorithms with state-of-the-art 
+ML algorithms for a quantum-enabled multimodal cellular model 
+use case (Fig. 3).
+Quantum computing in spatial transcriptomics
+We will use spatial transcriptomics as a specific data modality to highlight 
+computational tasks that would be applicable to similar modalities such 
+as spatial proteomics. Spatial transcriptomics refers to methodologies 
+for quantifying mRNA expression of large numbers of genes in addition 
+to preserving the positional context of cells in a tissue. This is achieved 
+through either imaging-based methods, such as single-molecule fluo-
+rescence in situ hybridization (smFISH), which visualizes gene expres-
+sion in the cellular space, or through sequencing-based methods that 
+capture transcriptomes from defined tissue regions61.
+Cell trajectory
+Spatiotemporal single-cell representation
+Multimodal omics analysis
+Image/spatial
+segmentation
+Cell annotation
+Sample acquistition
+Spatial assay
+Single-cell assay
+Single-cell
+barcoding and
+sequencing
+Sanger sequencing
+PCR
+First PC
+Feynman proposes quantum computing 
+RNA-seq
+Human genome 
+sequenced
+First NGS (454)
+scRNA-seq (single-cell 
+transcriptomics)
+Spatial transcriptomics
+Spatial multi-omics
+10x Genomics,
+Smart-seq, Drop-seq
+Single-cell multi-omics, 
+RNA FISH, Slide-seq
+Spatial proteomics,
+ATAC-seq, CITE-seq
+Real-time in vivo 
+spatial profiling, 
+increased resolutiion
+1970s
+1980s
+1990s
+2001
+2003
+2005
+2006
+2007
+2009
+2011
+2015
+2016
+2017
+2018
+2020
+2021
+2023
+2029
+2030s
+Assay milestones
+b
+a
+Classical computing
+Quantum computing
+Deep learning
+AlphaGO 
+Transformers
+IBM System One
+GPT1
+GPT3
+AlphaFold
+Statistical machine learning
+(SVM, HMM) and CNNs
+Shor’s and Grover’s algorithms
+Shor’s algorithm on NMR 
+quantum computer
+Quantum error correction code 
+Transmon superconducting qubit 
+and  D-Wave One
+Utiilty scale quantum computation 
+Error corrected quantum computer 
+with 200 qubits
+2,000 logical qubits and 
+quantum-centric supercomputers
+IBM quantum computing 
+in the cloud
+Fig. 1 | Overview of spatial and single-cell assays and relevant quantum 
+computing techniques. a, Single-cell and spatial data are studied through a 
+variety of techniques, including profiling of biomolecules in single-cell assays; 
+spatial assays that capture regions where biomolecules are present (for example, 
+single-molecule fluorescence in situ hybridization); image and spatial artificial 
+intelligence segmentation to detect cells, cellular structures and tissues from 
+imaging and spatial data; cell annotation; multimodal omics data integration; 
+and cell trajectory analysis, with the goal of creating a spatiotemporal 
+representation with single-cell resolution. b, A timeline of relevant milestones 
+in the development of biological-assay development, classical computational 
+achievements and quantum computational achievements. ATAC-seq, assay for 
+transposase-accessible chromatin using sequencing; CITE-seq, cellular indexing 
+of transcriptomes and epitopes by sequencing; CNN, convolutional neural 
+network; GPT1, generative pretrained transformer 1; HMM, hidden Markov 
+model; NGS, next-generation sequencing; NMR, nuclear magnetic resonance; 
+PC, personal computer; RNA FISH, RNA fluorescence in situ hybridization; 
+scRNA-seq, single-cell RNA sequencing; SVM, support vector machines.
+
+Nature Reviews Molecular Cell Biology
+Roadmap
+Methods for spatial data processing
+Analysing spatial transcriptomics data entails both upstream and 
+downstream data analysis. Upstream, raw data from smFISH-based 
+techniques are processed to identify transcript spots, match spots 
+to genes and assign spots to cells61. Achieving cellular resolution with 
+high-density measurements requires accurate cell segmentation and 
+manual fine-tuning with corrections62. Various classical computa-
+tion methods have been proposed for cell segmentation, including 
+conventional deep learning methods and techniques that integrate 
+scRNA-seq data. For example, CelloType63 utilizes a transformer-based 
+deep learning technique for multiscale cell segmentation and annota-
+tion of spatial omics data. Methods such as Baysor64 spatially cluster 
+observed molecules to cells from smFISH data by modelling each cell 
+using Markov random fields. The method spatial transcriptomics cell 
+segmentation65 with its transformer-based model infers each spot as 
+either a part of a cell or the surrounding extracellular matrix through an 
+attention mechanism and works around the rigorous hyperparameter 
+tuning of conventional image segmentation methods by incorporating 
+scRNA-seq data. These methods are usually constrained by the qual-
+ity and volume of training images and scRNA-seq data, the accurate 
+integration of high-dimensional transcriptomics and imaging data, 
+and poor generalization in OOD datasets and cell types66. Typically, 
+smFISH techniques produce low spatial resolution data. To address the 
+absence of transcriptome-wide expression values for unprofiled genes, 
+these datasets often employ reconstruction methods that frequently 
+leverage scRNA-seq data along with a select group ‘landmark’ genes67. 
+Most of these methods either use similarity measures between each cell 
+in scRNA-seq and each location, favouring genes that are specific to a 
+subset of cells in a spatial reference67 or formulating the reconstruc-
+tion as an optimal transport problem for probabilistic embedding of 
+similar cells68.
+Many quantum algorithms relevant to upstream smFISH preproc-
+essing tasks, such as for cell segmentation (Fig. 2 and Table 1) are being 
+actively studied for their potential utility on quantum devices. For 
+example, quantum convolutional neural networks (QCNN)69,70 may be a 
+promising alternative to transformer-based methods such as CelloType 
+owing to potential greater generalizability for accurately segmenting 
+unknown cell types. Alternatively, such transformer-based methods 
+may be substituted with quantum doubly stochastic matrix (DSM)-
+based transformers that replace the conventional softmax function 
+in the attention module, which yields a right-stochastic matrix, with a 
+variational quantum circuit to compute a DSM that has shown certain 
+advantages71. Similarly, quantum algorithms have been proposed 
+with theoretical polynomial speedup over their classical counterpart 
+in learning Markov random fields72. Recently, quantum transformer 
+models have been proposed for performing natural language pro-
+cessing tasks requiring fewer parameters compared to the classical 
+benchmarks73,74, which can potentially be leveraged in cell segmen-
+tation tasks being performed by methods such as spatial transcrip-
+tomics cell segmentation. For spatial reconstruction of smFISH data, 
+identifying the similarity between cells and spatial locations can be 
+challenging as functional regions of tissues may not be composed 
+entirely of cells with identical expression patterns67. Representing cell 
+similarity as a graph of cells and employing discrete-time quantum 
+Temporal and
+perturbation
+modelling
+Learning from
+limited samples
+Higher-order
+interactions
+Multi-omics
+integration
+Data
+processing
+Data
+analytics
+• (Q)CNN
+• (Q)Markov field
+• (Q)MCMC
+• (Q)GNN
+Quantum computing:
+• Variational algorithms
+• Algorithms targeting FTQDs
+• (Q)Cumulants
+• (Q)TDA
+(Q)Ensemble
+(Q)Transformer
+(Q)Reservoir computing
+• (Q)k-means
+• (Q)ODE
+• (Q)Tensor decomposition
+• (Q)Random walk
+• (Q)GAN
+• VQC
+• (Q)NN
+• (Q)Optimal transport
+• (Q)VAE
+Spatiotemporal 
+single-cell analysis
+Fig. 2 | Map of computational tasks performed by classical and quantum 
+computation algorithms for spatiotemporal single-cell analysis. These 
+six broad computational tasks (coloured lines) are shown intersecting with 
+various relevant applicable algorithms denoted by circles, all leading towards 
+the goal of spatiotemporal single-cell analysis. Certain classical methods have a 
+quantum analogue — denoted with a preceding (Q). These algorithms and their 
+considerations are described in further detail in Table 1. FTQDs, fault-tolerant 
+quantum devices; QCNN, quantum convolutional neural network; QCumulant, 
+quantum cumulant calculation; QGAN, quantum generative adversarial network; 
+QGNN, quantum graph neural networks; QMCMC, quantum Monte Carlo Markov 
+chain; QNN, quantum neural network; QODE, quantum ordinary differential 
+equations; QTDA, quantum topological data analysis; QVAE, quantum variational 
+autoencoders; VQC, variational quantum circuit.
+
+Nature Reviews Molecular Cell Biology
+Roadmap
+random walks75 to find trajectories of similar cells can be an alternative 
+for capturing fine-grained mappings of cell locations with scRNA-seq 
+data. For optimal transport mapping of the cell spatial reconstruction 
+problem, the quantum conditional optimal transport method can be 
+used to effectively map the problem into a quantum circuit and solve 
+the assignment problem76.
+Methods for spatial data analytics
+A host of downstream classical computing methods have been devel-
+oped to analyse spatial data collected by upstream techniques. Many 
+popular scRNA-seq packages provide such a capability, including 
+Seurat77, Squidpy78, Giotto79 and so on. In downstream processing 
+of spatial transcriptomics data, some of the major areas of analysis 
+Table 1 | Classical computing algorithms, their challenges and their quantum computing analogues in performing various 
+tasks in single-cell analyses
+Classical 
+computing method
+Challenges
+Quantum computing 
+equivalent
+Biological applications
+Convolutional 
+neural network
+Requires large data and computational resources to train; 
+weak generalization and unstable transfer learning
+(Quantum) convolutional 
+neural network69,70
+Cell classification209 and segmentation62; CpG 
+prediction210; T cell receptors classification211
+Markov random 
+field
+Learning latent structures in graphs; curse of dimensionality
+(Quantum) Markov random 
+fielda (ref. 72)
+Cell segmentation, clustering and cell-type 
+annotation64
+Transformers
+Requires large data and computational resources to train; 
+poor OOD generalization; lack of accuracy in noisy data
+QTransformer71,73,74
+Cell segmentation63; single-cell DNA 
+sequencing denoising and imputation212;  
+CpG prediction213; perturbation modelling134–137
+Random walk
+Sensitive to restart probability; difficult to select parameters; 
+computationally expensive; limitations in detecting 
+communities
+Discrete-time and 
+continuous-time random 
+walks75,163,164
+Cell clustering and imputation214; 
+cell trajectory inference152; CCIs215
+Optimal transport
+Sensitive to outliers; computationally expensive in large 
+datasets; sensitive to optimization parameters; requires large 
+samples to accurately estimate transport map
+Quantum optimal 
+transport216; quantum 
+conditional optimal 
+transport76
+Spatial reconstruction68; cell differentiation133; 
+lineage tracing217; trajectory inference218; 
+cell–cell communication219; perturbation 
+modelling132,133; multi-omics integration220
+Graph neural 
+network
+Addressing class imbalance; sensitive to noise in graphs; 
+OOD generalization; transfer learning issues
+Quantum graph neural 
+networks221
+Cell-type clustering89; deconvolution90; 
+CCIs91; spatial transcriptomics88
+Markov chain 
+Monte Carlo
+Requires extensive hyperparameter tuning; sensitive to 
+convergence criteria; high autocorrelation; takes long time 
+to converge
+Quantum Markov chain 
+Monte Carloa (ref. 95)
+Spatial transcriptomics67; perturbation 
+modelling116
+Ensemble learning
+Computationally expensive; weighting each member in 
+ensemble; determining optimal number of base learners; 
+hyperparameter tuning221
+Quantum ensemble 
+learning96,98
+CCIs90; classifying single-cell data; 
+differential gene expression in single-cell RNA 
+sequencing222; prediction tasks223
+Topological data 
+analysis
+Does not scale for larger datasets and higher order; 
+interpretability; parameter selection
+Quantum topological data 
+analysisa (refs. 99–101)
+Spatial transcriptomics87; multimodal 
+integration172
+k-means
+Parameter selection; sensitive to outliers; scaling to large 
+datasets; cluster size sensitivity
+Quantum k-means224
+Cell trajectory inference109; cell clustering224
+Gene regulatory 
+network
+Unable to infer simultaneous, inter-regulatory connections 
+between all genes in concert
+Quantum gene regulatory 
+network225
+Perturbation modelling33; predicting 
+transcription factors226
+Variational 
+autoencoder
+Learns uninformative latent representations; sensitive 
+to noisy data; selecting hyperparameters; lack of OOD 
+generalization
+Quantum variational 
+autoencoder148,149
+Trajectory inference122; perturbation 
+modelling136; multi-omics integration157
+Continuous-state 
+hidden Markov 
+model
+Estimation of posterior state probabilities; scales 
+exponentially with large datasets; assumes conditional 
+independence in input states227; sensitive to convergence 
+criteria
+Quantum circuits for 
+graphical model or 
+quantum probabilistic 
+graphical modelsa (ref. 139)
+Trajectory inference116
+ODE
+Stiffness; parameter estimation; scaling issues with larger 
+datasets
+Quantum algorithms for 
+solving ODEa (ref. 227)
+Cell differentiation112,113,115; trajectory 
+inference228
+Neural ODE
+Computationally expensive; stiffness; lack of OOD 
+generalization229
+Quantum neural ODE151
+Cell differentiation115; trajectory inference230; 
+temporal modelling150,229
+Reservoir 
+computing
+Difficult to estimate nonlinear functions; computationally 
+expensive
+Quantum reservoir 
+computing140,142,143
+Temporal cell segmentation118
+Generative 
+adversarial network
+Poor OOD generalization; non-convergence and instability; 
+vanishing gradients231
+Quantum generative 
+adversarial 
+networks144–146,178,180
+Perturbation modelling135,137; trajectory 
+inference232; single-cell RNA sequencing 
+imputation233
+Tensor 
+decomposition
+Intractable for large datasets and higher orders; determining 
+optimal rank; nonlinear feature extraction
+Quantum tensor 
+decomposition173–175
+Multi-omics integration156; spatial 
+transcriptomics231
+aImplementation of fault-tolerant quantum devices required. CCIs, cell–cell interactions; ODE, ordinary differential equation; OOD, out of distribution.
+
+Nature Reviews Molecular Cell Biology
+Roadmap
+involve capturing alterations in gene expression, detecting muta-
+tions, examining associations between gene expression and cell-type 
+localization, and identifying spatial regions. These tasks are often done 
+by modelling and learning on spatial cell graphs in the form of graph 
+neural networks (GNNs), explicitly learning on cells instead of encoding 
+pixels and integrating single-cell information with disease tissue (for 
+example, tumour) morphology and topology, as well as interactions 
+among cells and tissues80. GNNs are constructed on these cell graphs 
+with an interpretable input space. When paired with model explain-
+ability techniques, they can provide valuable insights into which cells 
+or cell neighbourhoods drive the biological process in tissues81. GNNs 
+are ubiquitously used in spatial transcriptomics tasks such as cell-type 
+clustering82 and deconvolution83 in the upstream and predicting spa-
+tially resolved gene expression or modelling cell microenvironment 
+with cell–tissue interactions and CCIs84 in the downstream. However, 
+the complexity of tumour graphs and the entangled cell neighbour-
+hoods can lead to suboptimal embedding spaces of GNNs, hampering 
+the learning of clinically meaningful patterns. Moreover, searching 
+for relatively small query subgraphs over large, complex graphs is 
+nondeterministic polynomial-hard85. Other methods to find spatially 
+resolved genes commonly use Gaussian process regression86, TDA87, 
+spatial autocorrelation88 and more. Most of these methods lack sta-
+tistical power, require extensive hyperparameter fine-tuning28 or are 
+time consuming, particularly those employing Bayesian methods such 
+as Markov chain Monte Carlo (MCMC). Similar to resolving spatial 
+regions, characterizing CCIs are computationally expensive tasks often 
+achieved by identifying ligand–receptor pairs89. As gene expression 
+is affected by CCIs, several packages have been developed to account 
+for the association of ligand–receptor pairs with gene expression by 
+constructing a covariance matrix of neighbourhood graphs90 or using 
+ensemble learning of expression of each gene of interest91. However, 
+such approaches necessitate computationally heavy operations, such 
+as inverting large matrices or computing pairwise distances for large 
+numbers of cells.
+These limitations present opportunities for quantum comput-
+ing, for example, in classification of tumours or optimizing subgraph 
+matching using GNNs (Table 1). Quantum–classical computing hybrid 
+methods can leverage the state-space available to quantum methods 
+as well as benefit from state-of-the-art classical GNN models for spatial 
+transcriptomics tasks, to improve predictive performance for complex 
+diseases through spatial reconstruction or modelling tumour microen-
+vironment. Algorithms such as variational quantum classifiers (VQCs), 
+quantum neural networks (QNNs) and others have shown to be more 
+generalizable when learning from a relatively smaller training dataset52. 
+Thus, these models can be used to learn from a low-dimensional embed-
+ding in small sample size scenarios, as is often the case in spatial tran-
+scriptomics given limited availability of whole slide images and fewer 
+genes as reference92. A hybrid quantum–classical model, which used 
+an end-to-end training paradigm from GNN embeddings of whole slide 
+images and VQC, achieved comparable performance to baseline meth-
+ods using GNNs for breast cancer subtyping93. As quantum computing 
+hardware is still evolving, efficient strategies for subsampling, such as 
+obtaining coresets94 or kernelized subsampling methods, are often 
+used to fit the training data into quantum hardware for efficient pro-
+cessing and discerning disease subtypes92. To address the issue of the 
+scalability of Bayesian methods for identifying spatially resolved genes, 
+quantum MCMC, which has been empirically shown to require fewer 
+iterations to converge and is more robust to noise95, can be applied. 
+Similarly, quantum ensemble methods can make comparable pre-
+dictions with a magnitude fewer number of learners or samples96,97 
+and in some cases achieves a quadratic improvement over classical 
+ensemble learning methods such as AdaBoost98. These methods can 
+Multi-omics integration and higher-order feature extraction
+Spatiotemporal modelling of cellular microenvironment
+Cell engineering for immunotherapy
+Multimodal data:
+• Clinical data
+• Spatial single-cell
+multi-omics
+• Immunological assays
+• Gene expression
+• Tissue imaging
+• Organoid drug screens
+• Drug profiles
+Quantum kernel methods
+Quantum optimal transport
+Quantum tensor decomposition, 
+quantum cumulant computation and QTDA
+High-order
+biomarkers
+High-order
+networks
+Samples
+Genes
+Omics
+x1
+x2
+|Ф(x1)]
+|Ф(x2)]
+∆1
+∆2
+High-order tensors
+Hybrid classical–quantum methods
+Fig. 3 | Overview of a quantum-enabled cell-based therapeutics. 
+Spatiotemporal single-cell, cell population, imaging, drug profile and clinical 
+data are analysed with three different goals enabled by quantum computing 
+technologies to capture varying aspects of cellular behaviours. These 
+technologies include (from left to right): hybrid classical–quantum machine 
+learning with quantum convolutional neural networks or quantum kernel 
+methods, integrated with classical central processing units (CPU), to aid cell 
+engineering for immunotherapy, hybrid classical–quantum machine learning 
+and quantum optimal transport to model tumour microenvironments from 
+single-cell spatial data with perturbation modelling to predict cellular response, 
+and multi-omics integration and higher-order feature extraction to capture 
+cryptic interactions and biomarkers of single-cell perturbation responses 
+using quantum tensor decomposition, quantum cumulant computation, and 
+quantum topological data analysis (QTDA). These higher-order biomarkers are 
+represented by different numbers and combinations of features from various 
+modalities. Using insights from each research area and by combining the efforts 
+between them, a cell-centric therapeutics design strategy can be achieved for 
+treatment options that optimize the cellular context to improve therapeutic 
+response. x1 and x2 represent the original data vector for samples 1 and 2, 
+respectively. Φ(x1) and Φ(x2) represented the quantum embedding of the x1 and x2 
+data vectors, respectively. Δ1 and Δ2 represent different trajectories of the cellular 
+state space.
+
+Nature Reviews Molecular Cell Biology
+Roadmap
+improve the performance of the ensemble learning method to extract 
+relationships between spatial omics data91. Quantum TDA (QTDA) has 
+demonstrated a super-polynomial speedup in fault-tolerant quantum 
+devices for some particular structured graphs with large spectral gaps 
+in the Laplacian99 or in some cases provable exponential speedup100. 
+Hence, QTDA can be used to identify spatially resolved genes by fast 
+computations of the Betti numbers87,101.
+Temporal quantum computational modelling  
+in single-cell transcriptomics
+Biological processes are often better understood through a temporal 
+lens, but scRNA-seq datasets are typically collected at different time 
+points, then integrated for analysis. In some cases, these time points are 
+hourly, as in immune response and drug treatment studies, whereas in 
+other cases they can span days, months or years, as in cell differentia-
+tion and clinical trials102. Statistical, graph-based and ML techniques 
+are then applied to examine cell frequencies within samples, deline-
+ate gene regulatory networks (GRNs) in individual cells and capture 
+relationships among cells. Although capturing dynamics of cells is 
+naturally achieved using time series, it can also be performed by analys-
+ing a snapshot from a single sample using methods such as trajectory 
+inference or RNA velocity103.
+Trajectory inference is often done by first embedding the 
+scRNA-seq data to a lower dimension with principal component analy-
+sis, diffusion maps, autoencoders and so on33. Then, a trajectory tree 
+is inferred, learning on a lower-dimensional manifold, which captures 
+the underlying biological variation. A root cell is then selected on the 
+basis of a prior or data-driven heuristics, and pseudotime values are 
+assigned to all other cells according to their positions along the inferred 
+trajectory104,105. Cell expression similarity and entropy106, which are free 
+of root cell determination, are also used in this step. Popular trajec-
+tory inference methods infer trajectory graphs and cluster cell states 
+by either graph partitioning methods107, minimum spanning trees108, 
+or clustering using k-means followed by pruning small branches and 
+leveraging spatial information109. Methods based on optimal transport 
+theory110,111 that focus on a distribution of cell placements along the 
+trajectory rather than on specific placement, have also been developed. 
+The continuous dynamics of cell differentiation can be reconstructed 
+from snapshot measurements by leveraging connections of optimal 
+transport with ordinary differential equations (ODE)112,113, but they are 
+limited by either ineffective dimensionality reduction techniques or 
+model limitations114. In addition, a combination of variational autoen-
+coders (VAE) with neural ODE have been proposed to overcome these 
+limitations115. Continuous-state hidden Markov models (HMMs) are 
+also used to assign cells to any position in its trajectory by initiating 
+the assignment using clustering and thereafter assigning them with 
+greater assignment probability in each step of the iteration, until a 
+criterion is met116. Reservoir computing is another means for model-
+ling information dynamics in cells117. Reservoir computing models are 
+based on recurrent neural networks to project input data into higher 
+dimensional spaces based on the dynamics of a ‘reservoir’, which is a 
+fixed, nonlinear system. Such methods are well suited to temporal or 
+sequencing processing, showing improved performance for temporal 
+segmentation of T cells from high-resolution live cell imaging118.
+Perturbation modelling
+Modelling dynamic behaviours of cells is not limited to lineage trac-
+ing and interactions: there is also a need to study how external influ-
+ences, such as genetic knockouts, drug interventions, temperature 
+and so on, perturb cells, to better understand pharmacological and 
+translational aspects of cellular processes114. Modelling perturbation 
+responses at single-cell resolution is imperative for designing novel 
+therapeutics119,120. Perturbation modelling can be categorized into five 
+main objectives: predictive models of changes in cellular behaviour; 
+discovering phenotypic characteristics of cells under perturbation; 
+predictive models of perturbation by drug compounds, which facilitate 
+drug repurposing; identifying synergistic or antagonistic interactions; 
+and predicting chemical structural components from perturbation 
+data114. These objectives can then be addressed by a variety of classi-
+cal and quantum algorithms (Fig. 2 and Table 1). Technologies built on 
+CRISPR-mediated pooled knockout screens such as Perturb-seq121 and 
+its variants such as CRISP–seq121 provide the data to understand a gene’s 
+function with respect to its expression when knocking out or knocking 
+down a gene. These perturbation-based technologies have been devel-
+oped to capture perturbation responses on single-nucleotide polymor-
+phisms with Mix-seq122, perturbations in multi-omics modalities with 
+Perturb-CITE-seq123 and perturbations in epigenetic and transcriptome 
+mosaics with Mosaic-seq124.
+Classical computational tools that analyse single-cell CRISPR 
+screening data range from statistical inference models to complex gen-
+erative and AI foundation models125. The statistical graph-based models 
+are often probabilistic and regression-based and provide dimension-
+ality reduction126, clustering127 and robust statistical analysis after 
+removing confounding effects. GRNs are leveraged to make predictions 
+such as identifying transcription factors controlling genes by inte-
+grating scRNA-seq and scATAC-seq (assay for transposase-accessible 
+chromatin using sequencing) data128. Generative models are used 
+ubiquitously in predicting perturbation responses given the availability 
+of large-scale atlases of cells. Methods such as generative adversarial 
+networks (GAN) have been proposed for simulating single-cell differ-
+entiation through latent spaces129. However, due to constraints of GANs 
+when training on high-dimensional structured data, and effective map-
+ping of gene expressions to latent spaces, VAEs130 have been used more 
+frequently in generating cells with desired properties. For instance, 
+scGen combines VAEs and latent representations of a low-dimensional 
+manifold to capture underlying cellular mechanisms while predicting 
+perturbation responses within and between cell types119.
+A recent trend is using the mathematical framework of optimal 
+transport or cutting-edge transformer models to capture perturba-
+tion effects in scRNA-seq data131. Optimal transport methods such 
+as CellOT132 and CondOT133 provide a model for molecular profiling 
+of cells by generating an optimal transport map for each perturba-
+tion to accurately predict cell-to-cell variability in drug responses, 
+drug’s mode-of-action, OOD extrapolations across species and 
+extracting subpopulation-specific drug effects. Foundation models 
+with pretrained transformers have also been developed for under-
+standing the dynamics of cellular responses to in silico perturbation 
+to predict phenotypes134, cell-type-specific transcription factors135, 
+drug response136, cell similarity137 and potential therapeutic targets. 
+Although the advent of the transformer architecture and large language 
+models provide exciting opportunities, they have many limitations 
+ranging from the quality of data they are trained on, effectiveness of the 
+prediction, ability to capture underlying dynamics in GRNs, robustness 
+of multitask learning and model interpretability119,120.
+There are several opportunities for quantum computing to 
+enhance perturbation modelling. HMMs can be represented as proba-
+bilistic graphical models — a chain of dependent states with inference 
+based on given outcomes. This makes HMMs suitable for time-series 
+
+Nature Reviews Molecular Cell Biology
+Roadmap
+analysis, and continuous-state HMMs have been proposed to derive cell 
+state trajectory116. However, their applications face difficulties when 
+there are structures with high-order interactions, which is often the 
+case for genes affecting cellular trajectories across space138, leading 
+to computational intractability. Recently, quantum circuits for graphi-
+cal models have been proposed to obtain an unbiased estimate of the 
+underlying probability distribution of a graphical model139. Quantum 
+circuits for graphical models scale in the worst-case exponentially in 
+the number of model parameters, which can be a substantial improve-
+ment over classical probabilistic graphical models, such as MCMC or 
+HMM. Quantum reservoir computing and its many variants have also 
+been proposed to estimate nonlinear functions of an input quantum 
+state to understand the dynamic process influencing it140. The training 
+is conceptually simple and computationally inexpensive141, making 
+quantum reservoir computing attractive for applications in model-
+ling cellular dynamics. These reservoir computing systems can be made 
+more computationally efficient through physical implementations142, 
+for example, photonic reservoir computing and quantum mechanical 
+implementations143. Quantum GANs144–146 have been proposed as an 
+alternative to GANs as they are able to learn underlying probability dis-
+tributions with fewer parameters, making them useful in perturbation 
+modelling. Similarly, quantum VAEs with quantum circuits as autoen-
+coders and classical data compression147,148 or with latent generative 
+processes implemented in a quantum Boltzmann machine have been 
+implemented and applied on classical benchmarking datasets such as 
+MNIST149. Quantum VAE can then be leveraged to potentially improve 
+latent representations of cells in generative models for perturbation 
+modelling.
+Optimal transport has fuelled many applications in spatiotem-
+poral modelling of single cells, including inferring cellular trajec-
+tory, dynamic modelling of cells, perturbation modelling and more, 
+by learning a global transport map between cell states. Recently, a 
+quantum computing formulation of the amortized optimization of 
+interpretable contextual transportation maps was proposed for pre-
+dicting changes in the composition of a cell population due to drug 
+perturbations76. In this case, a link between unitary operators and DSMs 
+is leveraged to directly compute optimal transport maps through a 
+quantum circuit. In another application, neural ODEs are proposed in 
+conjunction with optimal transport methods to reconstruct dynam-
+ics of cell differentiation150. Quantum dynamics latent neural ODE 
+was designed to learn and generate quantum trajectories of open and 
+closed quantum systems151. Cell state trajectory can be represented 
+as a graph152 and encoded into quantum states using quantum feature 
+maps153, and quantum dynamics latent neural ODE can then be used 
+to infer trajectories with high accuracy. These quantum equivalents 
+of classical methods have the potential to solve the limitations of clas-
+sical methods such as lack of generalizability, interpretability and 
+tractability, among others.
+Integrating single-cell multi-omics and 
+discovering meaningful interactions
+Single-cell transcriptomics is often integrated with other omics data 
+such as genomics, phenomics, epigenomics, proteomics, metabo-
+lomics and so on to gain a holistic understanding of cell and tissue 
+function154. Integration of different omics modalities is imperative to 
+achieve this goal; however, owing to incompleteness of information 
+across omics, technological throughput constraints, measurement vari-
+ances between devices or simply lack of better technology to measure 
+molecular entities, there is a need for novel methods to better explore 
+cryptic relationships, probably residing in topological connections 
+among important higher-order interactions between the dimensions155. 
+Such methods, which leverage manifold alignment, optimal transport 
+and tensor decomposition have been proposed to align and integrate 
+multimodal, single-cell multi-omics155,156 (Fig. 2 and Table 1). Other 
+methods using canonical correlation analysis or non-negative matrix 
+factorization find a shared biological space in a lower-dimensional 
+embedding of different omics modalities from different cells to inte-
+grate datasets77. Graph-based embedding techniques have also been 
+employed for multi-omics integration using graph VAEs to learn embed-
+dings and then reconstruct and link omics data by aligning cellular 
+embeddings157. Integrating multi-omics data to learn GRNs and infer 
+results of perturbations while predicting transcription factors provides 
+new opportunities to understand the function of cells within tissues158.
+Network and graph representations have been extensively applied 
+to single-cell, spatial transcriptomics and molecular interaction data 
+whether as internal representations for deep learning models or 
+as cellular and molecular networks159,160. These data have given rise to 
+so-called quantum network medicine161 principles, which are typically 
+used to investigate the molecular complexity of a particular disease 
+or the molecular relationships among apparently distinct pheno-
+types from network topologies. However, such networks are vastly 
+incomplete, with large proportions of the true interactions being 
+still unknown162. To efficiently search for new drugs, drug combina-
+tions, host–pathogen interactions and so on within and between cells, 
+computational methods are required that can access the immense, 
+largely unexplored molecular space. Quantum computing may be 
+a key ingredient in enabling the full potential of network medicine 
+(Table 1) through quantum network medicine163. This approach has 
+already proven successful in performing link prediction based on 
+continuous-time quantum walks163 and has been successfully adapted 
+to identify disease modules and new disease pathways164.
+TDA and cumulants extend the analysis of data topologies to cap-
+ture hidden structures from the shape of data and from dth order 
+interactions representing complex associations, leading to logical 
+relationships in phenotypes, for example, interactions between collec-
+tives of cells, features or alterations that lead to therapeutic response165. 
+TDA is used in computer vision and atomistic models, and cumulants 
+of order d > 3 have important roles, including in financial data analy-
+ses and hyper-spectral image analyses. Cumulants are also useful for 
+integrating and analysing multi-omics data165,166, whether single-cell or 
+patient omics data, where they can provide a unique measurement of 
+liability or risk of a given disease or trait, for each cell or individual167. 
+The distance between meta-features from cumulants can be calculated 
+and TDA applied to generate the topological features that character-
+ize the clusters of features168. This methodology aids in uncovering 
+intricate patterns and relationships that may be elusive through con-
+ventional statistical methods. Given strong correlations in healthcare 
+data, high-order cumulants help filter out spurious low-order effects 
+that vanish when variables are independent169, leading to successful 
+applications in constructing aggregated phenotypes that represent 
+distinct pathways in complex diseases165,170.
+QTDA and quantum cumulant calculations can potentially detect 
+features and higher-order interactions efficiently, especially for regres-
+sion and classification tasks (Table 1). Traditional challenges in TDA and 
+cumulant computation come from the exponential growth of possible 
+feature combinations in high-dimensional data. The first QTDA algo-
+rithm specifically targeted situations with high-dimensional features 
+and provided an exponential speedup compared with classical TDA101,171. 
+
+Nature Reviews Molecular Cell Biology
+Roadmap
+Other ways of obtaining higher-order latent relationships from 
+single-cell multi-omics data require tensor decomposition methods172. 
+Quantum tensor decomposition methods have been proposed that 
+have provable quartic speedup with respect to classical counterparts173, 
+with potential implementation in PFTQD for biomedical data analysis174 
+(Table 1) using variational quantum algorithms or by adapting 
+a quantum approximate optimization algorithm175. These bio-topological 
+techniques applied to spatial single-cell omics data would make pos-
+sible the capture of those cryptic interactions, which would have been 
+hidden with even complete biological measurements, let alone with 
+incomplete measurements encountered in practice, to better inform 
+the spatiotemporal models described above.
+Learning from limited samples
+Despite the wealth of information generated from single-cell assays, 
+including spatial and temporal, the availability of biological samples, 
+particularly human samples, remains limited. Consequently, captur-
+ing cellular and molecular diversity across diseases and patient groups 
+is challenging, hindering the development of models that reflect diverse 
+phenotypes and populations. Even with acquired samples, the cost to 
+perform single-cell or spatial assays is prohibitive for large-scale studies 
+without large consortium efforts. The Human Cell Atlas7,8 contains data 
+from approximately 63 million cells from just over 9,000 donors for a 
+gene number of ~20,000 and an even larger number of proteins, mak-
+ing the problem hard to solve classically as there are far more variables 
+than observations.
+Assumptions about generalizing from limited biological sam-
+ples remain common, but as high-resolution technologies expand 
+the feature space, there is a growing need for methods that better 
+address missing data and limited sample size. Imputation and genera-
+tive tools are natural avenues to mitigate some of these challenges. 
+There have been several recent efforts for imputation of data dropout 
+in scRNA-seq176. These tools are also being deployed in the generation 
+of scRNA-seq data to overcome the limitations of low availability of 
+biological samples177. Quantum GANs have been used to generate 
+classical data144,178, aid in small molecule design146,179 and generate 
+images180, as well as to learn the underlying probability distributions to 
+enable efficient loading into a quantum state145. These methods enable 
+learning data distributions with fewer parameters than classical GANs 
+and have the potential of searching for an exponentially growing space 
+that would be difficult for analysis by classical methods.
+Effective training of classical ML algorithms requires large 
+amounts of data, but when there are too few training samples as often 
+occurs in biology, we can look towards to quantum computation as an 
+alternative. In highly data-constrained settings, QNNs may offer cer-
+tain advantages. Certain QNN architectures have been shown to have 
+greater expressivity than some of their classical counterparts, allowing 
+them to capture more complex probability distributions and indicating 
+to potential speedups in training time181. Moreover, QCNNs, a subclass 
+of QNNs, possess valuable characteristics for QML, including vari-
+ational parameters scaling logarithmically in qubit count, resistance to 
+barren plateaux during training69 and potential to generate lower levels 
+of generalization errors even in the case of limited training data52. In 
+practice, we see that a QCNN can achieve comparable performance to 
+CNNs while using orders of magnitude fewer trainable parameters70,182, 
+lending towards reduced risk of overfitting and greater generalization 
+potential. However, a considerable hurdle to the practical application 
+of certain QML algorithms is the nature of data requirements and the 
+associated ‘state preparation’ overhead. Unlike classical ML, QML 
+requires classical information to be encoded into a quantum state, 
+that is, state preparation, which can be computationally intensive and 
+overshadow any gain from the quantum computation183–185. Addressing 
+this challenge requires innovative data encoding and state preparation 
+techniques that minimize circuit complexity and will probably require 
+domain knowledge to yield an effective heuristic for circuit design.
+A quantum-enabled multimodal cellular 
+model use case
+As each of the computational threads that contribute to the develop-
+ment of a spatiotemporal cellular model (Fig. 2) is advanced through 
+both classical and quantum computing techniques, we can look towards 
+applications that would benefit from the combinations of techniques 
+to gain deeper biological insights. One example would be applications 
+for cell-based therapeutics186. Although still considered the gold stand-
+ard, the target-centric approach to drug discovery appears to be falling 
+short on delivering substantial numbers of therapeutic advances187, 
+which may be attributed to the complexity of and uncertainty in target 
+validation and off-target effects188,189. A cell-based approach to under-
+standing perturbation responses and disease behaviours presents 
+a unique opportunity for multiple quantum and quantum–classical 
+optimization and ML techniques to be brought together to address 
+these challenges and further advance cell-centric therapeutic strate-
+gies. Figure 3 depicts how three research trajectories may capture 
+complementary aspects of the cell-based approach, converging in a 
+cancer use case. These include methodologies for engineering cells 
+for immunotherapy, developing models of spatiotemporal cellular 
+behaviour and extracting dth order feature interactions that would 
+inform cellular behaviour. Each of these threads require advancements 
+in the different computational efforts described in Fig. 3 and Table 1.
+Designing cells for immunotherapy, such as chimeric antigen 
+receptor (CAR)-T cells, is fundamentally a sample-constrained prob-
+lem because of the high cost and time to generate these cells and the 
+relatively large combinatorial space of intracellular signalling domains 
+used in their construction. QCNNs could address this data limited 
+problem and may scale better on quantum devices than QNNs. How-
+ever, their applicability, as well as that of other quantum variational ML 
+methods, might be constrained by challenges with state preparation, 
+deep circuit structures more susceptible to accumulation of noise, and 
+extended quantum device usage. These limitations could render such 
+methods less practical for larger, more expressive circuits in PFQTD. 
+In such cases, alternative hybrid classical–quantum methods may be 
+necessary. For instance, projected quantum kernels190,191 combines 
+quantum encoding of features with classical ML algorithms to learn 
+with relatively shallow circuits and without the need of performing 
+optimization of the circuit parameters.
+Spatiotemporal cellular models require many of the computa-
+tional tools previously described to capture and characterize the cells 
+and cell types in a tumour microenvironment, from which models can 
+be developed to predict cellular behaviour as the disease progresses or 
+a therapeutic is introduced, such as a CAR-T cell. GNNs or autoencod-
+ers may be best suited for the ingestion of data and embedding into 
+a latent space. With this latent representation a quantum algorithm 
+can be incorporated to determine whether the performance can be 
+enhanced. Quantum algorithms such as QCNN, VQC or quantum sup-
+port vector machines can be used to train a variational model, albeit 
+with certain challenges as noted above. Alternatively, methods such 
+as quantum doubly stochastic transformers can be applied, which 
+uses quantum computing for a specific portion of the transformer 
+
+Nature Reviews Molecular Cell Biology
+Roadmap
+Glossary
+Ansatz
+A parameterized quantum circuit 
+used to approximate a target state or 
+operation. In variational algorithms, its 
+design and initialization crucially affect 
+the accuracy and efficiency of the 
+solution.
+Continuous-time quantum 
+walk
+The quantum analogue of random walk, 
+in which the evolution of a quantum 
+system over a graph is continuous in 
+time offering advantages in exploring 
+complex networks and solving 
+combinatorial problems.
+Cumulants
+Statistical measures that generalize 
+moments to quantify higher-order 
+correlations and dependencies among 
+random variables. They isolate intrinsic 
+multiway interactions, capturing 
+nonlinear and non-Gaussian structure 
+that ordinary moments or pairwise 
+correlations cannot represent.
+Curse of dimensionality
+The exponential increase in data 
+sparsity and computational complexity 
+as the number of features grow. This 
+phenomenon makes it harder for 
+algorithms to detect meaningful 
+patterns and they often require vastly 
+more data for reliable analysis.
+Dynamic circuits
+A quantum circuit that incorporates 
+classical processing within the 
+coherence time of the qubits permitting 
+mid-circuit measurements to enable 
+feedforward operations such as using 
+measured values to determine the next 
+gates to be applied.
+Ensemble learning
+A machine learning technique that 
+aggregates multiple individual models 
+(known as ‘weak learners’) to produce 
+a strong overall model with high 
+prediction accuracy and robustness.
+Entanglement
+A uniquely quantum phenomenon, 
+in which the states of two or more 
+particles become interdependent; 
+consequently measurement of one 
+entangled particle instantaneously 
+affects the state of the other particle.
+Exponential speedup
+A performance improvement of an 
+algorithm whereby running time 
+decreases exponentially compared 
+to the state-of-the-art algorithmic 
+benchmark.
+Fidelities of 1-qubit and 
+2-qubit gates
+Accuracies in quantum operations 
+that create entanglement between 
+qubits in a 2-qubit gate. If reduced, the 
+effectiveness of quantum computations 
+is decreased, and the complexity of 
+solved problems is more limited.
+Graph neural networks
+(GNNs). A class of neural networks 
+designed for graph-structured data, 
+which aggregate and update node 
+features based on neighbouring nodes 
+while learning both local and global 
+graph properties.
+Kernel methods
+A class of algorithms that use kernel 
+functions, enabling them to transform 
+data features to a high-dimensional, 
+implicit feature space without 
+exactly computing coordinates in the 
+transformed feature space.
+k-means
+An unsupervised algorithm that 
+partitions data into k clusters by 
+assigning each point to the nearest 
+centroid. k-means iteratively minimizes 
+within-cluster variance and is widely 
+used in unsupervised learning.
+Laplacian
+A matrix representation of graph 
+connectivity that combines degree 
+and adjacency matrices of the graph, 
+enabling spectral clustering and 
+dimensionality reduction of graphs.
+Logical qubits
+A higher-level abstraction of qubits 
+used in a fault-tolerant quantum device 
+where a single qubit is encoded using 
+a collection of physical qubits while 
+protecting quantum information 
+from errors.
+Neutral atom qubits
+Qubits encoding quantum information 
+in the internal states of individual, 
+electrically neutral atoms held in 
+optical or magnetic traps, offering long 
+coherence times and scalability for 
+quantum computing applications.
+Nondeterministic 
+polynomial-hard
+A class of computational problems 
+that are at least as hard as problems 
+in the nondeterministic polynomial 
+complexity class, meaning that finding 
+an efficient solution for them would 
+imply efficient solutions for all problem 
+in nondeterministic polynomial.
+Non-negative matrix 
+factorization
+A linear algebraic method to factor 
+a data matrix V to two lower-rank 
+non-negative matrices W and H 
+representing parts of the original  
+data matrix.
+Optimal transport
+A mathematical framework for finding 
+the most cost-effective map from one 
+probability distribution to another.
+Quantum approximate 
+optimization algorithm
+A quantum algorithm that produces 
+approximate solutions for combinatorial 
+optimization problems.
+Quantum circuits
+Structured sequences of quantum 
+gates operating on qubits to perform 
+quantum computation.
+Quantum convolutional 
+neural networks
+(QCNN). The quantum analogue of 
+convolutional neural networks, in which 
+quantum circuits perform convolution 
+and pooling operations; it efficiently 
+extracts hierarchical features from 
+quantum data and has applications in 
+quantum state classification and error 
+correction.
+Quantum network medicine
+An emerging interdisciplinary field that 
+leverages quantum computing and 
+network science to analyse complex 
+biological systems by applying 
+quantum-enhanced techniques to 
+biological interactions and reveal 
+insights into disease mechanism and 
+biomarker discovery.
+Quantum neural network
+(QNN). A quantum machine learning 
+model that utilizes parameterized 
+quantum circuits inspired by classical 
+neural networks.
+Qubits
+The basic units of quantum information, 
+analogous to classical bits. Unlike 
+bits, qubits exist in a combination or 
+superposition of 0 and 1 simultaneously, 
+providing the foundation for quantum 
+algorithms that can process information 
+leveraging fundamentals of quantum 
+mechanics.
+Random walk
+A stochastic process in which a 
+walker on a graph starts at a vertex 
+and repeatedly moves to one of its 
+neighbouring vertices, chosen at 
+random, generating a path through  
+the vertices.
+Sample limited
+Refers to problems that are highly 
+constrained in the number of samples, 
+particularly with respect to the size of 
+the feature space.
+
+Nature Reviews Molecular Cell Biology
+Roadmap
+model and has shown benefit for vision transformers71. Such hybrid 
+classical–quantum methods may offer a path to developing more 
+accurate models.
+Both cell engineering and spatiotemporal modelling would be 
+enhanced by capturing the high-order interactions that would be 
+present in the data given the complexity of biological systems and 
+the hidden correlations present in biological data. These high-order 
+latent interactions can be detected using quantum cumulants, QTDA 
+or quantum tensor decomposition. Such methods capable of taking 
+advantage of structures in the data would enable the capture of com-
+plex, hidden interactions that may be overlooked even if more complete 
+data were available. The confluence of these methods can be used to 
+develop cell-based precision medicine by modelling disease microen-
+vironments at single-cell resolution to identify therapeutics, biologics 
+or other interventions that modify the cellular disease ecosystem to 
+make it more responsive to therapy or shift cells to a quiescent or even 
+dying state.
+Conclusion and future perspective
+Although the state of quantum computing has progressed rapidly 
+within the past ten years from small scale experiments with a few qubits 
+to utility scale quantum computers with over 100 qubits commer-
+cially available, there remain key challenges that require considerable 
+consideration ahead of near-term applications and careful planning 
+for long term success given the trajectory of quantum technologies 
+(Fig. 1). It is expected that in four years, with 200 error-corrected 
+logical qubits capable of running 100 million gates will be available 
+(as laid out in the IBM Quantum roadmap)192,193. This advancement will 
+be complemented by similar efforts to scale quantum devices spanning 
+various technologies such as superconducting, trapped-ion, neutral 
+atom and photonic qubits, by a host of companies and institutions193. 
+These systems will substantially improve in error correction, coher-
+ence times, gate fidelities, execution times and qubit quality towards 
+developing fault-tolerant quantum systems194,195 and quantum cen-
+tric supercomputers194,196,197, which would seamlessly integrate AI, 
+high-performance computing and quantum computers. Although 
+there is clear promise in the future of quantum computing hardware, 
+we must account for its current limitations and remain adaptable to this 
+rapidly evolving technological field where new insights and challenges 
+are being discovered routinely.
+State-of-the-art variational QML algorithms can be challenged 
+to learn at scale, despite advancements in error mitigation, fractional 
+gates and dynamic circuits. Within QML, the relatively limited number 
+of qubits or circuit execution times often necessitates operating in 
+a lower-dimensional feature or sample space, respectively, through 
+methods such as subsampling or projection, which may introduce their 
+own biases or information loss. Methods such as quantum support vec-
+tor machines can have their circuit depth grow dramatically with qubit 
+numbers, which can quickly exceed the coherence times of available 
+quantum systems. In some cases, the learning task can be reformulated 
+into an optimization task using methods such as quantum approximate 
+optimization algorithms198–200 or using a hybrid quantum–classical 
+task such as projected quantum kernels190,191, both of which have found 
+success on PFTQD owing to features such as relatively shallow circuits. 
+Additional hybrid quantum–classical methodologies, which may use a 
+classical AI-based method to generate lower-dimensional embeddings 
+and variational quantum algorithms to generate quantum feature maps 
+on which to perform prediction and classification tasks, have shown 
+utility in PFTQD201,202.
+Despite their popularity in PFTQD, variational algorithms have 
+limitations such as barren plateaux, where gradients vanish exponen-
+tially during the optimization process with growing system size203. 
+Spin qubits
+Qubits storing quantum information in 
+the intrinsic spin states of particles like 
+electrons or nuclei, often implemented 
+in semiconductor quantum dots and 
+controlled through magnetic or electric 
+fields for quantum operations.
+Superconducting qubits
+Qubits that can exist in multiple 
+states simultaneously based on 
+superconducting circuits operating at 
+extremely low temperatures to minimize 
+thermal noise and maintain coherence, 
+enabling fast gate operations for 
+high-speed quantum computations.
+Superposition
+A fundamental principle in quantum 
+mechanics stating that a quantum 
+system can exist in multiple states 
+simultaneously.
+Tensor decomposition
+A generalization of matrix factorization 
+to multidimensional arrays or 
+tensors, decomposed into latent 
+lower-dimensional factors that capture 
+key patterns in complex data.
+Topological data analysis
+(TDA). A mathematical method 
+rooted in algebraic topology that 
+analyses the inherent structure of data 
+to reveal clusters, holes and voids 
+in high-dimensional datasets that 
+conventional data analysis techniques 
+typically overlook.
+Topological qubits
+Quantum bits encoded in non-local 
+properties of topological quantum 
+systems, making them inherently 
+resistant to local noise and 
+decoherence.
+Transformer networks
+A deep learning architecture that 
+uses self-attention mechanisms to 
+capture long-range dependencies 
+within a sequence and to draw 
+inference.
+Trapped-ion Qubits
+Qubits that encode information 
+in the electronic and nuclear spin 
+states of individual ions, controlled 
+using electromagnetic fields enabling 
+long coherence times, making them 
+suitable for high-accuracy quantum 
+operations.
+Variational quantum  
+classifiers
+(VQC). A quantum machine learning 
+model that uses parameterized 
+quantum circuits to classify data, 
+with parameters optimized through 
+a classical optimization method to 
+minimize a cost function.
+Glossary (continued)
+
+Nature Reviews Molecular Cell Biology
+Roadmap
+Another challenge is the choice of ansatz in these algorithms, where a 
+hardware-efficient ansatz may not accurately represent the quantum 
+algorithm modelled on the data or may be impractical in PFTQD204. As 
+quantum hardware matures, quantum algorithms operating in native 
+data spaces may outperform classical methods, enabling solutions to 
+problems with sharp complexity phase transitions, such as high-order 
+computations in tensor decompositions, TDA or cumulants, which are 
+beyond the grasp of classical computing186.
+Alongside quantum computing, there are ongoing efforts in 
+quantum-inspired and dequantized algorithms to identify quantum 
+advantages and adapt them to enhance classical methods without 
+the overhead of quantum state preparation205,206, thereby removing 
+theoretical exponential speedups. The bulk of dequantized algorithms 
+pertain to quantum linear algebra algorithms that assume a low-rank 
+input data given classically207. This low-rank assumption enables classi-
+cal algorithms to achieve similar performance to quantum algorithms 
+in the form of randomized algorithms that permit matrix sketching 
+and dimensionality reduction akin to the quantum state preparation 
+of quantum algorithms205,206. These dequantization methodologies can 
+still permit large polynomial speedups, which in practice could have 
+considerable benefits for the healthcare and life sciences communi-
+ties. The quantum-inspired algorithms related to the dequantization 
+efforts have indeed shown an exponential speedup, though at the cost 
+of a large polynomial overhead and of quickly degrading performance 
+as the dimension, rank and condition number of the input matrix 
+increases205.
+Furthermore, any performance assessment of a quantum algo-
+rithm will require rigorous testing and benchmarking. Such bench-
+marking can focus on classes of problems that are known to be difficult 
+to solve classically and therefore represent opportunities for a quan-
+tum algorithm to perform better, as has been proposed for optimiza-
+tion problems208. A similar benchmarking suite would prove invaluable 
+for other classes of quantum algorithms, including QML and quantum 
+simulation, to demonstrate where quantum computing may have the 
+most impact. It is evident that the field of quantum computing is rapidly 
+evolving to understand under what conditions it can offer meaningful 
+performance gains for healthcare and life science, gains that may be 
+measured in faster computation, whether exponential or polynomial, 
+or in increased accuracy.
+Single-cell and spatial single-cell technologies have opened a vast 
+array of opportunities to advance biological insights and therapeutic 
+design. These opportunities have been made possible by tremendous 
+advancements in computational tools and techniques. These tools 
+have been entirely classical up to this point, but as quantum comput-
+ing is rapidly developing, we are now at a point where exploring how 
+quantum computation can work together with classical computation 
+to promote new discoveries is a reality. Quantum computing has the 
+potential to become a powerful enabling technology to help push 
+single-cell, spatial single-cell and new therapeutics models forward.
+Published online: xx xx xxxx
+References
+1.	
+Method of the year 2013. Nat. Methods 11, 1 (2014).
+2.	
+Marx, V. Method of the year: spatially resolved transcriptomics. Nat. Methods 18, 9–14 
+(2021).
+3.	
+Method of the year 2024: spatial proteomics. Nat. Methods 21, 2195–2196 (2024).
+4.	
+The Cancer Genome Atlas Research Network et al. The cancer genome atlas pan-cancer 
+analysis project. Nat. Genet. 45, 1113–1120 (2013).
+5.	
+de Bruijn, I. et al. Sharing data from the Human Tumor Atlas Network through standards, 
+infrastructure and community engagement. Nat. Methods 22, 664–671 (2025).
+6.	
+Jain, S. et al. Advances and prospects for the Human BioMolecular Atlas Program 
+(HuBMAP). Nat. Cell Biol. 25, 1089–1100 (2023).
+7.	
+Rozenblatt-Rosen, O., Stubbington, M. J., Regev, A. & Teichmann, S. A. The Human Cell 
+Atlas: from vision to reality. Nature 550, 451–453 (2017).
+8.	
+Regev, A. et al. The human cell atlas. eLife 6, e27041 (2017).
+9.	
+Zhang, J. et al. Tahoe-100M: a giga-scale single-cell perturbation atlas for context- 
+dependent gene function and cellular modeling. Preprint at bioRxiv https://doi.org/ 
+10.1101/2025.02.20.639398 (2025).
+10.	
+Klughammer, J. et al. A multi-modal single-cell and spatial expression map of metastatic 
+breast cancer biopsies across clinicopathological features. Nat. Med. 30, 3236–3249 
+(2024).
+11.	
+Mo, C. K. et al. Tumour evolution and microenvironment interactions in 2D and 3D space. 
+Nature 634, 1178–1186 (2024).
+12.	
+Greenbaum, S. et al. A spatially resolved timeline of the human maternal–fetal interface. 
+Nature 619, 595–605 (2023).
+13.	
+Ren, J. et al. Spatiotemporally resolved transcriptomics reveals the subcellular RNA 
+kinetic landscape. Nat. Methods 20, 695–705 (2023).
+14.	
+Wagner, J. et al. A single-cell atlas of the tumor and immune ecosystem of human breast 
+cancer. Cell 177, 1330–1345 (2019).
+15.	
+Paik, D. T., Cho, S., Tian, L., Chang, H. Y. & Wu, J. C. Single-cell RNA sequencing in 
+cardiovascular development, disease and medicine. Nat. Rev. Cardiol. 17, 457–473 
+(2020).
+16.	
+Segerstolpe, Å et al. Single-cell transcriptome profiling of human pancreatic islets in 
+health and type 2 diabetes. Cell Metab. 24, 593–607 (2016).
+17.	
+Li, H. et al. A comprehensive benchmarking with practical guidelines for cellular 
+deconvolution of spatial transcriptomics. Nat. Commun. 14, 1548 (2023).
+18.	
+Dill, K. A. & MacCallum, J. L. The protein-folding problem, 50 years on. Science 338, 
+1042–1046 (2012).
+19.	
+Jumper, J. et al. Highly accurate protein structure prediction with AlphaFold. Nature 596, 
+583–589 (2021).
+20.	 Humphreys, I. R. et al. Computed structures of core eukaryotic protein complexes. 
+Science 374, eabm4805 (2021).
+21.	
+Bryant, P. et al. Predicting the structure of large protein complexes using AlphaFold and 
+Monte Carlo tree search. Nat. Commun. 13, 6028 (2022).
+22.	 Mazurenko, S., Prokop, Z. & Damborsky, J. Machine learning in enzyme engineering. 
+ACS Catal. 10, 1210–1223 (2019).
+23.	 Dauparas, J. et al. Robust deep learning–based protein sequence design using 
+ProteinMPNN. Science 378, 49–56 (2022).
+24.	 Zhou, J. & Troyanskaya, O. G. Predicting effects of noncoding variants with deep 
+learning–based sequence model. Nat. Methods 12, 931–934 (2015).
+25.	 Greenwald, N. F. et al. Whole-cell segmentation of tissue images with human-level 
+performance using large-scale data annotation and deep learning. Nat. Biotechnol. 40, 
+555–565 (2022).
+26.	 Esteva, A. et al. Dermatologist-level classification of skin cancer with deep neural 
+networks. Nature 542, 115–118 (2017).
+27.	
+Ardila, D. et al. End-to-end lung cancer screening with three-dimensional deep learning 
+on low-dose chest computed tomography. Nat. Med. 25, 954–961 (2019).
+28.	 Zeng, Z., Li, Y., Li, Y. & Luo, Y. Statistical and machine learning methods for spatially 
+resolved transcriptomics data analysis. Genome Biol. 23, 83 (2022).
+29.	 Kelly, C. J., Karthikesalingam, A., Suleyman, M., Corrado, G. & King, D. Key challenges for 
+delivering clinical impact with artificial intelligence. BMC Med. 17, 1–9 (2019).
+30.	 Greener, J. G., Kandathil, S. M., Moffat, L. & Jones, D. T. A guide to machine learning for 
+biologists. Nat. Rev. Mol. Cell Biol. 23, 40–55 (2022).
+31.	
+Biancalani, T. et al. Deep learning and alignment of spatially resolved single-cell 
+transcriptomes with Tangram. Nat. Methods 18, 1352–1362 (2021).
+32.	 Tung, P.-Y. et al. Batch effects and the effective design of single-cell gene expression 
+studies. Sci. Rep. 7, 39921 (2017).
+33.	 Saelens, W., Cannoodt, R., Todorov, H. & Saeys, Y. A comparison of single-cell trajectory 
+inference methods. Nat. Biotechnol. 37, 547–554 (2019).
+34.	 Dirac, P. A. M. The Principles of Quantum Mechanics (Oxford Univ. Press, 1981).
+35.	 Heisenberg, W. in Physicist’s Conception of Nature (ed. Heisenberg, W.) (Harcourt, Brace 
+& co., 1958).
+36.	 Levine, H. et al. Parallel implementation of high-fidelity multiqubit gates with neutral 
+atoms. Phys. Rev. Lett. 123, 170503 (2019).
+37.	
+Burkard, G., Ladd, T. D., Pan, A., Nichol, J. M. & Petta, J. R. Semiconductor spin qubits. 
+Rev. Mod. Phys. 95, 025003 (2023).
+38.	 Conlon, A., Pellegrino, D., Slingerland, J. K., Dooley, S. & Kells, G. Error generation and 
+propagation in Majorana-based topological qubits. Phys. Rev. B 100, 134307 (2019).
+39.	 Kozhanov, A. et al. Next-generation trapped-ion quantum computing system. In Optica 
+Quantum 2.0 Conference and Exhibition QM3A-2 (Optical Publishing Group, 2023).
+40.	 Bravyi, S., Dial, O., Gambetta, J. M., Gil, D. & Nazario, Z. The future of quantum computing 
+with superconducting qubits. J. Appl. Phys. 132, 160902 (2022).
+41.	
+Chamberland, C. et al. Building a fault-tolerant quantum computer using concatenated 
+cat codes. PRX Quantum 3, 010329 (2022).
+42.	 Martinis, J. M. Surface loss calculations and design of a superconducting transmon qubit 
+with tapered wiring. npj Quantum Inf. 8, 26 (2022).
+43.	 Chow, J., Dial, O. & Gambetta, J. IBM quantum breaks the 100-qubit processor barrier. 
+IBM Research Blog https://www.ibm.com/quantum/blog/127-qubit-quantum- 
+processor-eagle (2022).
+
+Nature Reviews Molecular Cell Biology
+Roadmap
+44.	 Google Quantum, A. I. & Collaborators Quantum error correction below the surface 
+code threshold. Nature 638, 920–926 (2025).
+45.	 Bravyi, S. et al. High-threshold and low-overhead fault-tolerant quantum memory. Nature 
+627, 778–782 (2024).
+46.	 Cross, A. et al. OpenQASM 3: a broader and deeper quantum assembly language.  
+ACM Trans. Quantum Comput. 3, 1–50 (2022).
+47.	
+Jurcevic, P. et al. Demonstration of quantum volume 64 on a superconducting quantum 
+computing system. Quantum Sci. Technol. 6, 025020 (2021).
+48.	 Piveteau, C. & Sutter, D. Circuit knitting with classical communication. IEEE Trans. Inf. 
+Theor. 70, 2734–2745 (2024).
+49.	 Patti, T. L., Shehab, O., Najafi, K. & Yelin, S. F. Markov chain Monte Carlo enhanced 
+variational quantum algorithms. Quantum Sci. Technol. 8, 015019 (2022).
+50.	 Van Den Berg, E., Minev, Z. K., Kandala, A. & Temme, K. Probabilistic error cancellation 
+with sparse Pauli–Lindblad models on noisy quantum processors. Nat. Phys. 19, 1116–1121 
+(2023).
+51.	
+Kim, Y. et al. Scalable error mitigation for noisy quantum circuits produces competitive 
+expectation values. Nat. Phys. 19, 752–759 (2023).
+52.	 Caro, M. C. et al. Generalization in quantum machine learning from few training data. 
+Nat. Commun. 13, 4919 (2022).
+53.	 Cerezo, M., Verdon, G., Huang, H.-Y., Cincio, L. & Coles, P. J. Challenges and opportunities 
+in quantum machine learning. Nat. Comput. Sci. 2, 567–576 (2022).
+54.	 Abbas, A. et al. Challenges and opportunities in quantum optimization. Nat. Rev. Phys. 6, 
+718–735 (2024).
+55.	 Krunic, Z., Flöther, F. F., Seegan, G., Earnest-Noble, N. D. & Shehab, O. Quantum kernels 
+for real-world predictions based on electronic health records. IEEE Trans. Quantum Eng. 
+3, 1–11 (2022).
+56.	 Utro, F., Bose, A., Wang, R., Dubovitskii, V. & Parida, L. A perspective on quantum 
+computing for analyzing cell-cell communication networks. In Conference on Intelligent 
+Systems for Molecular Biology (ISMB, 2024).
+57.	
+Doga, H. et al. How can quantum computing be applied in clinical trial design and 
+optimization? Trends Pharmacol. Sci. 45, 880–891 (2024).
+58.	 Doga, H. et al. A perspective on protein structure prediction using quantum computers. 
+J. Chem. Theory Comput. 20, 3359–3378 (2024).
+59.	 Flöther, F. F. et al. How quantum computing can enhance biomarker discovery. Patterns 
+6, 101236 (2025).
+60.	 Dubovitskii, V., Bose, A., Utro, F. & Pardia, L. On quantum random walks in biomolecular 
+networks. Preprint at https://doi.org/10.48550/arXiv.2506.06514 (2025).
+61.	
+Moses, L. & Pachter, L. Museum of spatial transcriptomics. Nat. Methods 19, 534–546 (2022).
+62.	 Wang, Z. Cell segmentation for image cytometry: advances, insufficiencies, and 
+challenges. Cytom. A 95, 708–711 (2019).
+63.	 Pang, M., Roy, T. K., Wu, X. & Tan, K. CelloType: a unified model for segmentation and 
+classification of tissue images. Nat. Methods 22, 348–357 (2025).
+64.	 Petukhov, V. et al. Cell segmentation in imaging-based spatial transcriptomics.  
+Nat. Biotechnol. 40, 345–354 (2022).
+65.	 Chen, H., Li, D. & Bar-Joseph, Z. SCS: cell segmentation for high-resolution spatial 
+transcriptomics. Nat. Methods 20, 1237–1243 (2023).
+66.	 Moen, E. et al. Deep learning for cellular image analysis. Nat. Methods 16, 1233–1246 (2019).
+67.	
+Walker, B. L., Cang, Z., Ren, H., Bourgain-Chang, E. & Nie, Q. Deciphering tissue structure 
+and function using spatial transcriptomics. Commun. Biol. 5, 220 (2022).
+68.	 Nitzan, M., Karaiskos, N., Friedman, N. & Rajewsky, N. Gene expression cartography. 
+Nature 576, 132–137 (2019).
+69.	 Pesah, A. et al. Absence of barren plateaus in quantum convolutional neural networks. 
+Phys. Rev. X 11, 041011 (2021).
+70.	 Hur, T., Kim, L. & Park, D. K. Quantum convolutional neural network for classical data 
+classification. Quantum Mach. Intell. 4, 3 (2022).
+71.	
+Born, J. et al. Quantum doubly stochastic transformers. Preprint at https://doi.org/ 
+10.48550/arXiv.2504.16275 (2025).
+72.	 Zhao, L., Wan, L. & Luo, M.-X. Quantum algorithm for Markov Random Fields structure 
+learning by information theoretic properties. Phys. Scr. 100, 075121 (2025).
+73.	 Khatri, N., Matos, G., Coopmans, L. & Clark, S. Quixer: a quantum transformer model. 
+Preprint at https://doi.org/10.48550/arXiv.2406.04305 (2024).
+74.	 Cherrat, E. A. et al. Quantum vision transformers. Quantum 8, 1265 (2024).
+75.	 Jayakody, M. N., Meena, C. & Pradhan, P. Revisiting one-dimensional discrete-time 
+quantum walks with general coin. Phys. Open. 17, 100189 (2023).
+76.	 Mariella, N. et al. Quantum theory and application of contextual optimal transport. In 
+Proc. 41st International Conference on Machine Learning Article 1416, 34822–34845 
+(ACM, 2024).
+77.	
+Stuart, T. et al. Comprehensive integration of single-cell data. Cell 177, 1888–1902 e21 (2019).
+78.	 Palla, G. et al. Squidpy: a scalable framework for spatial omics analysis. Nat. Methods 19, 
+171–178 (2022).
+79.	 Dries, R. et al. Giotto: a toolbox for integrative analysis and visualization of spatial 
+expression data. Genome Biol. 22, 78 (2021).
+80.	 Li, M. M., Huang, K. & Zitnik, M. Graph representation learning in biomedicine and 
+healthcare. Nat. Biomed. Eng. 6, 1353–1369 (2022).
+81.	
+Jaume, G. et al. Quantifying explainers of graph neural networks in computational 
+pathology. In Proc. IEEE/CVF Conference on Computer Vision and Pattern Recognition 
+8106–8116 (CVPR, 2021).
+82.	 Liu, T. et al. A comprehensive overview of graph neural network-based approaches to 
+clustering for spatial transcriptomics. Comput. Struct. Biotechnol. J. 23, 106–128 (2024).
+83.	 Li, Y. & Luo, Y. STdGCN: spatial transcriptomic cell-type deconvolution using graph 
+convolutional networks. Genome Biol. 25, 206 (2024).
+84.	 Pati, P. et al. Hierarchical graph representations in digital pathology. Med. image Anal. 75, 
+102264 (2022).
+85.	 Cook, S. A. The complexity of theorem-proving procedures. Log. Autom. Comput. 
+Complex. https://doi.org/10.1145/3588287.3588297 (1971).
+86.	 Sun, S., Zhu, J. & Zhou, X. Statistical analysis of spatial expression patterns for spatially 
+resolved transcriptomic studies. Nat. Methods 17, 193–200 (2020).
+87.	
+Govek, K. W., Yamajala, V. S. & Camara, P. G. Clustering-independent analysis of genomic 
+data using spectral simplicial theory. PLoS Comput. Biol. 15, e1007509 (2019).
+88.	 Miller, B. F., Bambah-Mukku, D., Dulac, C., Zhuang, X. & Fan, J. Characterizing spatial 
+gene expression heterogeneity in spatially resolved single-cell transcriptomic data with 
+nonuniform cellular densities. Genome Res. 31, 1843–1855 (2021).
+89.	 Armingol, E., Officer, A., Harismendy, O. & Lewis, N. E. Deciphering cell-cell interactions 
+and communication from gene expression. Nat. Rev. Genet. 22, 71–88 (2021).
+90.	 Arnol, D., Schapiro, D., Bodenmiller, B., Saez-Rodriguez, J. & Stegle, O. Modeling cell-cell 
+interactions from spatial molecular data with spatial variance component analysis.  
+Cell Rep. 29, 202–211 e6 (2019).
+91.	
+Tanevski, J., Flores, R. O. R., Gabor, A., Schapiro, D. & Saez-Rodriguez, J. Explainable 
+multiview framework for dissecting spatial relationships from highly multiplexed data. 
+Genome Biol. 23, 97 (2022).
+92.	 Sahin, M. E. et al. Efficient parameter optimisation for quantum kernel alignment: 
+a sub-sampling approach in variational training. Quantum 8, 1502 (2024).
+93.	 Ray, A. et al. Hybrid quantum–classical graph neural networks for tumor classification in 
+digital pathology. 2024 IEEE Int. Conf. Quantum Comput. Eng. 01, 1611–1616 (2024).
+94.	 Mirzasoleiman, B., Bilmes, J. & Leskovec, J. Coresets for data-efficient training of machine 
+learning models. In Proc. 37th International Conference on Machine Learning Vol. 119, 
+569–579 (PMLR, 2020).
+95.	 Layden, D. et al. Quantum-enhanced Markov chain Monte Carlo. Nature 619, 282–287 
+(2023).
+96.	 Macaluso, A., Clissa, L., Lodi, S. & Sartori, C. An efficient quantum algorithm for ensemble 
+classification using bagging. IET Quantum Commun. 5, 253–268 (2024).
+97.	
+Rhrissorrakrai, K. et al. Quantum ensembling methods for healthcare and life science. 
+Preprint at https://doi.org/10.48550/arXiv.2506.02213 (2025).
+98.	 Wang, Y., Wang, X., Qi, B. & Dong, D. Supervised-learning guarantee for quantum 
+AdaBoost. Phys. Rev. Appl. 22, 054001 (2024).
+99.	 Berry, D. W. et al. Analyzing prospects for quantum advantage in topological data 
+analysis. PRX Quantum 5, 010319 (2024).
+100.	 Hayakawa, R. Quantum algorithm for persistent Betti numbers and topological data 
+analysis. Quantum 6, 873 (2022).
+101.	 Lloyd, S., Garnerone, S. & Zanardi, P. Quantum algorithms for topological and geometric 
+analysis of data. Nat. Commun. 7, 10138 (2016).
+102.	 Ding, J., Sharon, N. & Bar-Joseph, Z. Temporal modelling using single-cell 
+transcriptomics. Nat. Rev. Genet. 23, 355–368 (2022).
+103.	 La Manno, G. et al. RNA velocity of single cells. Nature 560, 494–498 (2018).
+104.	 Trapnell, C. et al. The dynamics and regulators of cell fate decisions are revealed by 
+pseudotemporal ordering of single cells. Nat. Biotechnol. 32, 381–386 (2014).
+105.	 Bergen, V., Lange, M., Peidli, S., Wolf, F. A. & Theis, F. J. Generalizing RNA velocity to 
+transient cell states through dynamical modeling. Nat. Biotechnol. 38, 1408–1414 (2020).
+106.	 Teschendorff, A. E. & Enver, T. Single-cell entropy for accurate estimation of 
+differentiation potency from a cell’s transcriptome. Nat. Commun. 8, 15599 (2017).
+107.	 Wolf, F. A. et al. PAGA: graph abstraction reconciles clustering with trajectory inference 
+through a topology preserving map of single cells. Genome Biol. 20, 1–9 (2019).
+108.	 Ji, Z. & Ji, H. TSCAN: pseudo-time reconstruction and evaluation in single-cell RNA-seq 
+analysis. Nucleic Acids Res. 44, e117 (2016).
+109.	 Cao, J. et al. The single-cell transcriptional landscape of mammalian organogenesis. 
+Nature 566, 496–502 (2019).
+110.	 Schiebinger, G. et al. Optimal-transport analysis of single-cell gene expression identifies 
+developmental trajectories in reprogramming. Cell 176, 1517 (2019).
+111.	 Tong, A., Huang, J., Wolf, G., van Dijk, D. & Krishnaswamy, S. TrajectoryNet: a dynamic 
+optimal transport network for modeling cellular dynamics. Proc. Mach. Learn. Res. 119, 
+9526–9536 (2020).
+112.	 Chen, R. T., Rubanova, Y., Bettencourt, J. & Duvenaud, D. K. Neural ordinary differential 
+equations. In Proc. 32nd International Conference on Neural Information Processing 
+System 6572–6583 (ACM, 2018).
+113.	 Pham, D. et al. Robust mapping of spatiotemporal trajectories and cell-cell interactions 
+in healthy and diseased tissues. Nat. Commun. 14, 7739 (2023).
+114.	 Ji, Y., Lotfollahi, M., Wolf, F. A. & Theis, F. J. Machine learning for perturbational single-cell 
+omics. Cell Syst. 12, 522–537 (2021).
+115.	 Zhang, J., Larschan, E., Bigness, J. & Singh, R. scNODE: generative model for temporal 
+single cell transcriptomic data prediction. Bioinformatics 40, ii146–ii154 (2024).
+116.	 Lin, C. & Bar-Joseph, Z. Continuous-state HMMs for modeling time-series single-cell 
+RNA-seq data. Bioinformatics 35, 4707–4715 (2019).
+117.	 Niraula, D., El Naqa, I., Tuszynski, J. A. & Gatenby, R. A. Modeling non-genetic information 
+dynamics in cells using reservoir computing. iScience 27, 109614 (2024).
+118.	 Hadaeghi, F. et al. Spatio-temporal feature learning with reservoir computing for T-cell 
+segmentation in live-cell Ca2+ fluorescence microscopy. Sci. Rep. 11, 8233 (2021).
+119.	 Lotfollahi, M., Wolf, F. A. & Theis, F. J. scGen predicts single-cell perturbation responses. 
+Nat. Methods 16, 715–721 (2019).
+
+Nature Reviews Molecular Cell Biology
+Roadmap
+120.	 Rood, J. E., Hupalowska, A. & Regev, A. Toward a foundation model of causal cell and 
+tissue biology with a perturbation cell and tissue atlas. Cell 187, 4520–4545 (2024).
+121.	 Jaitin, D. A. et al. Dissecting immune circuits by linking CRISPR-pooled screens with 
+single-cell RNA-Seq. Cell 167, 1883–1896 e15 (2016).
+122.	 McFarland, J. M. et al. Multiplexed single-cell transcriptional response profiling to define 
+cancer vulnerabilities and therapeutic mechanism of action. Nat. Commun. 11, 4296 (2020).
+123.	 Frangieh, C. J. et al. Multimodal pooled Perturb-CITE-seq screens in patient models 
+define mechanisms of cancer immune evasion. Nat. Genet. 53, 332–341 (2021).
+124.	 Xie, S., Duan, J., Li, B., Zhou, P. & Hon, G. C. Multiplexed engineering and analysis of 
+combinatorial enhancer activity in single cells. Mol. Cell 66, 285–299 e5 (2017).
+125.	 Gavriilidis, G. I., Vasileiou, V., Orfanou, A., Ishaque, N. & Psomopoulos, F. A mini-review on 
+perturbation modelling across single-cell omic modalities. Comput. Struct. Biotechnol. J. 
+23, 1886–1896 (2024).
+126.	 Nicol, P. B. et al. Robust identification of perturbed cell types in single-cell RNA-seq data. 
+Nat. Commun. 15, 7610 (2024).
+127.	 Dann, E., Henderson, N. C., Teichmann, S. A., Morgan, M. D. & Marioni, J. C. Differential 
+abundance testing on single-cell data using k-nearest neighbor graphs. Nat. Biotechnol. 
+40, 245–253 (2022).
+128.	 Kamimoto, K. et al. Dissecting cell identity via network inference and in silico gene 
+perturbation. Nature 614, 742–751 (2023).
+129.	 Marouf, M. et al. Realistic in silico generation and augmentation of single-cell RNA-seq 
+data using generative adversarial networks. Nat. Commun. 11, 166 (2020).
+130.	 Kingma, D. P. Auto-encoding variational bayes. Preprint at https://doi.org/10.48550/
+arXiv.1312.6114 (2013).
+131.	 Szałata, A. et al. Transformers in single-cell omics: a review and new perspectives.  
+Nat. Methods 21, 1430–1443 (2024).
+132.	 Bunne, C. et al. Learning single-cell perturbation responses using neural optimal 
+transport. Nat. Methods 20, 1759–1768 (2023).
+133.	 Bunne, C., Schiebinger, G., Krause, A., Regev, A. & Cuturi, M. Optimal transport for 
+single-cell and spatial omics. Nat. Rev. Methods Prim. 4, 58 (2024).
+134.	 Cui, H. et al. scGPT: toward building a foundation model for single-cell multi-omics using 
+generative AI. Nat. Methods 21, 1470–1480 (2024).
+135.	 Fu, X. et al. A foundation model of transcription across human cell types. Nature 637, 
+965–973 (2025).
+136.	 Hao, M. et al. Large-scale foundation model on single-cell transcriptomics. Nat. Methods 
+16, 4679 (2024).
+137.	 Heimberg, G. et al. A cell atlas foundation model for scalable search of similar 
+human cells. Nature 638, 1085–1094 (2024).
+138.	 Ghazanfar, S. et al. Investigating higher-order interactions in single-cell data with scHOT. 
+Nat. Methods 17, 799–806 (2020).
+139.	 Piatkowski, N. & Zoufal, C. Quantum circuits for discrete graphical models. Quantum 
+Mach. Intell. 6, 37 (2024).
+140.	 Ghosh, S., Opala, A., Matuszewski, M., Paterek, T. & Liew, T. C. Quantum reservoir 
+processing. NPJ Quantum Inf. 5, 35 (2019).
+141.	 Lukoševičius, M. A practical guide to applying echo state networks. Neural Netw.  
+https://doi.org/10.1007/978-3-642-35289-8_36 (2012).
+142.	 Tanaka, G. et al. Recent advances in physical reservoir computing: a review. Neural Netw. 
+115, 100–123 (2019).
+143.	 Zhu, C., Ehlers, P. J., Nurdin, H. I. & Soh, D. Practical few-atom quantum reservoir 
+computing. Phys. Rev. Research 7, 023290 (2025).
+144.	 Situ, H., He, Z., Wang, Y., Li, L. & Zheng, S. Quantum generative adversarial network for 
+generating discrete distribution. Inf. Sci. 538, 193–208 (2020).
+145.	 Zoufal, C., Lucchi, A. & Woerner, S. Quantum generative adversarial networks for learning 
+and loading random distributions. NPJ Quantum Inf. 5, 103 (2019).
+146.	 Kao, P.-Y. et al. Exploring the advantages of quantum generative adversarial networks in 
+generative chemistry. J. Chem. Inf. Model. 63, 3307–3318 (2023).
+147.	 Wan, K. H., Dahlsten, O., Kristjánsson, H., Gardner, R. & Kim, M. Quantum generalisation 
+of feedforward neural networks. NPJ Quantum Inf. 3, 36 (2017).
+148.	 Romero, J., Olson, J. P. & Aspuru-Guzik, A. Quantum autoencoders for efficient 
+compression of quantum data. Quantum Sci. Technol. 2, 045001 (2017).
+149.	 Khoshaman, A. et al. Quantum variational autoencoder. Quantum Sci. Technol. 4, 014001 
+(2018).
+150.	 Erbe, R., Stein-O’Brien, G. & Fertig, E. J. Transcriptomic forecasting with neural ordinary 
+differential equations. Patterns 4, 100793 (2023).
+151.	 Choi, M., Flam-Shepherd, D., Kyaw, T. H. & Aspuru-Guzik, A. Learning quantum dynamics 
+with latent neural ordinary differential equations. Phys. Rev. A 105, 042403 (2022).
+152.	 Stassen, S. V., Yip, G. G. K., Wong, K. K. Y., Ho, J. W. K. & Tsia, K. K. Generalized and 
+scalable trajectory inference in single-cell omics data with VIA. Nat. Commun. 12, 5528 
+(2021).
+153.	 Albrecht, B. et al. Quantum feature maps for graph machine learning on a neutral atom 
+quantum processor. Phys. Rev. A 107, 042615 (2023).
+154.	 Baysoy, A., Bai, Z., Satija, R. & Fan, R. The technological landscape and applications of 
+single-cell multi-omics. Nat. Rev. Mol. Cell Biol. 24, 695–713 (2023).
+155.	 Cao, K., Bai, X., Hong, Y. & Wan, L. Unsupervised topological alignment for single-cell 
+multi-omics integration. Bioinformatics 36, i48–i56 (2020).
+156.	 Wang, R. H., Wang, J. & Li, S. C. Probabilistic tensor decomposition extracts better latent 
+embeddings from single-cell multiomic data. Nucleic Acids Res. 51, e81 (2023).
+157.	 Cao, Z. J. & Gao, G. Multi-omics single-cell data integration and regulatory inference with 
+graph-linked embedding. Nat. Biotechnol. 40, 1458–1466 (2022).
+158.	 Kartha, V. K. et al. Functional inference of gene regulation using single-cell multi-omics. 
+Cell Genom. 2, 100166 (2022).
+159.	 Szklarczyk, D. et al. STRING v11: protein–protein association networks with increased 
+coverage, supporting functional discovery in genome-wide experimental datasets. 
+Nucleic Acids Res. 47, D607–D613 (2019).
+160.	 Ma, A. et al. Single-cell biological network inference using a heterogeneous graph 
+transformer. Nat. Commun. 14, 964 (2023).
+161.	 Barabasi, A. L., Gulbahce, N. & Loscalzo, J. Network medicine: a network-based approach 
+to human disease. Nat. Rev. Genet. 12, 56–68 (2011).
+162.	 Luck, K. et al. A reference map of the human binary protein interactome. Nature 580, 
+402–408 (2020).
+163.	 Maniscalco, S. et al. Quantum network medicine: rethinking medicine with network science 
+and quantum algorithms. Preprint at https://doi.org/10.48550/arXiv.2206.12405 (2022).
+164.	 Saarinen, H., Goldsmith, M., Wang, R.-S., Loscalzo, J. & Maniscalco, S. Disease gene 
+prioritization with quantum walks. Bioinformatics 40, btae513 (2024).
+165.	 Bose, A., Platt, D. E., Haiminen, N. & Parida, L. CuNA: cumulant-based network analysis  
+of genotype-phenotype associations in Parkinson’s disease. Preprint at medRxiv 
+https://doi.org/10.1101/2021.08.02.21261457 (2021).
+166.	 Parida, L. & Ramakrishnan, N. Redescription mining: structure theory and algorithms.  
+In Proc. 20th National Conference on Artificial Intelligence Vol. 2 (ACM, 2005).
+167.	 Bose, A. & Parida, L. Generating cumulant-based risk scores for diseases. US Patent 
+Application No. 202403954 (2023).
+168.	 Gurnari, D. et al. Probing omics data via harmonic persistent homology. Sci. Rep. 15, 
+38836 (2025).
+169.	 Percus, J. K. Correlation inequalities for Ising spin lattices. Commun. Math. Phys. 40, 
+283–308 (1975).
+170.	 Platt, D. E., Basu, S., Zalloua, P. A. & Parida, L. Characterizing redescriptions using 
+persistent homology to isolate genetic pathways contributing to pathogenesis. 
+BMC Syst. Biol. 10, S10 (2016).
+171.	 Gyurik, C., Cade, C. & Dunjko, V. Towards quantum advantage via topological data 
+analysis. Quantum 6, 855 (2022).
+172.	 Cui, L., Guo, G., Ng, M. K., Zou, Q. & Qiu, Y. GSTRPCA: irregular tensor singular value 
+decomposition for single-cell multi-omics data clustering. Brief. Bioinform. 26, bbae649 
+(2024).
+173.	 Hastings, M. B. Classical and quantum algorithms for tensor principal component 
+analysis. Quantum 4, 237 (2020).
+174.	 Burch, M. et al. Towards quantum tensor decomposition in biomedical applications. 
+Preprint at https://doi.org/10.48550/arXiv.2502.13140 (2025).
+175.	 Zhou, L., Basso, J. & Mei, S. Statistical estimation in the spiked tensor model via the 
+quantum approximate optimization algorithm. Adv. Neural Inf. Process. Syst. 37, 
+28537–28588 (2024).
+176.	 Zhu, X., Meng, S., Li, G., Wang, J. & Peng, X. AGImpute: imputation of scRNA-seq data 
+based on a hybrid GAN with dropouts identification. Bioinformatics 40, btae068 (2024).
+177.	 Xu, Y. et al. scIGANs: single-cell RNA-seq imputation using generative adversarial 
+networks. Nucleic Acids Res. 48, e85 (2020).
+178.	 Zeng, J., Wu, Y., Liu, J.-G., Wang, L. & Hu, J. Learning and inference on generative 
+adversarial quantum circuits. Phys. Rev. A 99, 052306 (2019).
+179.	 Li, J., Topaloglu, R. O. & Ghosh, S. Quantum generative models for small molecule drug 
+discovery. IEEE Trans. Quantum Eng. 2, 1–8 (2021).
+180.	 Huang, H.-L. et al. Experimental quantum generative adversarial networks for image 
+generation. Phys. Rev. Appl. 16, 024051 (2021).
+181.	 Abbas, A. et al. The power of quantum neural networks. Nat. Comput. Sci. 1, 403–409 
+(2021).
+182.	 Peters, R. et al. Quantum Convolutional HLA Immunogenic Peptide Prediction (Q-CHIPP): 
+next-generation neoantigen prediction with quantum neural networks. Preprint at 
+bioRxiv https://doi.org/10.1101/2025.07.29.667313 (2025).
+183.	 Shende, V. V., Bullock, S. S. & Markov, I. L. Synthesis of quantum-logic circuits. IEEE Trans. 
+Comput. Aided Des. Integr. Circuits Syst. 25, 1000–1010 (2006).
+184.	 Plesch, M. & Brukner, Č Quantum-state preparation with universal gate decompositions. 
+Phys. Rev. A 83, 032302 (2011).
+185.	 Zhang, X.-M., Li, T. & Yuan, X. Quantum state preparation with optimal circuit depth: 
+implementations and applications. Phys. Rev. Lett. 129, 230504 (2022).
+186.	 Basu, S. et al. Towards quantum-enabled cell-centric therapeutics. Preprint at 
+https://doi.org/10.48550/arXiv.2307.05734 (2023).
+187.	 Moffat, J. G., Vincent, F., Lee, J. A., Eder, J. & Prunotto, M. Opportunities and challenges in 
+phenotypic drug discovery: an industry perspective. Nat. Rev. Drug. Discov. 16, 531–543 
+(2017).
+188.	 Lin, A. et al. Off-target toxicity is a common mechanism of action of cancer drugs 
+undergoing clinical trials. Sci. Transl. Med. 11, eaaw8412 (2019).
+189.	 Sams-Dodd, F. Target-based drug discovery: is something wrong? Drug. Discov. today 10, 
+139–147 (2005).
+190.	 Huang, H.-Y. et al. Power of data in quantum machine learning. Nat. Commun. 12, 2631 (2021).
+191.	 Utro, F. et al. Enhanced prediction of CAR T-Cell cytotoxicity with quantum-kernel 
+methods. Preprint at https://doi.org/10.48550/arXiv.2507.22710 (2025).
+192.	 Gambetta, J. Expanding the IBM Quantum roadmap to anticipate the future of 
+quantum-centric supercomputing. IBM Research Blog https://www.ibm.com/quantum/
+blog/ibm-quantum-roadmap-2025 (2022).
+193.	 AbuGhanem, M. IBM quantum computers: evolution, performance, and future directions. 
+J. Supercomput. 81, 687 (2025).
+
+Nature Reviews Molecular Cell Biology
+Roadmap
+194.	 Yoder, T. J. et al. Tour de gross: a modular quantum computer based on bivariate bicycle 
+codes. Preprint at https://doi.org/10.48550/arXiv.2506.03094 (2025).
+195.	 Müller, T. et al. Improved belief propagation is sufficient for real-time decoding of 
+quantum memory. Preprint at https://doi.org/10.48550/arXiv.2506.01779 (2025).
+196.	 Mohseni, M. et al. How to build a quantum supercomputer: scaling challenges and 
+opportunities. Preprint at https://doi.org/10.48550/arXiv.2411.10406 (2024).
+197.	 Robledo-Moreno, J. et al. Chemistry beyond the scale of exact diagonalization on a 
+quantum-centric supercomputer. Sci. Adv. 11, eadu9991 (2025).
+198.	 Ding, Q.-M., Huang, Y.-M. & Yuan, X. Molecular docking via quantum approximate 
+optimization algorithm. Phys. Rev. Appl. 21, 034036 (2024).
+199.	 Chandarana, P., Hegade, N. N., Montalban, I., Solano, E. & Chen, X. Digitized counterdiabatic 
+quantum algorithm for protein folding. Phys. Rev. Appl. 20, 014024 (2023).
+200.	Lacroix, N. et al. Improving the performance of deep quantum optimization algorithms 
+with continuous gate sets. PRX Quantum 1, 020304 (2020).
+201.	 Bose, A., Doga, H., Utro, F. & Parida, L. Quantum-enabled multi-omics analysis. 
+In Conference on Intelligent Systems for Molecular Biology (2024).
+202.	Ghazi Vakili, M. et al. Quantum-computing-enhanced algorithm unveils potential KRAS 
+inhibitors. Nat. Biotechnol. https://doi.org/10.1038/s41587-024-02526-3 (2025).
+203.	Larocca, M. et al. Barren plateaus in variational quantum computing. Nat. Rev. Phys. 7, 
+174–189 (2025).
+204.	Du, Y., Hsieh, M.-H., Liu, T. & Tao, D. Expressive power of parametrized quantum circuits. 
+Phys. Rev. Res. 2, 033125 (2020).
+205.	Arrazola, J. M., Delgado, A., Bardhan, B. R. & Lloyd, S. Quantum-inspired algorithms in 
+practice. Quantum 4, 307 (2020).
+206.	Tang, E. Dequantizing algorithms to understand quantum advantage in machine 
+learning. Nat. Rev. Phys. 4, 692–693 (2022).
+207.	 Chia, N.-H. et al. Sampling-based sublinear low-rank matrix arithmetic framework for 
+dequantizing quantum machine learning. J. ACM 69, 33:1–33:72 (2022).
+208.	Koch, T. et al. Quantum optimization benchmark library – the intractable decathlon. 
+Preprint at https://doi.org/10.48550/arXiv.2504.03832 (2025).
+209.	Amitay, Y. et al. CellSighter: a neural network to classify cells in highly multiplexed 
+images. Nat. Commun. 14, 4302 (2023).
+210.	 Angermueller, C., Lee, H. J., Reik, W. & Stegle, O. DeepCpG: accurate prediction of 
+single-cell DNA methylation states using deep learning. Genome Biol. 18, 67 (2017).
+211.	 Sidhom, J.-W., Larman, H. B., Pardoll, D. M. & Baras, A. S. DeepTCR is a deep learning 
+framework for revealing sequence concepts within T-cell repertoires. Nat. Commun. 12, 
+1605 (2021).
+212.	 Yu, Z., Liu, F. & Li, Y. scTCA: a hybrid Transformer-CNN architecture for imputation and 
+denoising of scDNA-seq data. Brief. Bioinform. https://doi.org/10.1093/bib/bbae577 (2024).
+213.	 De Waele, G., Clauwaert, J., Menschaert, G. & Waegeman, W. CpG transformer for 
+imputation of single-cell methylomes. Bioinformatics 38, 597–603 (2022).
+214.	 Zhou, J. et al. Robust single-cell Hi-C clustering by convolution-and random-walk-based 
+imputation. Proc. Natl Acad. Sci. USA 116, 14011–14018 (2019).
+215.	 Jin, S. et al. Inference and analysis of cell–cell communication using CellChat. 
+Nat. Commun. 12, 1088 (2021).
+216.	 Cole, S., Eckstein, M., Friedland, S. & Życzkowski, K. On quantum optimal transport. 
+Math. Phys. Anal. Geom. 26, 14 (2023).
+217.	 Lange, M. et al. Mapping lineage-traced cells across time points with moslin. Genome 
+Biol. 25, 277 (2024).
+218.	 Forrow, A. & Schiebinger, G. LineageOT is a unified framework for lineage tracing and 
+trajectory inference. Nat. Commun. 12, 4940 (2021).
+219.	 Cang, Z. et al. Screening cell–cell communication in spatial transcriptomics via 
+collective optimal transport. Nat. Methods 20, 218–228 (2023).
+220.	Cao, K., Gong, Q., Hong, Y. & Wan, L. A unified computational framework for single-cell 
+data integration with optimal transport. Nat. Commun. 13, 7419 (2022).
+221.	 Verdon, G. et al. Quantum graph neural networks. Preprint at https://doi.org/10.48550/
+arXiv.1909.12264 (2019).
+222.	 Biswas, B., Kumar, N., Sugimoto, M. & Hoque, M. A. scHD4E: Novel ensemble 
+learning-based differential expression analysis method for single-cell RNA-sequencing 
+data. Comput. Biol. Med. 178, 108769 (2024).
+223.	 Mohammed, A. & Kora, R. A comprehensive review on ensemble deep learning: 
+opportunities and challenges. J. King Saud. Univ. Comput. Inf. Sci. 35, 757–774 (2023).
+224.	 Poggiali, A., Berti, A., Bernasconi, A., Del Corso, G. M. & Guidotti, R. Quantum clustering 
+with k-Means: a hybrid approach. Theor. Comput. Sci. 992, 114466 (2024).
+225.	 Roman-Vicharra, C. & Cai, J. J. Quantum gene regulatory networks. NPJ Quantum Inf. 9, 
+1–8 (2023).
+226.	 Loers, J. U. & Vermeirssen, V. A single-cell multimodal view on gene regulatory network 
+inference from transcriptomics and chromatin accessibility data. Brief. Bioinform. 25, 
+bbae382 (2024).
+227.	 Krovi, H. Improved quantum algorithms for linear and nonlinear differential equations. 
+Quantum 7, 913 (2023).
+228.	 Aubin-Frankowski, P.-C. & Vert, J.-P. Gene regulation inference from single-cell RNA-seq 
+data with linear differential equations and velocity inference. Bioinformatics 36, 
+4774–4780 (2020).
+229.	 Ghosh, A., Behl, H., Dupont, E., Torr, P. & Namboodiri, V. Steer: simple temporal 
+regularization for neural ode. Adv. Neural Inf. Process. Syst. 33, 14831–14843 (2020).
+230.	Sha, Y., Qiu, Y., Zhou, P. & Nie, Q. Reconstructing growth and dynamic trajectories from 
+single-cell transcriptomics data. Nat. Mach. Intell. 6, 25–39 (2024).
+231.	 Song, T., Broadbent, C. & Kuang, R. GNTD: reconstructing spatial transcriptomes with 
+graph-guided neural tensor decomposition informed by spatial and functional relations. 
+Nat. Commun. 14, 8276 (2023).
+232.	 Zinati, Y., Takiddeen, A. & Emad, A. GRouNdGAN: GRN-guided simulation of single-cell 
+RNA-seq data using causal generative adversarial networks. Nat. Commun. 15, 4055 (2024).
+233.	Huang, Z., Wang, J., Lu, X., Mohd Zain, A. & Yu, G. scGGAN: single-cell RNA-seq 
+imputation by graph-based generative adversarial network. Brief. Bioinforma. 24, 
+bbad040 (2023).
+Author contributions
+The authors contributed equally to all aspects of the article.
+Competing interests
+The authors declare no competing interests.
+Additional information
+Peer review information Nature Reviews Molecular Cell Biology thanks the anonymous 
+reviewer(s) for their contribution to the peer review of this work.
+Publisher’s note Springer Nature remains neutral with regard to jurisdictional claims in 
+published maps and institutional affiliations.
+© Springer Nature Limited 2026, modified publication 2026
+the Quantum for Healthcare Life Sciences Consortium
+Saugata Basu2, Jannis Born3, Aritra Bose1, Sara Capponi4, Dimitra Chalkia5, Timothy A. Chan6,7, Hakan Doga8, 
+Frederik F. Flöther9, Gad Getz10,11,12, Mark Goldsmith13, Tanvi Gujarati8, Aldo Guzman-Saenz1, Dimitrios Iliopoulos14, 
+Gavin O. Jones8, Stefan Knecht13, Dhiraj Madan15, Sabrina Maniscalco13, Nicola Mariella16, Joseph A. Morrone1, 
+Khadijeh Najafi17, Pushpak Pati18, Daniel Platt1, Maria Anna Rapsomaniki19, Anupama Ray20, Kahn Rhrissorrakrai1, 
+Omar Shehab21, Ivano Tavernelli22, Meltem Tolunay8, Filippo Utro1, Stefan Woerner22, Sergiy Zhuk16, Jeannette M. Garcia8 
+& Laxmi Parida1
+2Purdue University, West Lafayette, IN, USA. 3IBM Research, Zurich, Switzerland. 4IBM Research, San Jose, CA, USA. 5Children’s Hospital of Philadelphia, 
+Philadelphia, PA, USA. 6Center for Immunotherapy and Precision-Immuno-Oncology, Cleveland Clinic, Cleveland, OH, USA. 7National Center for 
+Regenerative Medicine, Cleveland Clinic, Cleveland, OH, USA. 8IBM Quantum, San Jose, CA, USA. 9QuantumBasel, uptownBasel Infinity Corp., Arlesheim, 
+Switzerland. 10Broad Institute of MIT and Harvard, Cambridge, MA, USA. 11Massachusetts General Hospital Cancer, Boston, MA, USA. 12Department 
+of Pathology, Harvard Medical School, Boston, MA, USA. 13Algorithmiq Ltd., Helsinki, Finland. 14Athos Therapeutics Inc, Los Angeles, CA, USA. 15IBM 
+Research, Gurugram, India. 16IBM Quantum, Dublin, Ireland. 17Q-Ctrl, Cambridge, MA, USA. 18Johnson and Johnson, Zurich, Switzerland. 19University of 
+Lausanne, Lausanne, Switzerland. 20IBM Quantum, Bengaluru, India. 21IBM Quantum, Yorktown Heights, NY, USA. 22IBM Quantum, Zurich, Switzerland. 
+Springer Nature or its licensor (e.g. a society or other partner) holds exclusive rights to this 
+article under a publishing agreement with the author(s) or other rightsholder(s); author 
+self-archiving of the accepted manuscript version of this article is solely governed by the 
+terms of such publishing agreement and applicable law.

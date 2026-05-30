@@ -1,0 +1,1572 @@
+Source-PDF: D:\Review\New folder\Forecastingtime-series focused\Prediction tool only\A systematic review of quantum machine learning for digital health.pdf
+Relative-Path: New folder\Forecastingtime-series focused\Prediction tool only\A systematic review of quantum machine learning for digital health.pdf
+--------------------------------------------------------------------------------
+
+npj | digital medicine
+Article
+Published in partnership with Seoul National University Bundang Hospital
+https://doi.org/10.1038/s41746-025-01597-z
+A systematic review of quantum machine
+learning for digital health
+Check for updates
+Riddhi S. Gupta1
+, Carolyn E. Wood1, Teyl Engstrom2, Jason D. Pole2 & Sally Shrapnel1,2
+The growth in digitization of health data provides opportunities for using algorithmic techniques for
+data analysis. This systematic review assesses whether quantum machine learning (QML) algorithms
+outperform existing classical methods for clinical decisioning or health service delivery. Included
+studies use electronic health/medical records, or reasonable proxy data, and QML algorithms
+designed for quantum computing hardware. Databases PubMed, Embase, IEEE, Scopus, and preprint
+server arXiv were searched for studies dated 01/01/2015–10/06/2024. Of an initial 4915 studies, 169
+were eligible, with 123 then excluded for insufﬁcient rigor. Only 16 studies consider realistic operating
+conditions involving quantum hardware or noisy simulations. We ﬁnd nearly all encountered quantum
+models form a subset of general QML structures. Scalability of data encoding is partly addressed but
+requires restrictive hardware assumptions. Overall, performance differentials between quantum and
+classical algorithms show no consistent trend to support empirical quantum utility in digital health.
+Recent years have seen a proliferation of research proclaiming the utility of
+quantummachinelearning(QML)algorithmsforanalyzingclassicaldatain
+many sectors, e.g. ﬁnance, cybersecurity, logistics, pharmaceuticals, energy,
+minerals, and healthcare. With the increasing digitization of health data, the
+growthof electronichealth and medicalrecords1 paves the wayfortheuseof
+algorithmic techniques - quantum or classical - for analyzing this data.
+Potential digital health applications could include clinical decision support,
+clinical predictive health and health monitoring, public health applications
+and improving health services delivery and data fusion2–5. The potential for
+use-case discovery for QML in healthcare6 and biomedical7 applications is
+found to be compelling in previous systematic reviews. Other broader
+reviews on quantum computing for health, biology and lifesciences8–15
+hypothesize the potential utility of QML algorithms or quantum sub-
+routines in health, but none of these works are rigorous systematic reviews
+(and thus reproducible). Indeed, across all of these standard and systematic
+reviews, we ﬁnd that the strength of the current evidence base even under
+mildly realistic operating conditions is not examined.
+Characterizing the role of QML algorithms applied to real-world
+classical data is nuanced and a challenging question in applications devel-
+opment but also in fundamental QML theory16,17. Quantum advantage
+refers to asymptotic reduction in computational resources (or some other
+metric18) required by quantum algorithms when compared to classical
+counterparts, i.e. resources are saved as problem size scales to inﬁnity.
+Empirical quantum advantage19 colloquially refers to ﬁnite-sized simula-
+tions or experiments using quantum over classical algorithms to perform a
+task, where one assumes any desired resource savings will scale to larger
+problems, e.g. in qubit number, high-dimensional or highly structured
+datasets. However, for classical datasets of arbitrary structure such as those
+encountered in healthcare settings, there is no known theoretically provable
+quantumadvantage18.Instead,theﬁeldreliesonmostlyempiricalanalysisof
+QML performance for a variety of pseudo-real-world data, where perfor-
+mance differentials between quantum and classical methods on these
+smaller problems constitute evidence for testing empirical quantum
+advantage. Most computational analysis of scaling behavior assumes ideal
+operating conditions and it is unknown if QML methods will retain any
+beneﬁts in realistic operating settings, such as on near-term noisy quantum
+hardware. In some cases, the role of quantum algorithms for solving
+inference tasks has been entirely replaced by equivalent classical capability,
+in a process known as dequantization (e.g.20,21).
+In this work, we undertake a systematic literature review of QML
+applications in digital health between 2015 and 2024. As typical in medical
+research settings, a systematic literature review is a standard methodological
+approach for assessing the strength of evidence for proposed interventions
+in clinical contexts and public health22. Based on existing evidence in lit-
+erature, we use the SPICE framework23 to ask: In developing digital health
+technologies, could quantum machine learning algorithms potentially
+outperform existing classical methods in efﬁcacy or efﬁciency? A systematic
+review was conducted in line with the PRISMA (Preferred Reporting Items
+for Systematic Reviews and Meta-Analyses)24 (Supplementary Note 2)
+detailed in Methods. Our methodology assesses the strength of the evidence
+and dominant trends associated with using QML algorithms for digital
+1School of Mathematics and Physics, The University of Queensland, St Lucia, 4067 QLD, Australia. 2QDHeC. Centre for Health Services Research. Faculty of
+Medicine, The University of Queensland, Herston, 4006 QLD, Australia.
+e-mail: riddhi.gupta@uq.edu.au
+npj Digital Medicine |  (2025) 8:237 
+1
+1234567890():,;
+1234567890():,;
+
+health, including assessing the extent to which performance robustness of
+proposed QML algorithms has been characterized.
+Our current-state analysis reveals that the empirical evidence for QML
+in digital health cannot conclusively address our research question. We ﬁnd
+that numerous studies had to be excluded due to a lack of technical rigor in
+their analysis of QML algorithms. The majority of eligible studies use only
+ideal simulations of QML algorithms, thereby excluding the resource
+overhead incurred for error-mitigated or error-corrected algorithms
+required for noisy quantum hardware. Of high quality studies, nearly all
+QML algorithms are found to be linear quantum models, and therefore
+represent a small subset of general QML. Most use-cases in digital health
+focussed on providing clinical support, and no studies considered health
+service delivery or public health applications. Only two synthesized studies
+used electronic health records for quantum machine learning applications,
+while the remaining studies repeatedly gravitated towards a handful of
+open-source health databases. Finally, 13 studies used quantum hardware
+demonstrations and separated into two classes: either algorithms for a gate-
+based, universal quantum computer using up to 20 qubits, or quantum
+annealers using O(100) qubits. Whether potential advantages of QML can
+be retained in the presence of noise is largely unaddressed in all studies.
+WedevotetheremainderofthisIntroductiontoprovidinganoverview
+of quantum machine learning for those unfamiliar with this domain. We
+will also brieﬂy discuss performance metrics, properties of different families
+of quantummachinelearning algorithms,techniques forencodingdata into
+quantum states, and data pre-processing. Quantum algorithms refer to a
+broad category of algorithms, for which it is desired that quantum com-
+puting hardware will be required to perform some of the computations. We
+distinguish these quantum algorithms from quantum-inspired classical
+algorithms that use insights from quantum mechanics to perform com-
+putations on classical computers. Quantum machine learning algorithms
+are a subset of quantum algorithms. For the scope of this review, a quantum
+machine learning algorithm takes as input a classical dataset, and an
+inference problem is deﬁned on the classical dataset.
+Much of the literature we encountered in our review discussed the
+potential beneﬁts of using quantum machine learning techniques in lieu of
+classical methods to analyze health data. The terminology used to com-
+municate these beneﬁts is often ill-deﬁned, e.g. quantum ‘speed-up’, ‘utility’
+or ‘advantage’ are used interchangeably. In QML, computational ‘advan-
+tage’ accrues when a QML algorithm can reduce the number of operations
+required to solve this inference problem as the size of the problem becomes
+asymptotically large. Here, the problem size is typically associated with
+features of the input data e.g. with input data dimension. From a computer
+scienceperspective,algorithmscaneitherimproveonthenumberof queries
+or samples required (sample complexity) or the number of parallelizable
+quantum operations (time complexity, or runtime). When quantum algo-
+rithms enable improvements in complexity, this is sometimes referred to as
+‘quantumadvantage’,while‘speed-up’isoftenreservedonlyforreductionin
+time complexity. An additional metric of memory complexity quantiﬁes the
+size or type of data structures required to efﬁciently store and recall inter-
+mediary information during computation. While memory complexity is
+typically notdiscussed intheliterature forquantumalgorithms, subroutines
+suchasQRAMmayplayananalogousrole.Acomparisonofcomputational
+costs of selected classical vs. quantum algorithms for ideal mathematical
+regimes can be found in ref. 11, but these were not encountered for real-
+world health data in our review.
+Quantum algorithms separate into two different categories in this
+review: gate-based quantum models, or quantum annealing. This categor-
+ization can broadly reﬂect the difference between digital and universal vs.
+analog and non-universal quantum computing. While we provide a high-
+level summary of classes of quantum algorithms that were encountered in
+thisreview,itcannotbeconstrued asa comprehensiveoverview of quantum
+machine learning (see for example, refs. 25,26). Background quantum
+notation and a fuller discussion is provided in Supplementary Note 1. The
+majority of studies in the review focussed on quantum algorithms designed
+for gate-based universal quantum computers. These algorithms include
+quantum kernel methods (including quantum support vector machines),
+quantum neural networks, quantum convolutional neural networks, and
+quantum deep learning. We summarize the quantum computational steps
+in these protocols by considering how outputs are generated from inputs in
+Fig. 1 by representing these steps as quantum circuits.
+In the circuit visualization of Fig. 1, inputs to a quantum algorithm are
+qubit states denoted with ket-notation j  i and boxed operations denote
+quantum gates. These gates are associated with reversible, logical operations
+performedon quantum states. The circuit is terminated with measurements
+of a quantum state which yield probabilistic outcomes, ‘0’ or ‘1’, where
+probabilities are determined by the quantum circuit. Suppose for some
+input quantum state, ρ0, the average output of a quantum computation is
+given by f(x, θ) where (x, θ) deﬁne classical inputs to a quantum algorithm.
+Here, ρ0 represents an input state, such as all qubits in their ground (zero)
+state; x represents one sample of real data with dimension d, x 2 Rd for a
+Fig. 1 | Common models in quantum machine learning. Quantum circuit
+depictions of linear vs. non-linear embedding in quantum models27. Horizontal
+wires represent qubits where input states are shown as ket j  i symbols; temporal
+order of computations progresses from left to right. Boxed quantum gates (blue,
+orange) are reversible rotations, or `unitary gates’, of quantum states, i.e. U† = U−1. If
+data encoding (blue) is separable from variational gates (orange), then the quantum
+model is linear. ‘Circuit size’ refers to the number of qubits, while ‘circuit depth’
+represents the number of time-steps required to run the full circuit assuming that
+quantum operations on disjoint qubits have been parallelized. a–c Measurements
+(msmts.) are pushed to the end; quantum circuit can be summarized by a unitary
+operation. d Mid-circuit measurement outcomes change quantum operations ‘on
+the ﬂy’ (pink). Circuits with tunable θ (blue gates) can be broadly referred to as
+variational (VQC) or parameterized (PQC) quantum circuits.
+https://doi.org/10.1038/s41746-025-01597-z
+Article
+npj Digital Medicine |  (2025) 8:237 
+2
+
+dataset with N samples, and tunable free parameters, θ, that parameterize
+the circuit. One encodes data x into quantum states using a parameterized
+quantum gate, denoted U(x). Meanwhile, free parameters, θ, implement
+classically optimized or trained quantum gates, V(θ). With these assump-
+tions, the desired output information required from the circuit is typically
+givenwithreferencetoanobservablequantity, ^O.Thisoutputinformationis
+inherently statistical, i.e. one must inferaverage information about ^O from a
+statistical ensemble of ‘0’ or ‘1’ measurements obtained by repeatedly pre-
+paring and measuring the same quantum circuit Ns number of times.
+Therefore to extract information about ^O, we build up an ensemble of
+quantum measurements by repeatedly running a quantum circuit Ns
+numberoftimesfora singleinstanceof x,and repeatingfordifferentchoices
+of x.
+A quantummachine learning algorithm typically consistsof input data
+(x-dependent) and tunable (θ-dependent) quantum operations. Using
+Supplementary Note 1, we can write the general output of a QML algorithm
+as,
+f ðx; θÞ :¼ Tr Uðx; θÞρ0Uyðx; θÞ^O
+
+
+¼ hρx;θ; ^Oi;
+ð1Þ
+where the data (x-dependent) and tunable (θ-dependent) components of
+the quantum state ρx,θ cannot be separated. In equation (1), U(x, θ) repre-
+sents a parameterized quantum gate which depends on data x and tunable
+parameters θ. The output of a QML algorithm thus computes the overlap
+between information in the quantum state ρx,θ = U(x, θ)ρ0U†(x, θ), and the
+desired output ^O, using an inner product. In contrast, linear quantum
+models allow us to separate the x-dependent quantum operations and θ-
+dependent quantum operations within the inner product27. In these models,
+we perform data encoding operations followed by tunable gates V(θ). As
+shown in Fig. 1(a), a linear quantum neural network (QNN) can be
+expressed by,
+f ðx; θÞ :¼ Tr VðθÞUðxÞρ0UyðxÞVyðθÞ^O
+
+
+¼ hρx; ^Oθi:
+ð2Þ
+Inequation(2),θ cantaketheformofanyotherclassicalparametersthatare
+not x; data encoding is expressed by ρx ≔U(x)ρ0U†(x), and the para-
+meterized neural net is expressed as ^Oθ :¼ VyðθÞ^OVðθÞ. We note that the
+embedding U(x) can be nonlinear transformation of the input data, x.
+However, the terminology ‘linear’ quantum model refers to the linearity of
+the model with respect to the embedding, i.e. data-dependent and
+parameterized components of the quantum algorithm can be separated as
+shown above27.
+With this structure, we can additionally describe many other types of
+quantummachinelearning algorithms. Forexample, we canomit θ entirely,
+and recover sophisticated algorithms that focus on data encoding proce-
+dures. In quantum kernel methods (QKMs), θ is replaced by training data,
+and the algorithm output f during prediction represents a linear combina-
+tion of all training samples. Sometimes the action of ρ, U(x) or V(θ) is non-
+trivially restricted
+to some subset of quantum states. Quantum
+convolutional neural networks (QCNNs), quantum generative adversarial
+networks, quantum causal modeling, quantum transformers, and quantum
+deep reinforcement learning all have regimes in which they reduce to linear
+quantum models of the form in Eq. (2) as discussed in Supplementary
+Note 1.
+Meanwhile, quantum annealing algorithms assume a very speciﬁc type
+of quantum computing hardware, namely adiabatic computers, (e.g.
+D-Wave) to solve speciﬁc learning tasks. Adiabatic quantum computers can
+approximately solve computationally hard (i.e. ‘NP-hard’) problems28
+includingapproximatelysolving combinatorialoptimization problems.The
+main class of problems encountered in this review relates to quadratic
+unconstrained binary optimization (QUBO). Examples of QUBO optimi-
+zation problems include regression, classiﬁcation, and data compression
+tasks. Classical, quantum and hybrid annealers can all approximately solve
+QUBO optimizationproblems29,orbeusedto drawsamplesfromparticular
+types of probability distributions (e.g. Boltzmann distributions)30. While
+more general forms of adiabatic quantum computing than annealing
+techniquesdoexist,wedidnotencounteranywithinourincludedliterature,
+and for this reason have not included a discussion of this form of learning.
+Quantum algorithms for QUBO formulations have provable advan-
+tage over classical counterparts in some regimes. Quantum QUBO algo-
+rithms for optimizing support vector machines (SVMs) and balanced
+k-means clustering have better computational complexities compared to
+classical counterparts, while quantum algorithms for QUBO formulations
+of regression have equivalent computational complexity to classical
+algorithms28. For this limited class of problems, quantum adiabatic com-
+puters, suchas D-Wave 2X processors, can access ≈1000 qubits, which is an
+order of magnitude larger than O(100) qubit processors for universal non-
+annealingquantumcomputers developedbyIBMand Google. We also note
+that it is possible to realize quantumannealingtasksongate-based quantum
+computers, e.g. ref. 31, and therefore our classiﬁcation represents one choice
+of a non-exclusive method for framing the discussion of QML algorithms.
+So far we have introduced quantum machine learning algorithms in
+generality without reference to the dataset under consideration. However,
+characteristics of classical data and the representation of this data in a
+quantum algorithm can affect potential attainability of computational
+advantageinsolvinginferencetasks32,33.Dataencodingdescribestheprocess
+of representing classical data as quantum states, such as the choice of a data
+encoder, U(x), in Fig. 1. Data encoding is required for both annealing and
+non-annealing quantumalgorithms. Ideally, data encoders must be efﬁcient
+in computational complexity in both circuit size (number of qubits) and
+circuit depth (numberof parallel operations). There are a numberof ways to
+embed classical data x in quantum states, as summarized in Table 1. For
+continuous variable inputs, one may use binary representation of data to
+ﬁnite precision τ and encode using discrete methods such as basis encoding,
+as reported in Table 1. The growth of the number of computations required
+for encoding is mathematically expressed in OðgðnÞÞ-notation to express an
+upper bound g(n) on the number of operations as the argument n goes to
+inﬁnity, ignoring constant multiplicative or additive factors. As an example
+Table 1 | Comparison of data encoding strategies
+Encoding
+Circuit Size (# of Qubits)
+Circuit Depth (Runtime)
+Ref.
+Angle encoding
+O(d)
+O(1)
+64
+Basis encoding
+O(dτ)
+O(1), O(Ndτ)
+64,65
+Amplitude encoding
+Oðlog2ðdτÞÞ
+Oðlog2ðNdτÞÞ; OðNdτÞ
+64,65
+QRAM
+O(dτ + m)
+OðlogðmÞÞ
+m = O(dτ)34,66
+Parallel unary loader
+Oð
+ﬃﬃﬃ
+d
+p
+Þ
+Oð
+ﬃﬃﬃ
+d
+p
+log2ðdÞÞ
+67
+Data encoding vs. circuit size and circuit depth for a data vector x 2 Rd with dimensionality d, a total number of N samples in the database. Suppose the binary representation of a single element of x is of
+length τ bits, with an additional bit for storing signs ± 1. Then the binary representation b of x has length d(τ + 1) = O(dτ). Only amplitude encoding has sub-polynomial scaling of number of qubits with number
+of classical bits required to represent input data. Runtime complexity refers to the number of parallel quantum operations during encoding. For basis encoding, a single data vector can be encoded in
+constant time68 but linear time is required to prepare a superposition over N samples69. For amplitude encoding, runtime is linear for general datasets but can be reduced to sub-polynomial scaling only for
+restricted datasets or by enabling an algorithm to access QRAM using an additional m ancillary qubits under idealized conditions65,66.
+https://doi.org/10.1038/s41746-025-01597-z
+Article
+npj Digital Medicine |  (2025) 8:237 
+3
+
+from Table 1, angle-encoding can be prepared in constant depth but scales
+linearly with number of qubits. The trade-off is switched for amplitude
+encoding, which in general scales linearly with runtime and logarithmically
+with qubit number.
+Hardware-speciﬁc considerations can change implementation details
+of a quantum algorithm. The decomposition of required quantum opera-
+tions to the native set of quantum gates available on hardware may change
+the number of operations, e.g. replacing one 2-qubit gate with a decom-
+position involving several single and 2-qubit gates. Similarly, hardware
+implementationofanycontinuousvariableoftenalsoincursﬁniteprecision.
+Inmostcases,thesechangesaremultiplicativeoradditivewithproblemsize.
+These multiplicative or additive changes do not affect the overall asymptotic
+scaling behavior of the encoder. Some data encoders are not intended as a
+near-term, implementable strategy. For example, quantum random access
+memories (QRAM)34 use an additional m = O(dτ) ancillary qubits to ran-
+domly access superpositions of basis-encoded states in favorable logarith-
+mic OðlogðmÞÞ time. However, robust QRAMs remain extremely
+challenging to implement on hardware35. Finally, the parallel unary encoder
+assumes speciﬁc hardware capabilities that affect the complexity of data
+encoding, and we return to this point in the Discussion.
+Distinct from the choice of data encoding strategy, data pre-processing
+is concerned with using classical techniques to clean up, rescale, compress,
+or transform data. Since data encoding is expensive in quantum resources,
+and may impact performance, raw data is pre-processed before encoding
+data in quantum states. Data pre-processing can have many goals, e.g. to
+compressrawdata,identifykeyfeatures,oraddressmissingvalues.Formost
+near-term demonstrations of QML, it is well known that dimensionality
+reduction of classical datasets is often required to encode data into small or
+intermediate scale quantum circuits. However, the potential impact of data
+pre-processing on comparisons of quantum vs. classical algorithm perfor-
+mance is not addressed in literature.
+Wenowturntopresentingourkeyresultsandthemethodologyforour
+review.Thestructureofthisdocumentisasfollows.Webeginbyconducting
+meta-analysis and synthesizing the empirical evidence for all eligible studies
+in Results. We comment on the extent to whichthis evidencebase addresses
+our research questions, and discuss limitations and future outlook in Dis-
+cussion. Details of our systematic review methodology, including a study
+quality assessment framework and comprehensive search and screening
+criteria, is outlined in Methods.
+Results
+Results are presented in two stages. Firstly, we depictresults of the screening
+processandthestudyqualityappraisal,whichhasledtoafocuson16studies
+for ﬁnal synthesis. Secondly, we summarize synthesized evidence and dis-
+cuss the extent to which our original research question is addressed.
+Characterization of synthesized studies
+Our systematic review is summarized by a PRISMA diagram in Fig. 2a. Our
+searches identiﬁed 4915 distinct studies. A total of 313 studies passed title
+and abstract screening and went through full-text screening, of which 169
+met eligibility criteria. Inter-rater reliability as measured by Cohen’s kappa
+was substantial for title and abstract screening (0.72) and moderate for full
+text screening (0.48). According to the distribution of exclusion reasons
+shown in Fig. 2b, the most frequent cause for full-text exclusion during
+screening was distinguishing between genuinely quantum algorithms
+designed to run on quantum hardware, vs. classical computation invoking
+ideas, insights or jargon from quantum physics. If the health setting of
+physics-centric QML studies is not explicit (e.g. for instance36), then these
+Fig. 2 | PRISMA diagram. PRISMA diagram
+extracted from Covidence60. a Overview of sys-
+tematic review from screening to synthesis. Of
+4915 studies returned from search in 5 databases,
+93.6% of abstracts are deemed ineligible based on
+digital health setting and quantum intervention
+criteria. During full text review, 144 studies are
+excluded, and exclusion reasons are given in (b).
+Data is extracted (red box) for 169 eligible studies;
+additional quality assessment and selection criteria
+is applied to yield a total of 16 studies for ﬁnal
+synthesis. b Frequency count of exclusion reasons
+for full text review.
+(b)
+(a)
+6003 studies imported
+Scopus: 2991, Embase: 1838,
+PubMed: 565, IEEE: 544,
+arXiv: 65
+4915 studies screened
+313 full text studies
+assessed for eligibility
+169 extracted studies
+assessed for quality
+46 high quality studies
+assessed for realistic ops
+16 synthesized studies
+1088 duplicates
+Manually: 8
+Covidence: 1080
+4602 studies irrelevant
+144 studies excluded
+123 studies low quality
+30 studies used only
+ideal sims of QML
+Screening
+Data extraction
+Quantum inspired / not quantum algorithm
+61
+Quantum sensing
+3
+Data not EHR-adjacent
+42
+Study not digital health related
+18
+Non-reputable publisher / not found
+14
+Wrong publication type (e.g. review, opinion)
+4
+Outside search period
+2
+Wrong intervention
+Wrong setting
+Wrong study
+characteristics
+Exclusion reasons
+https://doi.org/10.1038/s41746-025-01597-z
+Article
+npj Digital Medicine |  (2025) 8:237 
+4
+
+studieswillnot be returned in search nor passtitleand abstractscreeningfor
+any systematic review.
+To address issuesof technicalrigor,we approach data extraction intwo
+steps: ﬁrst, the application of the quality assessment criteria, and secondly,
+narrowing the focus to studies that investigated realistic operating condi-
+tions either via noisy simulations or by testing algorithms on real quantum
+hardware. The distribution of quality scores after consensus is reported in
+Table 2. Only 6 of 169studiesled to non-trivial and unresolvable differences
+in scoring criteria between two independent reviewers, indicating 96.4%
+consensus rate for quality assessment scoring. Borderline studiesarise when
+a quality score for two of the following three concerns remains unresolved
+by reviewers: insufﬁcient performance analysis of classical pre-processing
+before data input to quantum algorithm, insufﬁcient performance analysis
+of scalability using qubit numbers > O(1), and/or insufﬁcient performance
+analysis of choice of data encoding strategy.
+The resulting metadata for extracted (synthesized) studies is shown in
+thetop(bottom)rowofFig.3.OfalleligiblestudiesinFig.3(toprow),138of
+169(81.7%)useonlysimulationsofquantummachinelearningapplications
+for digital health without testing on hardware. Where simulations are the
+only evidence base in a study, only 7 out of 138 studies use some form of
+noisy simulations, while the remaining 131 studies use only ideal simula-
+tions. When restricting to synthesized studies in Fig. 3 (bottom row), a
+greater proportion of studies do appear to test quantum algorithms on
+actual quantum hardware (refer Fig. 3b vs. (f)).
+The growth in the number of eligible articles on quantum algorithms
+for digital health seems almost exponential in Fig. 3a. These applications are
+broadly categorized into diagnosis, predictive health, and ‘other’ in Fig. 3c.
+‘Diagnosis’ refers to an application that identiﬁes, characterizes or labels
+current health data with the aim of supporting a clinical diagnosis e.g.
+classiﬁcation of medical images or time varying signals. ‘Predictive’ refers to
+an application that predicts future health information based on current
+health data, notnecessarilytosupportformulationof a clinicaldiagnosise.g.
+predicting drug efﬁcacy or disease/risk factors. All remaining applications
+are grouped under ‘other` e.g. generating synthetic ECG signals based on
+EHR/EMR data. In Fig. 3d, we observe that the majority of studies did not
+enablecodeanddataaccessibilitywhicharetypicallybothrequiredtoenable
+testsofreproducibility.Fortheﬁnalsetofsynthesizedstudiescorresponding
+to Fig. 3h, all available datasets and code are summarized in Supplementary
+Note 3.
+Empirical evidence from synthesized studies
+Nearly all of our synthesized studies were concerned with a learning task of
+performing a clinical diagnosis or a clinical prediction based on classical
+datasets. From a clinical perspective, all studies rationalized quantum
+algorithm design by citing other empirical literature. Any empirical ratio-
+nale for the choice of quantum intervention did not necessarily refer back to
+comparable clinical settings: in most cases, it appeared that the matching
+between health datasets and quantum interventions was either ad-hoc, or
+one tried all possible quantuminterventions in ordertoempirically discover
+the best performing models for a ﬁxed health dataset. No QML applications
+were focussedonhealth service delivery, publichealth,and consumerhealth
+monitoring applications. Only one study, Qu (2023)37, focussed on health-
+data analytics applications, namely, that QGANs may be beneﬁcial in
+ameliorating issues of model collapse for synthetic data generation in digital
+health applications, but these are untested at scale in both simulations and
+quantum hardware. No studies were related to improving efﬁcacy or
+Table 2 | Study quality assessment criteria and scoring
+Study quality appraisal
+Counts
+Q1: Explains quantum algorithm selection by referencing learning problem class or dataset structure
+0 : No theory or empirical rationale for quantum algorithm selection discussed or cited
+32
+1 : Quantum algorithm selection is empirical or mostly cites empirical literature
+115
+2 : Quantum algorithm selection is linked to underlying class of learning problem or data structure
+21
+3 : Quantum algorithm has provable advantage with respect to class of learning problem or data structure
+1
+Q2: Identiﬁes/discusses impact of data encoding on quantum algorithm performance
+0 : Encoding methodology omitted or incomplete
+38
+0 : Impact of different encoding strategies on overall performance is not analyzed
+85
+1 : Performance impact is discussed with incomplete analysis (e.g. compares at least 2 methods)
+37
+2 : Performance impact is well characterized empirically or theoretically
+7
+Not applicable
+2
+Q3: Identiﬁes/discusses impact of classical input data processing on quantum algorithm performance
+0 : Data pre-processing methodology is omitted or incomplete
+18
+0 : Impact of different data pre-processing strategies on overall performance is not analyzed
+96
+1 : Performance impact is discussed with incomplete analysis (e.g. compares at least 2 methods)
+45
+2 : Performance impact is well characterized empirically or theoretically
+7
+Not applicable (no classical input data processing)
+3
+Q4: (EMPIRICAL ONLY) Dimensionality of data input for quantum algorithm
+0 : Not reported or discussed; or unclear
+31
+0 : Negligible i.e. O(1)
+102
+1 : Small i.e. O(10)
+30
+2 : Intermediate i.e. O(102)
+3
+3 : Large i.e. O(103) or greater
+2
+Not applicable (theory study)
+1
+Score distribution for study quality assessment applied to 169 eligible studies at extraction. Each study was scored independently by two reviewers. Consensus scores reﬂect agreed values formed by
+discussion with a view to taking the maximum possible of two scores where differences in interpretation were trivial.
+https://doi.org/10.1038/s41746-025-01597-z
+Article
+npj Digital Medicine |  (2025) 8:237 
+5
+
+efﬁciency of health service delivery, e.g. optimization problems for patient
+ﬂow, or operational cost-down in hospitals.
+We ﬁnd that quantum kernel methods and quantum annealing tech-
+niques dominate our synthesized evidence in Fig. 4 (top). The choice of
+quantum intervention typically then informs the choice of classical com-
+parator (middle) within each study, and hencethe distributions of quantum
+and classical algorithms are correlated. Finally we note that datasets (bot-
+tom) are not particularly clinically diverse and factorize into private and
+open-source datasets. While EHR and hospital data are often private, the
+remaining datasets are all open-source. Most empirical evidence does not
+use electronic health records, but gravitates to a handful of open-source
+health databases. We thus ﬁnd that the diversity of applications investigated
+empirically is limited.
+In Fig. 5, we report performance metrics from synthesized studies
+comparing quantum interventions with classical machine learning coun-
+terparts for different digital health applications. The choice of quantum
+algorithms again separates into two groups: annealing vs. gate-based tech-
+niques. Indeed, quantum annealing studies focus on digital health tasks that
+canbe mapped to a QUBO problem,and are able to scale to problem sizes at
+least an order of magnitude larger in qubit number than non-annealing
+quantumhardware.Ontheotherhand,gate-basednon-annealingquantum
+hardware accommodates a broader range of QML algorithms, as shown by
+the remaining rows in Fig. 5, and a broader range of hardware platforms,
+such as trapped ions (IonQ) and superconducting qubits (Rigetti, IBM).
+However, hardware experiments in many instances are almost outdated e.g.
+IBM quantum processors (56.2% of synthesized studies) are Falcon models
+or older despite the availability of processors with 100+ qubits since 2022.
+We compare quantum vs. classical machine learning by reporting
+selected metrics from sixteen synthesized studies in the remaining columns
+of Fig. 5. Of these, ﬁve studies do not provide sufﬁcient information to
+address our review question. Das (2023)38, Kawaguchi (2023)39 and Qu
+(2023)37 do not report numerical metrics for quantum experiments, while
+Yano (2020)40 and Landman (2022)41 report numerical quantum
+benchmarks but do not report a numerical classical comparator. The
+remaining 11 studies reported in Fig. 5 reveal major issues in facilitating the
+comparison between quantum vs. classical interventions. There are three
+scientiﬁcally concerning ﬂaws:
+1. No empirical evidence of performance scaling: All quantum comput-
+ing demonstrations, even in simulations, have not been carried out at
+scale. Leaving aside the issue of quantum advantage for classical
+datasets, empirical investigations on universal, gate-based quantum
+computers have not investigated performance as a function of
+increasing problem size or qubit number e.g. to O(100) qubits. Even
+for these small-scale experiments on universal, gate-based platforms,
+only Krunic (2022)19 plotted trend lines of performance vs. problem
+size / qubit number to establish empirical scaling behavior. In all other
+cases, including annealing applications, algorithmic performance
+scaling was not established in ideal or noisy simulations or prior to
+running on quantum hardware.
+2. Limited reporting of statistical uncertainties: All studies provided
+limited or no discussion of how statistical ﬂuctuations in test scores
+should be interpreted. Only Kazdaghli (2024) estimates and reports
+sample error bars for test score values42, while Krunic (2022) proposed
+a technique to contextualize ﬂuctuations in performance score to the
+underlying conﬁguration of experiments using PTRI metrics19 but in
+lieu of uncertaintyanalysis.In the absence of errorbars, any differences
+in classical vs. quantum performance appeared to be statistically
+equivalent ﬂuctuations for a range of conﬁgurations.
+3. Lack of noise characterization and impact of quantum hardware: Most
+studiesrecognizethesigniﬁcantlylargedeteriorationbetweenidealand
+actual quantum hardware performance due to the effect of noise.
+Despite this, studies compared quantum hardware performance
+mostly only with ideal simulations, rather than using noisy simulations
+or secondary data to provide insight into algorithm performance on
+hardware. Only two synthesized studies38,43 used noisy simulations to
+Quantum hardware
+Medical setting
+Code accessible?
+Extracted studies
+Synthesized studies
+(a)
+(e)
+(b)
+(f)
+(c)
+(g)
+(d)
+(h)
+n=169
+n=16
+Fig. 3 | High-level characteristics of eligible and synthesized studies. Data
+extraction for eligible studies in Fig. 2, with n = 169, 16 for number of studies
+extracted (a–d) or synthesized (e–h), respectively. Synthesized studies exclude eli-
+gible studies that do not meet our quality criteria or rely solely on ideal simulations.
+a, e Histogram of number of studies by publication year; eligible studies show rapid
+increase in number by year in (a) while synthesized studies appear more uniformly
+distributed in (e). b, f Percentage of studies that mentioned using quantum hardware
+using either health or non-health datasets. ‘None’ in (b) indicates usage of both ideal
+and noisy simulations, while ‘None’ in (f) indicates only noisy simulations of
+quantum computers. c, g Percentage of studies summarized by digital health setting,
+broadly characterized as aiding clinical diagnosis (‘Diagnosis’), enabling predictive
+health (‘Predictive’), and ‘Other’. d, h Number of studies providing open access to
+software code and input datasets. The absence of code/data availability statements,
+statements ‘upon reasonable request’, broken links or unusable repositories are all
+categorized as ‘No’ above.
+https://doi.org/10.1038/s41746-025-01597-z
+Article
+npj Digital Medicine |  (2025) 8:237 
+6
+
+compare to hardware results in their analysis. When running algo-
+rithms on quantum hardware, only two studies38,44 explicitly con-
+sidered error mitigation. Of these, only one study used an application-
+agnostic error mitigation technique and distinguished between raw vs.
+mitigated results to contextualize the impact of noise44. All studies
+failed to take data to characterize performance of the underlying
+quantum hardware while running QML experiments. Consequently,
+these studies offer almost no insight into whether ﬂuctuations in
+classical vs. quantum QML performance are entirely dominated by
+drift in performance of underlying quantum hardware.
+In summary of evidence presented in all synthesized studies, we deem
+that the performance differentials between quantum and classical machine
+learningmetricsfordigitalhealthreportedinFig.5arenegligible.Notonlyis
+empirical evidence difﬁcult to synthesize and interpret, but the tabulated
+performance scores show no clear, consistent, statistically signiﬁcant trend
+to support any empirical claims of quantum utility in digital health across a
+range of hardware platforms.
+Discussion
+We have discussed until this point why a meta-analysis of empirical evi-
+dence in synthesized studies is insufﬁcient for claiming empirical quantum
+utility for quantum machine learning in digital health. This absence of
+empirical evidence may be understandable in a relatively new ﬁeld where
+applications development may temporally lag new insights in quantum
+machine learning theory and new hardware capabilities. We now consider
+these observations on research methodology and themes below.
+Even in a discipline that must rely on heuristics and empirical inves-
+tigations, the majority of studies claim empirical quantum advantage but do
+not take into account realistic operating conditions in their analysis. The
+absence of noise characterization or noisy simulations to explain deviations
+of quantum hardware experiments from idealized conditions is particularly
+Fig. 4 | Overview of quantum interventions, classical comparators and datasets
+for synthesized evidence. Distribution of quantum interventions, classical com-
+parators and health data setting for all 16 synthesized studies (columns), including
+studies with borderline or weak consensus (shaded gray columns). For each study,
+we indicate primary quantum interventions (top), classical comparators (middle),
+and digital health datasets (bottom). Quantum interventions deployed on non-
+digital health datasets are excluded. Interventions or comparators (rows) combine
+similar multiple-choice data extraction entries. QNNs exclude QCNNs and no
+VQCs / PQCs were found to contain mid-circuit measurements or adaptive gates.
+All sixteen studies, including any available codebases and datasets, are compiled in
+Supplementary Note 3.
+https://doi.org/10.1038/s41746-025-01597-z
+Article
+npj Digital Medicine |  (2025) 8:237 
+7
+
+surprising. In 14 out of 16 studies, hardware results were compared to ideal
+simulations without any noise characterization or the use of noise simula-
+tions to contextualize results. Ofthe two studiesthat used noise simulations,
+these simulations were limited to simple noise models. For example, in Qu
+(2023)37, QGANs are used for synthetic heartbeat data generation. Ideal
+QGANs converged to accuracies ranging from 87.7% – 90.9% for different
+types of heartbeat data. Standard noise simulations of bit-ﬂip, phase-ﬂip,
+amplitude damping and depolarizing noise at moderately strong levels
+reduced the range of accuracies to ≈75% – 90%, where each noise model is
+individually considered. However, in realistic settings, these noise models
+Fig. 5 | Summary of quantum vs. classical performance metrics for synthesized
+evidence. Selected test scores (accuracy, AUC and squared error ∈[0, 1]) reported
+for quantum interventions deployed under realistic operating conditions using
+health data. Ranges reﬂected min and max test scores attained over different
+experimental conﬁgurations reported in each study; error bars for each test score are
+shown if originally reported. Synthesized studies with strong (weak) consensus are
+shaded in green (gray). Best possible scores for accuracy, ﬁdelity and AUC metrics
+(unity) differ from squared error metrics (zero). Performance benchmarks that
+cannot be easily compared or interpreted alongside other metrics, or are not con-
+sistently reported, e.g. F1 scores and precision, are excluded for readability. NA Not
+applicable. NR Not reported. Est. Estimates of numerical values implied from visual/
+graphical data.
+https://doi.org/10.1038/s41746-025-01597-z
+Article
+npj Digital Medicine |  (2025) 8:237 
+8
+
+are inadequate—at the very least, requiring a mixture of different error
+types. While similar noise simulations were used as evidence to show noise-
+robustnessofQMLmethods,thelimitednatureofthesenoisemodelswould
+not reﬂect realistic operating conditions.
+Indeed the ﬁeld appears to lack empirical comparisons of quantum
+annealing vs. gate-based QML in regimes where quantum annealing is
+anticipated to have provable quantum advantage, e.g. for speciﬁc learning
+tasks such as binary classiﬁcation. Four studies formulated learning tasks as
+QUBO problems and used a quantum annealer. Two of these studies
+focussed on classiﬁcation tasks using a support vector machine29,30, which
+could be easily compared with a universal gate-based computer. The
+remaining two studies focussed on areas such as linear regression45 and data
+compression46 for which there does not appear to be provable computa-
+tional advantage for quantum annealing. Since D-Wave architectures have
+been available for some time before newer quantum processors, two of these
+four studies represent our oldest publications dating back to 2018. All
+annealing studies are also subject to study considerations above, and our
+review did not ﬁnd strong evidence of quantum annealers outperforming
+either newer gate-based, universal quantum computers or classical
+counterparts.
+Only one synthesized study used electronic health records as opposed
+to generic digital health data. In Krunic (2022)19, electronic health records
+were used to perform kernel-based prediction of six-month persistence of
+rheumatoid arthritis patients on biologic therapies. Both quantum and
+classical kernels were compared for different conﬁgurations of number of
+features and number of samples of training data. The study offers weak
+evidence of empirical quantum advantage when the conﬁguration space is
+restrictedtosmalldimensionaldatasetswithalownumberoffeatures.Aside
+fromdirectlyusingelectronichealthrecords,Kazdaghli(2024)42focussedon
+using quantum interventions for data imputation in clinical data, applicable
+to the analysis of electronic health records, but also other types of clinical
+data, such as those used in clinical trials. Meanwhile, some eligible but not
+synthesized studies discussed the use of quantum algorithms for securely
+pooling health data in federated learning applications47.
+Some of the quantum algorithms encountered in this review cited
+signiﬁcantimprovements in data-encodingcompared to typical approaches
+outlined in the Introduction. Efﬁcient image processing tasks are pursued
+using quantum transformers in Cherrat (2024)48 and Landman (2022)41,
+while data imputation is pursued in Kazdaghli (2024)42. While these
+applicationsin digitalhealthdiffer,theunderlyingtechnologiesin Landman
+(2022)41, Cherrat (2024)48, and Kazdaghli (2024)42 all rely on methods in
+ref. 49 and appear to inherit favorable resource scaling from assuming
+speciﬁc hardware capabilities that do not exist generally. The underlying
+data encoders assume hardware can implement entangling gates on over-
+lapping sets of qubits in parallel (as opposed to sequentially). This hardware
+capability is so-far only shown for small-scale trapped ions50 and it is not
+expected to scale to systems with large qubit number.
+Meanwhile health data consists of both continuous and discrete data
+and Yano (2020)40 ﬁlls an existing gap in literature by looking at encoding of
+discrete variable data into quantum VQCs using Quantum Random Access
+Coding (QRAC). The authors argue that Oðlog2ðdτÞÞ=2 improvement in
+circuit size complexity can be attained for discrete variable inputs, sug-
+gesting a two-fold improvement over amplitude scaling in Table 1.
+Nevertheless, the critical challenge for amplitude encoding strategies in
+QML is that linear runtime complexity can prohibit accessing super-
+polynomial advantage and this barrier is not addressed by the paper.
+Nearly all quantum algorithms were linear quantum models. Some
+theoretical evidence shows that linear quantum models will require expo-
+nentially more qubits than non-linear models27, and heuristic evidence
+shows that certain types of linear quantum models will not be useful for the
+analysis of classical datasets17. Even broadening to a larger pool of 169
+eligible studies, non-linear quantum models were not encountered. Of our
+synthesized studies, seven studies used linear quantum kernel methods
+including Moradi (2022, 2023)43,44, Yano (2020)40, Aswiga (2024)51, Krunic
+(2022)19 and Kawaguchi (2023)39. For non-kernel methods, the underlying
+technologies for Nirula (2021)52, Qu (2023)37 and Das (2023)38 can be recast
+in linear form. Finally, the quantum transformers and data encoding stra-
+tegies that yield favorable scaling properties in Cherrat (2024)48, Landman
+(2022)41, and Kazdaghli (2024)42 use methods developed in ref. 49. Aside
+from a variant proposed in Cherrat (2024), the data encoders and neural
+networks leveraged by these studies all appear to be described by the fra-
+mework of linear quantum models. Indeed, the observed absence of clear,
+consistent performance trends in the empirical meta-analysis of the pre-
+vious section could in part be explained by the underlying linear quantum
+modelsusedformanyofthestudies.Afterpublishingourpre-print,wewere
+made aware of ref. 53 as an improvement of quantum methods in Landman
+2022 and Cherrat 2024, consisting of a non-linear model in Fig. 1d. While
+ref. 53 fails our inclusion criteria, even its inclusion would not affect the
+overall conclusions of our review.
+Despite the fact that all quantum models were trained by a supervised
+learning problem, no study explicitly characterized their optimization
+landscape. Itiswellknownthatoptimizationof supervisedQML algorithms
+can be plagued by exponentially vanishing gradients (barren plateaus)54,
+exponential concentration of kernel values55, or exponentially concentrated
+local minima56. However only two out of sixteen synthesized studies men-
+tioned optimization challenges associated with their proposed methods for
+supervised quantum machine learning. Here, Cherrat (2024)48 and Land-
+man (2022)41 stated that their proposed QML methods’ structures may
+avoid barren plateaus. All studies failed to provide a systematic character-
+ization of their empirical optimization landscape, and the resources utilized
+by their chosen optimization protocol in practice. Meanwhile no substantial
+improvements are found in reducing shot number requirements for QML
+applications considered in this review.
+Finally, classical data preprocessing tasks are highly discretionary and
+impact on QML is poorly understood. There are two areas where data
+preprocessing is frequently used in QML: feature selection for kernel
+methods, and dimensionality reduction for data encoding. In feature
+selection, both the number of features43, and statistical signiﬁcance of fea-
+tures were established using statistical tests44 to aid kernel design. Mean-
+while, dimensionality reduction is required to encode data on quantum
+hardware with limited qubit numbers, e.g. by cropping, PCA or LDA.
+However, the impact of dimensionality reduction on QML performance is
+unaddressed. For example, reducing images to 2n length, where the number
+of qubits n is small,riskscreatingduplication in training and testingdatasets
+if two different full-sized images become identical after dimensionality
+reduction. Other preprocessing tasks include re-scaling, using statistical
+summaries, or transforming data, e.g. using Haralick features57 or Fourier
+methods, but there has been no characterization of the impact of these
+methods on investigations of empirical quantum advantage.
+Our review highlights that the language of quantum advantage,
+empirical quantum utility, speed-up, or resource efﬁciencies are poorly
+deﬁned and frequently abused notions in literature. QML applications
+development could beneﬁt from guidelines on what robust quantum vs.
+classical comparisons look like. Even leaving aside the issue of how to
+select the best classical comparator, comparing computational cost
+improvements enabled by quantum algorithms can be a difﬁcult task. As
+discussed in the Introduction, computational costs are theoretically
+quantiﬁed by sample complexity number of queries or time complexity
+(number of sequential operations). As examples, for sample complexity,
+one must ensure that information contained in each query or sample
+must be comparable across algorithms. Meanwhile for time complexity,
+operations contain assumptions about hardware capabilities and these
+assumptions are not always explicitly stated nor consistent. As eluci-
+dated by our discussion on quantum transformers in our review, studies
+assume that groups of quantum operations can be parallelized. This
+assumption is not hardware-agnostic nor scale-agnostic: certain quan-
+tum operations may be parallelized in certain small-scale architectures
+but not in others. A comprehensive review on the approaches for
+benchmarking quantum performance is thus of immediate urgency and
+interest.
+https://doi.org/10.1038/s41746-025-01597-z
+Article
+npj Digital Medicine |  (2025) 8:237 
+9
+
+In the absenceof theoretical assurances on complexity, we have seen in
+Fig. 5 how empirical studies use performance metrics such as ﬁdelity or
+accuracy to argue for the ‘utility’ of quantum algorithms in information
+processing tasks. We have discussed how arguments of empirical utility or
+advantage must demonstrate both scalability and robustness of perfor-
+mance. Since approximately simulating 100 qubits can be within reach of
+classical computers, we argue that characterizing properties of QML algo-
+rithms as a function of system size is more important than reporting any
+single ﬁgure of merit at some arbitrary choice of system size. Secondly,
+relying solely on ideal simulations offers no insight into robustness, and one
+simple test of robustness is to understand and mitigate the impact of noise.
+Thirdly, we ﬁnd that the choice of performance metrics in empirical studies
+isdiverse,oftenad-hoc,andlimitshowtoperformmeta-analysisofevidence
+in the ﬁeld.
+We summarize these and other considerations to specify minimum
+requirements for the robust analysis of quantum algorithms on classical
+datasets. Our proposed qualitative framework is presented in Table 3. This
+framework is complementary to the quality analysis framework used in this
+review. In our framework, the minimum requirements outlined in Table 3
+(column 3) can be immediately met. However, many of the ideal require-
+ments in Table 3 (column 4) may require new research due to the nascency
+of the ﬁeld. Indeed, the ﬁeld has made some progress towards these ideal
+requirements: challenges of technical reproducibility in QML are discussed
+in ref. 16 and quantum algorithm performance has been linked closely with
+hardwarebenchmarkinginref.58.However,researchgapscontinuetoexist,
+forexample,inthelackofaprincipledapproachtolinkquantumalgorithms
+to structures in classical data, to select appropriate performance metrics, to
+use noise characterization tools to set performance expectations and
+benchmark algorithm performance on hardware, and/or to compare
+quantum methods with a repository of best-in-class classical benchmarks
+for industry subdomains. Further development and testing of the proposed
+frameworkisbothurgentandimportanttourgebetterempiricalevidencein
+our nascent ﬁeld. Finally, we note that our review methodology is future-
+proof: by changing only the search period, we may provide a systematic
+update on the quality of research evidence for QML in digital health.
+To conclude, digital health aims to transform access, affordability and
+quality of healthcare. As classical machine learning methods in health
+approach commercialization, we ﬁnd an exponentially growing number of
+studies advocating the use of QML in health. Our workis theﬁrst systematic
+review that examines the strength of empirical evidence to support these
+claims using a database of 4915 studies. We ﬁnd most applications are
+focussed on clinical decision support and comparatively little attention is
+given to health service delivery and public health use-cases. Of eligible
+studies, we appraise study quality yielding 16 robust studies which analyze
+QML applications in realistic operating environments. Despite this, we ﬁnd
+that synthesized empirical evidence does not establish clear trends in per-
+formance beneﬁts of QML algorithms over classical methods. Even leaving
+aside the issue of classical comparators, this synthesized evidence addi-
+tionallydoesnotestablishscalabilityorrobustnessofQMLperformance.To
+this end, we propose minimal requirements for empirical studies for
+claiming empirical advantage for QML algorithms. We reiterate that
+enabling meaningful use-case discovery for QML in digital health requires
+new research to rationalize the choice of QML structures on classical
+datasets, deﬁne appropriate benchmarks, and establish performance scaling
+under realistic operating conditions. An update to the search period of our
+review enablesus to systematically track changes in this evidence base in the
+near future.
+Methods
+Our
+systematic
+review
+is
+registered
+on
+PROSPERO
+(ID:
+CRD42024562024)59. Screening and data extraction were performed in
+Covidence60. Commonly used nomenclature encountered in this review is
+summarized in Supplementary Note 4.
+Search strategy
+Our search strategy is formed by decomposing our research question into
+elements of the SPICE framework23, as summarized in Table 4. Only articles
+published after 2015 were included, as the ﬁrst commercially-available
+quantum computer was made accessible in 201661 and digitization of health
+information into electronic records1 is relatively recent. Hence both factors
+prohibit meaningful applications development prior to this date. Search
+syntax was reﬁned by trial and error on PubMed (Table 4) in consultation
+with a health research librarian, and adapted to other databases (Embase,
+Scopus, arXiv and IEEE, refer Supplementary Note 5). Key articles were
+identiﬁed as litmus tests to sense check database-speciﬁc search term stra-
+tegies. Searches were conducted from 10 May to 10 June 2024.
+Inclusion/exclusion criteria
+The eligibility criteria for the screening process is summarized in Table 5.
+Our study setting prioritized digital health data sources that consist of
+electronic medical records (EMRs) or electronic health records (EHRs).
+EMRs represent a real-time patient health record that collects, stores, and
+displays clinical information as the foundation of a digital hospital as
+opposed to an EHR which displays summarized patient information to the
+Table 3 | Proposed framework for QML study design
+Analysis component
+Current state
+Minimum requirement
+Ideal requirement
+Algorithm design linked
+to classical dataset
+There is no link between choice of
+quantum algorithm and underlying health
+dataset
+Rationalize quantum algorithm design
+based on properties of health dataset
+Provide theoretical performance guarantees of
+quantum algorithm performance on speciﬁc health
+datasets
+Empirical performance
+analysis
+Typically studies use an arbitrary
+performance metric for arbitrary system
+size. Metric typically reported without
+error bars
+Test performance metrics for
+increasing system size to establish
+scaling, and estimate standard error
+Use standardized protocols for showing scalable
+QML performance and uncertainty analysis
+Noise robustness
+Typically studies do not consider noise, or
+whether performance recovers after using
+error suppression or mitigation
+Conduct basic noisy simulations using
+depolarizing noise, measurement
+error, and amplitude damping
+Conduct realistic noise simulations using hardware-
+relevant parameters; show efﬁcacy of mitigation
+techniques
+Sensitivity analysis
+Performance sensitivity to perturbations in
+overall protocol is typically untested
+Test sensitivity of performance metric
+to changes to pre-processing / post-
+processing of classical data
+Test sensitivity of performance metric to changes to
+dataset size, training data noise, initialization,
+optimization, and other hyperparameters (if
+applicable)
+Reproducibility
+Health data access is not always provided.
+Even if data is provided, the code is not
+accessible.
+Provide access to all data and code to
+reproduce results
+Minimal requirements for future QML study design, complementing the quality assessment framework used in our review (c.f. Table 2), and subject to further testing.
+https://doi.org/10.1038/s41746-025-01597-z
+Article
+npj Digital Medicine |  (2025) 8:237 
+10
+
+Table 4 | Global search strategy for all databases
+Setting
+Intervention
+Comparison*
+Evaluation
+In developing digital health analytics
+could QC & QML algorithms
+potentially outperform existing
+classical methods
+in efﬁcacy or efﬁciency?
+"medical records"[MeSH Terms]
+OR “electronic health records"[MeSH Terms]
+OR “electronic health record*"[All Fields]
+OR “health record*”[All Fields]
+OR “medical record*"[All Fields]
+OR “clinical record*"[All Fields]
+OR ("hospital"[All Fields] AND “data*"[All Fields])
+OR ("clinical"[All Fields] AND “data*"[All Fields])
+OR ("medical"[All Fields] AND “data*"[All Fields])
+OR ("health"[All Fields] AND “data*"[All Fields])
+OR ("patient*"[All Fields] AND “data*"[All Fields])
+OR “medical history”
+OR “Routinely Collected Health Data"[Mesh]
+OR “Routinely Collected Health Data"[All Fields]
+OR “Administrative Data"[All Fields]
+OR “Administrative Health Data" [All Fields]
+OR “health information systems"[MeSH Terms]
+OR “health services administration"[MeSH Terms]
+OR “medical informatics computing"[MeSH Terms]
+OR “medical inform*"[All Fields]
+OR “radiography"[MeSH Terms]
+OR “radiography"[All Fields]
+OR ("medical"[All Fields] AND “imaging"[All Fields])
+OR “medical imaging"[All Fields]
+OR “diagnostic imaging"[MeSH Terms]
+OR ("diagnostic"[All Fields] AND “imaging"[All Fields])
+OR “diagnostic imaging"[All Fields]
+OR “radiography"[MeSH Terms]
+OR “electrocardiography"[MeSH Terms]
+OR “ecg"[All Fields]
+OR “electrocardiography"[MeSH Terms]
+OR “ekg"[All Fields]
+OR “radiograph*”
+OR “magnetic resonance imaging"[MeSH Terms]
+OR ("magnetic"[All Fields] AND “resonance"[All Fields])
+OR “magnetic resonance imaging"[All Fields]
+OR “mri"[All Fields]
+OR “ nuclear magnetic resonance imaging”
+OR “coherence tomography"
+OR “optical coherence tomography”
+OR “computer assisted tomography”
+OR “uss"[All Fields]
+OR “ct"[All Fields]
+OR “computed tomography"[All Fields]
+OR “ultrasound*”
+OR “echography”
+OR “x rays"[MeSH Terms]
+OR “x rays"[All Fields]
+OR “xray"[All Fields]
+OR “mammogra*”
+OR “holography”
+OR “electroencephalography"[MeSH Terms]
+OR “electroencephalography"[All Fields]
+OR “eeg"[All Fields]
+OR “radiology”[Title/Abstract]
+OR “laboratory data”
+OR “laboratory test*”
+OR “biostatistics”[Title/Abstract]
+OR epigenomics[Mesh]
+OR “epigenom*”
+OR metabolomics[Mesh]
+OR “metabolom*”
+OR biomarker[Mesh]
+OR transcriptomics[Mesh]
+OR “transcriptom*”
+OR proteomics[Mesh]
+OR “proteom*”
+OR genomics[Mesh] OR “genom*”
+OR “epiproteom*”
+OR “epiomic*”
+OR “vaccin*”
+OR “gene”
+"quantum machine learning”[All
+Fields]
+OR “quantum comput*”[All
+Fields]
+OR “quantum inform*”[All Fields]
+OR quantum[Title/Abs]
+(machine learning[MeSH Terms])
+OR “machine learning”
+OR algorithm[MeSH Terms]
+OR “algorithm*”[All Fields]
+OR “Bayes*”[All Fields]
+OR “kernel*”[All Fields]
+OR “classif*”[All Fields]
+OR “neural networks, computer"[MeSH
+Terms]
+OR “deep learning"[MeSH Terms]
+OR (cnn)
+OR (svm)
+OR (svd)
+OR “pca”[Title/Abstract]
+OR “principal component analysis”[All
+Fields]
+OR “reinforcement learning”[All Fields]
+OR “k-means”[All Fields]
+OR “wavelet”[All Fields]
+OR “genetic algorithm*”[All Fields]
+OR “neural net*”[All Fields]
+OR “support vector*”[All Fields]
+OR “random forest*”[All Fields]
+OR “Boltzmann mach*”[All Fields]
+OR “adversarial net*”[All Fields]
+OR “random walk*”[All Fields]
+OR “linear regression”[All Fields]
+OR “nonlinear regression”[All Fields]
+OR “monte carlo method"[MeSH Terms]
+OR “Markov chain”[All Fields]
+OR “gaussian process regression”[All
+Fields]
+OR “ChatGPT”
+OR “large language models”[All Fields]
+OR “artiﬁcial intelligence”[All Fields]
+OR “big data” [All Fields]
+OR “data pre-processing”[All Fields]
+OR “data post-processing”[All Fields]
+OR “feature selection”[All Fields]
+OR “feature extraction”[All Fields]
+OR “predictive model*”[All Fields]
+("2015"[Date - Publication] :
+“3000"[Date - Publication]) NOT
+("systematic review"[pt]
+OR “meta-analysis"[pt]
+OR “review"[pt]
+OR “clinical trial protocol"[pt]
+OR “clinical conference"[pt]
+OR “case reports"[pt])
+Search strategy in the SPICE framework23. Columns represent digital health setting and perspective (S,P), quantum intervention (I), classical comparator (C), and study characteristics for evidence
+evaluation(E).Search conceptswithincolumnsare combinedwith logical ‘OR’ statements,whileindependentcolumnsareconcatenatedwith logical ‘AND’ statements.Searchconcept performancediffers
+by database e.g. PubMed, Embase (shown above) support reliable MESH explosion of health concepts; while Scopus, arXiv and IEEE instead rely on root word truncation. Complete search syntax
+modiﬁcations by database are enclosed in Supplementary Note 5.
+https://doi.org/10.1038/s41746-025-01597-z
+Article
+npj Digital Medicine |  (2025) 8:237 
+11
+
+consumer in the community and across multiple health care providers. The
+terms “EMR” and “EHR” may be used interchangeably in some countries.
+Since health data is subject to strict privacy and security legislation, we also
+consider data that could be reasonably considered to be in an EHR or EMR,
+thereby permitting the inclusion of open source and published health
+datasets that are typically used for proof-of-principle results in both classical
+and quantum ML. While EHR/EMR data typically includes medical ima-
+ging, laboratory data, time-varying signals and patient information, we also
+include genomics data and biomarkers when used in a context where they
+supplement a patient’s EHR or EMR for diagnosis or predictive health
+applications. A notable exclusion is textual search or analysis of digital or
+handwritten clinical notes, as these would imply looking at an entirely
+different class of algorithms that have little or no overlap with unstructured
+data analysis of non-textual health datasets listed above.
+Our criteria also prioritized QML algorithms that were genuinely
+intended to be run on quantum computing hardware, and at least
+Table 5 | Eligibility criteria for screening
+Inclusion
+Exclusion
+Setting
+• electronic medical records, electronic health records, medical records,
+health records
+• diagnostic or medical imaging or tomography or radiology, (MRI, PET,
+CET, CT, USS, XRAY)
+• time-varying signals (EEC, EEG, EKG)
+• data associated with EHR (biomarkers, genomics, laboratory tests,
+medical demographic data)
+• digital health, healthcare delivery
+• textual or handwritten data in EHRs
+• raw data from physical sensors (e.g. raw data prior to image
+reconstruction for MRI)
+• data not used as part of EMRs / EHRs (e.g. raw bioﬁeld / bio-signal data,
+biomarkers, genomics, motor imagery, head movement, facial
+expression detection)
+•datasets for non-digital health applications (e.g. drug delivery; drug
+design, drug/vaccine development, nanomaterials analysis,
+computational biology or chemistry calculation; smart buildings, smart
+devices, smart healthcare infrastructure or systems management; data
+mining, intrusion detection, watermarking, encryption, authentication,
+transmission, storage or retrieval of health data, data anonymization or
+privacy; or medical imaging hardware, wearable health devices,
+scanning devices)
+• text-based analysis of handwritten or digital textual data
+Persp.
+• healthcare delivery (public, private), hospital and medical centers
+(administration, data, service delivery), clinical service delivery, patient
+ﬂow
+• health-speciﬁc data sharing for ML / QML
+• health suppliers
+• public service delivery unrelated to health
+• ﬁnancial sustainability of public health
+Intervention
+• quantum machine learning, quantum computing, quantum computers
+• quantum algorithm, quantum-enhanced algorithms, hybrid quantum
+classical algorithms
+• quantum circuits, variational quantum circuits, parametrized quantum
+circuits, variational quantum algorithms, variational quantum
+eigensolvers
+• Quantum Approximate Optimization Algorithm (QAOA)
+• quantum neural nets QNN, quantum convolutional neural nets QCNN,
+quanvolutional quantum algorithm
+• quantum generative (adversarial) networks QGANs, quantum genetic
+algorithms, quantum evolutionary algorithms
+• dequantization
+• quantum Monte Carlo, Markov chain techniques
+• quantum random walks
+• quantum k-means, quantum clustering
+• quantum kernel methods
+• quantum PCA
+• quantum SVM
+• quantum tensor network states, QNNs based on tensor networks
+• quantum transfer learning, quantum reinforcement learning
+• Quantum Long Short Term Memory
+• quantum integer wavelet transforms, quantum wavelet transforms
+• quantum-inspired algorithms, quantum-inspired clustering (quantum
+gray wolf, quantum fruit ﬂy, quantum particle swarm, quantum ant lion,
+quantum squirrel search, quantum bat, quantum whale, quantum
+grasshopper, quantum artiﬁcial bee colony, quantum avian navigation,
+quantum marine predator, quantum seagull algorithms)
+• quantum algorithms for textual search, sequence search, or sequence
+alignment
+• quantum iterative reconstruction algorithm
+• quantum particle swarm optimization
+• quantum inspired evolutionary algorithm
+• quantum inspired genetic algorithm
+• quantum key distribution, quantum cryptography, quantum-safe
+classical algorithms, quantum communication, steganography
+• quantum dots or nano materials, quantum yield, quantum efﬁciency
+metrics
+• quantum noise in medical imaging, photon counting in medical imaging
+• quantum sensing, quantum metrology, quantum magnetometers,
+ptychography
+• quantum mechanics for computational biology or chemistry calculations
+• quantum mechanical calculations or simulations, quantum chemical
+calculations or simulations
+• generic quantum physics, consciousness, psychosomatic, quantum
+consciousness quantum-inspired algorithms
+• quantum security, encryption, block chain, authentication
+• colloquial use of “quantum” e.g. ‘quantum leap’, ‘quantum step’,
+‘quantum of’
+Comparison
+Only apply this at extraction
+• classical machine learning inc. deep, reinforcement & unsupervised
+learning
+• classiﬁers, classiﬁcation, kernel methods, neural networks, SVM, PCA,
+tensor networks
+• generative algorithms, genetic algorithms, Monte Carlo, Markov chain
+techniques, random walks, random forests
+• regression, ﬁltering, Bayesian analysis, Long Short Term Memory
+• wavelets, Hadamard transforms, Fourier analysis
+Only apply this at extraction
+• image reconstruction algorithms
+• image denoising algorithms
+• speckle reduction
+• federated learning applications for security, data privacy and
+authentication
+• methods/algorithms/computational analysis for non-digital health
+applications (see Setting)
+Eval.
+Only apply this at extraction
+• High quality articles
+Only apply this at extraction
+• Low quality articles
+Study
+• Peer reviewed articles, research papers after 2015
+• Publication date 2015 - present
+• Reviews or technical reports; irrelevant modes (e.g. conference
+abstracts, book chapters, lecture notes, clinical trials, patents,
+observational studies) or publication before 2015
+Eligibility criteria for title and abstract screening and full text review. Columns represent inclusion/exclusion criteria, while rows are elements of SPICE framework aligned with search strategy in Table 4.
+Criteria for digital health setting, quantum interventions, and study characteristics were applied during title and abstract screen and full text review. Meanwhile, criteria for classical comparators and
+evaluating technical robustness were only applied after data extraction and prior to synthesis.
+https://doi.org/10.1038/s41746-025-01597-z
+Article
+npj Digital Medicine |  (2025) 8:237 
+12
+
+aspired to demonstrate some kind of advantageous scaling property as
+the number of qubits is increased. In Table 5, we list the sheer number
+of algorithms that are classical computations with a nominal usage of
+the word ‘quantum’. This list was added to throughout screening as
+new terms were encountered. Many studies technically obfuscated the
+distinction between QML algorithms and classical computations that
+use quantum mechanical theory or other insights. For instance, in
+medical imaging we exclude quantum mechanical corrections to
+classical algorithms which help to reduce noise in reconstructing
+images from raw sensor data. Finally, we exclude quantum algorithms
+unlikely to arise in the context of analyzing classical digital health data,
+for example: quantum sensing, quantum cryptography, and quantum
+algorithms for genome pattern matching, genomic sequence align-
+ment, or molecular and chemistry simulations.
+Screening
+Two independent researchers conducted title and abstract screening of all
+searchresults:onereviewerhadahealthbackground,whiletheotherhad a
+physics background. Full text review was performed by a total of three
+reviewers. For consistency, one reviewer participated for all screening
+stages including both abstract and full text screening. Conﬂicts were
+resolved through internal discussion or by involving a third reviewer’s
+opinion.
+Data extraction and study quality appraisal
+Study characteristics were extracted for all included studies. Additionally, a
+study quality appraisal was performed to form consensus-based decisions
+about including or excluding particular studies based on robustness62. These
+appraisals are typically implemented during data extraction and prior to
+narrative synthesis62. Our study quality assessment criteria analyses the rigor
+with which QML algorithms were investigated16 and we do not include a
+myriad of other potential benchmarks, e.g. for clinical robustness. At least
+two reviewers independently scored eligible studies, and the maximum score
+over both reviewers was selected during consensus formation. Attributes of
+low vs. high quality studies with were compared with respect to our criteria.
+Full data extraction template is enclosed in Supplementary Note 6 and
+extracted data as well as underlying analysis code for data extraction is
+available online63.
+Data availability
+Screening and data extraction were performed in Covidence60. All of the
+resulting datasets from Covidence for the current study are freely available
+online via: https://doi.org/10.6084/m9.ﬁgshare.2714838663.
+Code availability
+Covidence60 datasets were analyzed and presented using Python libraries.
+All analysis and ﬁgure generation code for the current study are freely
+available online via: https://doi.org/10.6084/m9.ﬁgshare.2714838663.
+Received: 3 October 2024; Accepted: 29 March 2025;
+References
+1.
+Hecht, J. The future of electronic health records. Nature 573
+(2019).
+2.
+The Future of Electronic Health Records (2018). https://med.stanford.
+edu/ehr/whitepaper.[Online; accessed 24. Sep. 2024].
+3.
+Mohsen, F., Ali, H., El Hajj, N. & Shah, Z. Artiﬁcial intelligence-based
+methods for fusion of electronic health records and imaging data. Sci.
+Rep. 12, 1–16 (2022).
+4.
+Obermeyer, Z. & Emanuel, E. J. Predicting the future—big data,
+machine learning, and clinical medicine. N. Engl. J. Med. 375,
+1216–1219 (2016).
+5.
+Rajkomar, A. etal. Scalableandaccuratedeeplearningwithelectronic
+health records. npj Digital Med. 1, 1–10 (2018).
+6.
+Ullah, U. & Garcia-Zapirain, B. Quantum machine learning revolution
+in healthcare: A systematic review of emerging perspectives and
+applications. IEEE Access 12, 11423–11450 (2024).
+7.
+Maheshwari, D., Garcia-Zapirain, B. & Sierra-Sosa, D. Quantum
+machine learning applications in the biomedical domain: A systematic
+review. IEEE Access 10, 80463–80484 (2022).
+8.
+Flöther, F. F. The state of quantum computing applications in health
+and medicine. Res. Directions: Quantum Technol. 1, e10 (2023).
+9.
+Cordier, B. A., Sawaya, N. P. D., Guerreschi, G. G. & McWeeney, S. K.
+Biology and medicine in the landscape of quantum advantages. J. R.
+Soc. Interface 19, 20220541 (2022).
+10. Emani, P. S. et al. Quantum computing at the frontiers of biological
+sciences. Nat. Methods 18, 701 (2021).
+11. Outeiral, C. et al. The prospects of quantum computing in computational
+molecular biology. WIREs Comput. Mol. Sci. 11, e1481 (2021).
+12. Basu, S. et al. Towards quantum-enabled cell-centric therapeutics.
+arXiv (2023). 2307.05734.
+13. Biamonte, J. et al. Quantum machine learning. Nature 549, 195–202
+(2017).
+14. Marchetti, L. et al. Quantum computing algorithms: getting closer to
+critical problems in computational biology. Brief. Bioinf. 23, bbac437
+(2022).
+15. Baiardi, A., Christandl, M. & Reiher, M. Quantum computing for
+molecular biology. ChemBioChem 24, e202300120 (2023).
+16. Bowles, J., Ahmed, S. & Schuld, M. Better than classical? The subtle
+art of benchmarking quantum machine learning models. arXiv
+2403.07059. (2024).
+17. Bermejo, P. et al. Quantum convolutional neural networks are
+(effectively) classically simulable. arXiv 2408.12739 (2024).
+18. Schuld, M. & Killoran, N. Is quantum advantage the right goal for
+quantum machine learning? PRX Quantum 3, 030101 (2022).
+19. Krunic, Z., Flother, F., Seegan, G., Earnest-Noble, N. & Omar, S.
+Quantumkernels for real-world predictions based on electronic health
+records. IEEE Trans. Quantum Eng. 3, 1–11 (2022).
+20. Schreiber, F. J., Eisert, J. & Meyer, J. J. Classical surrogates for
+quantum learning models. Phys. Rev. Lett. 131, 100803 (2023).
+21. Sweke,R. et al. Potentialand limitations of random Fourier features for
+dequantizing quantum machine learning. arXiv 2309.11647 (2023).
+22. Our guidance - Centre for Reviews and Dissemination, University of
+York https://www.york.ac.uk/crd/guidance. [Online; accessed 24.
+Sep. 2024] (2024).
+23. Booth, A. Clear and present questions: formulating questions for
+evidence based practice. Libr. Hi Tech. 24, 355–368 (2006).
+24. PRISMA statement https://www.prisma-statement.org. [Online;
+accessed 8. Aug. 2024] (2024).
+25. Wang, Y. & Liu, J. A comprehensive review of Quantum Machine
+Learning: from NISQ to Fault Tolerance. arXiv 2401.11351 (2024).
+26. Peral-García, D., Cruz-Benito, J. & García-Peñalvo, F. J. Systematic
+literature review: Quantum machine learning and its applications.
+Comput. Sci. Rev. 51, 100619 (2024).
+27. Jerbi, S. et al. Quantum machine learning beyond kernel methods.
+Nat. Commun. 14, 1–8 (2023).
+28. Date, P., Arthur, D. & Pusey-Nazzaro, L. QUBO formulations for
+training machine learning models. Sci. Rep. 11, 1–10 (2021).
+29. Guddanti, S. S., Padhye, A., Prabhakar, A. & Tayur, S. Pneumonia
+detection by binary classiﬁcation: Classical, quantum, and hybrid
+approaches for support vector machine (svm). Front. Comput. Sci. 5
+(2023).
+30. Piat, S. et al. Image classiﬁcation with quantum pre-training and auto-
+encoders. Int. J. Quantum Inf. 16, 1840009 (2018).
+31. Mc Keever, C. & Lubasch, M. Towards adiabatic quantum computing
+using compressed quantum circuits. PRX Quantum 5, 020362 (2024).
+32. Schuld, M., Sweke, R. & Meyer, J. J. Effect of data encoding on the
+expressive power of variational quantum-machine-learning models.
+Phys. Rev. A 103, 032430 (2021).
+https://doi.org/10.1038/s41746-025-01597-z
+Article
+npj Digital Medicine |  (2025) 8:237 
+13
+
+33. Sweke, R., Seifert, J.-P., Hangleiter, D. & Eisert, J. On the quantum
+versus classical learnability of discrete distributions. Quantum 5, 417
+(2021).
+34. Giovannetti, V., Lloyd, S. & Maccone, L. Quantum random access
+memory. Phys. Rev. Lett. 100, 160501 (2008).
+35. Phalak, K., Chatterjee, A. & Ghosh, S. Quantum random access
+memory for dummies. arXiv 23, 7462 (2023).
+36. Benedetti, M., Coyle, B., Fiorentini, M., Lubasch, M. & Rosenkranz, M.
+Variational Inference with a Quantum Computer. Phys. Rev. Appl. 16,
+044057 (2021).
+37. Qu, Z., Shi, W. & Tiwari, P. Quantumconditional generative adversarial
+network based on patch method for abnormal electrocardiogram
+generation. Comput. Biol. Med. 166, 107549 (2023).
+38. Das, S., Zhang, J., Martina, S., Suter, D. & Caruso, F. Quantum pattern
+recognition on real quantum processing units. Quantum Mach. Intell.
+5, 16 (2023).
+39. Kawaguchi, H. Application of quantum computing to a linear non-
+gaussian acyclic model for novel medical knowledge discovery. PLoS
+ONE 18, e0283933 (2023).
+40. Yano, H., Suzuki, Y., Raymond, R. & Yamamoto, N. Efﬁcient discrete
+feature encoding for variational quantum classiﬁer. 11–21 (Institute of
+Electrical and Electronics Engineers Inc.).
+41. Landman, J. et al. Quantum methods for neural networks and
+application to medical image classiﬁcation. Quantum 6, 881 (2022).
+42. Kazdaghli, S., Kerenidis, I., Kieckbusch, J. & Teare, P. Improved
+clinical data imputation via classical and quantum determinantal point
+processes. Elife 12, RP89947 (2024).
+43. Moradi, S. et al. Clinical data classiﬁcation with noisy intermediate
+scale quantum computers. Sci. Rep. 12, 1851 (2022).
+44. Moradi, S. et al. Error mitigation enables pet radiomic cancer
+characterization on quantum computers. Eur. J. Nucl. Med. Mol.
+Imaging 50, 3826–3837 (2023).
+45. Choi, J. et al. Investigation of factors regarding the effects of covid-19
+pandemic on college students’ depression by quantum annealer. Sci.
+Rep. 14, 4684 (2024).
+46. Nguyen, N. T. T. & Kenyon, G. T. Radiographic inference based on a
+model of v1 simple cells implemented on the d-wave 2x quantum
+annealing computer. In 2018 IEEE International Conference on
+Rebooting Computing (ICRC),. https://ieeexplore.ieee.org/
+document/8638621/.
+47. Monnet, M. et al. Pooling techniques in hybrid quantum-classical
+convolutional neural networks. arXiv 2305.05603 (2023).
+48. Cherrat, E. A. et al. Quantum vision transformers. Quantum 8, 1265
+(2024).
+49. Kerenidis, I. & Prakash, A. Quantum machine learning with subspace
+states. arXiv 2202.00054 (2022).
+50. Grzesiak, N. et al. Efﬁcient arbitrary simultaneously entangling
+gates on a trapped-ion quantum computer. Nat. Commun. 11, 1–6
+(2020).
+51. Aswiga, R. V., Sridevi, S. & Indira, B. Leveraging quantum kernel
+support vector machine for breast cancer diagnosis from
+digital breast tomosynthesis images. Quantum Mach. Intell. 6, 40
+(2024).
+52. Niraula, D., Jamaluddin, J., Matuszak, M. M., Haken, R. K. T. & Naqa, I.
+E. Quantum deep reinforcement learning for clinical decision support
+in oncology: application to adaptive radiotherapy. Sci. Rep. 11, 23545
+(2021).
+53. Monbroussou, L., Landman, J., Wang, L., Grilo, A. B. & Kasheﬁ, E.
+Subspace preserving quantum convolutional neural network
+architectures. arXiv (2024). 2409.18918.
+54. Larocca, M. et al. A review of barren plateaus in variational quantum
+computing. arXiv 2405.00781 (2022).
+55. Thanasilp, S., Wang, S., Cerezo, M. & Holmes, Z. Exponential
+concentration in quantum kernel methods. Nat. Commun. 15, 1–13
+(2024).
+56. Anschuetz, E. R. & Kiani, B. T. Quantum variational algorithms are
+swamped with traps. Nat. Commun. 13, 1–10 (2022).
+57. Haralick, R. M., Shanmugam, K. & Dinstein, I. Textural features for
+image classiﬁcation. IEEE Trans. Syst., Man, Cybern. SMC-3,
+610–621 (2007).
+58. Lubinski, T. et al. Application-oriented performance benchmarks for
+quantum computing. arXiv 4, 1–32 (2021).
+59. PROSPERO https://www.crd.york.ac.uk/prospero. [Online;
+accessed 8. Aug. 2024] (2024).
+60. Covidence systematic review software https://www.covidence.org.
+[Online; accessed 8. Aug. 2024] (2024).
+61. IBM. Five years ago today, we put the ﬁrst quantum computer on the
+cloud. here’s how we did it. https://www.ibm.com/quantum/blog/
+quantum-ﬁve-years (2021).
+62. Popay,J., Roberts, H., Sowden, A., Petticrew, M. & Duffy, S. Guidance
+on the conduct of narrative synthesis in systematic reviews: A product
+from the ESRC Methods Programme. ResearchGate 1, b92 (2006).
+63. Gupta, R. Quantum machine learning for digital health: a systematic
+review (dataset) https://ﬁgshare.com/articles/dataset/_/27148386/0
+(2024).
+64. Weigold, M., Barzen, J., Leymann, F. & Salm, M. Encoding patterns
+for quantum algorithms. IET Quantum Commun. 2, 141–152
+(2021).
+65. Schuld, M. & Petruccione, F. Supervised Learning with Quantum
+Computers (Springer International Publishing, Cham, Switzerland,
+2018). https://link.springer.com/book/10.1007/978-3-319-96424-9.
+66. Chen, Z.-Y. et al. Efﬁcient and error-resilient data access protocols for
+a limited-sized quantum random access memory. arXiv 2303.05207
+(2023).
+67. Johri, S. et al. Nearest centroid classiﬁcation on a trapped ion
+quantum computer. npj Quantum Inf. 7, 1–11 (2021).
+68. Leymann, F. & Barzen, J. The bitter truth about gate-based
+quantum algorithms in the NISQ era. Quantum Sci. Technol. 5,
+044007 (2020).
+69. Ventura, D. & Martinez, T. Initializing the amplitude distribution of a
+quantum state. Found. Phys. Lett. 12, 547–559 (1999).
+Acknowledgements
+R.S.G would like to thank K. Beer, R. Grewal, M. Riba, and R. Sweke for
+useful feedback.
+Author contributions
+R.S.G, T.E, S.S and J.D.P were involved in study design, formulating
+research question, deﬁning scope considerations, and inclusion/exclusion
+criteria. R.S.G, T.E, S.S developed search strategy, data extraction and
+quality appraisal templates. R.S.G, C.E.W, T.E and S.S participated in
+screening,data extraction, and resolution of conﬂicts. R.S.G performed data
+analysis. All authors contributed to writing the manuscript.
+Competing interests
+The authors declare no competing interests.
+Additional information
+Supplementary information The online version contains
+supplementary material available at
+https://doi.org/10.1038/s41746-025-01597-z.
+Correspondence and requests for materials should be addressed to
+Riddhi S. Gupta.
+Reprints and permissions information is available at
+http://www.nature.com/reprints
+Publisher’s note Springer Nature remains neutral with regard to
+jurisdictional claims in published maps and institutional afﬁliations.
+https://doi.org/10.1038/s41746-025-01597-z
+Article
+npj Digital Medicine |  (2025) 8:237 
+14
+
+Open Access This article is licensed under a Creative Commons
+Attribution 4.0 International License, which permits use, sharing,
+adaptation, distribution and reproduction in any medium or format, as long
+as you give appropriate credit to the original author(s) and the source,
+provide a link to the Creative Commons licence, and indicate if changes
+were made. The images or other third party material in this article are
+included in the article’s Creative Commons licence, unless indicated
+otherwise in a credit line to the material. If material is not included in the
+article’s Creative Commons licence and your intended use is not permitted
+by statutory regulation or exceeds the permitted use, you will need to
+obtain permission directly from the copyright holder. To view a copy of this
+licence, visit http://creativecommons.org/licenses/by/4.0/.
+© The Author(s) 2025
+https://doi.org/10.1038/s41746-025-01597-z
+Article
+npj Digital Medicine |  (2025) 8:237 
+15

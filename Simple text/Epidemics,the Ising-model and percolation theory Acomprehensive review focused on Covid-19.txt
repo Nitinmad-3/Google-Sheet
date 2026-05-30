@@ -1,0 +1,1508 @@
+Source-PDF: D:\Review\New folder\Main\Directly epidemic  epi modeling with quantumIsing\Epidemics,the Ising-model and percolation theory Acomprehensive review focused on Covid-19.pdf
+Relative-Path: New folder\Main\Directly epidemic  epi modeling with quantumIsing\Epidemics,the Ising-model and percolation theory Acomprehensive review focused on Covid-19.pdf
+--------------------------------------------------------------------------------
+
+ 
+ 
+Since January 2020 Elsevier has created a COVID-19 resource centre with 
+free information in English and Mandarin on the novel coronavirus COVID-
+19. The COVID-19 resource centre is hosted on Elsevier Connect, the 
+company's public news and information website. 
+ 
+Elsevier hereby grants permission to make all its COVID-19-related 
+research that is available on the COVID-19 resource centre - including this 
+research content - immediately available in PubMed Central and other 
+publicly funded repositories, such as the WHO COVID database with rights 
+for unrestricted research re-use and analyses in any form or by any means 
+with acknowledgement of the original source. These permissions are 
+granted for free by Elsevier for as long as the COVID-19 resource centre 
+remains active. 
+ 
+
+Physica A 573 (2021) 125963
+Contents lists available at ScienceDirect
+Physica A
+journal homepage: www.elsevier.com/locate/physa
+Minireview
+Epidemics, the Ising-model and percolation theory: A
+comprehensive review focused on Covid-19
+Isys F. Mello a, Lucas Squillante a, Gabriel O. Gomes c,1, Antonio C. Seridonio b,
+Mariano de Souza a,∗
+a São Paulo State University (Unesp), IGCE - Physics Department, Rio Claro - SP, Brazil
+b São Paulo State University (Unesp), Department of Physics and Chemistry, Ilha Solteira - SP, Brazil
+c University of São Paulo, Department of Astronomy, SP, Brazil
+a r t i c l e
+i n f o
+Article history:
+Received 28 August 2020
+Received in revised form 16 February 2021
+Available online 29 March 2021
+Keywords:
+Covid-19
+Percolation theory
+Ising-model
+Logistic function
+a b s t r a c t
+We revisit well-established concepts of epidemiology, the Ising-model, and percolation
+theory. Also, we employ a spin S = 1/2 Ising-like model and a (logistic) Fermi–Dirac-like
+function to describe the spread of Covid-19. Our analysis show that: (i) in many cases
+the epidemic curve can be described by a Gaussian-type function; (ii) the temporal
+evolution of the accumulative number of infections and fatalities follow a logistic
+function; (iii) the key role played by the quarantine to block the spread of Covid-
+19 in terms of an interacting parameter between people. In the frame of elementary
+percolation theory, we show that: (i) the percolation probability can be associated with
+the probability of a person being infected with Covid-19; (ii) the concepts of blocked and
+non-blocked connections can be associated, respectively, with a person respecting or not
+the social distancing. Yet, we make a connection between epidemiological concepts and
+well-established concepts in condensed matter Physics.
+© 2021 Elsevier B.V. All rights reserved.
+Contents
+1.
+Introduction...............................................................................................................................................................................................
+2
+1.1.
+The SIR model ..............................................................................................................................................................................
+2
+1.2.
+The Ising-model and the Covid-19 outbreak............................................................................................................................
+3
+2.
+Covid-19 spread, infections and fatalities .............................................................................................................................................
+4
+2.1.
+The genesis of the interaction parameter..................................................................................................................................
+4
+2.2.
+The Gaussian-type function and Gaussian processes..............................................................................................................
+5
+2.3.
+The logistic and the Fermi–Dirac-like function applied to epidemics ..................................................................................
+6
+2.4.
+Data analysis and discussion for the case of infections..........................................................................................................
+7
+2.5.
+The logistic and the Fermi–Dirac-like function for the case of fatalities .............................................................................
+9
+2.6.
+Data analysis and discussion of the fatalities and the infection capacity ............................................................................ 10
+3.
+The Landau Fermi-liquid picture ............................................................................................................................................................ 12
+4.
+The logistic function versus SIR model .................................................................................................................................................. 12
+5.
+The Cayley tree and the Bethe lattice.................................................................................................................................................... 12
+5.1.
+Modeling epidemics employing elementary percolation theory ........................................................................................... 13
+5.2.
+Switching on the interactions in the Bethe lattice.................................................................................................................. 16
+∗Corresponding author.
+E-mail address:
+mariano.souza@unesp.br (M. de Souza).
+1 Present address: Observatoire de Genève, Université de Genève, 51 Chemin des Maillettes, CH-1290 Sauverny, Switzerland.
+https://doi.org/10.1016/j.physa.2021.125963
+0378-4371/© 2021 Elsevier B.V. All rights reserved.
+
+I.F. Mello, L. Squillante, G.O. Gomes et al.
+Physica A 573 (2021) 125963
+5.3.
+The Bethe lattice and the spread of Covid-19 ......................................................................................................................... 19
+5.4.
+Data analysis and discussion in the frame of the percolation theory .................................................................................. 19
+6.
+What is next? ........................................................................................................................................................................................... 20
+7.
+Conclusions................................................................................................................................................................................................ 21
+Declaration of competing interest.......................................................................................................................................................... 21
+Acknowledgments .................................................................................................................................................................................... 22
+References ................................................................................................................................................................................................. 22
+1. Introduction
+In the field of epidemics, every hour counts and there is an urge in predicting the temporal evolution of the disease
+aiming to find the best way to deal with it and to establish a proper control of its spread. Recently, the pandemic Covid-19
+(Coronavirus disease) has been rapidly spreading all over the world, being needless to mention the impact of it in our
+lives in a broad context, see, e.g., Refs. [1–7]. It has been proposed that such a quick spread of Covid-19 in human beings
+is associated with a spike protein, which in turn has a site that is triggered by an enzyme called furin. The latter lies
+dangling on the surface of the virus, leading thus unfortunately to the infection of human cells much more easily [8].
+Therefore, there is an urgency of an appropriate mathematical description of the spread of Covid-19 aiming to contain
+the disease. This is particularly true aiming to support the health government agencies all over the world to maximize
+the effectiveness of medical support strategy in such a global crisis.
+1.1. The SIR model
+In the field of epidemiology [9–13], several mathematical approaches aiming to describe the infectious disease spread
+have been employed. Among them, the SIR (Susceptible, Infectious, Removed) model [11,14–17] stands out. Such a model
+considers the contact transmission risk, the average number of contacts between people as a function of time t, and
+the time that a person remains infected and thus can infect others. The latter enable us to infer the average number
+of people R0 directly infected. The value of R0 usually dictates if the disease will eventually disappear (R0 < 1), if an
+endemic will take place (R0 = 1) or even if there will be an epidemic (R0 > 1) [11]. Furthermore, three variables provide
+key information about the disease, namely the fraction of people S that are susceptible of being infected, the fraction of
+people I′ that are already infected and can thus infect others, and the fraction of people R that becomes immune to the
+disease. The epidemic curve is achieved employing the following three coupled first-order differential equations [11]:
+dS
+dt = −β′κSI′;
+(1)
+dI′
+dt = β′κSI′ −I′
+D;
+(2)
+dR
+dt = I′
+D,
+(3)
+where β′ is the contact transmission risk, κ is the average number of contacts between people as a function of time, and
+D refers to the time that a person remains infected and, as a consequence, can infect others. Also, using the previously
+defined parameters R0 can be written as R0 = β′κD. Although the system of differential equations defined in the frame of
+the SIR model describes nicely the behavior of epidemics, the β′, κ, and consequently, R0 factors are considered constant.
+However, such factors can be changed over time influenced by other parameters such as social distancing, for instance.
+Thus, a time dependence of β′ and κ has to be taken into account, cf. discussion in Refs. [18,19]. Given the non-linearity of
+the system of equations, the mathematical solution is non-trivial, being numerical analysis required in many cases. Now,
+for the sake of completeness, we will analyze each differential equation separately. The negative sign in Eq. (1) indicates
+that S(t) decreases monotonically with time. Note that the factor β′κSI is also present in Eq. (2), but with opposite sign,
+i.e., as the number of infected people increases, less people are indeed susceptible, since a fraction of the susceptible
+people has now become infected. Also, Eq. (3) takes into account the ratio between infected people and the duration of
+the infection, also called incubation time, being such a ratio proportional to the number of people recovering from the
+disease. This factor, namely I′/D, is negative in Eq. (2), as expected, since recovered people are no longer part of the group
+of infected people. As previously mentioned, the set of three equations enables us to obtain the epidemic curve for an
+infectious disease. In order to discuss the SIR model and its respective generated epidemic curves in a comprehensive way,
+we have applied such a model for Covid-19, SARS, and Ebola in order to discuss the implications of the disease spread for
+distinct R0 factors (Fig. 1). Note that the higher value of R0 is associated with Covid-19, most likely due to its relatively
+easy infection because of the furin enzyme [23]. Fig. 1 shows the epidemic curves employing the parameters R0 and D
+reported in the literature for the case of Covid-19 [20], SARS [21], and Ebola [22]. The number of susceptible people S
+in panel (a) of Fig. 1 for Covid-19 decreases more rapidly than SARS and Ebola, which is a direct consequence from the
+fact that Covid-19 presents a higher R0 factor when compared with the other diseases. As a consequence, the number of
+2
+
+I.F. Mello, L. Squillante, G.O. Gomes et al.
+Physica A 573 (2021) 125963
+Fig. 1. Epidemic curves for Covid-19 (orange color solid line), SARS (navy solid line), and Ebola (green solid line). (a) Number of susceptible people
+S, (b) number of infected people I′, and (c) number of immune people R versus time t, employing the parameters R0 (number of people directly
+infected) and D (incubation time) for each disease here considered taken from Refs. [20–22]. Details in the main text.
+infected people over time depicted in panel (b) of Fig. 1 increases more rapidly and thus the number of immune people
+R from Covid-19 in panel (c) of Fig. 1 increases more slowly due to the quick spread of the disease. In summary, Fig. 1
+shows the typical epidemic curves for each disease spread here considered, in the frame of the SIR model. Note that the SIR
+model, through the knowledge of R0(β′, κ, D), enables us to infer predictions about the spread of the disease. According
+to recent works, environmental factors such as the weather, can also be taken into account when treating a disease
+spread [24]. Such an analysis is key in predicting the epidemiologic curves during seasonal changes in some countries.
+Essentially, environmental factors, i.e., temperature changes, can impact on the floating time of respiratory droplets in the
+atmosphere, leading thus to an enhancement of the infection probability. Such an influence of the environment on the
+spread of the disease can be associated with the β′ factor in the light of the SIR model. In practical terms, several factors
+enable us to minimize the risk of infection. For example, in the context of the SIR model, upon joining the quarantine
+both β′ and κ are reduced, since the number of contacts between people is lowered in the same way as the probability
+of being infected. On the other hand, upon going to the supermarket using a face mask, for instance, β′ can be lowered
+but not necessarily κ since there will still be contact between people. Such actions are not only important on containing
+the disease spread, but also are key in preventing the resurgence, or small new outbreaks. In a broader context, other
+mathematical models can be used to investigate the spread of diseases, such as MSEIR, MSEIRS, SEIR, SEIRS, SIRS, SEI,
+SEIS, SI, and SIS, where M is passively immune infants and E is the exposed people in the latent period [25,26]. It is
+worth mentioning that the imposed difficulties on acquiring the data associated with the number of people exposed to
+Covid-19 is one of the key limitations of such models. Hence, as pointed out in Ref. [27], the simple application of the SIR
+model, for instance, is naive and does not suffice to describe the spread of Covid-19. We emphasize that other approaches
+can be considered, such as the study of the spread of diseases employing the network model [28,29], where the possible
+contacts that each person has with other people compose a set and the sum of all such sets in a given region gives rise to a
+network. Given the various involved factors, a broader analysis considering, for instance, social aspects and urbanization,
+is required. Such aspects are discussed in Section 6.
+1.2. The Ising-model and the Covid-19 outbreak
+It is evident that the mathematical models aforementioned used to describe the spread of epidemics are not built
+based on concepts of Statistical Physics. However, an adaptation of the Ising-model can be made to describe the Covid-19
+spread. Hence, in what follows we discuss the celebrated Ising-model [30]. Although initially proposed for describing
+magnetic systems, over the last decades the Ising-model has been revealed as an appropriate tool to describe several
+phenomena. Indeed, this includes the supercooled phase of water [31], the vicinity of the Mott critical end point [32–34],
+magnetic field-induced quantum critical points [35], econophysics [36], democratic elections [37,38], as well as the spread
+of diseases [39–42], just to mention a few examples. Before discussing the adaptation of the Ising-model for the description
+of the Covid-19 spread, we recall here the classical one-dimensional Ising-model [43,44]. In order to make a brief review
+of such a model, we focus here on the case of applied longitudinal magnetic field. Essentially, the quintessence of the
+Ising-model lies on the assumption that magnetic moments are coupled only with their nearest neighbors, being the
+Hamiltonian of a linear chain of N spins given by [44]:
+H = −Ji,i+1
+N
+∑
+i=1
+SiSi+1 −B
+N
+∑
+i=1
+Si,
+(4)
+where Ji,i+1 is the coupling constant between neighboring magnetic moments on sites i and i + 1, Si (Si+1) represents the
+spin on a site i (i + 1), and B refers to the longitudinal applied magnetic field. At this point, it is worth emphasizing that
+the coupling constant Ji,i+1, also called magnetic exchange coupling constant, will be used to emulate the contact between
+infected and non-infected people in our approach. Next, we make use of the Ising-model [30], logistic function [45]
+3
+
+I.F. Mello, L. Squillante, G.O. Gomes et al.
+Physica A 573 (2021) 125963
+and percolation theory (to be introduced in Section 5) to describe the spread of Covid-19. We demonstrate the close
+relation between the number of people following the proposed quarantine by the WHO (World Health Organization) and
+the spread of Covid-19. Although it is quite obvious that the more people respect the quarantine the lower will be the
+number of infected people, a proper quantitative description is still lacking. Unfortunately, for many governmental leaders
+around the world, it is not obvious that the quarantine is crucial in containing the Covid-19 disease spread. It is worth
+mentioning a recent analysis about the so-called Digital Herd Immunity, reported in Ref. [46], where there is a tracking
+of Covid-19 infected people through a smartphone applicative. Interestingly enough, the critical fraction of people using
+such applicative for the containment of the Covid-19 spread is about 75% of the population. The latter means that if
+the entire population, infected or not, are tracked by the applicative and respect the social distancing, the spread of the
+disease is contained. This paper is organized as follows: in Section 2, we present a discussion about the adaptation of the
+Ising-model to the Covid-19 spread and deduce, in a pedagogical way, the logistic function, applying it in the description
+of both the number of infections and fatalities due to Covid-19. In Section 3, we present an analogy between the electron
+interaction in condensed matter Physics and the interaction between infected and non-infected people in epidemics. It is
+worth mentioning that the analogy between well-established condensed matter Physics concepts and Epidemiology was
+implemented in this work focusing on an analogy between such distinct research fields with their respective conditioning.
+A comparison between the logistic function and the SIR model is presented in Section 4. In Section 5, we present a
+comprehensive review of the percolation theory, the Cayley tree, and the Bethe lattice aiming to describe the behavior of
+the Covid-19 spread in the context of percolation theory. Conclusions and perspectives are also presented.
+2. Covid-19 spread, infections and fatalities
+2.1. The genesis of the interaction parameter
+Under the light of condensed matter Physics, we consider that the interaction (contact) δε between infected and non-
+infected people can be associated with the magnetic exchange interaction between nearest-neighbor magnetic moments
+in the well-established Ising-model [31,34,47,48], cf. discussions in the previous Section. Hence, analogously to the case
+of the Ising-model for magnetism with N spins S = 1/2, we assume that the number of infected people pi = +1/2 is
+N+, while the number of non-infected people pi = −1/2 is labeled by N−, being (N+ + N−) = N where N is the total
+number of considered habitants. In other words, infected and non-infected people can be identified considering a S = 1/2
+Ising-like variable pi = +1/2, −1/2, so that we write N+ = ∑N
+i=1 2 (
+pi + 1
+2
+)
+pi, and N−= ∑N
+i=1 2 (
+pi −1
+2
+)
+pi. The latter
+enable us to select mathematically infected and non-infected people, respectively. Yet, we consider that two people who
+are infected by Covid-19 have no effect on each other, so that in this case the interaction δε = 0 and, otherwise, δε ̸= 0.
+In the same way, a non-infected person has no effect in another non-infected person. Essentially, in our approach δε
+quantifies, at some extent, the key role played by the quarantine in the spread of Covid-19. Note that δε plays a similar
+role than κ in the frame of the SIR model, discussed previously. Following a similar mathematical treatment reported by
+us elsewhere, cf. Ref. [34], we write a mathematical function to describe the total population CT taking into account the
+contact between non-infected and infected people, which is emulated by δε:
+CT = Ch −4δε
+N
+∑
+i̸=j=1
+[(
+1
+2 + pi
+) (
+1
+2 −pj
+)
++
++
+(
+1
+2 −pi
+) (
+1
+2 + pj
+)]
+pipj,
+(5)
+where Ch is the total number of healthy people before the spread of the virus and pj refers to a neighbor person of pi.
+Note that the second term of the right side of Eq. (5) will always be negative for pi = +1/2 and pj = −1/2 and vice-versa.
+Although the various applications of the Ising-model to distinct research areas are known in the literature, as discussed in
+the Introduction section, Eq. (5) provides a new way of mathematically selecting infected (pi = +1/2) and a non-infected
+person (pj = −1/2) taking into account the interaction parameter δε. Furthermore, Eq. (5) indicates that, when δε ̸= 0,
+i.e., infected people interact with healthy people, Ch is decreased. Evidently, the total number of the population remains
+constant. It is worth mentioning that even in a hypothetical situation in which all the population joins the quarantine,
+there would still be a small finite δε originated from household interactions, which are usually longer and more frequent
+and thus, under certain circumstances, can lead to new infections. In order to determine a proper mathematical expression
+for δε, one must take into account the number of isolated people n in quarantine. We propose that the contact between
+infected and non-infected people can be described considering δε ∝n−1/2, with 1 < n < N. As a matter of fact, other
+power-laws of n can also be employed, such as δε ∝n−1/3 and δε ∝n−1/5, cf. shown in the inset of Fig. 3. Note, however,
+that the power-law we have employed is an Ansatz to incorporate the effects of social distancing in the epidemic curve.
+Note that this analysis aims to show the mitigation of the number of Covid-19 new cases over time upon increasing the
+social distancing and it was not employed to any specific epidemiological data sets of any particular country. Our Ansatz
+is a reasonable assumption, since as the number of people in quarantine decreases, the contact between them increases,
+which, in the present scenario, is represented mathematically by an increase in δε. Note that Eq. (5) does not incorporate
+any time evolution.
+4
+
+I.F. Mello, L. Squillante, G.O. Gomes et al.
+Physica A 573 (2021) 125963
+2.2. The Gaussian-type function and Gaussian processes
+It turns out that upon analyzing already officially reported epidemic curves [49,50] for Covid-19, their typical time
+evolution in terms of new cases per day follows an initial rapid increase of the number of infected people, which is usually
+assumed to be exponential. After such initial exponential growth, the number of infected people reaches a threshold value
+and starts decreasing monotonically as time continues to evolve. Essentially, in qualitative terms, the typical shape of
+epidemic curves is more or less the one of a simple Gaussian-type function, as can be seen in Fig. 2. At this point, it
+is worth mentioning that although the epidemics data set here discussed follows the behavior of a Gaussian function,
+our analysis has nothing to do with a probability distribution. For the sake of completeness, we recall the mathematical
+expression for the Gaussian function:
+y(t) = y0 +
+A
+w√π
+2
+e
+−2 (t−tc )2
+w2
+,
+(6)
+where y0 is related with an initial value, A is a normalization constant associated with the area under the curve, t is the
+time, tc is the value of t associated with the maximum value of y(t), and w = 2σ, where σ is the standard deviation.
+Hence, following a similar analysis employed by the authors of Ref. [37], we make use here of a simple Gaussian function to
+describe the spread of Covid-19. In our analysis, the interaction between infected and non-infected people is incorporated
+in the Gaussian function by summing up n1/2 ∝δε−1 in tc and w into the Gaussian function. The incorporation of δε in
+terms of the probability of a person being infected is discussed into details in Section 5.2. We stress that in our analysis, we
+have summed up δε−1 into the terms tc and w of the Gaussian function, as previously described, based on the argument
+that when the number of people n in quarantine is increased, the contact between infected and non-infected people is
+reduced and, as a consequence, δε−1 is increased. Although we have considered that δε−1 ∝n1/2, any other power-laws
+of δε that describe the lowering of the interactions between people upon increasing the number of people in quarantine
+could be incorporated into the Gaussian function as well. The mathematical function that incorporates the interactions
+between people is naturally distinct for each region depending on the number of contacts that each person has with
+others. In other words, the impact on the epidemic curves regarding the social distancing is more pronounced in regions
+with a higher number of contacts between people. In this context, a natural analogy between the number of contacts
+each person has with other people and the coordination number employed in the field of condensed matter Physics can
+be made. For more complex scenarios, where the number of contacts is very high, an approach employing dynamical
+mean-field theory (DMFT) can be implemented, cf. mentioned in Section 5. Next, we discuss the incorporation of δε into
+the Gaussian function. Essentially, we have summed up δε−1 as follows:
+y(t) = y0 +
+A
+(w + δε−1)√π
+2
+e
+−2 [t−(tc +δε−1)]2
+(w+δε−1)2
+.
+(7)
+This gives rise to a broadening of the Gaussian distribution function, so that w is increased and its maximum is reduced.
+Note that by doing so, the area under the curve remains constant. It is worth emphasizing that our analysis based on
+the incorporation of δε in the Gaussian function was only possible due to the Ising-like model that we have introduced
+previously, within which δε has its genesis. We emphasize that the modeling of the epidemic curves is performed by
+assuming that there are several additional parameters ruling the global behavior of the time evolution of the key factors
+incorporated in the SIR model, i.e., the number of infected, recovered and susceptible people. However, it is important
+to reinforce that a real disease spread depends on an ensemble of parameters, which are not usually taken into account
+to describe the global dynamics of the epidemic curves. These additional factors cannot be modeled by employing solely
+elementary analytic functions. Thus, in such cases, Gaussian processes may be implemented in the model to increase the
+accuracy of best-fit solutions describing the time evolution of the epidemics parameters [51,52]. Essentially, Gaussian
+processes can be understood in the following way: suppose we have a given phenomenon (in our case, the number of
+infected (I′), recovered (R) and susceptible (S) people in the light of an epidemic) to be modeled as a function of time
+t. There is a set of well-determined parameters which are responsible for dictating the predominant behavior regarding
+the time evolution of these particular parameters, cf. Eqs. (1)–(3). However, other factors may play a minor, although
+non-negligible, role in modeling the epidemic curve. A simple example of a factor which could change the epidemic
+curve is the weather. It is known that weather prediction is one of the most difficult tasks in modern predictive analysis
+due to the intrinsically stochastic aspect of this phenomenon. If the virus corresponding to a given epidemic presents
+a ‘‘weakness’’ to, e.g., hot weather, an abrupt change in the temperature may cause small fluctuations in the number of
+infected people over a short period of time. Such a period of time is comparable to the timespan in which the temperature
+remains relatively high. Supposing that these temperature fluctuations take place for some days in a given timespan, one
+has a stochastic variable adding a ‘‘noise’’ to the behavior, for instance, of the number of susceptible people over time S(t).
+The Gaussian processes is thus an algorithm for introducing these kind of random fluctuations in the epidemic model. The
+so-called Gaussian aspect is attributed to the way in which the noise is added. It is known that a sequence of randomly
+generated points can be approximated by a Gaussian distribution function for large values of the number of data points,
+being such result known as the Central Limit Theorem [53]. Thus, the incorporation of randomly generated fluctuations
+in the deterministic portion of S(t) implies a more complete modeling. Indeed, this is true not only for the deterministic
+5
+
+I.F. Mello, L. Squillante, G.O. Gomes et al.
+Physica A 573 (2021) 125963
+nature of S(t), already described by the SIR model, but also to the noise introduced by, for instance, the weather variation
+and its impact on the survival of the virus causing the given disease. The goal is, eventually, to determine which value of
+standard deviation σ better suits the Gaussian processes, i.e., the one which minimizes the deviation between the actual
+data of the epidemic curve and the model curve described by S(t) = S(t)det + S(t)gauss, where S(t)det is the deterministic
+part of the function S(t) and S(t)gauss is the stochastic contribution to the function S(t). Of course, such modeling requires
+a more complex implementation. In Ref. [54] an example of a public available code to model a Gaussian process in one
+dimension is reported. Note, however, that such procedures are random in nature and serve only the purpose of increasing
+the accuracy of the fits by taking into account a detrending process. We thus mention here the existence of such methods,
+but we do not implement them in the current work, since no additional insights can be gained in the discussions related
+to the spread of Covid-19.
+2.3. The logistic and the Fermi–Dirac-like function applied to epidemics
+Given the relatively large amount of available data for China [55] and the achievement of a proper control of the
+spread of Covid-19 in its territory, in the following we pedagogically deduce the logistic function by making use of the
+also celebrated standard population growth model [56,57]. We assume a maximum number of possible infected people
+labeled by P; considering I(t) the number of infected people at a given time t and, as consequence, [P −I(t)] is the number
+of people that can be infected. Note that [ P−I(t)
+P
+] corresponds to the percentage of the population that will be infected.
+Also, we consider that the number of people that can be infected by I(t) in a time interval ∆t is [ P−I(t)
+P
+]
+n∗∆t, where n∗
+quantifies how many times an infected person interacts with a non-infected person. The number of infected people in a
+time (t + ∆t) minus the number of infected people at t is proportional to the number of people of the population that
+can be infected by the already existent infected people at a given time t. Hence, it is straightforward to write:
+I(t + ∆t) −I(t)
+∆t
+= K
+{[
+P −I(t)
+P
+]
+n∗I(t)
+}
+,
+(8)
+where K is a non-universal proportionality constant. Upon taking the limit for ∆t →0 in both sides of Eq. (8), we achieve
+the following differential equation:
+dI
+dt = C
+(
+P −I
+P
+)
+I,
+(9)
+where C = Kn∗quantifies the frequency of infection. Making the integration in both sides of Eq. (9), we have:
+I(t) =
+P
+me−Ct + 1,
+(10)
+where m is a non-universal integration constant. Eq. (10) has some reminiscence of the well-known Fermi–Dirac
+(FD) distribution function [58]. Interestingly, Eq. (10) is also typically employed in chemical kinetics [59], anaerobic
+biodegradability tests [60], and even on germination curves [61]. It provides a robust description for the evolution of
+the number of infected people I(t) over time, saturating at P. Also, Eq. (9) can be recognized as the well-established
+logistic differential equation [56], which has a general solution of the type [62]:
+g(x) =
+L
+e−k(x−x0) + 1,
+(11)
+where k is the growth rate of the function, L is the maximum number of g(x), and x0 is the midpoint value of the function.
+Thus, Eq. (10) can be rewritten in a similar way of Eq. (11):
+I(t) =
+P
+e−C(t−t0) + 1.
+(12)
+Note that Eq. (12) is equivalent to Eq. (10) if we consider m = eCt0. The logistic function can also be written in the
+trigonometric form as the distribution function:
+I(t)
+P
+= 1
+2 + 1
+2
+tanh
+[
+C(t −t0)
+2
+]
+.
+(13)
+Although Eq. (10) is essentially the well-known logistic function, we will consider it under the view of condensed matter
+Physics as a Fermi–Dirac-type (FD-type) function. This is because of their mathematical similarities. The data set for
+Covid-19 here discussed are available in Ref. [55]. It is worth mentioning that we have focused our analysis in countries
+presenting a more advanced picture of the Covid-19 spread, such as South Korea and China [55] during the preparation
+of this manuscript.
+6
+
+I.F. Mello, L. Squillante, G.O. Gomes et al.
+Physica A 573 (2021) 125963
+Fig. 2. Number of new cases versus time in days for: (a) Ebola [63], (b) SARS [64], and (c) Influenza A/H1N1 [65]. The solid lines in all panels
+represent the Gaussian fitting of the data set for each case.
+2.4. Data analysis and discussion for the case of infections
+We start our analysis recalling the data set for Ebola, SARS, and Influenza A/H1N1. Their epidemic curves, depicted in
+Fig. 2, can be described by a fitting employing a Gaussian function.
+Table 1 shows the parameters obtained in the fitting for the various epidemics (Fig. 2) and their respective standard
+deviations. At this point, it is worth emphasizing that it is not possible to make a forecast of an epidemic curve by only
+employing a Gaussian fitting of the data set associated with the initial growth of the epidemic curve. Now, we focus on
+the analysis of the spread of Covid-19. We start with the available data set for Covid-19 in South Korea, see Fig. 3(a).
+The number of people joining the quarantine is directly associated with the previously defined interaction (contact) δε
+between infected and non-infected people. As discussed, in a hypothetical situation where no one joins the quarantine
+n →0 and so δε achieves its maximum value, which means that everyone interacts freely with each other. This would
+be the worst case at all. It has been broadly discussed that upon increasing the number of infected people in quarantine,
+the maximum in the epidemic curve associated with the number of new cases is not only lowered, but it is also shifted,
+indicating that the spread of Covid-19 will be more contained. The latter corresponds to the desired situation in terms of
+controlling the spread, since the health government agencies will have more time to manage the situation. This is one of
+the reasons why a proper registration of the epidemic data is crucial. Note that our analysis based on the Ising-like model
+7
+
+I.F. Mello, L. Squillante, G.O. Gomes et al.
+Physica A 573 (2021) 125963
+Fig. 3. (a) Main panel: number of new cases versus time (in days) for Covid-19 in South Korea, fitted with a Gaussian (orange color solid line)
+and exponential (dashed cyan line) functions. Inset: corresponding Gaussian fit for δε →∞(orange color solid line) and δε = 0.03 (navy blue
+solid line). The values of δε = 0.26 (green solid line) and δε = 0.11 (red solid line) represent the cases for which δε ∝n−1/3 and δε ∝n−1/5,
+respectively; (1) delimitates the maximum number of new cases for δε →∞and (2) the reduction of the number of new cases when the number
+of people in quarantine is increased [66]. (b) Main panel: accumulative number of infected people versus time (in days) of Covid-19 for China and
+the correspondent fitting (pink solid line) employing Eq. (10). Inset: I(t)/P versus C/C∗with m = 2660.2 and C∗= 0.22 (obtained from the fitting
+of the data set shown in the main panel) for 1 day (red solid line), 3 days (green solid line), and 7 days (blue solid line). (c) I(t)/P versus C/C∗
+with m = 1 and C∗= 0.22 for 1 day (red solid line), 3 days (green solid line), and 7 days (blue solid line). For the sake of comparison, we have
+employed C∗obtained in the fitting of the data for China in (b). Data set available in Ref. [55].
+incorporates the key role played by social distancing, broadly discussed in the media, see, e.g., Ref. [66]. We demonstrate
+such a situation employing the data set available for South Korea, assuming a hypothetical finite δε incorporated in the
+Gaussian function employed in the analysis, cf. depicted in the inset of Fig. 3(a). More specifically, when δε is lowered the
+maximum number of infected people is decreased and its position in time is shifted, making thus the disease spread more
+controllable. Such a decrease in δε represents more people joining the quarantine and thus avoiding contact with each
+other. Interestingly, the number of infected people I′ over time in the frame of the SIR model, depicted in Fig. 1(b), for the
+various diseases resembles the behavior of the number of new cases over time shown in the inset of Fig. 3 for Covid-19.
+Such a resemblance of the role played by δε and R0 is due to the fact R0 depends on κ, which in turn represents an
+average interaction between people in a similar way than δε. Indeed, the R0 factor can be written in terms of κ, namely
+R0 = β′κD [11]. Since R0 is connected with the average number of contacts between people as a function of time κ,
+upon decreasing R0 as shown in Fig. 1(b) the shape of the infected people over time is broadened in the same way as
+in Fig. 3(a) when δε is lowered. Essentially, both behaviors strengthen the importance of respecting the social distancing
+and thus minimizing the average number of contacts between people. Now, we treat the available data set of the spread
+of Covid-19 in China in terms of the FD-like distribution function. As depicted in Fig. 3(b), the number of accumulated
+infected people versus elapsed time starts to saturate after roughly 50 days after the outbreak of Covid-19. In other words,
+8
+
+I.F. Mello, L. Squillante, G.O. Gomes et al.
+Physica A 573 (2021) 125963
+Table 1
+Gaussian fitting parameters for several epidemics [see Figs. 2 and 3(a)]. The existence of other external
+parameters influencing the time evolution of the number of new cases causes fluctuations on the data.
+Since such factors can be described, in general, by a Gaussian process, the associated errors of the fitting
+with respect to the real data are incorporated in the standard deviations of the fitting presented in Figs. 2
+and 3. Details in the main text.
+Disease
+y0
+A
+w
+tc
+σ
+Ebola
+41
+15418
+13.98
+34.08
+6.99
+SARS
+2
+2122
+38.08
+51.39
+19.04
+Influenza A (H1N1)
+0.42
+260
+6.89
+58.69
+3.44
+Covid-19 (South Korea)
+85.94
+5890.41
+7.51
+15.88
+3.75
+Covid-19 (Austria)
+12.82
+4317.33
+8.34
+24.24
+4.17
+for large values of t the ratio I(t)/P →1. Eq. (10) fits nicely such data set, cf. Fig. 3(b). Note that the number of infected
+people over time for China is marked by a jump at t ≈40 days, cf. Fig. 3(b). Such a jump is due to the recount in the
+number of new infected people in China since the criteria of diagnoses was changed. In the following, we discuss into
+more details the similarity between Eq. (10) and the FD distribution function. Rearranging Eq. (10), we have:
+I(t)
+P
+=
+1
+me(C−C∗)t + 1,
+(14)
+being C∗a constant introduced to play the role of the Fermi energy for the electron gas [58]. Note that I(t)/P ≤1 and, for
+m = 1 we have exactly the same form of the FD distribution function f (E, T) [58], where E and T refer, respectively, to the
+energy and temperature. In the present case, C plays a role analogous to the energy for the Fermi gas, while t is analogous
+to Boltzmann factor β = 1/kBT, where kB is Boltzmann constant. Indeed, the time evolution of the Covid-19 spread has
+a similar significance than T for the FD distribution function for the Fermi gas. The behavior of I(t)/P as a function of
+C/C∗is shown in the inset of Fig. 3(b) for several values of t. Considering that in our fit using Eq. (10) for the spread of
+Covid-19 in China [inset of Fig. 3(b)] we have obtained m = 2660.2, it becomes clear that we are dealing with a distorted
+version of the FD function where m = 1, cf. Fig. 3(c). Hence, at some extent, we are faced with a behavior analogous to
+the distorted FD distribution for electrons in the picture of Landau Fermi-liquid (FL) [67,68]. The latter will be discussed
+into more details in Section 3. Also, we emphasize that the ratio I(t)/P gives us the probability of a person being infected
+in a certain time t in a similar way that f (E, T) dictates the probability of a state with energy E being occupied at a certain
+temperature T. We anticipate that the spread of Covid-19 for other countries, not discussed in the present work given the
+lack of available data, should follow the same behavior as here discussed for South Korea and China. The position of the
+maximum in the epidemic curve, described by a Gaussian function, as well as I(t), will be a direct reflex of the policies
+taken by the health government agencies by a particular country.
+2.5. The logistic and the Fermi–Dirac-like function for the case of fatalities
+As reported by the Centers for Disease Control and Prevention (CDC) [69], there are some risk factors that increase
+the chance of an infected people to pass away due to infection by Covid-19. Such factors include mainly being with age
+above 65 years old and having a serious underlying medical condition. In our approach, we refer to this set of factors as
+a global (Risk) R′-factor. We assume that the number of infected people presenting the R′-factor is CR′ and the number of
+infected people without presenting the R′-factor CW . It is evident that the total number of infected people CI is given by
+CI = (CW +CR′). Also, it is expected that people presenting the R′-factor are more likely to pass away and thus to reduce the
+total number of infected people. As discussed in the following, the number of new fatalities per day follows a Gaussian
+fitting in the same way as the number of new infection cases per day. Now, we focus on the number of accumulative
+fatalities over time. Based on the fact that the number of accumulative fatalities over time follows a behavior similar to
+the number of accumulative infected people over time, we carry out a similar analysis applied to the number of infected
+people over time, cf. previously discussed. The number of people that can pass away in a time interval ∆t is given by
+[ F−D(t)
+F
+]
+d∗∆t, where F is the maximum number of fatalities, D(t) the number of people that pass away in a certain time
+t, and d∗is a parameter associated with the fatalities rate. Thus, the number of fatalities in a time interval (t + ∆t)
+minus the number of fatalities in a time t is proportional to the number of infected people presenting the R′-factor. These
+assumptions enable us to write:
+[D(t + ∆t) −D(t)]
+∆t
+= K ′
+{[
+F −D(t)
+F
+]
+d∗D(t)
+}
+,
+(15)
+where K ′ is a proportionality constant. Thus, following the same elementary mathematical treatment as in the last
+Subsection, we can write:
+D(t) =
+F
+m′e−C′t + 1,
+(16)
+9
+
+I.F. Mello, L. Squillante, G.O. Gomes et al.
+Physica A 573 (2021) 125963
+Fig. 4. Main panel: number of new fatalities per month in the 2014 Ebola outbreak in West Africa fitted with a Gaussian function (blue solid line),
+being the obtained fitting parameters displayed in Table 2. Inset: total number of fatalities per month during the Ebola outbreak fitted (red solid
+line) with Eq. (16), being F = 11817.12, m′ = 100.61 and C∗= 1.80. Data set available in Ref. [70].
+Table 2
+Gaussian fitting parameters for the number of new fatalities per day for Ebola and Covid-19 [see main
+panel of Figs. 4 and 5(a)].
+Disease
+y0
+A
+w
+tc
+σ
+Ebola
+−0.41
+389.66
+5.72
+10.97
+2.86
+Covid-19
+8.28
+2725.28
+18.35
+24.95
+9.17
+where m′ is a non-universal integration constant and C′ = K ′d∗is the fatality rate. Eq. (16) provides a reasonable
+description of the number of accumulative fatalities over time and resembles, as stated previously, a distorted Fermi–
+Dirac-like distribution function (logistic function), being that for the ideal case m′ = 1. Interestingly, the number of
+accumulative fatalities over time, described by Eq. (16), also follows a logistic function in the same way as the number
+of accumulative infections over time, cf. Eq. (10). Next, we discuss the fitting of the number of accumulative fatalities in
+China employing Eq. (16).
+2.6. Data analysis and discussion of the fatalities and the infection capacity
+Before starting the discussion regarding the data set for China, aiming to demonstrate the applicability of our approach,
+we recall the behavior of both the number of new fatalities and the total number of fatalities over time for the Ebola
+outbreak in West Africa in 2014 [70]. As can be seen in the main panel of Fig. 4, the time evolution of the number
+of new fatalities follows a Gaussian function, whereas the total number (accumulative) of fatalities (inset of Fig. 4) is
+well-described by Eq. (16). Such a behavior is also followed by other pandemics (not shown) [71,72] and thus reinforcing
+that we are dealing with an universal description of the epidemic curves of any disease. Considering the number of new
+fatalities by Covid-19 for the specific case of China [Fig. 5(a)], a similar behavior than the 2014 Ebola outbreak in West
+Africa (main panel of Fig. 4) is observed. As depicted in Fig. 5(a), the number of new fatalities over time follows a Gaussian
+function as well. The total number of fatalities over time [Fig. 5(b)] follows a behavior which resembles the one of a
+distorted FD-type function, cf. inset of Fig. 5(b). Interestingly, the value of the parameter m′ = 51 is much lower than the
+one for the accumulative number of infections over time, which is suggestive that the total number of fatalities per day
+follows a less distorted FD-like distribution function. Also, under the perspective of condensed matter Physics, given the
+similarity between Eq. (14) and the FD distribution function [58], a direct analogy can also be made for the density of
+states (DOS), i.e., dN′
+dE , where N′ is the number of particles (electrons) and E the energy in the case of the Fermi gas. Here,
+the proposed equivalent quantity is dI(t)
+dC . For the sake of completeness, we recall the expression used in the calculation
+of the specific heat CFG for the Fermi gas [58]:
+CFG =
+∫∞
+0
+dE dN′
+dE
+(E −EF)df (E, T)
+dT
+,
+(17)
+10
+
+I.F. Mello, L. Squillante, G.O. Gomes et al.
+Physica A 573 (2021) 125963
+Fig. 5. (a) Number of new fatalities per days of Covid-19 in China fitted with a Gaussian function (red solid line). (b) Main panel: accumulative
+number of fatalities per days in China fitted (black solid line) with Eq. (16). Inset: D(t)/F as a function of C/C∗showing a distorted Fermi–Dirac-like
+behavior employing m′ = 51 and C∗= 0.15. (c) Main panel: infection capacity Ci (in arbitrary units) as a function of time t in days (pink solid line)
+computed employing the fitting parameters for China, namely C∗= 0.22, m = 2660.2, and P = 80994.72, using Eq. (18). Inset: −d[I(t)/P]/d(C/C∗)
+versus C/C∗employing the fitting parameters for China for 1 day (red solid line), 3 days (green solid line), and 7 days (blue solid line). The vertical
+dashed indicates the t ∼50 days. Data set available in Ref. [55].
+where EF is the Fermi energy. At this point, it is worth mentioning that the DOS for the Fermi gas is temperature
+independent [58]. Below we write the here proposed infection capacity Ci:
+Ci = −
+∫C∗
+0
+dC dI(t)
+dC
+(C −C∗)d[I(t)/P]
+d(1/t)
++
+−
+∫C∗
+0
+dC[I(t)/P](C −C∗) d2[I(t)]
+dC d(1/t).
+(18)
+Note that for t →0, based on previous discussions, C should have its maximum value. Also note the presence of an
+additional term in Eq. (18). Such a term emerges because in the present case the DOS is time dependent, being such a
+feature key in understanding the present results. Eq. (18) quantifies the infection capacity by Covid-19 over time. In the
+main panel of Fig. 5(c), we show Ci versus time for China employing the fitting parameters discussed for new infections,
+cf. Fig. 5(a). A Gaussian function-like behavior is clearly observed. In the case of China, the infection capacity goes to zero
+at t ∼50 days (dashed vertical line in Fig. 5), which is in agreement with both the vanishing of new fatalities per day
+and also with the saturation of the accumulative number of people which passed away, cf. Figs. 5(a) and (b), respectively.
+Furthermore, the lowering of Ci, preceded by its vanishing, is also associated with the saturation of the accumulative
+11
+
+I.F. Mello, L. Squillante, G.O. Gomes et al.
+Physica A 573 (2021) 125963
+number of infected people, which also takes place at t ∼50 days. The inset of Fig. 5(c) depicts −d[I(t)/P]/d(C/C∗) versus
+C/C∗. Interestingly, for t →∞the number of people that can be infected is reduced and, consequently the contact
+(interaction) between infected and non-infected people is reduced as well. Such a reduction leads to a behavior closer to
+an ordinary FD distribution function where no interactions are present, i.e., we approach a clean Dirac delta function.
+3. The Landau Fermi-liquid picture
+Following the discussions presented in the previous section, a similar situation is also found in a Landau FL electronic
+system [68]. Upon bringing the quasi-particle (interacting) character to a non-interacting picture, the distorted FD function
+becomes a regular FD distribution. In the frame of the Landau FL picture the equilibrium distribution function of the
+quasi-particles is given by [68,73]:
+n0
+p =
+1
+[e(˜ϵp−µ)/kBT + 1],
+(19)
+where ˜ϵp is the quasi-particle local energy and µ the chemical potential. The quantity ˜ϵp depends on the interaction
+between the quasi-particles fp,p′ and can be written in the form ˜ϵp = ϵp +∑
+p′ fp,p′ δnp′, where ϵp is the energy associated
+with the case when the interactions between quasi-particles are absent and δnp′ is the distribution function of the excited
+quasi-particles. Thus, np
+0 can be rewritten as follows:
+n0
+p =
+1
+[e
+(∑
+p′ fp,p′ δnp′
+)
+/kBT e(ϵp−µ)/kBT + 1]
+,
+(20)
+where the term e
+(∑
+p′ fp,p′ δnp′
+)
+/kBT can be recognized as the previously discussed factor m. In the case where fp,p′ = 0 then
+m = 1, which leads to the case of a non-interacting Fermi-gas. On the other hand, when fp,p′ ̸= 0 we have a distorted
+Fermi–Dirac distribution function, which corresponds to the case of a Landau FL as previously discussed. At this point, an
+analogy can be made between the behavior of electrons in solids and the interaction between people during an epidemic.
+In fact, the interaction between quasi-particles fp,p′ plays a role analogous to the interaction parameter δε, which quantifies
+the contact between an infected and a non-infected person in the modeling of the Covid-19 spread.
+4. The logistic function versus SIR model
+In the following, we make a comparison between the logistic equation and the SIR model. Note that Eq. (10) represents
+the total number of infected people as a function of time I(t). In the frame of the SIR model, knowing R0 and D we have
+access to both the number of new infections per day I′(t) and accumulative total number of infections by calculating
+∫
+I′(t)dt. Hence, it is possible to obtain the accumulative total number of infected people in a similar way when employing
+the logistic equation. This demonstrates that, although it is appropriate for the description of epidemics, the SIR model
+presents a much more complex treatment than the application of the logistic equation, making it easier to determine
+the epidemic curve by the latter. It is clear that to make use of Eq. (10) one needs to know the infection rate and the
+constant m (∝t0), while the SIR model considers purely epidemiological factors, such as β′ and κ. Thus, although simple,
+the logistical equation depends on factors that can only be determined after the end of the epidemic in a given place or
+region. Besides the use of the logistic function to describe sigmoidal growth curves, the so-called Gompertz function can
+also be employed [74]. Essentially, the main difference between the logistic and the Gompertz function lies on the fact
+that for the Gompertz function the growth is more steep and it approaches the asymptote smoother than in the case of
+the logistic function. Thus, in the frame of the Covid-19 spread, the use of either the logistic or the Gompertz function will
+depend on the steepness of the total accumulative number of cases over time, which can be different for each country.
+Recently, a predictive model employing the Gompertz function, moving regression, and a so-called Hidden Markov Model
+was reported [75]. In Ref. [75], the authors provide a numerical fitting of the epidemic data for all countries in order to
+predict the number of new cases in the next day, discussing also the disease spread in terms of four stages: the start
+of the outbreak (lagging), the initial exponential growth, the deceleration, and the stationary phase. Also, the authors of
+Ref. [75] provide a real-time platform to monitor the growth acceleration of the Covid-19 spread in all countries aiming
+to measure the effectiveness of the mobility restrictions on the containment of such a disease.
+5. The Cayley tree and the Bethe lattice
+As a natural continuation of previous sections, in what follows we present an analysis of the probability of a person
+being infected with Covid-19 in the frame of percolation theory. Over the past decades, the percolation theory [13,76,77]
+has been used to describe the effects of disorder in superconductors [78], in the description of diluted magnetic
+semiconductors [79], in the analysis of traffic network [80], and also in epidemiology [81], just to mention a few examples.
+In condensed matter Physics, some powerful methods have been used to explore the electronic structure of systems of
+interest. Here, the density functional theory (DFT) and dynamical mean-field theory (DMFT) deserve to be mentioned. The
+latter enables the investigation of the so-called strongly correlated systems, i.e., systems in which interactions between
+12
+
+I.F. Mello, L. Squillante, G.O. Gomes et al.
+Physica A 573 (2021) 125963
+Fig. 6. Schematic representation of the possibilities of infection by Covid-19 based on the number of connections n. (a) For n = 1 there are two
+possible states E1 and E2, where E1 represents a blocked path (infected person in quarantine) and E2 a non-blocked path (infected person not in
+quarantine), but not in contact with other people. (b) For n = 2 there are four possible states, labeled by E1, E2, E3, and E4. The interaction between
+an infected (hand outlined in red) and non-infected person (hand outlined in black) is represented by a handshake. The handshake acceptance
+(green checkmark) or denial (red x) by each of the persons is also depicted. Only state E1 represents an actual percolation, i.e., infection since the
+contact interaction actually happened. (c) For n = 3 one infected person (red color) can infect two others by not being on quarantine, while in (d)
+the person respected the quarantine and avoided infecting two other people (represented by the light red color; blue color indicates non-infected
+people). For n = 3, there are 8 combinatory possibilities, but for the sake of compactness we indicate only two of them. Details in the main text.
+Figure generated using templates available in Ref. [88].
+electrons are taken into account and, as a consequence, the emergence of exotic phases. In a crude description, DMFT
+assumes an atom as an impurity in a matrix with several electrons under the influence of an effective field [82]. Such an
+approximation becomes accurate as the coordination number (z) becomes infinite, i.e., it takes into account infinite nearest
+neighbors [82–85]. Within this context, the application of the Bethe lattice is appropriate. Considering the application of
+percolation theory in the field of Solid State Physics, we highlight here the so-called Bruggemans’s effective medium
+approximation [86].
+x
+εa −εeff
+εeff + L(εa −εeff ) + (1 −x)
+εb −εeff
+εeff + L(εb −εeff ) = 0,
+(21)
+where x refers to the fraction of one of the phases of interest, εa and εb represent, respectively, the dielectric constant of
+the two distinct phases labeled a and b, εeff is the effective dielectric constant, and L is the so-called shape factor. In the
+frame of such an approximation, the goal is to analyze the dielectric responses of the two coexisting phases. Thus, when
+one of the phases achieves a critical concentration (or percolation threshold) one of the phases will dominate the Physics
+of the system significantly altering its dielectric response [87]. Here, upon analyzing the spread of Covid-19 we associate
+the percolation probability with the probability of a person being infected in terms of the number of people in and out
+the quarantine, cf. Fig. 6. Fig. 7 shows the probability of infection as a function of the number of connections n and their
+corresponding association with the blocked and non-blocked paths well-known in the frame of percolation theory [77].
+5.1. Modeling epidemics employing elementary percolation theory
+In order to describe the probability of infection by Covid-19 or any other disease, we make use of elementary concepts
+in the frame of percolation theory [57], which determines the probability of percolation to take place in terms of non-
+blocked p and blocked (1 −p) connections. The probability of percolation is associated with the probability of a person
+being infected with Covid-19 through contact with an infected person (Fig. 6). A blocked connection represents an infected
+person respecting the quarantine and thus ‘‘blocking’’ the spread of the disease. In the same way, the non-blocked
+connection refers to an infected person not joining the social distancing and thus, unfortunately, contributing to the
+increase of probability of new people becoming infected. Furthermore, we make use of a simple 3 connections net to
+describe the Covid-19 spread, i.e., one infected person can infect two other people and so on (Fig. 8). Basically, for each
+13
+
+I.F. Mello, L. Squillante, G.O. Gomes et al.
+Physica A 573 (2021) 125963
+number of connections n, we have a total probability Pn, which includes the percolation and non-percolation probabilities,
+cf. Fig. 7. In the simplest case, i.e., n = 1, there are only two possible states, namely the path is non-blocked p or it is
+blocked (1 −p). Hence, the total probability in this case is given by P1 = p + (1 −p) = [p + (1 −p)]1. For n = 2, there
+are four possible states: connection 1 blocked and connection 2 non-blocked, connection 1 non-blocked and connection
+2 blocked, connection 1 and 2 blocked, and connection 1 and 2 non-blocked, being the corresponding probabilities for
+each state given, respectively, by 2 × (1 −p)p, (1 −p)(1 −p), and p2. In this case, the total probability is the sum of the
+probabilities of each state, given by P2 = 2 × (1 −p)p + (1 −p)(1 −p) + p2, which can be rewritten as P2 = [p + (1 −p)]2.
+Following such a logic, the generalized mathematical function of the total probability Pn, i.e., including the percolative
+and non-percolative probabilities, in terms of the number of connections n reads [57]:
+Pn = [p + (1 −p)]n = 1.
+(22)
+Note that Pn includes both percolative and non-percolative probabilities, but we are interested only in the infection
+(percolative) probability. Thus, we consider only the terms of Pn that contribute to the percolation probability. Considering
+n = 3, for instance, we have:
+P3 = p3 + 3(1 −p)p2 + 3(1 −p)2p + (1 −p)3 = 1.
+(23)
+However, the percolation probability, labeled here P∗, is given only by the terms P∗= (2p2 −p3). Essentially, in order to
+determine the percolation probability, it is necessary to make a combinatory analysis employing the value of n considering
+the probabilities for all possible states En to exist. Then, we rule out all the probabilities contributions associated with the
+states presenting null chance of percolation to take place, making thus the percolation probability as the sum of all the
+probabilities of existence of all the remained states. For the particular case with n = 2, the percolation only occurs when
+both connections 1 and 2 are non-blocked (Fig. 7), which means that P∗is only given by the term p2 in the total probability.
+Fig. 7 summarizes an extension of such an analysis for other values of n by considering only the terms associated with
+the percolative probability. At this point, we take into account the case for n = 3 and also make a broader analysis
+considering the so-called Bethe lattice. As can be inferred from Fig. 7, for n = 3 there is a path leading to two others,
+being the consecutive paths originating from each of these two not shown. By taking such consecutive paths into account,
+we can form infinite shells leading to the formation of a Bethe lattice, as shown in Fig. 8. For the sake of completeness,
+we recall next the formation of such a lattice based on discussions reported in textbooks, such as in Ref. [77]. In the initial
+condition, a central site with a probability p of being occupied and (1 −p) of being empty leads to an amount of z paths
+(coordination number), which also has a site at the end of each path. Thus, although not employed in this work, we can
+make a direct analogy with the Ising-model for integer spin S, where we have S ± 1 configuring spin up or down, and
+S = 0 meaning that there is a vacancy in such a site. The set of sites formed by the central site and the z paths constitute
+the zeroth shell of the lattice, cf. indicated in Fig. 8(a). Then, each new site on the boundary of shell zero gives rise to
+(z −1) new paths and sites forming shell number one. This can be performed continuously to form other shells until, at
+the end of the lattice, the last sites have only one path and there is no longer the possibility of forming new shells. In this
+context, taking the central site as reference so that we can follow a path from the central site to a site at the boundary
+of the final shell, it is necessary that there are both available paths and occupied sites, configuring a percolation. In this
+way, it is possible to consider the percolation probability P∗as the probability of obtaining a path allowing the central
+site to be connected to a site in the final shell of the Bethe lattice. In an analogous way, we represent the non-percolation
+probability as Q . If each occupied site with probability p leads to (z −1) paths, we can estimate an average of (z −1)p
+occupied sites. However, having in mind that a site can be occupied or not, the reduction of available paths at each
+shell will prevent to reach the final sites and therefore there is no percolation. Upon going from one shell to other if
+(z −1)p < 1, then the probability of reaching the final shell (percolation) is lowered. Such analysis is important because
+it leads to the so-called percolation threshold pc =
+1
+(z−1). Employing z = 3, for instance, we focus now on the factors
+that may prevent percolation. In this specific case, any site leads to two paths and each of them with a Q probability of
+non-percolation. From the standard definitions of sets and probabilities, two events will be statistically independent if
+and only if the intersection between them can be written as a product of both probabilities [90]. Hence, the probability
+of non-percolation for (z −1) will be Q 2. Also, the sites must be occupied for the percolation to occur, so that the total
+probability of non-percolation should be written as Q = (1 −p) + pQ 2. The solutions of the latter are Q = 1, i.e., there
+is no percolation, and Q =
+(1−p)
+p
+, which can be equal to zero if p = 1 and thus percolation takes place. Analyzing the
+central site and the three paths originating from it, the percolation probability must take into account p and discount the
+probability of non-percolation, i.e., P∗= p −pQ 3. Replacing here the previous solutions obtained for Q , we have two
+different cases. If Q = 1 ⇒P∗= 0, which represents the non-percolative condition, i.e., p < pc. If Q = (1−p)
+p
+, then:
+P∗= p
+{
+1 −
+[
+(1 −p)
+p
+]3}
+,
+(24)
+which has a phase transition order parameter-like behavior for the percolation. It is worth noting that such analysis is
+distinct for different values of z since it is dependent on the number of possible paths. Also, note that P∗is universal for
+z = 3 and does not depend on the length S′ of the path:
+S′ ∝
+1
+p −pc
+,
+(25)
+14
+
+I.F. Mello, L. Squillante, G.O. Gomes et al.
+Physica A 573 (2021) 125963
+Fig. 7.
+Number of connections n (left column) with their corresponding percolation probability P∗terms (middle column) and schematic
+representation of the possible path configurations (right column). The red lines represent a division of the blue paths. Each configuration has
+2n possible states, considering all the possibilities of blocked and non-blocked paths. Details in the main text.
+which is associated with the size of the lattice [77]. Analyzing the simplest case, i.e., a chain composed by a set of sites,
+it is possible to define the pair correlation function G(r). The latter is associated with the percolation probability between
+two occupied reference sites separated by a distance r. Such a distance incorporates other sites that may be present
+between the occupied ones. The G(r) function is given by G(r) = e−r/ξ [77], where ξ is the so-called correlation length
+ξ = 1/(pc −p). For p →pc, ξ diverges and the G(r) →1. In the case of the Covid-19 spread, this would mean that
+if the number of non-blocked paths achieves such a threshold, i.e., a significant portion of the population does not join
+the social distancing, then a pronounced increase of the number of new infections over time would take place. The very
+same mathematical treatment previously discussed can be employed upon considering the branches of the Cayley tree
+as cities, cf. Fig. 8(c). It has been lately considered the effectiveness of the so-called intermittent quarantine [91]. The
+latter means that nearby cities would join the social distancing in pre-programmed different days. As a consequence, the
+economic activities can be retaken and with relatively low probability of spreading the disease between such cities. The
+main idea behind lies on the fact that if an infected person is unable to reach one of the cities [Fig. 8(c)], the probability of
+a person being infected in that specific city is lowered, as well as the probability of all subsequent infections that would
+take place. In order to discuss the Cayley tree, we have used the concept of a regular tree, which means that the branches
+of the tree are constructed always in the same way employing a fixed z number. However, random trees can also be
+employed [13,92], such as the Erdős–Rényi network, where the construction of such tree is probabilistic and z is not
+fixed. In the latter case, crossings between branches can take place. Furthermore, it is also reported in the literature the
+so-called pruning process in random tree [93], where each site, or vertex, is systematically removed over time. Initially,
+there are a few branches and over time the tree reaches a plateau, i.e., the number of branches is minimized and, upon
+continuing the pruning process, the tree itself disappears. Bringing this discussion to the case of the Covid-19 spread
+through the Cayley tree, we can associate each pruned vertex with either a person passing away or joining the social
+distancing [Fig. 8(c)]. As an analogy with the random tree discussion, upon continuously pruning the tree, such as in the
+15
+
+I.F. Mello, L. Squillante, G.O. Gomes et al.
+Physica A 573 (2021) 125963
+Fig. 8. (a) Representation of the Bethe lattice for z = 3 [88,89] where the zeroth shell is occupied by an infected person (in red color). In this
+configuration, each infected person can infect two other more. For the sake of compactness, we stick to only four shells in this representation of the
+Bethe lattice, namely the zeroth (n′ = 0, red color), the first (n′ = 1, orange color), the second (n′ = 2, green color), and the third (n′ = 3, purple
+color) shells. The starting point is represented by the patient zero (highlighted in red color). (b) Representation of the number of people that an
+infected person (red color) [88] can infect in terms of the number of nearest neighbors z employing the Bethe lattice [89] for 2 ≤z ≤6. (c) Schematic
+representation of the Cayley tree for z = 3 for various shells. The zoomed region outlined in red depicts two distinct branches representing two
+distinct hypothetical cities 1 and 2. An infected person (green color) is unable to reach the city 1 and thus everyone there is healthy (blue color).
+On the right branch, the infected person can reach the city 2 and thus spreading the disease. The various colors employed to represent the people
+in the right branch represent the various subsequent shells. More details in the main text.
+case of people joining the social distancing or passing away, the epidemic is faded away, i.e., the tree vanishes. The effects
+of the selected quarantine can also be analyzed in the frame of the SEIR model, which also takes into account the number
+of people exposed to the disease. Thus, employing the usual factors for the SEIR model, the number of connected cities,
+particular regions, states or even countries and the number of people circulating from one region to another, it is possible
+to make a forecast of the number of new infections [91], cf. Fig. 8(c).
+5.2. Switching on the interactions in the Bethe lattice
+The Ising-model can be applied to the Bethe lattice [43]. To this end, let us consider a lattice in which the central site
+has spin σ0. The latter has z = m1 neighbors, m2 next-nearest neighbors, and so on until the last shell n′ which leads to
+mn′, i.e., n′-th neighbors. The total number of sites Cn′ on the lattice can be written as [43]:
+Cn′ = 1 + m1 + m2 + · · · + mn′.
+(26)
+Furthermore, the number of sites in a network should increase with the number of shells [77], as follows:
+Cn′ = (n′)d,
+(27)
+where d is the dimensionality of the lattice. For a Bethe lattice, Cn′ reads [43]
+Cn′ = z[(z −1)n′ −1]
+z −2
+.
+(28)
+For an infinite number of shells, we have [43]
+lim
+n′→∞
+{
+ln Cn′
+ln n′
+}
+= d →∞,
+(29)
+16
+
+I.F. Mello, L. Squillante, G.O. Gomes et al.
+Physica A 573 (2021) 125963
+Fig. 9. Representation of spins distributed on the Bethe lattice [89] with z = 3 showing a spin (red arrow) σ0 at the central point and other
+neighboring spins at sites Si (orange color arrow) and Sj (green arrow). More details in the main text.
+that is, for a lattice with infinite shells we also have infinite dimensionality. For the sake of completeness, we present here
+a textbook-like discussion of the Ising-model in the Bethe lattice. Essentially, our goal is to make a connection between
+the Bethe lattice and the interaction parameter δε. Before starting, we recall Eq. (4) where the Hamiltonian H for the
+Ising-model considering longitudinal applied magnetic field is defined. The first step to calculate the physical quantities
+of interest is the construction of the partition function [43]. The latter represents the sum over all possible accessible states
+(Zustandssumme) of the system and reads:
+Z =
+∑
+e−βH.
+(30)
+In a magnetic system, the states are associated with the possible spin orientations. So, replacing Eq. (4) in (30) we have:
+Z =
+∑
+S
+exp{β[J
+∑
+i,j
+SiSj + B
+∑
+i
+Si]}.
+(31)
+Considering a particle in a reservoir in which the temperature is fixed and the particle is in a state ψl with energy El,
+the number of remaining accessible states is determined by the multiplicity Ωcalculated in terms of the difference
+between the total energy Etot and El. Thus, the probability that the particle occupies a state labeled by ψl can be written
+as follows [94]:
+P(ψl) = constant × Ω(Etot −El),
+(32)
+where constant refers to a normalization constant. The Boltzmann expression for the entropy, namely S = kB ln[Ω], allows
+us to calculate the entropy S of a system as a function of Ω(Etot −El). Considering that the reservoir is much larger than
+the particle itself, i.e., there are many accessible states inside the reservoir, then Etot ≫El. Thus, since El is very small
+compared to Etot, the entropy difference S(Etot −El) can be expanded in a Taylor series [94]:
+S(Etot −El) = S(Etot) + ∂S
+∂E
+⏐⏐⏐⏐
+E=Etot
+× (−El),
+(33)
+and, since 1
+T = ( ∂S
+∂E
+)
+f .e.p. [94], where E is the system’s energy and f.e.p. refers to fixed external parameters, the entropy
+reads:
+S(Etot −El) = S(Etot) −1
+T
+El.
+(34)
+17
+
+I.F. Mello, L. Squillante, G.O. Gomes et al.
+Physica A 573 (2021) 125963
+Thus, Ωcan be written as:
+Ω= exp
+[
+S(Etot −El)
+kB
+]
+= exp
+[
+S(Etot) −El
+T
+kB
+]
+.
+(35)
+Eq. (35) can be replaced into Eq. (32) to determine the probability of the particle to be found at ψl state:
+P(ψl) = constant × exp
+[
+S(Etot) −El
+T
+kB
+]
+.
+(36)
+Since the total energy is fixed constant, we now write that constant × exp [S(Etot)/kB] = constant′ and thus:
+P(ψl) = constant′ × exp
+[−El
+kBT
+]
+.
+(37)
+Furthermore, the total probability is defined as ∑
+l P(ψl) = 1, which allows us to calculate the normalization constant
+and thus achieve the following expression:
+P(ψl) =
+exp
+[
+−El
+kBT
+]
+∑
+l′ exp
+[
+−El′
+kBT
+].
+(38)
+Note that the term e−El/kBT represents only the particular state ψl and, in the denominator term the sum is over all
+accessible states. Thus, it is needed to use the index l′ to differ such terms. Eq. (38) can be applied to the Bethe lattice
+taking into account the possible Si, Sj states [43]. Hence, we rewrite Eq. (30) as a function of a non-normalized probability
+distribution P(S) as:
+Z =
+∑
+S
+P(S),
+(39)
+where, by comparison, P(S) is the term of the sum in Eq. (31). This is a reasonable association, since the non-normalized
+probability distribution function P(S) can be written in terms of the multiplicity Ω, which in turn is associated with the
+probability that a particle occupies a certain state. Thus, we have:
+P(S) = exp
+⎧
+⎨
+⎩β
+⎡
+⎣J
+∑
+i,j
+SiSj + B
+∑
+i
+Si
+⎤
+⎦
+⎫
+⎬
+⎭.
+(40)
+Now, we focus on the zeroth shell of the Bethe lattice. Eq. (31) is valid for a chain of spins, i.e., a one-dimensional case.
+However, in order to analyze a bidimensional case, for instance, the Bethe lattice can be employed. It is necessary to take
+into account interaction between the spin at the central point, labeled by σ0, and the spins Si at each site of the z paths
+connected to this central point. As previously mentioned, for statistically non-correlated events, the total probability will
+be given by the product of the individual probabilities of each event separately. Hence, the total probability of the system
+to be at a state S reads [43]:
+P(S) = exp{β[J
+∑
+i=1
+Siσ0 + Bσ0]}
+z∏
+j=1
+Qn′(S(j)),
+(41)
+where,
+Qn′[S(j)] = exp{β[J
+∑
+i,j
+SiSj + B
+∑
+i
+Si]}.
+(42)
+Eq. (41) gives the probability P(S) in terms of the interaction between spin σ0 at the central point and each of its first
+neighbors at a site i, cf. sketched in Fig. 9. Then, all subsequent interactions between the spin at a site i and its nearest
+neighbors at a site j are considered, which is represented by the Qn′[S(j)] product. Note that the interaction between Si
+spins are not taken into account, since such paths in the Bethe lattice are not connected. As discussed in Section 2, Eq. (5)
+incorporates, when taking into account infected and non-infected people, the δε interaction, which is equivalent to the
+magnetic exchange coupling constant J in the Ising-model. Such an equivalence enables us to calculate the probability
+P(p) of a person being infected or not taking into account δε and the interactions between the person at the central site
+p0 and its first neighbors pi, as well as the interaction between a person labeled by pi and its nearest neighbor pj (Fig. 9):
+P(p) = exp
+{
+−Ch + 4δε
+∑
+i=1
+[(
+1
+2 + pi
+) (
+1
+2 −p0
+)
++
++
+(
+1
+2 −pi
+) (
+1
+2 + p0
+)]
+pip0
+}
+3
+∏
+j
+Qn′(p(j))
+(43)
+18
+
+I.F. Mello, L. Squillante, G.O. Gomes et al.
+Physica A 573 (2021) 125963
+where,
+Qn′(p) = exp
+{
+−Ch + 4δε
+N
+∑
+i̸=j=1
+[(
+1
+2 + pi
+) (
+1
+2 −pj
+)
++
++
+(
+1
+2 −pi
+) (
+1
+2 + pj
+)]
+pipj
+}
+,
+(44)
+and therefore, P(p) ∝e−δε. The exponential decay of P(p) in terms of the increase of the interacting parameter δε means
+that, upon increasing δε, the probability of a person being infected is reduced. In other words, an increase of δε reflects
+on an increase in the number of infected people, decreasing thus the number of non-infected people that can be infected.
+Note that, for the case of two infected people pi = pj = +1/2 or two non-infected people pi = pj = −1/2 interacting with
+each other, the sums in Eqs. (43) and (44) are null. Indeed, such sums are non-zero only for the case of an interaction
+between a non-infected person and an infected person (or vice-versa). It is worth mentioning that Eqs. (43) and (44)
+represent a simple case, in which we consider that each person has contact with only two other people, which might
+not represent the real case. If one considers more contacts between people, the solution of the Ising-model on the Bethe
+lattice becomes even more complex and tricky to be solved analytically. The limitations of applying such a model lie in
+the lack of data associated with the interaction between people for each region, as well as the total number of healthy
+people. However, we consider that the analogy between magnetism and epidemiology can pave the way for more complex
+situations. Thus, we have the probability of the disease spread in terms of the interactions δε between neighboring people
+in a similar way as in the previously discussed case for the Ising-model on the Bethe lattice.
+5.3. The Bethe lattice and the spread of Covid-19
+Bringing this whole discussion to the context of the Covid-19 spread, we can associate an occupied site in the Bethe
+lattice with an infected person and the paths with the displacement of such people and their possibility of infecting
+healthy people (Fig. 8). If an infected person travels to the end of a path and finds a healthy person, that person becomes
+infected and can go on infecting two more others, for example. However, if a healthy person remains in quarantine
+and it is not in the infection path, the site becomes empty reducing the probability of percolation. In the same way,
+if an infected person respects the quarantine, the path leading to the contamination is interrupted and the percolation
+probability is also reduced. It is clear that upon increasing the number of possible paths the data operations turn into a
+complex exercise, preventing thus the resolution of the problem by hand. Hence, aiming to deal with such a complexity,
+advanced data analysis techniques are required. This includes, for instance, Markov Chain Monte Carlo methods such as
+the emcee package, and Machine Learning based algorithms such as the ones presented in the SciKitLearn package [95–
+100]. Several tracking methods have been employed in order to collect big-data sets of millions of internet users aiming
+to make a proper mathematical description of a collective behavior, such as epidemic outbreaks. Among such methods,
+the ARGO (AutoRegression with GOogle search data) stands out, being applied, for instance, for the case of the influenza
+epidemics [101]. Recently, the ARGO method was employed in the case of Covid-19 to make a real-time forecast about
+the disease spread in small provinces in China [102]. As discussed previously, the behavior of the percolation probability
+P∗as a function of p is altered when the number of connections n is increased [ Fig. 10]. For a system presenting a
+relatively high number of connections n, a percolation probability distribution takes place. This is the case, for instance,
+of crowded places, as in the so-called favelas in Brazil, where each person represents a connection n that may contribute
+to the increase of the percolation probability distribution, i.e., the dissemination of the disease. In order to analyze the
+behavior of such distribution as a function of p for various values of n, it is natural to employ a distribution function.
+Indeed, note that the percolation probability polynomial function (Fig. 7) can be approximated by [57,103]:
+P∗(n, p) = 1
+2 + 1
+π
+arctan
+[
+n(p −pc)
+pc
+]
+,
+(45)
+where pc refers to the critical value of connections. Equation (45) is also called the Cauchy distribution function [103].
+Eqs. (45) and (13) represent a probability distribution, being such mathematical functions asymptotically different so that
+Eq. (45) cannot be rewritten in the form of Eq. (13) and vice-versa.
+5.4. Data analysis and discussion in the frame of the percolation theory
+Making use of the adaptation of the percolation theory for the Covid-19 spread previously discussed, we discuss
+now the effects on the percolation probability upon increasing the number of connections n, cf. shown in Fig. 10. Upon
+comparing, for instance, the behavior between the percolation probability for n = 2 and 5, we observe that P∗grows
+more rapidly for higher values of n, indicating that the more the number of connections n, the faster the percolation
+probability increases in terms of the non-blocked paths p. For finite values of n, the percolation probability is enhanced
+upon increasing the number of non-blocked paths p, i.e., the probability of people getting infected by Covid-19 increases
+proportionally to the number of people not in quarantine. However, when n →∞the percolation probability approaches
+1 for p →1/2, i.e., if people all around the world would interrupt the social distancing, the probability of people getting
+19
+
+I.F. Mello, L. Squillante, G.O. Gomes et al.
+Physica A 573 (2021) 125963
+Fig. 10. Percolation probability P∗as a function of the non-blocked connections p for various number of net connections n employing (a) the
+percolation probabilities polynomials shown in Fig. 7 and (b) Eq. (45). Details in the main text.
+infected by Covid-19 would be enhanced dramatically. In fact, the more people get infected, more and more number
+of connections n takes place, decreasing thus the minimal number of non-blocked paths p (people not respecting the
+quarantine) for the percolation, i.e., spread of the disease, to occur. In other words, the probability of people getting
+infected by Covid-19 in terms of the people not respecting the quarantine grows faster when the total number of
+connections (infections) n is increased. Yet, an interesting analogy of such percolation probability can be performed.
+Since the fraction of people in quarantine and non-infected people is linked to each other, i.e., as one increases the other
+decreases so that P∗+ Q = 1, one can make an analogy with the Physics of semiconductors and the well-established law
+of mass action [58]. The latter establishes that the product of the density of electrons and holes at a certain temperature
+is constant and it also depends on the product of their corresponding masses. In other words, the amount of electrons
+promoted from the valence to the conduction band is equal to the number of remaining holes in the valence band. As an
+analogy, p and (1−p) can be interpreted in the same way since any increase (decrease) in p implies a decrease (increase)
+in exactly the same proportion in (1 −p).
+6. What is next?
+Besides the need of a more appropriate mathematical approach in order to describe properly the epidemic curves
+of a particular disease, there are other inherent factors of our society that can be developed in order to minimize the
+social impact of other epidemics in the future. These include the record and divulgation of reliable data sets in the frame
+of epidemics by health agencies in order to avoid or properly brake the outbreak of a disease. The development and
+design of mobile apps [46] can serve as an important tool to be employed in a more efficient social distancing. Such
+mobile apps can indeed be very useful in the management of the disease spread. However, their use collide with ethical
+aspects regarding the control of each individual’s information and locations by the government, which in many cases can
+preclude the application of such apps. As pointed out in Ref. [104], the record of the epidemic data must be performed
+and analyzed together with other relevant data sources, such as demographic, genetic, and travel patterns for the various
+locations and temporal scales aiming the prevention and the containment of epidemics. Furthermore, it is highly required
+that the health agencies make a proper planning about the construction of hospital beds in the case of an epidemic, being
+20
+
+I.F. Mello, L. Squillante, G.O. Gomes et al.
+Physica A 573 (2021) 125963
+obviously evident that the construction speed of such hospital beds in different countries will be distinct, impacting thus
+on the treatment of infected people. Even though the coronavirus was already known by the scientific community a few
+years ago [105] the outbreak of the disease could not be avoided. Hence, it becomes clear that the discovery of a new
+virus should be accompanied, if possible, by the discovery of the antidotes and or vaccines. This points to the urge of
+high-level scientific research focused on the prevention or management of future viral epidemics. Also, the incorporation
+of discussions on the risk and possible consequences of epidemics in the curriculum of primary and high schools may play
+an important role on the resulting awareness of younger people regarding profilatic measurements which could, indeed,
+reduce the impact of future epidemics. The impact of the Covid-19 vaccination of the population in the epidemic curves
+was not here discussed since a vaccine was still under development during the preparation of this manuscript. However,
+as discussed in the literature [106], vaccinated individuals can still spread the Covid-19 virus, being the main goal of
+the vaccine to significantly attenuate the severity of the symptoms which may lead to a fatality. Based on the current
+status, the short-term effect of the vaccination is most likely to impact on the epidemic curves associated with new
+infections [107]. This is because, taking into account the level of efficacy of the vaccines, vaccination leads to immunity of
+the population and thus consequently the number of new infections should be reduced. Nevertheless, there are evidences
+that the pandemic control based on vaccines may lie in a continuous modification of the Covid-19 vaccine due to the
+virus’ mutations [108–110], which means that a new variant of it should be taken periodically by the population, as it
+is the case, for instance, for the flu vaccine [111]. The latter emphasizes the importance of a continuous investigation of
+the virus’ mutations aiming to improve the efficacy of the vaccines. Yet, the number of people in quarantine can be still
+considered a crucial factor to attenuate the number of new cases in a short period of time, cf. discussed in Section 2.1. It
+is clear that the reduction of the number of new cases shall lead to the reduction of the number of fatalities.
+7. Conclusions
+We have reviewed the key-related aspects to the SIR model for various epidemics and provided a brief discussion
+about its mathematical description. An adaptation of a S = 1/2 Ising-like model was presented and we deduced the
+logistic function, usually employed to describe epidemic curves among other phenomena. We have shown that the
+temporal evolution of the number of infections and fatalities, described by the logistic function, has some resemblance
+with a distorted Fermi–Dirac-like distribution function found in the celebrated Landau Fermi-liquid theory. Our analysis
+demonstrated that a Gaussian-type function suffices to describe the epidemic curves and that the quarantine plays a
+crucial role in the amendment of Covid-19 spread. The fundamental concepts of the Cayley tree and the Bethe lattice were
+discussed and a connection with the Ising-model was made. Yet, we have demonstrated that the percolation (infection)
+probability in terms of the number of people not respecting the social distancing sets in more rapidly when the total
+number of cases is increased, making thus evident the importance of the quarantine in the suppression of Covid-19 spread.
+We hope that the governmental health agencies can have benefits from it. The present work is, at some extent, an appeal
+to world leaderships to adopt the social distancing to brake the spread of Covid-19 before a vaccine is discovered and
+released. Such social distancing is crucial since there are possible sub-notifications of the number of new infection cases
+that could mask an even worse scenario of the number of infections. Our appeal is relevant in the attempt to prevent new
+waves or even small outbreaks of the number of infections. This is particularly true in countries, such as, for instance,
+India and some African countries, for which the epidemic curve is still ascending up to date. The mass media plays an
+important role regarding the dissemination of reliable information aiming to properly aware the population, which can
+also be considered, in some cases, as an external factor that can indirectly influence the shape of the epidemic curves.
+Furthermore, we have reviewed the basics of percolation theory and employed it to describe the Covid-19 spread. The
+analytic solutions for the mathematical models, presented here, can serve as a basis for more complex cases involving
+numerical calculations. We have provided several distinct paths that can be employed to describe the epidemic curves for
+any disease. Such elementary discussions presented here can be useful in the application to other collective phenomena.
+As discussed by the authors of Ref. [112], it is not straightforward to make a forecast of the epidemic curves since the
+variables associated with the epidemic might change over time. Indeed, as pointed out in Ref. [113], the outbreak of
+epidemics should be faced treated in a much broader context. The knowledge from various other research areas, besides
+epidemiology, can play a crucial role in a deeper discussion about the epidemics prevention, such as logistics and crisis
+management [113]. The defiance of the twenty-first century, e.g., poverty, climate change, and urbanization significantly
+contribute to epidemics to happen more likely [113]. Also, it is crucial to learn from the negative outcomes of past
+epidemics, such as the Ebola outbreak in Congo [114], aiming to prevent other possible future epidemics. Furthermore,
+several countries in the world are experiencing the epidemic scenario for the first time, being difficult for such countries
+to properly manage the situation. Thus, a more embracing and modern approach on the containment of epidemics must
+be developed. Also, it is mandatory the inclusion of strategic plans in future public health governmental policies. Last but
+not least, this work was written during our period of quarantine.
+Declaration of competing interest
+The authors declare that they have no known competing financial interests or personal relationships that could have
+appeared to influence the work reported in this paper.
+21
+
+I.F. Mello, L. Squillante, G.O. Gomes et al.
+Physica A 573 (2021) 125963
+Acknowledgments
+MdeS acknowledges financial support from the São Paulo Research Foundation – Fapesp, Brazil (Grants No. 2011/22050-
+4 and 2017/07845-7), National Council of Technological and Scientific Development – CNPq, Brazil (Grants No. 302498/2017-
+6 and 302887/2020-2). ACS acknowledges CNPq, Brazil (Grant No. 305668/2018-8). This work was partially granted by
+Coordenação de Aperfeiçoamento de Pessoal de Nível Superior - Brazil (Capes) - Finance Code 001 (Ph.D. fellowship of
+IFM and LS). We thank Prof. R.E. Lagos-Monaco for reading the very first version of the manuscript.
+References
+[1] M. Chinazzi, J.T. Davis, M. Ajelli, et al., Science 368 (2020) 395.
+[2] K. Servick, A. Cho, J. Couzin-Frankel, et al., Science 367 (2020) 1289.
+[3] J. Cohen, K. Kupferschmidt, Science 367 (2020) 1287.
+[4] P. Rzymski, M. Nowicki, Science 367 (2020) 1313.
+[5] K. Liu, Science 367 (2020) 1398.
+[6] V. Zlatić, I. Barja˘sić, A. Kadović, et al., arXiv preprint, 2020. arXiv:2003.08479v2.
+[7] F. Squazzoni, J.G. Polhill, B. Edmonds, et al., J. Art. Soc. Soc. Sim. 23 (2020) 10.
+[8] S. Mallapaty, Nature 579 (2020) 183.
+[9] I.M. Foppa, A Historical Introduction To Mathematical Modeling of Infectious Diseases: Seminal Papers in Epidemiology, Academic Press, San
+Diego, 2016.
+[10] A. Krämer, M. Kretzschmar, K. Krickeberg, Modern Infectious Disease Epidemiology: Concepts, Methods, Mathematical Models, and Public
+Health, Springer Science & Business Media, New York, 2010.
+[11] J. Giesecke, Modern Infectious Disease Epidemiology, CRC Press, Boca Raton, 2017.
+[12] E. Vynnycky, R.G. White, An Introduction To Infectious Disease Modelling, Oxford University Press, Oxford, 2010.
+[13] S. Havlin, R. Cohen, Complex Networks: Structure, Robustness and Function, Cambridge University Press, Cambridge, 2010.
+[14] K.E. Nelson, C.M. Williams, Infectious Disease Epidemiology: Theory and Practice, Jones & Bartlett Publishers, Burlington, 2014.
+[15] J.C. Frauenthal, Mathematical Modeling in Epidemiology, Springer Science & Business Media, New York, 2012.
+[16] S. Ma, Y. Xia, Mathematical Understanding of Infectious Disease Dynamics, World Scientific, Singapore, 2009.
+[17] F. Brauer, P.D. Driessche, J. Wu, Lecture Notes in Mathematical Epidemiology, Springer, Berlin, 2008.
+[18] Y.C. Chen, P.E. Lu, C.S. Chang, et al., arXiv preprint, 2020. arXiv:2003.00122.
+[19] J. Dehning, J. Zierenberg, F.P. Sptizner, et al., Science (2020) http://dx.doi.org/10.1126/science.abb9789.
+[20] S. Sanche, Y.T. Lin, C. Xu, et al., Emerg. Infect. Diseases (2020) http://dx.doi.org/10.3201/eid2607.200282.
+[21] J. Wallinga, P. Teunis, Am. J. Epidemiol. 160 (2004) 509.
+[22] A. Khan, M. Naveed, M. Dur-e Ahmad, et al., Inf. Dis. Pov. (2015) http://dx.doi.org/10.1186/s40249-015-0043.
+[23] C. Wu, M. Zheng, Y. Yang, et al., iScience 23 (2020) 101642.
+[24] H. Li, H. Xiao, R. Zhu, et al., medRxiv preprint, 2020. http://dx.doi.org/10.1101/2020.04.28.20084004.
+[25] H.W. Hethcote, SIAM Rev. 42 (2000) 599.
+[26] N.C. Grassly, C. Fraser, Nat. Rev. Micr. 6 (2008) 477.
+[27] J.R. Gog, Nat. Rev. Phys. 2 (2020) 274.
+[28] M.J. Keeling, K.T.D. Eames, J. R. Soc. 2 (2005) 295.
+[29] B. Gross, S. Havlin, arXiv preprint, 2020. arXiv:2009.02806v1.
+[30] E. Ising, Z. Phys. 31 (1925) 253.
+[31] G. Gomes, H.E. Stanley, M. de Souza, Sci. Rep. (2019) http://dx.doi.org/10.1038/s41598-019-48353-4.
+[32] L. Bartosch, M. de Souza, M. Lang, Phys. Rev. Lett. 104 (2010) 245701.
+[33] M. de Souza, L. Bartosch, J. Phys.: Condens. Matter. 27 (2015) 053203.
+[34] I.F. Mello, L. Squillante, G.O. Gomes, et al., J. Appl. Phys. 128 (2020) 225102.
+[35] G.O. Gomes, L. Squillante, A.C. Seridonio, et al., Phys. Rev. B 100 (2019) 054446.
+[36] C. Schinckus, Physica A 508 (2018) 95.
+[37] A.F. Siegenfeld, Y. Bar-Yam, Nat. Phys. 16 (2020) 186.
+[38] S. Jordan, Nat. Phys. 16 (2020) 125.
+[39] C.P. Crisostomo, C.M.N. Piñol, Int. Schol. Sci. Res. Inn. 6 (2012) 735.
+[40] W.O. Kermack, A.G. McKendrick, Proc. R. Soc. Lond. Ser. A 115 (1927) 700.
+[41] C.G.A. Lara, E. Massad, L.F. Lopez, et al., J. Appl. Math. Phys. 7 (2019) 1052.
+[42] N. Chitnis, J.M. Hyman, J.M. Cushing, Bull. Math. Biol. 70 (2008) 1272.
+[43] R.J. Baxter, Exactly Solved Models in Statistical Mechanics, Dover, Mineola, 1982.
+[44] W. Nolting, A. Ramakanth, Quantum Theory of Magnetism, Springer, Berlin, 2009.
+[45] F. Brauer, C. Castillo-Chavez, Mathematical Models in Population Biology and Epidemiology, Springer, New York, 2012.
+[46] V.B. Bulchandani, S. Shivam, S. Moudgalya, et al., arXiv preprint, 2020. arXiv:2004.07237.
+[47] C.A. Cerdeiriña, J. Troncoso, D. González-Salgado, et al., J. Chem. Phys. 150 (2019) 244509.
+[48] H.E. Stanley, Introduction To Phase Transitions and Critical Phenomena, Oxford Science Publications, New York, 1971.
+[49] R.M. Anderson, H. Heesterbeek, D. Klinkenberg, et al., Lancet 395 (2020) 931.
+[50] J. Ma, J. Dushoff, B.M. Bolker, et al., Bull. Math. Biol. 76 (2014) 245.
+[51] G. Pokharel, R. Deardon, Canad. J. Statist. 44 (2016) 480.
+[52] S.W. Indratno, A. Shabrina, AIP Conf. Proc. 1587 (2014) 57.
+[53] W. Feller, Bull. Amer. Math. Soc. 51 (1945) 800.
+[54] D. Foreman-Mackey, E. Agol, S. Ambikasaran, R. Angus, Astron. J. 154 (2017) 220.
+[55] COVID-19 coronavirus pandemic. https://www.worldometers.info/coronavirus/.
+[56] J. Stewart, Calculus – Early Transcendentals, Cengage Learning, Belmont, 2011.
+[57] Lecture Notes of Prof. Aguinaldo P. Ricieri, Curso Prandiano, Anglo Tamandaré - São Paulo, 1996.
+[58] C. Kittel, Introduction To Solid State Physics, vol. 8, John Wiley & Sons, Hodoken, 2005.
+[59] A.K. Burnham, J. Therm. Anal. Calor. 127 (2017) 1107.
+[60] A. Donoso-Bravo, S.I. Pérez-Elvira, F. Fdz-Polanco, Chem. Eng. J. 160 (2010) 607.
+[61] D.J. Schimpf, S.D. Flint, I.G. Palmblad, Ann. Botany 41 (1977) 1357.
+22
+
+I.F. Mello, L. Squillante, G.O. Gomes et al.
+Physica A 573 (2021) 125963
+[62] N. Kyurkchiev, S. Markov, J. Math. Chem. 54 (2016) 109.
+[63] A. Sarukhan, Ebola: two years and 11, 300 deaths later, 2016, https://www.isglobal.org/en/ebola.
+[64] Forecasting cases & duration of severe acute respiratory syndrome (SARS). https://condellpark.com/kd/sars.htm.
+[65] V.P. Gawryszewski, A.I.L.C.P. Neumann, Bol. Epidemiol. Paul. 6 (2009) 4.
+[66] A. Zafar, ’They have changed the course of this outbreak:’ Revelations from handling of coronavirus in China, 2020, https://www.cbc.ca/news/
+health/covid-19-china-epicurve-1.5479983.
+[67] C.M. Varma, Z. Nussinov, W. van Saarloos, Phys. Rep. 361 (2002) 267.
+[68] D. Pines, Theory of Quantum Liquids: Normal Fermi Liquids, 1, CRC Press, Boca Raton, 2018.
+[69] Centers for Diseases Control and Prevention, People who are at higher risk for severe illness. https://www.cdc.gov/coronavirus/2019-
+ncov/specific-groups/people-at-higher-risk.html.
+[70] World Health Organization, Ebola situation reports, 2016, https://apps.who.int/ebola/ebola-situation-reports.
+[71] M. Roser, H. Ritchie, Malaria, 2020, https://ourworldindata.org/malaria.
+[72] P.C.G. Nunes, R.P. Daumas, J.C. Sánchez-Arcila, et al., BMC Public Health 19 (2019) 329.
+[73] L.D. Landau, E.M. Lifshitz, L.P. Pitaevskij, Statistical physics, part 2: Theory of the condensed state, in: Course of Theoretical Physics, vol. 9,
+Butterworth-Heinenann, Oxford, 1987.
+[74] E. Tabeau, A. van den Berg Jeths, C. Heathcote, Forecasting Mortality in Developed Countries: Insights from a Statistical, Demographic and
+Epidemiological Perspective, Springer Science & Business Media, 2001.
+[75] Y.T. Utsunomiya, A.T.H. Utsunomiya, R.B.P. Torrecilha, et al., Front. Med. 7 (2020) 247.
+[76] M. Sahini, Applications of Percolation Theory, Taylor & Francis, London, 1994.
+[77] D. Stauffer, A. Aharony, Introduction To Percolation Theory, Taylor & Francis, London, 1994.
+[78] S. Alexander, Phys. Rev. B 27 (1983) 1541.
+[79] A. Kaminski, S. Das Sarma, Phys. Rev. Lett. 88 (2002) 247202.
+[80] D. Li, B. Fu, Y. Wang, et al., Proc. Natl. Acad. Sci. USA 112 (2015) 669.
+[81] L.A. Meyers, Bull. Amer. Math. Soc. 44 (2007) 63.
+[82] G. Kotliar, D. Vollhardt, Phys. Today 57 (2004) 53.
+[83] W. Metzner, D. Vollhardt, Phys. Rev. Lett. 62 (1989) 324.
+[84] A. Georges, G. Kotliar, W. Krauth, et al., Rev. Modern Phys. 68 (1996) 13.
+[85] B. Bollobás, O. Riordan, Percolation, Cambridge University Press, Cambridge, 2006.
+[86] T.C. Choy, Effective Medium Theory: Principles and Applications, Oxford University Press, Oxford, 2015.
+[87] A.L. Efros, B.I. Shklovskii, Phys. Status Solidi b 76 (1976) 475.
+[88] Vectorized images available at https://www.vecteezy.com.
+[89] E.W. Weisstein, Cayley Tree from mathworld - a Wolfram web resource. https://mathworld.wolfram.com/CayleyTree.html.
+[90] I. Florescu, Probability and Stochastic Processes, John Wiley and Sons, Hoboken, 2014.
+[91] P.J.S. Silva, T. Pereira, L.G. Nonato, medRxiv preprint, 2020. https://doi.org/10.1101/2020.05.11.20098541.
+[92] S.N. Dorogovstev, A.V. Goltsev, J.F.F. Mendes, Rev. Modern Phys. 80 (2008) 1275.
+[93] G.J. Baxter, S.N. Dorogovtsev, K.E. Lee, et al., Phys. Rev. X 5 (2015) 031017.
+[94] R. Baierlein, Thermal Physics, Cambridge University Press, Cambridge, 1999.
+[95] D. Nagavci, M. Hamiti, B. Selimi, Int. J. Adv. Comp. Sci. Appl. 9 (2018) 46.
+[96] S. Chae, S. Kwon, D. Lee, Int. J. Environ. Res. Public Health 15 (2018) 1596.
+[97] B.A. Han, J.M. Drake, EMBO Rep. 17 (2016) 785.
+[98] D. Barber, Bayesian Reasoning and Machine Learning, Cambridge University Press, New York, 2012.
+[99] D. Foreman-Mackey, D.W. Hogg, D. Lang, et al., Publ. Astron. Soc. Pac. 125 (2013) 306.
+[100] F. Pedregosa, G. Varoquaux, A. Gramfort, et al., J. Mach. Learn. Res. 12 (2011) 2825.
+[101] S. Yang, M. Sintillana, S.C. Kou, Proc. Natl. Acad. Sci. USA 112 (2015) 14473.
+[102] D. Liu, L. Clemente, C. Poirier, et al., arXiv preprint, 2020. arXiv:2004.04019v1.
+[103] J. Morio, M. Balesdent, Estimation of Rare Event Probabilities in Complex Aerospace and Other Systems: A Practical Approach, Woodhead
+Publishing, Cambridge, 2016.
+[104] H. Heesterbeek, R.M. Anderson, V. Andreasen, et al., Science 347 (2015) 6227.
+[105] Y. Zhu, C. Li, L. Chen, et al., Emerg. Micr. Inf. 7 (2018) 1.
+[106] Z. Gorvett, Can you still transmit Covid-19 after vaccination? https://www.bbc.com/future/article/20210203-why-vaccinated-people-may-still-
+be-able-to-spread-covid-19.
+[107] M. Levine-Tiefenbrun, I. Yelin, R. Katz, et al., medRxiv preprint, 2021. http://dx.doi.org/10.1101/2021.02.06.21251283.
+[108] J.H. Kim, F. Marks, J.D. Clemens, Nature Med. 27 (2021) 205.
+[109] T. Koyama, D. Weeraratne, J.L. Snowdon, L. Parida, Pathogens 9 (2020) 324.
+[110] A. Fontanet, S. Cauchemez, Nat. Rev. Immunol. 20 (2020) 583.
+[111] J. Cohen, Science 357 (2017) 1222.
+[112] A. Vespignani, H. Tian, C. Dye, et al., Nat. Rev. Phys. (2020) http://dx.doi.org/10.1038/s42254-020-0178-4.
+[113] J. Bedford, J. Farrar, C. Ihekweazu, et al., Nature 575 (2019) 130.
+[114] Ebola Gbalo Research Group, Lancet 393 (2019) 2647.
+23

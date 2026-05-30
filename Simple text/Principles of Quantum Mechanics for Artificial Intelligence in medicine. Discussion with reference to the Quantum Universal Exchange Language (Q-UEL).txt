@@ -1,0 +1,2925 @@
+Source-PDF: D:\Review\New folder\Main\Core quantumbiomed + health relevance\Principles of Quantum Mechanics for Artificial Intelligence in medicine. Discussion with reference to the Quantum Universal Exchange Language (Q-UEL).pdf
+Relative-Path: New folder\Main\Core quantumbiomed + health relevance\Principles of Quantum Mechanics for Artificial Intelligence in medicine. Discussion with reference to the Quantum Universal Exchange Language (Q-UEL).pdf
+--------------------------------------------------------------------------------
+
+Computers in Biology and Medicine 143 (2022) 105323
+Available online 16 February 2022
+0010-4825/© 2022 Elsevier Ltd. All rights reserved.
+Principles of Quantum Mechanics for Artificial Intelligence in medicine. 
+Discussion with reference to the Quantum Universal Exchange Language 
+(Q-UEL) 
+Barry Robson a,b,*, Jim St. Clair c 
+a The Dirac Foundation, Oxfordshire, UK 
+b Ingine Inc, USA 
+c Linux Foundation Public Health, San Franciso, USA   
+A R T I C L E  I N F O   
+Keywords: 
+Quantum mechanics 
+Quantum computing 
+Artificial intelligence 
+Clinical decision support 
+Hyperbolic complex 
+Split-complex 
+A B S T R A C T   
+This paper reviews some basic principles of Quantum Mechanics, Quantum Computing, and Artificial Intelli
+gence in terms of a specific unifying theme. This theme relates to the hyperbolic or split-complex imaginary 
+numbers and their equivalent matrices, rediscovered by Dirac, and the underlying mathematics of the previously 
+described Q-UEL language based on them. Hyperbolic imaginary numbers h have the property hh = +1: contrast 
+the more familiar i such that ii = −1. Examples of analogous matrices include that for the Hadamard gate as used 
+in quantum computing and the Pauli spin matrices, and all Hermitian matrices of interest in quantum computing 
+can readily be derived from these. They also relate to Dirac dualization, spinor projectors of Quantum Field 
+Theory, the non-wave-like part of quantum theory, collapse of the wave function, and a dualized form of classical 
+probability theory that has advantages in automated reasoning for medicine.   
+1. Introduction 
+1.1. Background 
+The title of this paper draws respectfully on the title of Paul A. M. 
+Dirac’s foundational book “Principles of Quantum Mechanics” that 
+provided the basis for many of the ideas described here [1]. An impor
+tant feature is the Dirac notation [2], a powerful system of algebraic 
+representation and its algebraic manipulation that he developed for later 
+editions of his book. In particular, the role of operators in transforming 
+information about states of things expressed as vectors is greatly clarified 
+and facilitated by his approach. As discussed in this review, this has deep 
+relevance to quantum computing (QC) and the Dirac notation is 
+commonly used in introductions to it and theoretical discussions of it. 
+The direct relation to the mathematics for automated probabilistic 
+reasoning in everyday areas such as medicine where uncertainty is 
+prevalent, is less obvious. However, as he stated in Nobel Prize for 
+Physics Banquet Speech in 1933, “The methods of theoretical physics 
+should be applicable to all those branches of thought in which the 
+essential features are expressible with numbers” [3]. This suggests the 
+possibility of a more unified approach to QC and Artificial Intelligence 
+(AI) for areas where probabilistic approaches are computationally 
+intensive. Unfortunately, he did not make it entirely clear as to how to 
+achieve this, although it is believed that the point was regarding his own 
+insights into fundamental mathematical principles describing nature in 
+general. Nonetheless, the essential features of his approach have been 
+shown by the present author and collaborators to be relevant to Artificial 
+Intelligence (AI) as automated reasoning of the kind appropriate to the 
+familiar everyday world of human experience, including medicine. This 
+is reviewed in this paper but see Ref. [4] as a simple introduction, which 
+also introduces the Quantum Universal Exchange Language (Q-UEL) 
+based on the Dirac notation used at intervals throughout this text. An 
+example of an important application is clinical decision support based 
+on odds inference nets that involve machine learning as high dimen
+sional data mining of large numbers of medical records, and prediction 
+sometimes involving millions of multifactor probabilities derived from it 
+(e.g., Ref. [5]). 
+Abbreviations: QM, Quantum Mechanics; QC, Quantum Computing; AI, Artificial Intelligence; QFT, Quantum Field Theory. 
+* Corresponding author. The Dirac Foundation, Oxfordshire, UK. 
+E-mail address: barryrobson@ingine.com (B. Robson).  
+Contents lists available at ScienceDirect 
+Computers in Biology and Medicine 
+journal homepage: www.elsevier.com/locate/compbiomed 
+https://doi.org/10.1016/j.compbiomed.2022.105323 
+Received 28 December 2021; Received in revised form 30 January 2022; Accepted 13 February 2022   
+
+Computers in Biology and Medicine 143 (2022) 105323
+2
+1.2. Purpose and structure 
+Is there an underlying common theoretical structure of AI and 
+quantum computing? Might they be unified into a single discipline? This 
+paper is a scope review that addresses some basic principles of Quantum 
+Mechanics (QM), Quantum Computing (QC), and Artificial Intelligence 
+(AI). To do so, it focuses on the underlying mathematics and interpre
+tation of AI as approached by Q-UEL and its relation to, and overlap 
+with, Dirac’s quantum mechanics and true quantum computing. It is not 
+intended to be an extensive literature review in the normal sense, 
+because there are also many books and special editions of journals 
+reviewing QM, QC, and AI, as discussed in Section 1.3. Reference should 
+be made to the well-regarded extensive review in the QC book by 
+Nielsen and Chuang, now in its 10th edition [6]. However, sufficient 
+detail must be given in this review to enable some development. Some 
+occasional features take a less common perspective with arguable ele
+ments of novelty, albeit that they usually find their ultimate origin in 
+Dirac [1]. That also requires reviewing some of the work of author BR 
+and collaborators over the past few years. The area covered includes 
+topics that not too well known outside the specific areas such as 
+Quantum Field Theory (QFT) and particle physics. It relates to the hy
+perbolic or split-complex imaginary numbers and their analogous 
+matrices, rediscovered by Dirac, i.e., mathematical entities that, unlike 
+the more familiar imaginary number i that is the square root of minus 
+one such that ii = −1, instead square to plus one such that hh = +1 or to 
+a similar entity as an identity matrix. The h-complex part of QM appears 
+to have its own deep significance in bridging the gap between i-complex 
+QM as wave mechanics and the everyday classical world of human 
+experience. This is important if the mathematical machinery of QM is to 
+be relevant to application in areas such as clinical decision support. 
+For the structure and overview of this review paper, see Fig. 1. 
+Introduction Section 1 focuses on the general background and motiva
+tion for the review. Section 1.3 discusses the status of QC and Section 1.4 
+discusses its relevance to biology and medicine. Section 1.5 digs more 
+specifically into the relevance to A.I., taking the opportunity to review 
+the work of author BR and collaborators relating to algorithms based on 
+the Dirac notation and algebra, and showing the benefits of the Q-UEL 
+language. Section 1.6 discusses how the capabilities of QC for factorizing 
+products of primes extend to important tools in the AI toolkit, notably 
+high dimensional data mining. While that may seem to be a special 
+example, the ability to relate several aspects of AI to number theory may 
+make the applicability of number theoretic problems addressed by QC to 
+have much broader implications. Section 1.7 reviews other and further 
+related work. 
+Theory Section 2 reviews the basic principles and mathematics behind 
+the Q-UEL language and relevant to QM, QC, and AI. Sections 2.1 
+through to 2.6 provide a general introduction to the Dirac notation and 
+the relevant features of quantum mechanics. It is a "quantum mechanics 
+primer", albeit from the authors’ perspective, and with an emphasis on 
+aspects considered important in AI and QC. The aspects discussed will be 
+familiar to readers of early chapters in many QM textbooks, and could be 
+skipped by such readers, but which will be a necessary basis for what 
+follows and are particularly expressed with that in mind. They also 
+provide an occasional opportunity to provide some examples and no
+tations used in author BR’s approach. Sections 2.7 to 2.9 extend the 
+more familiar description of QM to the use of the less familiar hyperbolic 
+complex (or split-complex) imaginary number h and some related 
+matrices of importance in QC. A brief Section 2.10 links the above to 
+physics, and Section 2.11 develops that to argue how h appears to relate 
+to collapse of the wave function and classical logic. 
+Methods Section 3 describes the application to QC. Sections 3.1 to 3.4. 
+describe the quantum logic gates used and how they relate to the 
+matrices of Section 2. Q-UEL notation and formats are used to express 
+most of the matrices and vectors in a simple, concise, linear way. Section 
+3.4 specifically discusses the concept of measurement and a measure
+ment gate, which relates back to Section 2.10. It emphasizes how the 
+quantum computations that imply i-complex processes can, in general 
+terms at least, be limited to a quantum chip interacting through prep
+aration and measurement to an h-complex environment modelled on 
+standard digital processors. Section 3.5 is somewhat a special case 
+intended to extend the ideas of the quantum computation to the above 
+environment by exemplifying how operations using matrices with real 
+and i-complex elements can be easily extended to h-complex 
+counterparts. 
+Results and Discussion Section 4 discusses some important results and 
+conclusions. The title of this Section is somewhat a misnomer because the 
+present paper is both a review and essentially theoretical. However, it 
+describes some implications for matrices by which one may construct 
+circuits on a quantum logic chip with the same action as the matrices 
+and corresponding imaginary numbers rediscovered by Dirac and used 
+in the digital algorithms. It is shown how the essential new features of 
+these quantum circuits may be replaced by corresponding single novel 
+Fig. 1. Structure of this Review Paper.  
+B. Robson and J. St. Clair                                                                                                                                                                                                                    
+
+Computers in Biology and Medicine 143 (2022) 105323
+3
+quantum logic gates, the nature of which are specified as single matrices, 
+which is in principle sufficient for their design as hardware. Some fea
+tures of the Q-UEL language as a “results” are compared with a quantum 
+computing language, emphasizing Q-UEL’s simplicity. 
+Conclusions Section 5 adds final remarks including brief comparison 
+with some related work. Throughout the paper, some comment is given 
+from time to time on why the Q-UEL language and related approaches 
+preferred by author BR (e.g., Refs. [4,5]) have advantages, as requested 
+by one reviewer. For brevity, this will largely be a brief explanation 
+sufficient for the argument presented, with reference to published, peer 
+reviewed works from which fuller details can be obtained. However, the 
+aim here is not to promote the Q-UEL language as such, but to help lay a 
+basis to a theory of a core common to QC and AI, and to use the 
+convenient notation of Q-UEL that is based on Dirac’s. 
+The quest for a deeper union between AI and QC makes this review a 
+little different from those of other authors. Primarily, other authors see 
+QC as opening the door to solving very large and complex computational 
+problems that are basically impossible to solve on traditional computers, 
+because an enormous amount of time would be required. However, in 
+principle a powerful classic digital computer could handle many of the 
+same problems. The theoretical model called the Turing Machine defines 
+any computer that is possible in principle as a state machine which 
+consisted of two memories: states on an unbounded tape and states in 
+control table. Whether the state machine is classical or quantum, the 
+vectors and any adjustable operators in memory represent the states of a 
+computer that can change to manage new algorithms or new input data, 
+or both [6]. The issue for general computability is whether a machine 
+satisfies requirements for the Turing machine - almost all classical 
+computers do, and it is simply that quantum computers are believed to 
+be exponentially more efficient than Turing machines [6]. In contrast, 
+this present paper tries to find a deeper connection between AI and QC. 
+1.3. Recent advances in true quantum computing 
+How to construct and run quantum algorithms in theory has been 
+postulated for some time [6] but making it work in practice has, until 
+very recently, been difficult. Even simulating one quantum system using 
+a simpler controllable one with some quantum features has presented 
+both known and unexpected challenges, although early progress was 
+made [7]. Theorizing about AI software or planning and simulating it 
+using classical digital computers has become familiar: today, at the time 
+of writing, there are probably some 50 reasonably well selling books in 
+the English language concerning QC algorithms that include some 
+reference to AI (e.g., Ref. [8]). Practical quantum computing in the sense 
+of using real quantum hardware has not yet achieved. “Real quantum 
+hardware” is defined as a computer capable of physically using quantum 
+principles such as superposition of states, non-locality, and entangle
+ment to perform algorithmic functions in a native quantum state. 
+Until recently, quantum mechanical hardware faced barriers with 
+the ability to hold more than 100 qubits in the quantum superposition 
+state. If these barriers can be crossed, it would allow larger associated 
+memory and more practical computations, and the natural continuity 
+with our approach would become less academic. There has, however, 
+been substantial recent progress. Notably, in November 2021, IBM un
+veiled a 127-qubit quantum computing chip called Eagle. The Eagle chip 
+that was announced is a quantum processor that is roughly the size of a 
+thumbprint [9]. By being based on use of electrons and more familiar 
+microchip and logic gate circuit thinking, Eagle is perhaps easier to 
+understand than some alternative approaches. Unlike regular computer 
+chips that encode information as 0 or 1 bits, quantum computers can 
+represent information as qubits, which can have a value of 0, 1, but also 
+both at the same time because of superposition. However, while IBM and 
+Google work on superconducting qubits, Microsoft uses an approach 
+called topological qubits, Honeywell is developing trapped-ion quantum 
+computers, using electromagnetic fields to hold the ions, and microwave 
+signals and lasers to encode them, while other approaches use neutral 
+ions and spin states in molecules (e.g., Ref. [9]). In comparison with 
+classical computing models, a quantum computer (or the quantum part 
+of a computer system) is in part analogous to an analog computer, a 
+computer that does not compute with binary digits but uses the 
+continuously variable aspects of physical phenomena such as electrical, 
+mechanical, or hydraulic quantities to model the problem being solved. 
+The very nature of QM, however, complicates such interpretations: QC is 
+exhibiting both particle and wave mechanics simultaneously, and this 
+analog state is destroyed upon observation/measurement, thereby 
+making it appear digital [6]. While the essential underlying physical 
+phenomenon is still involves electrons, photons, ions, or atoms, their 
+behavior at the quantum level is governed by the quantum mechanical 
+wave function Ψ describing them, or underlying them, depending on 
+one’s perspective. 
+Current quantum processors are linked up to a more classical control 
+system with electronics which are used to operate the quantum pro
+cessor, usually by shining microwaves or putting a signal with a 
+particular frequency, with each qubit labeled by its characteristic own 
+frequency. Strictly speaking, the system exists not just as a distribution 
+of electron probability and hence density in space but also in a phase 
+space of, for example, momentum and position, or equivalently energy 
+and time, in which space are time are intertwined. Time is important: 
+the perceived time for utility arguably represents the true barrier to 
+overcome. As also discussed in the present paper, the qubits inevitably 
+start to interact with its environment, quantum information leaks out, 
+resulting in decoherence, and “collapse of the wave function”. To 
+minimize this, the Eagle chip follows the pattern set by other developers 
+and operates at temperatures close to absolute zero. The coherence times 
+for Eagle are in the range of 70–110 μs, with some evidence of obtaining 
+a median time approaching a third of a second [9]. 
+1.4. The relevance of quantum computing to biology and medicine 
+For many years the mathematics of QM has been implemented on 
+classical computers for use by physicists, chemists, drug designers, 
+biophysicists, and material scientists, for quantum calculations [7–10]. 
+But as Feynman stated, “Nature isn’t classical, dammit, and if you want 
+to make a simulation of nature, you’d better make it quantum me
+chanical, and by golly it’s a wonderful problem, because it doesn’t look 
+so easy” (e.g., for discussion see Ref. [7]). Because of the enormous 
+theoretical gains in processing efficiency, QC using real quantum com
+puter hardware has huge potential importance, including for biology 
+and medicine. Commonly quoted important applications of QC include 
+true random number generation, optimization, planning, and logistics, 
+forecasting, cybersecurity and cryptography, financial (market) 
+modeling, quantum simulation (simulation of physical systems at the 
+quantum mechanical level), chemistry modeling, computational chem
+istry, drug design and discovery, genomics, material design and 
+modeling, protein structure prediction, aerospace physics and space 
+exploration, and artificial intelligence and machine learning, all of 
+which could have, to varying extents, ultimate impact on healthcare. 
+Dramatic speed gains by QC over classical computing seem likely 
+whenever there are very large sets of multi-factor, combinatorial con
+siderations; that is because a combinatorial explosion tends to make 
+dramatic demands on computational resources because of the number of 
+possibilities existing in parallel. This arguably deserves particular 
+attention, and so is discussed separately in Section 1.6. 
+Some problems in molecular biology, such as de novo predictions of 
+protein structure by folding simulation, without reference to proteins of 
+known structure, may prove to be intractable or unrealistically 
+demanding and expensive without quantum computing because of the 
+challenge of the accurate computation of the entropy. However, if 
+rendered tractable, it could have broad applications and enable 
+advanced nanotechnology [10]. In other applications, calculations such 
+as protein-protein interactions may seem much more straightforward 
+where there is not too much conformational flexibility involved, but 
+B. Robson and J. St. Clair                                                                                                                                                                                                                    
+
+Computers in Biology and Medicine 143 (2022) 105323
+4
+they still need to be faster and more reliable, for example in response to 
+emerging epidemics. In hindsight and in regard to the author’s other 
+interest in fast response involving design of vaccines, diagnostics, and 
+peptidomimetic drugs, there were particular studies concerning AIDS 
+[11], Bovine spongiform encephalopathy (BSE) or Mad Cow Disease 
+[12], and COVID-19 (e.g. Ref. [13]) where it seemed likely that com
+puter algorithms that were orders of magnitude faster would have 
+facilitated explorative studies and would have been able to provide 
+much more molecular detail in a shorter time. Less obvious applications 
+of importance in tracking new strains of a pathogen during an epidemic 
+include finding and aligning many related genomes and the construction 
+of phylogenetic trees based on them, which if done rigorously is com
+binatorically explosive and so computationally intensive. 
+1.5. The Q-UEL language and the Hyperbolic Dirac Net 
+To only a very limited extent is the present paper intended to follow 
+the previous papers and promote the Quantum Universal Exchange (Q- 
+UEL) language [4,5,14–29]. Rather, its appearance here is in large part 
+because its use of Dirac notation in a rigorous way is particularly 
+convenient for present purposes. Q-UEL was first envisaged as a proposal 
+for the basis of a Thinking Web for medicine [4], and later as an archi
+tectural principle. For that and other purposes, it is particularly conve
+nient, though fortuitous, that Dirac notation somewhat resembles XML. 
+The basic braket of Dirac Notation discussed in Theory Section 2, is, for 
+example,  
+< momentum(eV-sec/ Angstrom): = 0.2 | position(Agstrom): = 2.7 >
+It is Q-UEL, but a physicist would immediately recognize it as 
+essentially Dirac notation and understand it. It suffices for the moment 
+to interpret the vertical bar ‘|’ as logical IF. The physicist would also 
+understand that it ultimately implies probability values, not certainty. 
+He or she would similarly understand at least the general sense of the 
+following medical statement in Q-UEL, and that it somehow implied 
+probabilities, not certainty. 
+< ‘renal failure’:=Y | creatinine(mg/dL):=5.3 >
+The general principles will be made clear in Section 2. Scientific and 
+technical advantages of the Q-UEL language and associated mathematics 
+and algorithms may be summarized into three main aspects as follows.  
+(i) More Realistic and accurate Inference Nets. Q-UEL tags form the 
+basis of a language for automated reasoning and directly provide 
+the probabilistic building blocks for the Hyperbolic Dirac Net 
+(HDN) [14,19,20,24,28]. An HDN may be described as analogous 
+to a Bayes Net except that, very importantly, it may be based on a 
+Bidirectional General Graph BGG, including cyclic paths, without 
+iteration [28]. It is not confined, as is a Bayes Net, to the Directed 
+Acyclic Graph or DAG [28]. It ensures property of consistency 
+between probabilities including adherence to Bayes Rule called 
+coherence [19,29], and minimizes the use of independency as
+sumptions while allowing automatic construction very large 
+inference nets [5]. Neglect of these considerations can lead to 
+poor representations of reality and can be shown to have disas
+trous consequences on accuracy [5,19,28,29]. In particular, the 
+concept of d-separation and independence of parent nodes in the 
+Bayes Net can be shown to give rise to large errors in probability 
+because assumption of independency are made that clearly not 
+need to have been made, and should not have been made, because 
+they were not assumed elsewhere in the net [28,29]. For 
+example, P(A|B,C) P(B|D)P(C|E) assumes independency between 
+B and C in P(B|D)P(C|E), but relies upon interdependency in P(A| 
+B,C).  
+(ii) Probabilistic Semantics. The above relates primarily to conditional 
+probabilities and analogous basic elements of Dirac notation 
+where the relationship is simply conditional, implying logical IF 
+or “given that”. However, the Dirac notation can also involve 
+operators as described in theory Section 2 and this extended in 
+the original basic Q-UEL, in a natural way, to the semantic triple 
+subject-relationship-object. This forms the basis of a system of 
+probabilistic semantics for automated reasoning. Hyperbolic Dirac 
+nets may be built with relationship operators (such as verbs and 
+prepositions) [30]. This includes use of metastatements in Q-UEL 
+tag format to evolve the HDNs under the laws of categorical logic 
+(including syllogisms), definitions, and grammatical and other 
+linguistic rules [30]. Later, the probabilistic semantics approach 
+was extended to the notion of an exam-taking “robot” capable of 
+passing multiple choice medical licensing examinations by 
+knowledge from human experts, structured data mining, and 
+unstructured data mining of natural language text, including that 
+obtained by automated surfing of the Internet [25,26].  
+(iii) A Notation that Enables Interoperability. The original formulation 
+emphasized interoperability between different formats and on
+tologies, and between different treatments of probability in the 
+Semantic Web [21–23], well-illustrated by epidemiological 
+application with complex sources and the need to capture 
+knowledge in a canonical form [27]. Perhaps most dramatically, 
+as described in a series of six papers of which Ref [13] mentioned 
+above was the second (see Ref. [10] for further discusssion), the 
+above same kind of use of Q-UEL facilitated a very response to the 
+appearance of the epidemic at a time when there were only two 
+known deaths worldwide from what is now called COVID-19. 
+A particular new feature not in XML is the use of Dirac’ vertical bar or 
+pipe ‘|’ analogous to that in conditional probabilities such as P(A|B), and 
+in constructions such as 
+< subject expression | relationship expression | object expression >
+Usually, the abbreviated general form <A| R | B> is used when 
+discussing in the text these simpler kinds of Q-UEL tags. As in Dirac 
+notation, R is an operator or operator expression. Q-UEL tags have 
+algebraic and arithmetic force, and scalars, vectors, and matrices can be 
+succinctly expressed and manipulated. In programming language mode, 
+one can assign values, usually two probabilities called probability for
+ward and probability backward, which are adjoint conditional proba
+bilities, as a dual, as discussed in this paper: <A | R | B > = {x,y}. When 
+generated by machine learning as data mining, transmitted via the 
+Internet, or archived for long periods, the probabilities are carried in the 
+tag via tag value attributes: <A Pfwd:=x |R |B Pbwd:=y >. For example, 
+see Refs. [4,5]. However, the particular advantage of using Q-UEL in the 
+present kind of paper is that, while the essential features of Dirac no
+tation are intuitively obvious to physicists and mathematicians, the 
+format for the attributes and the logical and other relations between 
+them, used by physicists including Dirac himself, is somewhat variable 
+and often used in a lax way. More rigor is needed from a mathematical 
+and certainly from computational and particularly computational se
+mantics perspective for use in AI. The account following closely follows 
+Ref [29] but is required for completeness; see Ref. [29] for extended 
+discussion. Q-UEL meets the need for rigor by use of attributes in formats 
+called the Attribute Metadata Language (AML). There represent the ar
+guments in logical expressions represented in the example tag 
+<...|...|...> above. The attribute ‘Systolic blood pressure (mmHg)’:=140 
+used earlier above is a simple example of the use of this standard. It 
+exemplifies the use of the metadata operator ‘:=’ such that a more specific 
+example or value of what lies on the left is placed on the right. Other 
+examples are Smoker:=yes, or ’serum creatinine (mg/dL)’:=1.1, or ‘Blood 
+urea nitrogen’:=high. Attributes can be arguments in logical expressions, 
+of which logical AND is the default interpretation if logical operators are 
+not specified. Q-UEL attributes can also have a more elaborate onto
+logical structure than in XML, in effect ontological trees and graphs 
+B. Robson and J. St. Clair                                                                                                                                                                                                                    
+
+Computers in Biology and Medicine 143 (2022) 105323
+5
+using the metadata operator as edges, e.g. as in (A:=(B:=C, D: = E:=F)), 
+although in the present paper they are mostly simply of basic metadata:=
+value form. The appearance or absence of single quotes and occasional 
+appearance of double quotes has meaning in Q-UEL, but these are 
+essentially to render their use unambiguous for a computer, and intui
+tive interpretation on reading should be sufficient for present purposes. 
+In general theoretical discussion as in almost of the present paper, the 
+authors tend to use for example A:=a, where A is an example of a 
+placeholder for the metadata name, and a is an example of a placeholder 
+for its value, and even more often one may see only A, but in such a case 
+A:=a or a more elaborate ontological structure form is to be understood 
+and the principles of AML apply. 
+1.6. An important example of relevance of quantum computing: Hacking 
+primes 
+Mathematically, machine learning (such as data mining, knowledge 
+management, and inference from learned knowledge) can be expressed 
+in the language and laws relating to prime numbers [31,32]. This 
+immediately links proofs for the efficacy of QC in number-theoretic 
+problems [33] to the AI domain, as follows. 
+“Hacking primes” is a colloquial expressions for the factorization of 
+composite natural numbers, commonly use in encryption, into their 
+constituent prime numbers, a problem that can benefit hugely from QC 
+ad discussed here. In that context, perhaps somewhat surprisingly, it is 
+regard to the attributes that the most dramatic importance of QC for AI 
+arises. It relates in large part to methods used to facilitate the data
+mining of high dimensional data, ultimately a problem of informational 
+entropy called the problem of “The Dragon on the Gold” [31]. However, 
+it spreads more generally to many issues in medical information and 
+knowledge management. 
+In the internal operations of Q-UEL applications for such purposes, it 
+is often convenient to represent each distinct attribute, however simple 
+or elaborate its ontological structure, by a prime number, say, ΞA, ΞB, ΞC 
+and so on. It is efficient that the more probable attribute to be encoun
+tered in a data base has the lower prime numbers, but it is not essential. 
+Algorithms based on this, and predating Q-UEL, were developed by the 
+present author to facilitate a large variety of data management and 
+analytic operations [32], to the extent that the present author has 
+asserted that all descriptions and operations in data mining and data 
+management ultimately relate to descriptions and operations in prime 
+number theory [32]. A record like a medical record in spreadsheet-like, 
+comma-separated value format is a composite number, a product of 
+primes, and can be represented by e.g. a ket | ΞA, ΞB, ΞC, …> = | ΞA × ΞB 
+× ΞC × … > such as | Ξrecord > for a record where Ξ is now also allowed 
+to be a composite number, a product of primes from which the indi
+vidual primes can be recovered by factorization. This use of the repre
+sentation entity |…> called the ket is an essential feature of Dirac’s 
+quantum mechanics and notation, also called the bra-ket, braket, or 
+bracket notation as decribed above, and the ket appears throughout the 
+present paper. However, the above paper predated Q-UEL because it was 
+not understood how to render the ket’s complex value appropriately for 
+application outside of QM, i.e. to the everyday world of human experi
+ence and medicine. This is discussed in the present paper in terms of 
+imaginary number h. A query over an entire set of such can be made by 
+presenting the query as a prime or composite number and looking for 
+exact integer division, i.e., division by the query that does not leave a 
+remainder. 
+Most importantly, associative data mining ideally needs to address 
+every combination of attributes in each record read, and each combi
+natoric result can be encoded by primes and products of primes (simi
+larly represented a ket). For example, every combination such as (A), 
+(B), (A, B), (A, C, G) (B, G, K W) is associated with a distinct natural 
+number, most often a composite number as a product of primes. For a 
+records of n attributes per record, there are precisely 2n−1 such sets 
+expressed as kets, or simply 2n when including the empty collection and 
+empty ket (if defined to allow that). More generally, as data types these 
+are collections or “bags” not sets, since nothing in the approach prohibits 
+that the same attribute can appear twice or more. As the present author 
+demonstrated, these can be generated by considering the number- 
+theoretic τ function. It involves division of the composite number 
+describing a record, or any one of the above subsets, by 1, 2, 3, …up to 
+the square root of the composite number (since one can determine the 
+rest from the factorization up to that point). This identifies all 2N kets as 
+combinations in the record, and in the sub-records as sub-sets or sub- 
+collections, in order to count and ultimately evaluate associations. 
+Although this and other related algorithms and applications [32] can 
+be remarkably efficient, it remains that they often involve the above 
+process which constitutes factorization, and as N becomes very large as 
+more and more data describing patients has become available, they have 
+become slow and discarded for other methods. This begs use of Shor’s 
+QC algorithm [33] for rapid factorization. The problem can be reduced 
+to one of finding the period r of a function f(x) = ax mod ν, where ν is for 
+example Ξrecord and the composite number to be factorized, so that f(x) 
+= f(x + r). A simple case is one in which r exactly divides the number of 
+points ν = 2n over which f(x) is evaluated, i.e., ν/r = m for integer m. 
+Although this algorithm is not examined in detail here and will be 
+considered elsewhere, it requires operators (and for implementation the 
+corresponding gates) which are known to be sufficient [6], and these are 
+among the operators discussed here. This paper provides an introduc
+tory basis for biomedical and healthcare researchers concerning the 
+power of these operators. 
+1.7. Other previous and related work 
+Refs [34–37] describe some important steps in the historical back
+ground to of probabilistic inference as the use of conditional probabil
+ities based on counting observations (e.g., de Moivre [34,35]) or as 
+analogous degrees of belief (Bayes, [36]). Chester’s primer of quantum 
+mechanics [38] gives a good introductory account of how Dirac’s no
+tation relates to observations. The work by Mullins et al. [39], possibly 
+one of the first applications of data mining to large repositories of pa
+tient records, illustrates how modern machine learning relates to con
+ditional probabilities. The notion of observation that is fundamental to 
+counting as the basis of probability in the frequentist (e.g. traditional 
+Highschool, t-test, chi-squared) approach to data analytics, including 
+structured data mining, is a double-edged sword in QC because, 
+although it may be used to provide probabilities for input, and proba
+bilities as results of computation can be output, observations and mea
+surements of what is happening during computation will halt the core 
+QC process [40–42]. Matters concerning the above aspects will be 
+described in more detail as they appear in Sections 2 and 3. 
+In approaching programming, programmers turn to paradigms, each 
+choice of which provides a kind of conceptual map or a guideline on how 
+best to view and tackle a computational problem. There are various 
+possible models for QC, including the quantum circuit paradigm (which 
+is the most appropriate to design of the basic chips), the quantum Turing 
+machine, and the quantum random access machine (QRAM) [40]. Many 
+quantum programming languages, which are developed using the 
+QRAM model, and in addition to the considerations discussed here, it 
+has become clear that one needs additional programming features to 
+take quantum errors into account when modelling quantum computa
+tional process [40]. At the time of writing, however, the degree of this 
+error is being rapidly reduced by QC companies. The pioneering efforts 
+in the theory for a practical QC are due to Bennet and collaborators, who 
+established the traditional paradigm for quantum computing in terms of 
+thermodynamics and related information theory, “Adiabatic Quantum 
+Computation”, and reversibility [43–47]. Moret-Bonillo [48] has argued 
+for the circuit model but believes that the essential paradigm is that, 
+unlike classical computing, the quantum phenomenon gives the com
+puter the ability to use simultaneously all the problem data. Conse
+quently, he believes that the best applications of quantum computing in 
+B. Robson and J. St. Clair                                                                                                                                                                                                                    
+
+Computers in Biology and Medicine 143 (2022) 105323
+6
+artificial intelligence will be found in the field of machine learning [48]. 
+A more extreme idea extending that direction is that QC is itself the new 
+paradigm, noting that that, “when carefully controlled, intrinsic char
+acteristics of matter also present several new potential paradigms for 
+engineering, in particular, for encoding, manipulating, and transferring 
+information” [49]. As paradigms they do not seem to help too much 
+about how to think more deeply about the fundamental relationships 
+between QC and AI, what recipes to use, and how to use them to reason 
+intimately with the quantum processes. In the present paper, the argu
+ment is presented that the most useful picture for present purposes, and 
+especially medical applications, is that QC appears as the innermost 
+process described by a relationship operator R. In our paradigm, any R 
+(or other operator at the above bra-operator-ket level of description) can 
+itself be a core quantum circuit. Of particular interest are those opera
+tors and gates that relate to the hyperbolic imaginary number h. What 
+this means in general terms, is that the paradigm in the present paper is 
+in large part one of probabilistic semantics. It is well represented in the 
+Q-UEL language. 
+2. Theory 
+2.1. The conditional probability 
+The following Sections underpin the mathematics of Dirac’s quan
+tum mechanics and the Q-UEL language based on it, focusing on aspects 
+of recognized or potential importance to quantum computing as devel
+oped in Methods Section 2. They are not in themselves algorithms, 
+though they provide the mathematics for the basis of several algorithms 
+in Q-UEL applications. For how these algorithms and applications work 
+together, seee associated discussion in Ref [29], and end of Results 
+Section 4. For simple use of Q-UEL as a programming language in which 
+to develop reasoning algorithms, see the version developed for medical 
+students [30]. The role of Q-UEL in the following theoretical discussion, 
+as in much of this paper, is simply to facilitate an introduction to Dirac’s 
+QM by using Q-UEL’s intuitive notation, terminology, and jargon, and 
+by following the spirit of Q-UEL by going back to and reexamining the 
+basic principles of observation, counting, and probability. In Q-UEL, it is 
+the conditional probability that is axiomatic. From that will be derived 
+will be derived the notion of probability dual that is important in the 
+Q-UEL language, and from that in turn, a quantum mechanical proba
+bility amplitude, which is then generalized to be a quantity that can 
+contain other imaginary numbers other than the square root of minus 
+one. In the narrative of QM, probability is inherent (encoded) in the 
+probability amplitude, often seen as a wave function. If resolved into a 
+yes or no result of each possible outcome, that is considered in a pro
+portion that is revealed by repeated observation and counting, i.e., 10 
+yes divided by 20 yes or no [50–52]. In general, it is adequate to consider 
+the system as having an unresolved classical phase space until an obser
+vation takes place that contributes to the counting process. 
+Classically, in data mining and data management in medicine as 
+elsewhere, one is usually interested in observing and counting the 
+occurrence of the kinds of combinations described above to determine 
+probabilistic values such as probabilities, predictions odds, likelihood 
+ratios, odds ratios, and association constants (e.g., Refs. [4,5]). Proba
+bilities are usually considered the most fundamental although Whittle 
+argued that expectation, essentially the average value of some physical 
+quantity as it appears with a particular probability distribution, is 
+axiomatic [53]. The account from hereon in this Section 2.1 and in 
+Section 2.2 essentially follows Ref [29] but is required for completeness. 
+As a starting point, one may consider a conditional probability due to 
+very early workers such as de Moivre [ 34,35] in the 1700s.  
+P(A|B) = P(A, B) / P(B) = n(A,B) / n(B), Lt n(B) →∞                         
+(1) 
+Here n(A,B) is the number observations of state A and B as a joint 
+event, and n(B) the number of observations of state B. “State” in 
+statistics extends to things, events, factors, descriptions, measurement 
+values, and so on, the requirement being that they are observable and 
+countable, and the notion that the calculated probability of a state is 
+effectively independent of the previous calculated probabilities of that 
+state in the same conditions for very large data. First formal descriptions 
+of sampling of that kind are generally accredited to Laplace (1749-127) 
+who, in activities such as estimating the population statistics of France, 
+found, and emphasized, that the above notion is far from simple [54]. It 
+is broadly agreed that (A|B) is more generally replaceable by a logical 
+and/or relational expression for states A, B, C, etc., given that the cases 
+(instances) in which that expression is true being countable, and one can 
+retain the vertical bar ‘|’ as having the logical force of if. The advantage 
+of taking the conditional form (as opposed to just, say, P(A) ) as 
+axiomatic is that everything can be considered as conditional upon, or 
+relative to, or related to, something; an explicit condition makes clear 
+what it is, and significantly the Dirac recipe discussed latter below leads 
+directly from probability amplitude to P(A|B) and P(B|A). In the Q-UEL 
+notation, the more general kind of condition is denoted by a special 
+Q-UEL attribute indicated by a question mark ‘?’. It is one of the several 
+more generally useful features of Q-UEL notation. Amongst other ap
+plications in Q-UEL, it is used to specify a complex valued probability as 
+the HDN analogue of the self-probability in a Bayes Net. It has a physical 
+interpretation: it relates directly to the event of preparation or observation 
+of a state in QM [1,38,50,51] with a particular probability, e.g., of 
+preparing or observing A as having a particular probability. Expressed in 
+a classical probability context, the rules for use are seen to be simple, as 
+follows. 
+P(?) = P(?|?) = 1
+P(A, ?) = P(?, A) = P(A),
+P(?|A) = 1
+P(A|?) = P(A)
+(2) 
+The prior probability P(A|?) then represents the probability of A 
+prior to the measurement of A conditional upon B, and P(B|?) represents 
+the probability of B prior to the measurement of B conditional upon A. 
+As for P(B) in a Bayes Net, P(B|?) (and P(?|A) can be thought of as a prior 
+probability. Frequently in QM, prior probabilities are portrayed as 
+normalization constants. For example, in Chester’s pedagogic QM model 
+of measuring the position of a bead on a circular wire of length L, P(A|?) 
+would correspond to the normalizing factor of 1/√L [38]. In extension 
+to calculations for clinical decision support etc., the probabilities can be 
+determined empirically as was done by de Moivre and suggested by Eqn. 
+(1), by counting observations. Today, in practice, this involves asso
+ciative datamining [39]. 
+2.2. Dual character of conditional probabilities 
+It would have been tempting to start the above description of prob
+ability in Section 2.1 by, for example, expressing the mapping between 
+underlying probability amplitude, say Ψ, and observable probability P 
+as, say, Ψ(A) → P(A). However, it is important for this review that this is 
+usually not appropriate: it should in general be Ψ(A|B) → {P(A|B), P(B| 
+A)}, where Ψ(A|B) is usually written in QM texts as ΨB(A) [38], and 
+which may be explained as follows. It will be evident now why the 
+conditional probability should be seen as axiomatic: P(A) has no such 
+twin counterpart (except itself). P(A|B) and P(B|A) are said to be duals or 
+adjoint forms of each other, and they are not in general of same proba
+bility value. One cannot compute P(A|B) from P(B|A) or vice versa 
+without other information, so it should be said that P(A|B) is the sym
+bolic dual or symbolic adjoint of P(B|A), and vice versa. Because for many 
+purposes a value of each of P(A|B) and P(B|A) must be assigned or 
+calculated, the value of both jointly, considered as a single entity, can be 
+specified by a numerical constant which is called a probability dual {P(A| 
+B), P(B|A)}. In computations described in papers by author BR and 
+collaborators, it is usually seen as a value such as {0.75, 0.92}, as the 
+“constant” in an assignment expression, or as tag value attributes on 
+B. Robson and J. St. Clair                                                                                                                                                                                                                    
+
+Computers in Biology and Medicine 143 (2022) 105323
+7
+Q-UEL’s XML-like tags (introduction Section 1.5). In classical proba
+bility theory, relating the two probabilities requires Bayes’ Rule [36], 
+which is simply an expression in probabilities directly derived from Eqn. 
+(1). In symmetric form using the above notation, it is as follows.  
+P(A|B)P(B|?) = P(B|A)P(A|?)                                                            
+(3) 
+Arguably, its true importance as proposed by Bayes is to make this a 
+degree of belief [36], but this is not relevant in the present paper. 
+Rather, the members of the dual are considered observable probabilities 
+in the QM sense [1]. Within QM theory, the probability dual is calcu
+lated ab initio from a physical quantity called the action, e.g. position 
+times momentum [1,37]. One may think of the result of that as infor
+mation I(A; B) = ln(K(A; B), with association constant K(A: B) defined as 
+follows.  
+K(A; B) = P(A|B)/P(A|?) = P(B|A)/P(B|?) = P(A,B) / P(A|?)P(B|?)        (4) 
+Consequently, the observable probabilities are 
+P(A|B) = P(A|?)K(A; B)
+P(B|A) = P(B|?)K(A; B)
+(5)  
+2.3. Probability amplitudes and the Dirac bra-ket 
+In QM, probability amplitudes are counterparts of probabilities in 
+which the scalar real value can instead be scalar complex. For QM as it is 
+usually encountered in i-complex wave mechanics, when using Dirac 
+notation, the relation is a mapping that is not simple.  
+<A|B> → {P(A|B), P(B|A)}                                                             
+(6) 
+Here the arrow above indicates the Dirac recipe for observable prob
+abilities, here P(A|B) and P(B|A), which can be considered as a particular 
+operation M called a measurement, often said to be irreversible as dis
+cussed later below. Irreversibility is consistent with the idea that the 
+reverse direction is degenerate because the probability amplitudes as 
+complex numbers with the properties of ii = −1 can subtract from each 
+other (negatively interfere) as well as add and reinforce each other. Here 
+Dirac’s braket replaces Ψ(A|B) discussed above, the difference arguably 
+being that we may think of Ψ(A|B) as the value of the probability 
+amplitude, while the essence of the Dirac notation is that <A|B> is also 
+an expression, formally a product of vectors bra <A| and ket |B>
+described more fully next in Section 2.4. However, one could say that 
+the more general definition of the braket and relationship between the 
+braket and Ψ is the one favored by Bertlmann [55], also discussed in 
+Section 2.4. 
+Before proceeding with the appropriate description, a cautionary 
+critique regarding commonly held views and some previous texts should 
+be made here, for readers somewhat familiar with QM. Reference to 
+excellent primers like Chester’s [38] is not always sufficient. This dis
+cussion is required for extension of the mathematics and because QC 
+obeys QM with no regard for human conventions.  
+(i) Reference State. Chester states “Put what you know in the ket… 
+You register the last measurement result - the one just made – in 
+the ket. That is what you know about the system. The ket tells the 
+condition of the system as an immediate measurement would 
+reveal it to be” [38]. The so-called basis set is usually also a 
+complete set of states is also described by a generalized ket, e.g. 
+where he attribute is a variable describing position. In QC, 
+regarding <A|B>, one cannot necessarily think of B as input or 
+cause and A as subsequent result. As well as basing the braket on 
+the Poisson bracket (an important consideration in classical 
+Hamiltonian mechanics), Dirac was probably influenced by 
+analogy to convention P(A|B) where the A is conditional on B 
+and, in a causal interpretation, caused by it. However, the proba
+bility amplitude relates to a probability dual, and it is a 
+convention as to which ways around the conditional probabilities 
+appear. In the early papers by author BR on the semantic impli
+cations, it was inverted because of the categorical interpretation of 
+P(B|A) that “All A are B”. While the ket part |B> is generally 
+regarded as the reference state, that is a convention. It appears to 
+have been an arbitrary choice for Dirac “… we can always set up a 
+set of dual vectors, which mathematicians call the dual vectors. 
+The procedure will be described for the case when the original 
+vectors are ket vectors” [1]. Though he states that “each state of a 
+dynamical system at a particular time corresponds to a ket vec
+tor”, there seems nothing to have prohibited alternative choice of 
+the bra except analogy to other, including conditional probabil
+ity, conventions. Discussions below of symmetry, Hermitian 
+character, reversibility in QC, and ket versus bra normalization, 
+make more sense with that arbitrariness in mind.  
+(ii) Event Reversal and Reciprocity Theorems. Following from the use of 
+Dirac notation as below, and referring to A as position x and B as 
+momentum p, Chester states that the probability density to-find- 
+x-given-p is the same as that to-find-p-given-x, and writes his 
+equation (2.18) as P(p|x) = P(x|p), adding that “It must be 
+accepted as rule of nature that the reverse amplitude of an event 
+is the complex conjugate of the forward amplitude for the event.” 
+[38]. Chester calls this “the event reversal theorem” [38]. While 
+the above statement is true as will be explained below, writing P 
+(A|B) = P(B|A) would be at best be confusing or misleading for 
+any general case, even in QM. For one thing, the above relates to 
+A and B being p and x which are conjugate variables in that context 
+[38]. “An event” seems to imply “any event” in the setting of 
+Chester’s book, and probability amplitudes are not confined to 
+conjugate variables. One can see how the idea of the above 
+equality arises in the discussion following equation (56) of 
+Chapter 3 in Dirac’s book [1], where the relevant theorem is the 
+reciprocity theorem. But P(A|B) = P(B|A) as a result from QM 
+ceases to be true in general, unless P(A|?) = P(B|?), by the 
+application of the Dirac recipe for the mapping Ψ(A|B) → {P(A| 
+B), P(B|A)}, involving a recipe called “ket normalization” of an 
+entity with the value Ψ(A|B) and its complex conjugate Ψ(B|A). If 
+it were not so, there would be little purpose in QM making use of 
+the dual and the concept of dual vectors that underlies Dirac 
+notation [2].  
+(iii) Imaginary Numbers and the Born Rule. Surprisingly, one may also 
+critique the standard view that “In quantum mechanics, a prob
+ability amplitude is a complex number used in describing the 
+behavior of systems. The modulus squared of this quantity rep
+resents a probability density” as in the Wikipedia definition [56]. 
+This principle due to Born [57] is not discarded, but for present 
+purposes, one requires the proper and more general formulation 
+of it in terms of complex conjugation as described later below, for 
+the following reason. In the Wikipedia entry, the link to the 
+webpage to “complex number” makes it clear that Wikipedia (and 
+the usual view) means one based on i as the familiar square root 
+of minus one. This is clearly the view taken in standard intro
+ductory sources [6,38]. The statement regarding modulus 
+squared underlines that interpretation because it is not true for 
+every possible type of imaginary number, while other familiar 
+principles hold by extension, and all imaginary numbers can use 
+them to describe duals and dual vectors. In the trivial case of 
+exception, it is well known a QM probability amplitude can be 
+purely real (in the above notation, that would be so for Ψ (A|A) ). 
+There is a tendency to think of anything other than real and 
+i-complex Ψ as human interpretations that are to some extent 
+fictitious, but if so they arguably are no less so than the real and 
+i-complex wave function Ψ. Dirac refers a linear operator σ which 
+can be seen as an imaginary number that squares to one [1], i.e. 
+essentially the entity called h in the Introduction Section 1 above. 
+Including that kind of imaginary number is an aspect of the 
+B. Robson and J. St. Clair                                                                                                                                                                                                                    
+
+Computers in Biology and Medicine 143 (2022) 105323
+8
+process called dualization that can be applied to any wave func
+tion (Section 2.8). Dirac regarded this as physical, with eigen
+values “that do not vanish” [1]. Dirac also predicted the magnetic 
+moment of the electron by demonstrating that the fuller treat
+ment of the wave operator which can be expressed in terms of 
+four distinct types of imaginary number γ0, γ1, γ2, and γ3 (asso
+ciated with the derivatives of the wave function to time and three 
+dimensions of space - see Section 24.6 in Penrose [52]). It would 
+be an error to assume that this does not apply to, say, electrical 
+phenomena in QC. The spin of an electron is axis-less and the 
+magnetic quantum energy around it causes the moment of mag
+netic field lines to generate magnetic moment. 
+In general, it seems clear that a probability amplitude as a value can 
+involve more than one kind of imaginary number. In the present context, 
+a complex value c can be a value such as follows, which is the basis of 
+mathematical entities such as quaternions, octonions and Musean 
+numbers as discussed later below.  
+c = a + b j1 + cj2 + dj3 + ….                                                          
+(7) 
+where a, b, c,.. are real numbers and j1, j2, etc are imaginary numbers. 
+The appearance of several imaginary numbers is more a feature of 
+advanced particle physics, but there are also counterparts as matrices in 
+QC as discussed below. Importantly, not all imaginary numbers have the 
+property of squaring to −1, though there are distinct imaginary numbers 
+that do, which may be called flavors of i. In the cases of interest in the 
+present paper the imaginary numbers are such that the absolute value of 
+the square is | ji ji| = +1, and for products of different j there is the 
+anticommutative property ji jj = - jj ji. See Penrose [52]. One importance 
+of the above is that a complex number with a real and at least one 
+imaginary part is sufficient to encode the probability dual. 
+In principle, with an imaginary part associated with an imaginary 
+number of some kind called j, one may conceive of a j-complex Hermitian 
+commutator so that the bra-ket is generated as composed of the 
+component conditional probabilities.  
+<A|B> = ½ [P(A|B) + P(B|A)] + j ½ [P(A|B) – P(B|A)]                      
+(8) 
+In almost all the discussions of Dirac notation below, the Dirac no
+tation can be shown to be applicable to probability amplitudes based on 
+different imaginary numbers, and this is particularly so for j as h or i, or 
+flavors of these. However, there are differences. The above expression is 
+not particularly useful for applications of some kinds of complex number 
+such as i with the ii = −1 property. It is arguably for this reason that 
+physicists need the Dirac recipe to extract P(A|B) and P(B|A) [1] (see 
+below), i.e. because of the particular properties of i-complex numbers. 
+Also, because <A|B> is usually seen as derived from a product of vectors 
+of as described below, so that conditional probabilities are seen as 
+relating to |<A|B>|2, one would expect to see square roots of proba
+bilities in some circumstances, and √½ rather than ½ in Eqn. (8). 
+Nonetheless, as also discussed later below, these complications do not 
+necessarily apply to probability amplitudes based on other kinds of 
+imaginary numbers. Also as discussed shortly below, the more general 
+interpretation of the Born rule used in the Dirac recipe [1] is required 
+because of the different physical interpretation of an h-complex vector 
+magnitude. However, Eqn. (8) is sufficient to introduce a general prin
+ciple for all kinds of complex value: the bra-ket is no longer only a 
+description of the conditional probabilities as symbolic adjoints. We can 
+always directly derive the numerical value (probability amplitude) of 
+<B|A> as the adjoint of <A|B>, and vice versa, by taking the complex 
+conjugate.  
+<A|B>* = <B|A>, <A|B> = <B|A>*                                             (9) 
+Complex conjugation is indicated by the postscript operator *. It 
+makes any imaginary part in an expression change sign, which is 
+equivalent to considering that any imaginary number, say, j, is replaced 
+by -j. It is this that relates to Chester’s statement that “It must be 
+accepted as rule of nature that the reverse amplitude of an event is the 
+complex conjugate of the forward amplitude for the event.” [38]. 
+Eqn. (8) works for i in satisfying Eqn. (9), but the difficulty for i soon 
+arises when going beyond self-operations and simple addition. In gen
+eral, appropriate addition of i-complex bra-kets holds in expressions 
+resulting in observable probabilities, but multiplication such as <B|C>
+for i-complex bra-kets is readily shown to give an inappropriate result 
+[14]. The proper approach involves the Dirac recipe as the transform 
+<A|B> → {P(A|B), P(B|A)} (Eqn. (6)). It can be shown to work for most 
+kinds of probability amplitude based on most kinds of imaginary num
+ber, providing there is an important generalization. The final step of the 
+Dirac recipe, is the Born Rule. Recall that this is often expressed as 
+computing the probability as |<A|B>|2. In h-complex vector space, 
+however, absolute magnitude and the required observable probability 
+are not necessarily the same thing. The more general way to apply the 
+Born rule is to multiply the complex number by its own complex 
+conjugate:  
+<A|B><A|B>* = <A|B><B|A>
+(10) 
+Without a first step preceding the above, however, expressions are 
+obtained in which one cannot dissect out the separate values of P(A|B) 
+and P(B|A), so a form of normalization is first required. Conceptually, 
+this can be seen as experimentally fixing a value of B, say to produce <A| 
+B>’ to obtain P(A|B) relative to it, called ket normalization, and sepa
+rately experimentally fixing the value of A, say to produce ‘<A|B> to 
+obtain P(B|A) relative to it, called bra normalization. Nonetheless, Dirac 
+and most texts only speak of ket normalization because the ket is the 
+conventional reference state and one can always first take the complex 
+conjugate <A|B>* = <B|A> and form <B|A>’ from that. This all works 
+equally well for i -complex probability amplitudes and for other kinds of 
+complex numbers of interest here. 
+2.4. The bra-ket as vector product 
+Recall that “Whenever we have a set of vectors in any mathematical 
+theory, we can always have a second set of vectors, which mathemati
+cians call the dual vectors” [1]. In the case of QM, each these vectors as 
+bra <A| and ket |B> are interpreted physically as a description as a state 
+in a Hilbert space, that has dimensions of complex value. The above 
+description in Section 2.3 is not a formal one though arguably it is at 
+least a general one. Dirac’s insight was to treat the essential features 
+analogous to a self-probability as a vectors called bra <A| and ket |B>, 
+and to consider the bra-ket <A|B> as an inner product of these vectors, 
+analogous to a dot product, <A|.|B>, yielding as required a scalar, most 
+generally complex, value: <A|B> = <A| |B>. This should be distin
+guished from the out product |A><B| which is a matrix, and from |A>| 
+B> which is a vector as a tensor product in a different space, often 
+simply generated as the product of each corresponding elements in turn. 
+Just as with <A|B> that can be derived from a product such vectors as 
+above, this state can also be considered as a probability amplitude that 
+can sometimes be real (when all imaginary parts are zero), but usually 
+complex in that at least one element is complex. The bra form <A| has a 
+dual |B>, where the < | and | > delimiters indicate that one is the 
+transpose T of the other, and <A| is usually considered as a row vector 
+and |A> its corresponding ket vector, but it also implies its complex 
+conjugate. In short, <A| = |A>*. One may think of this essence of the 
+Dirac notation as an intuitive way of expressing the adjoint form of A as 
+A† = AT* = A*T with A as a state vector. The Dirac notation has the 
+convention discussed above that if |A> = A, then <A| = A* which, as 
+also suggested by the universal use of ket normalization, indicates that 
+the ket |…> is the reference form. Also, for the more general mathe
+matical entity A, one should arguably sometimes more properly write 
+<A| = A*T (but the bra and ket delimiters …| and |…> handle the 
+transpose). Somewhat un-orthodoxically, we might think of the 
+B. Robson and J. St. Clair                                                                                                                                                                                                                    
+
+Computers in Biology and Medicine 143 (2022) 105323
+9
+relationship rules between the bras and kets and their contents as <A| =
+<|A†, |A> = A|> in which a null state <| or |> has some of the character 
+of a unitary value or the identity operator I. 
+Much of the above is standard (e.g. Refs. [1,38,52]) or a matter of 
+taste and would seem beyond needing critique, but again there are issues 
+relating to recent developments in the theory required for QC. The more 
+general relationship between the braket and Ψ as a product of bra and 
+ket is that <A|B> =
+∫
+dxΨ(A|x)Ψ(x|B), which is Bertlmann’s starting 
+definition (e.g., Ref. [55]). In primer texts, such as Chester [38], that 
+form appears later as a special case. The integration rather than sum
+mation relates the idea that it is often better to think of the bra and ket as 
+continuous functions rather than entities with discrete elements, and in 
+some cases a discrete vector approach could be artificial. Conversely, 
+familiar vectors with discrete elements would seem adequate and highly 
+appropriate for electron spin and qubits. However, formulating Quan
+tum Field Theory (QFT) so that it can be implemented on a quantum 
+computer has recently become an active area of research for near-term 
+QC and complicates the spin and qubit picture somewhat [58,59]. 
+QFT is a field that arises from a combination of classical field theory, 
+special relativity and quantum mechanics, and rests in part on the 
+concept of a particular type of dualization due to Dirac that is important 
+here and discussed later below. The above definition of the bracket by 
+Bertlmann appears to be ultimately at the basis of his concern with the 
+failure of a classical ideas about symmetry to survive processes of 
+quantization, dualization, and regularization in QFT [55]. In this 
+context, regularization is a method of modifying observables which have 
+singularities to make them finite by introducing a parameter that models 
+our lack of knowledge at unobserved scales, and like dualization, is a 
+recent active part of QFT research for QC. 
+There is an important consequence of the definition of bra and ket 
+when an operator, usually expressible as a matrix, is placed between 
+them, e.g. <A|R|B> and it shows up in taking the complex conjugate of 
+the bra-operator-ket so formed. In Q-UEL texts R is usually used for the 
+general name of an operator, indicating a relationship operator or relator 
+in the semantic context. Note the use of bold font to indicate and 
+distinguish an operator. An exception is made for certain scalar quan
+tities such as coefficients c below which can play an operator-like role. If 
+formality is required or a programming convention requires it, a scalar 
+quantity can be multiplied by an identity operator I that leaves a vector 
+unchanged, e.g. cI.  
+(<A|R|B>)* ≡<A|R|B>* = <B|R†|A>
+(11) 
+The equivalence is by QM convention, simply so that the round 
+brackets ( ) may be avoided, but in general the following is also 
+convention as part of the definition of bra and ket. Reversibility prin
+ciples require that if A and B are interchanged, the direction of action of 
+R must be reversed, which is by taking the adjoint. However, recall that 
+the postfix adjoint operator † = T* = *T. If R as a matrix is defined so that 
+RT = R*, which means that the representative matrix is symmetrical 
+around the main diagonal except that the elements above the diagonal 
+are complex conjugates of those below the diagonal, then R† = R and the 
+operator R is unchanged. Such an operator is called Hermitian. That is,  
+(<A|R|B>)* ≡<A|R|B>* = <B|R|A> = <A|R*|B>
+(12) 
+This also applies if the matrix is simply symmetrical around the di
+agonal and have no imaginary part on which complex conjugation can 
+act, as applies to the identity operator I and certain projection operators. 
+In which case one may speak of the operator and its matrix represen
+tation as trivially Hermitian. 
+2.5. Explicit representation of vectors 
+The above are useful symbolic manipulations: one need only do 
+arithmetic, and even traditional algebra, as a last step in calculation. In 
+discussion of vectors and matrices below, a linear horizontal form such 
+as [a, b, c, d] is used as is customary for the bra which is a row vector, but 
+with the transpose operator T used to indicated a column vector: [a, b, c, 
+d ]T such as a ket. Somewhat similarly, [a, b; c, d] is usually used to 
+represent a 2 x 2 matrix (note the semicolon). This flat notation is 
+convenient for keyboard input is used in Q-UEL applications and sup
+porting documents, but importantly it also relates to, facilitates, certain 
+useful notations described later in this paper, and gives clear definition 
+for conversion of binary vectors and matrices (with binary 0/1 elements) 
+to convenient decimal indices as also used later in this paper. For im
+mediate present purposes, it is helpful and sufficient to define operations 
+on vectors such as the inner product of a bra and ket analogous to the 
+vector dot product of mathematics, using elements distinguished by 
+indices such as in [a1, a2, a3, a4 …]. The essential nature of the explicit 
+form of the vectors is clarified in terms of their role in forming their 
+inner product, as follows.  
+<A|B> = <A| |B> = [a1, a2, a3, a4 …] [b1, b2, b3, b4 …]T = Σi(ai × bi) (13) 
+Note that we will often see ellipsis [a, b, c, d, …] or [a1, a2, a3, a4 …]. 
+This is because bras and kets are in generally potentially indefinite, in 
+the following sense. Although in many cases Dirac vectors and matrices 
+of specific size, such as 2 elements and 2 × 2 elements, have physical 
+meaning and relevance to quantum computing, physically meaningful 
+vectors can sometimes be of indefinite number of elements and may 
+even be continuous distributions without discrete elements, often 
+adequately represented by functional forms. So, for example, summation 
+operations involving vectors as in the formation products of bras and 
+kets are replaced by integrals. Recall here the more general relationship 
+between the braket and Ψ as a product of bra and ket is that <A|B> =
+∫dxΨ(A|x)Ψ(x|B), which is Bertlmann’s starting definition (e.g., 
+Ref. [55]). Unless there is a calculable functional form, however, a 
+digital computer cannot store a represntation of a continuum, and un
+fortunately there is no global rule as to the number of representative 
+elements. In mathematics, the dot product or scalar product is an alge
+braic operation that takes two equal length sequences of numbers and 
+returns a single number. 
+In the Q-UEL language in the programming mode that is being 
+developed, a somewhat tensor-like approach that is especially useful for 
+probability distributions there is no need to ensure that the number of 
+discrete elements in each matches a priori. For example, for two vectors 
+of 3 and 5 elements we can reproduce each element in the first m = 3 
+times and in the second n = 6 times. We “stretched them thinly”, that is, 
+by factors m/(mn) = 1/n and n/(mn) = 1/m respectively.  
+[a, a, a, a, a, b, b, b, b, b, c, c, c, c, c ] x (3 / 15) . [e, e, e, f, f, f, g, g, g, h, h, h, i, i, 
+i,]T x (5 / 15) = (ae + ae + ae + af + af + af + bg + bg + bg + bh + bh + bh 
++ ci + ci + ci]) / 15                                                                      
+(14) 
+Note the weight is (3/15) x (5/15) = 1/15. If we stretched them each 
+say twice as much, we would have weighs (6/30) and (10/30) respec
+tively we would obtain (60/900), but yielding the same result. A similar 
+treatment can be applied to matrix rows and columns. To avoid 
+continued increases in elements, a simple algorithm is thus applied after 
+vector operations, such that if every element in the vector is followed by 
+an element that has the same, then the second duplicate value is 
+removed, so halving the number of elements. The process is repeated 
+until it is not true that every element in the vector is followed by one of 
+same value. 
+Much of QM and certainly QC relates to elements of vectors that are 
+binary, i.e. 0/1. In QM, the origin of this in the fundamental nature and 
+importance of spin. Since QC is based on QM it is of course a dependent 
+relationship. For a spin 1/2 particle, there are only two possible eigen
+states of spin: spin up, and spin down. Spin up is denoted by X+ = [1, 0]T 
+and spin down by X- = [0,1]T. The numbers other than binary arise 
+because of superposition of states with different weights. However, 
+vectors and matrices as operators that have discrete elements can be 
+defined using bra-kets as elements because bra-kets represent scalar 
+B. Robson and J. St. Clair                                                                                                                                                                                                                    
+
+Computers in Biology and Medicine 143 (2022) 105323
+10
+complex or scalar real numbers. The issue is that the bra-kets applied in 
+reasoning can have algebraic and semantic meaning rather than simply 
+ways of representing a number. Such meaningful bra-kets can be used to 
+define bra-kets and bra-operator-kets, so the Dirac system is cyclically 
+self-defining. The important issue that arises that one is not in general 
+confined to envisaging states as all based on spin. An aspect of what is 
+meant by “meaningful” above is that the overall vector product, anal
+ogous to a dot product between vectors, implies products like <A|x><x| 
+B> between the elements from <A| and from |B>. Because the notation 
+<A| and |B> makes no mention of anything else that can be called x, 
+arbitrarily or otherwise, this raises the question of what it is. Tradi
+tionally in QM, it depends on a notion of an underlying universal 
+quantum state as underlying entity < Ψ | = [ψ1, ψ2, ψ3, …]  
+<A| = [<A| ψ1>, <A|ψ2>, <A|ψ3>, ….]                                        
+(15)  
+|B> = [<ψ1|B>, <ψ2|B>, <ψ3|B>, ….]T                                        
+(16) 
+In the everyday world of human experience, instead of thinking of Ψ, 
+one may think instead of a common factor on which A and B, and all 
+other states, strongly depend, e.g., clinical factors are dependent on age 
+and gender, but unfortunately not exactly because the product of bra 
+and ket is then only an estimate based on independency assumption that 
+A and B are randomly associated. This independency is a notion that can 
+be represented by considering a projection operator ? based on the 
+preparation observation state ?  
+<A|?><?|B> = <A| (|?><?|) B> = <A|?|B>
+(17) 
+If any process <A|x><x|B> were exact so that it resulted in <A|B>
+as normally defined, one would be able to compute the probabilities of 
+pairs (A, B) from the probability properties of each of A and B alone, 
+which would save a great deal of computational resource. 
+2.6. Unit vectors 
+Prior to application of the Born rule [57], the step in the Dirac recipe 
+of ket normalization of |B> to |B>’ to obtain P(A|B) formally involves 
+the following.  
+|B>’ = |B> / √<B|B>
+(18) 
+Here √<B|B> is often expressed as ||B||, called the norm of B. It has 
+the force of an observation that prepares |B> or sets it as a reference 
+point. Again, taking the complex conjugate of <A|B> and repeating on 
+<B|A> with B replacing A in the above account will generate P(B|A). 
+However, it is wise to keep in mind that the conventional use of the ket 
+in QM as the reference form is an arbitrary convention of “direction” 
+because the use of the above mathematics in a more general way allows 
+inference nets to work backwards and forwards, allows tests of consis
+tency between probability values called coherence (primarily meaning 
+that Bayes’ Rule is obeyed), and proper quantum computing is neces
+sarily reversible. A normalized vector such as |B>/√<B|B> has unit 
+norm and is therefor called a unit vector, B’. By definition, a unit vector | 
+B>/√<B|B> = [β1, β2, β3, …]T must satisfy the following  
+|B>’ = Σi | βi|2                                                                              
+(19) 
+Normalized vectors such as <A|A> as products of <A| and |A>
+satisfy <A|A> = 1. Use of Hermitian operators such as R = R† in <A|R| 
+B> requires that <A| and |B> are orthogonal, i.e., <A|B> = 0, except in 
+trivial cases such as identity matrix and a projection matrix. In Q-UEL, 
+one says that A and B are mutually exclusive. It remains, however, that we 
+say that <A|A> = 1. 
+2.7. Weights (coefficients) of a ket 
+Any ket such as |B> (and somewhat similarly a bra) in N-dimen
+sional space (i.e. concerning a problem with N states etc. to consider) 
+can be described by set of normalized vectors |i> distinguish by an index 
+i = 1,2,3, …, each one associated with a dimension i and so orthogonal 
+to each other, where complex numbers ci are called the components of 
+the vector |B>. That is, one may write |B> = Σi ci |Ii>. Evidently, co
+efficient ci is the weight of the contribution of each mutually orthogonal, 
+normalized ket. In effect, any general vector can be considered a su
+perposition of normalized states, as discussed later below. For 
+completeness at this point it may be noted that for superposition as 
+normally considered, the above equation will then typically take a form 
+such as the following, in which C and D are in superposition to produce 
+the “situation” that we see as B.  
+|B> = c1 |C> + c2 |D> + …                                                         
+(20) 
+Because two vectors including say ci |Ii > are multiplied to give the 
+bra-ket it is natural to consider that they are in some sense square roots 
+of a bra-ket and of the final probability, which is the origin of the 
+frequent appearance of square roots in QM. The weight as contribution 
+of state |i> re-expressed as a probability is thus given by P(i) = | ci |2. If 
+that is not so, it is normalized accordingly. Researchers are cautious 
+about attaching a meaning to a single ket with a single coefficient, and it 
+is the relative proportional value that matters. However, there is also an 
+interpretation of a coefficient in terms of the action of an operator in 
+general, say a relationship operator (relator) R. That is, R|B> = c|B>. 
+What is meant here is that is a special set of kets called eigenkets all called 
+|B> for which the above equality holds, also meaning that the operator 
+then only rescales the ket by a scalar factor, and the coefficients ci 
+associated with this special set are what is meant by the eigenvalues. 
+Recall the important case of a Hermitian operator, <A| and |B> must be 
+orthogonal, i.e. <A|B> = 0, except for trivial matrices such as identity 
+matrix and a projection matrix. Importantly, ci must be real when an 
+experimental observation R in <A| R |A> yields the expected value of a 
+physical measurement. Similar comments to all above concerning kets 
+also apply to bras, but note that  
+<B| c* = (c|B>)*                                                                          (21) 
+Consequently, where some authors write ci|B> as |ci B> or |B ci >, 
+one should note that 
+< B c| =< B|c*, |B >= c|B >
+(22) 
+If |B> is purely i-complex, it might be expected that the associated 
+coefficient is also so, but that is not in general true, as follows. 
+2.8. Dirac dualization, spinor projectors, and the importance of the 
+hyperbolic imaginary number h 
+Although an h-complex component to a probability amplitude might 
+seem as an exotic add-on feature, that is not the case in Dirac’s extension 
+of QM and the notation that he introduced to describe it. Every real or i- 
+complex bra-ket, bra, ket, and matrix as operator has a hidden dual 
+form. Dirac apparently attached great importance to this process called 
+dualization because it appears early in his book [1], as his equation 23 in 
+the second chapter, as follows,  
+|P> = ½ (1+σ) |P> + ½ (1-σ) |P>
+(23) 
+That equation by itself appears enigmatic, since ½ (1+σ) + ½ (1-σ) =
+1, and so, even though the result of operator times vector is not neces
+sarily obvious, one would expect that the above becomes trivially |P> =
+|P>, but Dirac taught that the two terms on the right here are eigenkets of 
+σ, relating to the eigenvalues of σ as 1 and -1 respectively, “whence they 
+do not vanish” [1]. Dualization is the basis of Quantum Field Theory, i.e. 
+the a basis of particle physics and, in large part, the origin of the 
+“standard model”. For that purpose, what makes the above non-trivial is 
+that above decomposition symmetry can be broken by imagining 
+interaction in an external field, for example as in the case when ½ (1+σ) 
+and ½ (1-σ) are interpreted as spinor projectors ½ (1+ γ5) and ½ (1- γ5). 
+B. Robson and J. St. Clair                                                                                                                                                                                                                    
+
+Computers in Biology and Medicine 143 (2022) 105323
+11
+Note that σ, γ5 and several other analogous entities or flavors such as 
+γ0 (γtime), all share the hyperbolic property of the imaginary number h 
+such that hh = +1, i.e. that that their square is +1. The present author 
+writes the general basic spinor projector as ι = ½(1+h), whence its dual 
+is ι* = ½(1-h). Using the multiplication rules of the Dirac notation and 
+this notation, the above dualization of the ket (still prior to symmetry 
+breaking) can be expressed as follows.  
+<A|B> = ½ [P(A|B)+P(B|A)] + h ½ [P(A|B)-P(B|A)] = ι<A|B> + ι*<A|B>
+(24) 
+The spinor projectors ι = ½(1+h) and ι* = ½(1-h) have the following 
+important properties that make proofs and calculations involving ιx and 
+ι*y (where x and y are real numbers) easy: the idempotent property ιι ¼
+ι, ι*ι* = ι*, the annihilation or nilpotent property ιι* = ι*ι = 0, and the 
+normalization property ι+ι* = ι*+ι = 1. A consequence is that f{x, y} =
+{f (x), f (y)} for most functions and operations of interest here and any 
+real or i-complex numbers x and y. Note that {x, x} = x, a scalar real 
+value, when x is real, or scalar i-complex if x is i-complex. So armed, one 
+may readily perform, or write programs for, computations involving h- 
+complex probability amplitudes. It is then easy to prove that ι<A|B> +
+ι*<A|B> is equivalent to ιP(A|B) + ι*P(B|A) (that is not trivial) by the 
+definitions given above, because of the idempotent and annihilation 
+properties. However, if <A|B> is i-complex, ι<A|B> + ι*<A|B> is ul
+timately hi-complex, and in any manipulation, note that ih = -hi. 
+2.9. Matrix analogues of h 
+Remarkably, imaginary numbers with the character of h already play 
+hugely important, indeed key, roles in QC, but in the form of their matrix 
+equivalents. In general, the action of any imaginary number can be 
+represented by a matrix. For example, i as the familiar square root of 
+minus one can be represented by matrix [0,-1; 1,0], and its square as the 
+product of the matrix with itself is -I, the matrix [-1,0; 0,-1]. It is the 
+negative form of the identity matrix I = [1,0; 0,1], the analogue of 1, 
+such that -I is the analogue of −1. “Analogue” is somewhat misleading 
+because one can legitimately write I|B> as 1|B> and -I|B> as −1|B>
+since both give |B> and -|B> respectively in the usual interpretation. For 
+example, Dirac saw σ, his counterpart of h, as a linear operator with 
+eigenvalues 1 and -1, and nonetheless he wrote σσ = 1. It remains that 
+one may more properly consider the matrix algebra counterpart of the 
+expression hh = 1 to be, say, HH = I, where I is again the identity matrix. 
+This is true of a number of matrices that are Hermitian and unitary, i.e. H 
+= H† and HH† = I, so that the consequence is HH = I. Typically, then, 
+one either writes expressions with imaginary numbers and algebraic 
+operators, or with vector and matrix counterparts, and the two versions 
+may be considered as the same thing in different languages. 
+To discuss that, recall first that imaginary numbers can have various 
+flavors that show up only when they are multiplied with each other, and 
+with the important property that successive multiplications return the 
+imaginary number to one in the original set of flavors. Notably, i has 
+seven important flavors as shown in the multiplication table represented 
+by Fig. 2. It is used in the more familiar i-complex octonion, where the 
+flavors are often indicated by e. 
+There are five matrices of particular interest here as having the same 
+hyperbolic property hh = 1, which in traditional and current notations 
+are as follows. 
+H =
+(
+1/
+̅̅
+2
+√)(
+1
+1
+1
+−1
+)
+=
+(
+1/
+̅̅
+2
+√)
+[1, 1; 1, −1]
+(25)  
+σx =
+(
+0
+1
+1
+0
+)
+= [0, 1; 1, 0]
+(26)  
+σy =
+(
+0
+−i
+i
+0
+)
+= [0, −i; i, 0]
+(27)  
+σx =
+(
+1
+0
+0
+−1
+)
+= [1, 0; 0, −1]
+(28)  
+I =
+(
+1
+0
+0
+1
+)
+= [1, 0; 0, 1]
+(29) 
+They all square to give identity matrix I, i.e., in the linear text no
+tation [1,0; 0,1] used in Q-UEL, HH = I, σx σx = I, σy σy = I, σz σz ¼ I, 
+and II = I. That format is not strictly Q-UEL and the standard keyboard 
+font used there replaces σx, σy, and σz by X, Y, and Z, which also happens 
+to be the standard notation used in QC for the corresponding important 
+computer gates as discussed later below. Note that all the above with the 
+exception of the identity matrix and matrix of zero elements can in be 
+associated with the concept of spin of fermions such as the electron. The 
+forms analogous to ½(1+h) and ½(1-h), say projection matrices ½(I + H) 
+and ½(I–H), often written as ½(1+H) and ½(1-H), are examples of the 
+spinor projectors introduced earlier above that instead had the idempotent 
+property ιι = ι, ι*ι* = ι*. In Q-UEL publications, they are often identified 
+specifically with spinor projectors ½ (1+ γ5) and ½ (1- γ5) well-known in 
+particle physics, but this is not the universal form of a spinor projector in 
+quantum field theory and hence particle physics. Other imaginary 
+numbers or matrices with the hyperbolic property, such that the 
+resulting expression has the idempotent property, may be seen. Used in 
+the absence of other hyperbolic imaginary numbers and corresponding 
+matrices, one can simply think of it as "the hyperbolic imaginary 
+number". 
+In QC, a gate with the character of H (Eqn. (25)) is the Hadamard 
+gate, arguably the fundamental basis of quantum computing. As an 
+important flavor of h, it is happily called H. Stated in brief, it is 
+important because a particle needs to be brought into a superposition 
+state, creating a working qubit, as discussed in more detail later below. 
+However, an H gate does not always create superposition. It just rotates 
+Fig. 2. Multiplication Table of Flavors of i (i-complex Octonion).  
+B. Robson and J. St. Clair                                                                                                                                                                                                                    
+
+Computers in Biology and Medicine 143 (2022) 105323
+12
+all state vectors by 45◦, so when one has a state that is colinear to a 
+component of the vector basis, and one measures it, this state vector 
+always will collapse to the basis vector to which it is colinear, and so one 
+measures this state with a probability of 1. Nonetheless, the Hadamard 
+gate is also a well-known gate in quantum computing that is used to 
+create superposition: it turns |0〉 into ½ (|0〉+|1) and |1〉 into |0〉 into ½ (| 
+0〉+|1>. (26-28) the Pauli spin matrices, are in many respects simpler 
+since they purely related to spin in directions x y and z, and that the 
+square is the identity matrix is something that may be expected for a two 
+half rotations. Eqn. (29), the identity matrix in same format, is the 
+simplest and might be considered as the only trivial square root of i. 
+The 4×4 Dirac gamma matrices are related, and γ0, and γ5 = i γ0 γ1 γ2 
+γ3 which the present author often identifies with h because of its 
+appearance in spinor projectors in physics often written ½ (1+ γ5), ½ (1- 
+γ5). Both have γ0 and γ5 are Hermitian and unitary and so also have the 
+idempotent property, e.g. γ5 γ5 = I. γ0 in Dirac’s mathematics is involved 
+with time. The remaining matrices γ1, γ2 and γ3 are anti-Hermitian and 
+involved with the three dimensions of space. However all can be 
+considered as built from Pauli matrices and identity and all-zero 
+matrices along with multipliers 1,-1, and i as a special kind of product 
+discussed later below. For example, and importantly, γ0 = [I,0; 0,-I] and 
+γ5 = [0,I; I,0]. 
+Although the Hadamard operator H seems the most interesting of all 
+matrices discussed here in the sense that it has the hyperbolic hh = 1 
+property and can generate superposition of states, it is also arguable that 
+the Pauli spin matrices are fundamental because all 2 × 2 matrices 
+including H and I can be generated from them and I by a weighted sum 
+with real or complex coefficients c, and all other n x n matrices of in
+terest to quantum computing can be formed from (Kronecker) product 
+which in quantum computing is the implementation of gates in parallel 
+as discussed later below.  
+G = c0 І + c1 σx + c1 σy + c2 σz                                                     
+(30) 
+There is an h-complex octonion analogous to the more familiar i- 
+complex one in Fig. 2. This h-complex counterpart is shown in Fig. 3. It 
+has been mentioned briefly in various Q-UEL publications because on 
+the understanding that it potentially forms the basis of a higher order of 
+logic that relates to the parsed structure of sentences. Since there are 
+four non-trivial square roots of the identity matrix (i.e., excluding i), it is 
+tempting to consider that formed by multiplying the three Pauli matrices 
+by H one can generate three further of the seven required flavors of h, 
+giving altogether σx, σy, σz, H, σu = Hσx, σv = Hσy, σw = H σz, seven 
+imaginary numbers satisfying the multiplication table for flavors of h to 
+produce the table in Fig. 3. 
+As discussed in a somewhat different (j) notation in Section 2.4, most 
+systems of multiplication of interest in physics that are not commutative 
+(e.g. ab = ba) are anticommutative (e.g. ab = -ba) [52], while squares 
+a2 etc. give some fundamental number such as 0, 1,or −1 (in particular, 
+we here hoped for 1). This is not the case with the Pauli and Hadamard 
+matrices. There are still interesting properties, as follows, that reflect a 
+potentially useful algebraic system that clearly relates to an intriguing 
+cyclic system of rotations and exotic logic system in an abstract sense, 
+for example σx σy σz = −1, but it is not obviously directly related to the 
+related to the h-complex octonion satisfying the multiplications of Fig. 3. 
+σxσy = σyσx = iσz
+σyσz = σzσy = iσx
+σzσx = σxσz = iσz
+σxH =
+(
+1/
+̅̅
+2
+√)
+=
+(
+1
+−1
+1
+0
+)
+= Hσz
+σyH =
+(
+1/
+̅̅
+2
+√)
+=
+(
+−i
+i
+i
+i
+)
+= −Hσy
+σzH =
+(
+1/
+̅̅
+2
+√)
+=
+(
+1
+1
+−1
+1
+)
+= Hσx
+(σxH)2 =
+(
+0
+−1
+1
+−1
+)
+(Hσx)2 =
+(
+0
+1
+−1
+0
+)
+= (σzH)2 = −(Hσz)2
+( σyH
+)2 = −I =
+(
+Hσy
+)2
+(31) 
+The above are also of interest because a combined Musean super- 
+table combining the i-complex and h-complex flavors is sometimes 
+considered as representing or approaching a limit of complexity in 
+algebra when it ceases to function with utility, but that is not entirely 
+clear in the light of the above algebra. Some authors have stated that 
+octonions are the limit before algebra breaks down, but those addressed 
+were based on flavors of i, which are not the whole story. 
+H, which can generate superposition, and its counterpart h relate to 
+quantum computing as fundamentally as i. They make explicit the 
+bidirectionality and reversibility of quantum computation (with the 
+exception of the process of observation or measurement as discussed 
+below). For immediate purposes, it is significant to note that, because of 
+the above matrix definition, the dualization form is also expressible as 
+follows, in which the spinor projectors can properly be seen as operators.  
+|B> = ½ (I + H) |B> + ½ (I–H) |B>
+(32) 
+Here ½ (I + H) and ½ (I–H) are matrices that are analogues of ι and 
+ι*, The form of the operator as the choice (√ ½) [1, 1; 1, −1] is the 
+choice such that  
+H = (√½) (|0>+|1>)|0> + (√½) (|0>−|1>)|1>
+(33) 
+H|0> = |+> and H|1> = |->, and states (√½) (|0>+|1>) = |+>
+Fig. 3. Multiplication Table of Flavors of h (h-complex Octonion).  
+B. Robson and J. St. Clair                                                                                                                                                                                                                    
+
+Computers in Biology and Medicine 143 (2022) 105323
+13
+and (√½) (|0>−|1>) = |- > relate to a popular polar basis in quantum 
+computing. They are vectors that have analogy to spinor projectors ι and 
+ι*, as do matrices ½ (I + H) and ½ (I–H). 
+2.10. Exponential forms as the physical forms 
+In QC, the wave state described in terms of i-complex functions is 
+seen as the reality, not just as a mathematical perspective. Dirac also saw 
+his linear operator σ, analogous to h, as no less physically real (his 
+Chapter 2 and equation (23)) [1], but that is perhaps harder to see. In 
+QM, the probabilities are derived ab intio by first computing a physical 
+quantity called the action, such as position times momentum of a par
+ticle, or energy times time. When these multiplied components are 
+identified with A and B, they are conjugate variables, because the value of 
+one determines the probability of the other classically, and only 
+partially, subject to Heisenberg’s uncertainty principle, in QM. 
+Expressed in units of Planck’s constant h, this action AB essentially be
+comes mutual information I(A; B) = ln(P(A,B)/P(A)P(B)), so that in 
+appropriate information units  
+P(A) ej2π I(A;B) → P(A|B), P(B)ej2π I(A;B) → P(A|B)                             
+(34) 
+That is, in probability dual notation,  
+{P(A), P(B)} ej2π I(A;B) → {P(A|B), P(B|A)}                                      
+(35) 
+In the case of j as i, such that ii = −1, one obtains a periodic, i.e., 
+wave, function.  
+e i2π I(A;B) = cos(2πI(A; B)) + i sin(2πI(A; B))                                   
+(36) 
+Because of the periodicity, i-complex state vectors are usually 
+defined only up to a global phase that is typically considered not to be 
+physically significant, πI(A; B) = I(A; B). In the case of j as h, a split- 
+complex or hyperbolic number such that such that hh = +1, one ob
+tains a hyperbolic function. We usually write as follows:  
+eh I(A;B) = cosh(I(A; B) + h sinh(I(A; B)                                          
+(37) 
+There may be more than one imaginary number involved. For 
+example, it is readily possible to show the following, albeit at first 
+perhaps a counterintuitively simple result.  
+e+hi I(A;B) = e-ih I(A;B) = cosh(I(A; B)) + hi sinh(I(A; B))                    
+(38) 
+Dirac rediscovered h though expressed it in different, often matrix, 
+forms, and is the basis of Dirac dualization. Any bra-ket such as <A|B>
+can be split into two components that coexist. For the above equation, 
+that means that  
+e+hi2π I(A;B) = e-ih2π I(A;B) = ι e+ i2π I(A;B) + ι* e-i2π I(A;B)                     
+(39)  
+2.11. Collapse of the wave function (state reduction) 
+Matrices and potentially gates analogous to h are found in QC; they 
+are also important in AI, and it is necessary to see why. In some sense, 
+collapse of the wave function is a conceptual inverse of the action of the 
+Hadamard gate and gates based on it that can generate superposition of 
+states. However, the inverse relation is only conceptual for several 
+reasons, and notably that the Hadamard operator and gate is reversible: 
+recall HH = I. Collapse of the wave function or decoherence imply the 
+action of a distinct operator, say M for measurement, which differs from 
+all other quantum mechanical operators considered here because it 
+often said irreversible (but see below). It is a state reduction operator R as 
+envisaged by Penrose [52], but R is used in this paper to have a more 
+general meaning concerning a relations between state descriptions. 
+Depending on the system envisaged, however, some operation following 
+such as HM is required to restore superposition, or it spontaneously 
+develops after the measurement and the system is unobserved. In either 
+case, the superposition of states “starts afresh”. 
+The implications may be understood as follows. Superposition is in 
+the fundamental nature of QM as wave mechanics that when one cannot 
+see or impose intermediate events in a process, all apply in super
+position. In the Feynman-Gibbs discussion of the Feynman path integral, 
+parallel paths for a particle would give an overall probability related to 
+|<A|B> + <B|C>|2 but forcing an observation of one path would yield 
+|<A|B>|2 or |<B|C>|2. This is for the traditional i-complex case, when 
+one is dealing with QM as wave mechanics. Similarly, in the i-complex 
+case, an inference net <A|B><B|C> has a probability related to <A| 
+B><B|C>(<A|B><B|C>)* following normalization by the Dirac recipe 
+discussed above, which in that i-complex case can be expressed as |<A| 
+B><B|C>|2. If, however, a measurement occurs involving B, this be
+comes (<A|B><B|A>) (<B|C><C|B>), which in that i-complex case 
+can be expressed as |<A|B>|2 |<B|C>|2. The latter is essentially the 
+classical result. It is readily shown that one cannot take the product <A| 
+B><B|C> using  
+<A|B> → {P(A|B)P(B|C), P(C|B)P(B|A)} = {P(A|B), P(B|A} × {P(B|C), P(C| 
+B)}                                                                                              
+(40) 
+To obtain probabilities when the bra-kets are i-complex, the more 
+elaborate QM calculations for the final observable probabilities are 
+required. But as indicated in the previous Section, one can do so easilly 
+in the purely h-complex case. The notion that this depends on inter
+rupting the overall inference process with an observation (measure
+ment) can be understood as follows. 
+The expression e+hi2π I(A;B) introduced in the preceding Section had 
+conjugate symmetry, such that multiplication with its complex conju
+gate gives 1. One imagines that this is perturbed into more interesting 
+values by interaction with an external field, including an observation/ 
+measurement. It is a process that is the physical counterpart of the Dirac 
+recipe involving ket normalization. Another perspective based on Dir
+ac’s idea of a linear operator σ with the σσ = +1 property is that h has 
+eigenvalues −1 and +1, which means that the spinor projectors ι and ι* 
+can each taken solutions as 0 or 1, or 1 or, 0, respectively, so we are 
+moderately free to pick a physically meaningful eigensolution. As a more 
+specific physical model of how collapse leads to physical behavior, 
+consider that we start with the purely i-complex bra-ket that expresses 
+Schrodinger’s purely wave mechanical description, and apply a Lorentz 
+rotation i → h (in effect, replacing one imaginary number by the other) 
+to obtain P(A) e−2π I(A;B). Prior to normalization, eh2πI(A;B) = ιe+2πI(A;B) +
+ι*e−2πI(A;B). With appropriate normalization, allows us to consider the i- 
+complex aspect responsible for wave character to vanish, along with the 
+celebrated aspects of weirdness such as superposition of states, negative 
+reinforcement, and nonlocality, though they do have classical ana
+logues. The uncertainty principle based on the Planck constant h is in 
+general replaced by standard deviation based on precision of measure
+ment, but remains as dictating the consequences of the most precise 
+measurement possible. For example, If I(A; B) expresses position x and 
+momentum as mass m with velocity v, i.e. if, in standard information 
+units, I(A; B) = 2πmv/h = 2πmx2/ht, then e−2π I(A;B) becomes a normal 
+distribution in which observation of the position of the particle of mass 
+m is located distance x or -x from a starting point after time t. Without 
+measurement in the time t, i.e., without looking, it may be predicted to 
+occur at a distance x from the starting point with a particular probability 
+P given by the normal distribution. With longer periods t between each 
+measurement, the standard deviation is greater, so the process has an 
+interpretation in the classical everyday world of human experience as 
+essentially diffusional 
+The Lorentz rotation i → h can be regarded as a generalization of the 
+widely used Wick rotation t → -i t in which time t in the action is 
+replaced by so-called “imaginary time” -it. However, the latter would 
+not appear to offer such an elegant explanation for collapse of the wave 
+function, and in any event it does not lead to a very useful perspective 
+B. Robson and J. St. Clair                                                                                                                                                                                                                    
+
+Computers in Biology and Medicine 143 (2022) 105323
+14
+and system of algebra based on h. Normal familiar everyday logic ap
+plies after collapse of the wave function due to an observation (mea
+surement), which is easy to demonstrate because the resulting so-called 
+classical form can employ P(A|B) and P(B|A) as empirical probabilities. 
+Classical logic including categorical and syllogistic logic, in probabilistic 
+form, follows from the above. Re<A|B> (the real part of <A|B>) rep
+resents an existential or “some” component, and Im<A|B> (the imagi
+nary part) a universal or “all” component, to any statement. <A|B><B| 
+C> is analogous to a simple syllogism that if all A are B, and all B are C, 
+then all A are C, but all syllogisms and logical rules and definitions can 
+be represented by other expressions built from bra-kets. As noted above, 
+however, it is easy to show that this simplicity is not available for the 
+more familiar i-complex bra-ket. Nonetheless, Feynman-like rotations 
+are still possible in the h-complex case, generating the variety of syllo
+gism forms in Fig. 4 (where symbol ~ is used as an abbreviation for not). 
+The above logic extends to semantics, and enables a probabilistic 
+semantics. A fuller approach to a richer probabilistic semantics for use in 
+the everyday world of human experience relates to Dirac’s bra-operator- 
+ket and also to the semantic triple. Recall also that any relationship can be 
+employed if in actuality, or in principle, it can be represented by an 
+operator and more specifically a matrix (which is usually a Hermitian 
+one so that <A | R | B> = (<B| R | A>)* = <B | R* | A>). Here R* would 
+correspond to, for example, active-passive inversion of a verb. The use of 
+<A|, |B> as vectors and R as a matrix is important for representing 
+probability distributions, but the ingenuity of the Dirac notation is that 
+<A | R | B> etc. is an entity that can usually be adequately manipulated 
+symbolically and implies two adjoint probabilities, and this is sufficient 
+for the present paper. Also sufficient for most of the paper are the general 
+conditional interpretation <A| B> = <A | if | B>, the categorical inter
+pretation <A| B> = <B | are | A>, and (where appropriate) the causal 
+interpretation < A|B> = <B| causes | A>, as well as relationships that 
+can be related to these as far as counting and probability are concerned. 
+Finally, a cautionary note should be added not to apply some con
+cepts from different fields that make assumptions, usually about inde
+pendence, that are often unwarranted. Assumptions of d-separation and 
+independence of parent nodes in Bayes Nets has already been mentioned 
+in Introduction Section 1.5. With h-complex bra-kets and/or bra- 
+operator-kets as edges, we may form a probabilistic graph as an infer
+ence net [19,20,28,30]. Unlike a Bayes’ Net which is confined to a 
+Directed Acyclic Graph (DAG), it may be a Bidirectional General Graph 
+(BGG). Consider a graph with two edges <A | f | B> and <B | g | C>
+joined at node B. It cannot simply be said that this gives <A | h | C> as 
+<A | fg | C> as category theory (re-expressed in the present notation) 
+would require. This is because taking category theory at usual first 
+impression would automatically treat A and C as independent. What we 
+have here is that |B><B| form an outer product in Dirac notation, a 
+projection matrix B = |B><B|, such that we obtain < A |f B g |C>. It 
+remains that A and C are not directly dependent on each other. Inference 
+nets are, in general, estimates when exact calculation is not possible 
+because of data limitations. The estimates involve independency as
+sumptions, notably that A and C are independent in the above example. 
+We may conceive of a correction term for <B|X><X|B>, that is in <A | f 
+| B><B|X><X|B><B | g | C>. Because <B|X> = <X|B>*, <B|X><X| 
+B> can only be a real number, which simply rescales <A | f | B><B | g | 
+C> and is not a general correction. However, if one avoids such use of a 
+projection matrix by using, for example, <A | f | B><B|X><Y|B><B | g 
+| C> with relator R = |X><Y| that is not a projection matrix, then 
+correction is by a complex value. 
+3. Methods: qubits and gates 
+3.1. Bits and qubits 
+For the foreseeable future, and from the Q-UEL perspective, the QC 
+part of computation is likely to be confined to QC processes embedded in 
+a much larger environment of classical and/or h-complex digital 
+computation. Acting on h-complex values, the matrices that are realized 
+as QC gates can serve to describe relationships R, as in <A|R|B> in that 
+environment, while when realized as QC gates they define the operator 
+expression that represents the basic code that is usefully executed as the 
+Fig. 4. Relation of syllogisms to Feynman rotations.  
+B. Robson and J. St. Clair                                                                                                                                                                                                                    
+
+Computers in Biology and Medicine 143 (2022) 105323
+15
+true QC program. Some notational aspects borrowed from Q-UEL are as 
+follows. In machine coding in the classical digital computing case, it is 
+often helpful to use a decimal notation for the state description which is 
+the decimal value of a state. Also, PEEK and POKE are commands used in 
+some high-level programming languages for accessing the contents of a 
+specific memory cell referenced by its memory address specified in 
+decimal. For the classical counterparts of qubits as bits, one might use s 
+(0) for [0,0], s(1) for [0,1], s(2) for [1,0], and s(3) for [1,1] (this 
+particular approach implies big-endian format which stores the most 
+significant bytes first). Normalization and vectors of all zero elements 
+(called null vectors) are discussed later below. This defines the names Q- 
+UEL operators in this group, and this will help in discussion of quantum 
+computation operators realized as gates which contain many binary 0/1 
+elements as developed shortly below. However, it is of more limited 
+value for states generated in quantum computing, understandable as i- 
+complex values, on which the gates act. QM allows a weighted super
+position of states, which might imply, for example, [0.62, 0.93]. 
+As the basis, the classical case of bits 0/1 is still being discussed here 
+first. In traditional digital computing, a bit as a classical unit of infor
+mation can be considered, in the notation of Section 2.1, as confined to 
+attributes b:=0 and b:=1, in which the only operations of identity 0 → 0, 
+1 → 1 and negation 0 → 1, 1 → 0. Classically, within this two binary 
+element description, one is confined to s(0) up to s(4), i.e. [0,0], [0,1], 
+[1,0], [1,1]. The popular notation in quantum computing, even when 
+discussing the basis in classical binary digits, is to use |0> and |1> such 
+that |0> = [1,0]T and |1> = [0,1]T
+. With the bra and ket we now can 
+express this in current attribute notation as, for example,  
+|b:=0 > = [1,0]T, |b:=1> = [0,1]T                                                   
+(41) 
+Following the above vector definitions for attributes b: = 1 and b: =
+0, we obtain the following as the brackets as products.  
+< b:=1| b:=1> = 1; < b:=0| b:=1> = 0; < b:=1| b:=0> = 0; < b:=0| 
+b:=0> = 1                                                                                   
+(42) 
+Mapping the attribute value to the h-complex probability amplitude, 
+recalling that {x,x} = x, a real value, one may define the following. 
+< b: = 1 | identity | b: = 1 > = 1; < b: = 0 | identity | b: = 1 > = 0;
+< b: = 1 | identity | b: = 0 > = 0; < b: = 0 | identity | b: = 0 > = 1
+< b: = 1 | negation | b: = 1 > = 0; < b: = 0 | negation | b: = 1 > = 1
+< b: = 1 | negation | b: = 0 > = 1; < b: = 0 | negation | b: = 0 > = 0
+(43) 
+So far, the above account is classical, and applicable to bits. Using the 
+Hadamard gate discussed earlier above, we can obtain a superposition of 
+binary states. In general, we might write the superposition as follows, 
+the bits b becoming qubits q in the attributes.  
+|q:= 0…1 > = α| b:= 0> + β|b:= 1>
+(44) 
+Measuring a single qubit (which as noted earlier above is often said 
+to be irreversible, in which case it would not be a quantum gate oper
+ation), when quantum state is represented by the vector, will result in | 
+b: = 0> with probability |α|2, and in |b:=1> with probability |β|2. The 
+coefficients α and β can be i-complex. If they start in a bit state such as 
+[1,0], a Hadamard gate converts this to [½, ½], and a Pauli spin matrix Y 
+will convert that to [-i, i]. 
+The following describes the purely binary 0/1 2 x 2 operators, say in 
+general G, extending the above s( ) notation, reading the binary from the 
+convenient linear matrix format employed in Q-UEL applications. These 
+can act on a single qubit [x,y] and be used as the building blocks of larger 
+matrices. 
+G(0) = [0,0;0,0];G(1) = [0,0;0,1];G(2) = [0,0;1,0];G(3) = [0,0;1,1];
+G(4) = [0,1;0,0];G(5) = [0,1;0,1];G(6) = [0,1;1,0];G(7) = [0,1;1,1];
+G(8) = [1,0;0,0];G(9) = [1,0;0,1];G(10) = [1,0;1,0];G(11) = [1,0;1,1]
+G(12) = [1,1;0,0];G(13) = [1,1;0,1];G(14) = [1,1;1,0];G(15) = [1,1;1,1]
+(45) 
+In general we may define e.g. G(n), with an example for a sequential 
+operation (a single channel in QC) as G(m)G(n). To reach the superpo
+sitions state |q: = 0…1 > from binary vectors of only 0s and 1s, a su
+perposition for all permissible values of α and β is allowed by means of 
+the Hadamard gate H = (1/√2) [1, 1; 1, −1] introduced earlier above. 
+This does not have a simple binary element form, though one can 
+construct it as (1/√2) (G(1)-G(15)). After applying the Hadamard gate 
+to a qubit that is in the |b:¼0> state, the qubit enters a new state where 
+the probability of measuring 0 is (1/√2)2 = ½. Here the probability of 
+measuring 0 is equal to the probability of measuring 1. 
+3.2. Serial and parallel operations in computation networks 
+Not all operations act on just one qubit as a 2-element vector. It is 
+common practice to think of quantum computing in the manner of a 
+quantum circuit. If one thinks of serially wired gates in a quantum cir
+cuit, normal sequential matrix multiplication applies, e.g. XY, or in 
+general, in the notation used above, G(m)G(n), so that the number of 
+qubits and elements in the area that is output is the same as in input. 
+There is a point to note when the product G(m)G(n) is not Hermitian, i.e. 
+G(m)G(n) ∕= (G(m)G(n))† (even the product of two Hermitian matrices G 
+(m) and G(n) is not necessarily Hermitian, i.e. if that is the case). 
+Because the ket such as |B> as opposed to bra <B| is by convention seen 
+as the state vector for B and the state that is prepared in most discus
+sions, it sometimes becomes a bra when used in the desired algebraic 
+sequence of processing. By that is meant that G(m)→G(n) acting on bra 
+<B| is to be calculated as < B|G(n)G(m) = (<B|(G(n)) G(m). If one really 
+means a ket, then by that is meant that G(m)→G(n) acting on say |B> is 
+G(n)G(m)|B> = G(n) (G(m)|B>). Consequently, <A| G(n)G(m) |B> is 
+what is meant in general. Section 3.4. gives an example that makes this 
+clear. 
+However, a quantum circuit is not usually a simple sequence but a 
+kind of inference network, in general a Bidirectional General Graph 
+(BGG). Channels in parallel imply a vector that is a concatenation of the 
+vectors associated with each channel, and the number of 0/1 elements is 
+the sum of the number in each channel. Defining say |Zero> = [0,0] and 
+|One> = [1,1], will allow concatenation along with |b:=0 > and |b:=1 
+> in a manner like that in assembly of a block matrix, e.g. [ |Zero>, | 
+One>, |b: = 0> ], though normally these will be seen as variable with 
+values determined by the channel state. The more general idea is that 
+gates in parallel require the tensor (Kronecker) product of matrices 
+which builds a general block matrix such that for example G(m) = [a1, 
+a2; a3, a4], G(n) = [b1,b2; b3, b4] the product is [a1 G(n),a2 G(n); a3 G(n), 
+a4 G(n)]. It is more general in the sense that used for identity matrices I 
+one obtains an I with more elements, and if G(m) and G(n) are rein
+terpreted simply as vectors, [a1G(n),a2 G(n)] applies. Stated explicitly,   
+[a1G(n), a2Y; a3Y, a4Y]
+= [a1[b1, b2; b3, b4]; a2[b1, b2; b3, b4]; a3[b1, b2; b3, b4], a4[b1, b2; b3, b4]]
+= [a1b1, a1b2, a1b3, a1b4; a2b1, a2b2; a2b3, a2b4; a3b1, a3b2, a3b3, a3b4; a4b1, a4b2; a4b3, a4b4]
+(46)   
+B. Robson and J. St. Clair                                                                                                                                                                                                                    
+
+Computers in Biology and Medicine 143 (2022) 105323
+16
+To see how these operators are used in serial and parallel, recall the 
+general form of the bra-operator-ket using Q-UEL: < subject expression | 
+relationship expression | object expression>. The circuit interpretation is 
+most easily understood as the relationship expression, because the cir
+cuit can be identified as an operator, albeit potentially a very elaborate 
+one. If G(j) and G(k) are in series, and G(l) and G(m) are in parallel, and 
+G(n) is back in series with G(j) and G(k), then we may write 
+<A| G(j) G(k) (G(l), G(m)) G(n) |B>
+There are differences between the round bracket ( ) notation and the 
+square bracket notation, but they may be mixed, e.g. any of all of G(j), G 
+(k), G(l), G(m) could be replaced by an explicit description in the [ …, 
+…; …, …] notation, if the matrices are 2 × 2 as above. However, note 
+that the result of that operation is a 4 × 4 operation, so G(n) needs to be a 
+4 × 4 matrix in this case. To make this clear, we can extend the G no
+tation, seeing G(j), G(k), G(l), G(m) as the default meaning G2(j), G2(k), 
+G2(l), G2(m) and G(n) as G4(n). 
+<A| G2(j) G2(k) (G2(l), G2(m)) G4(n) |B>
+It is required to be reversible for quantum computation. By 
+“reversible” here is meant that there exists an adjoint form, which is in 
+this case as follows. 
+<B| G4(n)† (G2(m)†, G2(l)†) G2(k)† G2(j)† | A>
+Although as stated above the focus is on i-complex expressions for 
+the moment, the two above forms can be expressed as coexisting wave 
+functions in a dualization, as an hi-complex probability amplitude. 
+ι<A| G2(j) G2(k) (G2(l), G2(m)) G4(n) |B> + ι*<B| G4(n)† (G2(m)†, 
+G2(l)†) G2(k)† G2(k)† | A>
+Writing G2(j) G2(k) (G2(l), G2(m)) G4(n) as a single operator say R 
+etc. we are concerned with a net work as a graph where A and B etc. are 
+nodes and the edges composed of bra-operator-kets such as <A|R|B>. A 
+simple serial example is <A|R|B><C|R|D>, and a branch point is 
+exemplified by <A| R |B,C> (<B| S |D>, <B| S |D>). Typically, an HDN 
+looks like a Bayes Net in which brackets and bra-operator-kets can 
+replace conditional probabilities, but a Bidirectional General Graph, 
+possibly including cycles (without iteration), is allowed [28]. Con
+struction is slightly more complicated than for a Bayes Net as it makes 
+far fewer assumptions concerning independencies. For rules of HDN 
+network construction and the semantic significance of operators, see the 
+bibliography of Q-UEL and HDN papers by the present author and col
+laborators in the References, but particularly Refs [19,20,29,30]. 
+3.3. Matrices commonly realized as gates in quantum computing 
+In addition to the Hadamard gate H = (1/√2) [1,1; 1,-1] that gen
+erates superposition of binary elements, commonly used gates in 
+quantum computing that are as follows. The 2 × 2 operators that act on a 
+single qubit in a channel are given first. Note that while the Pauli X 
+matrix is G(6) and the remaining can be defined by algebraic expressions 
+using the G( ) notation, there is no great advantage in this case. The Pauli 
+matrices (traditionally used in QM for particle spin) are prominent, and 
+have the property of squaring to the identity operator I.  
+X = [0,1; 1,0] (Pauli-X); Y = [0,-i; i,0] (Pauli-Y); Z = [1,0; 0,-1] (Pauli-Z) (47) 
+There is a special class of control gates are adjustable gates, where one 
+or more qubits act as a control for some operation. They are possibly 
+currently more important in the form of the larger Cphase gate matrix 
+discussed below, which act on two cubits. The phase shift gate family of 
+single-qubit gates map the basis states |0> → |0> and |1> → eiψ]|1>. 
+The probability of measuring a |0> or |1> is unchanged after applying 
+this gate, but it modifies the phase of the quantum state. P gates are as 
+follows.  
+P(ψ) = [1,0; 0, eiψ] (Phase shift gate)                                               
+(48) 
+Compare the phase gate S = [1,0,0,i] where the value of the i-com
+plex element is fixed. There is a commonly used gate called T which is 
+not a control gate because ψ is fixed as π/4.   
+P(π/4) = T = [1,0; 0,eiπ/4]                                                              
+(49) 
+In fact, P gates move toward being universal 2 × 2 gates and building 
+blocks for larger gates because the following could always be set to 
+generate other gates.  
+P(0) = I; P(π) = Z; P(π/2) = S = √Z; P(π/4) = T = √S = 4√Z       (50) 
+There are other equivalences that can usefully be used in conjunc
+tion, for example, H = X√Y and H = √YZ. The G( ) notation becomes 
+more important because fairly concise expressions can be built from 
+them combined with the above. Moreover, all the above act on a single 
+qubit in a channel, and the above with G( ) notation can often express 
+those in a simple way. To address those with more channels and hence 
+more qubits, we can do so treating them as matrices with 2× 2 sub
+matrices as blocks. As the common building blocks we may also use null 
+operator O = G(0) = [0,0; 0,0], identity operator I = G(9) = [1,0; 0,1], 
+Xnw = G(8) = [1,0; 0,0], Xsw = G(2) = [0,0; 1,0], Xne = G(4) = [0,1; 
+0,0], Xse = G(1) = [0,0; 0,1]. Note that these are based on compass 
+directions, that “place the 1”. Operations to transform the 2 × 2 matrices 
+to higher dimensional matrices primarily involves seeing a new 2 × 2 
+matrix in which each element is a 2 x 2 matrix, so operations related to 
+tensor (Kronecker) product for gates in parallel may be used. They can 
+also be represented as concatenation as follows, which described the 
+commonly used gates that are usually literally hard-wired, but could be 
+built in this way. C gates are as follows.  
+Cnot = [I,O; O,X] (Controlled NOT)                                               
+(51)  
+Cz = [I,O; O,Z] (Swap)                                                                 
+(52)  
+Cphase = [I,O; O,P(ψ)] (C phase)                                                  
+(53)  
+Swap = [Xnw, Xsw; Xne, Xse ] (Controlled Z)                                 
+(54)  
+Toffoli = [I,O,O,O; O,I,O,O; O,O,1,O; O,O,O,X]                             
+(55) 
+Also commonly encountered are the Swap and Toffoli gates above. 
+The Toffoli gate is a 3-bit (23 = 8 element) gate, which is universal for 
+classical computation but not for quantum computation. The quantum 
+Toffoli gate is the same gate as in the classical case, defined for 3 qubits. 
+As the quantum analog of a classical gate, it is full defined by its truth 
+table. It is universal when combined with the single qubit Hadamard 
+gate. A set of universal quantum gates is any set of gates to which any 
+operation possible on a quantum computer can be reduced, i.e., any 
+other unitary operation can be expressed as a finite sequence of gates 
+from the set. Technically, this is impossible with anything less than an 
+uncountable set of gates since the number of possible quantum gates is 
+uncountable, whereas the number of finite sequences from a finite set is 
+countable. Fortunately, it is only required that any quantum operation 
+can be approximated by a sequence of gates from this finite set. 
+Quantum computing also recognizes the merits of sometimes using 
+gates called rotation gates or rotators. For two-level systems such as 
+qubits and spinors, the implied rotations have a period of 4π. A rotation 
+of 2π returns the same state vector with a different phase. Unitary 
+matrices can be written as a product of three rotators or less. However, 
+rotators need not be viewed as fundamental building blocks because 
+Pauli matrices are related to rotation generators, and rotation operators 
+can be expressed as as matrix exponentials with Pauli matrices in the 
+argument. 
+3.4. Measurement matrices M 
+The expectation value of an operator, say M, is the mean or average 
+B. Robson and J. St. Clair                                                                                                                                                                                                                    
+
+Computers in Biology and Medicine 143 (2022) 105323
+17
+value of that operator with respect to a given quantum state. One is 
+asking the following question from the wave function perspective: If a 
+quantum state as a wave function |Ψ> is prepared many times |Ψ>|Ψ>
+…, and one measures each a given operator MM … each time, what is 
+the average over all the measurement results? That expectation value is 
+<M> = < Ψ |M| Ψ>. Researchers often speak of the “average value of an 
+operator”, because of the following. The above expectation < Ψ| M |Ψ>
+is considered meaningful if R is Hermitian, and therefore it can be 
+looked at in the following way, which does not require specific reference 
+to Ψ for the core algebra because < Ψ| M |Ψ> is seen as a finer structure 
+ΣM<M|A>’(<M|A>’)*. Here M is the value as state associated with an 
+operator of observation M, and A is in the normalized vector state |A>’ 
+= |A>/√<A|A> so that in the i-complex case (but not in general h- 
+complex) <M|A>’(<M|A>’)* = |<M|A>|2. To relate state M to oper
+ator M, the Hermitian M can be described using its eigenvalue decom
+position M = ΣλPλ where {λ} are the distinct eigenvalues and in this case 
+P is a projection matrix, i.e. each Pλ is a projector onto the corresponding 
+eigenspaces. “Measuring an operator” would mean making a measure
+ment using the basis {Pλ }. It also assigns a label of λ to an outcome from 
+the projector Pλ which is a numerical value and one may obtain the 
+expected value of it. From an initial state, which in wave function form 
+would be |Ψ>, one obtains an answer λ with probability <Ψ|Pλ|Ψ>. The 
+expected (average) value of interest is then Σλλ<Ψ|Pλ|Ψ>, which is <Ψ| 
+M|Ψ>. 
+A simple linear circuit involving a single qubit and called a phase flip 
+circuit illustrates the simplest role of measurement by a measurement 
+operator M. To cover the general case and consistent practice, one 
+should not presume that it is involved in a Hermitian expression. It 
+corresponds to the sequence of operations H→Z→H→M, which with the 
+convention of progressive action on a ket would mean operator 
+expression MHZH which has the reverse order. Recalling the Z gate, 
+which maps 1 to −1, then applying it to an initialized qubit will leave the 
+qubits computational state unchanged when measured. However, one 
+applies a Hadamard gate H first then a Z-gate and then again a H gate it 
+will flip the state of the qubit. Recall that applying H gate to a qubit it 
+puts it in to a superposition of states such that when measured it could be 
+|b:=0〉or |b:=1〉 with equal probability. The above gives the simple 
+circuit HZH that combines with a measurement operator M. If the qubit 
+is initialized to |b: = 0〉 and use the phase flip circuit above then gives | 
+b:=1〉 when measured. Initializing to |b:=1gives |b:=0〉 instead. For 
+example  
+MHZH|b:=1> = M (HZH|b:=1>) = |b =0>
+(56)  
+<b:=0|MHZH|b:= 1> = <b:=0| b:=0> = 1                                    
+(57) 
+In general, quantum measurement can be described by a collection of 
+operators {Mm}, called measurement operators where in this case any m is 
+a possible measurement outcome in a spectrum of valid outcomes acting 
+on wave function Ψ. The probability of the measurement is essentially as 
+discussed above, but in present context for a specific measurement, m is 
+as follows.  
+P(m) = <Ψ| Mm
+†Mm |Ψ>
+(58) 
+Normalization of the vector gives the post-measurement state as 
+follows.  
+| Mm >’ = Mm |Ψ> / √ <Ψ| Mm
+†Mm |Ψ>
+(59) 
+The above does not give an impression of irreversibility. Tradition
+ally, quantum measurements, and discussions concerning QC, have been 
+associated with irreversible transformations, say due to an increase of 
+entropy of pure states into mixtures, and ideas usually associated with 
+von Neumann [41]. Several authors consider irreversibility hypothesis 
+to be redundant [42]. For example, if a simple model is constructed in 
+which the measuring process is described by a continuous unitary 
+transformation of the state vector of the observed system and the 
+apparatus, then final state is pure, but appears to be a mixture if degrees 
+of freedom of the apparatus is ignored. Taking a Heisenberg-like 
+perspective, the state vector |…> is fixed, and the dynamical variables 
+are changed by the measurement [42]. It may be noted that a lack of 
+reversibility for any M would seem to require that the commutator is 
+non-zero.  
+[M, M† ] = (MM† - M†M) ∕= 0                                                       
+(60) 
+To equal zero, one requirement is that the measurements do not 
+interfere with each other. Compatible observables are said to be those 
+for which their operators of observation commute, so that the commu
+tator does equal zero. In contrast, they do interfere in the case of con
+jugate variables such as position x and momentum p with operators of 
+observation x and p, where [x,p] = ih/2π, the basis of the Heisenberg 
+uncertainty principle that ΔxΔp ≥ih/4π. A measurement of an 
+observable destroys a previous measurement on a state incompatible 
+with it. 
+As indicated above, all operators that represent physical observables 
+are usually said to be Hermitian, but the above equations nonetheless 
+indicate that a measurement operator per se need not be Hermitian, i.e. 
+that M† = M need not be the case. Note also that one can still measure 
+values of conjugate variables such as position and momentum subject to 
+a degree of precision governed by the uncertainty principle ΔxΔp ≥ih/ 
+4π as determined by the commutator. The requirement for any mea
+surement operator M is not M† = M, but only that it satisfies 
+completeness equations as a summation over the indices of the elements 
+as follows.  
+Σm Mm
+†Mm = I                                                                            
+(61) 
+Note that the above is contraversial. Some interpretations say that no 
+measurement can be undone, and that we simpy do not understand M in 
+the Penrose sense [52]. There is also a position that what is meant is the 
+application of an operator (MmMm
+†) = I multiplied first, but that it is not 
+decomposable, suggesting modification to the algebra. Another feature 
+of completeness is Σm <Ψ| Mm
+†Mm |Ψ> = 1. The above is, as given, 
+consistent with M being a projective measurement, i.e., represented by a 
+projection operator |a(m)><a(m)|. That is, Mm is the outer product for the 
+same measurements state a(m). Compare the above Σm Mm
+†Mm = I with 
+the so-called von Neumann case that promotes a particular “collapse of 
+the wave function” model [41], where the Mm are formulated as pro
+jection operators such that Σm Mm
+†Mm = |m>. For Eqn. (71), the spectral 
+decomposition into the set of required values as the real-valued eigen
+values means that it decomposes M into several projections into the 
+eigenspace of M, multiplied by the eigenvalues m. When the system is 
+described in terms of density operator ρ, the probability of getting the 
+measurement result m is given by the trace Tr:  
+P(m) = Tr(Mm
+†Mm ρ)                                                                    
+(62) 
+This may be associated with the von Neumann entropy that increases 
+in the irreversible model. It can as above be based on the trace Tr of the 
+matrix, but is usually calculated as follows where again where λm are the 
+eigenvalues the state vector.  
+ΔS = Σm λm ln λm                                                                         
+(63) 
+After the measurement, the system will then be found in the 
+following density state.  
+Рf = Mm
+†ρ Mm / Tr(Mm
+†ρ Mm)                                                       
+(64) 
+The question arises as to what affect M has in <A| MHZH|B>. If the 
+result of MHZH|B> is a vector such as a binary vector [0,1], M does not 
+prohibit interpretation as a real or, more generally, h-complex value. 
+Measurements are usually considered as inevitably real but could be 
+considered h-complex, in the same sense as the probability dual {P(A|B), 
+P(B|A)} with two real value solutions, each for an eigenvalue +1 or −1 
+B. Robson and J. St. Clair                                                                                                                                                                                                                    
+
+Computers in Biology and Medicine 143 (2022) 105323
+18
+of h seen as linear operator. However, it is possible to set up an inference 
+network of bra-kets or bra-operator-kets in which the i-complex char
+acter can be propagated beyond the action of M, if required. The extent 
+to which that is possible, when M is present as above, relates to the 
+notorious “measurement problem”. QM provides probabilities for the 
+different possible outcomes in an experiment, but not an explanation 
+about how the observed result is obtained. It also relates to the problem 
+l. 
+Typically, it is assumed that irreversibility is because of information 
+that is lost from the system and gained by the measurer, or at least loss of 
+accessible information. Compare classical physics, where there is also 
+always insufficient information to make a precise prediction but, in 
+principle, that missing information could be found. In contrast, for QM, 
+what one sees is all that is available. Suppose a state vector Σi = 1,2…n Ci| 
+mi> is subjected to a measurement M. Then randomly, with a proba
+bility |Ci|2, the apparatus measures a value mi and leaves the system in a 
+single eigenstate of m, namely one of |mi > for a particular unpredict
+able value of the index i. In other words, the researcher makes a mea
+surement and collapses the description of n > 1 possible states to 1 state, 
+and information ln(n) is gained by the measurer, and because the system 
+becomes one described by n = 1, for a single index i, it loses information 
+ln(n). An important distinction from the classical case is what we find for 
+the system is what we do to the system and, classically, one does not 
+consider the system as collapsing to the state we observe. The von 
+Neuman approach [41] that relates to that consideration also considers 
+that a measurement immediately after the preparation of a state finds it 
+unchanged, which is in effect an identity operation and so reversible, 
+albeit perhaps reversible in a trivial sense. That it is unchanged is 
+certainly the case in many experiments (e.g., the measurement of spin in 
+a Stern-Gerlach experiment). If the operation is not one of identity, then 
+there is the need to consider two distinct kinds of information involved 
+in the measurement. The first kind is information about the initial state 
+of the system before the measurement. This is more important when 
+which the quantum system is being used to communicate information 
+from one person to another. Here the interest is more of the second kind, 
+in information about the final state of the system. It is a record con
+cerning how certain we are of the state of if the system following the 
+measurement, which is the kind of information important when we are 
+trying to control a system. One can in theory make the process reversible 
+in any event, by reversing the measurement while keeping the record of 
+the outcome just obtained. The set {Mm
+†Mm} are commonly called 
+positive operator valued (POV) measure elements. However, no infor
+mation about the post-measurement state can be obtained from a POVM. 
+This is not quite the same as the above record when often we are 
+interested only in the outcome of the measurement, and not in the 
+post-measurement state. The POVM formalism here proves to be helpful. 
+If a qubit is prepared in one of two states: |b:=0> OR |b:=1>, i.e. in the 
+state (|b:=0> + |b:=1>)/√2, then these two states are not mutually 
+orthogonal. In effect, b:=0 and b:=1 are mutually exclusive so that is no 
+projective measurement which can distinguish between them. However, 
+it is possible to construct a POVM identifies the state in an error-free 
+way, even though it sometimes gives an inconclusive result. A POVM 
+is most useful when the observer is interested in the statistical properties 
+of the quantum state that is sent, prior to processing (e.g., in quantum 
+communications) rather than the outcome defined as the state after 
+measurement. See Fig. 5 for the authors’ perspective based on the case 
+when the outcome is of interest. 
+Fig. 5 be clarified as follows. In the unitary view of complex quantum 
+mechanics, distinct quantum states and overall probability and infor
+mation are conserved. If the state of a quantum system is |Ψ>, then at a 
+later time |Ψ> → U|Ψ>, where U = U† satisfies the Hermitian condition. 
+Here unitary operator U will depend on the system specified and in
+teractions with it, but not on |Ψ>, so the time evolution of quantum 
+systems is linear. This is true at least for the i-complex case determined 
+by the Schr¨odinger equation d|Ψ>/dt = −
+i H(t)|Ψ > 2π/h, where the 
+Hamiltonian H(t) relating to total energy at time t, satisfies the Hermi
+tian condition. From that perspective, then for the wave function not to 
+collapse requires that the quantum circuit as an operator expression, 
+extended to include measurement and the writing of a record, is Her
+mitian overall, but by the reading of the record by itself, not because it 
+removes information from the unitary, i-complex system. In other 
+words, a record of the system state may be kept with the realm embraced 
+by unitarity, and overall probability and information will be conserved, 
+but reading the record removes it and causes the wave function repre
+sented by the smaller i-complex system to collapse. No conservation 
+laws are broken, however, since the larger system including the reading 
+of the record still contains all the information. One may envisage that 
+the inner i-complex system is left alone, “to do its job”, until the user is 
+ready. The practical complication is that the “race of quantum su
+premacy” is in part a race to prevent external influences acting like an 
+Fig. 5. Author view of effect of removing information from the record of system state by observation.  
+B. Robson and J. St. Clair                                                                                                                                                                                                                    
+
+Computers in Biology and Medicine 143 (2022) 105323
+19
+observation until “the job is done”, and one cannot wait much longer 
+after that. Consequently, these two considerations, getting the job done 
+and extracting the information as soon as possible, may be a difficult 
+balance requiring further practical development. The operator produc
+ing the record can at least be considered as one that seeks to make a copy 
+of the record of outcome and in principle of the character of an identity 
+operator, so that one can consider it as embraced within M. So it would 
+first appear is the operator that reads that record though that attempted 
+copy is in practice a move of information from the record of outcome, 
+making it appear irreversible within the larger system even if not seen as 
+soon from outside the larger system. 
+The choice of M itself is, however, a little more complicated. Recall 
+that, in general, for a quantum measurement for the i-complex compo
+nent, a measurement operator M is a chosen matrix that mathematically 
+manipulates a state of the system. This manipulation involves extracting 
+the experimental value from the attribute metadata:=value for vectors 
+that are permissible discrete solutions, i.e. eigenvectors, with that spe
+cific value, i.e., a real-valued eigenvalue, and in effect, uses it as the 
+weight. For example, in chemical physics, if an electron in a system can 
+be found in two states |x> and |-x>, where + x and -x are the two lo
+cations of the electron on one or the other of two atoms, then the 
+operator of measurement on x is [x,0; 0,-x], i.e.,   
+The Linear Combination of Atomic Orbitals (LCAO) well known to 
+theoretical and computational chemists is interesting because it leads to 
+the chemical bond picture which is a superposition of states. The elec
+tron density map, dependent on the distribution of probability of the 
+electrons involved, provides a visual appreciation of superposition as, 
+for example, the σ bond formed by the head-to-head overlap of s and p 
+atomic orbitals along inter-nuclear axis, and π orbitals as second and 
+third bonds resulting from the overlap of p orbitals, above and below (or 
+in front and back of) the bonding axis. However, an M matrix more 
+generally may differ from one type of measurement to another just as an 
+experimental apparatus would be designed according to what physical 
+property is to be measured. Thus, if the system were a single particle as 
+above, the apparatus could also be designed to measure its energy, or its 
+momentum or its spin, or in principle some other property. Nonetheless, 
+cases in QC are more restricted, albeit that it could be dependent on the 
+hardware basis. Similar to the location example, one may in a QC case 
+similarly write |b:=0> = 0|b:=0> = 0, and |b:= 0> = 1|b:=0> = | 
+b:=0>. In consequence, it is perhaps sometimes helpful to visualize the 
+inner i-complex realm of Fig. 1 as a distribution of, typically, electrons 
+on a QC chip as in some sense in “a molecular state”. It is thus possibly 
+significant that molecular bonds can be disrupted in an external field by 
+going to an anti-bonded state, analogous to a superposition |A>+|B>
+being replaced by the equally valid solution |A> -|B>. Possibly also, 
+however, one should best adopt a picture in which the inner i-complex 
+realm of Fig. 6 is, as a phase space, a capsule of not just energy or 
+probability in space, but a capsule of space-time in which energy and 
+time, the product of which provides the important quantity of action, are 
+both as yet not well individually well resolved, in accordance with the 
+uncertainty principle. In QM, no distinction between cause and effect is 
+made at the most fundamental level: time-symmetric systems can be 
+viewed as causal or retro-causal. 
+Finally, note that Dirac’s 4×4 matrix form for γ5 that can be written 
+in the above notation as follows.  
+G5 = γ5 = [O,I; I, O] = [G(0), G(9); G(9), G(0)]                             
+(66)  
+3.5. Vector-matrix computations using the purely h-complex bra-ket 
+This Section closely follows the account of zipper matrices in 
+Fig. 6. Interaction of Algorithms in the Current BioIngine implementation.  
+Mx| | location: = +x > = +x | location: = +x > = [x, 0; 0, -x] | location: = +x >
+Mx| | location: = −x > = −x | location: = −x > = [x, 0; 0, -x] | location: = −x >
+(65)   
+B. Robson and J. St. Clair                                                                                                                                                                                                                    
+
+Computers in Biology and Medicine 143 (2022) 105323
+20
+Ref. [27], for completeness. This is because, while many matrices and 
+vectors in QC can be real valued probability amplitudes, they can be 
+i-complex, but they also could be h-complex, or analogously treated as 
+so by more complicated matrices and gates. Recall that it is easy to 
+extract P(A|B) and P(B|A) in the h-complex case. However, vectors and 
+matrices may, as indicated above, have h-complex elements and are 
+hence describable as h-complex vectors and matrices. Although it was 
+clear that the standard mathematics of QM is extensible to the purely 
+h-complex case, the unfamiliar features benefit from a slightly different 
+construction method. A further Q-UEL vector type called zipper vectors 
+(ZV) is defined because while applying the above principles to achieve 
+the following aims is possible, it is confusing. It remains trivial to 
+interconvert them. ZVs facilitate semantic aspects and they are usually 
+fixed as having 8 elements due to a perceived deep relation of semantic 
+and logical structure with quaternions and octonions [94]. That is an 
+issue beyond the scope of the present paper; the importance here is the 
+relevance to linguistic structure, negation, random association, and 
+distinguishability. As in QM, anything but the more trivial Q-UEL rela
+tionship operators are non-trivially Hermitian, which requires that <A| 
+and |B> are orthogonal such that <A|B> = 0. We wish to support this 
+semantically, because < cats | dogs > interpreted categorically as < dogs 
+| are | cats> = 0 means that dogs and cats are mutually exclusive, 
+different things, but < dogs | chase | cats> ∕= 0. We can achieve this if [ 
+{w, x}, {y, z} ] becomes [ {w, 0}, {0, x}, {y, 0}, {0, z} ] = [ιw, ι*x, ιy, 
+ι*z]. This process is called dual decoupling. <A| and |B> now multiplied 
+give zero, but <A| R | B> does not necessarily do so. R must however 
+have a compatible form, an extension of the “toy” matrix in Ref. [1]. An 
+example of such a zipper matrix is as follows. 
+R =
+[
+0, ιx + ι*y, 0, 0, 0, 0, 0, 0;
+ιy + ι*x, 0, 0, 0, 0, 0, 0, 0;
+0, 0, 0, ιx + ι*y, 0, 0, 0, 0;
+0, 0, ιy + ι*x, 0, 0, 0, 0, 0;
+0, 0, 0, 0, 0, ιx + ι*y, 0, 0;
+0, 0, 0, 0, ιy + ι*x, 0, 0, 0;
+0, 0, 0, 0, 0, 0, 0, ιx + ι*y;
+0, 0, 0, 0, 0, 0, ιy + ι*x, 0;
+]
+(67) 
+The system is easier to use than an arbitrary class of h-complex 
+vectors and matrices. Introducing two multipliers x and y, x ∕= y allows 
+one to introduce asymmetries. Consider some quantum state A and an 
+eigenvalue λ obtained as an experimental measurement. It is found that  
+<A| λ ><A| λ>* = <A| λ >< λ |A> = ιP(A| λ)P(λ |A) + ι* P(A| λ)P(λ |A) =
+P(A| λ)P(λ |A) = P(A |λ)P(λ |A) = P(A, λ)2/P(A)P(λ)                          
+(68) 
+Then if we retrospectively say that we prepared P(A) = 1, and ei
+genvalues are independent, then P(A, λ)2/P(A) P(λ) = P(λ), P(A) → 1. In 
+Q-UEL, ‘?’ again simply means an act of preparation or observation we 
+are certain took place, even if what we normally observe is not certain, 
+so that P(?) = 1, and <A|?> = {P(A), 1} and <?|B> = {1, P(B)}. If we 
+prepare a quantum state such as A first, we can use Dirac algebra in a 
+typical way to get the expected value of the measurement.  
+<?| λ >< ? | λ >* = <?| λ >< λ |?> = <?| λ |?> = < λ > = <λ| ? ><?| λ > =
+<λ| ? | λ >
+(69) 
+One may see ? as a trivially Hermitian matrix that joins two zipper 
+vectors as <A | ? | B> as if they were <A|B> but not orthogonal. 
+? = [X, O, O, O; O, X, O, O; O, O, X, O; O, O, O, X] =
+[
+0, 1, 0, 0, 0, 0, 0, 0;
+1, 0, 0, 0, 0, 0, 0, 0;
+0, 0, 0, 1, 0, 0, 0, 0;
+0, 0, 1, 0, 0, 0, 0, 0;
+0, 0, 0, 0, 0, 1, 0, 0;
+0, 0, 0, 0, 1, 0, 0, 0;
+0, 0, 0, 0, 0, 0, 0, 1;
+0, 0, 0, 0, 0, 0, 1, 0;
+]
+(70) 
+This simply “flips” (transposes) a zipper vector so that the relation
+ship is no longer orthogonal. These considerations give us some insight 
+into the deeper meaning of negation as a matter of degree of distin
+guishability which may be important in AI applications [29]. 
+4. Results and discussion 
+4.1. General observations 
+As noted in Introduction Section 1.2, there are no Results in the 
+normal sense as this paper is primarily a review and, in any event, it is a 
+theoretical paper. It is intended to help establish a theory particularly 
+relevant to the interests of the author and collaborators for quantum 
+computing QC in medicine, in both a classical computer sense, but now 
+also in a quantum hardware sense. We have been able to show that AI 
+technology based on the mathematics of Dirac’s quantum mechanics in 
+particular regard to the hyperbolic imaginary number h, as described in 
+a series of papers [4,5,14–30] fits in well with quantum computing, 
+potentially allowing computationally intensive calculations with huge 
+gains in efficiency. However, as an application for a further direction of 
+study, some results that follow from the above are as follows. 
+4.2. Resulting spinor projector forms for h-complex quantum computation 
+A specific example what arises from the discussion so far addresses 
+the following key question: can we carry out Dirac dualization and make 
+use of the imaginary number h using QC gates in both the QC component 
+of the calculation and in inference in the digital part of the system? Also, 
+what would the essential features of the quantum circuits look like as 
+matrix expressions and could we replace them by a single gate? Recall 
+again Dirac’s enigmatic |P> = ½ (1+σ) |P> + ½ (1-σ) |P> (Eqn. (23)), 
+and how the two multipliers were later related to spinor projectors. It 
+needs to be the case that two gates with the properties of the spinor 
+projectors, say Spp1and Spp0 as are used below, will deliver satisfy V =
+Spp1V þ Spp1V for vectors V of interest. The most natural circuit 
+feature with the character of a spinor projector can be constructed not 
+from the Hadamard gate matrix but from Dirac’s 4x4 matrix form of γ5, 
+on the grounds that this may be considered as “the usual spinor pro
+jector” of particle physics. Recall that in present notation that as G5 =
+[O, I; I,O]. Using Eqn. (24), one obtains  
+Spp1 = ι = ½ (I + G5) = [½,0,½,0; 0,½,0,½; ½,0,½,0; ½,0,½,0]         (71)  
+Spp0 = ι* = ½ (I - G5) = [½,0,-½,0; 0,½,0,-½; -½,0,½,0; 0,-½,0,½]     (72) 
+The 1 in Spp1 and 0 in Spp0 reflects the (0,1) eigenvalue solutions 
+for γ5 which in matrix form are reproduced by I and O. It is easy to show 
+the required idempotent, annihilation and normalization projection 
+properties are reproduced. 
+B. Robson and J. St. Clair                                                                                                                                                                                                                    
+
+Computers in Biology and Medicine 143 (2022) 105323
+21
+(Spp1)2= Spp1; (Spp0)2 = Spp0
+Spp1SppO = Spp0Spp1 = O
+Spp1 + SppO = I
+(73) 
+None of G5, Spp1 and Spp0 correspond to any of the standard QC 
+gates. However, G5 = [O, I; I,O] is a direct construction from the Pauli 
+spin matrix σx = [0,1; 1,0].  
+Spp1 = ι = ½ (I + σx) = [½,½; ½, ½ ]                                            
+(74)  
+Spp0 = ι* = ½ (I - σx) = [ ½,-½; -½,½]                                           
+(75) 
+It can be readily shown that this redefinition and Spp1 and Spp0 also 
+satisfies the idempotent, annihilation, and normalization properties of 
+Eqn. (24).  
+Spp1 [½,½]T = Spp1 [1,0]T = Spp1 [0,1]T = [½,½]T                         
+(76)  
+Spp1 [0,0]T = Spp1 [1,0]T = Spp1 [0,1]T = [½,½]T                           
+(77)  
+Spp1 [1,1]T = [1,1]T                                                                      
+(78)  
+Spp1 [0.7,9.3]T = [5,5]T                                                                 
+(79)  
+Spp0 [½,½]T = [0,0]T                                                                    
+(80)  
+Spp0 [0,0]T = [0,0]T                                                                      
+(81)  
+Spp0 [1,0]T = [½,-½]T                                                                   
+(82)  
+Spp0 [0,1]T = [-½,½]T                                                                   
+(83)  
+Spp0 [1,1]T = [0,0]T                                                                      
+(84)  
+Spp0 [0.7,9.3]T = [-4.3,4.3]T                                                           
+(85) 
+This also demonstrates that while the above approach is arguably 
+simpler than one based on the Hadamard matrix and gate, the spinor 
+projector matrices, in certain cases such as Spp1 [0,1]T have the 
+essential Hadamard property of converting a bit [0,1] to a “smeared” 
+qubit state. In others a “smeared” or classical state can be reduced to 0. 
+The spinor projector operators can of coure act of i-complex vectors. 
+Note the following i-complex cases; Spp1 [-i, i] = [0,0], Spp1 [-i, i] =
+[-i, i]. There now arises the question of whether these matrices allow 
+Dirac dualization. Recall again Dirac’s enigmatic |P> = ½ (1+σ) |P> +
+½ (1-σ) |P> (Eqn. (23)). It is required that the spinor projectors acting on 
+the same vector yield the same result. This turns out to be the case. For 
+example,  
+Spp1 [½,½]T + Spp0 [½,½]T = [½,½]T                                            
+(86)  
+Spp1 [0,0]T + Spp0 [0,0]T = [0,0]T                                                 
+(87)  
+Spp1 [0,1]T + Spp0 [0,1]T = [0,1]T                                                 
+(88)  
+Spp1 [1,0]T + Spp0 [1,0]T = [1,0]T                                                 
+(89)  
+Spp1 [1,1]T + Spp0 [1,1]T = [1,1]T                                                 
+(90)  
+Spp1 [0.7,0.93]T + Spp0 [0.7,9.3]T = [0.7,9.3]T                                 
+(91) 
+Note that when these expressions act on a classical bit like [0,1] the 
+resulting state vector is the same value and so classical, but acting on a 
+“smeared” bit as qubit, as in [½,½]T the value remains the same and so 
+quantum mechanical. Note that [1,1] will normally be considered as 
+normalized to [½,½]. Some comment should therefore be made on the 
+apparently unnormalizable [0, 0] null vector case. Recall the earlier 
+example of i-complex cases; Spp1 [-i, i] T = [0,0] T, Spp0 [-i, i] T = [-i, i] 
+T. It follows that Spp1 [-i, i] T + Spp0 [-i, i] T = [-i, i] T. Again, the 
+required property is satisfied. 
+The following calculation and sequence of gates (rightmost first) 
+provides an example of a simple linear circuit.  
+Spp1 Y H[1,0] T = [0, 0] T; Spp0 Y H[1,0] T = [-i, i] T;                     
+(92) 
+These essentially correspond to the realization of 0 eigenvalue of the 
+0 and 1 eigenvalues of the spinor projectors corresponding to the −1 and 
++1 eigenvalues respectively of h. Here, a zero result is physically 
+meaningful and makes sense. One cannot, however, normalize [0,0] if 
+what is meant is division by 0+0. One can nonetheless have a proba
+bility amplitude of zero, which implies a probability of zero. The com
+plete picture in probability terms requires a final multiplication by a bra. 
+Imagine ket |B> = [0,0] in <A|B>, whence one obtains <A| |B> = <A| 
+B> = 0. This signifies that <A| and |B> are orthogonal to each other, 
+which is, recall, a legal situation implying probability 0. 
+The above completes, albeit largely by example, an audit system of 
+principles so that Dirac’s quantum mechanics and the gates of quantum 
+computing can provide all the essential features required for the kind of 
+probabilistic semantics considered here. That includes the ability to 
+compute the probability of a statement or set of statements in the 
+manner indicated by the Q-UEL language [19–30]. All matrices 
+considered here in depth are Hermitian, which is a property of verbs, 
+prepositions and many other relationships in a language like English 
+expressed in Q-UEL, and the majority like e.g., the Pauli Y gate, are 
+non-trivially so, such that <A|R|B> = <B|R|A>* = <B|R*|A> where in 
+linguistic terms, R* is the active-passive inverse. Some matrices are 
+trivially Hermitian, meaning self-inverse, meaning that taking the 
+transpose T, i.e., flipping the matrix around the major diagonal, makes 
+no change. This applies to the important Hadamard H, SWAP, Pauli X 
+and Z, and phase gate S, but also notably the spinor projector Spp1 and 
+Spp2 gates. Several important matrices, including the Hadamard H and 
+Pauli spin matrices X, Y, Z have the required h-imaginary property of 
+squaring to the identity matrix I. In contrast, the spinor project matrices 
+(and potential gates) Spp1 and Spp2 have the required idempotent, 
+annihilation, and normalization properties to facilitate h-complex 
+computation which is consistent with classical computation of proba
+bilities and probabilistic semantics. Many computations can be made 
+invertible [60], and in the case of an h-complex “expression”, that will 
+mean computing the probability of the statement in which all subject 
+and object “expressions” are interchanged. To invert a computation as a 
+statement or set of statements, one must run the circuit in reverse with 
+respect to the point of measurement M, with the inverse of each gate in 
+place to achieve the transform [6,61]. Conversely, the matrices used to 
+represent key quantum gates in the circuit model are important opera
+tors for the further development of Q-UEL as a programming language 
+for AI. 
+4.3. Hyperbolic imaginary number h in the quantum computing context 
+There appear to be two ways to think about the involvement of the 
+hyperbolic imaginary number h.  
+(1) The first is regarding the matrix counterparts of flavors of h 
+represented in the gates in the QC hardware, albeit with some 
+possibilities for their role in general computation. One could take 
+the view that i-complex is mainly about vectors of state, and h- 
+complex is mainly about gates and operations built of gates. All 
+required matrices for gates can be derived from the Pauli 
+matrices, Hadamard matrix, and identity matrix, although con
+trol gates stand out as “adjustable matrices”. Conceptually, this 
+leaves the wave function seen as i-complex (and sometimes real) 
+component as the physical “object” on which to act. However, the 
+distinction is artificial because from a generalized tenor 
+perspective, the gates are matrices with elements that can in 
+principle be real, i-complex, or h-complex (or indeed flavors of 
+the latter).  
+(2) Dirac dualization and the appearance of the less commonly 
+known imaginary number h also adds an interesting perspective 
+upon the above. One could take the view that h-complex is as 
+physically "real" as is i-complex and is an aspect of the wave 
+function and probability amplitude. When computation for 
+B. Robson and J. St. Clair                                                                                                                                                                                                                    
+
+Computers in Biology and Medicine 143 (2022) 105323
+22
+analyses and predictions in the everyday world of human expe
+rience makes use of a QM approach, including for use of AI in the 
+practice of medicine, it must be, as author BR has argued, 
+essentially an approach based on classical or h-complex QM (or 
+some analogous calculation) to ensure that it will behave classi
+cally and avoid the notorious bizarre predictions of QM. That 
+would provide the main basis for the great majority of cases such 
+as automated reasoning from machine learning and data mining 
+where one is interested in decision support, prediction, and risk 
+assessment. We would only be directly interested in harnessing 
+the mathematics of i-complex QM in those cases where we need 
+to reason about waves, for example as in neurology and cardi
+ology and in algorithms for processing medical images, and 
+representation of metabolic and epidemiological processes in 
+terms of Fourier analysis and modeling. However, to gain great 
+speed and make certain very important calculations practical in 
+reasonable time, such as the crucial step of machine learning and 
+high dimensional datamining of medical data that can exploit the 
+Shor algorithm, i-complex computation on specialized QC hard
+ware can be embedded in a “sea” of h-complex calculations on 
+classical digital computing components, to enable superposition 
+of states in the manner of an analogue computer making use of 
+the dispersed wave function Ψ. In that case, a whole quantum 
+computing circuit replaces the relationship operator of expres
+sion R in Dirac’s bra-operator-ket <A|R|B> with an h-complex 
+probability amplitude, and no less elaborate inference networks 
+can be built from these elements. 
+The more theoretical aspects by themselves also have applications in 
+developing the mathematics of Artificial Intelligence. From the outset, 
+Dirac notation has been used by physicists to introduce, develop, and 
+formalize QC concepts, but a priori, one might take “broad use of Dirac 
+notation” to mean to define a kind of circuit model seen as a Bidirec
+tional General Graph BGG in which A, B, C, etc. are the nodes and bra- 
+operator-kets such as <A|R|B> are the edges (arcs), <A|R|B, C> are 
+examples of two-dimensional faces, and so on. For example, Q-UEL’s 
+Hyperbolic Dirac Net (HDN) can potentially provide the QC methodol
+ogy at the same rank level as the quantum circuit paradigm. This likely 
+remains feasible as a “legal” approach, but in practice it emerges that the 
+most useful picture for present purposes, and especially medical appli
+cations, is that QC appears as the innermost process described by rela
+tionship operator R. In this paradigm, any R (or other operator at the 
+above bra-operator-ket level of description) is a quantum circuit. Recall 
+that an important operation which would be part of the quantum circuit 
+as operator expression R is called a “measurement”, say M, which is 
+required to “restore normality”. That means (as described above), to 
+collapse the wave function, which is also known as, or closely related to, 
+decoherence and Penrose’s state reduction [52]. If not, the result will 
+“span several bra-operator-kets”. The wave mechanical weirdness that is 
+to be avoided is illustrated by the following: One does not want the 
+patient predicted as alive and dead at the same time …. the FDA does not 
+like that sort of thing. But one is interested in whether the patient is alive 
+or dead in the future, and with what weight (relative probability). To say 
+that M is needed, however, would be an interesting statement because 
+the race for quantum supremacy has been in large part to prevent the 
+wave function collapsing too soon, because environmental influences, 
+with the same effect as M, abound. What is required is to control it so 
+that it happens when needed and not before, and after the part of work is 
+done that needs to be fast, e.g., the implementation of the Shor 
+algorithm. 
+4.4. Q-UEL and quantum computing languages 
+The mathematics in Theory Section 2 also underlies Q-UEL and a 
+reviewer was interested to see some discussion of Q-UEL as a “result” of 
+that approach, in the context of better-known QC languages. Its uses and 
+advantages have been described and referenced at several points in the 
+text, especially in Introduction Section 1.5. Here some comparison of 
+paradigms compared with more typical approaches may be made. Many 
+languages for quantum computing have been developed, such as IBM’s 
+Qiskit and quantum circuit approach and Microsoft’s Q# related to the C 
+family of languages. Bernhard ¨Omer developed an elegant quantum 
+computing language QCL [62,61], again essentially of the C program
+ming language family, as are many others (he also reviews QC lan
+guages). A simple quantum calculation (exemplifying true random 
+number generation) in QCL is as follows [62,61]. 
+procedure quRoulette() { qureg q [5]; int field; int number; input 
+"Enter field number:",field; repeat { Mix(q); measure q,number; reset; } 
+until number<=36; if field == number { print "Number",number,"You 
+won!"; } else { print "Number",number,"You lose."; } } 
+There are, however, necessarily underlying similarities with Q-UEL 
+and other languages because one is typically dealing with the same 
+underlying matrices and gates, e.g. the Cnot gate: 
+qufunct parity(quconst x,quvoid y) { int i; for i = 0 to #x-1 { CNot(y,x 
+[i]); } } 
+Nonetheless, Q-UEL is in appearance very different, intended to 
+blend intuitive linguistic/semantic features while remaining consistent 
+with calculations using the Dirac notation, while being readable by a 
+phsyician. It resembles Dirac notation as one would use it in calcula
+tions. There have been several efforts to develop programming lan
+guages on that basis, e.g., Ref. [63]. In comparisons to several such 
+efforts, however, Q-UEL is conveniently based on a linear, keyboard 
+character format for easy and speedy entry. Even the use of bold font to 
+indicate operators is optional and confined to some output, or is simply 
+just used in reporting as below, to enhance readability. In simplest useful 
+applications, it is sufficiently simple, in its legitimate but simplest form, 
+to be almost worthy of the description “children’s language”. In the 
+development of the simplified POPPER form originally designed for 
+training of Clinical Decision Support techniques for medical students 
+[30], an example is  
+< ‘chronic overeating’ | causes | obesity > = {0.9,0.8}                                
+<obesity | causes | ‘type 2 diabetes’ > = {0.3,0.8}                                      
+< ‘chronic overeating’ | causes | type 2 diabetes > = < ‘chronic overeating’ | 
+causes | obesity > < obesity | causes | ‘type 2 diabetes’ >
+The only mental leap is to understand that, for example, <obesity | 
+causes | ‘type 2 diabetes’ > = {0.3,0.8} means P(“obesity causes type 2 
+diabetes”) = 0.3 and P(“type 2 diabetes causes obesity”) = 0.8 (an 
+assignment of probabilities which is, incidentally, believed to roughly 
+correct, depending on country [19,30]). The h-complex value of the 
+bra-operator ket is ½ [0.3 + 0.8]+ ½ h [0.3–0.8] = 0.55–0.5h. 
+Computation of probabilities in the forward and reverse direction pro
+ceeds in they above kind of way, extended to a network. In addition, 
+metastatements or rules called “generalized twistors” by reference to 
+Penrose twistors [52] as extension of the braket. They can act on the 
+inference net so generated in order to evolve it under laws of syllogisms, 
+higher order logic, definitions, vocabulary, grammar, and so on. A 
+Q-UEL simple syllogistic style of form is as follows. 
+<< $A | causes | $C> | ¼ | < $A | causes | $B>< $B | causes | 
+$C>>
+Alternatively, in the simple POPPER variant language, it is an 
+assignment statement. 
+< $A | causes | $C> = < $A | causes | $B>< $B | causes | $C>
+This is also used to define other things such as the inverse from of a 
+relationship R, i.e. the R*. 
+< $B| ‘is caused by’ | $A> = < $A | causes | $B >
+$A, $B, and $C are binding variables that that will transform any 
+statement that satisfies certain simple binding rules, as the term is used 
+in Expert Systems [64]. This will evolve an inference network [30]. The 
+extended twistor form can also be assigned a transforming probability 
+B. Robson and J. St. Clair                                                                                                                                                                                                                    
+
+Computers in Biology and Medicine 143 (2022) 105323
+23
+dual, but in this case the Q-UEL default of 1 for probabilities, odds, as
+sociation constants, and similar measures is implied. The sense of use is 
+similar to PROLOG [65], but is probabilistic. Various similar attempts at 
+probabilistic PROLOG have been attempted [66] and satisfy formal re
+quirements, but these approaches do not in general use Dirac notation. 
+Note that the appearance of brakets and bra-operator-kets as both 
+variables (as above) and expressions is intrinsic to the Dirac notation. 
+<A | R | B> means also <A| times R times |B>. Vectors and matrices can 
+also be defined in current developmental version Q-UEL, essentially as 
+described in the present paper, e.g., <A| = [0,0.3; 0.3,0]. Hence a term 
+such as < A | Cnot |B > has a value that can be computed from the Cnot 
+matrix and gate, and <A| and |B>. Recall that all the main operators of 
+Q-UEL are Hermitian, as are most of those in QC, so in most cases this is 
+simply equivalent to assigning the value to elements to represent the 
+required operator value as a probability density matrix. The primary 
+difference is that Q-UEL has so far been largely concerned with an h- 
+complex interpretation. Simply given a vector such as [½, ½] on which 
+to act, it would see it as real, although it relates in interpretation, as it 
+does in QC, to an i-complex wave function. 
+Although focus has been on the mathematics in common with Q-UEL 
+and QC, and detailed discussion of a system being implemented on 
+Amazon Web Services is beyond present scope, a flow chart (Fig. 6) of 
+how the algorithms fit together and this does raise some interesting 
+comments that do put the above in perspective. This is reproduced from 
+the most recent paper [29] in the same journal as the present review. All 
+applications shown involve capturing knowledge in various ways as 
+Q-UEL tags with a probability amplitude based on the probability dual, 
+and so can be treated as h-complex. The default probability if probability 
+is unknown is 1, for several important theoretical reasons extensively 
+discussed in all the Q-UEL papers cited here. DiracMiner [24] is an 
+unsupervised high-dimensional structured Big Data mining machine 
+learning tool, and DiracSmash [5,29] is similar but focuses on gener
+ating tags that can be used efficiently in odds inference nets as 
+high-dimensional logistic regression, and partially supervised data 
+mining. It can automatically build very large nets, once give a specifi
+cation of variables likely to be interdependent with a target (such a renal 
+failure) and each other, e.g., a patient’s health, and a subset of similar 
+variables that are usually new symptoms or laboratory results, that are 
+however, considered independent of each other (but interdependent 
+with target and the interdependent variables) [5,29]. MARPLE is con
+cerned with including Q-UEL tags from mining unstructured, natural 
+language text, data, using XTRACTOR to autosurf the World Wide Web 
+for related sites. The knowledge extracted is used to reason answers to 
+questions and to rank by probability, and so answer, multiple choice 
+questions [25,26]. The system learns with each investigation, and most 
+tags generated are stored for future use in a large probabilistic knowl
+edge base called the Knowledge Representation Store (KRS). They can be 
+used to construct Hyperbolic Dirac Nets for inference using DiracBuilder 
+[24], QuickPredict [29][], Marple [26] and POPPER [30]. All references 
+to Q-UEL applications (modules) cited here [5,19–30] are shown in 
+Fig. 6, and POPPER, one of the earlier algorithms, covers many of the 
+semantic aspects already discussed above, such as use of metastatements 
+to evolve an inference net [30]. Zipper matrices and advanced manip
+ulation of vectors and matrices, including generalizations as tensor-like 
+forms [27], still largely represent an experimental toolkit. 
+5. Conclusions 
+As stated throughout, this paper has been primarily intended to be a 
+review, but with an unusual extension into the appearance of other 
+imaginary numbers in the value of the probability amplitude, especially 
+the hyperbolic or split-complex imaginary number h and its relatives. 
+The topic has been touched in quantum mechanics, and quantum field 
+theory, texts. Penrose appears to see a great deal of theoretical physics in 
+terms of geometry and imaginary numbers and expresses much of Dir
+ac’s work in that way [52]. 
+In contrast, there is little relatively little mention of such topics in 
+quantum computing texts although, as discussed above, several gate 
+matrices have the hyperbolic imaginary number property, so that it can 
+hardly be claimed that these algebraic entities have been entirely 
+ignored, even if not seen from the present viewpoint. However, h and 
+associated entities have gone under a litany of names in the past, making 
+exhaustive review difficult [20]. During revision of this review, a 2008 
+paper on the Cornell University arXiv server came to light [67] (arXiv is 
+a free distribution service and an open-access archive). These authors, 
+Gregoriˇc and Mankoˇc Borˇstnik, do not mention hyperbolic or split 
+complex numbers, nor quaternions or octonions, nor Wick rotation, but 
+used their Clifford algebra technique to represent quantum gates and 
+quantum algorithms. They did not use the term "spinor projectors", but 
+they did identify n-qubits with spinor representations for a system of n 
+spinors. Representations are expressed in terms of products of projectors 
+and nilpotents, and that does essentially mean with algebraic properties 
+similar to those of spinor projectors discussed above in Section 4.2. 
+Although they did not discuss all relevant matrices in such detail as here 
+above, they proposed an algorithm for extracting a particular informa
+tion out of a general superposition of 2n qubit states, and it provides a 
+good example that supports the argument of the present review. It re
+produces a particular choice of the initial state of Grover’s algorithm 
+which is believed to be the fastest possible quantum algorithm for 
+searching an unsorted database. We might make the assertion that this, 
+at some deep level, relates to the number-theoretic considerations of 
+Introduction Section 1.6, and the likely utility of Shor’s QC factorization 
+algorithm in data mining and related processes. There is already known 
+to be an important interplay between Shor’s and Grover’s algorithms, 
+and their combined use in QC could pose a threat to blockchains [68]. 
+However, they did not relate their work to AI or Dirac, and did not make 
+use of, or propose, any QC language. They were not concerned with 
+making any link to linguistics and probabilistic semantics. For Q-UEL, 
+there is a natural mapping between the Dirac notation and natural 
+language, especially noticeable in SOV (subject-verb-object) languages. 
+The Q-UEL language described briefly here exploits that. The present 
+paper indicates that probabilistic semantics is an appropriate paradigm 
+for quantum computing and so it is a natural extension of quantum 
+computing to AI. This is emphasized by the possibility of having an 
+essentially h-complex (hyperbolic complex, split-complex) component 
+including convenient spinor projector matrices that facilitate construc
+tion of the equivalent of h-complex or partially h-complex probability 
+amplitudes. The system of matrices required (and so in physical terms, 
+gates required), appears to be complete, so enabling computation using 
+the kind of AI as probabilistic semantics discussed here. 
+Section 1.2 opened with the following questions: Is there an under
+lying common theoretical structure of AI and quantum computing? 
+Might they be unified into a single discipline? The conclusion we have 
+from all the above considerations is yes, in both cases. It does appear, 
+however, that it requires consideration of several kinds of imaginary 
+number beyond the square root of minus one, and at very least the hy
+perbolic or split-complex imaginary number. Not least, that is needed, as 
+argued above, to extend quantum mechanics to the everyday classical 
+world of human experience, including medicine. Addressing these issues 
+always seems to open doors to interesting new considerations, raising 
+further questions, so the system envisaged cannot yet be complete. It is 
+hoped that advanced thinking by mathematicians and computer scien
+tists will develop such ideas to open new areas in the mathematical and 
+algorithmic principles required. 
+Declaration of competing interest 
+The Charter of The Dirac Foundation, Oxfordshire UK, is to promote 
+the application of the thinking of Professor Paul. A. M. Dirac to human 
+and veterinary medicine, so respecting the interests of his widow Mrs. 
+Margit Dirac, and with her written permission for the foundation in a 
+letter of 11th March 1995 to Dr. Barry Robson. The present series of 
+B. Robson and J. St. Clair                                                                                                                                                                                                                    
+
+Computers in Biology and Medicine 143 (2022) 105323
+24
+papers openly declare ideas that arise from projects by the Foundation 
+and its industrial and academic collaborators. Specific implementations 
+and variants of the algorithms in this paper and others in industrially 
+hardened form are being developed for both collaborative scientific and 
+commercial purposes to serve industry. 
+References 
+[1] P.A.M. Dirac, Principles of Quantum Mechanics, forth ed., Oxford University Press, 
+1967. 
+[2] P.A.M. Dirac, A new notation for quantum mechanics, Math. Proc. Camb. Phil. Soc. 
+35 (3) (1939) 416–418. 
+[3] https://www.nobelprize.org/prizes/physics/1933/dirac/speech (last accessed 11/ 
+27/2021). 
+[4] B. Robson, U.G.J. Balis, T.P. Caruso, Suggestions for a web based universal 
+exchange and inference language for medicine, Comput. Biol. Med. 1 (12) (2013) 
+2297–2310, 43. 
+[5] B. Robson, S. Boray, Studies in the extensively automatic construction of large 
+odds-based inference networks from structured data. Examples from medical, 
+bioinformatics, and health insurance claims data, Comput. Biol. Med. 95 (2018) 
+147–166. 
+[6] M. Nielsen, I.L. Chuang, Quantum Computation and Quantum Information, tenth 
+ed., Cambridge University Press, 2010. 
+[7] A. Trabesinger, Quantum simulation, Nat. Phys. 8 (2012) 263. 
+[8] M. Schuld, F. Petruccione, Supervised Learning with Quantum Computers, 
+Springer, 2018. 
+[9] https://www.popsci.com/technology/ibm-eagle-127-qubit-quantum-chip/(last 
+accessed 11/27/2001). 
+[10] B. Robson, De novo protein folding on computers, Benefits and Challenges (2022) 
+submitted for publication. 
+[11] B. Robson, R.V. Fishleigh, C.A. Morrison, Prediction of HIV vaccine, Nature 4 
+(1987) 325–395. 
+[12] R.V. Fishleigh, B. Robson, R.P. Mee, Fragments of prion proteins, US Patent 5 
+(1998), 773,572. 
+[13] B. Robson, Computers and viral diseases. Preliminary bioinformatics studies on the 
+design of a synthetic vaccine and a preventative peptidomimetic antagonist against 
+the SARS-CoV-2 (2019-nCoV, COVID-19) coronavirus, Comput. Biol. Med. (2020) 
+published online 26 February 2020, 103670, https://www.sciencedirect.com/sci 
+ence/article/abs/pii/S0010482520300627. 
+[14] B. Robson, The new physician as unwitting quantum mechanic: is adapting Dirac’s 
+inference system best practice for personalized medicine, genomics and 
+proteomics? J. Proteome Res. 6 (No. 8) (2007) 3114–3126. 
+[15] B. Robson, Towards intelligent internet-roaming agents for mining and inference 
+from medical data, in: Future of Health Technology Congress, Technology and 
+Informatics, vol. 149, IOS Press, 2009, pp. 157–177. 
+[16] B. Robson, Links between quantum physics and thought (A. I. Applications in 
+medicine), in: Future of Health Technology Congress, Technology and Informatics, 
+vol. 149, IOS Press, 2009, pp. 236–248. 
+[17] B. Robson, Towards Automated Reasoning for Drug Discovery and Pharmaceutical 
+Business Intelligence, Pharmaceutical Technology and Drug Research, 2012. 
+[18] B. Robson, Towards new tools for pharmacoepidemiology, Adv. 
+Pharmacoepidemiol. Drug Saf. 1 (2013) 6, https://doi.org/10.4172/2167- 
+1052.100012. 
+[19] B. Robson, Hyperbolic Dirac nets for medical decision support. Theory, methods, 
+and comparison with Bayes nets, Comput. Biol. Med. 51 (2014) 183–197. 
+[20] S. Deckelman, B. Robson, B. Split-Complex Numbers and Dirac Bra-Kets, 14, 
+Communications in Information and Systems (CIS), 2015, pp. 135–149, 3. 
+[21] B. Robson, U.G.J. Balis, , U. G. J., T.P. Caruso, Considerations, for a universal 
+Exchange Language for healthcare, in: Proceedings of 2011 IEEE 13th International 
+Conference on E-Health Networking, Applications and Services (Healthcom 2011), 
+vols. 173–176, IEEE, Columbus, MO, 2011. 
+[22] B. Robson, T.P. Caruso, in: C.U. Lehmann, E. Ammenwerth, C. Nohr (Eds.), 
+A Universal Exchange Language for Healthcare MedInfo ’13: Proceedings of the 
+14th World Congress on Medical and Health Informatics, IOS Press, Washington, 
+DC, USA, 2013. Copenhagen, Denmark. 
+[23] B. Robson, T.P. Caruso, U.G.J. Balis, Suggestions for a web based universal 
+exchange and inference language for medicine. Continuity of patient care with 
+PCAST disaggregation, Comput. Biol. Med. 56 (2014) 51–66. 
+[24] B. Robson, S. Boray, Implementation of a web based universal exchange and 
+inference language for medicine. Sparse data, probabilities and inference in data 
+mining of clinical data repositories, Comput. Biol. Med. 66 (2015) 82–102. 
+[25] B. Robson, S. Boray, Interesting things for computer systems to do: keeping and 
+data mining millions of patient records, guiding patients and physicians, and 
+passing medical licensing exams, Bioinformatics and Biomedicine (BIBM), in: 
+Proceedings 2015 IEEE International Conference, vols. 1397–1404, IEEE, 2015. 
+[26] B. Robson, S. Boray, Data-mining to build a knowledge representation store for 
+clinical decision support. Studies on curation and validation based on machine 
+performance in multiple choice medical licensing examinations, Comput. Biol. 
+Med. 73 (2015) 71–93. 
+[27] B. Robson, Studies in using a universal exchange and inference language for 
+evidence based medicine. Semi-automated learning and reasoning for PICO 
+methodology, systematic review, and environmental epidemiology, Comput. Biol. 
+Med. 79 (2016) 299–323. 
+[28] B. Robson, Bidirectional General Graphs for inference. Principles and implications 
+for medicine, Comput. Biol. Med. 10 (2019) 382–399. 
+[29] B. Robson, S. Boray, J. Weisman, Mining real-world high dimensional structured 
+data in medicine and its use in decision support. Some different perspectives on 
+unknowns, interdependency, and distinguishability, Comput. Biol. Med. 105118 
+(2022). 
+[30] B. Robson, POPPER, a simple programming language for probabilistic semantic 
+inference in medicine, Comput. Biol. Med. 56 (2014) 107–123. 
+[31] B. Robson, The dragon on the Gold: myths and realities for data mining in 
+biotechnology using digital and molecular libraries, J. Proteome Res. 3 (6) (2004) 
+1113–1119. 
+[32] B. Robson, Clinical and pharmacogenomic data mining: 3. Zeta theory as a general 
+tactic for clinical bioinformatics, J. Proteome Res. 4 (2) (2005) 445–455, 2005. 
+[33] P.W. Shor, Algorithms for quantum computation: discrete logarithms and 
+factoring, in: Proceedings 35th Annual Symposium on Foundations of Computer 
+Science, IEEE Computer Society. Press, 1994, pp. 124–134. 
+[34] A. de Moivre, Annuities upon Lives: or, the Valuation of Annuities upon Any 
+Number of Lives; as Also, of Reversions, W.P. and Francis Fayram, London, 1725. 
+[35] A. de Moivre, The Doctrine of Chance. A Method of Calculating the Probability of 
+Events in Play, second ed., H. Woodfall, London, 1738. 
+[36] T. Bayes, An essay towards solving a problem in the doctrine of chances, Phil. 
+Trans. Roy. Soc. Lond. 53 (370) (1763) 41. 
+[37] J. Pearl, Probabilistic Reasoning in Intelligent Systems, Morgan Kaufmann, San 
+Mateo, 1988. 
+[38] M. Chester, Primer of Quantum Mechanics, John Wiley and Sons, 1987. 
+[39] I.M. Mullins, I.M.M.S. Siadaty, J. Lyman, K. Scully, K.G.T. Garrett, G. Miller, 
+R. Muller, B. Robson, C. Apte, C.S. Weiss, I. Rigoutsos, D. Platt, S. Cohen, Data 
+mining and clinical data repositories: insights from a 667,000 patient data set, 
+Comput. Biol. Med. 36 (12) (2006) 1351–1377. 
+[40] J.I.A. Miszcak, Models of quantum computation and quantum programming 
+languages, arXiv:1012.6035v2 [cs.PL] (3 Dec), https://1012.6035.pdf, 2011 
+(arxiv.org). 
+[41] J. Bub, Von neumann’s theory of quantum measurement, in: M. R´edei, M. St¨oltzner 
+(Eds.), John von Neumann and the Foundations of Quantum Physics. Vienna Circle 
+Institute Yearbook [2000], vol. 8, Springer, 2001. 
+[42] A. Peres, Quantum measurements are reversible, Am. J. Phys. 42 (1974) 886. 
+[43] C.H. Bennett, Logical reversibility of computation, IBM J. Res. Dev. 17 (1973) 
+525–532. 
+[44] C.H. Bennett, The thermodynamics of computation: a review, Int. J. Theor. Phys. 
+21 (1982) 905–940. 
+[45] C.H. Bennett, R. Landauer, Fundamental physical limits of computation, Sci. Am. 
+253 (1985) 48–56. 
+[46] C.H. Bennett, P.W. Shir, Quantum information theory, IEEE Trans. Inf. Theor. 44 
+(1998) 2724–2742. 
+[47] C.H. Bennett, D.P. Divincenzo, Quantum information and computation, Nature 404 
+(2000) 247–255. 
+[48] V. Moret-Bonillo, Can artificial intelligence benefit from quantum computing? 
+Progress in Artificial Intelligence (2014) https://doi.org/10.1007/s13748-014- 
+0059-0. 
+[49] E. Grumbling, M. Horowitz (Eds.), Quantum Computing: A New Paradigm, Chapter 
+2 in Quantum Computing, Progress and ProspectsNational Acadamies Press, 2019. 
+[50] L. Susskind, A. Friedman, Quantum Mechanics the Theoretical Minimum, Allen 
+Lane (Penguin), 2014. 
+[51] H. Everett, Relative state formulation of quantum mechanics, Rev. Mod. Phys. 29 
+(3) (1957) 454–462. 
+[52] R. Penrose, The Road to Reality: A Complete Guide to the Laws of the 
+UniverseJonathan Cape, 2013. 
+[53] P. Whittle, Probabilty, Penguin Books, 1970. 
+[54] A.M. Clerke, Laplace, pierre simon, in: eleventh ed., in: H. Chisholm (Ed.), 
+Encyclopaedia Britannica, vol. 16, Cambridge University Press, 1911, pp. 200–202, 
+200-202. 
+[55] R.A. Bertlmann, Anomalies in Quantum Field Theory, Clarendon Press, 1996. 
+[56] Wikipedia, Probability amplitude, https://en.wikipedia.org/wiki/Probability_ 
+amplitude (last accessed 24th January 2022).. 
+[57] Wikipedia, Born Rule, https://en.wikipedia.org/wiki/Born_rule, (last accessed 
+25th January 2022). 
+[58] T. Bhattacharya, A.J. Buser, S. Chandrasekharan, R. Gupta, H. Singh, Qubit 
+Regularization of Asymptotic Freedom, Phys. Rev. Lett. 126 (2021) 172001. 
+[59] F. Bruckmann, J.D. Urbina, Rigorous Construction of Coherent State Path Integrals 
+through Dualization, Cornell university ArXiv.org, 2018, p. 10462, 1807. 
+[60] J. Shor and P. Shor. Quantum Computing (CST Part II) Lecture 9: Quantum Fourier 
+Transform & Quantum Phase Estimation, Cabridge University, https://www.cl. 
+cam.ac.uk/teaching/1920/QuantComp/Quantum_Computing_Lecture_9.pdf, (last 
+accessed 28th January, 2022). 
+[61] ¨Omer, B. QCL - a programming language for quantum computers, http://tph.tuw 
+ien.ac.at/~oemer/qcl.html,(last accessed 28th January 2022). 
+[62] B. ¨Omer, Master’s Thesis, A Procedural Formalism for Quantum Computing, 
+Technical University of Vienna, 1998. 
+[63] J.L. G´omez Mu˜noz, F. Delgado, QUANTUM: a wolfram mathematica add-on for 
+Dirac bra-ket notation, non-commutative algebra, and simulation of quantum 
+computing circuits, J. Phys. Conf. 698 (2016), 012019. 
+[64] K. Parsaye, M. Chignell, Expert Systems for Experts, John Wiley and Sons, 1988. 
+[65] C.S. Mellish, W.F. Clocksin, Programming in Prolog: Using the Iso Standard, 
+Springer, 2013. 
+B. Robson and J. St. Clair                                                                                                                                                                                                                    
+
+Computers in Biology and Medicine 143 (2022) 105323
+25
+[66] de Raedt, L., Kimmig, A. and Toivonen, H., ProbLog: a probabilistic prolog and its 
+application in link discovery, https://www.ijcai.org/Proceedings/07/Papers/397. 
+pdf, (last accessed 28th January 2022). 
+[67] M. Gregoriˇc, N./S. Mankoˇc Borˇstnik, Quantum gates and quantum algorithms with 
+Clifford algebra technique, Int. J. Theor. Phys. 48 (2008) 2. 
+[68] S. Ray, in: Quantum Threat to Blockchains: Shor’s and Grover’s Algorithms,, 
+Codeburst, 2018. July 22 2018, https://codeburst.io/quantum-threat-to-blockcha 
+ins-shors-and-grover-s-algorithms-9b01941bed01. 
+B. Robson and J. St. Clair                                                                                                                                                                                                                    

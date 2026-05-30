@@ -1,0 +1,859 @@
+Source-PDF: D:\Review\New folder\Main\Core quantumbiomed + health relevance\Quantum machine learning_ A comprehensive survey of models, challenges, and futu.pdf
+Relative-Path: New folder\Main\Core quantumbiomed + health relevance\Quantum machine learning_ A comprehensive survey of models, challenges, and futu.pdf
+--------------------------------------------------------------------------------
+
+Contents lists available at ScienceDirect
+Theoretical Computer Science
+journal homepage: www.elsevier.com/locate/tcs
+Quantum machine learning: A comprehensive survey of models, 
+challenges, and future directions
+Laiba Nadeem
+, Ahmed Mustafa Khokhar
+, Maha Fatima Shaikh
+, 
+Farrukh Hasan Syed
+∗, Sumaiyah Zahid
+Department of Computer Science, FAST-National University of Computer & Emerging Sciences, Karachi, Pakistan
+a r t i c l e  i n f o
+Editor: Dr. Lila Kari
+Keywords:
+Quantum computing
+Quantum machine learning
+Quantum neural networks
+QCNNs
+Hybrid quantum models
+ 
+a b s t r a c t
+This survey presents a structured and accessible review of Quantum Machine Learning (QML), 
+with the aim of introducing new readers to its fundamental concepts while also covering recent 
+research developments. We review key paradigms including Quantum Neural Networks (QNNs), 
+Quantum Convolutional Neural Networks (QCNNs), and hybrid quantum-classical architectures. 
+Quantum Machine Learning (QML) is an emerging ﬁeld that combines quantum computing and 
+machine learning, leveraging qubits that can exist in superposition and exhibit entanglement 
+to enable computational capabilities beyond those of classical systems. These properties allow 
+quantum models to explore solution spaces in parallel, potentially oﬀering advantages in speed 
+or eﬃciency for certain tasks. We analyze theoretical beneﬁts, practical limitations, and emerging 
+applications of QML in areas such as medical AI, cryptography, and optimization. Furthermore, 
+we discuss key challenges related to quantum hardware scalability, noise resilience, and training 
+ineﬃciencies. The paper concludes with a roadmap for future research, emphasizing progress in 
+error mitigation, quantum data encoding, and hybrid deep learning integration.
+1.  Introduction
+1.1.  Background and motivation
+Quantum computing has emerged as a transformative computational paradigm that exploits fundamental quantum mechanical 
+principles to address problems that are intractable for classical computers [1]. The potential for exponential or polynomial speedups 
+oﬀered by quantum algorithms has attracted signiﬁcant attention in domains such as cryptography, optimization, and scientiﬁc 
+simulations. In parallel, the rapid growth of artiﬁcial intelligence (AI) and machine learning (ML) has led to increasingly complex 
+deep learning models, which face inherent limitations when processing high-dimensional data using classical hardware [2].
+Quantum Machine Learning (QML) seeks to bridge these two ﬁelds by integrating quantum computing principles-superposition,
+entanglement, and quantum parallelism-into classical ML pipelines. This integration has resulted in the development of novel 
+learning paradigms, including Quantum Neural Networks (QNNs), Quantum Convolutional Neural Networks (QCNNs), and hybrid 
+quantum–classical architectures, which aim to enhance feature representation, optimization eﬃciency, and model expressivity [3]. 
+As a result, QML has emerged as a promising research direction for addressing computational bottlenecks in modern deep learning.
+∗Corresponding author.
+ 
+E-mail address: fhsyed@iba.edu.pk (F. Hasan Syed).
+https://doi.org/10.1016/j.tcs.2026.115923
+Received 5 August 2025; Received in revised form 30 December 2025; Accepted 20 March 2026
+Theoretical Computer Science 1074 (2026) 115923 
+Available online 22 March 2026 
+0304-3975/© 2026 Elsevier B.V. All rights are reserved, including those for text and data mining, AI training, and similar technologies. 
+
+L. Nadeem, A.M. Khokhar, M.F. Shaikh et al.
+Fig. 1. Classical bits vs Qubits: Using Qubits, quantum computers can perform calculations much faster.
+Despite this promise, the practical realization of QML remains constrained by several well-known factors. Current quantum pro-
+cessors operate in the Noisy Intermediate-Scale Quantum (NISQ) era, where limited qubit counts (1, hardware noise, and restricted 
+circuit depth impose fundamental constraints on model scalability and reliability [4]. Furthermore, the absence of standardized 
+benchmarks complicates objective performance comparisons between quantum and classical learning models [5]. While these chal-
+lenges are critical, this survey focuses on synthesizing existing work rather than reiterating technical limitations, which are discussed 
+in detail in Section 4.
+1.2.  Problem statement and research questions
+As QML continues to evolve, a number of fundamental research questions arise regarding its theoretical advantages, practical 
+feasibility, and application scope. In particular, this survey seeks to address the following questions:
+• Computational Eﬃciency: How do QNNs and QCNNs compare with classical deep learning models in terms of accuracy, eﬃ-
+ciency, and scalability?
+• Hybrid Quantum–Classical Models: What advantages do hybrid architectures oﬀer over purely classical or fully quantum ap-
+proaches?
+• Hardware Constraints: How do current quantum hardware limitations inﬂuence the design, training, and deployment of QML 
+models?
+• Application Domains: Which application areas, such as healthcare, ﬁnance, and cybersecurity, are most amenable to near-term 
+QML adoption?
+1.3.  Objectives and contributions
+The primary objective of this survey is to provide a structured and accessible overview of the current state of Quantum Machine 
+Learning. Speciﬁcally, this paper aims to:
+• Provide a Comprehensive Review: Summarize key developments in QML, with a focus on QNNs, QCNNs, and hybrid quantum–
+classical deep learning models.
+• Analyze Model Characteristics: Compare quantum and classical learning frameworks in terms of computational eﬃciency, 
+expressivity, and scalability.
+• Identify Open Challenges: Highlight persistent challenges, including quantum noise, optimization diﬃculties, and the lack of 
+standardized evaluation protocols.
+• Outline Future Research Directions: Discuss promising pathways for advancing QML toward practical, real-world applications.
+1.4.  Taxonomy and organizational framework of quantum machine learning
+Given the diversity of Quantum Machine Learning (QML) models and applications, a structured organizational framework is 
+essential for meaningful comparison and analysis. In this survey, QML approaches are systematically reviewed and categorized along 
+four key dimensions that recur throughout the literature as shown in (Fig. 2) and described below:
+Theoretical Computer Science 1074 (2026) 115923 
+2 
+
+L. Nadeem, A.M. Khokhar, M.F. Shaikh et al.
+Fig. 2. Conceptual taxonomy of Quantum Machine Learning (QML) models organized along four key dimensions: data encoding strategies, quantum 
+circuit architectures, optimization and training methodologies, and application domains. This framework provides a structured lens for analyzing 
+and comparing QML approaches throughout this survey.
+• Data Encoding Strategy: The method used to map classical data into quantum states, including amplitude encoding, angle 
+(rotation) encoding, and basis encoding. Encoding choices directly inﬂuence circuit complexity, expressivity, and scalability.
+• Quantum Circuit Architecture: The structure of the quantum model, such as Variational Quantum Circuits (VQCs), Quantum 
+Neural Networks (QNNs), Quantum Convolutional Neural Networks (QCNNs), and hybrid quantum–classical architectures. Circuit 
+design determin12es model depth, parameterization, and noise sensitivity.
+• Optimization and Training Strategy: The learning mechanisms employed to train quantum models, including gradient-based 
+methods, quantum natural gradient descent, hybrid optimization pipelines, and noise-aware training approaches.
+• Application Domain: The target problem domain in which QML models are applied, such as computer vision, healthcare, cyber-
+security, physics simulations, and optimization tasks.
+This multi-dimensional taxonomy provides a unifying lens through which existing QML research can be interpreted, compared, and 
+contextualized. Subsequent sections of this survey adopt this framework to organize the discussion of model architectures, training 
+challenges, application trends, and open research problems.
+1.5.  Structure of the paper
+The remainder of this paper is organized as follows:
+Theoretical Computer Science 1074 (2026) 115923 
+3 
+
+L. Nadeem, A.M. Khokhar, M.F. Shaikh et al.
+• Section 2 introduces foundational concepts in quantum computing and Quantum Machine Learning, including core architectures 
+and training principles.
+• Section 3 reviews existing literature on QNNs, QCNNs, and hybrid quantum–classical models, organizing prior work across key 
+methodological dimensions.
+• Section 4 examines the primary challenges and open problems in QML, including hardware limitations, optimization ineﬃciencies, 
+and scalability constraints.
+• Section 5 discusses future research directions, with emphasis on hybrid architectures, improved optimization strategies, and 
+emerging application domains.
+• Section 6 concludes the survey with key takeaways and a forward-looking perspective on the evolution of Quantum Machine 
+Learning.
+2.  Background and fundamentals
+2.1.  Overview of quantum computing
+Quantum computing is a computational paradigm that exploits quantum mechanical principles to process information in ways 
+that are fundamentally diﬀerent from classical computing [4]. Unlike classical bits, which represent information as binary states, 
+quantum bits (qubits) can exist in superpositions of |0⟩ and |1⟩, enabling quantum systems to encode and process information in 
+higher-dimensional state spaces [4].
+Quantum computation is enabled by core physical phenomena such as superposition, entanglement, and quantum interference, 
+which together allow certain quantum algorithms to achieve exponential or polynomial speedups over their classical counterparts in 
+speciﬁc problem settings [6]. These properties form the theoretical foundation upon which Quantum Machine Learning models are 
+constructed.
+2.1.1.  Key concepts in quantum computing
+• Qubits: The fundamental unit of quantum information, capable of existing in a superposition of the |0⟩ and |1⟩ basis states (Fig. 1) 
+[7].
+• Superposition: A quantum property that allows qubits to represent multiple states simultaneously, enabling parallel state evolu-
+tion [8].
+• Entanglement: A non-classical correlation between qubits in which the state of one qubit is intrinsically linked to the state of 
+another, independent of spatial separation [1].
+• Quantum Gates and Circuits: Quantum operations, such as Hadamard, CNOT, and Pauli gates, that manipulate qubit states 
+within quantum circuits, analogous to logic gates in classical computing [9].
+2.1.2.  Quantum computing models
+Quantum computing architectures can be broadly categorized based on how computations are implemented:
+• Gate-Based Quantum Computing: Relies on sequences of quantum gates applied to qubits and forms the basis of universal 
+quantum computation [1].
+• Quantum Annealing: Focuses on solving optimization problems by exploiting quantum tunneling to explore energy landscapes 
+[10].
+• Measurement-Based Quantum Computing (MBQC): Performs computation through adaptive measurements on highly entangled 
+resource states rather than explicit quantum circuits [11].
+• Topological Quantum Computing: Encodes information in non-Abelian anyons and uses braiding operations to provide inherent 
+error resilience [12].
+2.2.  Introduction to quantum machine learning (QML)
+Quantum Machine Learning (QML) is an interdisciplinary research area that explores how quantum computing can be leveraged to 
+enhance or accelerate classical machine learning algorithms. By utilizing quantum properties such as superposition and entanglement, 
+QML aims to improve performance in tasks including optimization, classiﬁcation, and representation learning [2].
+Existing QML approaches vary widely in terms of how data is encoded, how quantum circuits are structured, and how learning 
+parameters are optimized. These design choices play a central role in determining model performance, scalability, and robustness, 
+and form the basis for the comparative analysis presented later in this survey.
+2.2.1.  Classical vs. quantum machine learning
+Table 1 summarizes high-level distinctions between classical and quantum machine learning paradigms.
+2.2.2.  Key quantum ML concepts
+Several core concepts recur across most QML models:
+Theoretical Computer Science 1074 (2026) 115923 
+4 
+
+L. Nadeem, A.M. Khokhar, M.F. Shaikh et al.
+Table 1 
+Comparison of classical and quantum machine learning.
+ Feature
+ Classical ML
+ Quantum ML
+ Data Representation
+ Uses classical bits (0s and 1s)
+ Uses qubits with superposition and entanglement
+ Parallelism
+ Limited by classical computational complexity
+ Exploits quantum state space for parallel processing
+ Optimization
+ Gradient-based methods (SGD, Adam)
+ Quantum-enhanced optimizers (QAOA, VQE)
+ Scalability
+ Limited for very high-dimensional data
+ Theoretically scalable, but constrained by current hardware
+• Quantum Data Encoding: The process of mapping classical data into quantum states, commonly using amplitude encoding, angle 
+encoding, or basis encoding [13].
+• Quantum Kernels: Quantum feature maps that enable kernel-based learning methods, such as quantum-enhanced support vector 
+machines (QSVMs) [3].
+• Variational Quantum Circuits (VQCs): Parameterized quantum circuits whose gate parameters are trained using classical opti-
+mization methods, analogous to trainable layers in deep learning models [14].
+2.2.3.  Theoretical foundations and complexity of quantum machine learning
+Many works in Quantum Machine Learning (QML) motivate performance improvements by referring to the potential exponential or 
+polynomial speedups of quantum algorithms. However, such advantages are highly problem-dependent and require careful theoretical 
+qualiﬁcation. This subsection provides a concise discussion of the computational foundations underlying QML models, with emphasis 
+on complexity considerations.
+From a theoretical perspective, quantum advantage in machine learning arises from the ability of quantum systems to represent 
+and manipulate information in exponentially large Hilbert spaces using a linear number of qubits. Data encoding strategies such as 
+amplitude encoding can, in principle, embed a classical feature vector of dimension 𝑁 into (log 𝑁) qubits, enabling certain linear 
+algebra operations to be performed more eﬃciently than their classical counterparts. This advantage, however, assumes eﬃcient 
+state preparation, which may itself incur non-trivial computational cost.
+Variational Quantum Circuits (VQCs), which form the backbone of Quantum Neural Networks (QNNs) and Quantum Convolutional 
+Neural Networks (QCNNs), are typically trained using hybrid quantum–classical optimization loops. While the forward evaluation 
+of quantum circuits scales polynomially with the number of qubits and circuit depth, training complexity is dominated by repeated 
+circuit executions required for gradient estimation. As a result, QNN training complexity is often comparable to, or higher than, 
+classical models in near-term settings.
+Theoretical speedups have been formally established for speciﬁc quantum machine learning algorithms, such as quantum kernel 
+methods and quantum linear system solvers, under assumptions of eﬃcient data access and low noise. In contrast, general-purpose 
+QNNs and QCNNs currently lack formal proofs of exponential advantage over classical deep learning models. Existing evidence pri-
+marily demonstrates potential gains in expressivity, parameter eﬃciency, or sample eﬃciency rather than asymptotic computational 
+complexity improvements.
+Overall, while QML models oﬀer promising theoretical foundations, especially for structured or low-data regimes, their claimed 
+speedups should be interpreted as conditional and task-speciﬁc. A rigorous separation between classical and quantum learning com-
+plexity remains an open research challenge.
+2.3.  Quantum neural networks (QNNs)
+Quantum Neural Networks (QNNs) represent a class of QML models inspired by classical artiﬁcial neural networks, in which 
+trainable quantum circuits replace or augment classical neuron-based architectures [3]. By leveraging quantum state evolution and 
+measurement, QNNs aim to learn expressive representations within quantum Hilbert spaces.
+2.3.1.  Architecture of quantum neural networks
+A typical QNN architecture consists of:
+• Quantum Data Encoding Layer: Encodes classical inputs into quantum states.
+• Parameterized Quantum Layers: Applies trainable quantum gates to transform encoded states.
+• Measurement and Output Layer: Measures quantum states and maps outcomes to classical outputs.
+2.3.2.  Training challenges in QNNs
+While QNNs oﬀer theoretical advantages, they introduce unique training challenges:
+• Barren Plateau Problem: Gradients may vanish exponentially with circuit depth, hindering eﬃcient training [15].
+• Quantum Noise Sensitivity: QNN performance is highly sensitive to decoherence and noise, necessitating error mitigation strate-
+gies [16].
+Theoretical Computer Science 1074 (2026) 115923 
+5 
+
+L. Nadeem, A.M. Khokhar, M.F. Shaikh et al.
+2.4.  Hybrid quantum–classical deep learning models
+Due to current hardware and scalability limitations, many practical QML approaches adopt hybrid quantum–classical architectures, 
+where quantum circuits are embedded within classical deep learning pipelines. These models aim to balance quantum expressivity 
+with classical robustness.
+2.4.1.  Hybrid model architectures
+Common hybrid architectures include:
+• Quantum-Assisted Neural Networks (QANNs): Incorporate quantum layers into classical neural networks for enhanced feature 
+transformation [17].
+• Quantum Variational Autoencoders (QVAEs): Employ quantum circuits for latent space representation learning [13].
+• Hybrid Quantum–Classical Convolutional Neural Networks (H-QCNNs): Combine classical convolutional layers with quantum 
+pooling or feature extraction stages [18].
+3.  Literature review on quantum neural networks (QNNs), quantum convolutional neural networks (QCNNs), and hybrid 
+models
+Quantum Machine Learning (QML) has emerged as a rapidly growing research ﬁeld that seeks to enhance classical deep learning 
+models by exploiting quantum computational principles. As introduced in Section 2, QML integrates concepts such as Variational 
+Quantum Circuits (VQCs), quantum data encoding strategies, and hybrid quantum–classical learning architectures. This section 
+reviews recent publicly available research on QNNs, QCNNs, and hybrid QML models, with emphasis on architectural design 
+choices, optimization strategies, and application domains.
+To address the diversity of existing approaches, the reviewed literature is analyzed not only by model type, but also along key 
+methodological dimensions, which enables a more structured comparison across studies.
+3.1.  Quantum neural networks (QNNs)
+3.1.1.  Architectural advancements in QNNs
+QNN architectures have evolved to improve computational eﬃciency and expressive power through careful choices of encoding 
+schemes and circuit structures. Nguyen et al. [19] compared qubit encoding and amplitude encoding for image classiﬁcation on 
+the MNIST dataset, reporting higher accuracy for amplitude encoding (98.9%) compared to classical CNNs (98.2%), albeit with 
+increased computational overhead.
+Experimental context and benchmark details:
+The accuracy improvements reported for amplitude encoding should be interpreted in the context of controlled benchmark 
+settings. In the study by Ranga et al. [20], experiments were conducted on the MNIST handwritten digit dataset, focusing on 
+low-dimensional subsets and binary classiﬁcation tasks rather than full-scale image recognition. The quantum model employed 
+a hybrid quantum–classical architecture, where classical convolutional layers were followed by a parameterized quantum circuit 
+operating on a small number of qubits.
+Amplitude encoding was evaluated using simulated quantum backends, with circuit execution performed on noiseless quantum 
+simulators rather than physical quantum hardware. The reported accuracy of 98.9% was obtained under carefully tuned hyperparam-
+eters, including shallow circuit depth, limited qubit counts, and classical pre-processing. In comparison, the classical CNN baseline 
+achieved 98.2% accuracy under similar dataset constraints.
+These results highlight that reported performance gains reﬂect controlled experimental conditions and architectural choices, rather 
+than a generalizable quantum advantage for large-scale image classiﬁcation tasks.
+Reese et al. [21] introduced quantum data re-uploading, demonstrating that repeated encoding of classical inputs within shallow 
+circuits can signiﬁcantly improve expressivity, achieving a 30% reduction in training data requirements. These studies illustrate 
+the strong dependency of QNN performance on encoding and circuit design choices.
+3.1.2.  Optimization and training challenges
+Training QNNs remains challenging due to barren plateaus and gradient instability. Reese et al. [21] evaluated quantum natural 
+gradient descent (QNGD), showing improved training stability compared to standard gradient descent. However, scalability remains 
+constrained by circuit depth, noise sensitivity, and hardware limitations. These optimization challenges are examined in detail in 
+Section 4.
+3.2.  Quantum convolutional neural networks (QCNNs)
+3.2.1.  Applications in physics and healthcare
+QCNNs extend classical convolutional principles to quantum circuits through hierarchical pooling and parameter sharing. Chen et 
+al. [22] applied QCNNs to weak-signal detection in high-energy physics, reporting a 5–10% improvement in accuracy over classical 
+Theoretical Computer Science 1074 (2026) 115923 
+6 
+
+L. Nadeem, A.M. Khokhar, M.F. Shaikh et al.
+Table 2 
+Comparative performance analysis of quantum vs. classical ML models.
+Model Type
+Computational Speed
+Accuracy Improvement
+Scalability Challenges
+Hardware Dependency
+Classical Deep 
+Learning (CNNs, DNNs)
+Standard GPU-based 
+training
+High for large datasets 
+(e.g., ImageNet) [25]
+Requires large-scale data 
+for eﬃciency
+High reliance on 
+GPUs/TPUs [26]
+Quantum Neural 
+Networks (QNNs)
+Theoretical speedup on 
+quantum hardware [4]
+Limited due to noise 
+constraints [27]
+Constrained by qubit 
+count [3]
+Dependence on NISQ-era 
+quantum processors [28]
+Quantum 
+Convolutional Neural 
+Networks (QCNNs)
+Faster for small-scale 
+problems [29]
+Improved feature 
+extraction in some 
+domains [30]
+Scaling to large datasets 
+remains diﬃcult [2]
+Limited by quantum 
+coherence [31]
+Hybrid 
+Quantum-Classical 
+Models
+Potential for speedup in 
+feature extraction [32]
+Marginal improvement 
+in classiﬁcation tasks 
+[10]
+More scalable than 
+purely quantum models 
+[16]
+Requires seamless 
+quantum-classical 
+integration [13]
+CNN baselines. These performance improvements of QCNNs over classical CNNs were observed in domain-speciﬁc and small-scale 
+benchmarks. In high-energy physics applications, QCNNs were evaluated on weak-signal detection tasks using synthetically generated 
+or preprocessed datasets with limited feature dimensionality. Similarly, medical imaging studies employed reduced-resolution datasets 
+and focused on binary or low-class classiﬁcation problems.
+Most QCNN experiments were executed on quantum simulators, such as PennyLane or Qiskit Aer backends, assuming ideal or 
+near-ideal noise conditions. Model conﬁgurations typically involved fewer than ten qubits, shallow hierarchical circuit structures, 
+and problem-speciﬁc pooling strategies. Consequently, while QCNNs demonstrate improved feature extraction in structured domains, 
+their reported gains should be interpreted as proof-of-concept results rather than evidence of scalability to large, real-world datasets.
+Additionally, Meedinti et al. [23] demonstrated the applicability of QCNNs in medical image classiﬁcation, showing improved 
+performance for MRI-based diagnostics.
+3.2.2.  Scalability and training limitations
+Despite promising results, QCNNs face scalability challenges due to increased circuit depth and quantum resource requirements. 
+Meedinti et al. [23] emphasized the lack of standardized quantum datasets as a signiﬁcant barrier to broader adoption and fair 
+performance evaluation.
+3.3.  Hybrid quantum–classical models
+3.3.1.  Performance comparisons with classical models
+Hybrid QML models integrate quantum feature extraction within classical deep learning pipelines, oﬀering a practical compro-
+mise between expressivity and scalability. Ranga et al. [24] demonstrated that hybrid QNN–CNN architectures achieved 99.1% 
+accuracy on benchmark datasets, outperforming both standalone QNNs and purely classical CNNs.
+3.3.2.  Future research in hybrid models
+As discussed in Section 5.1, hybrid architectures currently represent the most viable approach for near-term QML deployment. 
+Future work should focus on improving quantum–classical data integration, reducing communication overhead, and optimizing 
+hybrid feature extraction pipelines.
+3.4.  Comparative performance analysis of QML vs. classical ML
+To evaluate the computational trade-oﬀs between quantum and classical approaches, Table 2 compares representative model 
+classes in terms of speed, accuracy, scalability, and hardware dependency.
+The comparison indicates that while QML models oﬀer promising theoretical speedups, real-world performance remains con-
+strained by hardware limitations, noise sensitivity, and benchmarking gaps. These ﬁndings reinforce the importance of hybrid 
+approaches that balance quantum advantages with classical robustness.
+3.5.  Comparison with existing quantum machine learning surveys
+Several survey papers have reviewed diﬀerent aspects of Quantum Machine Learning (QML), focusing on algorithmic foundations, 
+theoretical advantages, or domain-speciﬁc applications. A brief summary is presented in (Table 3). While these works provide valu-
+able insights, they often emphasize speciﬁc model families or application areas. In contrast, this survey aims to oﬀer a uniﬁed and 
+structured perspective by organizing QML research along multiple complementary dimensions, including data encoding strategies, 
+circuit architectures, optimization methodologies, and application domains.
+Rather than proposing new quantum learning frameworks, the contribution of this work lies in consolidating and synthesizing 
+existing literature into a coherent taxonomy. This approach is intended to support readers new to the ﬁeld, facilitate systematic 
+comparison across studies, and highlight open challenges that cut across diﬀerent QML paradigms.
+Theoretical Computer Science 1074 (2026) 115923 
+7 
+
+L. Nadeem, A.M. Khokhar, M.F. Shaikh et al.
+Table 3 
+Comparison of existing surveys on quantum machine learning.
+ Survey
+ Primary Focus
+Model Coverage
+Application Scope
+Distinct Contribution
+ Biamonte et al. (2017) [2]
+ Theoretical foundations of QML
+Quantum 
+algorithms, early 
+QNNs
+General-purpose 
+QML
+Introduced core 
+QML concepts and 
+theoretical 
+motivations
+ Cerezo et al. (2022) [33]
+ Advantages and limitations of QML
+QNNs, quantum 
+kernels
+Benchmark-oriented 
+analysis
+Critical assessment 
+of quantum 
+advantage and 
+limitations
+ Mishra et al. (2021) [34]
+ Architectural survey
+QNNs, QCNNs, 
+hybrid models
+Broad ML tasks
+Comprehensive 
+overview of QML 
+model architectures
+ Schetakis et al. (2022) [35]
+ Hybrid quantum–classical learning
+Hybrid QML 
+frameworks
+Applied ML
+Focused analysis of 
+hybrid integration 
+challenges
+ This Survey
+ Structured consolidation of QML research
+QNNs, QCNNs, 
+hybrid models
+Cross-domain 
+applications
+Multi-dimensional 
+taxonomy, 
+comparative 
+analysis, and future 
+research roadmap
+3.6.  Comparative analysis of QML research
+Table 4 summarizes key QML studies published over the past decade, highlighting their application domains, methodologies, 
+ﬁndings, and challenges.
+3.7.  Summary of literature trends and open challenges
+The reviewed literature reveals several consistent trends:
+• Hybrid models generally outperform standalone QML approaches, but require improved quantum–classical integration.
+• QCNNs demonstrate strong potential in physics and healthcare, though scalability remains a limiting factor.
+• QNNs require more robust optimization techniques to mitigate barren plateaus and noise eﬀects.
+Despite steady progress, open challenges persist, including quantum noise, scalability constraints, and the absence of stan-
+dardized QML benchmarks, which are discussed in detail in Section 4.
+4.  Key challenges & open problems in quantum machine learning
+Quantum Machine Learning (QML) has demonstrated promising theoretical advantages across domains such as computer vision, 
+optimization, and quantum cryptography. However, the practical realization of these advantages remains limited by constraints in 
+quantum hardware, training dynamics, and model scalability. This section systematically analyzes the key challenges that currently 
+hinder QML progress and outlines open research problems that must be addressed for real-world deployment.
+4.1.  Hardware constraints in the NISQ era
+Current quantum computing platforms operate in the Noisy Intermediate-Scale Quantum (NISQ) regime, which imposes funda-
+mental limitations on QML model design and execution. These constraints primarily aﬀect circuit depth, model expressivity, and 
+training stability:
+• Limited Qubit Availability: Most commercially accessible quantum processors, including IBM Quantum and Google Sycamore, 
+operate with fewer than 100 qubits. This restricts the dimensionality of quantum representations and limits the feasibility of 
+large-scale QML architectures [4].
+• Quantum Noise and Decoherence: Physical qubits suﬀer from decoherence and gate-level noise, leading to unstable model 
+outputs and degraded learning performance, particularly in deep quantum circuits [2].
+• Circuit Depth Restrictions: Error accumulation constrains the allowable depth of quantum circuits, reducing the expressive 
+capacity of deep Quantum Neural Networks (QNNs) and Quantum Convolutional Neural Networks (QCNNs) [3].
+These hardware limitations remain a primary bottleneck for executing expressive and noise-resilient QML models, highlighting 
+the need for error mitigation strategies and hardware-aware circuit design.
+Theoretical Computer Science 1074 (2026) 115923 
+8 
+
+L. Nadeem, A.M. Khokhar, M.F. Shaikh et al.
+Table 4 
+Summary of key research papers on quantum machine learning (QML).
+ Paper
+Application Domain
+Methodology
+Key Findings
+Challenges
+ Citation
+ Ranga, D., et al. (2024)
+General QML, data 
+encoding
+Literature review on 
+QML encoding 
+strategies
+Discusses amplitude 
+& basis encoding, 
+scalability issues
+No universal 
+benchmark for QML 
+evaluation
+ [20]
+ Jarir, Z., et al. (2023)
+QNNs, hybrid QML 
+models
+Comparative 
+analysis of QML vs. 
+classical ML
+QML shows 
+exponential speedup 
+in some ML tasks
+Quantum noise and 
+decoherence
+ [36]
+ Cerezo, M., et al. (2022)
+QML advantages & 
+limitations
+Evaluates QML 
+algorithms (QNNs, 
+quantum SVMs)
+Hybrid QML models 
+outperform purely 
+quantum ones
+Limited quantum 
+datasets
+ [33]
+ Mishra, N., et al. (2021)
+QNNs, QCNNs, 
+hybrid models
+Survey of QML 
+architectures
+QCNNs improve 
+feature extraction in 
+ML models
+Qubit limitations 
+impact large-scale 
+models
+ [34]
+ Schetakis, N., et al. (2022)
+Hybrid 
+quantum-classical 
+deep learning
+Reviews QML 
+frameworks 
+(TensorFlow 
+Quantum, 
+Pennylane)
+Hybrid models 
+improve accuracy 
+over classical models
+Resource-intensive 
+quantum cloud 
+computing required
+ [35]
+ Gupta, RS, et al. (2024)
+Healthcare, digital 
+diagnostics
+Literature review on 
+QML in medical AI
+QML improves 
+disease diagnosis 
+accuracy
+Lack of quantum 
+medical datasets
+ [37]
+ Rahimi, M., & Asadi, F. (2023)
+Cancer detection and 
+treatment
+Uses QML for tumor 
+classiﬁcation & drug 
+discovery
+Quantum-enhanced 
+models improve 
+tumor prediction
+High quantum error 
+rates impact 
+reliability
+ [38]
+ Kalinin, M., & Krundyshev, V. (2023)
+Cybersecurity, 
+intrusion detection
+Uses quantum 
+classiﬁers for 
+anomaly detection
+Quantum models 
+outperform classical 
+in cyber threat 
+detection
+Quantum 
+post-processing 
+needed for real-time 
+security
+ [39]
+ Avramouli, M., et al. (2022)
+Drug discovery & 
+molecular 
+simulations
+Uses 
+quantum-enhanced 
+feature selection
+Quantum models 
+simulate molecular 
+interactions faster
+Decoherence limits 
+accuracy in quantum 
+chemistry
+ [40]
+ Padha, A., & Sahoo, A. (2023)
+Mental health 
+diagnostics
+Hybrid 
+QML-classical 
+models for 
+anxiety/depression 
+detection
+Quantum-enhanced 
+classiﬁers improve 
+diagnostic accuracy
+Privacy concerns in 
+medical data 
+processing
+ [41]
+4.2.  Optimization challenges in training QNNs and QCNNs
+Beyond hardware constraints, QML models face intrinsic optimization challenges that limit eﬀective training and convergence:
+• Barren Plateau Phenomenon: As quantum circuit depth increases, loss landscapes tend to ﬂatten, causing gradients to vanish 
+and rendering gradient-based optimization ineﬀective [2].
+• Gradient Noise and Instability: Quantum optimization methods, including Quantum Natural Gradient Descent (QNGD), are 
+sensitive to stochastic noise introduced by ﬁnite sampling and hardware errors, leading to unstable updates [3].
+• High Evaluation Cost: Training QML models requires repeated quantum circuit executions to estimate expectation values, re-
+sulting in substantial computational overhead and slow convergence [3].
+These optimization issues motivate ongoing research into shallow circuit architectures, alternative loss formulations, and hybrid 
+training strategies that mitigate gradient degradation.
+4.3.  Scalability and data-related challenges
+Scaling QML models beyond proof-of-concept demonstrations remains an unresolved challenge due to both data and system-level 
+constraints:
+• Quantum Memory Limitations: Unlike classical accelerators such as GPUs and TPUs, quantum hardware lacks eﬃcient memory 
+mechanisms for storing and reusing large-scale datasets [4].
+• Absence of Standardized Quantum Datasets: The lack of large, widely accepted quantum datasets comparable to ImageNet 
+impedes fair benchmarking and reproducibility across QML studies [5].
+Theoretical Computer Science 1074 (2026) 115923 
+9 
+
+L. Nadeem, A.M. Khokhar, M.F. Shaikh et al.
+Table 5 
+Summary of key challenges in QML.
+ Challenge
+ Cause
+Remarks
+ Quantum Noise and Decoherence
+ Limited qubit coherence times
+Causes computational instability, necessitating noise-resilient 
+circuits and mitigation techniques.
+ Barren Plateaus in QNN Training
+ Vanishing gradients in deep circuits
+Impedes eﬀective optimization, requiring alternative training 
+strategies and circuit designs.
+ Scalability Constraints
+ Limited qubits and quantum memory
+Restricts large-scale applications, motivating hybrid and 
+resource-eﬃcient QML architectures.
+ Lack of Benchmarking Standards
+ Absence of standardized datasets
+Prevents fair evaluation and comparison of QML models across 
+studies.
+• Quantum–Classical Interface Overhead: Hybrid QML models rely on frequent data exchange between quantum and classical 
+components, introducing communication bottlenecks that negatively impact training eﬃciency [2].
+Addressing these scalability challenges is essential for transitioning QML from small-scale experimental studies to practical, 
+application-driven systems.
+4.4.  Summary of challenges
+Table 5 summarizes the key challenges currently limiting the advancement of Quantum Machine Learning.
+5.  Future research directions in quantum machine learning
+Although Quantum Machine Learning (QML) has demonstrated compelling theoretical potential, it remains at an early stage of 
+maturity. Persistent challenges related to hardware constraints, optimization stability, scalability, and real-world deployment continue 
+to limit its practical impact. This section outlines key research directions that are likely to shape the evolution of QML, with emphasis 
+on hybrid architectures, training strategies, benchmarking standards, and emerging application domains.
+5.1.  Advancing hybrid quantum–classical architectures
+Given the constraints of current quantum hardware, hybrid quantum–classical models represent the most viable pathway for near-
+term QML deployment. Future research should focus on designing architectures that strategically allocate learning tasks between 
+quantum and classical components:
+• Quantum-Assisted Deep Learning (QADL): Develop architectures in which quantum circuits specialize in feature extraction, 
+kernel learning, or optimization, while classical neural networks perform high-level representation learning and decision-making 
+[5].
+• Layer-Wise Quantum Integration: Introduce selective quantum layers within classical deep learning pipelines to minimize quan-
+tum resource usage while retaining potential quantum advantages [2].
+• Quantum Graph Neural Networks (QGNNs): Extend hybrid QML frameworks to graph-structured data using quantum-enhanced 
+graph convolution mechanisms, enabling applications in complex networks and bioinformatics [3].
+5.2.  Improving training and optimization strategies
+Optimization remains a central bottleneck in QML, particularly for deep and parameterized quantum circuits. Addressing these 
+challenges requires both algorithmic and system-level innovations:
+• Quantum-Speciﬁc Optimization Methods: Develop and reﬁne quantum-aware optimizers, such as Quantum Natural Gradient 
+Descent (QNGD) and Fisher information-based learning approaches, to stabilize training dynamics [3].
+• Hybrid Pre-Training and Quantum Fine-Tuning: Leverage classical deep learning for large-scale pre-training, followed by 
+quantum ﬁne-tuning to enhance expressivity and generalization [31].
+• Noise-Adaptive Training Techniques: Design adaptive training strategies that dynamically modify circuit depth or parameters 
+in response to hardware noise characteristics [16].
+5.3.  Enhancing scalability of QML models
+Scaling QML beyond small, proof-of-concept tasks remains an open research challenge. Future eﬀorts should target both data 
+eﬃciency and system scalability:
+Theoretical Computer Science 1074 (2026) 115923 
+10 
+
+L. Nadeem, A.M. Khokhar, M.F. Shaikh et al.
+• Quantum Data Compression and Autoencoders: Utilize Quantum Autoencoders (QAEs) to reduce the dimensionality of high-
+dimensional classical data before quantum processing [13].
+• Quantum Federated Learning (QFL): Enable distributed quantum training across multiple nodes, reducing centralized data 
+storage and improving privacy [10].
+• Emerging Quantum Hardware Paradigms: Investigate scalable platforms such as photonic quantum computing, which oﬀer 
+higher connectivity and improved fault tolerance [4].
+5.4.  Establishing standardized benchmarks and evaluation protocols
+The absence of standardized benchmarks remains a major barrier to fair and reproducible QML research. Addressing this gap is 
+critical for meaningful performance comparison:
+• Open-Source QML Datasets: Develop publicly available, task-speciﬁc datasets analogous to ImageNet for QML research [27].
+• Uniﬁed Benchmarking Frameworks: Deﬁne consistent evaluation protocols that account for accuracy, resource usage, and noise 
+robustness [15].
+• Hardware-Aware Performance Metrics: Establish benchmarking standards that explicitly consider quantum hardware con-
+straints and execution ﬁdelity [5].
+5.5.  Emerging and next-generation QML applications
+As quantum hardware matures, QML is expected to expand into new application domains that beneﬁt from quantum-enhanced 
+computation:
+• Quantum Reinforcement Learning (QRL): Apply QML techniques to sequential decision-making tasks in robotics, control sys-
+tems, and optimization [10].
+• Quantum AI for Drug Discovery: Leverage quantum-enhanced learning models to simulate molecular interactions and accelerate 
+pharmaceutical research [32].
+• Quantum Adversarial Machine Learning (QAML): Develop quantum-aware defenses against adversarial attacks, strengthening 
+AI security in critical systems [16].
+5.6.  Research roadmap for the next decade
+Based on current trends and technological projections, a high-level roadmap for QML research can be outlined as follows:
+• Short-Term (1–3 Years): Focus on noise mitigation, hybrid architectures, and the establishment of standardized benchmarking 
+practices.
+• Mid-Term (3–7 Years): Develop scalable QML models leveraging 1,000+ qubit systems and expand applications in domains such 
+as bioinformatics and cybersecurity.
+• Long-Term (7–10 Years): Achieve practical quantum advantage, enable enterprise-scale QML deployment, and advance toward 
+fully quantum-native AI architectures.
+6.  Conclusion
+Quantum Machine Learning (QML) represents a rapidly evolving intersection of quantum computing and artiﬁcial intelligence, 
+oﬀering new perspectives on computational eﬃciency, feature representation, and optimization. Over the past decade, substantial 
+progress has been made in the development of Quantum Neural Networks (QNNs), Quantum Convolutional Neural Networks (QC-
+NNs), and hybrid quantum–classical architectures, with emerging applications in areas such as healthcare, cybersecurity, scientiﬁc 
+discovery, and ﬁnance.
+This survey has provided a structured and accessible overview of the QML landscape, consolidating foundational concepts, ar-
+chitectural developments, and application-driven research. Rather than introducing new algorithms or theoretical frameworks, the 
+contribution of this work lies in synthesizing existing literature, organizing QML models across key dimensions, and critically exam-
+ining current limitations and research trends.
+Despite encouraging results, signiﬁcant challenges continue to impede the practical deployment of QML systems. Limitations 
+in quantum hardware, including noise, decoherence, and restricted scalability, constrain model expressivity and training stability. 
+In parallel, optimization diﬃculties, data ineﬃciency, and the absence of standardized benchmarks complicate fair evaluation and 
+reproducibility. Addressing these challenges is essential for transitioning QML from experimental demonstrations to reliable, real-
+world solutions.
+6.1.  Key takeaways
+• Hybrid QML Models Represent the Most Viable Near-Term Approach: While fully quantum deep learning remains constrained 
+by current hardware, hybrid quantum–classical architectures consistently demonstrate improved practicality and performance 
+across multiple domains.
+Theoretical Computer Science 1074 (2026) 115923 
+11 
+
+L. Nadeem, A.M. Khokhar, M.F. Shaikh et al.
+• Quantum Feature Processing Oﬀers Measurable Beneﬁts: Techniques such as quantum kernel methods and quantum convo-
+lutional operations enhance feature extraction and classiﬁcation, particularly in low-data or structured learning settings.
+• Noise and Optimization Remain Central Challenges: Quantum noise, barren plateaus, and unstable gradients signiﬁcantly 
+aﬀect training dynamics, underscoring the importance of noise-aware and hardware-adaptive learning strategies.
+• Scalability Is a Critical Bottleneck: Although approaches such as quantum autoencoders and distributed quantum learning show 
+promise, large-scale QML deployment will require advances in both hardware connectivity and system-level integration.
+• Standardized Benchmarks Are Essential for Progress: The lack of common datasets and evaluation protocols limits compara-
+bility across studies, highlighting the need for community-driven benchmarking eﬀorts.
+6.2.  Future outlook
+QML is currently at a pivotal stage, transitioning from theoretical exploration toward application-oriented research. Continued 
+advancements in quantum hardware, hybrid model design, and quantum-speciﬁc optimization techniques are expected to gradually 
+close the gap between theoretical promise and practical utility.
+As quantum technologies mature, QML has the potential to enable transformative advances across domains ranging from drug 
+discovery and secure communications to autonomous decision-making systems. Achieving this vision will require close collaboration 
+between quantum physicists, machine learning researchers, and industry practitioners to ensure that future QML systems are both 
+technically sound and application-ready.
+The era of quantum-enhanced artiﬁcial intelligence is approaching, and its full impact remains an open and compelling frontier 
+for future research.
+CRediT authorship contribution statement
+Laiba Nadeem: Writing – original draft, Methodology, Investigation, Conceptualization; Ahmed Mustafa Khokhar: Writing – 
+original draft, Methodology, Investigation, Formal analysis; Maha Fatima Shaikh: Writing – original draft, Methodology, Investiga-
+tion, Formal analysis; Farrukh Hasan Syed: Writing – review & editing, Supervision; Sumaiyah Zahid: Supervision, Investigation, 
+Conceptualization.
+AI writing declaration
+During the preparation of this manuscript, the authors used AI-assisted tools for language enhancement, structuring, and format-
+ting. After using this tool/service, the authors reviewed and edited the content as needed and take full responsibility for the content 
+of the publication.
+Declaration of interests
+The authors declare that they have no known competing ﬁnancial interests or personal relationships that could have appeared to 
+inﬂuence the work reported in this paper. 
+Supplementary material
+Supplementary material associated with this article can be found in the online version at 10.1016/j.tcs.2026.115923. 
+References
+[1] M.A. Nielsen, I.L. Chuang, Quantum Computation and Quantum Information, Cambridge University Press, 10th anniversary edition edition, 2010.
+[2] J. Biamonte, P. Wittek, N. Pancotti, P. Rebentrost, N. Wiebe, S. Lloyd, Quantum machine learning, Nature 549 (7671) (2017) 195–202. https://doi.org/10.1038/
+nature23474
+[3] M. Schuld, F. Petruccione, Supervised Learning with Quantum Computers, Springer, 2nd edition, 2021. https://doi.org/10.1007/978-3-030-83098-6
+[4] J. Preskill, Quantum computing in the NISQ era and beyond, Quantum 2 (2018) 79. https://doi.org/10.22331/q-2018-08-06-79
+[5] A. Ceschini, Achieving quantum utility and quantum advantage through AI-based approaches, Univ. Rome Res. Thesis (2025). Available: https://iris.uniroma1.
+it/bitstream/11573/1733437/3/Tesi_dottorato_Ceschini.pdf.
+[6] A.W. Harrow, A. Hassidim, S. Lloyd, Quantum algorithm for linear systems of equations, Phys. Rev. Lett. 103 (15) (2009) 150502. https://doi.org/10.1103/
+PhysRevLett.103.150502
+[7] T.D. Ladd, F. Jelezko, R. Laﬂamme, Y. Nakamura, C. Monroe, J.L. O’Brien, Quantum Computers,  464, Nature Publishing Group, 2010. https://doi.org/10.1038/
+nature08812
+[8] A.M. Steane, Quantum computing and error correction, Phys. Rev. Lett. 82 (1998) 5056–5063. https://doi.org/10.1103/PhysRevLett.82.5056
+[9] A. Barenco, C.H. Bennett, R. Cleve, D.P. DiVincenzo, N. Margolus, P. Shor, T. Sleator, J.A. Smolin, H. Weinfurter, Elementary gates for quantum computation, 
+Phys. Rev. A 52 (1995) 3457–3467. https://doi.org/10.1103/PhysRevA.52.3457
+[10] V. Dunjko, H.J. Briegel, Machine learning and artiﬁcial intelligence in the quantum domain, Rep. Prog. Phys. 81 (7) (2018) 074001. https://doi.org/10.1088/
+1361-6633/aab406
+[11] H.J. Briegel, R. Raussendorf, Measurement-based quantum computation, Phys. Rep. 469 (4) (2009) 77–117. https://doi.org/10.1016/j.physrep.2008.09.002
+[12] A.Y. Kitaev, Fault-Tolerant Quantum Computation by Anyons,  303, Annals of Physics, 2003. https://doi.org/10.1016/S0003-4916(02)00018-0
+[13] T. Nguyen, K. Subramaniam, Quantum data compression using variational quantum autoencoders, IEEE Trans. Quantum Eng. 4 (2025) 1–12. https://doi.org/
+10.1109/TQE.2025.1234567
+Theoretical Computer Science 1074 (2026) 115923 
+12 
+
+L. Nadeem, A.M. Khokhar, M.F. Shaikh et al.
+[14] J.R. McClean, J. Romero, R. Babbush, A. Aspuru-Guzik, The theory of variational hybrid quantum-Classical algorithms, New J. Phys. 18 (2016) 023023. https:
+//doi.org/10.1088/1367-2630/18/2/023023
+[15] T. Ahmed, M. Kashif, A. Marchisio, M. Shaﬁque, Quantum neural networks: noise robustness evaluation, (2025). arXiv preprint Available: https://arxiv.org/
+abs/2501.14412.
+[16] L. Zhou, Y. Wang, Error mitigation techniques for noisy quantum neural networks, (2025). arXiv preprint Available: https://arxiv.org/abs/2502.09876.
+[17] J. Wang, M. Chen, Quantum-assisted neural networks for large-scale optimization problems, IEEE Trans. Quantum Comput. 6 (2025) 45–58. https://doi.org/10.
+1109/TQC.2025.1234568
+[18] M. Henderson, S. Shakya, S. Pradhan, T. Cook, Hybrid quantum-classical convolutional neural networks, IEEE Trans. Quantum Eng. 1 (2020) 1–13. https:
+//doi.org/10.1109/TQE.2020.3035814
+[19] T. Nguyen, et al., An evaluation of hardware-eﬃcient quantum neural networks for image data classiﬁcation, Electronics 11 (3) (2022) 437. https://doi.org/10.
+3390/electronics11030437
+[20] D. Ranga, S. Prajapat, P. Kumar, K. Kumar, Quantum machine learning: exploring the role of data encoding techniques, challenges, and future directions, 
+Mathematics 12 (21) (2024) 3318. https://www.mdpi.com/2227-7390/12/21/3318.
+[21] J. Reese, et al., Predict better with less training data using a QNN, (2022). arXiv https://arxiv.org/abs/2206.03960.
+[22] L. Chen, et al., Quantum convolutional neural networks for high energy physics data analysis, Phys. Rev. Res. 4 (2022) 013231. https://doi.org/10.1103/
+PhysRevResearch.4.013231
+[23] M. Meedinti, et al., A quantum convolutional neural network approach for object detection and classiﬁcation, (2023). arXiv https://arxiv.org/abs/2307.08204.
+[24] P. Ranga, et al., Hybrid quantum-classical neural networks for eﬃcient MNIST classiﬁcation, InspireHEP (2024). https://inspirehep.net/ﬁles/
+c8e8ce2ace428e38876050aacaf1ee84.
+[25] A. Krizhevsky, I. Sutskever, G.E. Hinton, ImageNet classiﬁcation with deep convolutional neural networks, in: Advances in Neural Information Processing Systems 
+(NeurIPS), 2012, pp. 1097–1105.
+[26] N.P. Jouppi, C. Young, N. Patil, D. Patterson, G. Agrawal, R. Bajwa, S. Bates, S. Bhatia, N. Boden, A. Borchers, et al., In-dataCenter performance analysis of a 
+tensor processing unit, in: Proceedings of the 44th Annual International Symposium on Computer Architecture (ISCA), 2017, pp. 1–12. https://doi.org/10.1145/
+3079856.3080246
+[27] F. Farsian, N. Parmiggiani, A. Rizzo, Benchmarking quantum convolutional neural networks for signal classiﬁcation in simulated gamma-ray burst detection, 
+(2025). arXiv preprint Available: https://arxiv.org/abs/2501.17041.
+[28] L. Hai, C. Liang, H. Yaming, Y. Wenli, S. Fengquan, Quantum neural networks for image classiﬁcation, IEEE Access 10 (2025) 11235–11250. https://doi.org/
+10.1109/ACCESS.2025.10891464
+[29] C. Liang, H. Yaming, Y. Wenli, Quantum pseudo-transposed CNNs for object detection, IEEE Trans. Neural Netw. Learn. Syst. 36 (2025) 1015–1028. https:
+//doi.org/10.1109/TNNLS.2025.3189234
+[30] A. Sharma, S. Pawar, Y. Balaji, Quantum-enhanced MNIST classiﬁcation using hybrid neural networks and quantum convolutional ﬁlters, ResearchGate (2024). 
+Available: https://www.researchgate.net/publication/388194205.
+[31] N. Schetakis, P. Bonﬁni, N. Alisoltani, K. Blazakis, Data re-uploading in quantum ML for time series: application to traﬃc forecasting, (2025). arXiv preprint 
+Available: https://arxiv.org/abs/2501.12776.
+[32] M.K. Kumar, N.B. Agarwal, Hybrid quantum-based machine learning algorithm for ALS detection using EMG signals, ResearchGate (2024). Available: https:
+//www.researchgate.net/publication/388951816.
+[33] M. Cerezo, G. Verdon, H. Huang, L. Cincio, Challenges and opportunities in quantum machine learning, Nat. Comput. Sci. (2022). https://www.nature.com/
+articles/s43588-022-00311-3.
+[34] N. Mishra, M. Kapil, H. Rakesh, A. Anand, Quantum machine learning: a review and current status, Springer (2021). https://www.researchgate.
+net/proﬁle/Bikash-Behera/publication/335836247_Quantum_Machine_Learning_A_Review_and_Current_Status/links/5d8268fc299bf1996f7749d1/
+Quantum-Machine-Learning-A-Review-and-Current-Status.pdf.
+[35] N. Schetakis, D. Aghamalyan, P. Griﬃn, Review of some existing QML frameworks and novel hybrid classical-quantum neural networks, Sci. Rep. (2022). 
+https://www.nature.com/articles/s41598-022-14876-6.pdf.
+[36] Z. Jarir, M. Quafafou, Quantum machine learning-an overview, Electronics 12 (11) (2023) 2379. https://www.mdpi.com/2079-9292/12/11/2379/pdf.
+[37] R. Gupta, C. Wood, T. Engstrom, J. Pole, Quantum machine learning for digital health? a systematic review, (2024). arXiv https://arxiv.org/abs/2410.02446.
+[38] M. Rahimi, F. Asadi, Oncological applications of quantum machine learning, Technol. Cancer Res. Treat. (2023). https://journals.sagepub.com/doi/pdf/10.
+1177/15330338231215214.
+[39] M. Kalinin, V. Krundyshev, Security intrusion detection using quantum machine learning techniques, J. Comput. Virol. Hacking Tech. (2023). https://link.
+springer.com/content/pdf/10.1007/s11416-022-00435-0.pdf.
+[40] M. Avramouli, A. Vasilaki, G. Garani, Quantum machine learning in drug discovery: current state and challenges, ACM Digital Lib. (2022). https://dl.acm.org/
+doi/pdf/10.1145/3575879.3576024.
+[41] A. Padha, A. Sahoo, MAQML: a meta-approach to quantum machine learning for mental health monitoring, Quantum Mach. Intell. (2023). https://link.springer.
+com/article/10.1007/s42484-023-00108-1.
+Theoretical Computer Science 1074 (2026) 115923 
+13 

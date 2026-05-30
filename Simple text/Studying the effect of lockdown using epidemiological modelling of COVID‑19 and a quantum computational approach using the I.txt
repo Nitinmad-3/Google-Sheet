@@ -1,0 +1,976 @@
+Source-PDF: D:\Review\New folder\Main\Directly epidemic  epi modeling with quantumIsing\Studying the effect of lockdown using epidemiological modelling of COVID‑19 and a quantum computational approach using the I.pdf
+Relative-Path: New folder\Main\Directly epidemic  epi modeling with quantumIsing\Studying the effect of lockdown using epidemiological modelling of COVID‑19 and a quantum computational approach using the I.pdf
+--------------------------------------------------------------------------------
+
+1
+Vol.:(0123456789)
+Scientific Reports |        (2020) 10:21741  
+| https://doi.org/10.1038/s41598-020-78652-0
+www.nature.com/scientificreports
+Studying the effect of lockdown 
+using epidemiological modelling 
+of COVID‑19 and a quantum 
+computational approach using 
+the Ising spin interaction
+Anshuman Padhi 
+1, Sudev Pradhan 
+2, Pragna Paramita Sahoo3, Kalyani Suresh4, 
+Bikash K. Behera 
+5,6* & Prasanta K. Panigrahi 
+6
+COVID-19 is a respiratory tract infection that can range from being mild to fatal. In India, the 
+countrywide lockdown has been imposed since 24th march 2020, and has got multiple extensions with 
+different guidelines for each phase. Among various models of epidemiology, we use the SIR(D) model 
+to analyze the extent to which this multi-phased lockdown has been active in ‘flattening the curve’ 
+and lower the threat. Analyzing the effect of lockdown on the infection may provide a better insight 
+into the evolution of epidemic while implementing the quarantine procedures as well as improving 
+the healthcare facilities. For accurate modelling, incorporating various parameters along with 
+sophisticated computational facilities are required. Parallel to SIRD modelling, we tend to compare 
+it with the Ising model and derive a quantum circuit that incorporates the rate of infection and rate 
+of recovery, etc as its parameters. The probabilistic plots obtained from the circuit qualitatively 
+resemble the shape of the curve for the spread of Coronavirus. We also demonstrate how the curve 
+flattens when the lockdown is imposed. This kind of quantum computational approach can be useful in 
+reducing space and time complexities of a huge amount of information related to the epidemic.
+COVID-19 (Coronavirus Disease 2019) is a disease caused by the virus strain known as SARS-CoV-2 (Severe 
+Acute Respiratory Syndrome Coronavirus II). It has widespread implications on the human body in the form 
+of respiratory issues, septic shock, co-morbidity arising from multiple-organ failure, and even death1. Rout-
+ing back to its emergence in mainland China around the end of 2019, till May 2020, it has spread to over 210 
+countries resulting in a total of around 40 lakh cases with almost 3 lakh deaths due to the same. The World 
+Health Organisation (WHO) declared it as a global pandemic on 11th March 2020, observing the rate at which 
+it transmits. Various countries, including India, put forward extensive measures to curb the viral epidemic, by 
+extensive tracing, testing and isolating the suspected ones while improving healthcare systems and imposing 
+lockdowns. Government of India declared the countrywide lockdown on 24th March 2020 to reduce the virus’ 
+rate of transmission. To tackle this global pandemic, the extent of spread and the time taken by the epidemic to 
+reach its peak and other details must be well predicted so that the state can plan accordingly and fight against it.
+Mathematical modelling can come handy in such processes, since they can provide one of the models as to 
+how the epidemic ‘might’ evolve while analyzing the current set of available data. Any such attempt at prediction 
+might be mathematically rigorous but still they come with a fairly high uncertainty as the assumptions and con-
+siderations in that model might not address all the complexities of the process. Thus a model and its application 
+still have gaps to be covered2,3. Precise consideration of networks within a population while the model is being 
+OPEN
+1School of Physical Sciences, National Institute of Science Education and Research, HBNI, Jatni, Odisha 752050, 
+India. 2Physics Department, Indian Institute of Science Education and Research, Berhampur, Odisha  760010, 
+India. 3Maths Department, Indian Institute of Science Education and Research, Berhampur, Odisha  760010, 
+India. 4Department of Physics and Earth sciences, Universität Leipzig, Linnéstraße 5, Leipzig  04103, 
+Germany. 5Bikash’s Quantum (OPC) Pvt. Ltd., Balindi, Mohanpur, Nadia, West Bengal 741246, India. 6Department 
+of Physical Sciences, Indian Institute of Science Education and Research Kolkata, Mohanpur, West Bengal 741246, 
+India. *email: bikash@bikashsquantum.com
+
+2
+Vol:.(1234567890)
+Scientific Reports |        (2020) 10:21741  | 
+https://doi.org/10.1038/s41598-020-78652-0
+www.nature.com/scientificreports/
+formulated nears an accurate prediction. Later, the prediction can be informed to the healthcare sector and the 
+stakeholders for necessary implementations.
+Here, we use the time-dependent SIRD (Susceptible–Infected–Recovered–Deceased) model to predict 
+the evolution of this epidemic in India. The SIRD model is one among several compartmental studies in 
+epidemiology4 such as SEIR, where E stands for exposed and rest staying the same; SEIRD, SIR, SIS model, etc. 
+They have their origin from the Kermack–McKendrick theory of infection spread, a very rigorous statistical 
+analysis performed in 1927. Here, the population is divided into various compartments, and their interactions 
+are studied further. It is a simple yet an instrumental model of epidemiology since it takes into account various 
+factors such as the rate at which the infection spreads, the rate at which the active cases recover, etc. Since more 
+compartmentalization allows us to study the population in a detailed manner, models like SEIRD are always 
+better than the chosen SIRD. However, SEIRD model needs the data for ‘Exposed’ individuals. Here, we use the 
+crowd-sourced COVID 19 tracker5 database that provides the data for the number of infected (I), recovered (R) 
+and deceased (D) individuals, while not being explicit about the number of exposed individuals. Even though 
+the database gives the data for number of testings performed, it wasn’t found suitable enough to be considered 
+as the tallies for exposed individuals since mild or asymptomatic carriers aren’t usually tested until found via 
+contact tracing or travel history. Hence, SIRD model is suitable enough to be followed owing to its ease of data 
+availability. In this current study, we use classical computation to demonstrate how a change in spread rates might 
+stabilize figures related to infection, recovery, and death.
+Several studies have been done with the available set of data of COVID-19 spread in India and other countries. 
+Some of the notable works have used several other statistical approaches while some have used compartmental 
+studies to model and predict the viral spread6–14.
+Apart from its classic use in giving a forecast of the epidemic, in this study we use the infection, recovery and 
+death data obtained for India to analyse how the growth pattern of the virus has changed over time and how 
+these imposed constraints in the form of lockdown have lowered the viral transmission. We break the time scale 
+into smaller intervals (a period of 10 days) and analyze them individually by applying a SIRD model over them, 
+we find the values of the associated parameters in these periods, and thus obtain an approximate trend followed 
+by the infection rates. We later use these curves to extrapolate and get a rough prediction of the infection rates 
+for the next few days after the extended lockdown ends (17th May). Further, this set of predicted parameters are 
+used to deduce the progress of the system in the near future with a fixed population. These deductions with cur-
+rent constraints on the system are put up against a system with no such constraints to demonstrate the efficacy 
+of multi-phased lockdown on widening and delaying the peak of infection reporting.
+Use of phenomena associated with quantum mechanics like superposition and entanglement for compu-
+tational purposes is called quantum computation. Quantum circuit models aim to perform the same by using 
+quantum bits (qubits) which unlike binary storage units, allow superposition of 2 distinct states. Thus qubits 
+facilitate greater computational advantage than classical computation as they contain greater amounts of infor-
+mation due to the superposition. The state of the qubits are made to interact with various operators in the form 
+of various quantum logic gates, meant to carry out a specific operation on any given qubit state (input) and give 
+output accordingly15,16.
+Quantum computation can be useful in the assessment of epidemics in network systems since an accurate 
+prediction of a viral spread needs to encompass various factors that might pose complexity challenges in clas-
+sical computation. Factors like quarantine measures, social distancing, population networking, self protection 
+actions, etc, can give rise to a complex set of problems, challenging for a classical computer to solve. Assuming 
+such factors could be easily fitted into quantum computation facilities, given its intrinsic ability to hold substantial 
+information and parallelly process them, underlies this project’s hypothesis.
+Attempts have been made to use quantum computational approach to model epidemics by Britt in 201017. 
+Here, he tried to model the viral network diffusion using the Non-linear Dynamical System (NLDs) while 
+attempting to precisely control the person (represented by ‘nodes’ in the work) to person viral infection. Using 
+all these, he built a quantum circuit, where he assigned 1 qubit to each of the nodes and could accurately simulate 
+a sample population size with a given initial condition.
+Parallel to the SIRD modelling in the study, we form an analogy to the Ising model of magnetic lattice to form 
+a Hamiltonian. Then we build a quantum circuit to demonstrate how they are efficient enough to qualitatively 
+show the nature of the epidemic through the obtained graphs as outputs. We also demonstrate how the consid-
+ered parameters must be varied to reduce the number of infections when at its peak and also to delay the time by 
+which viral spread peaks in the country. This delay of the peak with lowering of its height is given a term called 
+‘flattening the curve’ and this becomes crucial, as the affected population is more spread out for a given time 
+interval. Hence, this might not flood the country’s healthcare facilities, unlike otherwise. The reduction of the 
+number of cases at its peak also ensures that the current healthcare facility doesn’t face a shortage of resources 
+while treating the patients.
+To build the quantum circuit, we have used the IBM quantum experience platform. Various prototypes of 
+quantum operators have been designed and have been made available through IBM quantum experience, a free-
+web based platform. Researchers have used it to their strength to experiment with circuits and also to simulate 
+results which have furthered their research18–33.
+We organize this paper as follows. The “theoretical background” section discusses the theoretical analysis of 
+the SIRD compartmental model and the quantum computational approach. The “Implementation and results” 
+section proposes how both of them have been implemented and what results were obtained from them. The 
+“Interpretation and drawbacks” section is dedicated to a general discussion on the obtained results, including 
+the drawbacks. Furthermore, at last, we conclude this article by citing the future implications of the proposal 
+in “Conclusion” section. For additional references, Online Appendices A and B have been attached at the end.
+
+3
+Vol.:(0123456789)
+Scientific Reports |        (2020) 10:21741  | 
+https://doi.org/10.1038/s41598-020-78652-0
+www.nature.com/scientificreports/
+Theoretical background
+SIRD model. 
+As already mentioned, the SIRD model is one of the compartmental models used in epide-
+miology. It divides the whole population into categories where S stands for the part of the population which 
+is susceptible to being infected by the virus. I is the population that has been infected and has the potential to 
+spread the infection. R is the group which has successfully recovered from the disease. D stands for the portion 
+which has been deceased after getting infected due to it. N, the country’s total population assumed to be time-
+independent, is the sum of the susceptible, infected, recovered and the deceased.
+To develop the operating mathematical model equations, some assumptions have been made to keep the 
+model computationally simple. They are:
+•	 The average birth rate and mortality rate of India have not been considered.
+•	 The mode of transmission has been considered to be from person to person.
+•	 Once a person has recovered from the disease, he/she has attained the immunity for infection, hence does 
+not fall back to the category of susceptibles.
+Here α is the rate at which the infection is transmitted to the susceptibles due to possible contact between infected 
+and susceptible ones. β indicates the rate at which the infected individuals recover, which is the reciprocal of 
+the number of days in the treatment period. γ describes the fatality of the virus as the rate at which infected 
+individuals lose their life due to the viral infection. A study on the estimation of incubation period of Covid-19 
+virus by Lauer et al.34, has claimed that almost 97.5% of the cases show symptoms upon exposure by 11.5 days 
+and by 14 days, 99% of the cases get detected. Hence in our article, we have assumed that the incubation period 
+of the virus is 14 days for patients in India. From the chart presented above, we describe the SIRD modeling 
+of the virus by the time rate of change of the different compartments of the population using coupled ordinary 
+differential equations.
+The much talked about R0 value of a viral epidemic is the total number of individuals to whom one infected 
+person can transmit till he/she recovers. It can be calculated by using the expression R0 = α x Incubation period 
+(Incubation Period = 1
+β , if appropriate unit is used). If R0 values become less than 1, then we may say that the 
+situation will be under control and the disease now will eventually die down. It is so because the number of people 
+infected per person would become less than the number of people recovering during that period.
+We present the plot of the cumulative data of I, R, and D, obtain the parameters, α , β , and γ by the curves for 
+fixed time intervals with multiple iterations. Later, we solve the mentioned differential equations for the multiple 
+sets of parameters, in their corresponding time intervals, which nearly fits the data. Once the phase-wise plot-
+ting is done, we note down two sets of parameters, one corresponding to a no-lockdown/constraint system and 
+another with some constraints. It must also be noted that this analysis assumes the occurrence of both extremities, 
+and the period of the analysis is from fourth march 2020 to 12th May 2020.
+Ising model. 
+On the other hand, we use the Ising model35 to build a quantum circuit to demonstrate the 
+effect of ‘curve flattening’. The Ising model of atomic spin discusses the spin interaction of an individual atom in 
+the lattice with its neighboring lattice points and how the spins behave in the presence of a magnetic field. Each 
+can have an atomic spin of + 1
+2 or −1
+2 . The model describes the spin–spin coupling and the exchange interaction 
+between the lattice points and the associated energy value to them. Interaction matrix depicts the fashion in 
+which two lattice points interact with each other.
+Here, Squillante et al.36, attempted to study the Covid-19 spread by comparing it with the Ising model, with 
+the analogy of each atom as an individual. The spin of each lattice point37 (individual) describes whether the 
+person is infected with the virus or not. A spin of + 1
+2 (p = probability of getting infected [success]) depicts that the 
+person is infected with the virus and the spin of −1
+2 (q= 1-p, probability of not being infected [failure]) indicates 
+otherwise, while considering the total population being N. Hence, just like the Ising model, here also the spins 
+(infected or susceptible individuals) interact with each other. The effect of magnetic field has not been considered 
+here since it doesn’t carry any relevance in the analogy to the viral spread. It is so because of the closed nature 
+of the population group in a country.
+Since, in the case of viral epidemics, the infection is spread through ‘contact’ between individuals38,39, we 
+assume a population of N, out of which ‘S’ are susceptible and ‘r’ people are infected. Here, we consider that 
+when two infected people interact, the net interaction is 0 or no effect. So, a general probability distribution can 
+be obtained from the Bernoulli’s equation as follows
+(1)
+dS
+dt = −αSI
+N
+dI
+dt =αSI
+N −βI −γ I
+dR
+dt =βI
+dD
+dt =γ I
+(2)
+N =S + I + R + D
+
+4
+Vol:.(1234567890)
+Scientific Reports |        (2020) 10:21741  | 
+https://doi.org/10.1038/s41598-020-78652-0
+www.nature.com/scientificreports/
+From the previous SIRD model, we get a reproduction rate ( Ro = α
+β ) which also tells about the average 
+number of secondary cases arising from primary cases in an entirely susceptible population, so we can consider 
+p = Ro
+S  or pS = Ro . The resultant equation turns out to be
+Using Stirling approximation40 formula and further solving (4) we get a Poisson distribution (for further 
+details, refer Online Appendix A),
+As analysed, new cases per day rise nearly exponentially to maximum value and then decrease, which shows 
+the trend of a peak function, from which the equation could be seen as (5).
+Coming back to Ising model of spin interaction, as we already discussed in brief, it talks about how spin 
+systems interact with each other. Previously we also discussed our logic behind forming an analogy between 
+a spin system and covid-19 interaction. Since they are analogous, we implement the general Hamiltonian for 
+Ising model to the quantum circuit simulation of the epidemic. We can derive its time evolution factor with 
+the probability of cases (or spin states) by implementing a Hamiltonian operator of its function dependent on 
+time. As in the spin system, the spins interact with each other by the exchange interaction, it is defined by a 
+Hamiltonian operator41,42 as
+where An, Bn and Cn are the strength of the exchange interactions (in the form of probability distribution) of the 
+lattice points along the respective directions. Even though it is futile to consider different distributions of trans-
+mission along different directions when applied in Covid-19 simulation, still, we would first derive the quantum 
+circuit for the generalized Hamiltonian of Ising model, and then later specialise it for Covid-19 scenario. Here, 
+the interacting individuals are nothing but the lattice points with either one of the spins. The Pauli matrices 
+determine the interaction of the spins (or individuals) with each other.
+The strength of the exchange interaction decreases as the distance between these particles increases (which 
+also helps in deducing that if people maintain distance, the spread of infection might decrease). In the neighbor-
+ing region, we can almost assume that the interaction of one particle is almost similar to all of the neighbors, and 
+the interaction is followed in all three directions, and thus the exchange interaction takes place; the stronger the 
+exchange interaction more will be its infection rate.
+Hence to find its correlation with the time evolution operator and deriving it into quantum circuits43 here, 
+for n=1, we get a more straightforward form i.e.
+We apply the time evolution unitary operator on our Hamiltonian operator44
+by taking h
+2π = 1 and putting the Hamiltonian of (7) in unitary operator of (8) we deduce.
+where σ x45= 
+
+0 1
+1 0
+
+ , σ y = 
+
+0 −i
+i
+0
+
+ and σ z = 
+
+1
+0
+0 −1
+
+Dividing the Eq. (10) into 3 parts as
+On solving the Eq. (11)
+which follows the condition of
+(3)
+P(X = r) = CS
+r ∗pr ∗qS−r
+(4)
+lim
+S→∞P(r) = lim
+S→∞
+
+Rr
+o
+r!
+
+1 −Ro
+S
+S
+1 −Ro
+S
+−r
+S!
+(S)r(S −r)!
+
+(5)
+P(r) = Rr
+oe−Ro
+r!
+(6)
+ˆHr =
+N
+
+n=1
+An(r)ˆσ x
+n ˆσ x
+n +
+N
+
+n=1
+Bn(r)ˆσ y
+n ˆσ y
+n +
+N
+
+n=1
+Cn(r)ˆσ z
+n ˆσ z
+n
+(7)
+ˆHr = An(r)ˆσ x
+n ˆσ x
+n + Bn(r)ˆσ y
+n ˆσ y
+n + Cn(r)ˆσ z
+n ˆσ z
+n
+(8)
+U(t) = e−iHt(2π)
+h
+(9)
+U(t) =e−it(An(r)ˆσ xn ˆσ xn +Bn(r)ˆσ y
+n ˆσ y
+n +Cn(r)ˆσ zn ˆσ zn )
+(10)
+=e−it(An(r)ˆσ xn ˆσ xn ) ∗e−it(Bn(r)ˆσ y
+n ˆσ y
+n ) ∗e−it(Cn(r)ˆσ zn ˆσ zn )
+(11)
+U1(t) =e−it(An(r)ˆσ xn ˆσ xn )
+(12)
+U2(t) =e−it(Bn(r)ˆσ y
+n ˆσ y
+n )
+(13)
+U3(t) =e−it(Cn(r)ˆσ zn ˆσ zn )
+(14)
+U1(t) =e(−itAn(r))(ˆσ xn ˆσ xn )
+
+5
+Vol.:(0123456789)
+Scientific Reports |        (2020) 10:21741  | 
+https://doi.org/10.1038/s41598-020-78652-0
+www.nature.com/scientificreports/
+where I is the identity matrix and A is of same order of the identity matrix.
+Here, A=σx ⊗σx , which follow the identity rule and has a order 4 and we break down it to
+where U345 gate controls The three parameters allowing the construction of any single-qubit gate, has a duration 
+of one unit of gate time. In the Bloch sphere rotation, it can move through any plane controlled by (theta, gamma 
+and phi) only once and its matrix form is represented by
+hence putting 2 CNOT gates i.e.
+and U3 with defined parameter in between, we can obtain the result of the above matrix of U1.
+Hence, solving the matrix and comparing it with the U3 matrix we derive the following circuit16 as in Fig. 1.
+Similarly, working for the Eq. (12) we get a reduced matrix format
+similarly on solving this matrix manually, we get a combination of control U3 and anti control U3 matrix, where 
+control U3 is a 4 × 4 matrix (I00U3) i.e.
+and anti control U3 is also a 4 × 4 matrix (U3 00I) i.e.
+and placing this combination of matrix within 2 CNOT matrix with specified value of (theta, gamma , phi) we 
+get the above matrix.
+Where the equivalent matrix is reduced in the form of circuit16, as per Fig. 2.
+Similarly, working for the Eq. (13), we get a reduced matrix format
+(15)
+e−iθA = cos(θ)I −isin(θ)A
+U1(t) = cos(An(r)t)I −isin(An(r)t)σx ⊗σx
+
+
+cos(An(r)t)
+0
+0
+−isin(An(r)t)
+0
+cos(An(r)t)
+−isin(An(r)t)
+0
+0
+−isin(An(r)t)
+cos(An(r)t)
+0
+−isin(An(r)t)
+0
+0
+cos(An(r)t)
+
+
+
+cos
+ θ
+2
+
+−eisin
+ θ
+2
+
+eiφsin
+ θ
+2
+
+ei(φ+)cos
+ θ
+2
+
+
+
+
+1
+0
+0
+0
+0
+1
+0
+0
+0
+0
+0
+1
+0
+0
+1
+0
+
+
+U2(t) = cos(Bn(r)t)I −isin(Bn(r)t)σy ⊗σy
+
+
+cos(Bn(r)t)
+0
+0
+−isin(Bn(r)t)
+0
+cos(Bn(r)t)
+−isin(Bn(r)t)
+0
+0
+−isin(Bn(r)t)
+cos(Bn(r)t)
+0
+−isin(Bn(r)t)
+0
+0
+cos(Bn(r)t)
+
+
+
+
+1
+0
+0
+0
+0
+1
+0
+0
+0
+0
+cos
+ θ
+2
+
+−eisin
+ θ
+2
+
+0
+0
+eiφsin
+ θ
+2
+
+ei(φ+)cos
+ θ
+2
+
+
+
+
+
+cos
+ θ
+2
+
+−eisin
+ θ
+2
+
+0
+0
+eiφsin
+ θ
+2
+
+ei(φ+)cos
+ θ
+2
+
+0
+0
+0
+0
+1
+0
+0
+0
+0
+1
+
+
+Figure 1.   The derived circuit has a combination of a CNOT gate, U3 gate and a CNOT gate, where 
+θ = 2An(r)t , φ = −π/2 and  = π/2..
+
+6
+Vol:.(1234567890)
+Scientific Reports |        (2020) 10:21741  | 
+https://doi.org/10.1038/s41598-020-78652-0
+www.nature.com/scientificreports/
+Similarly, solving the matrix we get a very simplified form of U1 matrix, which is a 2 × 2 matrix which is shown as
+with a multiplicative factor at outside, and putting this U145 between 2 CNOT gate ( 4 × 4 ) on either side we get 
+the above matrix.
+Where the equivalent matrix is reduced in the form of circuit as per Fig. 3.
+And summing up all the circuits  we can add all the circuits together and as we know that two CNOT gates 
+are equal to identity matrix so we can omit that and the resulting circuit somewhat looks like this as in Fig. 4.
+Finding the average value46,47 helps find the energy eigenstate of the operator, which we can correspond to 
+the number of infected people at a particular time. This energy eigenstate is sum total of all the average of σxσx , 
+σyσy and σzσz with multiplication of the probability function (i.e. An , Bn and Cn respectively).
+where, <> = shows average value and <σxσx> = P00 −P01 −P10 + P11 where P00 , P01 , P10 , P11 are the prob-
+ability percentage of getting 00, 01,10 and 11 respectively, which is determined by putting 2 Hadamard gates at 
+the end of the equivalent circuit, which is useful for moving information between the x and z bases, which is 
+shown in following Fig. 5.
+Similarly, <σyσy> can be represented by putting a inverse S gate followed by a H gate in each qubit as it moves 
+information from y to z bases, which is shown in Fig. 6.
+And for <σzσz> , we only measure the qubits in zz basis, which is shown in Fig. 7.
+Now, to use them for simulation of viral transmission, as discussed earlier, we take a specific case of the 
+generalized Hamiltonian where An(r) , Bn(r) and Cn(r) , all three functions are considered to be P(r) which we 
+have derived in (5). Hence, the Hamiltonian, whose time evolution we study for Covid-19 spread now turns-
+U3(t) = cos(Cn(r)t)I −isin(Cn(r)t)σz ⊗σz
+
+
+e−itCn(r)
+0
+0
+0
+0
+e−itCn(r) 0
+0
+0
+0
+0
+0
+0
+0
+0 e−itCn(r)
+
+
+
+e−i(−(θt)
+2 )
+0
+0
+e−i (θt)
+2
+
+(16)
+En =An(r)t<σxσx> + Bn(r)t<σyσy> + Cn(r)t<σzσz>
+Figure 2.   The derived circuit has a combination of a CNOT gate, control U3 gate, Anti-control U3 gate and a 
+CNOT gate, where θ1 = 2Bn(r)t , φ1 = −π/2 and 1 = π/2 and θ2 = 2Bn(r)t , φ2 = π/2 and 2 = −π/2.
+Figure 3.   The derived circuit has a combination of a CNOT gate, U1 gate and a CNOT gate, where θ = 2Cn(r)t.
+Figure 4.   The equivalent circuit describes the Hamiltonian operator 7 in a N = 2 state.
+
+7
+Vol.:(0123456789)
+Scientific Reports |        (2020) 10:21741  | 
+https://doi.org/10.1038/s41598-020-78652-0
+www.nature.com/scientificreports/
+Implementation and results
+SIRD model. 
+The first Covid-19 case was reported in India on 30th January 2020. Considering it as Day 
+1, on 4th March (the 33rd day), the number of cases jumped suddenly from 5 to 28. So, in this study, we start 
+analyzing the data from March 4th onwards. We solve the SIRD equations using MATLAB. As Rajesh et al.12 
+pointed out in their SIRD model prediction of Covid-19 in India, that there is no reported error in the database, 
+so we cannot use reduced chi-sq fitting for the above data. So, we employed the approach mentioned to carry 
+out our analysis.
+As per this fitting, in Fig. 8, the peak of the infection curve suggests that a maximum of 109 people will get 
+infected for a particular set of parameters. However, data plotting suggests a change in the concavity of the curve 
+it follows, hence in its slope. Thus taking a single fitting for the whole period might not be a well scientific method. 
+Hence, we tried to break the time interval into smaller legs (here we have chosen 10 days, because 10 day time 
+period also would prove to be quite resistant to fluctuations in daily data and would help us get an overall trend) 
+as per Table 1 and record the values of the parameters (Table 2) in the respective leg. The simulated curves are 
+thus made to nearly fit the data points in Fig. 9. 
+By obtaining values of parameters, we proceed to make the curves for infection, recovery, and deaths that 
+approximately match the data points available. Furthermore, we obtain α and β as for each period i.e., α(t) and 
+β(t). Here, our only concern remains α(t), and how it evolves in time as it is dependent on interactions between 
+components of the population that’s being curbed and regulated during a lockdown6. β(t) and, on the other hand, 
+is dependent on various other factors like the efficiency of treatment, the capacity of the healthcare system, and 
+demographics of the considered population, which is not the point of discussion in this paper, hence not given 
+much importance. Also, changes in their values are in the order of 10−3 if any were made during the fitting and 
+duly presented.
+As we already mentioned, we have assumed the incubation period of 14 days and that makes the R0 value for 
+the 3rd leg (March 24–April 2) 2.31, which falls to 1.274 by the end of the 7th leg. Hence, the lockdown has been 
+able to contain the spread to some extent, but it should continue until it reaches a value closer to 1.
+If we go on plotting the evolution of α(t) from the above data, we can see that a lockdown can successfully 
+reduce the infection rate. To know the future of α under the lockdown, we consider the rate of infections of the 
+(17)
+ˆHr = Rr
+oe−Ro
+r!
+
+ˆσ x
+n ˆσ x
+n + ˆσ y
+n ˆσ y
+n + ˆσ z
+n ˆσ z
+n
+
+Figure 5.   Measurement bases for the calculation of average values of <σxσx> for N=2 in circuit.
+Figure 6.   Measurement bases for the calculation of average values of <σyσy> for N = 2 in circuit.
+Figure 7.   Measurement bases for the calculation of average values of <σzσz> for N = 2 in circuit.
+
+8
+Vol:.(1234567890)
+Scientific Reports |        (2020) 10:21741  | 
+https://doi.org/10.1038/s41598-020-78652-0
+www.nature.com/scientificreports/
+several smaller periods under lockdown while excluding the first 2 data points for day 33–42 and 43–52 (since 
+the lockdown nearly began on the day 53 of the arrival of the virus in India) and perform an exponential decay 
+fit for the rest of the points. The reason of selecting an exponential decay function is the mathematical analysis 
+performed for evolution of α over time (Refer Online Appendix B). The important conclusion we can draw 
+from this plot, that the infection rate has been lowered by this lockdown. And since the points seem to obey the 
+exponential decay fit upto some consistency, we can deduce that they confirm the mathematical analysis that the 
+infection rate has the tendency to reduce exponentially when the population is under lockdown.
+As it can be seen from the plot, the points tend to have some deviation from the fit curve, which is due to the 
+changing nature of the lockdown from time to time. Since we already know that 99% of the infected individuals 
+Figure 8.   Simulating the prediction curves by using the best fit over the entire range of data. (a) depicts the data 
+points and respective curves with α = 0.144 , β = 0.021 and γ = 0.0041 (b) represents the same curve with the 
+time axis extended upto 1000 days, thus giving a trend of the infection.
+Table 1.   Distribution of lockdown into various legs.
+Interval/Leg no.
+Date
+Day of spread
+1
+4 Mar–13 Mar
+33–42
+2
+14 Mar–23 Mar
+43–52
+3
+24 Mar–2 Apr
+53–62
+4
+3 Apr–12 Apr
+63–72
+5
+13 Apr–22 Apr
+73–82
+6
+23 Apr–2 May
+83–92
+7
+3 May–12 May
+93–102
+
+9
+Vol.:(0123456789)
+Scientific Reports |        (2020) 10:21741  | 
+https://doi.org/10.1038/s41598-020-78652-0
+www.nature.com/scientificreports/
+start exhibiting symptoms in 14 days of getting infected, the true effect of any containment step can be visible 
+only in the next 2 legs. We observe a pretty low drop for α in leg 4, while a heavy and significant drop can be noted 
+for leg 5, which only portrays the effect of lockdown of its previous 2 legs. Gradual relaxation of the lockdown 
+beginning from the 20th April (in the 6th leg) resulted in a mass movement of individuals and thus a higher 
+infection rate could be noted for the 7th leg. The fit curve provides a very rough trend of the infection rate dur-
+ing the lockdown. The deviation of the point from the estimate curve can be attributed to the changing nature 
+of the lockdown based on its variation in relaxation limit. We extrapolate this curve to have a general idea of 
+what values alpha can presume in the coming legs. These values can help predict how the infection spreads over 
+a long span of time. As shown in Fig. 10, we later use a straight-line fitting to extrapolate β for subsequent legs. 
+Here, we can interpret that the recovery rates have increased in a pretty uniform manner. It can be attributed to 
+one or more aspects, such as improvement in the healthcare scenario, change in the demography of the infected 
+individuals, or a boost in the quality and quantity of available treatment methods. Further studies and accurate 
+models might be able to justify this trend (Fig. 10).
+We use the obtained values of α and β for the next legs and simulate the SIRD curve and present it cumu-
+latively. We have tried to analyze how the future numbers might be if the lockdown continues as it is until the 
+disease is entirely null. After 3–4 legs further, the change in α would have started becoming negligible (and R0 
+value slowly tending to 1) due to the asymptomatic nature of an exponential decay. The recovery rate also would 
+have become nearly constant, since the healthcare facilities will achieve saturation in a few months. We have 
+taken the values of the parameters at the end of the leg of period 132–142 to be constant throughout, for time to 
+come. We extrapolated the curve to obtain a trend (Fig. 11).
+Parallelly, we have studied the effect of the current lockdown being lifted. If the lockdown is lifted on May 17, 
+we had assumed the other extreme that the infection rate might well reach the value it had before the imposition, 
+but certainly not anything greater than that and plotted the curves.
+Ising model. 
+From Eq. (17) from the previous section, we have a Hamiltonian for the Covid-19 spread when 
+compared to the Ising model. We discussed how the pandemic can be viewed as an Ising model simulation. From 
+there on we assumed the Hamiltonian of the Infection spread being the same as that of Ising system without 
+being under the influence of an external magnetic field. We went on to formulate the quantum circuit out of that 
+Hamiltonian. In Eq. (6), we observed that the Hamiltonian is dependent upon the interaction functions (the 
+probability distributions), so in order to simulate the infection we needed to find out the function representing 
+the interaction among the atoms (or the people). But already prior to that, we used the binomial distribution 
+analogy and derived a Poisson distribution function suitable enough for later being used in the Hamiltonian 
+based quantum circuit to yield a curve (Fig. 12) quite with a considerable resemblance to the SIRD simulated 
+Table 2.   Values of α(t) and β(t) for various intervals for making the curve fit with the respective data sets.
+Interval/Leg no.
+α
+β
+1
+0.127
+0.002
+2
+0.167
+0.010
+3
+0.165
+0.014
+4
+0.146
+0.014
+5
+0.101
+0.017
+6
+0.0825
+0.020
+7
+0.091
+0.024
+Figure 9.   Simulating the prediction curves by using the best fit for every single interval obtained by dividing 
+the time axis by the dashed cyan lines.
+
+10
+Vol:.(1234567890)
+Scientific Reports |        (2020) 10:21741  | 
+https://doi.org/10.1038/s41598-020-78652-0
+www.nature.com/scientificreports/
+curve and the infection curves for different countries. In the Hamiltonian, the parameter R0 signifies the ratio of 
+α to that of β . We can observe that when R0 is lowered while keeping other variables and parameters constant, the 
+peak of the curve shifts forward in the time axis with a reduction in its height and making it broader.
+From these, we can infer that a decline in the rate of infection ( α ) will infect lesser people than before, thus 
+flattening the curve. Also, an increase in the rate of recovery ( β ) will imply an improvement in healthcare facili-
+ties, changing demographics of the infected patients, etc. and show a change in the height and position of the 
+peak. Using proper parameters and constants, this can be a novel way to simulate approximate curves for a given 
+situation. An analysis of epidemic spreads can be carried out with the inclusion of more and more factors that 
+otherwise gets difficult for classical computers.
+Interpretation and drawbacks
+The three graphs, with I, R, D show two trends post lockdown-one set of parameters without any distancing 
+(constraints), and their respective carrier limits, and time is taken to attain them. The latter case depicts another 
+set of parameters that have a few constraints imposed on them, as in the last phase of lockdown. So latter case 
+parameters postponed the attainment of carrier limits and are not as rapidly growing as the former case. Also, 
+the no lockdown case is started from the day of data collection, along with lockdown trends and post lockdown 
+trends growing by two parameters to give an effective picture of what would have been the picture without a 
+lockdown and how it would evolve once a lockdown is lifted off considering the extreme case scenario too. It is 
+evident that the lockdown shouldn’t be lifted all of a sudden, as it will lead to a massive upsurge in the number 
+of cases (nearly same as that of no-lockdown case) with a very narrow delaying of the peak.
+The SIRD model discussed here has its own set of limitations pertaining to the assumptions made and the 
+methods adopted while formulating it. The first limitation of this analysis is the use of the slope-estimation 
+of data plotted curves to find the simulated curve in the lockdown period while obtaining a periodic split up 
+Figure 10.   Curve fitting for studying the evolution of α and β over time. (a) α(t) being fit to an exponential 
+decay function y(x) = 0.0654 + 0.3914 · e−0.4420x (b) β(t) being fit yo a straight line y(x) = 0.0025x + 0.0053.
+
+11
+Vol.:(0123456789)
+Scientific Reports |        (2020) 10:21741  | 
+https://doi.org/10.1038/s41598-020-78652-0
+www.nature.com/scientificreports/
+of parameters. This might account for errors in the analysis. The assumptions like not considering birth and 
+mortality rates, the permanent immunization of a recovered patient, unavoidable migration and interactions, 
+etc. make the model lose its precision. Here, the susceptible are considered to be the entire population except 
+the infected, recovered, and deceased individuals, initially at a time t. No considerations have been made to 
+distinguish the exposed individuals out of the susceptible and model them accordingly. This might be a sig-
+nificant drawback of the model. The trend in recovery and its rate also is incomprehensible due to the lack of 
+data on the demographics of the recovered patients in terms of their age, sex, etc. In this model, the number of 
+tests performed and their rate has not been considered, but they might play a significant role in reporting the 
+cases, hence the α(t). Our N (the total population) has been assumed constant, but immigration, new birth, and 
+deaths might vary the N, thus making us compromise on its accuracy. More efficient models like the SEIRD 
+(Susceptible– Exposed–Infected–Recovered–Deceased), and higher compartmental models can be implemented 
+for better prediction and analysis.
+Figure 11.   Analysis of number of infections upon various scenarios of lockdown. It can be observed that 
+the number of cases at the peak almost halves with a distinct shift in the abscissa of peak, when the lockdown 
+continues. When lockdown is removed all of a sudden (and assumed that the α = 0.165 , just like the value 
+before lockdown), there is less decline in the number of cases at the peak with a subtle shift in the abscissa of 
+peak.
+Figure 12.   Used Hamiltonian being simulated using the IBM quantum experience platform, demonstrating the 
+phenomena of curve flattening. A 2-D graph depicting the shift of the peak along X-axis when R0 is decreased.
+
+12
+Vol:.(1234567890)
+Scientific Reports |        (2020) 10:21741  | 
+https://doi.org/10.1038/s41598-020-78652-0
+www.nature.com/scientificreports/
+The quantum circuit design only gives a qualitative curve of an epidemic and the infection spread. With the 
+proper use of the parameters and some constants, this can be used to simulate the curves for respective regions. 
+Adding various complexities, out of which some are discussed in the above, is a matter of time and resources.
+The earlier works on use of quantum computation like the Brits circuit, even though it stands out as it incor-
+porates Euclidean distance between the nodes to define individual interaction among individuals, in this process 
+it also assigns one qubit to each node thus adding to heavy operational space for analysis of bulk population. It 
+becomes less feasible to process the same for a larger population, as obtaining data for individual interactions gets 
+tougher as the population increases. Hence our circuit can perform better with a large population data without 
+requiring data on individual interactions.
+Here we have employed the quantum simulation of a Hamiltonian, since a Hamiltonian can contain a great 
+deal of information, simulating the Hamiltonian of a large system (population) is far more suitable as it lets us 
+incorporate fewer qubits, thus allowing us not to assign a qubit per individual. Hence, this work has the potential 
+to be efficient enough for the use in large population forecasts. It also provides greater flexibility than previous 
+works to later incorporate other factors and parameters like the number of tests, the age group of infected indi-
+viduals, government measures in curbing the epidemic, etc. to make the prediction even more accurate. Our 
+method, rather than dealing with individuals, deals with the R0 value prevalent in the sample size and gives a 
+probability distribution function instead, and thus is compact, and operates with less space and time complex-
+ity. For the same number of individuals, as our circuit would be requiring fewer qubits, it would also show less 
+decoherence and gate error than that of the previous works.
+The quantum circuit design in this study only gives the qualitative shape of a ‘usual’ curve of an epidemic 
+infection spread with the proper use of the parameters and some constants, this can be used to simulate the curves 
+for respective regions. SIRD model solely depends on the coupled ODEs and has many approximations to be 
+considered as such. Ising’s model gives an interpretation of epidemiology in terms of solid state physics, which 
+when further explored can give us a closer look at analysing the spread of infection, even via classical computa-
+tion. Ising models make it feasible for a quantum computational approach to be implemented for epidemiological 
+research, and we are aware of the reduction of space and time complexity brought in by quantum computation. 
+Though quantum computational approach might not seem as a worthy replacement for classical counterpart in 
+the current scheme of things, Ising model analogy and simulation of Hamiltonian opens a new field of discussion 
+where quantum computation is incorporated. Adding various complexities, out of which some are discussed in 
+the above, is a matter of time. With better and smarter use of quantum gates, efficient circuits can be made to 
+minimize the space and time complexities while adding more parameters for accurate modelling. Thus it serves 
+as a great base for further advancements in this field.
+Conclusion
+Throughout this article, we discussed how the Ising model can be compared to epidemics like Covid-19 and be 
+used in quantum computational approach. By forming a quantum circuit and running a simulation, we get the 
+curve for the infection which is pretty much similar to real-world data. This gives a major motivation for work 
+in this field and with further advances, quantum computation can come handy for epidemiological research 
+due to its minimal space and time complexity. On the other hand, despite their limitations, use of the classical 
+SIRD model provides us with a better analysis on how effective the lockdown has been in curbing the infection. 
+By observing the trend of the infection during the lockdown, we also were able to forecast various scenarios 
+of lockdown after 17th May 2020. It shows us the forecast for the reduction in the number of infected cases if 
+lockdown is continued further.
+COVID-19 has turned out to be a global crisis, affecting all the countries. The current model study report 
+hints at a frightening upsurge of the viral epidemic in the times to come. Measures like quarantine and lockdown 
+have been successful enough to reduce their impact, yet a lot needs to be taken care of. However, the current 
+prolonged lockdown has started worrying national as well as global economies, pushing them into a tremendous 
+crisis; hence the lockdown cannot be sustained forever. But as per our analysis, the lifting of lockdown shouldn’t 
+be all of a sudden, and be more gradual in the approach. We must start practicing the concept of social distancing 
+and personal hygiene to keep the viral spread at bay. In desperate times like these, researchers of all fields must 
+come together and contribute towards finding more information regarding the virus through experiments and 
+data analysis. This shall let us be more aware and help us in tackling the risk. We sincerely hope that, just like 
+previous global pandemics, we can pass through this with the advent of science and technology.
+Data availability
+The data that support the findings of this study are available from the authors (sudev18@iiserbpr.ac.in, bikash@
+bikashsquantum.com) upon reasonable request.
+Received: 3 June 2020; Accepted: 1 October 2020
+References
+	 1.	 Shereen, M. A., Khan, S., Kazmi, A., Bashir, N. & Siddique, R. COVID-19 infection: origin, transmission, and characteristics of 
+human coronaviruses. J. Adv. Res. 24, 91–98 (2020).
+	 2.	 Winklhofer, H., Diamantopoulos, A. & Witt, S. F. Forecasting practice: a review of the empirical literature and an agenda for future 
+research. Int. J. Forecast. 12(2), 193–221 (1996).
+	 3.	 Li, R. et al. Substantial undocumented infection facilitates the rapid dissemination of novel coronavirus (SARS-CoV-2). Science 
+368(6490), 489–493 (2020).
+	 4.	 Brauer, F. Compartmental models in epidemiology. Math. Epidem. 1945, 19–79 (2008).
+
+13
+Vol.:(0123456789)
+Scientific Reports |        (2020) 10:21741  | 
+https://doi.org/10.1038/s41598-020-78652-0
+www.nature.com/scientificreports/
+	 5.	 COVID-19 INDIA, www.covid​19ind​ia.org.
+	 6.	 Teles, P., A time-dependent SEIR model to analyse the evolution of the SARS-CoV-2 epidemic outbreak in Portugal. arXiv​
+:2004.04735​ (2020).
+	 7.	 Tang, Z., Li, X. & Li, H. Prediction of new coronavirus infection based on a modified SEIR model. https​://doi.
+org/10.1101/2020.03.03.20030​858 (2020).
+	 8.	 Ranjan, R. Predictions for COVID-19 outbreak in India using epidemiological models. https​://doi.org/10.1101/2020.04.02.20051​
+466 (2020).
+	 9.	 Singh, R. & Adhikari, R. Age-structured impact of social distancing on the COVID-19 epidemic in India. arXiv​:2003.12055​ (2020).
+	10.	 Gupta, R. & Pal, R., Trend analysis and forecasting of COVID-19 outbreak in India. https​://doi.org/10.1101/2020.03.20.20044​511 
+(2020).
+	11.	 Dhar, A. A critique of the Covid-19 analysis for India by Singh and Adhikari. arXiv​:2004.05373​ (2020).
+	12.	 Rajesh, A., Pai, H., Roy, V., Samanta, S. & Ghosh, S. CoVID-19 prediction for India from the existing data and SIR(D) model study. 
+https​://doi.org/10.1101/2020.05.05.20085​902 (2020).
+	13.	 Arti, M. K. Modeling and predictions for COVID 19 spread in India. https​://doi.org/10.13140​/RG.2.2.11427​.81444​ (2020).
+	14.	 Rajendrakumar, A. L. et al. Epidemic landscape and forecasting of SARS-CoV-2 in India. https​://doi.org/10.1101/2020.04.14.20065​
+151 (2020).
+	15.	 Maslov, D., Dueck, G. W., Miller, D. M. & Negrevergne, C. Quantum circuit simplification and level compaction , arXiv​:quant​
+-ph/06040​01 (2008).
+	16.	 Making of individual circuit. https​://arcb.csc.ncsu.edu/~muell​er/qc/qc-tut/circu​its_and_algor​ithms​.pdf
+	17.	 Britt, B. C. Modeling viral diffusion using quantum computational network simulation. Quantum Eng. 2(1), e29 (2020).
+	18.	 Dash, A., Rout, S., Behera, B. K. & Panigrahi, P. K. Quantum locker using a novel verification algorithm and its experimental 
+realization in IBM quantum computer. arXiv​:1710.05196​ (2017).
+	19.	 Srinivasan, K., Satyajit, S., Behera, B. K. & Panigrahi, P. K. Efficient quantum algorithm for solving travelling salesman problem: 
+an IBM quantum experience. arXiv​:1805.10928​ (2018).
+	20.	 Dash, A., Sarmah, D., Behera, B. K. & Panigrahi, P. K. Exact search algorithm to factorize large biprimes and a triprime on IBM 
+quantum computer. arxiv​:1805.10478​ (2018).
+	21.	 Satyajit, S., Srinivasan, K., Behera, B. K. & Panigrahi, P. K. Nondestructive discrimination of a new family of highly entangled states 
+in IBM quantum computer. Quantum Inf. Process. 17, 212 (2018).
+	22.	 Jha, R., Das, D., Dash, A., Jayaraman, S., Behera, B. K. & Panigrahi, P. K. A novel quantum N-Queens solver algorithm and its 
+simulation and application to satellite communication using IBM quantum experience. arxiv​:1806.10221​ (2018).
+	23.	 Padhi, A., Priyadarshi, D., Behera, B. K. & Panigrahi, P. K. Design of quantum circuits to play chess in a quantum computer. https​
+://doi.org/10.13140​/RG.2.2.28760​.03848​ (2019).
+	24.	 Behera, B. K., Reza, T., Gupta, A. & Panigrahi, P. K. Designing quantum router in IBM quantum computer. Quantum Inf. Process. 
+18, 328 (2019).
+	25.	 Vishnu, P. K., Joy, D., Behera, B. K. & Panigrahi, P. K. Experimental demonstration of non-local controlled-unitary quantum gates 
+using a five-qubit quantum computer. Quantum Inf. Process. 17, 274 (2018).
+	26.	 Roy, S., Behera, B. K. & Panigrahi, P. K. Experimental realization of quantum violation of entropic noncontextual inequality in 
+four dimension using IBM quantum computer. arXiv​:1710.10717​ (2017).
+	27.	 Behera, B. K., Seth, S., Das, A. & Panigrahi, P. K. Demonstration of entanglement purification and swapping protocol to design 
+quantum repeater in IBM quantum computer. Quantum Inf. Process. 18, 108 (2019).
+	28.	 Padhi, A., Pradhan, S., Behera, B. K. & Panigrahi, P. K. Design and simulation of an autonomous quantum flying robot vehicle: an 
+IBM quantum experience. https​://doi.org/10.13140​/RG.2.2.30101​.47848​ (2020).
+	29.	 Gangopadhyay, S., Manabputra, Behera BK. & Panigrahi, P. K. Generalization and demonstration of an entanglement-based 
+Deutsch–Jozsa-like algorithm using a 5-qubit quantum computer. Quantum Inf. Process. 17, 160 (2018).
+	30.	 Pradhan, S., Behera, T. S., Behera, B. K. & Panigrahi, P. K. Simulating quantum synchronization of atomic spin model on IBM Q 
+Experience, https​://doi.org/10.13140​/RG.2.2.22783​.15521​ (2020).
+	31.	 Manabputra, Behera BK. & Panigrahi, P. K. A simulational model for witnessing quantum effects of gravity using IBM quantum 
+computer. Quantum Inf. Process. 19, 119 (2020).
+	32.	 Alvarez-Rodriguez, U., Sanz, M., Lamata, L. & Solano, E. Quantum artificial life in an IBM Quantum Computer. Sci. Rep. 8, 14793 
+(2018).
+	33.	 Kapil, M., Behera, B. K. & Panigrahi P. K. Quantum simulation of Klein Gordon equation and observation of Klein paradox in 
+IBM quantum computer. arXiv​:1807.00521​ (2018).
+	34.	 Lauer, S. A. et al. The incubation period of Coronavirus disease 2019 (COVID-19) from publicly reported confirmed cases: estima-
+tion and application. Ann. Intern. Med. 172(9), 577–582 (2020).
+	35.	 Stepanov, I. S. Exact solutions of the one-dimensional, two-dimensional, and three-dimensional Ising models. Nano Sci. Nano 
+Technol. 6, 118–122 (2012).
+	36.	 Squillante, L., Mello, I. F., Seridonio, A. C. & de Souza, M. Attacking the Covid-19 with the Ising-model and the Fermi-Dirac 
+distribution function. arXiv​:2003.11860​ (2020).
+	37.	 Lierta, A. C. Exact Ising model simulation on a quantum computer. Quantum 2, 114 (2018).
+	38.	 Hernandez-Ceron, N., Feng, Z. & Castillo-Chavez, C. Discrete epidemic models with arbitrary stage distributions and applications 
+to disease control. Bull. Math. Biol. 75(10), 1716–1746 (2013).
+	39.	 Yaesoubi, R. & Cohen, T. Generalized Markov models of infectious disease spread: a novel framework for developing dynamic 
+health policies. Eur. J. Oper. Res. 215(3), 679–687 (2011).
+	40.	 Eger, S. Stirling’s approximation for central extended binomial coefficients. Am. Math. Month. 121, 344–349 (2014).
+	41.	 Bose, I. Quantum magnets: a brief overview. arXiv​:cond-mat/01073​99 (2001).
+	42.	 Xia, R., Bian, T. & Kais, S. Electronic structure calculations and the Ising Hamiltonian. J. Phys. Chem. B 2018, 3384–3395 (2017).
+	43.	 Woods, C. Evaluating IBM’s quantum compiler and quantum computer architectures as they pertain to quantum Walk simulation 
+algorithms. Honors Thesis, Department of Mathematics, University of California, San Diego (2019).
+	44.	 Sabri, H. & Seidi, M. Energy spectra and E2 transition rates of 124–130Ba. Int. J. Mod. Phys. E 25(10), 1650086. https​://doi.
+org/10.1142/S0218​30131​65008​65 (2016).
+	45.	 Soeken, M., Miller, D. M. & Drechsler, R. Quantum circuits employing roots of the Pauli matrices. Phys. Rev. A 88, 042322 (2013).
+	46.	 Chen, R. & Guo, A. H. Low-storage filter-diagonalization method to calculate expectation values of operators non-commutative 
+with the Hamiltonian: vibrational assignment of HOCl. Chem. Phys. Lett. 308(1–2), 123–130 (1999).
+	47.	 Maricq, M. M. Application of average Hamiltonian theory to the NMR of solids. Phys. Rev. B 25, 6622 (1982).
+Acknowledgements
+S.P., A.P., P.S. and K.S. would like to thank IISER Kolkata and Bikash’s Quantum (OPC) Pvt. Ltd. for providing 
+necessary guidance during the course of this project. A.P. and S.P. would like to thank Dr. Victor Roy, School of 
+Physical Sciences, NISER Bhubaneswar for clearing some of the doubts by sharing valuable resource on SIRD 
+modelling during the initial phase of the project and Dr. Victor Mukherjee, Department of Physical Sciences, 
+
+14
+Vol:.(1234567890)
+Scientific Reports |        (2020) 10:21741  | 
+https://doi.org/10.1038/s41598-020-78652-0
+www.nature.com/scientificreports/
+IISER Berhampur for his valuable remarks to improve the manuscript. B.K.B. acknowledges the prestigious 
+Prime Minister’s Research Fellowship awarded by DST, Govt. India. The authors acknowledge the support of 
+IBM Quantum Experience for producing the basic circuits. The views expressed are those of the authors and do 
+not reflect the official policy of IBM or IBM Quantum Experience team.
+Author contributions
+S.P. and A.P. have done the theoretical analysis of Ising model quantum simulation while B.K.B and S.P. have 
+planned and designed the required quantum circuit. A.P. and K.S. have analyzed the effect of lockdown on 
+COVID-19 in India SIRD compartmental study. K.S. has performed all the necessary computational processes 
+and procured the Figs. 8, 9, 10 and 11. P.S. and K.S. have done the mathematical analysis to find the probability 
+distribution function of infected individuals in the Ising model and also the analysis for the evolution of infec-
+tion rate w.r.t. time. S.P., with assistance from P.S., has performed the quantum simulation of the Ising model 
+of the viral spread and has prepared the circuit illustrations from Figs. 1, 2, 3, 4, 5, 6 and 7 and has plotted the 
+result of the curve-flattening effect using quantum computation i.e. Fig. 12. A.P. and S.P. have contributed to the 
+composition of the manuscript. The project was supervised by B.K.B. Thorough checking of the manuscript was 
+done by P.K.P and B.K.B. All authors have reviewed the manuscript.
+Competing interests 
+The authors declare no competing interests.
+Additional information
+Supplementary Information The online version contains supplementary material available at https​://doi.
+org/10.1038/s4159​8-020-78652​-0.
+Correspondence and requests for materials should be addressed to B.K.B.
+Reprints and permissions information is available at www.nature.com/reprints.
+Publisher’s note  Springer Nature remains neutral with regard to jurisdictional claims in published maps and 
+institutional affiliations.
+Open Access  This article is licensed under a Creative Commons Attribution 4.0 International 
+License, which permits use, sharing, adaptation, distribution and reproduction in any medium or 
+format, as long as you give appropriate credit to the original author(s) and the source, provide a link to the 
+Creative Commons licence, and indicate if changes were made. The images or other third party material in this 
+article are included in the article’s Creative Commons licence, unless indicated otherwise in a credit line to the 
+material. If material is not included in the article’s Creative Commons licence and your intended use is not 
+permitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from 
+the copyright holder. To view a copy of this licence, visit http://creat​iveco​mmons​.org/licen​ses/by/4.0/.
+© The Author(s) 2020

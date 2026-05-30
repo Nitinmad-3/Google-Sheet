@@ -1,0 +1,2482 @@
+Source-PDF: D:\Review\Paper\Quantum Predictive Analytics in Epidemiology\Synthesizing physics and quantum machine learning for next-generation.pdf
+Relative-Path: Paper\Quantum Predictive Analytics in Epidemiology\Synthesizing physics and quantum machine learning for next-generation.pdf
+--------------------------------------------------------------------------------
+
+Review article
+Synthesizing physics and quantum machine learning for next-generation 
+battery health prognostics: A critical review and roadmap
+Kian Lun Soon a
+, Wai Leong Pang a,*, Hui Hwang Goh a
+, Yee Wai Sim a
+,  
+Swee King Phang a
+, Hui Leng Choo a
+, Lam Tatt Soon b
+, Nai Shyan Lai c
+,  
+Chee-Onn Chow d
+, Denesh Sooriamoorthy c
+a School of Engineering, Faculty of Innovation & Technology, Taylor’s University, Subang Jaya, 47500, Selangor, Malaysia
+b School of Architecture, Building & Design, Taylor’s University, Subang Jaya, Selangor, Malaysia
+c School of Engineering, Asia Pacific University of Technology & Innovation (APU), Petaling, Kuala Lumpur, Malaysia
+d Department of Electrical Engineering, University of Malaya, Kuala Lumpur, Malaysia
+A R T I C L E  I N F O
+Keywords:
+Physics-informed
+Quantum
+Machine learning
+Battery
+Health
+A B S T R A C T
+This review systematizes the field of battery health prediction by introducing a novel classification framework for 
+State-of-Health (SOH) and Remaining Useful Life (RUL) models. The landscape is categorized into three distinct 
+generations: purely data-driven machine learning (Gen. 1), Physics-Informed Machine Learning (PI-ML, Gen. 2), 
+and the emerging Quantum Machine Learning (QML, Gen. 3). Based on this taxonomy, a critical benchmark of 
+representative models is presented, evaluating the predictive accuracy across recent AI models to guide practi
+tioners in model selection. Finally, limitations of current approaches are identified, and a forward-looking 
+research roadmap is proposed for Physics-Informed Quantum Machine Learning (PI-QML) as the next evolu
+tionary stage. This roadmap details strategies to address persistent challenges in battery health prognostics. By 
+establishing a clear framework, providing a comparative analysis, and charting a path for future research, this 
+work provides a structured agenda to accelerate the development of next-generation battery health management 
+systems.
+1. Introduction
+The global imperative for sustainable energy systems has catalyzed 
+an unprecedented transition toward electrification, positioning lithium- 
+ion batteries (LIBs) as critical enablers of next-generation energy storage 
+and electric vehicle (EV) technologies. While fossil fuels have histori
+cally dominated energy markets, their environmental external
+ities—including substantial greenhouse gas emissions of carbon dioxide 
+(CO₂), nitrides, and sulfides—pose significant risks to both environ
+mental sustainability and human health [1]. The International Energy 
+Agency (IEA) reported that the oil sector alone was responsible for 10.7 
+billion tons of CO₂ emissions in 2021, representing one-third of global 
+annual emissions [2], while the Environmental Protection Agency (EPA) 
+identified fuel vehicles as contributing 14 % to total CO₂ emissions [3]. 
+In response to these escalating environmental challenges, major 
+international entities have established ambitious carbon reduction tar
+gets, exemplified by the European Union's commitment to achieving 
+net-zero emissions by 2050 [4]. This paradigm shift has intensified focus 
+on battery health management as a cornerstone technology for reliable, 
+safe, and economically viable battery-powered systems.
+The proliferation of EVs, encompassing both purely battery-electric 
+and hybrid configurations, represents the most visible manifestation of 
+this electrification paradigm shift. The historical trajectory of EVs traces 
+back to the early 19th century with the emergence of rechargeable lead- 
+acid batteries, during which period EV sales remarkably doubled those 
+of gasoline-powered vehicles—an achievement yet unmatched in 
+contemporary markets [5]. Contemporary EVs leverage advanced LIB 
+architectures to deliver superior performance characteristics, including 
+instantaneous torque delivery, zero-emission operation during idle 
+states, elimination of fossil fuel dependency, and suitability for frequent 
+* Corresponding author.
+E-mail addresses: KianLun.Soon@taylors.edu.my (K.L. Soon), waileong.pang@taylors.edu.my (W.L. Pang), Jonathan.Goh@taylors.edu.my (H.H. Goh), yeewai. 
+sim@taylors.edu.my (Y.W. Sim), sweeking.phang@taylors.edu.my (S.K. Phang), huileng.choo@taylors.edu.my (H.L. Choo), lamtatt.soon@taylors.edu.my
+(L.T. Soon), nai.shyan@apu.edu.my (N.S. Lai), cochow@um.edu.my (C.-O. Chow), denesh.sooriamoorthy@apu.edu.my (D. Sooriamoorthy). 
+Contents lists available at ScienceDirect
+Results in Engineering
+journal homepage: www.sciencedirect.com/journal/results-in-engineering
+https://doi.org/10.1016/j.rineng.2026.109538
+Received 16 September 2025; Received in revised form 1 December 2025; Accepted 9 February 2026  
+Results in Engineering 29 (2026) 109538 
+Available online 10 February 2026 
+2590-1230/© 2026 The Authors. Published by Elsevier B.V. This is an open access article under the CC BY-NC-ND license ( http://creativecommons.org/licenses/by- 
+nc-nd/4.0/ ). 
+
+start-stop urban driving conditions [6]. However, the criticality of bat
+tery performance in these applications has exposed fundamental limi
+tations in current battery health monitoring capabilities, where 
+suboptimal management can precipitate catastrophic failures, including 
+thermal runaway events leading to fires and explosions [7].
+The evolution of battery health prognostics has witnessed a sys
+tematic progression through distinct technological generations, each 
+addressing limitations of its predecessors while introducing new chal
+lenges. Traditional approaches have relied predominantly on machine 
+learning models (Generation 1), followed by the emergence of physics- 
+informed methodologies that incorporate electrochemical domain 
+knowledge (Generation 2). Current research frontiers are exploring 
+quantum computational paradigms (Generation 3) that promise expo
+nential improvements in computational efficiency and pattern recogni
+tion capabilities for complex degradation phenomena. The accuracy of 
+RUL prediction methods directly impacts overall Battery Management 
+System (BMS) performance, consequently driving increased research 
+investment in SOH and RUL methodologies for lithium-ion batteries [8].
+1.1. Scope and contribution of this review
+Despite significant advances in machine learning applications to 
+battery diagnostics, persistent challenges remain in achieving simulta
+neous optimization of predictive accuracy, electrochemical interpret
+ability, and computational scalability. The growing research attention to 
+SOH estimation and RUL prediction, as evidenced by increasing publi
+cation statistics in recent years in Tables 1a and 1b, underscores the 
+critical importance of these technologies for battery management sys
+tems [8]. However, existing literature lacks a comprehensive taxonomic 
+framework that systematically categorizes prognostic methodologies 
+from purely traditional machine learning to quantum machine learning. 
+Furthermore, the field currently lacks a strategic roadmap for inte
+grating emerging quantum machine learning paradigms with estab
+lished physics-based modelling approaches.
+This critical review addresses these gaps by establishing a compre
+hensive intellectual roadmap that systematically charts the trajectory of 
+prognostics for LIBs. The analysis encompasses data-driven machine 
+learning, Physics-Informed Machine Learning (PI-ML), and Quantum 
+Machine Learning (QML) approaches. Through systematic bench
+marking of representative models across key performance metrics, this 
+work provides practitioners with evidence-based guidance for method
+ology selection while identifying fundamental limitations that constrain 
+current approaches. The review proposes an innovative forward-looking 
+research roadmap for Physics-Informed Quantum Machine Learning (PI- 
+QML) model, detailing specific strategies to overcome persistent chal
+lenges in battery health management systems. By synthesizing current 
+knowledge, establishing performance benchmarks, and charting future 
+research directions, this work provides a structured framework to 
+accelerate the development of next-generation battery health 
+prognostics capable of meeting the demanding requirements of 
+emerging energy storage applications. To summarize, the contributions 
+of this work are organized as follows: 
+1. To propose a systematic framework aiming to classify battery health 
+prediction models into three evolutionary generations: (i) purely 
+data-driven machine learning methods — Gen. 1, such as deep neural 
+Table 1a 
+Comparison of indices of previous reviews from 2021–2025.
+Year
+Ref
+Gen 1
+Gen 2
+Gen 3
+Output
+Traditional ML
+Deep ML
+Transformer
+PI-ML
+QML
+SOH
+RUL
+2025
+This Work
+✓
+✓
+✓
+✓
+✓
+✓
+✓
+2025
+[9]
+✓
+✓
+✓
+✓
+​
+✓
+✓
+2025
+[10]
+✓
+✓
+✓
+✓
+​
+✓
+✓
+2024
+[11]
+✓
+✓
+​
+✓
+​
+✓
+​
+2024
+[12]
+✓
+✓
+✓
+​
+​
+✓
+✓
+2024
+[13]
+✓
+✓
+​
+✓
+​
+✓
+✓
+2023
+[14]
+✓
+✓
+✓
+​
+​
+✓
+✓
+2023
+[15]
+✓
+✓
+​
+​
+​
+✓
+✓
+2023
+[16]
+​
+✓
+​
+​
+​
+✓
+✓
+2022
+[17]
+✓
+✓
+​
+​
+​
+✓
+✓
+2021
+[18]
+✓
+✓
+​
+​
+​
+✓
+✓
+2021
+[8]
+✓
+✓
+​
+​
+​
+✓
+✓
+Table 1b 
+Focus of review papers from 2021–2025.
+Year
+Ref
+Scope of Study
+2025
+This 
+Work
+This review categorizes AI models into three evolutionary 
+generations—purely data-driven machine learning (Gen. 1), 
+Physics-Informed Machine Learning (PI-ML, Gen. 2), and 
+emerging Quantum Machine Learning (QML, Gen. 3)—analyzes 
+their inherent limitations, and outlines a forward-looking 
+roadmap toward Physics-Informed Quantum Machine Learning 
+(PI-QML)
+2025
+[9]
+Systematically evaluates the integration of machine learning 
+frameworks into next-generation battery safety management, 
+detailing the complete workflow from dataset selection and 
+feature extraction to the deployment of predictive models for 
+critical applications such as SOH estimation, SOC, thermal 
+runaway warning, fault diagnosis, and RUL forecasting.
+2025
+[10]
+Comprehensively reviews advanced data-driven AI techniques 
+(ML, DL, Transformer, and hybrid models) for predicting 
+lithium-ion battery RUL, including dataset summaries and 
+feature extraction methods.
+2024
+[11]
+Provides an in-depth exploration of SOH estimation methods, 
+from data-driven (SVM, ANN, DL) to model-based approaches, 
+for EV battery management systems.
+2024
+[12]
+Reviews expert hybrid and co-estimation techniques (model- 
+based, data-driven, and optimization fusions) for simultaneous 
+SOH and RUL estimation in EV battery management systems.
+2024
+[13]
+Proposes and compares four state-of-the-art physics-informed 
+machine learning (PI-ML) methods for diagnosing internal 
+component-level battery degradation.
+2023
+[14]
+Provides a comprehensive review of Artificial Neural Network 
+applications (FNN, CNN, RNN, Transformer) for health 
+management (SOH, SoC, RUL) of energy storage lithium-ion 
+batteries.
+2023
+[15]
+Focuses on State of Health (SOH) forecasting methods applicable 
+to real-world operational conditions, establishing key criteria 
+for model evaluation.
+2023
+[16]
+Systematically reviews the application of deep learning methods 
+(RNN, DNN, CNN, GAN) in RUL prediction, SOH estimation, and 
+battery thermal management.
+2022
+[17]
+Reviews the technical, economic, and environmental aspects of 
+second-life Li-ion batteries, covering degradation, reuse, 
+recycling, and business models.
+2021
+[18]
+Reviews and compares improved deep learning algorithms 
+(CNN, RNN, LSTM) for predicting the Remaining Useful Life 
+(RUL) of lithium-ion batteries.
+2021
+[8]
+Reviews and analyzes SOH estimation and RUL prognostics 
+methods, categorizing them into model-based, data-driven, and 
+hybrid approaches.
+K.L. Soon et al.                                                                                                                                                                                                                                  
+Results in Engineering 29 (2026) 109538 
+2 
+
+networks and Transformers, (ii) physics-informed machine learning 
+(PI-ML) — Gen. 2, that integrates electrochemical knowledge with 
+artificial intelligence models, and (iii) quantum machine learning 
+(QML) — Gen. 3, the emerging paradigm with potential to address 
+high-dimensional state estimation problems. By explicitly formal
+izing these categories, the work establishes a clear taxonomy for 
+future benchmarking and comparative evaluations.
+2. To analyse the key limitations and prevalent challenges from Gen. 1, 
+2, and 3 models by critically evaluating the trade-offs between data 
+scarcity and heterogeneity, computational effort, and noise sensi
+tivity, guiding practitioners in LIB health prediction model selection.
+3. To develop a forward-looking research roadmap leveraging Physics- 
+Informed Quantum Machine Learning (PI-QML) as the logical suc
+cessor. This roadmap details strategies to address persistent chal
+lenges in battery prognostics of standalone PI-ML and QML, setting a 
+clear agenda for future research in SOH and RUL estimation.
+1.2. Structure of this review
+Fig. 1 presents the structure of this review paper. Section 1 provides 
+the motivation for SOH and RUL prediction for LIBs, and precisely 
+outlines the review’s scope and main contributions. Section 2 presents a 
+novel taxonomy that classifies LIB health-prediction approaches into 
+three evolutionary generations—Gen-1 (purely data-driven methods), 
+Gen-2 (physics-informed machine learning), and Gen-3 (emerging 
+quantum machine learning)—and summarizes representative methods 
+within each generation. Section 3 provides a quantitative and qualita
+tive performance comparison of three generation models in terms of 
+prediction accuracy and outputs. Section 4 analyzes key limitations and 
+prevalent challenges, including data scarcity and quality, limited 
+interpretability, domain shift under unseen operating conditions, and 
+scalability constraints. Section 5 outlines a forward-looking research 
+roadmap for Physics-Informed Quantum Machine Learning (PI-QML), 
+proposing future directions to address the limitations of standalone PI- 
+ML and QML. Section 6 describes the feasibility and practicality of PI- 
+QML in battery SOH and RUL prediction, related issues and challenges 
+and the future directions to address these issues. Finally, Section 7
+concludes the review by summarizing key research directions and 
+emerging trends that should guide future work in battery prognostics.
+2. Evolutionary generation of LIB health prediction models
+The predictive modelling of LIB health has progressed through 
+distinct evolutionary generations, each defined by its approach to inte
+grating data and domain knowledge, as illustrated in Fig. 2. The first 
+generation is characterized by purely data-driven models, evolving from 
+deep learning to recent generative Transformer models. These models 
+leverage large datasets to learn complex statistical correlations but often 
+operate as “black boxes”, with limited physical interpretability and poor 
+generalization under out-of-distribution conditions. To address these 
+limitations, a second generation emerged, based on Physics-Informed 
+Machine Learning (PI-ML), which embeds electrochemical princi
+ples—such as governing differential equations and physical con
+straints—into the model architecture or learning objective. This 
+approach enhances data efficiency, interpretability, and robustness. The 
+third and most recent generation explores the frontier of Quantum 
+Machine Learning (QML), an emerging paradigm that exploits quantum 
+phenomena such as superposition and entanglement to navigate the 
+high-dimensional state spaces and computational complexities inherent 
+in battery degradation, offering a potential pathway to solve estimation 
+problems intractable for classical systems.
+The three-generation taxonomy is delineated by progressively 
+increasing integration of physical domain knowledge into predictive 
+architectures: Generation 1 (data-driven methods) encompasses purely 
+statistical and machine learning approaches that extract patterns 
+directly from empirical observations without explicit incorporation of 
+electrochemical principles, relying exclusively on correlative relation
+ships within historical datasets; Generation 2 (Physics-Informed Ma
+chine Learning) represents hybrid architectures that synergistically 
+couple mechanistic battery degradation models, such as electrochemical 
+impedance representations with learning algorithms through constraint 
+enforcement, and loss function augmentation, thereby embedding 
+domain-specific invariances and causality while maintaining data 
+adaptability; Generation 3 (Quantum Machine Learning) denotes 
+emerging computational paradigms leveraging quantum superposition 
+and entanglement to capture complex feature space exploration 
+inherent in battery prognostics, representing a frontier methodological 
+shift in computational substrate rather than knowledge integration 
+strategy. This taxonomy prioritizes the degree of physics integration as 
+the primary discriminator, secondarily considering computational 
+paradigm novelty, thus establishing non-overlapping categories where 
+advancement reflects increasing sophistication in balancing empirical 
+generalization with mechanistic fidelity.
+2.1. Generation 1: Data-driven machine learning models
+Data-driven models excel at capturing the complex, nonlinear 
+degradation dynamics of lithium-ion batteries without relying on intri
+cate electrochemical models [19,20]. The evolution of these techniques 
+has progressed from traditional machine learning to sophisticated 
+Fig. 1. Structure of the Review Paper.
+K.L. Soon et al.                                                                                                                                                                                                                                  
+Results in Engineering 29 (2026) 109538 
+3 
+
+generative architectures, with a notable recent emphasis on 
+transformer-based models. The landscape of machine learning models 
+for battery prediction, key limitations and challenges are outlined 
+below: 
+a) Traditional Machine Learning Approaches
+Traditional machine learning (ML) models, such as support vector 
+machines (SVM), random forests (RF), and gradient boosting trees 
+(GBT), have been frequently employed for battery life prediction [21]. 
+These methods typically operate on a set of handcrafted health in
+dicators (HIs) extracted from measurement data, establishing a mapping 
+function between these features and the battery's SOH or RUL. While 
+effective in certain contexts, their primary limitation lies in the heavy 
+dependence on expert-driven feature engineering. This process can be 
+time-consuming and may fail to capture the full spectrum of 
+degradation-related information embedded in the raw sensor data, often 
+struggling with the temporal complexities of long-term battery cycling. 
+b) Foundational Deep Learning Models
+To overcome the limitations of traditional ML, deep learning (DL) 
+models such as recurrent neural networks (RNNs) and their var
+iants—long short-term memory (LSTM) and gated recurrent units 
+(GRU)—have been widely adopted. These models are inherently 
+designed to process sequential data, enabling them to learn long-term 
+temporal dependencies directly from time-series inputs like voltage, 
+current, and temperature curves [22]. Concurrently, convolutional 
+neural networks (CNNs) have been utilized, often in hybrid 
+configurations, for their proficiency in extracting local, salient features 
+from raw data segments [23]. Despite their advantages, RNNs suffer 
+from issues like vanishing gradients and sequential processing bottle
+necks that hinder parallelization, while CNNs have a limited receptive 
+field, making it difficult to capture global, long-range dependencies 
+effectively. 
+c) The Emergence of Transformer Architectures
+The transformer architecture, originally developed for natural lan
+guage processing, has revolutionized time-series forecasting, including 
+battery health prediction. Its core innovation is the self-attention 
+mechanism, which allows the model to weigh the importance of 
+different time steps in a sequence, enabling the capture of complex, 
+long-range dependencies without recurrent processing [24]. This par
+allelizable nature significantly improves training efficiency and perfor
+mance on long sequences compared to RNNs [25]. Several studies have 
+demonstrated that even a standard transformer can outperform tradi
+tional DL models in SOH and RUL prediction tasks by leveraging its 
+ability to model global correlations within the battery's degradation 
+trajectory [26]. 
+d) Hybrid and Advanced Transformer Architectures
+Recent research has focused on enhancing the standard transformer 
+architecture through hybridization and architectural innovations to 
+better suit the specific challenges of battery data. Hybrid models inte
+grate transformers with other neural network components to leverage 
+their complementary strengths. For instance, combining a transformer 
+Fig. 2. Different Categories of Gen. 1–3 AI Models.
+K.L. Soon et al.                                                                                                                                                                                                                                  
+Results in Engineering 29 (2026) 109538 
+4 
+
+with a BiGRU allows the model to capture global dependencies (trans
+former) and bidirectional local temporal patterns (BiGRU) simulta
+neously [27,28]. Similarly, CNN-transformer models use convolutional 
+layers for initial local feature extraction before the transformer pro
+cesses the sequence for global context [29]. Architectural advancements 
+have also been proposed to improve efficiency and capability. The 
+predictive pretrained transformer (PPT) and other variants employ a 
+probabilistic sparse self-attention mechanism to reduce the computational 
+complexity from O(L²) to O(L log L), making them more scalable for very 
+long sequences [21].
+Other novel approaches include the NARX (Nonlinear Auto-Regressive 
+with Exogenous inputs) Transformer, which uses its own past predictions 
+as feedback to better model dynamic systems [30], and the Inverted 
+Token Transformer, which reorients the attention mechanism to focus on 
+correlations between different sensor variables (e.g., voltage, current) 
+rather than across time steps [31]. These advanced architectures are 
+often coupled with signal preprocessing techniques like Savitzky-Golay 
+filtering (SGF) or Complete Ensemble Empirical Mode Decomposition 
+with Adaptive Noise (CEEMDAN) to denoise the input data and handle 
+non-stationarity [25]. 
+e) Recent Innovations in Transformer Architectures
+A prominent trend is the enhancement of input data representation 
+through advanced signal processing and structural hybridization before 
+feeding data into the transformer core. Recognizing that raw battery 
+data is often noisy and non-stationary due to capacity regeneration, 
+researchers have integrated sophisticated preprocessing modules. 
+Methods such as Savitzky-Golay filtering (SGF), Complete Ensemble 
+Empirical Mode Decomposition with Adaptive Noise (CEEMDAN), and 
+Empirical Wavelet Transform (EWT) are employed to decompose the 
+time series into more stable trend and fluctuation components [25,31]. 
+This data-centric approach provides the transformer with a cleaner, 
+more informative input. Furthermore, hybrid architectures incorporate 
+modules like a Denoising Autoencoder (DAE) to learn robust features or 
+a Segmented Hidden Markov Model (SHMM) to capture discrete state 
+transitions in the battery’s degradation process, thereby structuring the 
+input to highlight critical aging phases [27,32].
+Another key direction has been the architectural modification of 
+transformers to improve computational efficiency, a critical step for 
+deployment on resource-constrained BMS. The quadratic complexity of 
+the standard self-attention mechanism poses a significant barrier. To 
+address this, lightweight architectures have been proposed. The Light- 
+Term Memory Network (LTM-Net) replaces the computationally inten
+sive softmax operation with a linear attention mechanism, significantly 
+reducing complexity while incorporating a forgetting gate to manage 
+temporal information flow [33]. Concurrently, the Predictive Pretrained 
+Transformer (PPT) leverages a probabilistic sparse (ProbSparse) atten
+tion mechanism, which selectively computes attention scores for only 
+the most significant query-key pairs, achieving near-linear complexity 
+[21]. These innovations make transformer-based models more feasible 
+for real-time, on-device battery diagnostics.
+To combat the challenge of limited labelled data in real-world sce
+narios, recent work has focused on advanced learning paradigms like 
+semi-supervised and transfer learning. The self-transformer framework, 
+for instance, utilizes a small labelled dataset to train an initial model, 
+which then generates pseudo-labels for a larger pool of unlabelled data. 
+This approach is enhanced with a noise-learning module to improve the 
+model's tolerance to inevitable errors in the pseudo-labels [34]. In a 
+similar vein, transfer learning has been effectively applied through 
+models like the PPT, which is pre-trained on a large, diverse dataset and 
+then fine-tuned on a smaller, specific target dataset, adapting its learned 
+knowledge to new battery types and conditions with minimal data [21]. 
+Additionally, hybrid global-local models fuse a global transformer pre
+dictor with a local online correction module, such as an Unscented 
+Particle Filter (UPF), allowing a general model to be dynamically 
+adapted to a specific battery's unique degradation path in real time [35]. 
+f) Self-Supervised Learning
+Recent advancements in SOH and RUL estimation have increasingly 
+adopted Self-Supervised Learning (SSL) frameworks to mitigate the 
+reliance on extensive labelled datasets, which remain scarce and costly 
+to 
+acquire. 
+Methodologies 
+have 
+evolved 
+from 
+foundational 
+reconstruction-based approaches, such as auto-encoders that extract 
+latent aging features from unlabelled data [36], to more sophisticated 
+architectures like the xPatch model, which integrates Convolutional 
+Neural Networks (CNNs) and Multi-Layer Perceptrons (MLPs) for robust 
+multi-step forecasting [37]. Furthermore, the convergence of SSL with 
+Federated Learning (FL) has emerged as a critical innovation, enabling 
+collaborative model training across distributed clients while preserving 
+data privacy and addressing the challenge of non-independent and 
+identically distributed (non-IID) data through dynamic weighting 
+mechanisms [38]. Collectively, these works demonstrate that recon
+struction and contrastive learning significantly enhance model gener
+alization across diverse battery chemistries and operational conditions 
+when coupled with transfer learning strategies. 
+g) Few-Shot Learning
+It is noteworthy that Few-Shot Learning (FSL) has been adopted to 
+address the critical bottleneck of data scarcity in practical applications 
+[39]. Recent literature establishes that FSL methodologies—specifically 
+categorized into Transfer Learning, Meta-Learning, and Data Augmen
+tation—effectively mitigate the dependency on extensive labelled 
+datasets for new battery chemistries [39]. Notably, the integration of 
+Model-Agnostic Meta-Learning (MAML) with temporal architectures 
+like LSTMs has demonstrated the capability to adapt to new battery 
+domains using as little as 10 % of ground truth data, significantly 
+reducing calibration costs [40]. Furthermore, the adoption of 
+semi-supervised frameworks, such as Masked Autoencoders, represents 
+a pivotal advancement in exploiting large-scale unlabelled field data to 
+extract robust aging features, thereby enhancing estimation accuracy 
+even under variable user behaviours [41]. These studies collectively 
+validate 
+that 
+leveraging 
+prior 
+knowledge 
+whether 
+through 
+meta-initialization or unsupervised pre-training is essential for robust 
+prognostics in data-limited scenarios.
+2.2. Generation 2: Physics-informed machine learning models
+Physics-Informed Machine Learning (PIML) for lithium-ion battery 
+health prediction is a paradigm that integrates governing electro
+chemical and thermal principles into data-driven frameworks to 
+enhance the accuracy, sample efficiency, and physical plausibility of 
+SOH and RUL estimations. PIML approaches for LIB health prediction 
+can be categorized into three primary paradigms as follows: 
+a) Physics-Informed Features and Structural Integration
+Physics-Informed Features and Structural Integration represents the 
+foundational approach where electrochemical models such as Equiva
+lent Circuit Models (ECM), Fractional-Order ECM (FOECM), and 
+Electrochemical-Thermal-Mechanical-Side reaction (ETMS) models 
+extract physically meaningful parameters including internal resistance, 
+capacitance, and membrane resistance as inputs to machine learning 
+algorithms [42,43]. More sophisticated implementations employ 
+Physics-Guided Algorithm Structures (PGAS) through dual-branch 
+frameworks 
+operating 
+data-driven 
+branches 
+in 
+parallel 
+with 
+physics-informed branches that explicitly model processes such as Solid 
+Electrolyte Interphase (SEI) growth, with outputs fused in latent space to 
+produce physically plausible predictions [44,45]. Advanced architec
+tures utilize Physics-Informed Deep Operator Networks (PI-DeepONet) 
+K.L. Soon et al.                                                                                                                                                                                                                                  
+Results in Engineering 29 (2026) 109538 
+5 
+
+to learn underlying differential operators governing battery state tran
+sitions while maintaining physical consistency [46]. 
+b) Physics-Constrained Loss Function Architectures
+Physics-Constrained Loss Function Architectures implement Physics- 
+Informed Training Constraints (PITC) where physical laws are enforced 
+by augmenting model loss functions with physics-based penalty terms 
+that quantify prediction violations of established physical principles 
+[45,47]. 
+Representative 
+implementations 
+integrate 
+simplified 
+multi-node thermal models describing heat balance and entropy effects 
+into LSTM networks, significantly improving temperature prediction 
+accuracy through thermodynamic principle incorporation [48,49]. 
+Lightweight interpretable physical models (LIPM) based on Lorentzian 
+functions generate physical parameters from incremental capacity 
+curves that constrain physics-informed neural networks predicting 
+voltage-capacity relationships, while residuals of governing ordinary or 
+partial differential equations derived from ECM dynamics or 
+semi-empirical degradation models serve as penalty terms guiding 
+network optimization toward physically consistent solutions [47,50]. 
+c) Deeply Integrated Hybrid Architectures
+Deeply Integrated Hybrid Architectures construct frameworks where 
+physical models serve as functional and differentiable components 
+within neural network forward passes, enabling direct enforcement and 
+backpropagation through physical laws. Sophisticated implementations 
+involve integrating open-circuit voltage (OCV) reconstruction models 
+into convolutional neural networks for electrode-level diagnostics, 
+where CNNs predict aging parameters subsequently utilized by OCV 
+models to generate voltage curves [51]. The Bayesian calibrated PINN 
+framework introduces dedicated "physics model calibrators"—deep 
+neural networks learning discrepancies between idealized physics 
+models derived from porous electrode theory and real-world observa
+tions [52]. Physics-Informed Recurrent Neural Networks (PI-RNNs) 
+exemplify architectural integration where aging-aware electrochemical 
+models are embedded within recurrent cell state update mechanisms, 
+with physics-based models providing initial capacity degradation esti
+mates subsequently refined by RNN hidden states [53].
+2.3. Generation 3: Quantum machine learning models
+An emerging research trend in battery prognostics leverages quan
+tum computing to address the shortcomings of classical machine 
+learning in modelling complex, non-linear degradation dynamics and 
+optimizing high-dimensional parameter spaces. The application of 
+quantum-inspired and quantum-native algorithms has bifurcated into 
+two primary categories for battery state estimation. The first involves 
+the use of quantum-inspired metaheuristic algorithms to optimize clas
+sical machine learning models, while the second focuses on developing 
+inherently quantum or hybrid quantum-classical models that leverage 
+quantum mechanics for computation. These approaches aim to mitigate 
+issues such as premature convergence to local minima and improve the 
+ability to model intricate temporal dependencies in battery health data. 
+a) Quantum-Inspired Metaheuristic Algorithms
+One prominent approach involves leveraging quantum-inspired 
+metaheuristic algorithms to enhance the parameter optimization of 
+established classical machine learning frameworks. For instance, the 
+Quantum Genetic Algorithm (QGA) has been successfully employed to 
+optimize the smoothing factor and weights of a Generalized Regression 
+Neural Network (GRNN), improving its adaptive capabilities and esti
+mation accuracy [54]. Similarly, Quantum Particle Swarm Optimization 
+(QPSO) and its extended variants like EQPSO have been utilized to tune 
+the parameters of neural networks and filter models [55,56]. The 
+primary objective of these quantum-inspired optimizers is to enhance 
+the global search capabilities and maintain a better balance between 
+exploration and exploitation, thereby avoiding premature convergence 
+to local optima, which is a common challenge in training complex 
+non-linear models for battery SOH forecasting. 
+b) Quantum Computing-based Learning Models
+A second, more fundamental category involves the direct integration 
+of quantum computing principles into the core of the learning models 
+themselves. A notable example is the Quantum Support Vector Regres
+sion (QSVR), which utilizes quantum kernels to map battery health in
+dicators into high-dimensional quantum Hilbert spaces, allowing for the 
+capture of complex degradation patterns that are intractable for classical 
+kernels [57]. Furthermore, hybrid models such as the Evolving Quantum 
+Fuzzy Neural Network (eQFNN) and the Extended Kalman Quantum 
+Particle Filter (EKQPF) have been proposed, which leverage quantum 
+concepts like quantum fuzzy sets for rule adaptation and quantum state 
+superposition for particle representation [55,58]. The EKQPF, for 
+instance, employs quantum principles and Grover's search algorithm for 
+more efficient particle resampling, addressing the particle degeneracy 
+problem in traditional filters.
+These two categories represent distinct levels of quantum integra
+tion, with quantum-inspired optimization being more readily imple
+mentable on classical hardware [59]. A prevailing trend is the 
+development of hybrid and ensemble frameworks that combine these 
+approaches to maximize predictive performance. For example, a 
+Quantum-Enhanced Ensemble Model (QEM) may integrate a QSVR in 
+parallel with a classical Gated Recurrent Unit (GRU) and refine the 
+combined output with a Gaussian Process Regression (GPR) layer [57]. 
+Such hybrid architectures aim to synergize the enhanced feature map
+ping of quantum models with the proven temporal modeling capabilities 
+of classical networks like GRUs, providing a robust pathway for 
+advancing battery prognostics with higher accuracy and stability.
+3. Performance comparison
+In Tables 2-4, the benchmarking framework employs a comprehen
+sive suite of statistical metrics—specifically Root Mean Square Error 
+(RMSE), Mean Absolute Percentage Error (MAPE), and the Coefficient of 
+Determination (R2) —to rigorously quantify SOH and RUL estimation 
+accuracy. Data-driven approaches, particularly those employing 
+advanced architectures like the SGF-CEEMDAN-Transformer [25], 
+demonstrate exceptional precision with Mean Absolute Percentage Error 
+(MAPE) as low as 0.15 % and R² values exceeding 0.99. Similarly, QML 
+frameworks exhibit highly competitive, and in some cases superior, 
+performance; for example, the Quantum-Enhanced Ensemble Model 
+(QEM) [57] achieved near-perfect R² values (e.g., 0.9989), while the 
+EQPSONN-GPR-RBF model [56] recorded Root Mean Square Error 
+(RMSE) values as low as 0.0041. Physics-Informed Machine Learning 
+(PI-ML) 
+models 
+also 
+deliver 
+compelling 
+accuracy, with 
+the 
+Physics-Information Hybrid Neural Network (PIHNN) [60] and the 
+Physics-Informed LSTM-Res [49] achieving RMSEs of 0.002 and 0.0035, 
+respectively, rivalling the purely data-centric methods. This conver
+gence in high performance across paradigms establishes that, on 
+well-defined laboratory datasets, each approach can produce highly 
+accurate SOH and RUL estimations.
+However, these headline accuracy metrics mask fundamental trade- 
+offs regarding the statistical confidence and distinct stability charac
+teristics of each modelling paradigm. The exceptional performance of 
+data-driven models is contingent upon the statistical stationarity of the 
+training data; consequently, their accuracy degrades sharply when 
+encountering domain shifts or non-stationary real-world phenomena 
+like capacity regeneration. Similarly, PI-ML reliability is strictly tied to 
+the fidelity of the embedded physical equations, where improper 
+weighting between physical and data-driven loss components can 
+K.L. Soon et al.                                                                                                                                                                                                                                  
+Results in Engineering 29 (2026) 109538 
+6 
+
+compromise robustness by either ignoring physical laws or over-relying 
+on imperfect models. Finally, while QML models achieve high peak 
+accuracy, their reliability is undermined by inherent stochasticity and 
+sensitivity to noise. This quantum-native variability introduces insta
+bility in predictions, while over-parametrization in complex circuits can 
+hinder generalization to new battery degradation pathways. Therefore, 
+Table 2 
+Comparison of performance across Gen. 1, 2 and 3 AI models.
+Model 
+Category
+Ref
+Proposed Model
+Topic
+Dataset
+Condition
+RMSE
+MAE
+R²
+MAPE
+MAX
+RMSPE
+QML
+[58]
+Evolving Quantum Fuzzy Neural Network 
+(eQFNN)
+SOH
+LIB-01
+—
+0.0101
+—
+—
+—
+0.0288
+—
+[54]
+Optimized Generalized Regression Neural 
+Network (OGRNN)
+SOH
+NASA B0005
+—
+0.36 %
+0.31 %
+—
+—
+—
+—
+NASA B0006
+—
+0.59 %
+—
+—
+—
+—
+—
+NASA B0007
+—
+0.26 %
+0.26 %
+—
+—
+—
+—
+NASA B0018
+—
+0.69 %
+—
+—
+—
+—
+—
+Real Vehicle 
+Dataset (RVD)
+—
+0.68 %
+0.64 %
+—
+—
+—
+—
+[57]
+Quantum-Enhanced Ensemble Model 
+(QEM)
+SOH
+NASA RW13
+—
+1.00 %
+0.76 %
+0.9989
+—
+—
+—
+NASA RW14
+—
+1.47 %
+1.12 %
+0.997
+—
+—
+—
+NASA RW15
+—
+0.81 %
+0.65 %
+0.9993
+—
+—
+—
+NASA RW16
+—
+1.81 %
+1.56 %
+0.9951
+—
+—
+—
+[56]
+Extended Quantum Particle Swarm 
+Optimized NN with GPR (EQPSONN-GPR- 
+RBF)
+SOH
+NASA RW16
+—
+0.0061
+0.0047
+0.9888
+—
+—
+—
+NASA RW17
+—
+0.0087
+0.007
+0.9745
+—
+—
+—
+NASA RW24
+—
+0.0049
+0.0034
+0.9855
+—
+—
+—
+NASA RW25
+—
+0.0041
+0.0032
+0.9894
+—
+—
+—
+[61]
+Quantum Particle Swarm Optimization 
+Extended Kalman Quantum Particle Filter 
+(QPSO-EKQP)
+SOC
+BMSLab 
+battery
+—
+0.016729
+0.012575
+—
+—
+—
+—
+CALCE battery
+—
+0.005543
+0.004531
+—
+—
+—
+—
+[62]
+Quantum Neural Network and Classical 
+Gated Recurrent Unit (QNN-GRU)
+SOH
+NASA B0005
+—
+0.0044
+0.0029
+—
+—
+—
+—
+NASA B0006
+—
+0.0050
+0.0035
+—
+—
+—
+—
+NASA B0007
+—
+0.0053
+0.0034
+—
+—
+—
+—
+NASA B0018
+—
+0.0047
+0.0041
+—
+—
+—
+—
+Table 3 
+Comparison of performance across Gen. 1, 2 and 3 AI models.
+Model 
+Category
+Ref.
+Proposed Model
+Topic
+Dataset
+Condition
+RMSE
+MAE
+R²
+MAPE
+MAX
+RMSPE
+[49]
+Physics-Informed LSTM_Res 
+(PILSTM_Res)
+SOH
+17.5Ah LiMn2O4/ 
+Carbon cell
+0.5C Constant 
+Current
+0.0035
+—
+—
+0.07 
+%
+—
+—
+1C Constant 
+Current
+0.00885
+—
+—
+0.19 
+%
+—
+—
+2C Constant 
+Current
+0.02054
+—
+—
+0.51 
+%
+—
+—
+FUDS Cycle
+0.0047
+—
+—
+0.12 
+%
+—
+—
+PI-ML
+[60]
+Physics-Information Hybrid Neural 
+Network (PIHNN)
+SOH
+Sanyo UR18650E 
+(private)
+1C
+0.0034
+0.0029
+—
+—
+—
+—
+0.5C
+0.002
+0.0015
+—
+—
+—
+—
+2C
+0.0024
+0.0019
+—
+—
+—
+—
+Oxford University public 
+dataset Cell 1
+—
+0.17
+0.19 %
+—
+—
+—
+—
+Oxford University public 
+dataset Cell 3
+—
+0.2
+0.37 %
+—
+—
+—
+—
+Oxford University public 
+dataset Cell 7
+—
+0.36
+0.44 %
+—
+—
+—
+—
+Oxford University public 
+dataset Cell 8
+—
+0.24
+0.38 %
+—
+—
+—
+—
+[63]
+Gated Multi-task Framework with 
+PINN
+SOH
+LFP public dataset
+—
+0.0121
+—
+—
+0.85 
+%
+—
+—
+NCA public dataset
+—
+0.0105
+—
+—
+1.08 
+%
+—
+—
+NCM public dataset
+—
+0.0079
+—
+—
+0.75 
+%
+—
+—
+RUL
+LFP public dataset
+—
+132
+117
+—
+—
+—
+—
+NCA public dataset
+—
+146
+104
+—
+—
+—
+—
+NCM public dataset
+—
+163
+121
+—
+—
+—
+—
+[47]
+Semi-empirical Physics-Informed 
+Neural Networks (SPINN)
+SOH
+MIT-Stanford Battery 
+#124
+—
+—
+—
+—
+—
+—
+0.17 %
+MIT-Stanford Battery 
+#113
+—
+—
+—
+—
+—
+—
+0.22 %
+NASA PCOE Battery 
+B0005
+—
+—
+—
+—
+—
+—
+1.88 %
+NASA PCOE Battery 
+B0007
+—
+—
+—
+—
+—
+—
+1.64 %
+CALCE Battery CS2_37
+—
+—
+—
+—
+—
+—
+4.06 %
+CALCE Battery CS2_35
+—
+—
+—
+—
+—
+—
+3.24 %
+K.L. Soon et al.                                                                                                                                                                                                                                  
+Results in Engineering 29 (2026) 109538 
+7 
+
+while the tables suggest parity in peak performance, the underlying 
+technical dependencies—on data stationarity for data-driven models, on 
+model fidelity for PI-ML, and on deterministic stability for QML—reveal 
+the critical challenges for real-world BMS implementation. These key 
+limitations are further discussed in Section 4.
+4. Key limitations and prevalent challenges
+Fig. 3 shows a summary of key limitations and challenges of AI 
+models in each generation, from data-driven machine learning, physics- 
+informed machine learning, to quantum machine learning. The 
+shortcomings of each generation are detailed in the following sections:
+4.1. Generation 1: Data-driven machine learning model
+Despite notable advancements, several critical challenges remain, 
+with data scarcity and quality representing a primary limitation. Most 
+advanced models are trained on extensive, well-curated laboratory 
+datasets, which are expensive and time-consuming to generate. In real- 
+world applications, labeled data is often scarce, incomplete, and noisy 
+[34]. This discrepancy leads to a generalization gap, where models 
+trained on lab data perform poorly when deployed in real vehicles or 
+Table 4 
+Comparison of performance across Gen. 1, 2 and 3 AI models.
+Model 
+Category
+Ref.
+Proposed Model
+Topic
+Dataset
+Condition
+RMSE
+MAE
+R²
+MAPE
+MAX
+RMSPE
+PI-ML
+[64]
+Bayesian PINN with Approximate 
+Bayesian Computation by Subset 
+Simulation (ABC-SS)
+RUL
+NASA PCOE 
+Battery B0002
+—
+0.0434
+—
+—
+—
+—
+—
+NASA PCOE 
+Battery B0003
+—
+0.0392
+—
+—
+—
+—
+—
+NASA PCOE 
+Battery B0004
+—
+0.0327
+—
+—
+—
+—
+—
+Data- 
+Driven 
+ML
+[25]
+Savitzky–Golay filtering (SGF)- 
+CEEMDAN-Transformer
+RUL
+NASA B0005
+—
+0.00507
+0.003714
+0.9814
+0.27 
+%
+—
+—
+NASA B0006
+—
+0.004626
+0.003593
+0.9949
+0.28 
+%
+—
+—
+NASA B0007
+—
+0.002892
+0.002173
+0.9928
+0.15 
+%
+—
+—
+[31]
+Empirical Wavelet Transform with an 
+inverted token transformer (EiFormer)
+RUL
+CALCE
+—
+0.048
+0.0368
+—
+—
+—
+—
+NASA
+—
+0.034
+0.0273
+—
+—
+—
+—
+[33]
+Lightweight and Term-Arbitrary 
+Memory Network (LTM-Net)
+RUL
+CALCE
+—
+0.93
+0.71
+—
+—
+—
+—
+Real EV 
+Operation
+EV_0
+0.36
+0.29
+99.62
+—
+—
+—
+Real EV 
+Operation
+EV_1
+0.24
+0.21
+99.52
+—
+—
+—
+Real EV 
+Operation
+EV_2
+0.52
+0.44
+98.97
+—
+—
+—
+Real EV 
+Operation
+EV_3
+0.68
+0.57
+98.39
+—
+—
+—
+[34]
+Self-Transformer With Noise Learning
+SOH
+NASA
+—
+1.15 %
+0.85 %
+97.44
+—
+—
+—
+CALCE
+—
+0.73 %
+0.55 %
+98.43
+—
+—
+—
+[21]
+Predictive Pretrained Transformer 
+(PPT)
+SOH
+LFP
+Average of 36 
+protocols
+0.24 %
+0.18 %
+98.9
+—
+—
+—
+NCA
+Average of 30 
+batteries
+0.81 %
+0.73 %
+94.1
+—
+—
+—
+NCM
+Average of 36 
+batteries
+0.91 %
+0.79 %
+94.4
+—
+—
+—
+Fig. 3. Key Limitations of AI Models in Each Generation.
+K.L. Soon et al.                                                                                                                                                                                                                                  
+Results in Engineering 29 (2026) 109538 
+8 
+
+energy storage systems. Furthermore, phenomena like capacity regen
+eration introduce non-stationarity into the degradation data, which can 
+confuse predictive models and degrade accuracy [25]. Finally, the 
+computational complexity of sophisticated models, particularly trans
+formers, remains a barrier to their deployment on resource-constrained 
+BMS hardware [33,35].
+4.2. Generation 2: Physics-informed machine learning model
+The primary limitation of PIML frameworks stems from computa
+tional complexity and scalability challenges. Integration of complex 
+physical models, particularly partial differential equations governing 
+electrochemical processes such as porous electrode theory and thermal 
+dynamics, dramatically increases training time and memory re
+quirements, creating significant computational bottlenecks [49,65,66]. 
+The incorporation of sophisticated electrochemical models into training 
+loops requires innovative optimization strategies including decoupled 
+training approaches that separate data-driven and physics-informed 
+component training, multi-stage sequential optimization beginning 
+with physics-based initialization followed by data-driven refinement, 
+and adaptive loss weighting schemes to balance data-fitting and 
+physics-residual loss contributions [45,64]. Model compression tech
+niques including network quantization and pruning become essential for 
+deployment on resource-constrained BMS hardware, though these ap
+proaches risk compromising the physical interpretability that consti
+tutes PIML's primary advantage [67].
+Additionally, data scarcity and heterogeneity present persistent 
+challenges that fundamentally limit PIML performance and generaliz
+ability. Second-life batteries exhibit particularly acute challenges due to 
+incomplete first-life usage histories and abrupt operational condition 
+shifts, creating significant training data gaps that conventional ap
+proaches struggle to address [13,53]. While PIML frameworks demon
+strate 
+exceptional 
+small-sample 
+performance 
+by 
+leveraging 
+physics-based priors that constrain model behaviour with limited 
+training data, enabling accurate predictions with as few as one-cycle 
+charging curves, data heterogeneity arising from diverse battery 
+chemistries specifically Lithium Nickel Cobalt Aluminum Oxide (NCA), 
+Lithium Nickel Cobalt Manganese Oxide(NCM), Lithium Iron Phosphate 
+(LFP), form factors, and operating conditions poses additional general
+izability challenges requiring extensive cross-domain validation [13,50,
+68,69]. Transfer learning approaches enable models trained on abun
+dant protocol-based cycling data to adapt to sparse real-world usage 
+patterns, though effectiveness remains limited by domain shift magni
+tudes and underlying physical model fidelity [69].
+Furthermore, model complexity and interpretability trade-offs 
+constitute a fundamental limitation where increasing physical model 
+sophistication often reduces computational efficiency and practical 
+deployability. The efficacy of physics-constrained approaches depends 
+critically on simplified physical model fidelity and meticulous tuning of 
+weighting factors balancing data-driven and physics-informed loss 
+components, introducing hyperparameter sensitivity that can compro
+mise robustness [50,70]. Multi-task learning scenarios involving 
+co-estimation of SOH and RUL require customized gated control models 
+to manage information flow between shared and task-specific layers, 
+mitigating negative transfer effects and the "seesaw phenomenon" where 
+conflicting optimization objectives degrade overall performance [63]. 
+Advanced architectures integrating Kolmogorov-Arnold Networks 
+(KANs) with PINNs and attention mechanisms provide enhanced inter
+pretability but introduce additional computational overhead and 
+architectural complexity that may limit practical implementation [71].
+4.3. Generation 3: Quantum machine learning model
+A primary and consistent challenge of the quantum machine learning 
+models is their significant computational overhead and latency, espe
+cially when simulated on classical hardware. While QMLs incorporating 
+quantum principles can achieve high accuracy, they do so at the cost of 
+substantially increased processing time. For instance, the Quantum- 
+Enhanced Ensemble Model (QEM) and its Quantum Support Vector 
+Regression (QSVR) component required simulation times an order of 
+magnitude higher (e.g., ~14.4 s and ~11.7 s on average) than tradi
+tional counterparts like Gaussian Process Regression (GPR) (~0.1 s) and 
+standard SVR (~1.2 s) [57]. This latency stems from the inherent 
+complexity of classically simulating quantum phenomena such as su
+perposition and entanglement, as well as the overhead associated with 
+encoding classical data into quantum states and subsequently decoding 
+the results, a process which is identified as time-consuming [55]. This 
+high computational demand currently limits the practical deployment of 
+these models in real-time battery management systems where rapid 
+inference is critical.
+Beyond computational cost, QML models exhibit challenges related 
+to robustness, noise sensitivity, and generalization. The quantum com
+ponents can introduce significant variability and instability into pre
+dictions. This is explicitly addressed in QEM model [57], where a 
+classical GPR layer was strategically added to the QEM specifically to 
+smooth out the quantum fluctuations and mitigate the inherent quantum 
+variability originating from the QSVR model. Furthermore, some 
+quantum architectures, particularly those based on deep quantum cir
+cuits, introduce numerous tunable variational parameters, which can 
+lead to over-parametrization. This makes the model highly specific to 
+the training dataset and hinders its ability to generalize to new, unseen 
+data, a critical flaw for reliable state-of-health forecasting. This inherent 
+stochasticity contrasts with the deterministic nature of many traditional 
+ML models and the constraint-driven stability of physics-informed 
+models.
+5. A forward-looking research roadmap for physics-informed 
+quantum machine learning (PI-QML)
+To address the key limitations and challenges in standalone PIML 
+and QML, this review presents a research roadmap for developing 
+PIQML models, outlining seven novel directions that synergistically 
+integrate quantum computing with electrochemical physics constraints, 
+as summarized in Fig. 4. The goal is to enhance battery health prediction 
+accuracy and interpretability, specifically by leveraging quantum 
+advantage to navigate the complex optimization landscapes and high- 
+dimensional parameter spaces inherent in battery degradation model
+ling with physics constraints. The key seven novel directions are pro
+posed as follows:
+5.1. Physics-Informed Variational Quantum Circuits for enhanced model 
+accuracy and interpretability
+While traditional PIML is powerful, they struggle to accurately 
+represent the complex, non-local correlations inherent in electro
+chemical systems [45,52]. This representational gap can lead to models 
+converging on physically implausible local minima during optimization, 
+thereby limiting their predictive accuracy for complex phenomena like 
+battery degradation [54]. To address this challenge, a hybrid framework 
+that embeds Variational Quantum Circuits (VQCs) [72] as expressive 
+with physics-informed constraints is proposed by leveraging quantum 
+entanglement from VQC to naturally capture the intricate, long-range 
+dependencies between electrochemical parameters that are often 
+missed by classical layers, complemented by physics constraints to 
+model battery degradation mechanism. In other words, the VQC ansatz 
+is explicitly designed to be interpretable by encoding fundamental 
+conservation laws and degradation mechanisms, such as SEI growth and 
+lithium plating. By hard-coding these physical principles into the cir
+cuit's structure, the VQC acts as a powerful inductive bias. This provides 
+a strong regularization effect that constrains the solution space, guiding 
+the optimization process away from non-physical outcomes and toward 
+solutions with higher fidelity. The result is a model with enhanced 
+K.L. Soon et al.                                                                                                                                                                                                                                  
+Results in Engineering 29 (2026) 109538 
+9 
+
+predictive accuracy and improved generalization, whose structure 
+directly reflects the underlying physics of the system it is modelling.
+PI-VQCs represent the most viable entry point for NISQ imple
+mentation among the proposed directions, as the hybrid classical- 
+quantum structure allows the VQC ansatz to remain shallow, mini
+mizing decoherence effects while leveraging classical optimizers for 
+parameter updates. By hard-coding conservation laws and degradation 
+mechanisms (e.g., SEI growth) directly into the circuit structure, the 
+effective solution space is restricted; this inductive bias not only miti
+gates the barren plateau problem common in noisy optimization but also 
+reduces the requisite gate count, making the model robust enough for 
+immediate deployment on current hardware with limited error mitiga
+tion. Hence, the emphasis is placed on physics embedding techniques 
+that reduce parameter complexity. The integration of topology- 
+compliant, low-depth circuits enables small-qubit VQCs to function 
+effectively as auxiliary regularization modules. Consequently, this hy
+bridization ensures that experimental validation remains feasible within 
+the constraints of the Noisy Intermediate-Scale Quantum (NISQ) era.
+5.2. Quantum kernel methods for multi-scale electrochemical modelling
+Current PIML frameworks struggle with hierarchical multi-scale 
+modelling, where microscopic phenomena like SEI growth must be in
+tegrated with macroscopic battery performance metrics, creating 
+computational complexity and numerical instability issues [66]. 
+Advanced PIML architectures require construction of hybrid frameworks 
+where physical models serve as functional components within neural 
+network forward passes [58]. Classical quantum kernel methods are 
+limited by quantum hardware availability and restricted feature 
+mapping capabilities when dealing with high-dimensional battery state 
+spaces [73]. The proposed Quantum Kernel Physics-Informed Networks 
+(QK-PINs) employ quantum feature maps to encode multi-scale elec
+trochemical processes into high-dimensional quantum Hilbert spaces. 
+The quantum kernels are designed to capture scale-bridging relation
+ships 
+between 
+molecular-level 
+degradation 
+mechanisms 
+and 
+system-level 
+performance 
+indicators 
+through 
+quantum 
+entanglement-based correlations. This approach addresses the challenge 
+of integrating open-circuit voltage reconstruction models with 
+electrode-level diagnostics [54], while handling the computational 
+complexity of porous electrode theory constraints [58]. The framework 
+enables seamless integration of microscopic PINNs predicting localized 
+phenomena with macroscopic physics-informed models for pack-level 
+behaviour [66], leveraging quantum computational advantages to 
+handle exponential complexity of multi-scale interactions.
+QK-PINs face moderate NISQ implementability challenges due to 
+their reliance on quantum feature maps requiring controlled multi-qubit 
+operations for encoding high-dimensional battery state spaces. State-of- 
+the-art quantum kernel estimation protocols demand circuit depths 
+scaling as O(n²) for n-dimensional feature spaces, quickly exceeding 
+decoherence limits when mapping realistic electrochemical parameters 
+(voltage, current, temperature, SOC). Current hardware implementa
+tions are restricted to 5–10 dimensional feature spaces with simplified 
+kernel functions, insufficient for capturing multi-scale degradation 
+phenomena. The quadratic measurement overhead for kernel matrix 
+construction (O(m²) circuit evaluations for m training samples) further 
+limits practical dataset sizes to hundreds of samples on NISQ devices, 
+inadequate for battery prognostics requiring thousands of aging cycles. 
+To address thr hardware constraints, quantum kernels are restricted to 
+Fig. 4. PI-QML research roadmap.
+K.L. Soon et al.                                                                                                                                                                                                                                  
+Results in Engineering 29 (2026) 109538 
+10 
+
+low-dimensional, physically motivated features, such as those derived 
+from active subspaces. This dimensionality reduction is further sup
+ported by classical pre-projection or random Fourier features to mini
+mize the quantum embedding size.
+5.3. Quantum optimization for adaptive loss weighting in multi-physics 
+constraints
+PIML methods face significant challenges in balancing contributions 
+between data-fitting loss and physics-residual loss during training, 
+requiring meticulous tuning of weighting factors that often leads to 
+suboptimal performance [74]. Adaptive loss weighting schemes must 
+dynamically balance contributions to prevent dominance of either 
+component. Quantum-inspired metaheuristic algorithms suffer from 
+premature convergence when optimizing neural network parameters in 
+complex battery modeling scenarios [75]. The Quantum Adaptive Loss 
+Weighting Networks (QALWNs) is proposed which employs Quantum 
+Approximate Optimization Algorithms (QAOA) to dynamically optimize 
+loss weighting schemes during training [76]. The quantum optimizer 
+leverages quantum tunnelling effects to escape local minima in 
+high-dimensional weighting parameter spaces while simultaneously 
+satisfying 
+multiple 
+physics 
+constraints 
+from 
+electrochemical-thermal-mechanical models. The framework in
+corporates 
+quantum 
+annealing 
+principles 
+to 
+transition 
+from 
+exploration-dominant to exploitation-dominant optimization phases, 
+addressing the computational challenges of multi-stage training ap
+proaches [77]. This enables automatic adaptation of loss weights for 
+multi-task learning scenarios involving co-estimation of SOH and RUL, 
+eliminating manual hyperparameter tuning while preventing the seesaw 
+phenomenon where conflicting optimization objectives degrade 
+performance.
+QAOA-based adaptive weighting exhibits limited near-term viability 
+due to the exponential circuit depth requirements for achieving solution 
+quality competitive with classical optimizers. While depth, p=1 QAOA 
+circuits are NISQ-compatible, they provide insufficient approximation 
+ratios (<0.7) for high-dimensional loss weighting optimization in multi- 
+physics battery models. Achieving acceptable performance (approxi
+mation ratio >0.9) requires p≥10 layers, resulting in circuit depths 
+exceeding 1000 gates that surpass current error correction capabilities. 
+A practical approach involves co-optimization via a hybrid framework, 
+wherein quantum-generated proposals undergo classical refinement 
+within an outer optimization loop. Additionally, the requisite number of 
+quantum evaluations is minimized through the integration of noise- 
+aware ansatz designs and classical surrogate models.
+5.4. Quantum-Enhanced uncertainty quantification for battery 
+prognostics
+PIML methods struggle with robust uncertainty quantification in 
+degradation predictions, particularly when dealing with model param
+eter uncertainty and aleatory variability in battery aging processes. 
+Physics-Informed Bayesian Neural Networks provide uncertainty quan
+tification but face computational limitations [52]. QML approaches lack 
+sophisticated uncertainty propagation mechanisms that can handle both 
+quantum and classical uncertainty sources simultaneously [78]. To 
+address this, the Quantum Bayesian Physics-Informed Networks 
+(QB-PINs) is proposed to leverage quantum superposition to represent 
+probability distributions over physics-constrained model parameters 
+[79]. The framework employs quantum amplitude estimation algo
+rithms to efficiently compute posterior distributions of degradation pa
+rameters while enforcing electrochemical constraints from equivalent 
+circuit models. Quantum Monte Carlo sampling techniques propagate 
+uncertainties through complex physics-based forward models derived 
+from porous electrode theory [80], providing probabilistic forecasts 
+with quantified confidence intervals. This approach addresses the limi
+tations 
+of 
+Approximate 
+Bayesian 
+Computation 
+[81] 
+by 
+Subset-Simulation by enabling risk-aware battery management de
+cisions through uncertainty-quantified predictions of remaining useful 
+life and state of health evolution under various operational scenarios.
+QB-PINs present significant challenges for current NISQ devices, 
+placing them lower on the implementability hierarchy due to their 
+reliance on Quantum Amplitude Estimation (QAE) to compute posterior 
+distributions of degradation parameters. Standard QAE requires deep 
+circuits that exceed current coherence times; while "shallow" variants 
+without phase estimation exist, the propagation of uncertainties through 
+complex porous electrode forward models demands high gate fidelities 
+to ensure that quantum noise does not overwhelm the aleatory vari
+ability and parameter uncertainty being modelled. The near-term 
+implementation strategy focuses on iterative Quantum Amplitude Esti
+mation (IQAE) and low-depth hybrid variants, strictly applied to small 
+parameter subsets. For high-dimensional marginals, these quantum 
+routines are integrated with classical Bayesian surrogates, such as con
+ditional density estimators. To ensure that quantum estimates remain 
+statistically significant on NISQ hardware, rigorous error mitigation 
+protocols—specifically Zero-Noise Extrapolation (ZNE) and Probabi
+listic Error Cancellation (PEC)—are employed alongside variance 
+reduction techniques.
+5.5. Quantum graph neural networks for battery pack heterogeneity 
+modelling
+Current PIML frameworks have limited capability to model cell-to- 
+cell variations and thermal-electrochemical coupling within battery 
+packs, 
+leading 
+to 
+oversimplified 
+pack-level 
+predictions 
+[53]. 
+Multi-fidelity physics-informed approaches struggle with heterogeneous 
+data sources and diverse operational conditions [66]. QML methods lack 
+specialized architectures for handling graph-structured battery pack 
+topologies with physics-informed edge relationships. To bridge this gap, 
+a Quantum Graph Physics-Informed Networks (QG-PINs) is introduced 
+to represent battery packs as quantum-enhanced graphs where nodes 
+encode individual cell states and quantum-weighted edges capture 
+thermal-electrochemical interactions. The quantum graph convolutions 
+[82] leverage quantum walk algorithms to propagate physics-based 
+constraints across pack topology while preserving fundamental conser
+vation laws and electrochemical principles. Quantum attention mecha
+nisms [83] dynamically weight cell interactions based on thermal 
+conductivity, electrical connectivity, and degradation synchronization, 
+addressing the computational challenges of multi-fidelity approaches. 
+This framework enables accurate modelling of pack-level degradation 
+patterns while handling data heterogeneity arising from diverse battery 
+chemistries and operating conditions, maintaining computational effi
+ciency through quantum parallelism in graph operations.
+Quantum graph methods and quantum-walk primitives conceptually 
+align with pack-topology problems, but realistic battery packs with 
+tens–hundreds of cells produce graphs that exceed the qubit counts and 
+connectivity (and thus circuit depth) of current NISQ processors; 
+moreover, graph mappings tend to introduce many SWAPs on limited 
+topologies, compounding noise. Short-term implementable mitigations 
+include hybrid architectures where classical GNN layers operate on the 
+global graph and small quantum submodules model critical local motifs 
+(e.g., cell pairs or thermal hotspots), as well as compressing graph sig
+nals into low-rank summaries before quantum processing.
+5.6. Quantum generative models for physics-constrained data 
+augmentation
+PIML methods face severe limitations due to data scarcity, particu
+larly for second-life batteries with incomplete first-life usage histories 
+and heterogeneous aging patterns [17]. The persistent challenge of data 
+scarcity requires innovative solutions that leverage limited available 
+information while ensuring model generalizability. QML models lack 
+mechanisms to enforce hard physics constraints during synthetic data 
+K.L. Soon et al.                                                                                                                                                                                                                                  
+Results in Engineering 29 (2026) 109538 
+11 
+
+generation 
+[84]. 
+The 
+proposed 
+Quantum 
+Generative 
+Physics-Constrained Networks (QG-PCNs) combine quantum generative 
+adversarial networks [85]with physics-informed discriminators to syn
+thesize realistic battery degradation data. The quantum generator em
+ploys variational quantum circuits to sample from complex probability 
+distributions 
+representing 
+battery 
+aging 
+processes, 
+while 
+physics-informed discriminators ensure generated data satisfies funda
+mental electrochemical laws from porous electrode theory [51] and 
+thermal dynamics [68]. Quantum entanglement enables the generator 
+to capture non-local correlations in degradation patterns involving SEI 
+growth, lithium plating, and active material loss that are difficult to 
+model classically. This framework addresses the challenge of generating 
+large-scale, physically realistic battery lifecycle datasets that preserve 
+complex nonlinear degradation patterns, significantly expanding 
+training data availability for rare degradation scenarios while main
+taining adherence to conservation laws and electrochemical principles.
+QG-PCNs face severe implementability constraints on NISQ hard
+ware due to the notorious training instability of Quantum GANs 
+(QGANs) combined with the difficulty of loading classical battery data 
+into quantum states. While the variational generator can theoretically 
+capture non-local correlations in aging patterns, the barren plateau 
+phenomenon is exacerbated in generative tasks, and the requirement to 
+enforce hard physics constraints via a discriminator imposes additional 
+circuit depth that currently limits practical validation to extremely low- 
+dimensional synthetic datasets rather than realistic electrochemical 
+profiles. The iterative adversarial training loop necessitates thousands of 
+generator-discriminator evaluations, each involving quantum circuit 
+execution, making training times prohibitive on current quantum cloud 
+platforms with limited allocation quotas and queue-based access 
+models.
+5.7. Quantum causal discovery for interpretable degradation mechanism 
+identification
+Current PIML interpretability approaches are limited to correlation- 
+based analysis and cannot identify causal relationships between opera
+tional conditions and specific degradation mechanisms, hindering 
+development of targeted mitigation strategies [66]. The integration of 
+causal discovery algorithms with PIML frameworks represents a frontier 
+development for identifying underlying causal relationships [86]. QML 
+methods lack frameworks for quantum-enhanced causal inference in 
+complex 
+electrochemical 
+systems. 
+The 
+Quantum 
+Causal 
+Physics-Informed Networks (QC-PINs) is proposed to leverage quantum 
+algorithms for causal discovery to identify dominant degradation 
+pathways 
+and 
+their 
+root 
+causes. 
+The 
+framework 
+employs 
+quantum-enhanced constraint satisfaction algorithms to evaluate causal 
+hypotheses while enforcing physics-based constraints on causal re
+lationships derived from electrochemical-thermal-mechanical models. 
+Quantum entanglement enables evaluation of multiple causal structures 
+involving primary degradation modes including SEI layer growth, 
+lithium plating, and active material loss, while quantum interference 
+amplifies causal signals and suppresses spurious correlations. This 
+approach 
+can 
+identify 
+complex 
+causal 
+chains 
+such 
+as 
+temperature-dependent lithium plating causally linked to SEI growth 
+acceleration under high C-rate condition, providing unprecedented 
+diagnostic insights for electrode-level diagnostics [51] and targeted 
+battery management optimization strategies that address specific 
+degradation mechanisms rather than just predicting overall capacity 
+fade.
+QC-PINs represent the least NISQ-implementable direction due to the 
+nascent state of quantum causal inference algorithms and their extreme 
+computational demands. Evaluating causal hypotheses over degradation 
+mechanisms requires quantum constraint satisfaction algorithms oper
+ating on graph structures with O(2k) nodes for k potential causal vari
+ables, quickly exceeding representational capacity of <100 qubit 
+systems when considering realistic numbers of operational and 
+degradation parameters (temperature, C-rate, SEI thickness, lithium 
+plating extent). Quantum interference-based amplification of causal 
+signals demands high-fidelity coherent operations across the entire 
+quantum register for extended durations incompatible with NISQ 
+coherence times. A summary of feasibility of implementation of these 
+future directions is given in Table 5.
+5.8. Technical maturity and experimental validation of seven novel 
+directions in PI-QML
+As shown in Fig. 5, the technical maturity of the seven novel di
+rections in PI-QML spans a spectrum from nascent conceptual frame
+works to emerging implementations with preliminary validation. 
+Physics-Informed Variational Quantum Circuits (Section 5.1) and 
+Quantum Kernel Methods (Section 5.2) are more technically matured, 
+building upon established foundations in variational quantum algo
+rithms and kernel-based learning that have demonstrated proof-of- 
+concept implementations in quantum chemistry and materials science 
+applications. However, their specific application to electrochemical 
+battery systems remains largely theoretical, with validation primarily 
+Table 5 
+NISQ implementation feasibility.
+Method
+NISQ 
+Feasibility
+Implementation 
+Challenges on NISQ
+Mitigation Strategies
+PI- 
+VQCs
+High (Most 
+Viable)
+Limited error mitigation 
+capabilities of current 
+hardware.
+Shallow hybrid ansatz; 
+Physics-encoded 
+conservation laws reduce 
+parameter space
+QK- 
+PINs
+Moderate
+Circuit Depth: Scales as O 
+(n2), exceeding 
+decoherence limits for 
+high dimensions; 
+Measurement Overhead: 
+Quadratic (O(m2)) cost 
+limits datasets to 
+hundreds of samples
+Dimensionality reduction 
+via active subspaces; 
+Classical pre-projection 
+with random Fourier 
+features
+QAOA
+Low
+Shallow circuits (p=1) 
+have poor approximation 
+(<0.7). High accuracy 
+(p≥10) requires >1000 
+gates, exceeding error 
+correction limits.
+Hybrid quantum-classical 
+co-optimization; Classical 
+surrogates minimize 
+quantum calls
+QB- 
+PINs
+Low
+Standard QAE circuits are 
+too deep; Quantum noise 
+can overwhelm the 
+modeled aleatory 
+variability/parameter 
+uncertainty.
+Iterative QAE (IQAE) 
+using low-depth hybrid 
+variants on small 
+parameter subsets; 
+Integrating high- 
+dimensional marginals 
+with classical Bayesian 
+surrogates.
+QGNN
+Low
+Realistic packs exceed 
+qubit count; Excessive 
+SWAP operations
+Classical GNN for global 
+graph and small quantum 
+submodules for local 
+motifs; Compressing 
+graph signals into low- 
+rank summaries before 
+processing.
+QG- 
+PCN
+Very Low
+Suffer from barren 
+plateaus and difficult 
+convergence; Difficult to 
+load classical battery data 
+into quantum states; 
+Require thousands of 
+evaluations, prohibitive 
+on cloud queue models.
+Currently restricted to 
+extremely low- 
+dimensional synthetic 
+datasets rather than 
+realistic electrochemical 
+profiles.
+QC- 
+PINs
+Extremely 
+Low (Least 
+Viable)
+High computational 
+Demand; Interference- 
+based amplification 
+requires high fidelity 
+durations incompatible 
+with NISQ; Immature 
+algorithms
+None significant for near- 
+term; method is largely 
+theoretical for current 
+hardware capabilities.
+K.L. Soon et al.                                                                                                                                                                                                                                  
+Results in Engineering 29 (2026) 109538 
+12 
+
+limited to small-scale simulations on classical quantum circuit emulators 
+rather than noisy intermediate-scale quantum (NISQ) hardware. Quan
+tum Optimization for Adaptive Loss Weighting (Section 5.3) benefits 
+from the relative maturity of QAOA algorithms, which have been 
+experimentally validated for combinatorial optimization problems, 
+though their integration with physics-informed neural network training 
+pipelines has yet to be demonstrated beyond preliminary numerical 
+experiments.
+The experimental validation landscape for the remaining sub- 
+directions reveals substantial gaps between theoretical promise and 
+practical demonstration. Quantum-Enhanced Uncertainty Quantifica
+tion (Section 5.4) and Quantum Graph Neural Networks (Section 5.5) 
+still lack maturity, as they leverage quantum amplitude estimation and 
+quantum walk algorithms that have been theoretically characterized but 
+face significant implementation challenges related to circuit depth, gate 
+fidelity, and scalability when applied to high-dimensional battery state 
+spaces. Quantum Generative Models for Physics-Constrained Data 
+Augmentation (Section 5.6) currently lacks comprehensive experi
+mental validation in the battery domain, with existing quantum gener
+ative adversarial network implementations constrained to low- 
+dimensional problems that inadequately capture the complexity of 
+multi-scale electrochemical degradation phenomena. The enforcement 
+of hard physics constraints within quantum generative frameworks re
+mains an open research challenge without established benchmarking 
+protocols or standardized validation metrics for synthetic battery data 
+quality assessment. Quantum Causal Discovery for Degradation Mech
+anism Identification (Section 5.7) represents the least experimentally 
+mature direction, as quantum-enhanced causal inference algorithms are 
+still in early theoretical development stages with minimal experimental 
+validation even in classical domains. Across all seven novel directions, 
+the absence of large-scale experimental studies on real battery datasets, 
+comparative benchmarking against state-of-the-art classical PIML 
+methods, and deployment on contemporary quantum hardware plat
+forms underscores the need for systematic validation frameworks that 
+can rigorously assess both quantum advantage and physics-informed 
+constraint satisfaction under realistic operational conditions and data 
+availability scenarios.
+6. Feasibility and practicality of PI-QML in battery SOH and RUL 
+prediction
+PI-QML presents a highly feasible and practical paradigm for 
+enhancing battery SOH and RUL prediction, primarily by addressing the 
+inherent complexities of electrochemical systems that challenge clas
+sical methods. The integration of VQCs with physics-informed con
+straints, as in Physics-Informed Variational Quantum Circuits (PI-VQCs), 
+leverages quantum entanglement to capture intricate, long-range de
+pendencies between electrochemical parameters. This capability 
+directly tackles the representational gap in traditional PIML, preventing 
+convergence to physically implausible local minima and thereby 
+improving predictive accuracy for phenomena like battery degradation. 
+Furthermore, QK-PINs offer a robust solution for multi-scale electro
+chemical modelling by encoding molecular-level degradation into high- 
+dimensional quantum Hilbert spaces, effectively bridging microscopic 
+phenomena with macroscopic performance metrics, which is crucial for 
+SOH and RUL assessment. Fig. 6 shows an overview of the challenges 
+and proposed implementation solutions to addresses these issues as the 
+future directions.
+6.1. Issues and challenges
+Despite the promising advancements, the practical implementation 
+of PI-QML in BMS for SOH and RUL prediction faces significant issues 
+and challenges, primarily stemming from the nascent stage of quantum 
+computing hardware. The current limitations in quantum hardware, 
+including the number of available qubits, their coherence times, and 
+error rates, pose substantial hurdles. Algorithms like VQCs and QK-PINs, 
+while theoretically powerful, may demand quantum resources beyond 
+current capabilities, making it difficult to execute complex quantum 
+operations efficiently and reliably within the constrained computational 
+environment of an embedded BMS. Furthermore, the inherent sensi
+tivity of quantum states to environmental noise necessitates robust error 
+correction mechanisms, which themselves introduce additional 
+computational overhead and complexity, potentially negating the 
+quantum advantage in resource-limited applications such as real-time 
+BMS operations.
+Fig. 5. Technical maturity of PI-QML techniques.
+K.L. Soon et al.                                                                                                                                                                                                                                  
+Results in Engineering 29 (2026) 109538 
+13 
+
+Another critical challenge lies in the integration of quantum algo
+rithms with existing classical BMS infrastructure and the development of 
+specialized quantum-classical interfaces. The conversion of classical 
+electrochemical data into quantum states, execution of quantum algo
+rithms, and subsequent extraction of classical predictions for SOH and 
+RUL require sophisticated quantum compilers and runtime environ
+ments that are not yet mature. Moreover, the training of PI-QML models, 
+particularly those involving quantum optimization (e.g., QALWNs) or 
+quantum generative models (e.g., QG-PCNs), is computationally inten
+sive and demands significant off-line quantum processing capabilities 
+that are not feasible within an operational BMS. The interpretability and 
+explainability of quantum-derived predictions, although inherently 
+addressed by physics constraints, also present a learning curve for en
+gineers accustomed to classical diagnostics, hindering rapid adoption 
+and trust in critical safety-related applications.
+6.2. Proposed future directions
+To address the challenges in practical PI-QML implementation for 
+BMS, a multi-faceted approach is required, focusing on hardware- 
+software co-design and the development of hybrid quantum-classical 
+architectures. Near-term solutions should prioritize the optimization 
+of PI-QML algorithms for current Noisy Intermediate-Scale Quantum 
+(NISQ) devices, emphasizing variational quantum algorithms that are 
+more resilient to noise and require fewer qubits. This includes devel
+oping more compact VQC ansatz, efficient quantum feature maps for 
+QK-PINs, and resource-optimized QAOA implementations for QALWNs, 
+ensuring that the quantum advantage can be realized even with limited 
+hardware. Furthermore, the development of robust quantum error 
+mitigation techniques, rather than full error correction, will be crucial to 
+improve the reliability of quantum computations without incurring 
+excessive overhead, allowing for more stable and dependable SOH and 
+RUL predictions.
+Concurrently, efforts must focus on seamless integration strategies, 
+including the development of standardized quantum software develop
+ment kits (SDKs) and APIs that enable straightforward interfacing be
+tween classical BMS components and cloud-based quantum computing 
+resources. This would allow the computationally intensive quantum 
+aspects of PI-QML, such as model training and complex uncertainty 
+quantification (QB-PINs), to be offloaded to remote quantum data cen
+ters, while the BMS handles real-time data acquisition and classical 
+inference. For on-device implementation, hybrid quantum-classical 
+frameworks should be designed where the most demanding computa
+tions leverage quantum processing units (QPUs) as accelerators for 
+specific tasks (e.g., high-dimensional feature encoding or complex 
+optimization), while the majority of the processing remains classical. 
+This iterative approach will bridge the gap between theoretical quantum 
+potential and practical BMS requirements, ensuring that PI-QML can 
+incrementally enhance battery prognostics as quantum hardware 
+matures.
+7. Conclusion
+This review consolidates and clarifies the rapidly evolving field of 
+battery health prognostics by introducing a three-generation taxonomy: 
+Gen.-1 data-driven, Gen.-2 PI-ML, and Gen.-3 QML, delivering a 
+Fig. 6. Practical challenges and implementation strategies of PI-QML.
+K.L. Soon et al.                                                                                                                                                                                                                                  
+Results in Engineering 29 (2026) 109538 
+14 
+
+benchmarked comparison of representative approaches, and exposing 
+the principal limitations that impede robust and interpretable deploy
+ment. To address the limitations of existing PI-ML and QML models, a 
+comprehensive PI-QML framework is proposed that leverages quantum 
+computational advantages to address fundamental limitations in clas
+sical battery degradation modelling through seven novel methodolog
+ical directions including Quantum Kernel Physics-Informed Networks 
+for multi-scale electrochemical integration and Quantum Bayesian 
+Networks for uncertainty quantification. The proposed quantum- 
+enhanced approaches demonstrate significant theoretical advances in 
+handling complexity of multi-physics constraints while providing prac
+tical solutions to persistent challenges in loss weighting optimization 
+and physics-constrained data augmentation for battery health predic
+tion. The integration of quantum entanglement-based correlations with 
+electrochemical physics constraints establishes a new paradigm for 
+interpretable degradation mechanism identification, offering unprece
+dented capabilities for causal discovery and risk-aware battery man
+agement optimization that classical approaches cannot achieve.
+CRediT authorship contribution statement
+Kian Lun Soon: Writing – original draft, Methodology, Formal 
+analysis, Conceptualization. Wai Leong Pang: Writing – original draft, 
+Validation, Investigation, Funding acquisition, Conceptualization. Hui 
+Hwang Goh: Writing – original draft, Formal analysis, Conceptualiza
+tion. Yee Wai Sim: Writing – review & editing, Resources, Project 
+administration, Formal analysis. Swee King Phang: Writing – review & 
+editing, Methodology, Formal analysis. Hui Leng Choo: Writing – re
+view & editing, Validation, Investigation. Lam Tatt Soon: Writing – 
+review & editing, Validation, Formal analysis. Nai Shyan Lai: Writing – 
+review & editing, Methodology, Conceptualization. Chee-Onn Chow: 
+Writing – review & editing, Formal analysis, Conceptualization. Denesh 
+Sooriamoorthy: Writing – review & editing, Validation, Methodology.
+Declaration of competing interest
+The authors declare that they have no known competing financial 
+interests or personal relationships that could have appeared to influence 
+the work reported in this paper.
+Acknowledgements
+This research was supported by Taylor’s University, Malaysia, 
+through Taylor’s Matching grant (International) (PARTNERSHIP/QIS/ 
+2025/FIT/001).
+Data availability
+No data was used for the research described in the article.
+References
+[1] S. Paraschiv, L.-S. Paraschiv, Analysis of traffic and industrial source contributions 
+to ambient air pollution with nitrogen dioxide in two urban areas in Romania, 
+Energy Procedia 157 (2019) 1553–1560, https://doi.org/10.1016/j. 
+egypro.2018.11.321.
+[2] T. Martins, A.C. Barreto, F.M. Souza, A.M. Souza, Fossil fuels consumption and 
+carbon dioxide emissions in G7 countries: empirical evidence from ARDL bounds 
+testing approach, Environ. Pollut. 291 (2021) 118093, https://doi.org/10.1016/j. 
+envpol.2021.118093.
+[3] J.G, S.K.M., & P.J.A.H.W. Olivier, Trends in global CO2 and total greenhouse gas 
+emissions, 2020.
+[4] International Energy Agency, Global energy review: CO2 emissions in 2021, 2021.
+[5] R. Garcia-Valle, J.A.P. Lopes, Electric vehicle integration into modern power 
+networks, in: 2013. https://api.semanticscholar.org/CorpusID:106560136.
+[6] F. Un-Noor, S. Padmanaban, L. Mihet-Popa, M.N. Mollah, E. Hossain, 
+A comprehensive study of key electric vehicle (EV) components, technologies, 
+challenges, impacts, and future direction of development, Energ. (Basel) 10 (2017), 
+https://doi.org/10.3390/en10081217.
+[7] F.F. T, A.C. W.X, P.A. Stuart, A modular battery management system for HEVs, SAE 
+Trans. (2002) 777–785, https://doi.org/10.4271/2002-01-1918.
+[8] M.-F. Ge, Y. Liu, X. Jiang, J. Liu, A review on state of health estimations and 
+remaining useful life prognostics of lithium-ion batteries, Measurement 174 (2021) 
+109057, https://doi.org/10.1016/j.measurement.2021.109057.
+[9] L. Wang, Y. Qiu, W. Yuan, Y. Tian, Z. Zhou, Next-generation battery safety 
+management: machine learning assisted life-time prediction and performance 
+enhancement, J. Energy Chem. 109 (2025) 726–739, https://doi.org/10.1016/j. 
+jechem.2025.05.065.
+[10] S. Wang, R. Zhou, Y. Ren, M. Jiao, H. Liu, C. Lian, Advanced data-driven 
+techniques in AI for predicting lithium-ion battery remaining useful life: a 
+comprehensive review, Green Chem. Eng. 6 (2025) 139–153, https://doi.org/ 
+10.1016/j.gce.2024.09.001.
+[11] O. Demirci, S. Taskin, E. Schaltz, B.Acar Demirci, Review of battery state 
+estimation methods for electric vehicles-part II: SOH estimation, J. Energy Storage 
+96 (2024) 112703, https://doi.org/10.1016/j.est.2024.112703.
+[12] T. Alsuwian, S. Ansari, M. Ammirrul Atiqi Mohd Zainuri, A. Ayob, A. Hussain, M. 
+S. Hossain Lipu, A.R.H. Alhawari, A.H.M. Almawgani, S. Almasabi, A. Taher Hindi, 
+A review of expert hybrid and co-estimation techniques for SOH and RUL 
+estimation in battery management system with electric vehicle application, Expert. 
+Syst. Appl. 246 (2024) 123123, https://doi.org/10.1016/j.eswa.2023.123123.
+[13] S. Navidi, A. Thelen, T. Li, C. Hu, Physics-informed machine learning for battery 
+degradation diagnostics: A comparison of state-of-the-art methods, Energy Storage 
+Mater. 68 (2024) 103343, https://doi.org/10.1016/j.ensm.2024.103343.
+[14] Y. Zou, Z. Lin, D. Li, Z. Liu, Advancements in Artificial Neural networks for health 
+management of energy storage lithium-ion batteries: A comprehensive review, 
+J. Energy Storage 73 (2023) 109069, https://doi.org/10.1016/j.est.2023.109069.
+[15] F. von Bülow, T. Meisen, A review on methods for state of health forecasting of 
+lithium-ion batteries applicable in real-world operational conditions, J. Energy 
+Storage 57 (2023) 105978, https://doi.org/10.1016/j.est.2022.105978.
+[16] W. He, Z. Li, T. Liu, Z. Liu, X. Guo, J. Du, X. Li, P. Sun, W. Ming, Research progress 
+and application of deep learning in remaining useful life, state of health and 
+battery thermal management of lithium batteries, J. Energy Storage 70 (2023) 
+107868, https://doi.org/10.1016/j.est.2023.107868.
+[17] M. Shahjalal, P.K. Roy, T. Shams, A. Fly, J.I. Chowdhury, Md.R. Ahmed, K. Liu, 
+A review on second-life of Li-ion batteries: prospects, challenges, and issues, 
+Energy 241 (2022) 122881, https://doi.org/10.1016/j.energy.2021.122881.
+[18] S. Wang, S. Jin, D. Bai, Y. Fan, H. Shi, C. Fernandez, A critical review of improved 
+deep learning methods for the remaining useful life prediction of lithium-ion 
+batteries, Energy Rep. 7 (2021) 5562–5574, https://doi.org/10.1016/j. 
+egyr.2021.08.182.
+[19] X. Chen, Z. Liu, H. Sheng, J. Mi, X. Tang, Q. Li, A data reconstruction-based Monte 
+Carlo method for remaining useful life prediction of lithium-ion battery with few 
+historical samples, J. Power. Sources. 589 (2024) 233760, https://doi.org/ 
+10.1016/j.jpowsour.2023.233760.
+[20] K. Liu, Y. Shang, Q. Ouyang, W.D. Widanage, A data-driven approach with 
+uncertainty quantification for predicting future capacities and remaining useful life 
+of lithium-ion battery, IEEE Trans. Ind. Electron. 68 (2021) 3170–3180, https:// 
+doi.org/10.1109/TIE.2020.2973876.
+[21] J. Zhao, Z. Wang, Y. Wu, A.F. Burke, Predictive pretrained transformer (PPT) for 
+real-time battery health diagnostics, Appl. Energy 377 (2025) 124746, https://doi. 
+org/10.1016/j.apenergy.2024.124746.
+[22] S. Qaadan, A. Alshare, A. Popp, B. Schmuelling, Prediction of lithium-ion battery 
+health using GRU-BPP, Batteries 10 (2024) 399, https://doi.org/10.3390/ 
+batteries10110399.
+[23] L. Ren, J. Dong, X. Wang, Z. Meng, L. Zhao, M.J. Deen, A data-driven auto-CNN- 
+LSTM prediction model for lithium-ion battery remaining useful life, IEEE Trans 
+Ind. Inf. 17 (2021) 3478–3487, https://doi.org/10.1109/TII.2020.3008223.
+[24] A. Vaswani, N. Shazeer, N. Parmar, J. Uszkoreit, L. Jones, A.N. Gomez, L. Kaiser, 
+I. Polosukhin, Attention is all you need, Adv. Neural Inf. Process. Syst. (2017). htt 
+p://arxiv.org/abs/1706.03762.
+[25] Y. Zhou, Z. Li, M. Zhao, F. Wu, T. Yang, A transformer-based hybrid method with 
+multi-feature for lithium battery remaining useful life prediction, J. Power. 
+Sources. 655 (2025) 237844, https://doi.org/10.1016/j.jpowsour.2025.237844.
+[26] R. Liu, B. Jiang, A multi-time-resolution attention-based interaction network for 
+co-estimation of multiple battery states, Appl. Energy 381 (2025) 125097, https:// 
+doi.org/10.1016/j.apenergy.2024.125097.
+[27] Z. Liu, Y. Liu, Y. Zhang, C. Wu, S. Zhang, C. Sun, Data-driven lithium-ion battery 
+SOH prediction: A novel SHMM-transformer-BiGRU hybrid neural network 
+method, Measurement 257 (2026) 118579, https://doi.org/10.1016/j. 
+measurement.2025.118579.
+[28] K. Zhang, Z. Jiao, J. Ma, X. Zhao, S. Wang, M. Yu, S. Li, SOH estimation of battery 
+based on the BIGRU-transformer algorithm considering the hierarchical voltage 
+interval characterization of the discharge curve, J. Energy Storage 132 (2025) 
+117770, https://doi.org/10.1016/j.est.2025.117770.
+[29] Y. Shi, L. Wang, N. Liao, Z. Xu, Lithium-ion battery degradation based on the CNN- 
+transformer model, Energ. (Basel) 18 (2025) 248, https://doi.org/10.3390/ 
+en18020248.
+[30] A.H. Ardakani, S.A. Abdollahian, F. Abdollahi, NARX Transformer, A dynamic 
+model for leveraging multicycle data in long-term battery State of health 
+estimation, IEEe Trans. Instrum. Meas. 73 (2024) 1–8, https://doi.org/10.1109/ 
+TIM.2024.3460947.
+[31] H.-K. Wang, M. Gao, X. Zhang, H. Long, Z. Zhou, An empirical wavelet 
+decomposition and inverted token transformer based remaining useful life 
+prediction method of lithium batteries, J. Energy Storage 134 (2025) 117930, 
+https://doi.org/10.1016/j.est.2025.117930.
+K.L. Soon et al.                                                                                                                                                                                                                                  
+Results in Engineering 29 (2026) 109538 
+15 
+
+[32] X. Chen, Z. Mao, Z. Chen, J. Shen, EvoNAS4Battery: An evolutionary NAS approach 
+for predicting the remaining useful life of lithium-ion batteries, IEEe Trans. 
+Instrum. Meas. 74 (2025) 1–16, https://doi.org/10.1109/TIM.2025.3573358.
+[33] Z. Bao, T. Luo, M. Gao, Z. He, K. Gao, J. Nie, A lightweight and term-arbitrary 
+memory network for remaining useful life prediction of Li-ion battery, IEEe Trans. 
+Instrum. Meas. 74 (2025) 1–13, https://doi.org/10.1109/TIM.2025.3556835.
+[34] Y. Zhang, J. Xie, C. Wang, Q. Xie, N. Wang, State-of-health estimation of lithium- 
+ion batteries based on self-transformer with few-labeled data and label noise, 
+J. Power. Sources. 649 (2025) 237424, https://doi.org/10.1016/j. 
+jpowsour.2025.237424.
+[35] R. Xu, Y. Wang, Z. Chen, A hybrid approach to predict battery health combined 
+with attention-based transformer and online correction, J. Energy Storage 65 
+(2023) 107365, https://doi.org/10.1016/j.est.2023.107365.
+[36] Y. Che, Y. Zheng, X. Sui, R. Teodorescu, Boosting battery state of health estimation 
+based on self-supervised learning, J. Energy Chem. 84 (2023) 335–346, https:// 
+doi.org/10.1016/j.jechem.2023.05.034.
+[37] Z. Yuan, Z. Deng, Y. He, Z. Ning, J. Liu, Multi-step prediction of battery state of 
+health based on self-supervised pre-training and transfer learning using the xPatch 
+model, Energy 341 (2025) 139410, https://doi.org/10.1016/j. 
+energy.2025.139410.
+[38] T. Han, Z. Lu, J. Yu, Dynamic weighted federated contrastive self-supervised 
+learning for state-of-health estimation of lithium-ion battery with insufficient 
+labeled samples, Appl. Energy 383 (2025) 125336, https://doi.org/10.1016/j. 
+apenergy.2025.125336.
+[39] R. Mo, H. Zhou, H. Yin, X. Si, A survey on few-shot learning for remaining useful 
+life prediction, Reliab. Eng. Syst. Saf. 257 (2025) 110850, https://doi.org/ 
+10.1016/j.ress.2025.110850.
+[40] Q. Tang, H. Peng, Y. Wang, T. Zhu, Y. Ouyang, Few-shot state-of-health prediction 
+for lithium-ion batteries with LSTM network, Energy 335 (2025) 138078, https:// 
+doi.org/10.1016/j.energy.2025.138078.
+[41] Y. Shen, D. Guo, Y. Wang, J. Chen, X. Liu, X. Han, Y. Zheng, M. Ouyang, Enhanced 
+few-shot state-of-health estimation for lithium-ion batteries via masked 
+autoencoder, Energy 335 (2025) 138263, https://doi.org/10.1016/j. 
+energy.2025.138263.
+[42] C. Lin, X. Tuo, L. Wu, G. Zhang, Z. Lyu, X. Zeng, Physics-informed machine 
+learning for accurate SOH estimation of lithium-ion batteries considering various 
+temperatures and operating conditions, Energy 318 (2025) 134937, https://doi. 
+org/10.1016/j.energy.2025.134937.
+[43] G. Sun, Y. Liu, X. Liu, A method for estimating lithium-ion battery state of health 
+based on physics-informed machine learning, J. Power. Sources. 627 (2025) 
+235767, https://doi.org/10.1016/j.jpowsour.2024.235767.
+[44] A. Tian, L. He, T. Ding, K. Dong, Y. Wang, J. Jiang, A generic physics-informed 
+neural network framework for lithium-ion batteries state of health estimation, 
+Energy 332 (2025) 137215, https://doi.org/10.1016/j.energy.2025.137215.
+[45] W. Deng, H. Le, K.T.P. Nguyen, C. Gogu, K. Medjaher, J. Morio, D. Wu, A generic 
+physics-informed machine learning framework for battery remaining useful life 
+prediction using small early-stage lifecycle data, Appl. Energy 384 (2025) 125314, 
+https://doi.org/10.1016/j.apenergy.2025.125314.
+[46] Q. Zheng, X. Yin, D. Zhang, State-space modeling for electrochemical performance 
+of Li-ion batteries with physics-informed deep operator networks, J. Energy 
+Storage 73 (2023) 109244, https://doi.org/10.1016/j.est.2023.109244.
+[47] L. Chen, C. Chang, X. Liu, J. Jiang, Y. Jiang, A. Tian, Physics-informed neural 
+networks for small sample state of health estimation of lithium-ion batteries, 
+J. Energy Storage 122 (2025) 116559, https://doi.org/10.1016/j.est.2025.116559.
+[48] C. Kong, G. Zhu, J.V. Wang, J. Kang, Q. Wang, A simplified electrochemical 
+lithium-ion batteries model based on physics-informed LSTM_Res network, Int. J. 
+Heat. Mass Transf. 246 (2025) 127024, https://doi.org/10.1016/j. 
+ijheatmasstransfer.2025.127024.
+[49] C. Kong, G. Zhu, J.V. Wang, J. Kang, Q. Wang, A simplified electrochemical 
+lithium-ion batteries model based on physics-informed LSTM_Res network, Int. J. 
+Heat. Mass Transf. 246 (2025) 127024, https://doi.org/10.1016/j. 
+ijheatmasstransfer.2025.127024.
+[50] A. Tang, Y. Xu, J. Tian, X. Shu, Q. Yu, Physics-informed battery degradation 
+prediction: forecasting charging curves using one-cycle data, J. Energy Chem. 101 
+(2025) 825–836, https://doi.org/10.1016/j.jechem.2024.10.018.
+[51] R. Xiong, Y. He, Y. Sun, Y. Jia, W. Shen, Enhanced electrode-level diagnostics for 
+lithium-ion battery degradation using physics-informed neural networks, J. Energy 
+Chem. 104 (2025) 618–627, https://doi.org/10.1016/j.jechem.2025.01.019.
+[52] R. Zhu, J. Hu, W. Peng, Bayesian calibrated physics-informed neural networks for 
+second-life battery SOH estimation, Reliab. Eng. Syst. Saf. 264 (2025) 111432, 
+https://doi.org/10.1016/j.ress.2025.111432.
+[53] S. Navidi, K. Bajarunas, M.A. Chao, C. Hu, Forecasting battery capacity for second- 
+life applications using physics-informed recurrent neural networks, 
+ETransportation 25 (2025) 100432, https://doi.org/10.1016/j.etran.2025.100432.
+[54] A. Xue, W. Yang, X. Yuan, B. Yu, C. Pan, Estimating state of health of lithium-ion 
+batteries based on generalized regression neural network and quantum genetic 
+algorithm, Appl. Soft. Comput. 130 (2022), https://doi.org/10.1016/j. 
+asoc.2022.109688.
+[55] C. Liang, B. Xia, S. Yue, F. Zhang, L. Qu, S. Wang, A Quantum particle Swarm 
+optimization extended Kalman Quantum particle Filter approach on state of charge 
+estimation for lithium-ion battery, J. Energy Storage 100 (2024) 113677, https:// 
+doi.org/10.1016/j.est.2024.113677.
+[56] K.L. Soon, L.T. Soon, N.S. Lai, R. Paramesran, W.X. Lian, C.Y. Lau, Boosting battery 
+health prediction in electric vehicles via extended quantum optimized model with 
+gaussian process regression, Next Mater. 9 (2025) 101086, https://doi.org/ 
+10.1016/j.nxmate.2025.101086.
+[57] K.L. Soon, N.S. Lai, C.-O. Chow, J. Kanesan, K.S. Yen, L.T. Soon, A quantum- 
+enhanced ensemble model to forecast battery state of health under varying 
+discharging load, Measurement 256 (2025) 118318, https://doi.org/10.1016/j. 
+measurement.2025.118318.
+[58] N. Ghosh, A. Garg, B.K. Panigrahi, J. Kim, An evolving quantum fuzzy Neural 
+network for online State-of-health estimation of Li-ion cell, Appl. Soft. Comput. 
+143 (2023), https://doi.org/10.1016/j.asoc.2023.110263.
+[59] P.W.L. Lee, K.L. Soon, L.T. Soon, Quantum neural network and gaussian process 
+framework for lithium battery State of health prediction, Energy Storage 7 (2025), 
+https://doi.org/10.1002/est2.70262.
+[60] J. Ye, Q. Xie, M. Lin, J. Wu, A method for estimating the state of health of lithium- 
+ion batteries based on physics-informed neural network, Energy 294 (2024) 
+130828, https://doi.org/10.1016/j.energy.2024.130828.
+[61] C. Liang, B. Xia, S. Yue, F. Zhang, L. Qu, S. Wang, A Quantum particle Swarm 
+optimization extended Kalman Quantum particle Filter approach on state of charge 
+estimation for lithium-ion battery, J. Energy Storage 100 (2024) 113677, https:// 
+doi.org/10.1016/j.est.2024.113677.
+[62] K.L. Soon, L.T. Soon, A hybrid quantum neural network and classical gated 
+recurrent unit for battery state of health forecasting incorporating SHAP analysis, 
+J. Energy Storage 136 (2025) 118596, https://doi.org/10.1016/j.est.2025.118596.
+[63] L. Yang, M. He, Y. Ren, B. Gao, H. Qi, Physics-informed neural network for co- 
+estimation of state of health, remaining useful life, and short-term degradation 
+path in Lithium-ion batteries, Appl. Energy 398 (2025) 126427, https://doi.org/ 
+10.1016/j.apenergy.2025.126427.
+[64] J. Fern´andez, M. Corbetta, C.S. Kulkarni, J. Chiachío, M. Chiachío, Training of 
+physics-informed bayesian neural networks with ABC-SS for prognostic of Li-ion 
+batteries, Comput. Ind. 155 (2024) 104058, https://doi.org/10.1016/j. 
+compind.2023.104058.
+[65] K. Shen, W. Xu, X. Lai, D. Li, X. Meng, Y. Zheng, X. Feng, Physics-informed machine 
+learning estimation of the temperature of large-format lithium-ion batteries under 
+various operating conditions, Appl. Therm. Eng. 269 (2025) 126200, https://doi. 
+org/10.1016/j.applthermaleng.2025.126200.
+[66] Y. Jiang, Z. Liu, P. Kabirzadeh, Y. Wu, Y. Li, N. Miljkovic, P. Wang, Multi-fidelity 
+physics-informed convolutional neural network for heat map prediction of battery 
+packs, Reliab. Eng. Syst. Saf. 256 (2025) 110752, https://doi.org/10.1016/j. 
+ress.2024.110752.
+[67] P. Li, Z. Ao, J. Hou, S. Xiang, Z. Wang, Physics-informed mamba neural network 
+with potential knowledge for state-of-charge estimation of lithium-ion batteries, 
+J. Energy Storage 123 (2025) 116546, https://doi.org/10.1016/j.est.2025.116546.
+[68] Z. Lin, J. Yang, C. Li, S. Wang, W. Cong, T. Li, L. Qi, K. Sun, C. Fan, Fuzzy physics- 
+informed thermal diagnostics via non-invasive frequency-domain signature 
+distillation in high-energy-density batteries, J. Energy Chem. (2025), https://doi. 
+org/10.1016/j.jechem.2025.08.018.
+[69] H. Zhang, X. Liu, F. Altaf, T. Wik, A transferable physics-informed framework for 
+battery degradation diagnosis, knee-onset detection and knee prediction, J. Power. 
+Sources. 657 (2025) 238028, https://doi.org/10.1016/j.jpowsour.2025.238028.
+[70] C. Lin, L. Wu, X. Tuo, C. Liu, W. Zhang, Z. Huang, G. Zhang, A lightweight two- 
+stage physics-informed neural network for SOH estimation of lithium-ion batteries 
+with different chemistries, J. Energy Chem. 105 (2025) 261–279, https://doi.org/ 
+10.1016/j.jechem.2025.01.057.
+[71] C. Wei, H. Pang, T. Huang, Z. Quan, Z. Qian, Predicting lithium-ion battery health 
+using attention mechanism with Kolmogorov-Arnold and physics-informed neural 
+networks, Expert. Syst. Appl. 296 (2026) 128969, https://doi.org/10.1016/j. 
+eswa.2025.128969.
+[72] M. Cerezo, G. Verdon, H.-Y. Huang, L. Cincio, P.J. Coles, Challenges and 
+opportunities in quantum machine learning, Nat. Comput. Sci. 2 (2022) 567–576, 
+https://doi.org/10.1038/s43588-022-00311-3.
+[73] X. Zhou, M. Zhang, Q. Cui, T. Jiang, Enhancement of radial basis function model 
+via quantum kernel estimation, J. Math. Anal. Appl. 547 (2025) 129254, https:// 
+doi.org/10.1016/j.jmaa.2025.129254.
+[74] A. Tharwat, A.E. Hassanien, Quantum-behaved particle swarm optimization for 
+parameter optimization of support vector machine, J. Classif. 36 (2019) 576–598, 
+https://doi.org/10.1007/s00357-018-9299-1.
+[75] S. Chen, Quantum-behaved particle swarm optimization with weighted mean 
+personal best position and adaptive local attractor, Information 10 (2019) 22, 
+https://doi.org/10.3390/info10010022.
+[76] K. Blekos, D. Brand, A. Ceschini, C.-H. Chou, R.-H. Li, K. Pandya, A. Summer, 
+A review on Quantum Approximate Optimization Algorithm and its variants, Phys. 
+Rep. 1068 (2024) 1–66, https://doi.org/10.1016/j.physrep.2024.03.002.
+[77] J.R. Finˇzgar, M.J.A. Schuetz, J.K. Brubaker, H. Nishimori, H.G. Katzgraber, 
+Designing quantum annealing schedules using bayesian optimization, Phys. Rev. 
+Res. 6 (2024) 023063, https://doi.org/10.1103/PhysRevResearch.6.023063.
+[78] J. Biamonte, P. Wittek, N. Pancotti, P. Rebentrost, N. Wiebe, S. Lloyd, Quantum 
+machine learning, Nature 549 (2017) 195–202, https://doi.org/10.1038/ 
+nature23474.
+[79] C. Moreira, A. Wichert, Are quantum-like bayesian networks more powerful than 
+classical bayesian networks? J. Math. Psychol. 82 (2018) 73–83, https://doi.org/ 
+10.1016/j.jmp.2017.11.003.
+[80] L. Mitas, Fixed-node errors in real space quantum Monte Carlo at high densities: 
+closed-shell atomic correlation energies, Chem. Phys. Lett. 860 (2025) 141770, 
+https://doi.org/10.1016/j.cplett.2024.141770.
+[81] M.L.M. de Souza, N. Roitman, D.A. Castello, Model selection in damage 
+identification using approximate bayesian computations, Mech. Syst. Signal. 
+Process. 235 (2025) 112867, https://doi.org/10.1016/j.ymssp.2025.112867.
+K.L. Soon et al.                                                                                                                                                                                                                                  
+Results in Engineering 29 (2026) 109538 
+16 
+
+[82] J.-Y. Ryu, E. Elala, J.-K.K. Rhee, Quantum graph neural network models for 
+materials search, Mater. (Basel) 16 (2023) 4300, https://doi.org/10.3390/ 
+ma16124300.
+[83] G. Li, X. Zhao, X. Wang, Quantum self-attention neural networks for text 
+classification, Sci. China Inf. Sci. 67 (2024) 142501, https://doi.org/10.1007/ 
+s11432-023-3879-7.
+[84] R.D.M. Sim˜oes, P. Huber, N. Meier, N. Smailov, R.M. Füchslin, K. Stockinger, 
+Experimental evaluation of quantum machine learning algorithms, IEEe Access. 11 
+(2023) 6197–6208, https://doi.org/10.1109/ACCESS.2023.3236409.
+[85] Y. Ding, Z. Li, N. Zhou, Quantum generative adversarial network based on the 
+quantum Born machine, Adv. Eng. Inform. 68 (2025) 103622, https://doi.org/ 
+10.1016/j.aei.2025.103622.
+[86] L. Wang, S. Huang, S. Wang, J. Liao, T. Li, L. Liu, A survey of causal discovery 
+based on functional causal model, Eng. Appl. Artif. Intell. 133 (2024) 108258, 
+https://doi.org/10.1016/j.engappai.2024.108258.
+K.L. Soon et al.                                                                                                                                                                                                                                  
+Results in Engineering 29 (2026) 109538 
+17 

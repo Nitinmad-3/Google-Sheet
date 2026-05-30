@@ -1,0 +1,2545 @@
+Source-PDF: D:\Review\New folder\Healthcare prediction bridge\Not Quantum but suporting\Estimating China's CO2 emissions under the influence of COVID-19 epidemic using a novel fractional multivariate nonlinear grey model.pdf
+Relative-Path: New folder\Healthcare prediction bridge\Not Quantum but suporting\Estimating China's CO2 emissions under the influence of COVID-19 epidemic using a novel fractional multivariate nonlinear grey model.pdf
+--------------------------------------------------------------------------------
+
+Vol.:(0123456789)
+Environment, Development and Sustainability
+https://doi.org/10.1007/s10668-023-03325-7
+1 3
+Estimating China’s CO2 emissions under the influence 
+of COVID‑19 epidemic using a novel fractional multivariate 
+nonlinear grey model
+Wen Lei1 · Shuhua Mao1   · Yonghong Zhang1
+Received: 29 July 2021 / Accepted: 1 May 2023 
+© The Author(s), under exclusive licence to Springer Nature B.V. 2023
+Abstract
+The COVID-19 pandemic has posed a severe challenge to the global economic recovery 
+and China’s economic growth. Although China has achieved stage victory against the epi-
+demic, the impact and influence of the epidemic on China’s economy will linger. On the 
+positive side, the epidemic has led to a dramatic reduction in air pollution levels and a 
+sharp slowdown in greenhouse gas emissions such as CO2. Forecasting China’s CO2 emis-
+sions under the impact of the COVID-19 epidemic is crucial for formulating policies that 
+contribute to smooth economic development and rational energy consumption. To this end, 
+this paper improves on the traditional grey model, GM(1, N), by developing a novel frac-
+tional multivariate nonlinear grey model, FMNGM(q, N). These improvements include two 
+key points. First, different power exponents are assigned to each relevant factor variable to 
+explain their nonlinear, uncertain, and complicated relationships with the system charac-
+teristic variables. Second, the integer accumulation is changed to fractional accumulation 
+to preprocess the data, and the Caputo-type fractional derivative is used to characterize the 
+endogenous relationships among the system characteristic data. In addition, the quantum 
+particle swarm optimization (QPSO) algorithm is used to optimize the above parameters 
+with the goal of minimizing MAPE. The collected data on China’s CO2 emission from 
+2001 to 2018 were divided into two parts according to different stages of economic devel-
+opment: 2001–2009 and 2010–2018. Both sets of data were modelled and analysed sepa-
+rately and compared with other models. Results showed that the proposed model had better 
+prediction accuracy than other models. Finally, the model built using the 2010–2018 data 
+was used to forecast China’s CO2 emissions. Results show that China’s CO2 emissions in 
+2020 under the impact of COVID-19 will decrease by approximately 3.15% from 2019 to 
+9893 million tons. The results bear important policy implications for planners in invest-
+ment in clean energy and infrastructure to achieving the goal of a low-carbon transition.
+Keywords  China’s CO2 emissions · COVID-19 pandemic · Caputo-type fractional 
+derivative · FMNGM(q, N) model · Quantum particle swarm optimization
+ *	 Shuhua Mao 
+	
+maosh_415@whut.edu.cn
+1	
+School of Science, Wuhan University of Technology, Wuhan 430070, China
+
+	
+W. Lei et al.
+1 3
+Abbreviations
+GDP	
+Gross domestic product
+P	
+Population
+EC	
+Energy consumption
+GPR	
+Gaussian process regression
+VAR	
+Vector autoregression
+MLR	
+Multiple linear regression
+MPR	
+Multiple polynomial regression
+ANN	
+Artificial neural network
+SVM	
+Support vector machine
+LSSVM	
+Least squares support vector machine
+ICSO	
+Improved chicken swarm optimization
+BOA	
+Butterfly optimization algorithm
+GM(1, 1)	
+Original grey prediction model
+GM(1, N)	
+Multivariate grey prediction model
+SVR	
+Support vector regression
+PSO	
+Particle swarm optimization
+QPSO	
+Quantum particle swarm optimization
+r-AGO	
+r-Order accumulative generation operator
+FGM	
+Fractional grey model
+CFA	
+Conformable fractional accumulation
+ARIMA	
+Autoregressive integrated moving average model
+MAPE	
+Mean absolute percentage error
+RMSE	
+Root mean square error
+MAE	
+Mean absolute error
+APE	
+Absolute percentage error
+Variables and parameters
+x(0)
+i 	
+Original sequence
+r	
+Order of fractional-order accumulation
+∇−r	
+Fractional-order accumulation operator
+Ar	
+r-AGO matrix
+x(r)
+i 	
+r-Order cumulative sequence of x(r)
+i
+C
+0 D훼
+t x(t)	
+Caputo fractional derivative
+L(x(t))	
+Laplace transform
+q	
+Order of fractional derivative
+mi	
+Power exponent of influencing variable
+P	
+Parameter vector of model
+1  Introduction
+The continuous spread of COVID-19 worldwide has caused substantial economic losses 
+to all countries (Ozili & Arun, 2020) and seriously threatened people’s lives. Until the 
+pandemic is completely resolved, the shadow of the virus will linger in the future. The 
+widespread and profound impact of COVID-19 has dampened the otherwise optimis-
+tic global economic outlook. Major economies in the world are facing considerable 
+
+Estimating China’s CO2 emissions under the influence of…
+1 3
+challenges. In contrast to its impact on the economy, the COVID-19 pandemic had a 
+positive effect on improving global environmental issues (Saadat et  al., 2020; Zam-
+brano-Monserrate et al., 2020). During the epidemic, China and most other countries 
+imposed a severe nationwide lockdown, and most economic activities were restricted, 
+resulting in a short-term reduction in air pollution levels, a slowdown in greenhouse gas 
+emissions such as CO2, and a significant improvement in air quality (Arora et al., 2020; 
+Mahato et al., 2020).
+CO2 emission is an essential manifestation of human economic activities. Owing to 
+its massive impact on the climate and environment (Manabe & Wetherald, 1980), it has 
+become a major concern in the international community. However, in modern times, due 
+to human social productivity and various economic activities, CO2 emission remains high, 
+leading to frequent extreme weather and continuous climate disasters. To address this 
+ordeal facing human society, taking resolute measures to reduce CO2 emissions is neces-
+sary. The 2010 Chinese Government Work Report pointed out that 30 years of extensive 
+economic development has caused an enormous toll on resources and the environment. 
+Therefore, changing the economic development mode, promoting the transformation of 
+China’s economy, and adopting sustainable development and low-carbon environmental 
+protection are urgent matters. In the 13th Five-Year Plan, the Chinese government proposed 
+controlling the increase in CO2 emissions and reducing the atmosphere’s carbon inten-
+sity. Since September 2020, when China’s leaders proposed at the United Nations Gen-
+eral Assembly that “carbon dioxide emissions should strive to peak by 2030, and strive to 
+achieve carbon neutrality by 2060”, top-level design has been made frequently and inten-
+sive deployment has been made around CO2 emissions. Based on these backgrounds, in 
+order to better serve the overall situation of China’s carbon peak and carbon neutrality, and 
+to propose positive and reasonable measures and countermeasures, it is especially crucial 
+to study and forecast the situation of China’s CO2 emissions, and to estimate the impact of 
+the COVID-19 epidemic on China’s CO2 emissions.
+The COVID-19 pandemic has changed the global energy supply and demand pattern, 
+resulting in a significant drop in global daily CO2 emissions (Le Quéré et al., 2020). The 
+prediction of CO2 emissions in the context of the pandemic is crucial for studying the 
+impact of the pandemic on the environment. Moreover, such predictions help formulate 
+policies that contribute to environmental protection and green economic growth. At pre-
+sent, many models and methods have been applied to the prediction of CO2 emissions. 
+These models can be divided into three categories, statistical analysis models, intelligent 
+models, and grey prediction models. Table 1 summarizes some methods that use statistical 
+analysis models and intelligent models to predict CO2 emissions. They are applied to pre-
+dict CO2 emissions in different regions and different sectors. The advantages of statistical 
+analysis models are simplicity and ease of implementation. Given that most of the param-
+eters have practical significance on different occasions and studies, the model has strong 
+interpretability. These advantages make a wide range of applications possible. However, 
+statistical analysis models inevitably have shortcomings. The simplicity of their models 
+is often based on the premise of sufficient statistical assumptions (Wu et al., 2014). They 
+are too idealistic, and their prediction accuracy is usually limited by the degree of satisfac-
+tion with these statistical assumptions. The idealized model is challenging to use in areas 
+with high accuracy requirements. The development of intelligent models based on machine 
+learning in recent years provides a possible solution to this problem. Intelligent models 
+can achieve high prediction accuracy without relying on strict mathematical and statistical 
+assumptions. Moreover, intelligent modes have strong generalization capabilities, show-
+ing significant advantages in prediction problems in many fields. However, an intelligent 
+
+	
+W. Lei et al.
+1 3
+Table 1   Recent research on CO2 emission forecasting using statistical analysis models and intelligent models
+Model type
+References
+Model
+Application
+Statistical analysis model
+Fang et al. (2018)
+Gaussian process regression (GPR)
+Total CO2 emissions of US, China, and Japan
+Xu and Lin (2015)
+Vector autoregression (VAR)
+CO2 emission reduction in China’s transport sector
+Nyoni and Bonga (2019)
+ARIMA
+CO2 emissions in India
+Aydin (2015)
+Multiple linear regression (MLR)
+Energy-related CO2 emissions in Turkey
+Meng and Niu (2011)
+Logistic equation
+CO2 emissions from fossil fuel combustion
+Hosseini et al. (2019)
+Multiple polynomial regression (MPR)
+CO2 emissions in Iran
+Intelligent model
+Xu et al., (2019a, 2019b)
+Artificial neural network (ANN) and scenario analysis
+Determining China’s CO2 emissions peak
+Sun and Liu (2016)
+Least squares support vector machine (LSSVM)
+Three major industries and CO2 emissions from residential 
+consumption
+Qiao et al. (2020)
+Lion swarm optimizer
+CO2 emission forecasting
+Wen and Cao (2020a)
+Support vector machine (SVM) and improved chicken 
+swarm optimization (ICSO)
+Influencing factor analysis and forecasting of residential 
+energy-related CO2 emissions
+Wen and Yuan (2020)
+BP neural network (BPNN) based on random forest and 
+PSO
+CO2 emissions in China’s commercial industry
+Wen and Cao (2020b)
+LSSVM and butterfly optimization algorithm (BOA)
+Household CO2 emissions
+
+Estimating China’s CO2 emissions under the influence of…
+1 3
+model’s dependence on computers and program packages makes it difficult to be applied 
+without these tools. Besides, an intelligent model is challenging to perform well in cases 
+with small samples of poor information.
+Grey prediction theory is a mathematical method used to solve systems with incomplete 
+information. It was first proposed by Deng (1982, 1989) in 1982. This theory provides 
+a reliable solution to the prediction problems of small samples and inadequate informa-
+tion systems. In the past 30 years, grey prediction theory has been widely used in various 
+fields such as industry, agriculture, transportation, and energy (Liu & Lin, 2006), which 
+show strong vitality. At present, many grey prediction models have been applied to the CO2 
+emission prediction problem. Table 2 summarizes these models.
+As shown in Table 2, grey prediction models are mainly divided into univariate and 
+multivariate grey models. The univariate grey model GM(1, 1) and its enhanced model 
+mainly study the continuous development and change process of a single system variable 
+without involving other variables. In complex systems, the system characteristic variables 
+are often closely related to other factors, and the univariate grey model will have difficulty 
+in playing its role. Deng proposed the GM(1, N) model to study the influence of multiple 
+influencing factors on characteristic variables. This model is a factor state model, which is 
+often used to analyse the state of the system at a particular moment, and it will cause unac-
+ceptable errors when used to predict problems. To overcome the above defects, scholars 
+have continued to study and improve the model. These improvements are mainly divided 
+into parameter estimation optimization and model structure optimization, which are sum-
+marized in Fig. 1 Scholars have continued to study and improve the model (Ding, 2019; 
+Zeng & Li, 2018). Tien (2012) adds control coefficients to the right side of the GM(1, N) 
+grey differential equation to solve the model’s prediction problem. To further study the 
+nonlinear relationship between system characteristic variables and system influencing fac-
+tors, Wang (2014) proposed a grey multivariable power exponent model.
+In response to the problem that the first-order accumulation generation preprocessing of 
+the original data in the traditional grey model may make the accumulated series too steep 
+and unfit to the modelling conditions of the grey index rate, Wu et al. (2013) innovatively 
+proposed the fractional accumulation generation operator and established the fractional 
+grey model, which greatly enhanced the prediction accuracy of the grey model. Scholars 
+have since extended it to different applications and derived numerous grey models, show-
+ing good prediction accuracy in different practical problems. Wu et al. (2020) further pro-
+posed the conformable fractional accumulation (CFA) and established the CFA non-singu-
+lar grey model and applied it to the prediction of CO2 emissions in BRICS countries.
+The above and most current grey models are based on first-order derivatives or inte-
+ger-order derivatives, which are ideal memory models and are not suitable for describing 
+systems with historical dependence. Most systems have fractional-order properties; hence, 
+fractional derivatives can better describe and characterize them. Researchers have found 
+a close connection between fractional-order calculus and power-law phenomena, fractal 
+geometry, and memory processes. Fractional derivatives has been widely used in climate 
+research (Liu et al., 2007) and control theory (Kang et al., 2021; Matušů, 2011). Mao et al. 
+(2016) introduced fractional derivatives into the traditional GM(1, 1) model to establish 
+a new grey model of fractional derivatives and proved its validity. Mao et al. (2020) fur-
+ther developed a fractional grey model based on a non-singular exponential kernel. They 
+successfully applied it to the prediction of precious metal content in e-waste. Kang et al. 
+(2022) developed a time-varying grey model with fractional derivatives to predict traffic 
+flow series.
+
+	
+W. Lei et al.
+1 3
+Table 2   Recent research on CO2 emission forecasting using grey forecasting model
+Author
+Model
+Application
+Lu et al. (2009)
+GM(1, 1)
+CO2 emission from Taiwan’s road transportation sector
+Meng et al. (2014)
+Hybrid model of GM(1, 1)
+Energy-related CO2 emissions
+Xu et al., (2019a, 2019b)
+Adaptive grey model with buffered rolling mechanism (BR-AGM(1, 1))
+Chinese greenhouse gas emissions from energy consumption
+Wu et al. (2020)
+Conformable fractional non-homogeneous grey model (CFNGM(1, 1, k, c))
+CO2 emissions of BRICS countries
+Gao et al. (2020)
+Fractional grey Riccati model FGRM(1, 1)
+Carbon emission prediction
+Wu et al. (2015)
+GM(1, N) model with opposite-direction accumulated generating operator 
+(GOM(1, N))
+CO2 emissions in BRICS
+Ding et al. (2017)
+Grey multivariable model based on the trends of driving variables
+Chinese CO2 emissions from fuel combustion
+Wang and Ye (2017)
+Nonlinear grey multivariable models TNGM(1, N)
+Chinese carbon emissions from fossil energy consumption
+Ofosu-Adarkwa et al. (2020)
+A hybrid Verhulst–GM(1, N) model (V-GM(1, 4))
+Forecasting CO2 emissions of China’s cement industry
+Ye et al. (2021)
+Time-delay multivariate grey model (ATGM(1, N))
+CO2 emissions from China’s transportation sector
+Wang and Wang (2022)
+Fractional grey Bernoulli model (FGBM(1, 1, ta))
+Predict the CO2 emissions of the USA, India, Asia Pacific
+
+Estimating China’s CO2 emissions under the influence of…
+1 3
+CO2 emissions are influenced not only by many objective factors such as GDP, popu-
+lation, and energy consumption (Li et al., 2011), but also by other subjective factors 
+such as government macro-control and energy conservation and emission reduction tar-
+gets set by enterprises. These factors make historical CO2 emissions show historical 
+dependence. Although they cannot be visually reflected in the data, ignoring their influ-
+ence is bound to lead to incalculable errors. Therefore, this paper uses the method of 
+fractional-order derivatives for modelling. The main innovations of this paper are as 
+follows.
+(1)	 On the basis of the intrinsic linkage of system characteristic variables and their com-
+plicated nonlinear relationship with system influence variables, this paper proposes a 
+fractional multivariate nonlinear grey model (FMNGM[q, N]) based on the traditional 
+GM(1, N) model. The proposed model uses the fractional derivative method to portray 
+and describe the endogenous relationship between system characteristic variables data. 
+In addition, the model assigns different power exponent responses to different system 
+influence variables to simulate their relationship with system characteristic variables.
+(2)	 To improve the prediction accuracy of the model, the QPSO algorithm, which is 
+improved on the basis of PSO, is used to optimize the fractional derivative order, the 
+fractional cumulative order, and the power exponent of the system influence variables 
+in the model. The QPSO algorithm shows strong stability in dealing with complex 
+optimization problems with many parameters and improves the generalization ability 
+of the model.
+(3)	 CO2 emissions tend to show different trends at different stages of social and economic 
+development. To improve the prediction accuracy, this paper adopts a segmental mod-
+elling approach to compare and analyse the differences between different stages. This 
+paper also uses the models developed in recent periods to predict CO2 emissions in 
+Fig. 1   Optimization approaches of the GM(1, N) model
+
+	
+W. Lei et al.
+1 3
+China in 2019 and 2020, to analyse the impact of COVID-19 on CO2 emissions in 
+China.
+The structure of the rest of this article is as follows. In the second part, we introduced 
+the traditional GM(1, N) model and its existing flaws, and made targeted improvements on 
+this basis and proposed the FMNGM(q, N) model. We use the QPSO algorithm to optimize 
+the parameters of the model. In the third part, we verified the model’s validity and applied 
+it to forecast China’s CO2 emissions in 2019 and 2020. We provide relevant analysis and 
+suggestions on the basis of the results. In the fourth part, we summarized the paper.
+2  Methodology
+In this section, we first present the research hypothesis, then the traditional GM(1, N) 
+model and its parameter estimation are first introduced, and some flaws of the model are 
+explained. The modelling steps and parameter estimation methods of its improved model 
+FMNGM(q, N) are then provided. The parameter optimization method of this model uses 
+the QPSO algorithm. Finally, the process of predicting China’s CO2 emissions using the 
+proposed model is given.
+2.1  Research hypotheses
+Based on research objectives, several research hypotheses were tested. Firstly, the pan-
+demic will cause a significant decrease in China’s total CO2 emissions. During the pan-
+demic, the Chinese government takes strong blockade measures, restricts the movement of 
+people, and stops work and production in the first half of 2020, when the pandemic is at its 
+peak. These measures will have a more significant impact on CO2 emissions, and starting 
+from the second half of 2020, the pandemic in China is effectively controlled and the pro-
+duction and living order is gradually restored, but the level of CO2 emissions still cannot 
+reach the level before the pandemic.
+Secondly, economic show a strong positive correlation with CO2 emissions. Although 
+the government has been increasing its policies for environmental protection enterprises 
+in recent years, the share of environmental protection industry in China’s industrial struc-
+ture is still very small, and the main industries driving China’s economic growth, such as 
+manufacturing and real estate, still have high CO2 emission levels. So CO2 emissions will 
+continue to rise for a long time.
+Thirdly, another important factor is energy consumption, which has a strong positive 
+correlation with CO2 emissions. The burning of fossil fuels emits large amounts of CO2, 
+and China’s rapid economic development since the reform and opening up has come at the 
+cost of high energy consumption. Although China’s energy efficiency has been improving 
+with the advancement of science and technology, the total energy consumption is still ris-
+ing, which will inevitably lead to a continuous rise in CO2 emissions.
+Fourthly, in addition, the influence of population factors on CO2 cannot be ignored, and 
+we assume that it still shows a positive correlation with CO2 emissions. In fact, different 
+aspects such as population size, population structure, and urbanization of population have 
+different effects on CO2, while this paper focuses on population size as the research and 
+modelling object.
+
+Estimating China’s CO2 emissions under the influence of…
+1 3
+2.2  Traditional GM (1, N) model and its gaps
+The GM (1, N) model is a grey forecasting system with N variables and a first-order equa-
+tion (Tien, 2012). The influence of system-related factors is taken into account; hence, this 
+model can better simulate the system’s operation pattern and development trend than the 
+univariate grey forecasting model such as the GM (1, 1). The definition of the GM (1, N) 
+model is given below.
+Definition 1  Assume x(0)
+1  is the system characteristics sequence,
+and assume x(0)
+i (i = 2, 3, … N) is the sequence of systematic influences, which are all 
+highly correlated with x(0)
+1 ,
+x(1)
+j  is the first-order accumulated generating sequence of x(0)
+j ,
+where x(1)
+j (k) = ∑n
+m=1 x(0)
+j (m), k = 1, 2, … , n.
+Assume Z(1)
+1  is the sequence of immediately adjacent mean generation of Z(1)
+1  , also 
+called the sequence of background values,
+where z(1)
+1 (k) = 0.5 ×
+(
+x(1)
+1 (k) + x(1)
+1 (k −1)
+)
+(k = 2, 3, ⋯n) , then the following equation
+is called the GM(1, N) model, where −a is called the development coefficient and bi is 
+called the grey action quantity, P =
+[
+a, b2, b3 … bN
+]T is called the parameter vector of the 
+model.
+The parameters of the model can be estimated by using the least squares method,
+where
+Definition 2  The whitening equation of GM (1, N) model is expressed as.
+x(0)
+1 =
+(
+x(0)
+1 (1), x(0)
+1 (2), … , x(0)
+1 (n)
+)
+x(0)
+i
+=
+(
+x(0)
+1 (1), x(0)
+1 (2), … , x(0)
+1 (n)
+)
+x(1)
+j
+=
+(
+x(1)
+j (1), x(1)
+j (2), … , x(1)
+j (n)
+)
+Z(1)
+1
+=
+(
+z(1)
+1 (2), z(1)
+1 (3), … , z(1)
+1 (n)
+)
+,
+(1)
+x(0)
+1 (k) + az(1)
+1 (k) =
+N
+∑
+i=2
+bix(1)
+i (k).
+(2)
+̂P = (BTB)−1BTY.
+B =
+⎡
+⎢
+⎢
+⎢
+⎢⎣
+−z(1)
+1 (2) x(1)
+2 (2) ⋯x(1)
+N (2)
+−z(1)
+1 (3) x(1)
+2 3) ⋯x(1)
+N (3)
+⋯
+⋯
+⋯
+⋯
+−z(1)
+1 (n) x(1)
+2 (n) ⋱x(1)
+N (n)
+⎤
+⎥
+⎥
+⎥
+⎥⎦
+,
+Y =
+⎡
+⎢
+⎢
+⎢
+⎢⎣
+x(0)
+1 (2)
+x(0)
+1 (3)
+⋮
+x(0)
+1 (n)
+⎤
+⎥
+⎥
+⎥
+⎥⎦
+.
+
+	
+W. Lei et al.
+1 3
+Assuming that x(0)
+i (i = 2, 3, … N) varies negligibly, then ∑N
+i=2 bix(1)
+i (k) can be considered 
+a grey constant, and solving the whitening differential equation in Definition 2 yields the 
+estimated time response equation,
+where x(1)
+1 (0) can be replaced by the initial value x(0)
+1 (1) of the GM(1, N) model. Then doing 
+the cumulative reduction yields the prediction of the GM(1, N),
+This modelling process shows that the GM(1, N) model inevitably has shortcomings.
+First, in terms of structure, as a factorial state model, the structure of the GM(1, N) 
+model appears to be simple. As a grey prediction model with N variables and a first-order 
+equation, the GM(1, N) model does not transform into the traditional GM(1, 1) model 
+when N = 1. At the right end of the GM(1, N) model, a missing control coefficient u exists. 
+As a result, the stability and prediction accuracy of the model are affected to a great extent. 
+This limitation reflects that the GM(1, 1) model has structural problems.
+Second, the setting of the model itself is not reasonable. Most of the system characteris-
+tic variables in nature have a complex relationship with their influencing factors rather than 
+a simple linear correlation. Hence, the setting of the right-hand term ∑N
+i=2 bix(1)
+i (k) model 
+is too simple to represent its complex relationship with system characteristics variable x(0)
+1  , 
+which will affect the prediction accuracy of the model.
+In terms of data and preprocessing, in many cases, several of the system characteristic 
+data that we study have shown a large upward trend, and the integer-order accumulation of 
+the original data used in the GM(1, N) model will make the series too steep. As a result, 
+the grey exponential rate is no longer satisfied, which is unfavourable for grey modelling. 
+Moreover, integer-order accumulation will enlarge the model’s perturbation bound, thus 
+affecting the model accuracy. For these reasons, making targeted improvements to the 
+GM(1, N) model is necessary.
+2.3  The proposed FMNGM (q, N) model
+In this section, an FMNGM(q, N) is developed to address the previously discussed flaws of 
+the GM(1, N) model with targeted improvements.
+Definition 3  Assume r as a positive real number (r > 0) and n as a positive integer, then
+(3)
+dx(1)
+1
+dt
++ ax(1)
+1 =
+N
+∑
+i=2
+bix(1)
+i (k).
+(4)
+̂x(1)
+1 (k + 1) =
+[
+x(1)
+1 (0) −1
+a
+N
+∑
+i=2
+bix(1)
+i (k + 1)
+]
+e−ak + 1
+a
+N
+∑
+i=2
+bix(1)
+i (k + 1).
+(5)
+̂x(0)
+1 (k + 1) = ̂x(1)
+1 (k + 1) −̂x(1)
+1 (k).
+(6)
+∇−rx(n) =
+[
+r
+n
+]
+∗x(n) =
+n
+∑
+i=1
+[
+r
+n −i
+]
+x(n).
+
+Estimating China’s CO2 emissions under the influence of…
+1 3
+is called the r-order accumulation of x(n) , where 
+[
+r
+n
+]
+= r(r+1)⋯(r+n−1)
+n!
+ and * is the discrete 
+convolution 
+operator 
+( x(n)∗y(n) = ∑n
+r=1 x(n −r)y(r) ). 
+When 
+m = [r] , 
+∇rx(n) = ∇m∇−(m−r)x(n) is called the r-order difference of x(n) (Cheng, 2011).
+Let n be a positive integer and u and v real numbers, then
+Definition 4  Assume x(0) = (x(0)(1), x(0)(2), … x(0)(n)
+) is a non-negative original sequence, 
+r is a positive real number, and k = 1, 2, … n . Define Ar(r > 0) as an r-order accumulative 
+generator, and Ar has the following matrix form:
+Then we have x(r)(k) = ∇−rx(0)(k), x(r) = Arx(0) , and x(r) is the r-order accumulated gen-
+erating sequence of x(0) . To be formally uniform with ∇−r , r > 0 is used. In fact, for the 
+definition of Ar , the values of r can be extended to the range of real numbers.
+Theorem 1  x(0) is the inverse accumulated generating sequence of x(r) . Then,
+Definition 5  Positive real number α satisfies n −1 < 𝛼≤n , n is a positive integer, and x(t) 
+is a function defined in interval [a, b] . Then,
+is called the Caputo fractional derivative (Caputo & Fabrizio, 2015).
+Definition 6  If x(0)
+1  is the system characteristic data, x(0)
+i (i = 2, 3, … k) is the system influ-
+ence data, then x(r)
+1  and x(r)
+i  are x(0)
+1  and x(0)
+i  rth-order accumulated generating sequences. 
+Z(r)
+1  is the background value sequence of x(r)
+1  , also known as the sequence of adjacent mean 
+values. Then, the equation
+is called the whitenization equation of FMNGM(q, N) model, where 0 < q ≤1 , and C
+0 Dq
+t x(r)
+1  
+is the Caputo fractional derivative of x(r)
+1 .
+(7)
+[
+u
+n
+]
+∗
+[
+v
+n
+]
+=
+[
+u + v
+n
+]
+.
+(8)
+Ar =
+⎛
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜⎝
+
+r
+0
+
+0
+0
+⋯
+0
+
+r
+1
+
+
+r
+0
+
+0
+⋯
+0
+
+r
+2
+
+
+r
+1
+
+
+r
+0
+
+⋯
+0
+⋮
+⋮
+⋮
+⋱
+⋮
+
+r
+n −1
+ 
+r
+n −2
+ 
+r
+n −3
+
+⋯
+
+r
+0
+
+⎞
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟⎠
+.
+(9)
+x(0)(k) = ∇rx(r)(k), x(0) = A−rx(r).
+(10)
+C
+0 D훼
+t x(t) =
+1
+Γ(n −훼) ∫t
+0(t −휏)n−훼−1x(n)(휏)d휏.
+(11)
+C
+0 Dq
+t x(r)
+1 + ax(r)
+1 =
+N
+∑
+i=2
+bi
+(
+x(r)
+i
+)mi + u.
+
+	
+W. Lei et al.
+1 3
+Assume m = [q] + 1 , then
+is the q-order fractional difference of x(t).
+Given that C
+0 Dq
+t x(r)
+1  is a Caputo fractional derivative, we can consider replacing it with a 
+Caputo fractional difference. According to the above formula, the Caputo fractional differ-
+ence of x(r)
+1 (k) is C
+1 ∇q
+kx(r)
+1 (k) ≜1 ∇−m+q
+k
+[
+∇mx(r)
+1 (k)
+]
+ . When 0 < q ≤1 , m = 1 ; hence, 
+C
+0 Dq
+t x(r)
+1 ≈c
+1 ∇q
+kx(r)
+1 (k) ≜1 ∇−1+q
+k
+[
+∇x(r)
+1 (k)
+]
+ . According to the definition of integer-order dif-
+ference,C
+0 Dq
+t x(r)
+1 ≈c
+1 ∇q
+kx(r)
+1 (k) ≜1 ∇−1+q
+k
+[
+∇x(r)
+1 (k)
+]
+.
+Given that x(r−1)
+1
+= A(r−1)x(0)
+1  , we have:
+Then, we can obtain
+(12)
+C
+0 ∇q
+t x(t) ≜0 ∇−m+q
+t
+[∇mx(t)
+].
+1∇−(1−q)
+k
+x(r−1)
+1
+= A(r−1)∇−(1−q)
+k
+x(0)
+1 =1 ∇−(1−q)
+k
+x(r−1)
+1
+= A(r−1)∇−(1−q)
+k
+x(0)
+1
+⎛
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜⎝
+
+r −1
+0
+
+0
+0
+⋯
+0
+
+r −1
+1
+ 
+r −1
+0
+
+0
+⋯
+0
+
+r −1
+2
+ 
+r −1
+1
+ 
+r −1
+0
+
+⋯
+0
+⋮
+⋮
+⋮
+⋱
+⋮
+
+r −1
+n −1
+ 
+r −1
+n −2
+ 
+r −1
+n −3
+
+⋯
+
+r −1
+0
+
+⎞
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟⎠
+⋅
+⎛
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜⎝
+
+1 −q
+0
+
+x(0)(1)
+
+1 −q
+1
+
+x(0)(2) +
+
+1 −q
+0
+
+x(0)(2)
+∑3
+i=1
+
+1 −q
+n −i
+
+x(0)(3)
+⋮
+∑n
+i=1
+
+1 −q
+n −i
+
+x(0)(n)
+⎞
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟⎠
+=
+⎛
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜⎝
+
+r −q
+0
+
+0
+0
+⋯
+0
+
+r −q
+1
+ 
+r −q
+0
+
+0
+⋯
+0
+
+r −q
+2
+ 
+r −q
+1
+ 
+r −q
+0
+
+⋯
+0
+⋮
+⋮
+⋮
+⋱
+⋮
+
+r −q
+n −1
+ 
+r −q
+n −2
+ 
+r −q
+n −3
+
+⋯
+
+r −q
+0
+
+⎞
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟⎠
+x(0)
+1
+= A(r−q)x(0)
+1
+
+Estimating China’s CO2 emissions under the influence of…
+1 3
+Definition 7  Equation
+is called FMNGM(q, N) model, where Z(r)
+1 (k) = 1
+2
+(
+x(r)
+1 (k −1) + x(r)
+1 (k)
+)
+ . The parameter 
+vector of the model is P =
+[
+a, b2, b3 … bN, u
+]T , which can be estimated by using the least 
+squares method. ̂P =
+(
+BTB
+)−1BTY , where
+We use the Laplace transform to solve Eq. 14. The Laplace transform formula of the 
+Caputo fractional derivative is
+where m −1 < q ≤m , and m is a positive integer.
+Theorem 2  The solution of the FMNGM(q, N) model is.
+where M(k) = ∑N
+i=2 bi(x(r)
+i (k))mi + u, H(k) = ∑∞
+h=0
+(−akq)h
+Γ(qh+1) and Q(k) = ∑∞
+h=0
+(−akq)h
+Γ(qh+q+1).
+Theorem 3  By using Eq. (16), we obtain the predicted value of the FMNGM (q, N) model, 
+and the predicted value of the original sequence can be obtained according to the follow-
+ing equation:
+(13)
+C
+0 Dq
+t x(r)
+1 ≈c
+1 ∇q
+kx(r)
+1 (k) ≜x(r−q)
+1
+(k).
+(14)
+x(r−q)
+1
+(k) + aZ(r)
+1 (k) =
+N
+∑
+i=2
+bi(x(r)
+i (k))mi + u.
+Y =
+⎡
+⎢
+⎢
+⎢
+⎢⎣
+x(r−q)
+1
+(2)
+x(r−q)
+1
+(3)
+⋮
+x(r−q)
+1
+(n)
+⎤
+⎥
+⎥
+⎥
+⎥⎦n−1×1
+,
+̂P =
+⎡
+⎢
+⎢
+⎢
+⎢
+⎢
+⎢⎣
+a
+b2
+b3
+⋮
+bN
+u
+⎤
+⎥
+⎥
+⎥
+⎥
+⎥
+⎥⎦N+1×1
+,
+B =
+⎡
+⎢
+⎢
+⎢
+⎢⎣
+−Z(r)
+1 (2) (xr
+2(2))m2 ⋯xr
+N(2)
+mN 1
+−Z(r)
+1 (3) (xr
+2(3))m2 ⋯(xr
+N(3))mN 1
+⋮
+⋮
+⋱
+⋮
+⋮
+−Z(r)
+1 (n) (xr
+2(n))m2 ⋯
+
+xr
+N(n)
+mN 1
+⎤
+⎥
+⎥
+⎥
+⎥⎦n−1×N+1
+(15)
+L(C
+0 Dq
+t x(t)
+) = SqX(S) −
+m−1
+∑
+k=0
+Sq−k−1x(k)(0).
+(16)
+̂x(r)
+1 (k) =
+[
+x(r)
+1 (1) −M(k)Hk=1
+Gk=1
+]
+H(k) + M(k)kqQ(k).
+(17)
+̂x(0) = 퐀−r̂x(r).
+
+	
+W. Lei et al.
+1 3
+2.4  Parameter optimization of QPSO algorithm for FMNGM (q, N)
+PSO is an evolutionary computational technique that originated from the study of the pred-
+atory behaviour of birds (Shi and Eberhart, 1999). It is widely used in many fields such as 
+function optimization, neural network training, and image recognition owing to its simplic-
+ity, ease of implementation, and excellent optimization performance. However, as the study 
+of PSO progressed, researchers found that the algorithm has limitations. For example, the 
+loss of search diversity and the lack of randomness of the population in space make the 
+algorithm easily fall into local optimality (Bai, 2010). Moreover, the stability of the algo-
+rithm is poor due to the number of parameters that need to be set in the model (inertia fac-
+tor 휔 , local learning factor c1 , and global learning factor c2 ), which are not conducive to 
+finding optimal parameters. Therefore, Sun et al. (2004) designed the QPSO algorithm in 
+2004 on the basis of PSO. QPSO cancels the moving direction property of particles and 
+increases the randomness of particle removal. It has only one set of innovation parameter 
+α, which, to some extent, compensates for the shortcomings of the PSO algorithm. As a 
+result, the ability of the algorithm to find the global optimization is greatly enhanced, thus 
+improving the performance of the algorithm. In this paper, the QPSO algorithm is applied 
+to the FMNGM (q, N) model’s parameter optimization. The parameters to be optimized in 
+this paper are fractional-order derivatives ( q ), fractional cumulative order ( r ), and power 
+exponent of the system influence variable ( mi ). The fitness function established with the 
+objective of minimizing MAPE is: Fitness =
+1
+n−1
+∑n−1
+k=1
+̂x(0)
+1 (k+1)−x(0)
+1 (k+1)
+x(0)
+1 (k+1)
+ . Algorithm 1 shows 
+the specific steps for optimizing the above parameters using QPSO.
+
+Estimating China’s CO2 emissions under the influence of…
+1 3
+
+	
+W. Lei et al.
+1 3
+2.5  Modelling methods
+Figure  2 shows the process of predicting Chinese CO2 emissions using the proposed 
+FMNGM(q, N) model.
+3  Forecasting China’s CO2 emissions under the influence 
+of the COVID‑19 pandemic
+In this section, the essential information and sources of the data are first introduced, and then, 
+segmental modelling is performed on the basis of data characteristics. The first segment of the 
+data are used for model validation. The proposed model’s results are compared with those of 
+GM(1, 1), GM(1, N), ARIMA, and SVR according to MAPE, RMSE, MAE, and other indica-
+tors. The second segment of the data is used to build a new model to predict Chinese CO2 emis-
+sions under the influence of the COVID-19 pandemic.
+3.1  Data collection
+According to the literature, the economy (GDP), population (P), and energy consumption 
+(EC) are key factors positively correlated with CO2 emissions. However, the complex-
+ity and uncertainty in this relationship present challenges to applying the model. Table 3 
+shows the collected and organized data.
+Table 3 and Fig. 3 indicate that China’s CO2 emissions showed a significant upward 
+trend from 2001 to 2009. This increase may be due to China’s rapid economic growth after 
+it joined the WTO in 2001. Traffic CO2 emissions have also continued to rise. After 2009, 
+under the leadership of the USA, Europe, China, Japan, and other countries, a new tech-
+nological revolution championing artificial intelligence, quantum information technology, 
+Fig. 2   Flowchart of proposed FMNGM(q, N) model to forecast China’s CO2 emissions
+
+Estimating China’s CO2 emissions under the influence of…
+1 3
+and clean energy was launched worldwide. This phase is known as the fourth industrial 
+revolution or the green industrial revolution. Taking this shift as an opportunity, China 
+began to carry out large-scale industrial changes and upgrades and gradually transformed 
+Table 3   Original data of Chinese CO2 emissions and its influencing factors
+Year
+× 1
+× 2
+× 3
+× 4
+CO2 emissions 
+(million tons)
+GDP (100 mil-
+lion yuan)
+Population (million)
+Total energy consump-
+tion (million tons of 
+coal)
+2001
+3297.4
+110,863.1
+127,627
+155,547
+2002
+3551.9
+121,717.4
+128,453
+169,577
+2003
+4110.9
+137,422
+129,227
+197,083
+2004
+4782.7
+161,840.2
+129,988
+230,281
+2005
+5448.9
+187,318.9
+130,756
+261,369
+2006
+6004.1
+219,438.5
+131,448
+286,467
+2007
+6517.2
+270,092.3
+132,129
+311,442
+2008
+6712
+319,244.6
+132,802
+320,611
+2009
+7177.8
+348,517.7
+133,450
+336,126
+2010
+7873
+412,119.3
+134,091
+360,648
+2011
+8615.3
+487,940.2
+134,735
+387,043
+2012
+8863.5
+538,580
+135,404
+402,138
+2013
+9234.4
+592,963.2
+136,072
+416,913
+2014
+9164.2
+643,563.1
+136,782
+425,806
+2015
+9137.2
+688,858.2
+137,462
+429,905
+2016
+9099.2
+746,395.1
+138,271
+435,819
+2017
+9289.6
+832,035.9
+139,008
+448,529
+2018
+9570.8
+919,281.1
+139,538
+464,000
+1000
+2000
+3000
+4000
+5000
+6000
+7000
+8000
+9000
+10000
+CO2 emissions (million tons)
+Year
+Fig. 3   Chinese CO2 emissions over the years
+
+	
+W. Lei et al.
+1 3
+the country’s economic development mode. This change is intuitively reflected in CO2 
+emissions. After 2010, the growth momentum of CO2 emissions in China has gradually 
+slowed down and increased steadily. Figure 4 shows that CO2 emissions have a strong non-
+linear relationship with GDP, population, and total energy consumption.
+The above data were divided into two stages: 2001–2009 and 2010–2018. They were 
+modelled and compared separately to demonstrate the validity and usefulness of the pro-
+posed model. The comparison serves to verify the significant differences in economic 
+development patterns and other aspects between the two stages. Since the COVID-19 out-
+break at the end of 2019 is included in the 2010–2018 time period and the increase in 
+the level of economic development in a short period of time is negligible, we will use the 
+model developed in the latter stage to predict 2019 and 2020 Chinese CO2 emissions to 
+analyse and illustrate the impact of COVID-19 on Chinese CO2 emissions.
+3.2  Validation of FMNGM(q, N)
+3.2.1  Parameter estimation of the proposed model
+In this section, the model was modelled using data from 2001 to 2009, and the model was 
+tested by predicting 2010 and 2011 CO2 emissions. QPSO was used to optimize the model 
+parameter fractional derivatives ( q ), fractional cumulative order ( r ), and power expo-
+nents of the system influence variables ( m2 , m3 , m4 ). The algorithm parameters were set 
+as the number of iterations N = 100 and the innovation parameter 훼= 0.5 . The number 
+Fig. 4   Relationship between Chinese CO2 emissions and its influencing factors
+
+Estimating China’s CO2 emissions under the influence of…
+1 3
+of particles is set to num = 100 , and the dimension of particles is set to dim = 5. Table 4 
+shows the optimization results.
+The parameters in Table 4 are used for modelling, and the least squares method is used 
+to obtain the parameter vector P =
+[
+a, b2, b3 … bN, u
+]T of the FMNGM(q, N) model with 
+the estimated values shown in Table 5.
+3.2.2  Comparisons and analysis
+In this part of the analysis, to better reflect the practicality and effectiveness of the pro-
+posed model, we used three indicators—MAPE, RMSE, and MAE—to evaluate the differ-
+ent model fitting and prediction performance. They are defined as follows:
+Table 6 shows the results of the FMNGM (0.889, 4) model developed in Sect. 3.3.1 and 
+the competing models GM(1, 1), GM(1, N), ARIMA, and SVR.
+First, we compare the FMNGM (0.889, 4) model with the other two grey models, GM 
+(1, 1) and GM (1, N). Table 6 shows that in terms of model fitting and prediction, the 
+MAPE, RMSE, and MAE values ​of the proposed model are all the smallest. GM(1, 1) only 
+considers the changing trend of the system characteristic variables; hence, better prediction 
+accuracy is not easy to obtain. It has the worst prediction performance among the three 
+grey models. GM(1, N) introduces system influence variables based on GM(1, 1) to reflect 
+their relationship with the system characteristic variables. The increase in the amount of 
+information improves the model effect. The proposed model entirely takes into account the 
+nonlinearity and complexity of this relationship. The introduction of the power exponent of 
+the system influence variable greatly enhances the interpretability of the model. Besides, 
+the introduction of control coefficients dramatically improves the prediction performance 
+of the model.
+(18)
+MAPE =
+1
+n −1
+n
+∑
+k=2
+||̂x(0)k −x(0)k||
+x(0)k
+× 100%.
+(19)
+RMSE =
+√
+√
+√
+√1
+n
+n
+∑
+i=1
+||̂x(0)k −x(0)k||
+2.
+(20)
+MAE = 1
+n
+n
+∑
+i=1
+|||̂x(0)k −x(0)k|||
+Table 4   Parameter optimization 
+results of FMNGM(q, N) using 
+2001–2009 data
+Parameter
+q
+r
+m2
+m3
+m4
+Value
+0.8890
+0.1800
+1.7074
+1.6697
+0.6097
+Table 5   Parameter estimation 
+results of FMNGM(q, N) using 
+2001–2009 data
+Parameter
+a
+b2
+b3
+b4
+u
+Value
+1.33
+2.78 × 10−7
+−9.94 × 10−6
+8.13
+−3.38 × 10−3
+
+	
+W. Lei et al.
+1 3
+Table 6   Comparison of the results of each model
+Year
+CO2 emissions 
+million tons)
+FMNGM(0.889, 4)
+GM(1, 1)
+Actual values
+Fitted values
+APE (%)
+Fitted values
+APE (%)
+2001
+3297.40
+3297.40
+3297.40
+2002
+3551.90
+3467.70
+2.37
+3932.97
+13.27
+2003
+4110.90
+4058.38
+1.28
+4311.76
+5.07
+2004
+4782.70
+4801.81
+0.40
+4727.03
+0.77
+2005
+5448.90
+5471.32
+0.41
+5182.30
+1.89
+2006
+6004.10
+5999.28
+0.08
+5681.41
+0.67
+2007
+6517.20
+6568.36
+0.79
+6228.59
+0.52
+2008
+6712.00
+6805.54
+1.39
+6828.47
+4.15
+2009
+7177.80
+7132.13
+0.64
+7486.13
+7.44
+MAPE (%)
+0.92
+4.69
+RMSE
+54.99
+263.58
+MAE
+46.68
+242.54
+Actual values
+Predicted values
+APE (%)
+Predicted values
+APE (%)
+2010
+7873.00
+7787.00
+1.092
+8207.13
+4.244
+2011
+8615.30
+8560.93
+0.631
+8997.56
+4.437
+MAPE (%)
+0.86
+4.34
+RMSE
+71.94
+359.00
+MAE
+70.18
+358.19
+GM(1, 4)
+ARIMA
+SVR
+Fitted values
+APE (%)
+Fitted values
+APE (%)
+Fitted values
+APE (%)
+3297.40
+3377.97
+2.44
+3431.84
+4.08
+3041.66
+14.37
+3621.95
+1.97
+3775.18
+6.29
+4400.35
+7.04
+4157.85
+1.14
+4238.23
+3.10
+4868.87
+1.80
+4801.89
+0.40
+4787.40
+0.10
+5445.32
+0.07
+5440.56
+0.15
+5327.47
+2.23
+5966.60
+0.62
+5972.81
+0.52
+5825.13
+2.98
+6519.30
+0.03
+6464.71
+0.81
+6382.76
+2.06
+6758.33
+0.69
+6651.46
+0.90
+6793.73
+1.22
+7100.77
+1.07
+7098.01
+1.11
+7148.66
+0.41
+3.21
+1.05
+2.50
+212.44
+55.58
+131.88
+131.55
+49.91
+115.05
+Predicted values
+APE (%)
+Predicted values
+APE (%)
+Predicted values
+APE (%)
+7662.23
+2.677
+7098.01
+9.84
+7648.91
+2.85
+8275.13
+3.948
+7021.51
+18.50
+8126.84
+5.67
+3.31
+13.41
+4.258
+282.97
+1192.58
+380.00
+275.47
+1114.20
+356.276
+
+Estimating China’s CO2 emissions under the influence of…
+1 3
+Then we compare our model with two non-grey models, the classic ARIMA model for 
+time series forecasting and the SVR method in machine learning. Table 6 shows the results, 
+which indicate that the proposed model is optimal in terms of fitting and prediction. The 
+fitted MAPE value of ARIMA reached 1.05%, but the predicted MAPE was 13.41%, which 
+indicates that overfitting has occurred. SVR is currently one of the popular machine learn-
+ing models. Through constant adjustment of parameters, it can also achieve good predic-
+tion results. For problems with a large amount of data, SVR is the right choice, but the 
+proposed model has certain advantages for small sample data.
+To make the conclusions adequate, Fig. 5 further visualizes the difference between our 
+model and other grey and non-grey models. Figure 5 shows that the proposed model bet-
+ter captures the trend of the original data series and is almost synchronized with the actual 
+value curve. Despite matching the actual value curve in the general trend, the other models 
+show significant deviations in some years. This gap is pronounced in the 2010–2011 fore-
+cast years, given that the FMNGM(0.889,4) model fits the original data more closely. This 
+result is clear evidence that the proposed model has better forecasting performance than the 
+other four models.
+Figure 6 intuitively shows the performance of the proposed model and other models in 
+terms of RMSE and MAE metrics. The smaller the value, the closer to the centre of the 
+radar plot, the better the prediction effect. It can be seen that the proposed model has the 
+smallest RMSE and MAE values compared to the other models, both in the fitting and pre-
+diction stages, which indicates that the proposed model outperforms the other competing 
+models in the comparison of these two evaluation metrics.
+In addition, we used the APE criterion to evaluate the error between the forecast data 
+and the real data for each year, which is defined as
+Figure 7 shows the APE values of CO2 emissions from 2001 to 2011 for the above five 
+models. The APEs are close to zero, which indicates that the model has high precision. 
+(21)
+APE =
+||̂x(0)(k) −x(0)(k)||
+x(0)(k)
+× 100%.
+Fig. 5   Comparison between the FMNGM(0.889, 4) model and other models
+
+	
+W. Lei et al.
+1 3
+RMSE_fitting
+0
+80
+160
+240
+320
+400
+Proposed model
+GM(1,1)
+GM(1, N)
+ARIMA
+SVR
+MAE_fitting
+0
+80
+160
+240
+320
+400
+Proposed model
+GM(1,1)
+GM(1, N)
+ARIMA
+SVR
+RMSE_prediction
+0
+250
+500
+750
+1000
+1250
+Proposed model
+GM(1,1)
+GM(1, N)
+ARIMA
+SVR
+MAE_prediction
+0
+250
+500
+750
+1000
+1250
+Proposed model
+GM(1,1)
+GM(1, N)
+ARIMA
+SVR
+Fig. 6   RMSE and MAE performance of the proposed model and the other models
+Fig. 7   Comparison of fitted and predicted errors from various models
+
+Estimating China’s CO2 emissions under the influence of…
+1 3
+The difference between the models is noticeable in Fig. 7 The two grey models GM(1, 
+1) and GM(1, 4) are significantly worse and less stable than the other three models, 
+whereas FMNGM(0.889, 4) and ARIMA perform better. For the forecast years 2010–2011, 
+FMNGM(0.976, 4) has the smallest APE. Overall, the proposed model performs best in 
+terms of this metric.
+4  Forecasting China’s CO2 emissions in 2019 and 2020
+The above model results demonstrate the applicability of the proposed model to the 
+problem of predicting China’s CO2 emissions. This section will model the data from 
+2010 to 2018 and compare them with the above model to analyse the differences 
+between the two different economic development stages and then forecast China’s CO2 
+emissions for 2019 and 2020 under the influence of the COVID-19 pandemic.
+4.1  Building a new FMNGM(q, N) model using 2010–2018 data
+The new prediction model is built following the same steps as in Sect. 3.2.1. Table 7 and 
+Table 8 show the parameter estimation results.
+The structure and modelling process of the FMNGM(q, N) model shows that its param-
+eters have practical significance. Comparing the parameters of the two models built using 
+2001–2009 and 2010–2018 data, we can analyse the differences in the development trends 
+of China’s CO2 emissions at different stages and derive the changes in the relationship 
+between CO2 emissions and its influencing factors. The a in the model is defined as the 
+development coefficient, and the value of a reflects the development trend of the data. The 
+larger the value of a , the more upward the trend of the data. The values of a for the two 
+models mentioned above are 1.330 and 0.882, and respectively. These results indicate a 
+more pronounced upward trend of China’s CO2 emissions in the 2001–2009 time period 
+than in the 2010–2018 period, which is consistent with the analysis in Fig. 4 and Sect. 3.1.
+The modelling results for the 2001–2009 data show that m2 , m3 , and m4 are 1.7074, 
+1.6697, and 0.6097, respectively; whereas the above parameters of the model built using 
+the 2010–2018 data are 0.0842, 1.2298, and 1.3019, respectively. These results reflect 
+that the complex nonlinear relationship between CO2 emissions and GDP, population, and 
+energy consumption is changing. The value of the power exponents corresponding to the 
+variable GDP changes the most from 1.7074 to 0.0842. Coefficient b2 has the opposite sign 
+Table 7   Parameter optimization 
+results of FMNGM(q, N) using 
+2010–2018 data
+Parameter
+q
+r
+m2
+m3
+m4
+Value
+0.5096
+0.0862
+0.0842
+1.2298
+1.3019
+Table 8   Parameter estimation results of FMNGM(q, N) using 2010–2018 data
+Parameter
+a
+b2
+b3
+b4
+u
+Value
+8.82 × 10−1
+−7.04 × 10−3
+−1.12 × 10−2
+7.40 × 10−4
+4.41 × 104
+
+	
+W. Lei et al.
+1 3
+between the two modelling results, indicating that the relationship between GDP and CO2 
+emissions has changed from a positive correlation to a slight negative correlation.
+With the changes in China’s economic development model, the continuous development 
+of low-carbon industries and clean energy technologies has brought huge economic bene-
+fits to society and reduced CO2 emissions to a certain extent. Such changes have resulted in 
+a negative correlation between GDP and CO2 emissions. The total population has a nega-
+tive correlation with the impact of CO2 emissions. CO2 emissions are related to the number 
+of people as well as population growth, age structure, and population urbanization rate. 
+The slowdown of population and the intensification of population ageing have led to the 
+above results. China is the world’s largest energy consumer (Swartz & Oster, 2010). As the 
+primary source of CO2 emissions, the increasing consumption of fossil fuels such as coal, 
+oil, and natural gas has led to the continuous rise of China’s CO2 emissions.
+4.2  Forecasting China’s CO2 emissions in 2019 and 2020 using the FMNGM(q, N) 
+model
+The COVID-19 pandemic has affected China’s GDP and EC to a certain extent, but the 
+impact on the huge number of P can be ignored. The relationship between these three and 
+CO2 emissions largely depends on the level of economic and social development. The 
+impact of the pandemic on GDP, EC, and P is intuitively reflected in the numerical value, 
+and changes in this relationship are not significant. Our model mainly reflects the interde-
+pendence between system characteristic variables and system influencing factors. There-
+fore, selecting the 2010–2018 time period with a relatively close economic development 
+level and social development to predict CO2 emissions in 2019 and 2020, a period greatly 
+affected by the pandemic, is reasonable.
+A one- to two-year lag exists in the data statistics of CO2 emissions; hence, no agency 
+has yet published data for China’s CO2 emissions beyond 2018. The structure of the 
+FMNGM (q, N) model shows that system characteristic variables’ values can be predicted 
+after obtaining the values of future system influence variables. The Chinese National 
+Bureau of Statistics has released data on GDP, population, and energy consumption for 
+2019. 2020 Chinese GDP data are derived from International Monetary Fund (IMF) pro-
+jections, P data are extrapolated from the 2019 natural growth rate, and EC data are derived 
+from the Chinese government’s 2020 primary energy consumption planning target. Table 9 
+presents the data for the system influence variables.
+Table 9   Value of GDP, P, and 
+EC in 2019 and 2020
+Year
+GDP (100 
+million 
+yuan)
+Population (million)
+Total energy consump-
+tion (million tons of 
+coal)
+2019
+990,865.1
+140,005
+486,000
+2020
+100,0774
+140,505
+480,000
+Table 10   Forecast of Chinese 
+CO2 emissions in 2019 and 2020 
+(unit: million tons)
+Year
+2019
+2020
+Values
+10,214.36
+9,893.38
+
+Estimating China’s CO2 emissions under the influence of…
+1 3
+Table 10 shows the results obtained by using the model established in Sect. 3.3.1 to pre-
+dict the data of 2019 and 2020.
+Figure 8 shows the results of using the FMNGM (0.51, 4) model to predict China’s CO2 
+emissions from 2010 to 2020, in which 2010–2018 is the fitting part, and 2019 and 2020 
+are the backward prediction parts. During this period, the trend of China’s CO2 emissions 
+was flatter than that during the 2001–2009 time period; some years even showed a down-
+ward trend. Nonetheless, the proposed model performs well from the modelling effect, 
+which further validates the model effectiveness and practicality. According to the forecast, 
+CO2 emissions in 2019 will increase slightly to 10.214 billion tons. Moreover, the outbreak 
+of the pandemic at the end of 2019 has reduced China’s CO2 emissions in 2020 by approxi-
+mately 320 million tons lower than in 2019, to 9.893 billion tons.
+According to the authoritative data site Our World in Data (https://​ourwo​rldin​data.​org/​
+co2-​emiss​ions), China’s CO2 emissions in 2019 are estimated at 10,170 Mt, and our mod-
+el’s result of 10,214 Mt differs by only 44 Mt. Due to the lag in CO2 statistics, the website 
+does not yet show China’s CO2 emissions in 2020. BP World Energy Yearbook 2020 esti-
+mates China’s CO2 emissions under the impact of the epidemic and concludes that China’s 
+total CO2 emissions in 2020 will be 9,899.3 Mt, while our model’s prediction is 9,893.4 
+Mt, a difference of only 5.9 Mt. The comparison with these authoritative websites and 
+institutions proves the accuracy of our model in the problem of CO2 emission prediction.
+The model results are largely consistent with the hypotheses of our previous studies. 
+First, we assumed a significant decline in carbon emissions in 2020 due to the epidemic, 
+unlike the upward trend in previous years, which is confirmed by the forecast results. Sec-
+ond, based on literature studies and historical experience, we hypothesized a complex non-
+linear relationship between economic, demographic, and energy factors and CO2, respec-
+tively, and that they all contribute positively to CO2 emissions. The results of segmental 
+modelling show that the relationship between economy, population, energy consumption, 
+and CO2 emissions exhibits dynamic changes. Contrary to our empirical assumptions, the 
+relationship between population and CO2 emissions is negative at all stages. Consistent 
+Fig. 8   Forecasted results of Chinese CO2 emissions during 2010–2020
+
+	
+W. Lei et al.
+1 3
+with our hypothesis, energy consumption is positively correlated with CO2 emissions at 
+different stages. For economic factors, the effect on CO2 emissions is reversed at differ-
+ent stages, with a positive contribution to CO2 emissions in the 2001–2010 period and a 
+hindering effect in the 2011–2020 period, which may be related to the level of economic 
+development.
+4.3  Discussion and suggestions
+On the basis of the results of the above model, we present the following conclusions and 
+recommendations.
+(1)	 In terms of model results, China’s CO2 emissions will fall in 2020 to 9,893 million 
+tons after a rise in 2019. After the outbreak of the COVID-19 pandemic in late 2019, 
+the Chinese government took decisive quarantine measures to stop the further spread 
+of the virus. Some production and business activities were thus halted. China paid a 
+substantial economic cost to control the epidemic. The new model results also reflect 
+that China has achieved good results in controlling CO2 emissions. Compared with the 
+rapid growth of CO2 emissions in 2001–2009, the growth of CO2 emissions in China 
+has been stable in recent years. The stable growth is related to the change of economic 
+development and the gradual replacement of traditional fossil energy with clean energy.
+(2)	 In a practical sense, to achieve the vision of carbon neutrality, China must continue 
+to insist on developing a low-carbon economy on three levels. First, the government 
+should strengthen the demonstration and promotion of low-carbon technologies. The 
+International Energy Agency (IEA) states that the vast majority of global CO2 emission 
+reductions on the path to net zero emissions between now and 2030 will come from 
+currently available technologies. Second, promote the innovative application of green 
+supply chain. Enterprises are the main body of emission reduction, and green supply 
+chain is mainly through the environmental management of the leading enterprises to 
+drive the actions of enterprises in their supply chain to achieve the lowest environ-
+mental impact, highest energy efficiency and lowest carbon emissions throughout the 
+product life cycle. Third, give full play to the role of market mechanisms in regional 
+emission reduction. Making full use of the national carbon market, which is a major 
+institutional innovation to control and reduce greenhouse gas emissions and promote 
+green and low-carbon development using market mechanisms.
+5  Conclusion and future works
+In this paper, a novel FMNGM model is proposed to investigate the relationship 
+between GDP, P, EC, and CO2 emissions and to forecast China’s CO2 emissions in 2019 
+and 2020 under the influence of the COVID-19 pandemic. The main work of this paper 
+is summarized as follows:
+(1)	 The fractional accumulation of the raw data makes the data suitable for the grey mod-
+elling conditions, and the Caputo fractional derivative method is used to describe the 
+
+Estimating China’s CO2 emissions under the influence of…
+1 3
+endogenous relationship between CO2 emission data over the years. These methods 
+improve the accuracy of the model.
+(2)	 Different power exponents were assigned to different influencing factor variables of 
+CO2 emissions to portray their complex nonlinear relationship with CO2 emissions. 
+These power exponents varied at different stages of economic development, reflecting 
+that this nonlinear relationship was changing.
+(3)	 The FMNGM(q, N) model shows good adaptability in predicting CO2 emissions in 
+China for this problem. The results also demonstrate the validity and practicality of 
+the model, which has better prediction accuracy in this problem than other competing 
+models.
+(4)	 The predictions of China’s CO2 emissions for 2019 and 2020 have a small increase in 
+2019 compared with previous years, and a certain drop in 2020 due to the impact of 
+the COVID-19 pandemic.
+In conclusion, the proposed FMNGM(q, N) model is a feasible and effective method for 
+predicting China’s CO2 emissions.
+The research results of this paper mainly include two aspects. Firstly, for the CO2 fore-
+casting problem, this paper only studies the total carbon emission in China, but the model 
+and the methodology of this paper are not only developed for the carbon emission prob-
+lem in China, but also applicable to the forecasting and analysis of carbon emission in 
+other regions or a single sector. Secondly, the new model focuses on the complex nonlin-
+ear relationship between the characteristic variables and the influencing variables within 
+the system. Although the model is developed for CO2 emissions, it is actually a factorial 
+state model, which is theoretically applicable to other multivariate problems with multiple 
+influencing factors. This implies that the new proposed model has the potential for wider 
+application.
+However, the model has limitations. For example, when we applied Laplace transform 
+method to solve the whitenization equation of the model, we treated the right end of the 
+model as a grey constant M(k) for simplicity. In fact, in many occasions, the system influ-
+ences are changing, and the magnitude of change is not small. Hence, the simplification 
+we made may have a negative impact on the final prediction results of the model. Besides, 
+we adopted the fractional derivative method in the model, which has improved prediction 
+accuracy. However, its specific impact on the model and its practical significance need to 
+rely on powerful mathematical tools to give a convincing proof in theory. In addition, the 
+COVID-19 pandemic persists, and its long-term impact cannot be accurately predicted, 
+which brings challenges to the prediction of future CO2 emissions. To solve these prob-
+lems, further research needs to be conducted.
+In terms of empirical research, the work confirms the validity of the proposed new 
+model for the regional CO2 emission prediction problem, but this paper only considers 
+three influencing factors, namely, economy, population, and energy consumption. In fact, 
+CO2 emission as a complex system has many influencing factors, such as urbanization 
+level, industrial structure, energy structure, and energy intensity, which can also have a sig-
+nificant impact on CO2 emission. Therefore, in the subsequent study, for carbon emissions 
+in different regions, the variables should be screened to select the influencing factors with 
+higher correlation. Second, in order to make the study more practical and instructive, our 
+next study will focus on the carbon emissions of a particular sector or industry in a region.
+
+	
+W. Lei et al.
+1 3
+Appendix 1: The Proof of Theorem 1
+Proof.  Assume m to be the smallest positive integer greater than r . Then,
+According to Definitions 3 and 4,
+Therefore, x(0)(k) = ∇rx(r)(k), x(0) = A−rx(r).
+The Proof of Theorem 2
+Proof.  Given that ∑N
+i=2 bi(x(r)
+i (k))mi + u does not contain unknown variable x(r)
+1  , it can be 
+considered a grey constant M(k) . Let X(s) = L
+(
+x(r)
+1 (t)
+)
+ , then
+The following results can be obtained by solving Eq. (16):
+Finding the inverse Laplace transform of X(S) can obtained by the following results:
+According to the relationship between Laplace inversion and Mittag-Leffler equation, 
+we can obtain:
+∇rx(r)(k) = ∇m∇−(m−r)∇rx(0)(k)
+= ∇m
+[
+−m + r
+n
+]
+∗
+[
+r
+n
+]
+x(0)(k)
+= ∇m
+[
+m
+n
+]
+x(0)(k)
+= ∇m∇−mx(0)(k) = x(0)(k).
+A−rx(r) =
+⎛
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜⎝
+
+−r
+0
+
+0
+0
+⋯
+0
+
+−r
+1
+
+
+−r
+0
+
+0
+⋯
+0
+
+−r
+2
+
+
+−r
+1
+
+
+−r
+0
+
+⋯
+0
+⋮
+⋮
+⋮
+⋱
+⋮
+
+−r
+n −1
+ 
+−r
+n −2
+ 
+−r
+n −3
+
+⋯
+
+−r
+0
+
+⎞
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟⎠
+⋅
+⎛
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜⎝
+
+r
+0
+
+x(0)(1)
+
+r
+1
+
+x(0)(2) +
+
+r
+0
+
+x(0)(2)
+∑3
+i=1
+
+r
+n −i
+
+x(0)(3)
+⋮
+∑n
+i=1
+
+r
+n −i
+
+x(0)(n)
+⎞
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟⎠
+= x(0)
+(22)
+SqX(S) −Sq−1x(r)
+1 (0) + aX(S) = M(k)
+S
+.
+(23)
+X(S) =
+M(k)
+S
++ Sq−1x(r)
+1 (0)
+Sq + a
+.
+(24)
+x(r)
+1 (k) = L−1[X(S)] = L−1
+[ M(k)
+S
++ Sq−1x(r)
+1 (0)
+Sq + a
+]
+= M(k)L−1
+[
+1
+S(Sq + a)
+]
++ x(r)
+1 (0)L−1
+[
+Sq−1
+Sq + a
+]
+.
+
+Estimating China’s CO2 emissions under the influence of…
+1 3
+Therefore,
+Let ̂x(r)
+1 (1) = x(r)
+1 (1) , then:
+Bringing Eq. (28) into Eq. (27) yields:
+Let ∑∞
+h=0
+(−akq)h
+Γ(qh+1) = H(k), ∑∞
+h=0
+(−akq)h
+Γ(qh+q+1) = Q(k), ∑∞
+h=0
+(−a)h
+Γ(qh+1) = Hk=1 , and ∑∞
+h=0
+(−a)h
+Γ(qh+q+1) = Qk=1 . 
+Hence,
+̂x(r)
+1 (k) =
+[
+x(r)
+1 (1)−M(k)Hk=1
+Gk=1
+]
+H(k) + M(k)kqQ(k).
+Authors contributions  Shuhua Mao was invovled in formal analysis, funding acquisition, writing of review, 
+editing, and project administration. Wen Lei was responsible for data collection and curation, conceptualiza-
+tion, writing of original draft, visualization, and formal analysis. Yonghong Zhang contributed to language 
+editing, validation, and methodology.
+Declarations 
+Conflict of interest  The authors declare no conflict of interest regarding the publication of this paper. This 
+research was partly supported by the National Natural Science Foundation of China (Project No. 51479151 
+and No. 71871174).
+References
+Arora, S., Bhaukhandi, K. D., & Mishra, P. K. (2020). Coronavirus lockdown helped the environment to 
+bounce back. Science of the Total Environment, 742, 140573. https://​doi.​org/​10.​1016/j.​scito​tenv.​2020.​
+140573
+Aydin, G. (2015). The development and validation of regression models to predict energy-related CO2 
+emissions in Turkey. Energy Sources, Part b: Economics, Planning, and Policy, 10, 176–182. 
+https://​doi.​org/​10.​1080/​15567​249.​2013.​830662
+Bai, Q. (2010). Analysis of particle swarm optimization algorithm. Computer and Information Science, 
+3, 180. https://​doi.​org/​10.​5539/​cis.​v3n1p​180
+(25)
+L−1
+[
+1
+S(Sq + a)
+]
+= L−1
+(
+S−1
+Sq + a;S
+)
+= kqEq,q+1(−akq) = kq
+∞
+∑
+h=0
+(−akq)h
+Γ(qh + q + 1);
+(26)
+L−1
+(
+x(r)
+1 (0)Sq−1
+Sq + a
+;S
+)
+= x(r)
+1 (0)Eq,1(−akq) = x(r)
+1 (0)
+∞
+∑
+h=0
+(−akq)h
+Γ(qh + 1).
+(27)
+̂x(r)
+1 (k) = x(r)
+1 (0)
+∞
+∑
+h=0
+(−akq)h
+Γ(qh + 1) + M(k)kq
+∞
+∑
+h=0
+(−akq)h
+Γ(qh + q + 1).
+(28)
+x(r)
+1 (0) =
+x(r)
+1 (1) −M(k) ∑∞
+h=0
+(−a)h
+Γ(qh+q+1)
+∑∞
+h=0
+(−a)h
+Γ(qh+1)
+.
+(29)
+̂x(r)
+1 (k) =
+⎡
+⎢
+⎢⎣
+x(r)
+1 (1) −M(k) ∑∞
+h=0
+(−a)h
+Γ(qh+q+1)
+∑∞
+h=0
+(−a)h
+Γ(qh+1)
+⎤
+⎥
+⎥⎦
+∞
+
+h=0
+(−akq)h
+Γ(qh + 1) + M(k)kq
+∞
+
+h=0
+(−akq)h
+Γ(qh + q + 1).
+
+	
+W. Lei et al.
+1 3
+Caputo, M., & Fabrizio, M. (2015). A new definition of fractional derivative without singular kernel. 
+Progress in Fractional Differentiation and Applications, 1, 1–13. https://​doi.​org/​10.​12785/​pfda/​
+010201
+Cheng, J. (2011). Fractional difference equation theory. Xiamen University Press. in Chinese.
+Deng, J. (1982). Control problems of grey systems. System & Control Letters, 1, 288–294. https://​doi.​
+org/​10.​1016/​S0167-​6911(82)​80025-X
+Deng, J. (1989). Introduction to grey system theory. The Journal of Grey System, 1, 1–24. https://​doi.​
+org/​10.​1007/​978-3-​642-​16158-2_1
+Ding, S. (2019). A novel discrete grey multivariable model and its application in forecasting the output 
+value of China’s high-tech industries. Computers & Industrial Engineering, 127, 749–760. https://​
+doi.​org/​10.​1016/j.​cie.​2018.​11.​016
+Ding, S., Dang, Y., Li, X., Wang, J., & Zhao, K. (2017). Forecasting Chinese CO2 emissions from fuel 
+combustion using a novel grey multivariable model. Journal of Cleaner Production, 162, 1527–
+1538. https://​doi.​org/​10.​1016/j.​jclep​ro.​2017.​06.​167
+Fang, D., Zhang, X., Yu, Q., Jin, T., & Tian, L. (2018). A novel method for carbon dioxide emission 
+forecasting based on improved Gaussian processes regression. Journal of Cleaner Production, 173, 
+143–150. https://​doi.​org/​10.​1016/j.​jclep​ro.​2017.​05.​102
+Gao, M., Yang, H., Xiao, Q., & Goh, M. (2020). A novel fractional grey Riccati model for carbon emission 
+prediction. Journal of Cleaner Production, 282, 124471. https://​doi.​org/​10.​1016/j.​jclep​ro.​2020.​124471
+Hosseini, S., Saifoddin, A., Shirmohammadi, R., & Aslani, A. (2019). Forecasting of CO2 emissions in 
+Iran based on time series and regression analysis. Energy Reports, 5, 619–631. https://​doi.​org/​10.​
+1016/j.​egyr.​2019.​05.​004
+Kang, Y., Mao, S., & Zhang, Y. (2021). Variable order fractional grey model and its application. Applied 
+Mathematical Modelling, 97, 619–635. https://​doi.​org/​10.​1016/j.​apm.​2021.​03.​059
+Kang, Y., Mao, S., & Zhang, Y. (2022). Fractional time-varying grey traffic flow model based on vis-
+coelastic fluid and its application. Transportation Research Part b: Methodological, 157, 149–174. 
+https://​doi.​org/​10.​1016/j.​trb.​2022.​01.​007
+Le Quéré, C., Jackson, R. B., Jones, M. W., Smith, A. J., Abernethy, S., Andrew, R. M., De-Gol, A. J., 
+Willis, D. R., Shan, Y., & Canadell, J. G. (2020). Temporary reduction in daily global CO2 emis-
+sions during the COVID-19 forced confinement. Nature Climate Change. https://​doi.​org/​10.​1038/​
+s41558-​020-​0797-x
+Li, H., Mu, H., Zhang, M., & Li, N. (2011). Analysis on influence factors of China’s CO2 emissions based 
+on Path–STIRPAT model. Energ Policy, 39, 6906–6911. https://​doi.​org/​10.​1016/j.​enpol.​2011.​08.​056
+Liu, S., & Lin, Y. (2006). Grey information: Theory and practical applications. Springer. https://​doi.​org/​
+10.​1108/​gs.​2011.1.​1.​105.1
+Liu, S., Shi, S., Liu, S., & Liang, F. (2007). The bridge between weather and climate-fractional derivative. 
+Meteorological Technology, 35, 15–19. https://​doi.​org/​10.​19517/j.​1671-​6345.​2007.​01.​003. in Chinese.
+Lu, I., Lewis, C., & Lin, S. (2009). The forecast of motor vehicle, energy demand and CO2 emission 
+from Taiwan’s road transportation sector. Energy Policy, 37, 2952–2961. https://​doi.​org/​10.​1016/j.​
+enpol.​2009.​03.​039
+Mahato, S., Pal, S., & Ghosh, K. G. (2020). Effect of lockdown amid COVID-19 pandemic on air qual-
+ity of the megacity Delhi, India. Science of the Total Environment, 730, 139086. https://​doi.​org/​10.​
+1016/j.​scito​tenv.​2020.​139086
+Manabe, S., & Wetherald, R. T. (1980). On the distribution of climate change resulting from an increase 
+in CO2 content of the atmosphere. Journal of Atmospheric Science, 37, 99–118. https://​doi.​org/​10.​
+1175/​1520-​0469(1980)​037%​3c0099:​OTDOCC%​3e2.0.​CO;2
+Mao, S., Gao, M., Xiao, X., & Zhu, M. (2016). A novel fractional grey system model and its application. 
+Applied Mathematical Modelling, 40, 5063–5076. https://​doi.​org/​10.​1016/j.​apm.​2015.​12.​014
+Mao, S., Kang, Y., Zhang, Y., Xiao, X., & Zhu, H. (2020). Fractional grey model based on non-singular 
+exponential kernel and its application in the prediction of electronic waste precious metal content. 
+ISA Transactions, 107, 12–26. https://​doi.​org/​10.​1016/j.​isatra.​2020.​07.​023
+Matušů, R. (2011). Application of fractional order calculus to control theory. Mathematical Methods in 
+the Applied Sciences, 5, 1162–1169.
+Meng, M., & Niu, D. (2011). Modeling CO2 emissions from fossil fuel combustion using the logistic 
+equation. Energy, 36, 3355–3359. https://​doi.​org/​10.​1016/j.​energy.​2011.​03.​032
+Meng, M., Niu, D., & Shang, W. (2014). A small-sample hybrid model for forecasting energy-related CO2 
+emissions. Energy, 64, 673–677. https://​doi.​org/​10.​1016/j.​energy.​2013.​10.​017
+Nyoni, T., & Bonga, W. G. (2019). Prediction of CO2 emissions in India using ARIMA models. DRJ-Jour-
+nal of Economics & Finance, 4, 1–10.
+
+Estimating China’s CO2 emissions under the influence of…
+1 3
+Ofosu-Adarkwa, J., Xie, N., & Javed, S. A. (2020). Forecasting CO2 emissions of China’s cement industry 
+using a hybrid Verhulst-GM (1, N) model and emissions’ technical conversion. Renewable and Sus-
+tainable Energy, 130, 109945. https://​doi.​org/​10.​1016/j.​rser.​2020.​109945
+Ozili, P., & Arun, T. (2020). Spillover of COVID-19: Impact on the Global Economy. SSRN Journal. https://​
+doi.​org/​10.​2139/​ssrn.​35625​70
+Qiao, W., Lu, H., Zhou, G., Azimi, M., Yang, Q., & Tian, W. (2020). A hybrid algorithm for carbon dioxide 
+emissions forecasting based on improved lion swarm optimizer. Journal of Cleaner Production, 244, 
+118612. https://​doi.​org/​10.​1016/j.​jclep​ro.​2019.​118612
+Saadat, S., Rawtani, D., & Hussain, C. M. (2020). Environmental perspective of COVID-19. Science of the 
+Total Environment, 728, 138870. https://​doi.​org/​10.​1016/j.​scito​tenv.​2020.​138870
+Shi, Y., & Eberhart, R. C. (1999). Empirical study of particle swarm optimization. In Proceedings of the 
+1999 congress on evolutionary computation-CEC99. IEEE (pp. 1945–1950). https://​doi.​org/​10.​1109/​
+CEC.​1999.​785511
+Sun, J., Xu, W., & Feng, B. (2004). A global search strategy of quantum-behaved particle swarm optimiza-
+tion. In IEEE conference on cybernetics and intelligent systems, 2004. IEEE (pp. 111–116). https://​doi.​
+org/​10.​1109/​ICCIS.​2004.​14603​96
+Sun, W., & Liu, M. (2016). Prediction and analysis of the three major industries and residential consump-
+tion CO2 emissions based on least squares support vector machine in China. Journal of Cleaner Pro-
+duction, 122, 144–153. https://​doi.​org/​10.​1016/j.​jclep​ro.​2016.​02.​053
+Swartz, S., & Oster, S. (2010). China tops US in energy use. The Wall Street Journal, 18, 1–5.
+Tien, T. (2012). A research on the grey prediction model GM(1, n). Applied Mathematics and Computation, 
+218, 4903–4916. https://​doi.​org/​10.​1016/j.​amc.​2011.​10.​055
+Wang, H., & Wang, Y. (2022). Estimating CO2 emissions using a fractional grey Bernoulli model 
+with time power term. Environmental Science and Pollution Research. https://​doi.​org/​10.​1007/​
+s11356-​022-​18803-0
+Wang, Z., & Ye, D. (2017). Forecasting Chinese carbon emissions from fossil energy consumption using 
+non-linear grey multivariable models. Journal of Cleaner Production, 142, 600–612. https://​doi.​org/​
+10.​1016/j.​jclep​ro.​2016.​08.​067
+Wang, Z. X. (2014). Grey multivariable power model GM (1, N) and its application. Systems Engineering 
+Theory & Practice, 34, 2357–2363.
+Wen, L., & Cao, Y. (2020a). Influencing factors analysis and forecasting of residential energy-related CO2 
+emissions utilizing optimized support vector machine. Journal of Cleaner Production, 250, 119492. 
+https://​doi.​org/​10.​1016/j.​jclep​ro.​2019.​119492
+Wen, L., & Cao, Y. (2020b). A hybrid intelligent predicting model for exploring household CO2 emissions 
+mitigation strategies derived from butterfly optimization algorithm. Science of the Total Environment, 
+727, 138572. https://​doi.​org/​10.​1016/j.​scito​tenv.​2020.​138572
+Wen, L., & Yuan, X. (2020). Forecasting CO2 emissions in Chinas commercial department, through BP 
+neural network based on random forest and PSO. Science of the Total Environment, 718, 137194. 
+https://​doi.​org/​10.​1016/j.​scito​tenv.​2020.​137194
+Wu, L. F., Liu, S., Cui, W., Liu, D., & Yao, T. (2014). Non-homogenous discrete grey model with fractional-
+order accumulation. Neural Computing and Applications, 25, 1215–1221. https://​doi.​org/​10.​1007/​
+s00521-​014-​1605-1
+Wu, L. F., Liu, S., Liu, D., Fang, Z., & Xu, H. (2015). Modelling and forecasting CO2 emissions in the 
+BRICS (Brazil, Russia, India, China, and South Africa) countries using a novel multi-variable grey 
+model. Energy, 79, 489–495. https://​doi.​org/​10.​1016/j.​energy.​2014.​11.​052
+Wu, L. F., Liu, S., Yao, L., Yan, S., & Liu, D. (2013). Grey system model with the fractional order accumu-
+lation. Communications in Nonlinear Science and Numerical Simulation, 18, 1775–1785. https://​doi.​
+org/​10.​1016/j.​cnsns.​2012.​11.​017
+Wu, W. Q., Ma, X., Zhang, Y., Li, W., & Wang, Y. (2020). A novel conformable fractional non-homoge-
+neous grey model for forecasting carbon dioxide emissions of BRICS countries. Science of the Total 
+Environment, 707, 135447. https://​doi.​org/​10.​1016/j.​scito​tenv.​2019.​135447
+Xu, B., & Lin, B. (2015). Carbon dioxide emissions reduction in China’s transport sector: A dynamic VAR 
+(vector autoregression) approach. Energy, 83, 486–495. https://​doi.​org/​10.​1016/j.​energy.​2015.​02.​052
+Xu, G., Schwarz, P., & Yang, H. (2019a). Determining China’s CO2 emissions peak with a dynamic nonlin-
+ear artificial neural network approach and scenario analysis. Energy Policy, 128, 752–762. https://​doi.​
+org/​10.​1016/j.​enpol.​2019.​01.​058
+Xu, N., Ding, S., Gong, Y., & Bai, J. (2019b). Forecasting Chinese greenhouse gas emissions from energy 
+consumption using a novel grey rolling model. Energy, 175, 218–227. https://​doi.​org/​10.​1016/j.​energy.​
+2019.​03.​056
+
+	
+W. Lei et al.
+1 3
+Ye, L., Xie, N. M., & Hu, A. (2021). A novel time-delay multivariate grey model for impact analysis of CO2 
+emissions from China’s transportation sectors. Applied Mathematical Modelling, 91, 493–507. https://​
+doi.​org/​10.​1016/j.​apm.​2020.​09.​045
+Zambrano-Monserrate, M. A., Ruano, M. A., & Sanchez-Alcalde, L. (2020). Indirect effects of COVID-19 
+on the environment. Science of the Total Environment, 728, 138813. https://​doi.​org/​10.​1016/j.​scito​tenv.​
+2020.​140573
+Zeng, B., & Li, C. (2018). Improved multi-variable grey forecasting model with a dynamic background-
+value coefficient and its application. Computers & Industrial Engineering, 118, 278–290. https://​doi.​
+org/​10.​1016/j.​cie.​2018.​02.​042
+Publisher’s Note  Springer Nature remains neutral with regard to jurisdictional claims in published maps and 
+institutional affiliations.
+Springer Nature or its licensor (e.g. a society or other partner) holds exclusive rights to this article under 
+a publishing agreement with the author(s) or other rightsholder(s); author self-archiving of the accepted 
+manuscript version of this article is solely governed by the terms of such publishing agreement and applicable 
+law.

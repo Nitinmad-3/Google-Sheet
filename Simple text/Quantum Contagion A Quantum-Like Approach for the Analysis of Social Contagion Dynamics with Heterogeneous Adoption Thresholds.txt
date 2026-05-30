@@ -1,0 +1,1255 @@
+Source-PDF: D:\Review\Paper\Epidemiology+outbreak\Quantum Contagion A Quantum-Like Approach for the Analysis of Social Contagion Dynamics with Heterogeneous Adoption Thresholds.pdf
+Relative-Path: Paper\Epidemiology+outbreak\Quantum Contagion A Quantum-Like Approach for the Analysis of Social Contagion Dynamics with Heterogeneous Adoption Thresholds.pdf
+--------------------------------------------------------------------------------
+
+entropy
+Article
+Quantum Contagion: A Quantum-Like Approach for the
+Analysis of Social Contagion Dynamics with Heterogeneous
+Adoption Thresholds
+Ece C. Mutlu *
+and Ozlem Ozmen Garibay *
+
+
+Citation: Mutlu, E.C.; Garibay, O.O.
+Quantum Contagion: A
+Quantum-Like Approach for the
+Analysis of Social Contagion
+Dynamics with Heterogeneous
+Adoption Thresholds. Entropy 2021,
+23, 538. https://doi.org/
+10.3390/e23050538
+Academic Editors: Andrei
+Khrennikov and Fabio Bagarello
+Received: 8 April 2021
+Accepted: 25 April 2021
+Published: 27 April 2021
+Publisher’s Note: MDPI stays neutral
+with regard to jurisdictional claims in
+published maps and institutional afﬁl-
+iations.
+Copyright: © 2021 by the authors.
+Licensee MDPI, Basel, Switzerland.
+This article is an open access article
+distributed
+under
+the
+terms
+and
+conditions of the Creative Commons
+Attribution (CC BY) license (https://
+creativecommons.org/licenses/by/
+4.0/).
+Department of Industrial Engineering and Management Systems, University of Central Florida,
+Orlando, FL 32816, USA
+* Correspondence: ece.mutlu@ucf.edu (E.C.M.); ozlem@ucf.edu (O.O.G.)
+Abstract: Modeling the information of social contagion processes has recently attracted a substantial
+amount of interest from researchers due to its wide applicability in network science, multi-agent-
+systems, information science, and marketing. Unlike in biological spreading, the existence of a
+reinforcement effect in social contagion necessitates considering the complexity of individuals in the
+systems. Although many studies acknowledged the heterogeneity of the individuals in their adoption
+of information, there are no studies that take into account the individuals’ uncertainty during their
+adoption decision-making. This resulted in less than optimal modeling of social contagion dynamics
+in the existence of phase transition in the ﬁnal adoption size versus transmission probability. We
+employed the Inverse Born Problem (IBP) to represent probabilistic entities as complex probability
+amplitudes in edge-based compartmental theory, and demonstrated that our novel approach per-
+forms better in the prediction of social contagion dynamics through extensive simulations on random
+regular networks.
+Keywords: complex networks; heterogeneous adoption thresholds; information diffusion; phase
+transitions; quantum-like social contagion; technology adoption
+1. Introduction
+Understanding and better modeling contagion dynamics in complex networks play a
+crucial role in shedding light on the spreading mechanisms of viral diseases, microﬁnance
+activities, information, harmful emotions, and technology adoptions. It not only gives us
+an opportunity to design more efﬁcient anti-pathogen strategies during infectious disease
+outbreaks but also grants theoretical foundations to predict collective behaviors, and even
+mitigate the propagation of false information in social systems. Researchers have classiﬁed
+these spreading dynamics in different disciplines into two main categories: (i) biological,
+or (ii) social contagion. Despite the analogy between these spreading mechanisms, infor-
+mation (or behavioral) spreading has been found to have a distinct inherent characteristic,
+which is called social reinforcement effect [1–3], compared to biological spreading. The
+importance of the reinforcement effect in social contagion is that the simple contagion
+mechanism in epidemic spreading, which assumes that even one single activated source
+might be sufﬁcient for the transmission, is transformed into a more complex contagion
+mechanism. This complexity in contagion dynamics is generally described by Markovian
+processes; these approaches are called threshold-driven, where the adoption occurs only
+in the existence of a certain fraction of neighbors who have already adopted, contrary to
+biological spreading. This signiﬁcant effect in social contagion emphasizes the importance
+of network topology on the ﬁnal adoption size and triggers discontinuous phase transitions
+in the ﬁnal spreading size versus transmission probability. We can argue that possession
+of more complex dynamics than the largely examined epidemic contagion, and at the
+Entropy 2021, 23, 538. https://doi.org/10.3390/e23050538
+https://www.mdpi.com/journal/entropy
+
+Entropy 2021, 23, 538
+2 of 13
+same time relating different disciplines such as marketing and information science, make
+understanding social contagion dynamics a substantial and unaccomplished task.
+The pioneering study of Granovetter [4], in which a mathematical approach for social
+contagion is ﬁrstly introduced, proposed a linear threshold model based on the assumption
+that individuals’ behavior in a network can be affected by their neighbors’ actions. In this
+receiver-centric model, individuals adopt a behavior only if its certain fraction of neighbors
+have already adopted the behavior. Later, Goldenberg’s pioneering study [5] of diffusion
+in marketing became another well-known technique in social contagion studies. In this
+sender-centric model called the independent cascade model, each adopted node has a single
+chance to inﬂuence one of its susceptible neighbors. Recently, inspired by epidemic models,
+one of the most commonly used methods in the literature of social contagion studies is
+the message passing approach [6], in which individuals within the target population (or
+network) are divided into mutually exclusive compartments based on their current status
+and their future status at any time can be predicted based on the predeﬁned rate of contact
+between compartments and their certain transition rates. As opposed to the conventional
+compartmental models, the reinforcement effect is also included with the existence of a
+threshold value for individuals to adopt the behavior. Therefore, the message passing
+approach is considered a non-Markovian process, which makes it more realistic in the
+application of real-world complex contagions.
+The most challenging task in employing any of these approaches in social contagion
+analyses is to model the complexity of individuals. This complexity arises due to either
+the heterogeneity of the individuals in their adoption threshold or the uncertainty in their
+decision-making process during adoption. Although earlier studies employed a simplistic
+threshold model, i.e., uniform threshold distribution in social contagion studies, to address
+the former challenge, recent studies utilized more complex threshold distributions such as
+binary [3], tent-like function [7], truncated normal distribution function [8] or sigmoid func-
+tion [9]. To the best of our knowledge, the uncertainty in their decision-making process has
+not been addressed yet in social contagion analyses despite its theoretical and experimental
+evidence in behavioral economics, decision science, cognitive science, or multi-agent sys-
+tems. Although the whole process in social contagion studies is based on the assumption
+that individuals are perfectly rational and do follow the rules of classical probability theory
+and logic while taking an action during the process, it is well-known that only bounded
+rationality can exist [10] and individuals do not obey the classical probability rules [11–14].
+It is mainly due to agent interactions through information exchange that can inﬂuence
+individuals’ emotions, change subconscious feelings, and trigger subjective biases [10,15].
+Furthermore, the impacts of such behavioral effects become more signiﬁcant when indi-
+viduals make their decision under uncertainty [13]. To address this complexity in human
+decision-making and explain the corresponding irrationality and existing paradoxes and
+fallacies, researchers developed numerous quantum-like approaches [13,16–20]. Although
+classical approaches argue that human inference deterministically jumps between deﬁnite
+states across time, the main assumption behind quantum-like approaches is that competi-
+tive beliefs exist in the human mind at the same time. They form a composite entangled
+prospect for the decision-maker. Because behavior spreading in a social contagion is fueled
+with the successful transmission of behavior (or information) among two entangled binary
+prospects (adopting/not adopting) of decision-makers in a network, the utilization of these
+approaches in social contagion analyses may provide more realistic insights.
+
+Entropy 2021, 23, 538
+3 of 13
+Social contagion is a prominent research area due to its wide applicability to different
+disciplines; therefore, it is highly studied in the existence of restricted contact [21], hetero-
+geneous adoption threshold [3], local trend imitation [7], heterogeneous credibility [22]
+and with memory of non-redundant information [23]. All of these studies showed that
+these models are very effective in predicting social contagion dynamics within deﬁned
+scenarios, except when transmission rates are close to the critical transmission probabilities.
+Because the phase transitions in the ﬁnal adoption size pattern are commonly observed
+in the existence of individuals with a heterogeneous adoption threshold in the system,
+this phenomena demonstrates that classical approaches fall short in the modeling of social
+contagion dynamics in many cases. To address this problem, we believe that quantum-like
+approaches and interference effects leverage the extant social contagion analyses and better
+model its nonlinear dynamics even on critical transmission probabilities. To integrate a
+quantum-like approach, we employ the Inverse Born Problem (IBP), which argues that
+probabilistic entities can be represented by using complex probability amplitudes.
+The rest of the paper is as follows: First, we explain the general social contagion
+mechanism that is used in this study and a methodology for the application of quantum-
+like edge-based compartmental theory. In the results section, we provide theoretical results
+of social contagion dynamics and numerical simulations on random regular networks with
+varying parameters.
+2. Materials and Methods
+In the context of network theory, a complex network, G⟨V, E⟩, is deﬁned as the set
+of vertices (nodes) (V = {v1, v2, ..., vn |n ∈N}) and edges between them (Evi,vj = (vi, vj)
+where (i, j ∈N; i ̸= j). To exemplify the social contagion mechanism in this study, we
+integrate a quantum-like point of view to the classical message-passing approach [6], which
+generalizes the well-known susceptible-adopted-recovered (SAR) model, to fully describe
+the mechanisms of information (or behavior) spreading on a complex network with N
+nodes and a degree distribution P(k). In this model, each individual in a network falls into
+one of three states: susceptible, adopted and recovered. An individual in a susceptible state (S)
+does not adopt the information yet. An adopted individual (A) adopts the information and
+tries to transmit it to each of its susceptible neighbors with a probability λ at each time step.
+After each successful transmission, the susceptible individual, who receives information
+from his adopted neighbor, updates his cumulative units of information, i.e., m ⇒m + 1.
+It should be noted that non-redundant, thus non-Markovian, information transmission is
+considered to focus on a more legit scenario, i.e., information can be transmitted only once
+from an adopted individual to a speciﬁc susceptible individual, who records each successful
+transmission at each time step. A susceptible individual becomes adopted if its cumulative
+units of information exceeds its threshold. Simultaneously, each adopted individual may
+lose his interest in the information and becomes recovered with a probability γ. Because
+recovered individuals will not further participate in information spreading, a steady-state
+is reached if all individuals in the network become recovered or there is no chance for
+individuals to change their current states. We initialize the social contagion model with
+a small fraction of individuals (ρ0) assigned as adopted and the rest as susceptible in the
+network. In the rest of this study, S(t), A(t), and R(t) represent the fractions of susceptible,
+adopted, and recovered individuals at the time step t, respectively.
+2.1. Preliminaries
+Quantum approaches can facilitate modeling continuous state systems due to their
+more advanced representation compared to classical approaches. The classical approach
+uses set-theoretic representation and its sample space is deﬁned as a set of possible events,
+for example, {m1, m2}. On the other hand, the quantum approach uses vector space
+representation, and its sample space is a plane space spanned by the orthogonal basis
+vectors, for example, |m1⟩and |m2⟩. A detailed explanation of differences between classical
+and quantum approaches and their applications is given in [16,17]. For more detailed
+
+Entropy 2021, 23, 538
+4 of 13
+information about the utilization of IBP in the quantum-like approach, please refer to
+Khrennikov’s quantum-like representation algorithm [24,25].
+Because we aim to employ the quantum calculus of probability for our analysis, we
+draw from Born’s rule, which relates classical probability density function and a quantum
+probability amplitude by using wave function, and represent a classical probability as a
+squared magnitude of the complex amplitude (wave function). Therefore, the relation
+between a classical probability density function and a quantum probability amplitude is
+given by:
+Pr(A) = |eiθAψA|
+2
+(1)
+Here, the exponential term (eiθA) is called the global phase factor of the quantum
+probability amplitude. The classical probability (Pr(A)) is related with a quantum prob-
+ability amplitude (eiθAψA), which corresponds to the amplitude of a wave function, and
+this relation to the classical probability is obtained by multiplying this amplitude with its
+complex conjugate, i.e., |eiθAψA|
+2 = eiθAψAe−iθAψ∗
+A. Although the result of an individual
+event probability in the classical probability theory converges to that in the quantum
+approach, the computation of the union of mutually exclusive events differ in these two
+methods. The quantum-like approach yields an extra term, "interference effect", which does
+not exist in classical probability theory. To illustrate, suppose that we aim to obtain the
+union of three mutually exclusive events by using a classical probability formula, which is
+given by:
+Pr(A ∪B ∪C) = Pr(A) + Pr(B) + Pr(C)
+(2)
+The quantum counterpart of the classical probability of the union of three mutually
+exclusive events is obtained by using Born’s rule in Equation (1):
+Pr(A ∪B ∪C) = |eiθAψA + eiθBψB + eiθCψC|2
+= eiθAψA.e−iθAψA + eiθAψA.e−iθBψB + eiθAψA.e−iθCψC
++ eiθBψB.e−iθAψA + eiθBψB.e−iθBψB + eiθBψB.e−iθCψC
++ eiθCψC.e−iθAψA + eiθCψC.e−iθBψB + eiθCψC.e−iθCψC
+(3)
+Knowing that,
+cos(θ1 −θ2) = eθ1−θ2 + e−θ1+θ2
+2
+(4)
+Equation (3) reduces to:
+Pr(A ∪B ∪C) = |ψA|2 + |ψB|2 + |ψC|2 + 2
+ |ψA||ψB|cos(θA −θB)
++ |ψA||ψC|cos(θA −θC) + |ψB||ψC|cos(θB −θC)
+
+(5)
+The additional terms in Equation (5) compared to Equation (2) are called "interference
+terms", which does not exist in classical probability theory [19,24–26].
+2.2. Edge-Based Compartmental Theory
+Inspired by numerous studies [3,7,22], we employ an edge-based compartmental
+theory to understand the dynamics of the quantum social contagion approach. Suppose
+that u, (u ∈V) is an individual who is in a susceptible state, i.e., he can receive information
+from his neighbors but cannot transfer since he has not adopted information yet. Let
+v, (v ∈V) be a randomly chosen neighbor of u (Eu,v ̸= 0). If we deﬁne θ(t) as the
+probability that the individual v has not transmitted information to an individual u by time
+t, the probability that individual u with degree ku has received m pieces information from
+his distinct neighbors by time t will be binomially distributed and expressed as:
+τm(ku, t) =
+ku
+m
+
+θ(t)(ku−m)(1 −θ(t))m
+(6)
+
+Entropy 2021, 23, 538
+5 of 13
+The quantum counterpart of this step is intuitively the same, because the binomial
+distribution property holds true (please refer to Appendix A.1 for the mathematical proof).
+If the individual u could receive enough pieces of information from his distinct neighbors
+to exceed his threshold (φu), i.e., m ≥φu, he will adopt the information and try to transmit
+it to his susceptible neighbors in the next time step. Otherwise, he will keep his susceptible
+state in the next time step. Thus, the probability of individual u with degree ku being
+susceptible is:
+su(ku, t) = ∑
+φu
+F(φu)
+φu−1
+∑
+m=0
+τm(ku, t)
+(7)
+where F(φu) denotes the information adoption threshold function. The quantum-like
+social contagion is a novel approach, and it introduces a complexity via its additional
+interference terms. Because the heterogeneity of individuals in information adoption is
+signiﬁcant, we assume that F(φu) can be represented as a binomial distribution. In other
+words, individuals may have either a relatively lower threshold (TA = 1) with probability
+p, or a relatively higher threshold (TB > 1) with probability 1 −p. Thus;
+F(φu) =
+(
+TA,
+with probability p
+TB,
+with probability 1−p
+(8)
+We obtain the fraction of susceptible individuals at time t by combining
+Equations (7) and (8) with the degree distribution of the network as:
+S(t) = ∑
+ku
+P(ku)su(ku, t)
+= ∑
+ku
+P(ku)
+"
+pθ(t)ku + (1 −p)
+TB−1
+∑
+m=0
+ku
+m
+
+θ(t)(ku−m)(1 −θ(t))m
+#
+(9)
+We can follow a similar strategy to calculate the probability of individual v with
+degree kv being a susceptible state. Being in a susceptible state, the individual u is unable to
+transmit the information to its neighbor v. Thus, the individual v can receive information
+from his kv −1 distinct neighbors. Taking all possible values of receiving m pieces of
+cumulative information and φv into consideration, we obtain:
+sv(kv, t) = pθ(t)(kv−1) + (1 −p)
+TB−1
+∑
+m=0
+kv
+m
+
+θ(t)(kv−m−1)(1 −θ(t))m
+(10)
+Recall that the transfer between states of individuals occurs not only between sus-
+ceptible and adopted states but also adopted and recovered states. Adopted individuals
+may lose their interest in the transmission process and move into the recovered state
+with a predeﬁned probability. Thus, the following set of ordinary differential equations
+(ODEs) deﬁne the time dependence of the individuals in each compartment in the system
+described above.
+dA(t)
+dt
+= −dS(t)
+dt
+−γA(t)
+dR(t)
+dt
+= γA(t)
+(11)
+By computing θ(t), we can solve the equations for S(t), and also A(t) and R(t), and
+investigate the system dynamics. In edge-based compartmental theory, we have not made
+
+Entropy 2021, 23, 538
+6 of 13
+any assumption about the state of individual v; therefore, θ(t) may consist of three possible
+outcomes that are mutually exclusive in the classical approach:
+θ(t) = ξS(t) + ξA(t) + ξR(t)
+(12)
+where ξS(t) (ξA(t), ξR(t)) represents the probability that a neighbor v is in a susceptible
+(adopted, recovered) state and has not transmitted the information to individual u by
+time t.
+To employ quantum probability rules, we can use Born’s rule in Equation (1) and
+write the counterpart of Equation (12) as follows as in Equation (5):
+θ(t) = |eiθψξS(t) + eiθψξA(t) + eiθψξR(t)|
+2
+= |ψξS(t)|2 + |ψξA(t)|2 + |ψξR(t)|2 + 2
+
+|ψξS(t)||ψξA(t)|cos(θξS(t) −θξA(t))
++ |ψξS(t)||ψξR(t)|cos(θξS(t) −θξR(t)) + |ψξA(t)||ψξR(t)|cos(θξA(t) −θξR(t))
+
+(13)
+Here, the amplitude |ψξS(t)|2 refers to P(ξS(t)), |ψξA(t)|2 to P(ξA(t)) and |ψξR(t)|2 to
+P(ξR(t)). The angle θξS(t) −θξA(t) corresponds to the phase of the inner product between
+|ξS(t)| and |ξA(t)|. Note that there is no direct transition from the susceptible state to
+recovered state, so cos(θξS(t) −θξR(t)) will be equal to 0. By recalling inverse Born’s rule
+again, we can ﬁnalize the relation above as:
+θ(t) = ξS(t) + ξA(t) + ξR(t)
++
+q
+ξS(t)ξA(t)cos(θξS(t) −θξA(t)) +
+q
+ξA(t)ξR(t)cos(θξA(t) −θξR(t))
+(14)
+Herein, the additional terms are called interference terms that do not exist in clas-
+sical probability theory. From this point, we will call
+p
+ξS(t)ξA(t)cos(θξS(t) −θξA(t)) SA
+interference term and
+p
+ξA(t)ξR(t)cos(θξA(t) −θξR(t)) as AR interference term for the sake
+of simplicity.
+Later, we draw from statistical network science to make the connection between these
+two individuals u and v. In the case of the existence of an uncorrelated network, the
+probability of an edge connecting individual v with a degree kv to one of its neighbors,
+for example, individual u with degree ku, is equal to kvP(kv)/⟨k⟩, where ⟨k⟩is the mean
+degree. Thus, it can be obtained that:
+ξS(t) = ∑kv kvP(kv)sv(kv, t)
+⟨k⟩
+(15)
+θ(t) is a time-dependent variable, and it will not accomplish its deﬁnition after any
+successful transmission. Therefore, we need to consider its time-dependence to fully un-
+derstand the systems’ dynamics from the beginning till the steady-state. If we suppose that
+an adopted individual transmits behavioral information with probability λ, the decrease in
+θ(t) can be written as:
+dθ(t)
+dt
+= −λξA(t)
+(16)
+At time t, the behavioral information is not transmitted with probability 1 −λ and the
+adopted individuals move into a recovered state with probability γ, simultaneously. Then;
+dξR(t)
+dt
+= γ(1 −λ)ξA(t)
+(17)
+
+Entropy 2021, 23, 538
+7 of 13
+Substituting Equation (16) into (17) and integrating it with the initial conditions of
+θ(0) = 1 and ξR(0) = 0, we can obtain:
+ξR(t) = γ(1 −λ)[1 −θ(t)]
+λ
+(18)
+Finally, we obtain ξA(t) inserting Equations (15) and (18) into (13) by using a compu-
+tational knowledge engine. Substituting the resulting equation of ξA(t) into Equation (16),
+we derive the time evolution of θ(t). For further details, please refer to Appendix A.2.
+Furthermore, the dynamics of quantum social contagion can be described with the ODE
+equations in Equation (11). When t →∞, we ﬁnd the ﬁnal adoption size R(∞) once the
+degree distribution is known.
+3. Results
+In this study, our main goal is to compare and contrast the dynamics and performances
+of classical social contagion along with its quantum counterpart. The differences in these
+two approaches stem from the deﬁnition of θ(t) in Equations (12) and (14); therefore, we
+ﬁrst investigated the graphical solution of the ﬁxed point equation dθ(t)/dt at steady-state,
+i.e., t →∞with different threshold values on random regular networks in Figure 1.
+0
+0.2
+0.4
+0.6
+0.8
+1
+(
+)
+-0.5
+0
+0.5
+1
+y[ (
+)]- (
+)
+=0.2
+=0.4
+=0.6
+=0.8
+0
+0.2
+0.4
+0.6
+0.8
+1
+(
+)
+-0.5
+0
+0.5
+1
+=0.2
+=0.4
+=0.6
+=0.8
+0
+0.2
+0.4
+0.6
+0.8
+1
+(
+)
+-0.5
+0
+0.5
+1
+y[ (
+)]- (
+)
+0
+0.2
+0.4
+0.6
+0.8
+1
+(
+)
+-0.5
+0
+0.5
+1
+y[ (
+)]- (
+)
+0
+0.2
+0.4
+0.6
+0.8
+1
+(
+)
+-0.5
+0
+0.5
+1
+y[ (
+)]- (
+)
+0
+0.2
+0.4
+0.6
+0.8
+1
+(
+)
+-0.5
+0
+0.5
+1
+y[ (
+)]- (
+)
+0
+0.2
+0.4
+0.6
+0.8
+1
+0
+0.2
+0.4
+0.6
+0.8
+1
+0
+0.2
+0.4
+0.6
+0.8
+1
+0
+0.2
+0.4
+0.6
+0.8
+1
+0
+0.2
+0.4
+0.6
+0.8
+1
+0
+0.2
+0.4
+0.6
+0.8
+1
+0
+0.2
+0.4
+0.6
+0.8
+1
+0
+0.2
+0.4
+0.6
+0.8
+1
+0
+0.2
+0.4
+0.6
+0.8
+1
+0
+0.2
+0.4
+0.6
+0.8
+1
+0
+0.2
+0.4
+0.6
+0.8
+1
+0
+0.2
+0.4
+0.6
+0.8
+1
+λI
+c = 0.262
+λI
+c = 0.238
+λI
+c = 0.306
+λII
+c = 0.515
+λI
+c = 0.335
+λII
+c = 0.535
+a.
+b.
+a1.
+a2.
+c.
+b1.
+b2.
+d.
+(
+)
+(
+)
+c1.
+c2.
+d1.
+d2.
+Figure 1. The graphical solution of the ﬁxed point of equation dθ(t)/dt at steady-state when (a) Tb = 2 and (b) Tb = 4 on
+random regular networks (⟨k⟩= 10 and p = 0.3). The physically meaningful solutions of θ(t) for each possible λ values are
+shown when (c) Tb = 2 and (d) Tb = 4. Subplots (a1, b1,c1,d1) show the relative solutions when cos(θξS(t) −θξA(t)) = 0.2,
+while subplots (a2,b2,c2,d2) do when cos(θξA(t) −θξR(t)) = 0.2.
+Figure 1a shows the graphical solution of a ﬁxed point of equation dθ(t)/dt when
+Tb = 2. Results show that there is only one nontrivial solution when λ is small; however,
+at moderate λ values there are cases in which two nontrivial solutions are observed.
+In such a case, only the maximum solution is physically meaningful. In Figure 1c, we
+plotted the physically meaningful solutions of θ(t) for each possible λ values by using
+the classical approach. The solution for θ(∞) shows a discontinuous change and jump
+to another point at critical transmission probability (λI
+c = 0.262). Therefore, R(∞) grows
+discontinuously with the increasing λ. The quantum approach, on the other hand, yields
+two interference terms: SA (cos(θξS(t) −θξA(t))) and AR (cos(θξS(t) −θξA(t))) interference
+terms. Figure 1a(a1,a2) shows the graphical solution of ﬁxed point of equation dθ(t)/dt at
+steady-state when Tb = 2 and only SA (AR) interference is observed. The change in θ(∞)
+
+Entropy 2021, 23, 538
+8 of 13
+with respect to λ in the existence of SA (AR) interference is also plotted in Figure 1c(c1,c2).
+Results show that the SA interference term makes the pattern continuous, i.e., R(∞)
+increases continuously with the increasing λ. In the existence of the AR interference term,
+on the other hand, the same discontinuous change pattern is observed as in classical social
+contagion, however, at lower critical transmission probability (λI
+c = 0.238).
+For the case of Tb = 4 (Figure 1b), θ(∞) decreases continuously and a continuous
+phase transition is observed at the ﬁrst critical transmission probability (λI
+c = 0.335),
+then another discontinuous change occurs at the second critical transmission probability
+(λII
+c = 0.535) in the classical approach (Figure 1d). This means that R(∞) ﬁrst increases
+continuously and then a discontinuous pattern is observed, which is called a hybrid phase
+transition. W. Wang et al. [3] explain this situation as follows: In the existence of more than
+one critical transmission probability, two different types of information adoption occur:
+(i) local adoption in which the information is adopted by a small fraction of individuals,
+(ii) global adoption in which the information is adopted by a ﬁnite fraction of individuals.
+When λ < λI
+c, individuals adopt information locally, while a global adoption is observed
+when λ > λII
+c . In the case of λI
+c < λ < λII
+c , individuals who have lower thresholds
+adopt behavior globally while individuals who have higher thresholds adopt behavior
+locally. In the quantum social contagion model, the SA interference term makes R(∞)
+growth continuous with increasing λ, while the AR term displays same pattern as in the
+classical approach with lower the critical transmission probabilities, i.e., (λI
+c = 0.306 and
+λII
+c = 0.515).
+Figure 2 shows R(∞) versus λ by using the classical approach and varying strength
+of SA and AR interference terms in Equation (14) when Tb = 2 and Tb = 4. As we
+mentioned, classical approaches show a hybrid phase transition in both cases. This hybrid
+phase transition pattern is also observed when only AR interference exists; however, a
+second-order (continuous) phase transition is observed in the existence of SA interference.
+We observed the similar pattern until Tb ≥6 only, because after this level the fraction of
+individuals who have a lower adoption threshold were not enough to persuade individuals
+who have higher adoption threshold in the system. Furthermore, the phase transition
+becomes continuous even in the classical approach also when Tb = 1, because the model
+reduces to the traditional SAR model [1]. The mini subplots on the left-top corner of each
+ﬁgure shows same dynamics when the mean-degree (⟨k⟩) of RNN is increased, and same
+conclusions are observed. Therefore, we can conclude that our results are robust to the
+changes in ⟨k⟩of RNNs.
+0
+20
+40
+60
+80
+100
+0
+0.2
+0.4
+0.6
+0.8
+1
+R(
+)
+Classical
+QuantumSA=0.2
+QuantumAR=0.2
+QuantumSA=0.4
+QuantumAR=0.4
+0
+20
+40
+60
+80
+100
+0
+0.2
+0.4
+0.6
+0.8
+1
+R(
+)
+Classical approach
+QuantumSA=0.2
+QuantumAR=0.2
+QuantumSA=0.4
+QuantumAR=0.4
+0
+50
+100
+0
+0.5
+1
+R(
+)
+0
+50
+100
+0
+0.5
+1
+R(
+)
+a.
+b.
+Classical approach
+cos(
+S(t)-
+A(t))=0.2
+cos(
+A(t)-
+R(t))=0.2
+cos(
+S(t)-
+A(t))=0.4
+cos(
+A(t)-
+R(t))=0.4
+Classical approach
+cos(
+S(t)-
+A(t))=0.2
+cos(
+A(t)-
+R(t))=0.2
+cos(
+S(t)-
+A(t))=0.4
+cos(
+A(t)-
+R(t))=0.4
+0.2
+0.4
+0.6
+0.8
+1.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Figure 2. The ﬁnal information adoption size R(∞) versus λ with classical (black solid line), various
+cos(θξS(t) −θξA(t)) = 0.2 and 0.4 (red dash and solid lines) and cos(θξA(t) −θξR(t)) = 0.2 and 0.4 (blue
+dash and solid lines) when (a) Tb = 2 and (b) Tb = 4 on random regular networks (⟨k⟩= 10 and
+p = 0.3). Subplots show the same simulations when ⟨k⟩= 15.
+For the comparison of performances of classical and quantum approaches in this study,
+extensive numerical simulations are performed on uncorrelated random regular networks
+(RRNs) with N = 10, 000, ⟨k⟩= 10 and γ = 1.0. Figure 3 shows the fraction of adopted
+individuals with varying behavioral information transmission probability (λ) and initial
+fraction of adopted individuals (p). The theoretical solutions of R(∞) described in Figure 1
+
+Entropy 2021, 23, 538
+9 of 13
+can be seen at the λp plane more clearly. A ﬁrst continuous, then a discontinuous increase
+in R(∞) shows a hybrid phase transition. This crossover phenomena in the increase of
+R(∞) with respect to p separates the λp plane into three different regions: (i) region I
+(p ≤0.15), only a negligibly small fraction of individuals adopt the information (local
+information adoption), (ii) region II with a ﬁrst-order phase transition (0.15 < p ≤0.42),
+a deﬁnite fraction of individuals adopt the information above λI
+c, (iii) region III with a
+second order phase transition (p > 0.42), a global adoption is observed above λI
+c. On the
+other hand, a theoretical analysis by using a classical approach fails to model the spreading
+mechanism in region I when p is small, because θ(∞) is observed to be equal to one until
+a ﬁxed value; although, it has a gradually decreasing pattern in numerical simulations.
+This results in an overestimation of ﬁnal adoption size in this region. Moreover, a smooth
+transition of R(∞) on the λp plane in region II in numerical simulations is also modeled
+with a redundant sharp transition in the classical approach.
+20
+40
+60
+80
+100
+p
+20
+40
+60
+80
+100
+0.2
+0.4
+0.6
+0.8
+1
+20
+40
+60
+80
+100
+p
+20
+40
+60
+80
+100
+0
+0.2
+0.4
+0.6
+0.8
+1
+a.
+b.
+0.2
+0.4
+0.6
+0.8
+1.0
+0.2
+0.4
+0.6
+0.8
+1.0
+0.2
+0.4
+0.6
+0.8
+1.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Figure 3. The dependence of R(∞) on p and λ on random regular networks with ⟨k⟩= 10 and Tb = 4
+as a result of (a) numerical simulations, (b) theoretical analysis by using a classical approach.
+The squared difference of R(∞) versus λ from 0.01 to 1.00 (0.01 increments) between
+results obtained via theoretical analysis and numerical simulations using a quantum-like
+approach with varying interference terms are shown in Figure 4. The origin point repre-
+sents the squared error when the classical approach is used because both interference terms
+are equal to zero (e2
+p=0.3 = 4.1707 and e2
+p=0.6 = 1.7643). Regardless of the initial fraction of
+adopted individuals (p), the minimum errors are observed near to the diagonal of interfer-
+ence terms plane, and the minimum value is obtained when cos(θξS(t) −θξA(t)) = 0.15 and
+cos(θξA(t) −θξR(t)) = 0.16 (e2
+p=0.3 = 4.1229 and e2
+p=0.6 = 1.7326). These results demonstrate
+that the quantum-like approach in an edge-based compartmental model of a message
+passing approach in the modeling of social contagion performs better compared to the
+classical method because it can better predict the ﬁnal adoption size close to the critical
+transmission probabilities.
+20
+40
+60
+80
+100
+cos(
+S(t)-
+A(t))
+20
+40
+60
+80
+100
+cos(
+A(t)-
+R(t))
+6
+8
+10
+12
+14
+16
+20
+40
+60
+80
+100
+cos(
+S(t)-
+A(t))
+20
+40
+60
+80
+100
+cos(
+A(t)-
+R(t))
+2
+3
+4
+5
+6
+7
+a.
+b.
+0.2
+0.4
+0.6
+0.8
+1.0
+0.2
+0.4
+0.6
+0.8
+1.0
+0.2
+0.4
+0.6
+0.8
+1.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Figure 4. The dependence of error between R(∞) numerical simulations and theoretical analysis
+by using a quantum-like approach on cos(θξS(t) −θξA(t)) and cos(θξA(t) −θξR(t)) interference terms
+when (a) p = 0.3, (b) p = 0.6.
+
+Entropy 2021, 23, 538
+10 of 13
+4. Discussion
+The spread of ideas, attitudes, or behavioral patterns among a group of individuals is
+called social contagion. Although this spread among individuals used to be regarded as a
+pathogen in a biological spreading, empirical studies demonstrated that social contagion
+is far more complex due to the social, cognitive, and behavioral differences of humans.
+The complexity of humans in a social contagion process is addressed by considering the
+heterogeneity of their adoption thresholds with the assumption of perfect rationality; how-
+ever, numerous empirical studies demonstrate that humans violate the rules of classical
+probability while making decisions. In order to improve the modeling of human decision-
+making about the adoption of information and/or behavior, we employed a quantum-like
+approach in social contagion analysis as well as assigning individuals heterogeneous
+adoption thresholds. We believe that our method, so-called quantum contagion, is able
+to portray the complexity of individuals and better model a social contagion process. We
+integrate an Inverse Born Problem (IBP) to represent classical probabilistic entities as com-
+plex probability amplitudes in a quantum-like message-passing approach. An edge-based
+compartmental theory is used to quantify the classical and quantum theoretical models,
+and a large number of simulations on RRNs are carried out for the comparison of their
+performances. In this study, we employed a two-state spreading threshold model in which
+individuals have a relatively low threshold (TA = 1) with probability p, and a relatively
+high threshold (TB > 1) with probability 1 −p. The effect of threshold heterogeneity with
+varying network properties has been already investigated in previous studies. These stud-
+ies showed that two different types of information adoption occur in the existence of more
+than one critical transmission probability: local and global adoption. The local adoption
+is observed when λ < λI
+c and information is adopted by a small fraction of individuals
+who have a lower adoption threshold. Whereas, the global adoption occurs when λ > λII
+c
+and information is adopted by a ﬁnite fraction of individuals. In the case of λI
+c < λ < λII
+c ,
+individuals who have lower thresholds adopt behavior globally, while individuals who
+have higher thresholds adopt behavior locally. Although edge-based compartmental the-
+ory can model social contagion dynamics in most cases, these analyses fall short when
+transmission rates are close to these critical transmission probabilities. In the classical social
+contagion model, the ﬁnal adoption size (R(∞)) grows discontinuously with the increasing
+behavioral information transmission probability (λ). Numerical investigations carried out
+on RRNs show that the quantum social contagion model performs better than the extant
+classical social contagion model because it is able to model the dynamics near the critical
+transmission probabilities. The quantum social contagion model displays the same hybrid
+phase transition pattern; however, both phase transitions are observed at lower critical
+transmission probability values. It means that local and global adoption behavior in the
+two-state spreading threshold model is observed earlier than the classical approach. The
+sharp discontinuous changes in ﬁnal adoption size near the critical transmission probabili-
+ties are also observed as smoother in the quantum approach. Testing our conclusions on
+different mean degrees of RNN and with a different initial fraction of adopted individuals
+also demonstrates the generalizability and robustness of our conclusions. The optimum SA
+and AR interference values remain the same, as the initial fraction of adopted individuals
+changes. Thus, we argue that interference in quantum social contagion is not dependent
+on the initial fraction of adopted individuals on the network. Future studies may aim
+to ﬁnd a heuristic to predict interference effects in the quantum approach to model so-
+cial contagion dynamics without a calibration. Moreover, the effects of varying network
+topology on quantum social contagion dynamics remain open for further exploration. We
+intend to continue our analyses in these directions. It should be noted that despite the
+quantum-like approach in edge-based compartmental theory bringing heterogeneity due
+to the entangled structure of complex amplitudes in λ, we assumed that each adopted
+node has an equal chance to transmit the behavior to his susceptible neighbors. Thus, we
+ignored the inﬂuence variety of speciﬁc nodes in the spreading mechanism. Researchers
+can integrate IBP to other high performance theoretical approaches for epidemic spreading
+
+Entropy 2021, 23, 538
+11 of 13
+such as dynamical message passing and/or edge-based mean-ﬁeld theory; however, these
+techniques yield very complex equations, and the quantum-like approach may exacerbate
+its complexity to make this problem even more challenging to resolve [27].
+Author Contributions: Conceptualization, E.C.M. and O.O.G.; methodology, E.C.M.; software,
+E.C.M.; validation, E.C.M. and O.O.G.; formal analysis, E.C.M.; investigation, E.C.M. and O.O.G.;
+resources, E.C.M. and O.O.G.; writing—original draft preparation, E.C.M.; writing—review and
+editing, E.C.M. and O.O.G.; visualization, E.C.M.; supervision, O.O.G.; project administration,
+O.O.G.; funding acquisition, O.O.G. All authors have read and agreed to the published version of
+the manuscript.
+Funding: This work was partially supported by grant FA8650-18-C-7823 from the Defense Advanced
+Research Projects Agency.
+Data Availability Statement: Not applicable.
+Conﬂicts of Interest: The authors declare no conﬂict of interest.
+Appendix A. Mathematical Proofs of Quantum Counterpart of Equations
+Appendix A.1. Quantum Counterpart of Equation (6)
+Since we have deﬁned θ(t) as the probability that the individual v has not transmitted
+information to an individual u by time t, the quantum probability of the same event can be
+calculated by using Born’s rule in Equation (1) as follows:
+|
+q
+θ(t)eθ(t)|2 = (
+q
+θ(t)eθ(t)).(
+q
+θ(t)e−θ(t)) = θ(t)
+(A1)
+Similarly, the probability of a successful transmission is equal to:
+|
+q
+1 −θ(t)e(1−θ(t))|2
+= (
+q
+1 −θ(t)e(1−θ(t))).(
+q
+1 −θ(t)e(θ(t)−1)) = 1 −θ(t)
+(A2)
+Therefore, we get exactly the same outcome as in the classical theory.
+τm(ku, t) =
+ku
+m
+
+θ(t)(ku−m)(1 −θ(t))m
+(A3)
+Appendix A.2. Calculation of ξA(t) and Time Evolution of θ(t) in Classical and
+Quantum Approach
+Inserting Equations (15) and (18) into (12) yields ξA(t) by using the classical approach
+and gives the following expression:
+ξA(t) = θ(t) −∑kv kvP(kv)sv(kv, t)
+⟨k⟩
+−γ(1 −λ)[1 −θ(t)]
+λ
+(A4)
+Substituting Equation (A4) into (16) gives us the time evolution of theta(t) as:
+dθ(t)
+dt
+= −λ
+
+θ(t) −∑kv kvP(kv)sv(kv, t)
+⟨k⟩
+
+−γ(1 −λ)[1 −θ(t)]
+(A5)
+
+Entropy 2021, 23, 538
+12 of 13
+The quantum counterpart of this calculation, however, is more complex due to the
+interference terms in Equation (14). In this case, we insert Equations (15) and (18) into (14)
+to obtain ξA(t) by using the quantum approach:
+θ(t) = ∑kv kvP(kv)sv(kv, t)
+⟨k⟩
++ ξA(t) + γ(1 −λ)[1 −θ(t)]
+λ
++
+s
+∑kv kvP(kv)sv(kv, t)
+⟨k⟩
+ξA(t)cos(θξS(t) −θξA(t))
++
+r
+ξA(t)γ(1 −λ)[1 −θ(t)]
+λ
+cos(θξA(t) −θξR(t))λ)
+(A6)
+Solving this quadratic equation for ξA(t) yields four different roots; the physically
+meaningful one is as follows:
+ξA(t) = 1
+2
+
+cos2(θξS(t) −θξA(t)) ∑kv kvP(kv)sv(kv, t)
+⟨k⟩
+−
+v
+u
+u
+t
+ 
+cos4(θξS(t) −θξA(t))
+ ∑kv kvP(kv)sv(kv, t)
+⟨k⟩
+2
+−4cos3(θξS(t) −θξA(t))cos(θξA(t) −θξR(t))
+ ∑kv kvP(kv)sv(kv, t)
+⟨k⟩
+(3/2)s γ(1 −λ)[1 −θ(t)]
+λ
+
++ 6cos2(θξS(t) −θξA(t))cos2(θξA(t) −θξR(t)) ∑kv kvP(kv)sv(kv, t)
+⟨k⟩
+γ(1 −λ)[1 −θ(t)]
+λ
++ 4cos2(θξS(t) −θξA(t))θ(t) ∑kv kvP(kv)sv(kv, t)
+⟨k⟩
+−4cos2(θξS(t) −θξA(t))
+ ∑kv kvP(kv)sv(kv, t)
+⟨k⟩
+2
+−4cos2(θξS(t) −θξA(t)) ∑kv kvP(kv)sv(kv, t)
+⟨k⟩
+γ(1 −λ)[1 −θ(t)]
+λ
+−4cos(θξS(t) −θξA(t))cos3(θξA(t) −θξR(t))
+s ∑kv kvP(kv)sv(kv, t)
+⟨k⟩
+ γ(1 −λ)[1 −θ(t)]
+λ
+(3/2)
+−8cos(θξS(t) −θξA(t))cos(θξA(t) −θξR(t))θ(t)
+s ∑kv kvP(kv)sv(kv, t)
+⟨k⟩
+s γ(1 −λ)[1 −θ(t)]
+λ
+
++ 8cos(θξS(t) −θξA(t))cos(θξA(t) −θξR(t))
+ ∑kv kvP(kv)sv(kv, t)
+⟨k⟩
+(3/2)s γ(1 −λ)[1 −θ(t)]
+λ
+
++ 8cos(θξS(t) −θξA(t))cos(θξA(t) −θξR(t))
+s ∑kv kvP(kv)sv(kv, t)
+⟨k⟩
+ γ(1 −λ)[1 −θ(t)]
+λ
+(3/2)
++ cos4(θξA(t) −θξR(t))
+ γ(1 −λ)[1 −θ(t)]
+λ
+2
++ 4cos(θξA(t) −θξR(t))θ(t)
+ γ(1 −λ)[1 −θ(t)]
+λ
+
+−4cos2(θξA(t) −θξR(t))
+ ∑kv kvP(kv)sv(kv, t)
+⟨k⟩
+ γ(1 −λ)[1 −θ(t)]
+λ
+
+−42cos(θξA(t) −θξR(t))
+ γ(1 −λ)[1 −θ(t)]
+λ
+2!
+−2cos(θξS(t) −θξA(t))cos(θξA(t) −θξR(t))
+s ∑kv kvP(kv)sv(kv, t)
+⟨k⟩
+s γ(1 −λ)[1 −θ(t)]
+λ
+
++ cos2(θξA(t) −θξR(t))
+ γ(1 −λ)[1 −θ(t)]
+λ
+
++ 2θ(t) −2
+ ∑kv kvP(kv)sv(kv, t)
+⟨k⟩
+
+−2
+ γ(1 −λ)[1 −θ(t)]
+λ
+
+(A7)
+
+Entropy 2021, 23, 538
+13 of 13
+References
+1.
+Pastor-Satorras, R.; Castellano, C.; Van Mieghem, P.; Vespignani, A. Epidemic processes in complex networks. Rev. Mod. Phys.
+2015, 87, 925. [CrossRef]
+2.
+Watts, D.J. A simple model of global cascades on random networks. Proc. Natl. Acad. Sci. USA 2002, 99, 5766–5771. [CrossRef]
+[PubMed]
+3.
+Wang, W.; Tang, M.; Shu, P.; Wang, Z. Dynamics of social contagions with heterogeneous adoption thresholds: crossover
+phenomena in phase transition. New J. Phys. 2016, 18, 013029. [CrossRef]
+4.
+Granovetter, M. Threshold models of collective behavior. Am. J. Sociol. 1978, 83, 1420–1443. [CrossRef]
+5.
+Goldenberg, J.; Libai, B.; Muller, E. Talk of the network: A complex systems look at the underlying process of word-of-mouth.
+Mark. Lett. 2001, 12, 211–223. [CrossRef]
+6.
+Karrer, B.; Newman, M.E. Message passing approach for general epidemic models. Phys. Rev. E 2010, 82, 016101. [CrossRef]
+[PubMed]
+7.
+Zhu, X.; Wang, W.; Cai, S.; Stanley, H.E. Dynamics of social contagions with local trend imitation. Sci. Rep. 2018, 8, 7335.
+[CrossRef] [PubMed]
+8.
+Karampourniotis, P.D.; Sreenivasan, S.; Szymanski, B.K.; Korniss, G. The impact of heterogeneous thresholds on social contagion
+with multiple initiators. PLoS ONE 2015, 10, e0143020. [CrossRef] [PubMed]
+9.
+Fink, C.; Schmidt, A.; Barash, V.; Kelly, J.; Cameron, C.; Macy, M. Investigating the observability of complex contagion in
+empirical social networks. In Proceedings of the International AAAI Conference on Web and Social Media, Cologne, Germany,
+17–20 May 2016.
+10.
+Simon, H.A. A behavioral model of rational choice. Q. J. Econ. 1955, 69, 99–118. [CrossRef]
+11.
+Savage, L.J. The Foundations of Statistics; Courier Corporation: North Chelmsford, MA, USA, 1972.
+12.
+Tversky, A.; Kahneman, D. Judgment under uncertainty: Heuristics and biases. Science 1974, 185, 1124–1131. [CrossRef]
+13.
+Yukalov, V.I.; Yukalova, E.P.; Sornette, D. Information processing by networks of quantum decision makers. Phys. A Stat. Mech.
+Appl. 2018, 492, 747–766. [CrossRef]
+14.
+Mutlu, E.C. Quantum Probabilistic Models Using Feynman Diagram Rules for Better Understanding the Information Diffusion
+Dynamics in Online Social Networks. In Proceedings of the AAAI Conference on Artiﬁcial Intelligence, New York, NY, USA,
+7–12 February 2020.
+15.
+Loomes, G. Variability, noise, and error in decision making under risk. In Wiley Blackwell Handbook of Judgment and Decision
+Making; Wiley: Hoboken, NJ, USA, 2015; Volume 2, pp. 658–695.
+16.
+Haven, E.; Khrennikov, A. Quantum Social Science; Cambridge University Press: Cambridge, UK, 2013.
+17.
+Busemeyer, J.R.; Bruza, P.D. Quantum Models of Cognition and Decision; Cambridge University Press: Cambridge, UK, 2012.
+18.
+Khrennikov, A.; Basieva, I.; Pothos, E.M.; Yamato, I. Quantum probability in decision making from quantum information
+representation of neuronal states. Sci. Rep. 2018, 8, 1–8. [CrossRef]
+19.
+Moreira, C.; Wichert, A. Interference effects in quantum belief networks. Appl. Soft Comput. 2014, 25, 64–85. [CrossRef]
+20.
+Ashtiani, M.; Azgomi, M.A. A survey of quantum-like approaches to decision making and cognition. Math. Soc. Sci. 2015,
+75, 49–80. [CrossRef]
+21.
+Zhu, Y.X.; Cao, Y.Y.; Chen, T.; Qiu, X.Y.; Wang, W.; Hou, R. Crossover phenomena in growth pattern of social contagions with
+restricted contact. Chaos Solitons Fractals 2018, 114, 408–414. [CrossRef]
+22.
+Wang, W.; Chen, X.L.; Zhong, L.F. Social contagions with heterogeneous credibility. Phys. A Stat. Mech. Appl. 2018, 503, 604–610.
+[CrossRef]
+23.
+Wang, W.; Tang, M.; Zhang, H.F.; Lai, Y.C. Dynamics of social contagions with memory of nonredundant information. Phys.
+Rev. E 2015, 92, 012820. [CrossRef]
+24.
+Khrennikov, A. Quantum-like model of cognitive decision making and information processing. Biosystems 2009, 95, 179–187.
+[CrossRef]
+25.
+Khrennikov, A. Quantum-like brain: “Interference of minds”. BioSystems 2006, 84, 225–241. [CrossRef] [PubMed]
+26.
+Khrennikov, A.Y.; Haven, E. Quantum mechanics and violations of the sure-thing principle: The use of probability interference
+and other concepts. J. Math. Psychol. 2009, 53, 378–388. [CrossRef]
+27.
+Wang, W.; Tang, M.; Stanley, H.E.; Braunstein, L.A. Uniﬁcation of theoretical approaches for epidemic spreading on complex
+networks. Rep. Prog. Phys. 2017, 80, 036603. [CrossRef] [PubMed]

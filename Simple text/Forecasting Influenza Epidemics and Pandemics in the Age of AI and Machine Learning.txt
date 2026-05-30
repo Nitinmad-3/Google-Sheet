@@ -1,0 +1,1280 @@
+Source-PDF: D:\Review\New folder\Healthcare prediction bridge\Forecasting Influenza Epidemics and Pandemics in the Age of AI and Machine Learning.pdf
+Relative-Path: New folder\Healthcare prediction bridge\Forecasting Influenza Epidemics and Pandemics in the Age of AI and Machine Learning.pdf
+--------------------------------------------------------------------------------
+
+Reviews in Medical Virology 
+-
+REVIEW
+OPEN ACCESS
+Forecasting Influenza Epidemics and Pandemics in the 
+Age of AI and Machine Learning
+Oleksandr Kamyshnyi1 | Iryna Halabitska2 | Valentyn Oksenych3 | Iryna Kamyshna4 | Pavlo Petakh5
+| Denis E. Kainov3
+1Department of Microbiology, Virology, and Immunology, I. Horbachevsky Ternopil National Medical University, Ternopil, Ukraine | 2Department of 
+Therapy and Family Medicine, I. Horbachevsky Ternopil National Medical University, Ternopil, Ukraine | 3Department of Clinical and Molecular Medicine, 
+Norwegian University of Science and Technology, Trondheim, Norway | 4Department of Medical Rehabilitation, I. Horbachevsky Ternopil National Medical 
+University, Ternopil, Ukraine | 5Department of Biochemistry and Pharmacology, Uzhhorod National University, Uzhhorod, Ukraine
+Correspondence: Oleksandr Kamyshnyi (kamyshnyi_om@tdmu.edu.ua) | Pavlo Petakh (pavlo.petakh@uzhnu.edu.ua) | Denis E. Kainov 
+(denis.kainov@ntnu.no)
+Received: 11 November 2025 | Revised: 31 December 2025 | Accepted: 14 January 2026
+ABSTRACT
+Influenza's rapid evolution, driven by its segmented RNA genome, high mutation rate, and extensive animal reservoirs, un
+derpins its capacity to cause recurring epidemics and unpredictable pandemics. Recent advances in artificial intelligence (AI) 
+and machine learning (ML) are transforming influenza forecasting by enabling the prediction of viral evolution and the 
+optimisation of public health preparedness. This review synthesises insights from historical data (1890–2025) and contemporary 
+research to examine the evolving role of AI in influenza prediction. It highlights major developments including transformer‐ 
+based models for viral evolution, real‐time integration of mobility and environmental data, hybrid quantum, which are clas
+sical algorithms, and multimodal data fusion frameworks, it also consideres critical risk modifiers such as meteorological 
+variation, armed conflict, and host genetics. Importantly, the review distinguishes between retrospective, proof‐of‐concept 
+analyses and prospective, real‐time forecasting applications, clarifying their respective contributions to operational public 
+health preparedness and informed decision‐making.
+1 |
+Introduction
+Accurate and timely forecasting is crucial for the effective man
+agement of influenza outbreaks, facilitating a shift from reactive 
+responses to proactive public health interventions [1]. Advances 
+in artificial intelligence (AI) and machine learning (ML) have 
+revolutionised epidemiological modeling, enabling the predic
+tion of epidemic trajectories, real‐time monitoring of viral evo
+lution, and the rapid deployment of targeted control measures 
+[2]. These technologies leverage complex data streams to capture 
+the multifaceted nature of influenza transmission, incorporating 
+biological determinants such as viral genetics and host immu
+nity, environmental influences including meteorological vari
+ables and ultraviolet radiation, as well as social factors like 
+human mobility and behavioural patterns (Figure 1) [3].
+This review examines the integration of AI and ML methodol
+ogies within influenza forecasting frameworks, focussing on the 
+fusion of heterogeneous data types through advanced predictive 
+analytics. Notably, recent developments in quantum computing 
+and multimodal data integration have demonstrated significant 
+potential to enhance computational efficiency and model ac
+curacy. These approaches enable the simultaneous analysis of 
+genomic sequences, environmental parameters, and epidemio
+logical indicators, thereby strengthening the spatiotemporal 
+precision of outbreak predictions.
+This schematic illustrates a multifaceted machine learning 
+framework that integrates antigenic drift prediction, antigen 
+mapping, immunity dynamics, host factors (age, sex, ge
+netics), meteorological data, and conflict zone analysis to 
+This is an open access article under the terms of the Creative Commons Attribution‐NonCommercial License, which permits use, distribution and reproduction in any medium, provided the original 
+work is properly cited and is not used for commercial purposes.
+© 2026 The Author(s). Reviews in Medical Virology published by John Wiley & Sons Ltd.
+Reviews in Medical Virology, 2026; 36:e70107
+1 of 12
+https://doi.org/10.1002/rmv.70107
+
+support the development of antiviral agents, AI‐guided vac
+cine strategies, and the selection of candidate molecules for 
+clinical trials.
+Recent progress in computational epidemiology underscores 
+the capacity of AI systems to integrate diverse data sources, 
+encompassing genomic surveillance, real‐time mobility, and 
+climate metrics [4]. The amalgamation of these datasets has 
+led to refined temporal and spatial resolution in forecasting 
+models, enabling earlier detection of transmission hotspots 
+and more precise estimation of epidemic peaks [5]. Further
+more, the deployment of adaptive learning algorithms facili
+tates continual model recalibration, allowing forecasts to 
+dynamically incorporate new information about pathogen 
+evolution and shifting population susceptibility [6]. Such 
+responsiveness is crucial in the context of rapidly evolving 
+viral landscapes and diverse public health interventions, ulti
+mately leading to more effective disease control and mitigation 
+strategies [7].
+This review provides a distinct contribution by systematically 
+differentiating between retrospective, proof‐of‐concept AI 
+models and prospective, real‐time forecasting applications 
+relevant to public health decision‐making. In contrast to prior 
+reviews that primarily focus on algorithmic performance, we 
+integrate biological, environmental, social, and conflict‐related 
+determinants within a unified analytical framework. By criti
+cally evaluating the operational readiness, limitations, and 
+contextual applicability of AI‐driven influenza forecasting, this 
+work aims to bridge the gap between methodological innovation 
+and real‐world public health implementation.
+1.1 |
+Literature Search and Selection
+Relevant publications were identified through searches in 
+PubMed, Scopus, and Web of Science covering the period from 
+2000 to 2025, using the keywords ‘influenza forecasting’, ‘ma
+chine 
+learning’, 
+‘artificial 
+intelligence’, 
+‘epidemiological 
+modeling’, ‘viral evolution’, and ‘predictive analytics’. Addi
+tional sources were retrieved from reference lists and preprint 
+repositories (medRxiv, arXiv) to include emerging research. 
+Studies were included if they applied or evaluated AI or ML 
+approaches for influenza prediction, surveillance, or vaccine 
+design.
+Emphasis was placed on studies describing model architecture, 
+data sources, and performance metrics, with explicit notation of 
+whether analyses were conducted retrospectively or prospec
+tively. This strategy ensured balanced coverage of both con
+ceptual and applied advances in AI‐driven influenza forecasting.
+Studies were excluded if they lacked sufficient methodological 
+detail, relied solely on simulated data without epidemiological 
+grounding, or did not report the outcomes of model validation. 
+Given the heterogeneity of study designs, a formal meta‐analysis 
+was not performed; instead, a structured narrative synthesis was 
+FIGURE 1
+|
+A comprehensive predictive AI model for infectious disease response.
+2 of 12
+Reviews in Medical Virology, 2026
+
+applied. This approach allowed for a balanced assessment of 
+methodological rigor, data sources, and practical relevance 
+across diverse AI‐based forecasting studies.
+2 |
+Historical Perspective: Lessons Shaping 
+Modern Forecasting
+Historical pandemics have informed today's AI‐driven fore
+casting tools. The 1890 epidemic revealed early transmission 
+patterns [8], while the 1918 H1N1 pandemic, with over 50 million 
+deaths [9], spurred basic surveillance systems—ancestors of 
+modern predictive models. Later outbreaks (1957 H2N2, 1968 
+H3N2, 2009 H1N1pdm09) refined these approaches by exposing 
+viral spread dynamics [10]. The drastic decline in influenza cases 
+during COVID‐19's non‐pharmaceutical interventions (NPIs) in 
+2020–21 [11] underscored the power of real‐time data, now 
+supercharged by AI.
+Recent studies have leveraged historical pandemics to enhance 
+the performance of AI models. Recent studies employing graph 
+neural networks (GNNs) have demonstrated improved spatial 
+influenza nowcasting, though direct re‐analysis of early 
+pandemic data remains limited [12]. The 2009 H1N1pdm09 
+pandemic highlighted the role of global air travel, prompting 
+machine learning (ML) models to incorporate flight data, which 
+reduced prediction errors [13]. The 2020–21 influenza decline 
+during COVID‐19 NPIs provided a dataset for training LSTM 
+models, achieving an accuracy boost in low‐transmission sce
+narios [14]. Additionally, transfer learning from historical pan
+demics has enabled models to generalise across diverse 
+influenza strains, with evidence showing an improvement in 
+predicting the dynamics of novel strains [15].
+3 |
+Biological Drivers in Forecasting Models
+Influenza's biology underpins predictive algorithms: antigenic 
+drift involves mutations in hemagglutinin (HA) and neur
+aminidase (NA) at approximately 2–3 × 10−3 substitutions per 
+site per year, which challenge existing immunity [16]. Recent 
+transformer‐based and sequence‐learning approaches have 
+shown promise for predicting antigenic drift from genomic data, 
+which may help anticipate vaccine mismatch [17–19]. Antigenic 
+shift, resulting from reassortment events in animal reservoirs, 
+leads to the emergence of novel influenza strains, with deep 
+learning techniques identifying shift risks through mapping of 
+co‐infection zones [20]. Additionally, immunity dynamics, 
+characterised by short‐lived immune protection especially pro
+nounced in older adults [21], are incorporated into age‐specific 
+forecasting models to improve prediction accuracy.
+Biological factors play a crucial role in influenza forecasting 
+through the analysis of virus‐host protein interactions and 
+pathogenicity prediction. For instance, the use of XGBoost to 
+predict influenza A virus‐human protein‐protein interactions 
+has demonstrated high accuracy [22]. Machine learning models 
+based on the predicted structure of hemagglutinin enable the 
+assessment of avian influenza pathogenicity [23]. Furthermore, 
+models focused on antigenic distance prediction [17, 24] and 
+zoonotic potential assessment [25] underscore the importance of 
+biological drivers in forecasting.
+These biological mechanisms represent key uncertainties in 
+forecasting, primarily due to the non‐linear nature of viral 
+evolution across geographic and host boundaries [26]. Advances 
+in computational virology have enabled the integration of host‐ 
+pathogen interactions into dynamic models, capturing the 
+probabilistic nature of antigenic events [27]. Predictive tools 
+now incorporate protein structural data to detect functionally 
+significant mutations with immunological consequences. The 
+inclusion of zoonotic interface data from agricultural systems 
+has expanded forecasting scope beyond human populations 
+[28]. Furthermore, real‐time genomic surveillance pipelines 
+have shortened the response window for identifying threats 
+related to drift or shifts [29].
+Genomic sequencing advancements have revolutionised bio
+logical forecasting. Recent ML models integrating sequence‐ 
+based features have achieved high accuracy in predicting anti
+genic distances, offering insights into antigenic drift [17, 18]. 
+Another study in 2024 introduced a multi‐modal ML approach 
+integrating metagenomic data from environmental samples 
+(e.g., poultry farms), which improved shift predictions [30]. 
+Immunity dynamics models now incorporate longitudinal 
+serology data, with a 2024 study using Bayesian machine 
+learning (ML) to predict waning immunity in elderly pop
+ulations, thereby boosting age‐specific forecast accuracy [31].
+4 |
+Environmental Inputs: Meteorology and Solar‐ 
+UV in Predictions
+Environmental determinants are discussed in this section in an 
+integrated manner to avoid repetition across subsequent meth
+odological and application‐focused sections. Meteorological and 
+solar ultraviolet factors are therefore addressed here as cross‐ 
+cutting modifiers of influenza transmission, informing rather 
+than duplicating later discussions of AI model architectures and 
+performance.
+They represent critical environmental components of influenza 
+forecasting models and play a critical role in refining forecast 
+accuracy. Low absolute humidity, approximately 4 g/m3, en
+hances viral survival and transmission potential [32]. AI models 
+incorporate real‐time weather data, such as humidity and tem
+perature, to more precisely predict transmission peaks. Solar 
+ultraviolet (UV) radiation also significantly influences influenza 
+dynamics; a UV‐Index below 2 is associated with increased 
+influenza surges, while each unit increase in UVI reduces 
+transmission rates by 7%–10% [33]. Neural network models 
+leverage these UVI trends to adjust seasonal forecasts, projec
+ting an extension of influenza seasons by 2050 in response to 
+anticipated climate change [34, 35].
+Incorporating meteorological data and solar ultraviolet (UV) 
+radiation into influenza forecasting models has been shown to 
+enhance the precision of epidemiological predictions signifi
+cantly. While the number of studies explicitly addressing these 
+environmental determinants remains limited in the existing 
+Reviews in Medical Virology, 2026
+3 of 12
+
+body of literature, recent advances in predictive modeling un
+derscore the importance of integrating climate‐related variables, 
+such as temperature, humidity, and solar UV indices, into sur
+veillance frameworks. This approach not only improves the 
+temporal and spatial resolution of outbreak forecasts but also 
+contributes to a more comprehensive understanding of the 
+complex interplay between environmental conditions and viral 
+transmission dynamics [12, 36, 37].
+Recent advances in atmospheric data resolution have improved 
+the spatial precision of influenza forecasting, particularly in re
+gions with previously limited monitoring capabilities [38]. Ma
+chine learning frameworks now integrate not only meteorological 
+indicators but also microclimatic fluctuations to capture short‐ 
+term variability in transmission risk. The inclusion of dynamic 
+environmental baselines enables more robust adaptation of 
+models to climate anomalies and extreme weather patterns [39].
+Integration of meteorological and satellite data in convolutional 
+neural network frameworks has been shown to improve short‐ 
+term influenza forecasts in tropical regions [40, 41]. Emerging 
+evidence indicates that increased levels of ultraviolet radiation are 
+associated with decreased influenza transmission and supports 
+the application of machine learning models to predict UV‐driven 
+seasonal dynamics with substantial accuracy [17]. NeuralGCM 
+models project a 10%–15% extension of influenza seasons by 2050 
+due to climate change [35, 42]. Air pollution data (e.g., PM2.5 
+levels) have also been incorporated into AI systems, resulting in 
+an increase in transmission observed in high‐pollution zones, 
+which enhances urban‐focused forecasting [43]. Additionally, 
+ensemble machine learning models that combine meteorological, 
+UV, and climate variables have improved long‐term forecasting 
+performance. However, data latency in remote and low‐resource 
+regions remains a limiting factor [38].
+5 |
+AI and Machine Learning: Core of Influenza 
+Forecasting
+AI powers advanced surveillance and prediction through several 
+key methodologies. Nowcasting models, such as LSTM and 
+gradient‐boosting algorithms, integrate syndromic, laboratory, 
+and mobility data to reduce forecasting errors by 10%–25% over 
+1–8‐week horizons [27, 30]. The inclusion of real‐time smart
+phone mobility data further enhances the precision of these 
+short‐term forecasts [44]. Early warning systems employ natural 
+language processing (NLP) techniques to analyse news reports 
+and travel data, enabling the detection of outbreaks like the 
+2019 H1N1pdm resurgence prior to official confirmation [45]. 
+Transformer models are utilised to predict viral evolution by 
+analysing genomic sequences, facilitating anticipatory responses 
+[19]. In antigenic mapping, deep learning approaches account 
+for approximately 80% of the variance in H3N2 strains, thereby 
+accelerating vaccine strain selection processes [17]. Addition
+ally, graph neural networks contribute by forecasting cross‐ 
+strain immunity patterns, which informs broader vaccine 
+design strategies [46].
+A range of machine learning architectures, including deep 
+recurrent, graph‐based, and transformer models, have been 
+applied to influenza prediction tasks using diverse datasets. 
+Their comparative features and reported accuracies are sum
+marised in Table 1.
+Recent developments in quantum machine learning (QML) and 
+multi‐modal data fusion have pushed the boundaries of influ
+enza forecasting [52]. Emerging hybrid quantum‐classical al
+gorithms have been proposed to accelerate high‐dimensional 
+modeling tasks in infectious disease research, though their 
+application to influenza forecasting remains largely conceptual 
+[52, 53]. Enhanced natural language processing models, utilis
+ing multilingual social media datasets, have enabled the detec
+tion of outbreaks several days earlier than traditional 
+surveillance systems. Graph‐based deep learning architectures 
+have shown potential for modeling cross‐strain immune in
+teractions [12, 28], though their validation in influenza fore
+casting is still preliminary [12, 18]. Multi‐modal fusion models 
+combining genomic, syndromic, and social media data have 
+achieved significant reductions in nowcasting errors, under
+scoring the value of integrated approaches. These advancements 
+underscore the increasing potential of AI to provide timely, 
+precise, and context‐aware influenza forecasts.
+TABLE 1
+|
+Representative AI and machine learning models applied in influenza forecasting.
+Model/Algorithm
+Primary data Type(s)
+Forecast time horizon
+Representative 
+reference
+LSTM (long short‐term 
+memory)
+Epidemiological, mobility, 
+meteorological
+1–8 weeks ahead
+[47]
+Graph neural network (GNN)
+Spatial‐temporal case data, mobility, 
+climate
+Real‐time and 1–4 weeks 
+forecasts
+[48]
+Transformer‐based sequence 
+model
+Genomic (HA/NA), antigenic data
+Seasonal to multi‐year
+[18]
+CNN (convolutional neural 
+network)
+Meteorological + satellite data
+1–6 months
+[49]
+XGBoost ensemble
+Epidemiological + host factors
+2–4 weeks
+[50]
+Reinforcement learning (RL)
+Epidemiological + intervention data
+Scenario simulation
+[51]
+Multimodal fusion model
+Genomic + social media + mobility
+Real‐time
+[37]
+4 of 12
+Reviews in Medical Virology, 2026
+
+Collectively, these models highlight the complementary 
+strengths of neural, statistical, and hybrid approaches in 
+enhancing temporal and spatial forecasting precision across 
+diverse data environments. Continued innovation in algo
+rithmic methods and data integration will be crucial to meeting 
+the challenges of evolving viral threats [54].
+Together, the summarised models (Table 2) and the end‐to‐end 
+workflow (Figure 2) outline how AI frameworks transform 
+complex, multi‐source data into actionable public health 
+intelligence.
+The diagram illustrates six interconnected stages — from data 
+acquisition and integration to decision support — highlighting 
+the transformation of heterogeneous datasets into actionable 
+insights for public health and vaccine strategy optimisation.
+It is essential to differentiate between retrospective model 
+evaluations, where historical datasets are used to benchmark 
+algorithmic accuracy, and prospective, real‐time implementa
+tions designed to guide ongoing public health decisions. Most of 
+the AI and ML models summarised in Table 1 have been 
+developed and validated retrospectively, using previously 
+collected genomic, epidemiological, or environmental data. 
+These studies often demonstrate high accuracy in back‐testing 
+scenarios but may overestimate actual performance in real‐ 
+world settings.
+In contrast, several prospective implementations have applied 
+AI forecasting in operational settings. Real‐time nowcasting 
+systems that integrate mobility and syndromic data, as well as 
+NLP‐based outbreak detection tools, have supported situational 
+awareness in CDC and WHO surveillance frameworks [59, 60]. 
+TABLE 2
+|
+Representative data types used in influenza forecasting and related preprocessing challenges.
+Data type
+Examples of sources
+Forecasting contribution
+Key preprocessing 
+challenges
+Representative 
+references
+Genomic data
+GISAID, NCBI influenza 
+virus resource
+Tracking antigenic drift/ 
+shift, predicting vaccine 
+mismatch
+Sequence alignment, removal 
+of low‐coverage reads, 
+metadata harmonisation
+[55]
+Epidemiological 
+data
+WHO FluNet, CDC ILINet, 
+local surveillance reports
+Case forecasting, early 
+outbreak detection
+Reporting delays, 
+underreporting, inconsistent 
+time resolution
+[56]
+Meteorological 
+and UV data
+NOAA, Copernicus climate 
+data store
+Modeling seasonality, 
+linking humidity and 
+temperature to transmission
+Spatial interpolation, 
+normalisation of variables, 
+missing data handling
+[40]
+Mobility and 
+population data
+Google mobility reports, 
+airline network data, 
+Facebook data for good
+Modeling transmission 
+pathways, import/export 
+risks
+Privacy‐preserving 
+aggregation, regional 
+normalisation
+[57]
+Satellite imagery 
+and 
+environmental 
+data
+NASA MODIS, Sentinel‐2, 
+VIIRS
+Identifying climate and land‐ 
+use correlates of outbreaks
+Cloud masking, 
+georeferencing, temporal 
+resampling
+[41]
+Social media and 
+NLP‐derived 
+data
+Twitter, Weibo, news APIs
+Early detection via 
+syndromic and sentiment 
+signals
+Language diversity, noise 
+filtering, bot detection
+[58]
+FIGURE 2
+|
+Workflow of AI‐driven influenza forecasting and decision support.
+Reviews in Medical Virology, 2026
+5 of 12
+
+However, these systems typically display higher uncertainty due 
+to data latency, underreporting, and evolving epidemic condi
+tions [61, 62]. Clarifying whether models were used retrospec
+tively or prospectively is crucial for assessing the actual public 
+health value and readiness of AI‐driven forecasting technologies 
+[62]. This distinction also highlights the importance of trans
+parency in model validation and evaluation standards for real‐ 
+world applications.
+5.1 |
+Common Datasets and Data Preprocessing 
+Challenges in Influenza Forecasting
+AI‐based influenza forecasting relies on the integration of het
+erogeneous datasets that capture viral, environmental, and 
+behavioural dynamics [63]. Table 2 summarises the major data 
+sources used in recent studies and highlights typical pre
+processing challenges. Harmonising these diverse inputs re
+mains a crucial step for improving model reliability and 
+reproducibility.
+Standardisation of metadata, development of federated learning 
+frameworks, and automated feature extraction pipelines are 
+emerging as key strategies to overcome these challenges and 
+facilitate large‐scale, real‐time forecasting.
+Reproducibility remains a major challenge in AI‐based influ
+enza forecasting, as many studies rely on proprietary datasets or 
+lack publicly available code and standardised evaluation 
+benchmarks. Greater adoption of open data practices, shared 
+preprocessing pipelines, and federated learning frameworks 
+would substantially improve transparency and facilitate inde
+pendent validation across diverse settings.
+5.2 |
+Limitations and Challenges of Machine 
+Learning in Influenza Forecasting
+Despite significant progress, several limitations constrain the 
+practical implementation of AI and ML in influenza forecasting.
+First, overfitting remains a major issue, particularly when 
+models are trained on limited or region‐specific datasets. Highly 
+complex architectures such as deep neural networks can achieve 
+excellent retrospective performance but may fail to generalise to 
+unseen outbreaks or geographic regions [64, 65].
+Second, interpretability challenges hinder the adoption of black‐ 
+box models in public health decision‐making. Many forecasting 
+systems 
+provide 
+accurate 
+outputs 
+without 
+transparent 
+reasoning, making it difficult for epidemiologists to assess the 
+reliability of predictions or to justify interventions based on 
+them [66].
+Third, regional data scarcity and heterogeneity limit global 
+model transferability. Forecasting systems trained on data from 
+high‐income countries often perform poorly in low‐ and middle‐ 
+income regions due to inconsistent reporting, lack of genomic 
+sequencing, and differences in health infrastructure [67].
+Additionally, data latency, privacy constraints, and biases from 
+social media or mobility datasets can distort early warning 
+outputs. Addressing these issues requires hybrid frameworks 
+that combine mechanistic and data‐driven models, robust vali
+dation pipelines, and explainable AI methods to ensure inter
+pretability and reproducibility across diverse settings [68].
+A growing body of evidence suggests that the most reliable 
+influenza forecasts are derived from the integration of AI‐ 
+driven, statistical, and mechanistic models, rather than relying 
+on a single methodological paradigm. Ensemble frameworks 
+that combine outputs from machine learning algorithms with 
+compartmental (e.g., SEIR‐type) or autoregressive models 
+enhance forecast accuracy, stability, and uncertainty quantifi
+cation, especially during atypical transmission periods. These 
+hybrid approaches unite the interpretability and theoretical 
+grounding of mechanistic models with the adaptive learning 
+capacity of AI, yielding complementary strengths for real‐time 
+prediction and policy planning.
+However, the published literature often overrepresents suc
+cessful or high‐performing AI models, introducing a potential 
+publication bias that obscures null or less favourable results. 
+Notably, several studies have shown that machine learning ap
+proaches do not consistently outperform traditional models 
+when applied prospectively, particularly in data‐sparse settings 
+or during irregular influenza seasons [69, 70]. In such contexts, 
+simpler autoregressive or compartmental frameworks may 
+achieve comparable, or even superior, real‐time accuracy. 
+Acknowledging these limitations is essential to maintain a 
+balanced perspective on AI's role and to ensure that future 
+research 
+builds 
+on 
+realistic 
+expectations 
+of 
+predictive 
+performance.
+Beyond technical limitations, ethical and governance challenges 
+remain central to the deployment of AI‐driven influenza fore
+casting. The use of mobility data, social media signals, and 
+satellite imagery raises concerns regarding privacy, data 
+ownership, and potential misuse of surveillance. Moreover, 
+unequal access to high‐quality data and computational re
+sources may exacerbate existing global health disparities, 
+underscoring the need for transparent governance frameworks 
+and ethically grounded deployment strategies.
+6 |
+Translating Forecasts Into Vaccine and 
+Antiviral Strategies
+Influenza forecasting not only anticipates epidemic trends but 
+also directly informs the design and update of vaccines and 
+virus‐directed antivirals [71, 72]. Predictive models that track 
+antigenic drift and reassortment guide the timely selection of 
+vaccine strains, improving alignment with circulating viruses 
+[73]. Machine learning algorithms integrating genomic and 
+epidemiological data enable real‐time evaluation of vaccine 
+effectiveness and prediction of resistance patterns [74].
+By linking genomic forecasts with immunological and epide
+miological datasets, AI systems can identify emerging mutations 
+that reduce vaccine efficacy, providing early warnings for 
+6 of 12
+Reviews in Medical Virology, 2026
+
+formulation updates [75, 76]. These approaches also support the 
+anticipation of antiviral resistance, optimising therapeutic stra
+tegies before widespread clinical failure occurs [77].
+Recent advances in transformer‐based and multimodal models 
+have strengthened this connection between forecasting and 
+response, allowing rapid adaptation of vaccine composition and 
+deployment strategies [78, 79]. In this sense, AI‐driven innova
+tion serves as a practical extension of forecasting—transforming 
+predictive insights into actionable public health interventions 
+that enhance preparedness and resilience against evolving 
+influenza threats.
+7 |
+Forecasting Amid Conflict
+War disrupts traditional disease surveillance systems, yet arti
+ficial intelligence demonstrates adaptability in these challenging 
+environments. By leveraging satellite imagery, mobility data, 
+and natural language processing (NLP) of open‐source infor
+mation, AI tools effectively monitor influenza transmission 
+among displaced populations. This integration enables the 
+timely forecasting of outbreaks, providing critical guidance for 
+humanitarian aid and public health interventions in conflict 
+zones [44, 80].
+Forecasting influenza outbreaks in conflict zones poses chal
+lenges due to data instability and dynamic conditions. Although 
+direct studies on this issue are scarce in the current literature, 
+the use of flexible and multi‐source data models, such as graph 
+neural networks capturing temporal, geographical, and func
+tional spatial features, may enhance forecast robustness in such 
+complex environments [12].
+These challenges are exemplified by the ongoing Russia‐Ukraine 
+war, where the degradation of healthcare infrastructure has 
+further complicated disease monitoring and response efforts. The 
+Russia‐Ukraine war, escalating in February 2022, has severely 
+disrupted formal influenza surveillance [81]. This led to a near‐ 
+complete cessation of formal infectious disease reporting, 
+including influenza, in conflict‐affected regions [81]. AI‐driven 
+open‐source intelligence platforms have mitigated this by ana
+lysing multilingual news and social media [81]. These platforms 
+have enabled the early detection of outbreaks in displaced pop
+ulations, with reports indicating a decrease in traditional influ
+enza reporting, necessitating a reliance on alternative data 
+sources [82]. AI models that integrate satellite imagery and 
+mobility data have improved outbreak predictions in war‐torn 
+areas, although challenges remain due to restricted access and 
+data sparsity [83].
+One such region where these challenges became particularly 
+evident is southern Ukraine, following the collapse of the 
+Kakhovka Dam. The collapse of the Kakhovka Dam released 
+approximately 18 km3 of water, flooding over 620 km2 and 
+affecting more than 100,000 people. This event mobilised an 
+estimated 83,000 tonnes of heavy metals from reservoir sedi
+ments, contaminating water sources. Disrupted sewage and 
+flooding increased waterborne disease risks, while dislodged 
+landmines restricted access to care and mobility data. AI models 
+integrating satellite and water data improved outbreak fore
+casting. Damaged irrigation systems have also exacerbated food 
+insecurity and influenza vulnerability [84–88].
+In response to these compounding vulnerabilities—including 
+rising rates of chronic illness, comorbidities, depression, and 
+disrupted gut microbiota—recent AI‐driven innovations are 
+increasingly being deployed to support disease surveillance and 
+prediction in high‐risk, resource‐limited settings [89, 90]. AI ad
+vancements are bridging gaps in conflict zones. The integration of 
+drone‐based mobility data with graph neural networks has 
+improved predictions of influenza spread in refugee camps. 
+Natural language processing models that incorporate local di
+alects have enhanced early warning capabilities. Satellite imag
+ery, combined with machine learning techniques, has been 
+utilised to estimate population densities in conflict‐affected areas, 
+leading to enhanced outbreak forecasting. Furthermore, 
+emerging blockchain‐based health information systems may 
+improve secure data sharing in resource‐limited or unstable set
+tings, though evidence of practical deployment during conflicts 
+remains limited. These innovations demonstrate the potential for 
+AI to overcome traditional surveillance limitations in conflict 
+settings, providing critical support for public health interventions 
+under challenging conditions [91–94].
+8 |
+Host Factors Enhancing Forecast Precision
+Demographic and genetic factors significantly enhance the ac
+curacy of influenza forecasting models. Age and sex are critical 
+determinants, as children and elderly populations often drive 
+both transmission and disease severity [95]. Sex‐based immune 
+differences, including hormonal influences such as estrogen‐ 
+mediated effects, further refine these models by capturing var
+iations in immune response between males and females. Addi
+tionally, genetic variants like IFITM3 rs12252‐C have been 
+linked to a higher risk of severe influenza outcomes [96]. The 
+integration of multi‐omics data—comprising single‐nucleotide 
+polymorphisms (SNPs) and transcriptomic profiles—through 
+machine learning methods improves predictions of individual 
+susceptibility and disease progression, thereby contributing to 
+more precise and personalised forecasting [97].
+Host‐related factors, including laboratory parameters, signifi
+cantly improve diagnostic and predictive accuracy. Machine 
+learning models utilising laboratory data have shown efficacy in 
+predicting influenza A and B infections [98] and forecasting 
+hospitalisations [99], highlighting the value of host‐specific in
+formation in surveillance.
+Multi‐omics has advanced host factor integration. Recent 
+research combining genomic, proteomic, and metabolomic data 
+has improved susceptibility predictions [100]. Sex‐specific 
+models that account for hormonal influences have enhanced 
+severity predictions in females [101]. Additionally, data from 
+wearable devices, such as heart rate variability, have increased 
+the accuracy of early infection detection [102]. Incorporating 
+lifestyle factors and comorbidities into machine learning models 
+shows promise for further refining risk assessments. The inte
+gration of host factors with environmental and viral data is 
+Reviews in Medical Virology, 2026
+7 of 12
+
+emerging as a key strategy to enhance model robustness. Efforts 
+to standardise data collection and ensure privacy are critical for 
+the broader application of these tools.
+9 |
+Public Health Decision Support
+AI scenario engines turn forecasts into action by transforming 
+predictive insights into targeted public health responses. NPI 
+tuning leverages real‐time environmental and mobility data to 
+dynamically optimise local interventions such as school clo
+sures, travel restrictions, or mask mandates, enhancing their 
+effectiveness while minimising disruption [103]. Vaccine strat
+egy models integrate transmission forecasts with demographic 
+and risk factor data to prioritise high‐risk regions, enabling 
+more equitable and efficient distribution of limited vaccine 
+supplies, especially during early outbreak phases [104].
+While retrospective analyses demonstrate the impressive theo
+retical capacity of AI to capture influenza dynamics, operational, 
+real‐time applications remain comparatively rare and methodo
+logically constrained. Initiatives such as the CDC's FluSight 
+Network and WHO's digital epidemic intelligence platforms have 
+begun to incorporate machine‐learning‐based forecasts to inform 
+vaccine allocation and non‐pharmaceutical interventions. How
+ever, their predictive accuracy in live environments often de
+clines relative to retrospective testing due to incomplete or 
+delayed surveillance data, differences in national reporting sys
+tems, and the stochastic nature of ongoing epidemics.
+These real‐world limitations highlight the importance of adap
+tive model recalibration, uncertainty quantification, and inte
+gration with mechanistic epidemiological models. Continuous 
+validation under operational conditions is therefore critical to 
+ensure that AI‐derived forecasts provide tangible, reliable ben
+efits for decision‐makers during active outbreaks.
+Accurate influenza forecasts and early outbreak detection un
+derpin effective public health decision‐making. Deep learning 
+models analysing search engine data and other multisource 
+inputs enable real‐time epidemic trend monitoring [105, 106]. 
+Ensemble machine learning methods provide precise hospital
+isation predictions [99], while comparative studies demonstrate 
+the utility of machine learning algorithms in assessing hospital‐ 
+acquired influenza risk [50].
+A reinforcement learning framework for optimising NPIs 
+demonstrated a reduction in case numbers in simulated envi
+ronments [107, 108]. Vaccine allocation models that integrate 
+socioeconomic indicators have improved equitable distribution 
+in resource‐limited settings [109, 110]. Digital twin models 
+enable real‐time NPI simulations, facilitating dynamic policy 
+adjustments to health outcomes [111]. Federated learning ap
+proaches have promoted global data sharing and collaboration, 
+enhancing model robustness [112].
+10 |
+Conclusion
+Artificial intelligence and machine learning can enhance 
+influenza preparedness by enabling earlier detection and more 
+adaptive forecasting. However, their value in practice remains 
+limited by inconsistent data quality, model transparency, and 
+algorithmic bias. Current evidence shows that AI methods do 
+not consistently outperform established statistical or mecha
+nistic models, highlighting the need for rigorous and balanced 
+evaluation.
+Future research should prioritise the prospective validation of 
+real‐time, interpretable systems and explore their integration 
+with ensemble and mechanistic frameworks to strengthen reli
+ability and policy relevance. Transparent and ethically governed 
+data infrastructures are crucial for ensuring equitable access, 
+especially in settings with limited digital capacity.
+While AI and machine learning offer substantial potential to 
+enhance influenza forecasting, current evidence suggests that 
+their real‐world performance remains highly context‐dependent. 
+In several prospective applications, AI‐based approaches do not 
+consistently outperform traditional statistical or mechanistic 
+models, particularly in data‐scarce or rapidly evolving settings. 
+Recognising these limitations is essential to avoid overreliance on 
+algorithmic outputs and to promote responsible, evidence‐based 
+integration into public health practice.
+Developing standardised benchmarks, open data sharing, and 
+cross‐sector collaboration will help move the field beyond proof‐ 
+of‐concept studies. These efforts are crucial to ensuring that 
+predictive technologies evolve into trusted, evidence‐based tools 
+that support global public health decision‐making.
+Future progress in AI‐driven influenza forecasting will depend 
+on prospective validation, standardised benchmarking, and the 
+development of ethically governed data infrastructures. 
+Strengthening reproducibility, interpretability, and cross‐sector 
+collaboration will be critical to transforming AI models from 
+experimental tools into trusted components of global influenza 
+preparedness and response.
+Author Contributions
+Conceptualisation: D.K., O.K., software and data curation: D.K., O.K, 
+writing – original draft preparation: D.K., I.H., I.K., V.O., writing – re
+view and editing, all authors. visualisation, P.P., O.K., D.K. supervision, 
+O.K., D.K. project administration, D.K., O.K. All authors have read and 
+agreed to the published version of the manuscript.
+Ethics Statement
+The authors have nothing to report.
+Conflicts of Interest
+The authors declare no conflicts of interest.
+Data Availability Statement
+The authors have nothing to report.
+References
+1. M. Sharan, D. Vijay, J. P. Yadav, J. S. Bedi, and P. Dhaka, “Surveil
+lance and Response Strategies for Zoonotic Diseases: A Comprehensive 
+8 of 12
+Reviews in Medical Virology, 2026
+
+Review,” Science in One Health 2 (2023): 100050, https://doi.org/10. 
+1016/j.soh.2023.100050.
+2. A. P. Zhao, S. Li, Z. Cao, et al., “AI for Science: Predicting Infectious 
+Diseases,” Journal of Safety Science and Resilience 5, no. 2 (2024): 
+130–146, https://doi.org/10.1016/j.jnlssr.2024.02.002.
+3. J. S. Long, B. Mistry, S. M. Haslam, and W. S. Barclay, “Host and 
+Viral Determinants of Influenza A Virus Species Specificity,” Nature 
+Reviews Microbiology 17, no. 2 (2019): 67–81, https://doi.org/10.1038/ 
+s41579‐018‐0115‐z.
+4. M. Vargas‐Santiago, D. A. León‐Velasco, C. E. Maldonado‐Sifuentes, 
+and L. Chanona‐Hernandez, “A State‐of‐the‐Art Review of Artificial 
+Intelligence (AI) Applications in Healthcare: Advances in Diabetes, 
+Cancer, Epidemiology, and Mortality Prediction,” Computers 14, no. 4 
+(2025): 143, https://doi.org/10.3390/computers14040143.
+5. B. Chen, R. Chen, L. Zhao, et al., “High‐Resolution Short‐Term 
+Prediction of the COVID‐19 Epidemic Based on Spatial‐Temporal Model 
+Modified by Historical Meteorological Data,” Fundamental Research 4, 
+no. 3 (2024): 527–539, https://doi.org/10.1016/j.fmre.2024.02.006.
+6. Y. Ye, A. Pandey, C. Bawden, et al., “Integrating Artificial Intelli
+gence With Mechanistic Epidemiological Modeling: A Scoping Review 
+of Opportunities and Challenges,” Nature Communications 16, no. 1 
+(2025): 581, https://doi.org/10.1038/s41467‐024‐55461‐x.
+7. A. A. Alahmari, Y. Almuzaini, F. Alamri, R. Alenzi, and A. A. Khan, 
+“Strengthening Global Health Security Through Health Early Warning 
+Systems: A Literature Review and Case Study,” Journal of Infection and 
+Public Health 17 (2024): 85–95, https://doi.org/10.1016/j.jiph.2024. 
+01.019.
+8. N. P. Johnson and J. Mueller, “Updating the Accounts: Global 
+Mortality of the 1918‐1920 ‘Spanish’ Influenza Pandemic,” Bulletin of 
+the History of Medicine 76, no. 1 (2002): 105–115, https://doi.org/10. 
+1353/bhm.2002.0022.
+9. S. J. Olsen, E. Azziz‐Baumgartner, A. P. Budd, et al., “Decreased 
+Influenza Activity During the COVID‐19 Pandemic ‐ United States, 
+Australia, Chile, and South Africa, 2020,” MMWR Morbidity and Mor
+tality Weekly Report 69, no. 37 (2020): 1305–1309, https://doi.org/10. 
+15585/mmwr.mm6937a6.
+10. J. K. Taubenberger and J. C. Kash, “Influenza Virus Evolution, Host 
+Adaptation, and Pandemic Formation,” Cell Host & Microbe 7, no. 6 
+(2010): 440–451, https://doi.org/10.1016/j.chom.2010.05.009.
+11. T. Bedford, S. Riley, I. G. Barr, et al., “Global Circulation Patterns of 
+Seasonal Influenza Viruses Vary With Antigenic Drift,” Nature 523, no. 
+7559 (2015): 217–220, https://doi.org/10.1038/nature14460.
+12. J. Luo, X. Wang, X. Fan, et al., “A Novel Graph Neural Network 
+Based Approach for Influenza‐like Illness Nowcasting: Exploring the 
+Interplay of Temporal, Geographical, and Functional Spatial Features,” 
+BMC Public Health 25, no. 1 (2025): 408, https://doi.org/10.1186/s12889‐ 
+025‐21618‐6.
+13. T. Jefferson, C. B. Del Mar, L. Dooley, et al., “Physical Interventions 
+to Interrupt or Reduce the Spread of Respiratory Viruses,” Cochrane 
+Database of Systematic Reviews 11, no. 11 (2020): Cd006207, https://doi. 
+org/10.1002/14651858.CD006207.pub5.
+14. W. W. Davis, J. A. Mott, and S. J. Olsen, “The Role of Non‐ 
+Pharmaceutical Interventions on Influenza Circulation During the 
+COVID‐19 Pandemic in Nine Tropical Asian Countries,” Influenza and 
+Other Respiratory Viruses 16, no. 3 (2022): 568–576, https://doi.org/10. 
+1111/irv.12953.
+15. M. S. Gawande, N. Zade, P. Kumar, S. Gundewar, I. N. Weerar
+athna, and P. Verma, “The Role of Artificial Intelligence in Pandemic 
+Responses: From Epidemiological Modeling to Vaccine Development,” 
+Molecular Biomedicine 6, no. 1 (2025): 1, https://doi.org/10.1186/s43556‐ 
+024‐00238‐3.
+16. J. S. Brownstein and C. C. Freifeld, “Healthmap: The Development 
+of Automated real‐time Internet Surveillance for Epidemic Intelli
+gence,” Euro Surveillance: Bulletin Europeen sur les maladies trans
+missibles = European communicable disease bulletin 12, no. 11 (2007): 
+E071129.5, https://doi.org/10.2807/esw.12.48.03322‐en.
+17. S. A. W. Shah, D. P. Palomar, I. Barr, L. L. M. Poon, A. A. Quadeer, 
+and M. R. McKay, “Seasonal Antigenic Prediction of Influenza A H3N2 
+Using Machine Learning,” Nature Communications 15, no. 1 (2024): 
+3833, https://doi.org/10.1038/s41467‐024‐47862‐9.
+18. X. Li, Y. Li, X. Shang, and H. Kong, “A Sequence‐based Machine 
+Learning Model for Predicting Antigenic Distance for H3N2 Influenza 
+Virus,” Frontiers in Microbiology 15 (2024): 1345794, https://doi.org/10. 
+3389/fmicb.2024.1345794.
+19. N. N. Thadani, S. Gurev, P. Notin, et al., “Learning From Prepan
+demic Data to Forecast Viral Escape,” Nature 622, no. 7984 (2023): 
+818–825, https://doi.org/10.1038/s41586‐023‐06617‐0.
+20. D. Balcan, B. Gonçalves, H. Hu, J. J. Ramasco, V. Colizza, and A. 
+Vespignani, “Modeling the Spatial Spread of Infectious Diseases: The 
+Global Epidemic and Mobility Computational Model,” Journal of 
+Computational Science 1, no. 3 (2010): 132–145, https://doi.org/10.1016/ 
+j.jocs.2010.07.002.
+21. F. Nogareda, M. Ghiselli, M. Velandia‐González, et al., “Seasonal 
+Influenza Vaccination Programs in the Americas: A Platform for Sus
+tainable Life‐Course Immunization and Its Role for Pandemic Pre
+paredness and Response,” Vaccines 12, no. 12 (2024): 1415, https://doi. 
+org/10.3390/vaccines12121415.
+22. B. Li, X. Li, X. Li, L. Wang, J. Lu, and J. Wang, “Prediction of 
+Influenza A Virus‐Human Protein‐Protein Interactions Using XGBoost 
+With Continuous and Discontinuous Amino Acids Information,” PeerJ 
+13 (2025): e18863, https://doi.org/10.7717/peerj.18863.
+23. J. H. Shin, S. J. Kim, G. Kim, H. R. Kim, and K. S. Ko, “Machine 
+Learning Using Template‐Based‐Predicted Structure of Haemagglutinin 
+Predicts Pathogenicity of Avian Influenza,” Journal of Microbiology and 
+Biotechnology 34, no. 10 (2024): 2033–2040, https://doi.org/10.4014/jmb. 
+2405.05022.
+24. Q. Jia, Y. Xia, F. Dong, and W. Li, “Metafluad: Meta‐learning for 
+Predicting Antigenic Distances Among Influenza Viruses,” Briefings in 
+Bioinformatics 25, no. 5 (2024): bbae395, https://doi.org/10.1093/bib/ 
+bbae395.
+25. S. Kim, M. A. Kim, B. Kim, et al., “Machine Learning Assessment of 
+Zoonotic Potential in Avian Influenza Viruses Using PB2 Segment,” 
+BMC Genomics 26, no. 1 (2025): 395, https://doi.org/10.1186/s12864‐025‐ 
+11589‐8.
+26. C. C. S. Tan, L. van Dorp, and F. Balloux, “The Evolutionary Drivers 
+and Correlates of Viral Host Jumps,” Nature Ecology & Evolution 8, no. 5 
+(2024): 960–971, https://doi.org/10.1038/s41559‐024‐02353‐4.
+27. E. Barkan, I. Siddiqui, K. J. Cheng, et al., “Leveraging Large Lan
+guage Models to Predict Antibody Biological Activity Against Influenza 
+A Hemagglutinin,” Computational and Structural Biotechnology Journal 
+27 (2025): 1286–1295, https://doi.org/10.1016/j.csbj.2025.03.038.
+28. M. G. Krokidis, D. E. Koumadorakis, K. Lazaros, et al., “Alpha
+Fold3: An Overview of Applications and Performance Insights,” Inter
+national Journal of Molecular Sciences 26, no. 8 (2025): 3671, https://doi. 
+org/10.3390/ijms26083671.
+29. M. Struelens, C. Ludden, G. Werner, V. Sintchenko, P. Jokelainen, 
+and M. Ip, “Real‐Time Genomic Surveillance for Enhanced Control of 
+Infectious Diseases and Antimicrobial Resistance,” Frontiers in Science 2 
+(2024): 1298248, https://doi.org/10.3389/fsci.2024.1298248.
+30. T. J. Kieran, X. Sun, T. R. Maines, and J. A. Belser, “Machine 
+Learning Approaches for Influenza A Virus Risk Assessment Identifies 
+Predictive Correlates Using Ferret Model in Vivo Data,” Communica
+tions Biology 7, no. 1 (2024): 927, https://doi.org/10.1038/s42003‐024‐ 
+06629‐0.
+Reviews in Medical Virology, 2026
+9 of 12
+
+31. L. Cuesta‐Herrera, L. Pastenes, A. D. Arencibia, F. Córdova‐Lepe, 
+and C. Montoya, “Dynamics of Activation and Regulation of the Im
+mune Response to Attack by Viral Pathogens Using Mathematical 
+Modeling,” Mathematics 12, no. 17 (2024): 2681, https://doi.org/10.3390/ 
+math12172681.
+32. J. Shaman and M. Kohn, “Absolute Humidity Modulates Influenza 
+Survival, Transmission, and Seasonality,” Proceedings of the National 
+Academy of Sciences of the United States of America 106, no. 9 (2009): 
+3243–3248, https://doi.org/10.1073/pnas.0806852106.
+33. A. Ianevski, E. Zusinaite, N. Shtaida, et al., “Low Temperature and 
+Low UV Indexes Correlated With Peaks of Influenza Virus Activity in 
+Northern Europe During 2010‐2018,” Viruses 11, no. 3 (2019): 207, 
+https://doi.org/10.3390/v11030207.
+34. E. Zarei, M. R. Nikoo, G. Al‐Rawas, et al., “Hybrid Deep Learning 
+Downscaling of GCMs for Climate Impact Assessment and Future 
+Projections in Oman,” Journal of Environmental Management 376 
+(2025): 124522, https://doi.org/10.1016/j.jenvman.2025.124522.
+35. D. Kochkov, J. Yuval, I. Langmore, et al., “Neural General Circu
+lation Models for Weather and Climate,” Nature 632, no. 8027 (2024): 
+1–7, https://doi.org/10.1038/s41586‐024‐07744‐y.
+36. E. Musa, Z. M. Nia, N. L. Bragazzi, D. Leung, N. Lee, and J. D. Kong, 
+“Avian Influenza: Lessons From past Outbreaks and an Inventory of 
+Data Sources, Mathematical and AI Models, and Early Warning Systems 
+for Forecasting and Hotspot Detection to Tackle Ongoing Outbreaks,” 
+Healthcare 12, no. 19 (2024): 1959, https://doi.org/10.3390/healthcare 
+12191959.
+37. E. L. Ray, Y. Wang, R. D. Wolfinger, and N. G. Reich, “Flusion: 
+Integrating Multiple Data Sources for Accurate Influenza Predictions,” 
+Epidemics 50 (2025): 100810, https://doi.org/10.1016/j.epidem.2024. 
+100810.
+38. T. K. Tsang, Q. Du, B. J. Cowling, and C. Viboud, “An Adaptive 
+Weight Ensemble Approach to Forecast Influenza Activity in an Irreg
+ular Seasonality Context,” Nature Communications 15, no. 1 (2024): 
+8625, https://doi.org/10.1038/s41467‐024‐52504‐1.
+39. F. Sevgin, “Machine Learning‐Based Temperature Forecasting for 
+Sustainable Climate Change Adaptation and Mitigation,” Sustainability 
+17, no. 5 (2025): 1812, https://doi.org/10.3390/su17051812.
+40. H. Zhu, S. Chen, W. Qin, et al., “Study on the Impact of Meteorological 
+Factors on Influenza in Different Periods and Prediction Based on Arti
+ficial Intelligence RF‐Bi‐LSTM Algorithm: To Compare the COVID‐19 
+Period With the non‐COVID‐19 Period,” BMC Infectious Diseases 24, no. 
+1 (2024): 878, https://doi.org/10.1186/s12879‐024‐09750‐x.
+41. J. Turtle, P. Riley, M. Ben‐Nun, and S. Riley, “Accurate Influenza 
+Forecasts Using Type‐Specific Incidence Data for Small Geographic 
+Units,” PLoS Computational Biology 17, no. 7 (2021): e1009230, https:// 
+doi.org/10.1371/journal.pcbi.1009230.
+42. W. Ruan, Y. Liang, Z. Sun, and X. An, “Climate Warming and 
+Influenza Dynamics: The Modulating Effects of Seasonal Temperature 
+Increases on Epidemic Patterns,” npj Climate and Atmospheric Science 8, 
+no. 1 (2025): 72, https://doi.org/10.1038/s41612‐025‐00968‐3.
+43. C.‐M. Rosca, M. Carbureanu, and A. Stancu, “Data‐Driven Ap
+proaches for Predicting and Forecasting Air Quality in Urban Areas,” 
+Applied Sciences 15, no. 8 (2025): 4390, https://doi.org/10.3390/a 
+pp15084390.
+44. M. Zvyagin, A. Brace, K. Hippe, et al., “GenSLMs: Genome‐Scale 
+Language Models Reveal SARS‐CoV‐2 Evolutionary Dynamics,” bio
+Rxiv: the preprint server for biology (2022).
+45. D. J. Smith, A. S. Lapedes, J. C. de Jong, et al., “Mapping the 
+Antigenic and Genetic Evolution of Influenza Virus,” Science (New York, 
+NY) 305, no. 5682 (2004): 371–376, https://doi.org/10.1126/science. 
+1097211.
+46. C. P. Arevalo, M. J. Bolton, S. V. Le, et al., “A Multivalent 
+nucleoside‐modified mRNA Vaccine Against all Known Influenza Virus 
+Subtypes,” Science (New York, NY) 378, no. 6622 (2022): 899–904, 
+https://doi.org/10.1126/science.abm0271.
+47. D. Koge and K. Wagatsuma, “Long Short‐Term Memory‐Based 
+Forecasting of Influenza Epidemics Using Surveillance and Meteoro
+logical Data in Tokyo, Japan,” Frontiers in Public Health 13 (2025): 
+1618508, https://doi.org/10.3389/fpubh.2025.1618508.
+48. H. Lira, L. Martí, and N. Sanchez‐Pi, “A Graph Neural Network 
+With Spatio‐Temporal Attention for Multi‐Sources Time Series Data: An 
+Application to Frost Forecast,” Sensors 22, no. 4 (2022): 1486, https:// 
+doi.org/10.3390/s22041486.
+49. D. Yu, H. Kong, J. C.‐H. Leung, et al., “A 1D Convolutional 
+Neural Network (1D‐CNN) Temporal Filter for Atmospheric Vari
+ability: Reducing the Sensitivity of Filtering Accuracy to Missing Data 
+Points,” Applied Sciences 14, no. 14 (2024): 6289, https://doi.org/10. 
+3390/app14146289.
+50. Y. Cho, H. K. Lee, J. Kim, et al., “Prediction of Hospital‐Acquired 
+Influenza Using Machine Learning Algorithms: A Comparative 
+Study,” BMC Infectious Diseases 24, no. 1 (2024): 466, https://doi.org/10. 
+1186/s12879‐024‐09358‐1.
+51. Y. Tian, X. Li, H. Wang, H. Yuan, and T. Zhang, “Optimizing 
+Spatiotemporal Nonpharmaceutical Interventions for Influenza: An 
+Adaptive Reinforcement Learning Approach for Regional Heterogene
+ity,” Infectious Disease Modelling 11, no. 1 (2026): 203–217, https://doi. 
+org/10.1016/j.idm.2025.10.001.
+52. J. Moon, J. Shim, E. Kim, and E. Hwang, “MIFlu: Large Language 
+Model‐Based Multimodal Influenza Forecasting Scheme,” IEEE Journal 
+of Biomedical and Health Informatics (2025).
+53. G. Kumar, S. Yadav, A. Mukherjee, V. Hassija, and M. Guizani, 
+“Recent Advances in Quantum Computing for Drug Discovery and 
+Development,” IEEE Access 12 (2024): 1–64509, https://doi.org/10. 
+1109/access.2024.3376408.
+54. J. Duan, J. Xiong, Y. Li, and W. Ding, “Deep Learning Based 
+Multimodal Biomedical Data Fusion: An Overview and Comparative 
+Review,” Information Fusion 112 (2024): 102536, https://doi.org/10. 
+1016/j.inffus.2024.102536.
+55. Y. Shu and J. McCauley, “GISAID: Global Initiative on Sharing all 
+Influenza Data ‐ From Vision to Reality,” Euro Surveillance: bulletin 
+Europeen sur les maladies transmissibles = European communicable 
+disease bulletin 22, no. 13 (2017), https://doi.org/10.2807/1560‐7917.es. 
+2017.22.13.30494.
+56. Z. Chen and H. Yu, “Importance of Integrating Epidemiological and 
+Genomic Surveillance of Seasonal Influenza Viruses to Monitor Global 
+Circulation,” Clinical and Translational Medicine 14, no. 12 (2024): 
+e70126, https://doi.org/10.1002/ctm2.70126.
+57. S. Venkatramanan, A. Sadilek, A. Fadikar, et al., “Forecasting 
+Influenza Activity Using machine‐Learned Mobility Map,” Nature 
+Communications 12, no. 1 (2021): 726, https://doi.org/10.1038/s41467‐ 
+021‐21018‐5.
+58. A. Alessa and M. Faezipour, “A Review of Influenza Detection and 
+Prediction Through Social Networking Sites,” Theoretical Biology and 
+Medical Modelling 15, no. 1 (2018): 2, https://doi.org/10.1186/s12976‐ 
+017‐0074‐5.
+59. Y. Liscano, L. A. Anillo Arrieta, J. F. Montenegro, D. Prieto‐ 
+Alvarado, and J. Ordoñez, “Early Warning of Infectious Disease Out
+breaks Using Social Media and Digital Data: A Scoping Review,” In
+ternational Journal of Environmental Research and Public Health 22, no. 
+7 (2025): 1104, https://doi.org/10.3390/ijerph22071104.
+60. V. I. S. Mendes, B. M. F. Mendes, R. P. Moura, et al., “Harnessing 
+Artificial Intelligence for Enhanced Public Health Surveillance: A 
+Narrative Review,” Frontiers in Public Health 13 (2025): 1601151, 
+https://doi.org/10.3389/fpubh.2025.1601151.
+10 of 12
+Reviews in Medical Virology, 2026
+
+61. I. P. Adewumi, “Critical Analysis of Infectious Disease Surveillance 
+and Response System in Nigeria,” Discover Public Health 22, no. 1 
+(2025): 272, https://doi.org/10.1186/s12982‐025‐00668‐6.
+62. Q. Liu and L. Cao, “Modeling Time Evolving COVID‐19 Un
+certainties With Density Dependent Asymptomatic Infections and Social 
+Reinforcement,” Scientific Reports 12, no. 1 (2022): 5891, https://doi.org/ 
+10.1038/s41598‐022‐09879‐2.
+63. A. Adeoye, I. A. Onifade, M. Bayode, et al., “Artificial Intelligence 
+and Computational Methods for Modelling and Forecasting Influenza 
+and Influenza‐like Illness: A Scoping Review,” Beni‐Suef University 
+Journal of Basic and Applied Sciences 14, no. 1 (2025): 93, https://doi. 
+org/10.1186/s43088‐025‐00682‐2.
+64. C. W. Hsu, M. J. Chan, C. H. Weng, T. Y. Tsai, T. H. Yen, and W. H. 
+Huang, “Environmental PM(2.5) Exposure: An Ignored Factor Associ
+ated With Blood Cadmium Level in Hemodialysis Patients,” Therapeu
+tics and Clinical Risk Management 21 (2025): 1–13, https://doi.org/10. 
+2147/tcrm.s496491.
+65. M. Nurtas, A. Altaibek, A. Ydyrys, and T. Nessipbay, “Analyzing 
+Historical Seismic Data for Region‐Specific Earthquake Prediction 
+Through Deep Neural Networks,” Journal of Seismology (2025).
+66. I. Villanueva‐Miranda, G. Xiao, and Y. Xie, “Artificial Intelligence 
+in Early Warning Systems for Infectious Disease Surveillance: A Sys
+tematic Review,” Frontiers in Public Health 13 (2025): 1609615, https:// 
+doi.org/10.3389/fpubh.2025.1609615.
+67. S. Fatumo, T. Chikowore, A. Choudhury, M. Ayub, A. R. Martin, 
+and K. Kuchenbaecker, “A Roadmap to Increase Diversity in Genomic 
+Studies,” Nature Medicine 28, no. 2 (2022): 243–250, https://doi.org/10. 
+1038/s41591‐021‐01672‐4.
+68. Y. M. Banad, S. S. Sharif, and Z. Rezaei, “Artificial Intelligence and 
+Machine Learning for Smart Grids: From Foundational Paradigms to 
+Emerging Technologies With Digital Twin and Large Language Model‐ 
+Driven Intelligence,” Energy Conversion and Management X 28 (2025): 
+101329, https://doi.org/10.1016/j.ecmx.2025.101329.
+69. E. Marquez, E. V. Barrón‐Palma, K. Rodríguez, J. Savage, and A. L. 
+Sanchez‐Sandoval, “Supervised Machine Learning Methods for Seasonal 
+Influenza Diagnosis,” Diagnostics 13, no. 21 (2023): 3352, https://doi. 
+org/10.3390/diagnostics13213352.
+70. P. H. T. Schimit, A. R. Sergio, and M. A. R. Fontoura, “Vaccination 
+as a Game: Behavioural Dynamics, Network Effects, and Policy 
+Levers—A Comprehensive Review,” Mathematics 13, no. 14 (2025): 
+2242, https://doi.org/10.3390/math13142242.
+71. D. H. Morris, K. M. Gostic, S. Pompei, et al., “Predictive Modeling of 
+Influenza Shows the Promise of Applied Evolutionary Biology,” Trends 
+in Microbiology 26, no. 2 (2018): 102–118, https://doi.org/10.1016/j.tim. 
+2017.09.004.
+72. J. Taaffe, P. Lambach, P. Gsell, I. Ghiga, and S. Goldin, “Next‐ 
+Generation Influenza Vaccines and the Pandemic Horizon: Chal
+lenges, Innovations, and the Road Ahead,” Vaccines 13, no. 11 (2025): 
+1097, https://doi.org/10.3390/vaccines13111097.
+73. J. K. Agor and O. Y. Özaltın, “Models for Predicting the Evolution of 
+Influenza to Inform Vaccine Strain Selection,” Human Vaccines & Im
+munotherapeutics 14, no. 3 (2018): 678–683, https://doi.org/10.1080/ 
+21645515.2017.1423152.
+74. D. B. Olawade, J. Teke, O. Fapohunda, et al., “Leveraging Artificial 
+Intelligence in Vaccine Development: A Narrative Review,” Journal of 
+Microbiological Methods 224 (2024): 106998, https://doi.org/10.1016/j.mi 
+met.2024.106998.
+75. R. A. El Arab, M. Alkhunaizi, Y. N. Alhashem, A. Al Khatib, M. 
+Bubsheet, and S. Hassanein, “Artificial Intelligence in Vaccine Research 
+and Development: An Umbrella Review,” Frontiers in Immunology 16 
+(2025): 1567116, https://doi.org/10.3389/fimmu.2025.1567116.
+76. J. Wang, V. Chavda, R. Prajapati, et al., “An Amalgamation of 
+Bioinformatics and Artificial Intelligence for COVID‐19 Management: 
+From Discovery to Clinic,” Current Research in Biotechnology 6 (2023): 
+100159, https://doi.org/10.1016/j.crbiot.2023.100159.
+77. D. Z. H. Aw, D. X. Zhang, and M. Vignuzzi, “Strategies and Efforts 
+in Circumventing the Emergence of Antiviral Resistance Against Con
+ventional Antivirals,” npj Antimicrobials and Resistance 3, no. 1 (2025): 
+54, https://doi.org/10.1038/s44259‐025‐00125‐z.
+78. E. Elfatimi, Y. Lekbach, S. Prakash, and L. BenMohamed, “Artificial 
+Intelligence and Machine Learning in the Development of Vaccines and 
+immunotherapeutics‐yesterday, Today, and Tomorrow,” Frontiers in 
+Artificial Intelligence 8 (2025): 1620572, https://doi.org/10.3389/frai. 
+2025.1620572.
+79. K. Hayawi, S. Shahriar, H. Alashwal, and M. A. Serhani, “Genera
+tive AI and Large Language Models: A New Frontier in Reverse Vac
+cinology,” Informatics in Medicine Unlocked 48 (2024): 101533, https:// 
+doi.org/10.1016/j.imu.2024.101533.
+80. D. Echeverri‐De la Hoz, C. Martínez‐Bravo, B. Gastelbondo‐ 
+Pastrana, et al., “Genomics of Novel Influenza A Virus (H18N12) in 
+Bats, Caribe Colombia,” Scientific Reports 15, no. 1 (2025): 6507, https:// 
+doi.org/10.1038/s41598‐025‐91026‐8.
+81. A. Kannan, R. Chen, Z. Akhtar, et al., “Use of Open‐Source 
+Epidemic Intelligence for Infectious Disease Outbreaks, Ukraine, 
+2022,” Emerging Infectious Diseases 30, no. 9 (2024): 1865–1871, https:// 
+doi.org/10.3201/eid3009.240082.
+82. C. R. MacIntyre, S. Lim, and A. Quigley, “Preventing the next 
+Pandemic: Use of Artificial Intelligence for Epidemic Monitoring and 
+Alerts,” Cell Reports Medicine 3, no. 12 (2022): 100867, https://doi.org/ 
+10.1016/j.xcrm.2022.100867.
+83. C. S. Teitelbaum, A. Ferraz, S. E. W. De La Cruz, M. E. Gilmour, and 
+I. G. Brosnan, “The Potential of Remote Sensing for Improved Infectious 
+Disease Ecology Research and Practice,” Proceedings Biological sciences 
+291, no. 2037 (2024): 20241712, https://doi.org/10.1098/rspb.2024.1712.
+84. D. Hryhorczuk, B. S. Levy, M. Prodanchuk, et al., “The Environ
+mental Health Impacts of Russia's War on Ukraine,” Journal of Occu
+pational Medicine and Toxicology 19, no. 1 (2024): 1, https://doi.org/10. 
+1186/s12995‐023‐00398‐y.
+85. P. Petakh, W. Huber, and O. Kamyshnyi, “Geographical Factors and 
+Air Raid Alarms Influence Leptospirosis Epidemiology in Ukraine 
+(2018‐2023),” One Health 19 (2024): 100944, https://doi.org/10.1016/j. 
+onehlt.2024.100944.
+86. L. Symochko, P. Pereira, O. Demyanyuk, M. N. C. Pinheiro, and D. 
+Barcelo, “Resistome in a Changing Environment: Hotspots and Vectors 
+of Spreading With a Focus on the Russian‐Ukrainian War,” Heliyon 10, 
+no. 12 (2024): e32716, https://doi.org/10.1016/j.heliyon.2024.e32716.
+87. A. Dzhemiliev, A. G. Antunez, D. Kizub, et al., “Bridging Medical 
+Expertise in Crisis: The Development and Implementation of a Novel 
+Mobile Application for Ukrainian Physicians During Wartime,” Journal 
+of Global Health 14 (2024): 04245, https://doi.org/10.7189/jogh.14.04245.
+88. P. Petakh, P. Behzadi, V. Oksenych, and O. Kamyshnyi, “Current 
+Treatment Options for Leptospirosis: A Mini‐Review,” Frontiers in 
+Microbiology 15 (2024): 1403765, https://doi.org/10.3389/fmicb.2024. 
+1403765.
+89. W. Liu, “Bracing the Artificial Intelligence Technology in Viral 
+Infectious Disease Control,” Infectious Medicine 4, no. 2 (2025): 100186, 
+https://doi.org/10.1016/j.imj.2025.100186.
+90. I. Halabitska, P. Petakh, I. Kamyshna, V. Oksenych, D. E. Kainov, 
+and O. Kamyshnyi, “The Interplay of Gut Microbiota, Obesity, and 
+Depression: Insights and Interventions,” Cellular and Molecular Life 
+Sciences: CMLS 81, no. 1 (2024): 443, https://doi.org/10.1007/s00018‐ 
+024‐05476‐w.
+Reviews in Medical Virology, 2026
+11 of 12
+
+91. J. Zhang, P. Zhou, Y. Zheng, and H. Wu, “Predicting Influenza With 
+Pandemic‐Awareness via Dynamic Virtual Graph Significance Net
+works,” Computers in Biology and Medicine 158 (2023): 106807, https:// 
+doi.org/10.1016/j.compbiomed.2023.106807.
+92. M. A. Faheem, K. T. Wassif, H. Bayomi, and S. M. Abdou, 
+“Improving Neural Machine Translation for Low Resource Languages 
+Through Non‐Parallel Corpora: A Case Study of Egyptian Dialect to 
+Modern Standard Arabic Translation,” Scientific Reports 14, no. 1 (2024): 
+2265, https://doi.org/10.1038/s41598‐023‐51090‐4.
+93. M. M. Yagoub, Y. T. Tesfaldet, T. AlSumaiti, N. Al Hosani, and 
+M. G. Elmubarak, “Estimating Population Density Using Open‐Access 
+Satellite Images and Geographic Information System: Case of Al Ain 
+City, UAE,” Remote Sensing Applications: Society and Environment 33 
+(2024): 101122, https://doi.org/10.1016/j.rsase.2023.101122.
+94. D. Williams, J. Taylor, and W. Thompson, “Blockchain‐Based 
+Secure Data Sharing Framework for Healthcare Information Systems,” 
+International Journal of Information Engineering and Science 1 (2024): 
+20–25, https://doi.org/10.62951/ijies.v1i1.55.
+95. P. Rio, M. Caldarelli, E. Miccoli, et al., “Sex Differences in Immune 
+Responses to Infectious Diseases: The Role of Genetics, Hormones, and 
+Aging,” Diseases 13, no. 6 (2025): 179, https://doi.org/10.3390/disease 
+s13060179.
+96. F. Sciarra, F. Campolo, E. Franceschini, F. Carlomagno, and M. A. 
+Venneri, “Gender‐Specific Impact of Sex Hormones on the Immune 
+System,” International Journal of Molecular Sciences 24, no. 7 (2023): 
+6302, https://doi.org/10.3390/ijms24076302.
+97. H. Ali, “Artificial Intelligence in Multi‐Omics Data Integration: 
+Advancing Precision Medicine, Biomarker Discovery and Genomic‐ 
+Driven Disease Interventions,” International Journal of Science and 
+Research Archive 8 (2023): 1012–1030, https://doi.org/10.30574/ijsra. 
+2023.8.1.0189.
+98. W. Hu, Y. Liu, J. Dong, et al., “Evaluation of a Machine Learning 
+Model Based on Laboratory Parameters for the Prediction of Influenza A 
+and B in Chongqing, China: Multicenter Model Development and 
+Validation Study,” Journal of Medical Internet Research 27 (2025): 
+e67847, https://doi.org/10.2196/67847.
+99. J. R. Gantenberg, K. W. McConeghy, C. J. Howe, et al., “Predicting 
+Seasonal Influenza Hospitalizations Using an Ensemble Super Learner: 
+A Simulation Study,” American Journal of Epidemiology 192, no. 10 
+(2023): 1688–1700, https://doi.org/10.1093/aje/kwad113.
+100. Z. Wang, Y. Zhao, and L. Zhang, “Emerging Trends and Hot Topics 
+in the Application of Multi‐Omics in Drug Discovery: A Bibliometric 
+and Visualized Study,” Current Pharmaceutical Analysis 21, no. 1 (2024): 
+20–32, https://doi.org/10.1016/j.cpan.2024.12.001.
+101. P. Aristu‐Zabalza, M. Andrés‐Rozas, Z. Boyer‐Díaz, et al., “Sex‐ 
+Specific Differences in Preclinical Models of Advanced Chronic Liver 
+Disease and Portal Hypertension,” Biology of Sex Differences 16, no. 1 
+(2025): 39, https://doi.org/10.1186/s13293‐025‐00721‐8.
+102. C. A. Sanches, G. A. Silva, A. F. H. Librantz, L. M. M. Sampaio, and 
+P. A. Belan, “Wearable Devices to Diagnose and Monitor the Progres
+sion of COVID‐19 Through Heart Rate Variability Measurement: Sys
+tematic Review and Meta‐Analysis,” Journal of Medical Internet 
+Research 25 (2023): e47112, https://doi.org/10.2196/47112.
+103. S. Volkova, E. Ayton, K. Porterfield, and C. Corley, “Forecasting 
+Influenza‐Like Illness Dynamics for Military Populations Using Neural 
+Networks and Social Media,” PLoS One 12 (2017): e0188941, https://doi. 
+org/10.1371/journal.pone.0188941.
+104. G. Jang, J. Kim, R. N. Thompson, and H. Lee, “Modeling Vacci
+nation Prioritization Strategies for Post‐Pandemic COVID‐19 in the 
+Republic of Korea Accounting for Under‐reporting and age‐structure,” 
+Journal of Infection and Public Health 18, no. 4 (2025): 102688, https:// 
+doi.org/10.1016/j.jiph.2025.102688.
+105. L. Yang, G. Li, J. Yang, et al., “Deep‐Learning Model for Influenza 
+Prediction From Multisource Heterogeneous Data in a Megacity: Model 
+Development and Evaluation,” Journal of Medical Internet Research 25 
+(2023): e44238, https://doi.org/10.2196/44238.
+106. M. Morris, P. Hayes, I. J. Cox, and V. Lampos, “Neural Network 
+Models for Influenza Forecasting With Associated Uncertainty Using 
+Web Search Activity Trends,” PLoS Computational Biology 19, no. 8 
+(2023): e1011392, https://doi.org/10.1371/journal.pcbi.1011392.
+107. M. Chand and C. Ravi, “A Novel Reinforcement Learning Frame
+work for Disassembly Sequence Planning Using Q‐learning Technique 
+Optimized Using an Enhanced Simulated Annealing Algorithm,” Artifi
+cial Intelligence for Engineering Design, Analysis and Manufacturing 38 
+(2024): e5, https://doi.org/10.1017/s0890060424000039.
+108. X. Peng, J. Xu, X. Chen, D. S. A. Nguyen, and A. Perrault, “Using 
+Reinforcement Learning for Multi‐Objective Cluster‐Level Optimization 
+of Non‐pharmaceutical Interventions for Infectious Disease,” 3rd Ma
+chine Learning for Health Symposium (2023): 445–460: ML4H 20232023, 
+https://proceedings.mlr.press/v225/peng23a.html.
+109. R. E. Watkinson, R. Williams, S. Gillibrand, L. Munford, and M. 
+Sutton, “Evaluating Socioeconomic Inequalities in Influenza Vaccine 
+Uptake During the COVID‐19 Pandemic: A Cohort Study in Greater 
+Manchester, England,” PLoS Medicine 20, no. 9 (2023): e1004289, 
+https://doi.org/10.1371/journal.pmed.1004289.
+110. J. Mondal, J. Dutta, and H. Barua, Vaccinet: Towards a Rein
+forcement Learning Based Smart Framework for Predicting the Distri
+bution Chain Optimization of Vaccines for a Pandemic, (2023), 337–358.
+111. A. Niarakis, R. Laubenbacher, G. An, et al., “Immune Digital 
+Twins for Complex Human Pathologies: Applications, Limitations, and 
+Challenges,” NPJ Systems Biology and Applications 10, no. 1 (2024): 141, 
+https://doi.org/10.1038/s41540‐024‐00450‐5.
+112. B. Yurdem, M. Kuzlu, M. K. Gullu, F. O. Catak, and M. Tabassum, 
+“Federated Learning: Overview, Strategies, Applications, Tools and 
+Future Directions,” Heliyon 10, no. 19 (2024): e38137, https://doi.org/10. 
+1016/j.heliyon.2024.e38137.
+12 of 12
+Reviews in Medical Virology, 2026

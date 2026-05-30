@@ -1,0 +1,923 @@
+Source-PDF: D:\Review\New folder\Healthcare prediction bridge\Quantum-Like Approaches Unveil the Intrinsic Limits of Predictability in Compartmental Models.pdf
+Relative-Path: New folder\Healthcare prediction bridge\Quantum-Like Approaches Unveil the Intrinsic Limits of Predictability in Compartmental Models.pdf
+--------------------------------------------------------------------------------
+
+Citation: Rojas-Venegas, J.A.; Gallarta-
+Sáenz, P.; Hurtado, R.G.; Gómez-
+Gardeñes, J.; Soriano-Paños, D.
+Quantum-Like Approaches Unveil the
+Intrinsic Limits of Predictability in
+Compartmental Models. Entropy 2024,
+26, 888. https://doi.org/10.3390/
+e26100888
+Academic Editors: José María Amigó
+and Fernando Montani
+Received: 2 September 2024
+Revised: 14 October 2024
+Accepted: 18 October 2024
+Published: 21 October 2024
+Copyright: © 2024 by the authors.
+Licensee MDPI, Basel, Switzerland.
+This article is an open access article
+distributed under the terms and
+conditions of the Creative Commons
+Attribution (CC BY) license (https://
+creativecommons.org/licenses/by/
+4.0/).
+entropy
+Article
+Quantum-Like Approaches Unveil the Intrinsic Limits of
+Predictability in Compartmental Models
+José Alejandro Rojas-Venegas 1,2,†, Pablo Gallarta-Sáenz 3,4,†
+, Rafael G. Hurtado 2,*
+, Jesús Gómez-Gardeñes 3,4,*
+and David Soriano-Paños 4,5,*
+1
+Departamento Administrativo Nacional de Estadística (DANE), Bogotá 111321, Colombia;
+jarojasv@dane.gov.co
+2
+Departamento de Física, Facultad de Ciencias, Universidad Nacional de Colombia, Bogotá 111321, Colombia
+3
+Departamento de Física de la Materia de Condensada, Universidad de Zaragoza, 50009 Zaragoza, Spain;
+pgallarta@unizar.es
+4
+GOTHAM Lab, Instituto de Biocomputación y Sistemas Complejos (BIFI), Universidad de Zaragoza,
+50018 Zaragoza, Spain
+5
+Departament d’Enginyería Informática i Matemátiques, Universitat Rovira i Virgili, 43007 Tarragona, Spain
+*
+Correspondence: rghurtadoh@unal.edu.co (R.G.H.); gardenes@unizar.es (J.G.-G.);
+sorianopanos@gmail.com (D.S.-P.)
+†
+These authors contributed equally to this work.
+Abstract: Obtaining accurate forecasts for the evolution of epidemic outbreaks from deterministic
+compartmental models represents a major theoretical challenge. Recently, it has been shown that
+these models typically exhibit trajectory degeneracy, as different sets of epidemiological parameters
+yield comparable predictions at early stages of the outbreak but disparate future epidemic scenarios.
+In this study, we use the Doi–Peliti approach and extend the classical deterministic compartmental
+models to a quantum-like formalism to explore whether the uncertainty of epidemic forecasts is
+also shaped by the stochastic nature of epidemic processes. This approach allows us to obtain a
+probabilistic ensemble of trajectories, revealing that epidemic uncertainty is not uniform across
+time, being maximal around the epidemic peak and vanishing at both early and very late stages
+of the outbreak. Therefore, our results show that, independently of the models’ complexity, the
+stochasticity of contagion and recovery processes poses a natural constraint for the uncertainty of
+epidemic forecasts.
+Keywords: epidemic dynamics; compartmental models; Doi–Peliti formalism
+1. Introduction
+Understanding the temporal dynamics of epidemic outbreaks is critical for pandemic
+management [1,2]. Classical compartmental models for disease transmission, grounded
+in the pioneering work of Kermack and McKendrick [3], are considered the keystones of
+mathematical epidemiology to quantify the public health threat posed by a novel pathogen.
+Indeed, different indicators, such as the effective reproduction number [4] or the expected
+outbreak size, have long served as hallmarks for the design of non-pharmaceutical inter-
+ventions or vaccine rollouts to mitigate the social impact of infectious diseases.
+The use of compartmental models for the assessment of epidemic scenarios implicitly
+assumes that the ultimate consequences of control policies on disease outbreaks can be
+predicted. However, forecasting the long-term evolution of infectious disease outbreaks
+still remains a major challenge [5,6], both theoretically [7–9] and from a data-driven per-
+spective [10,11].
+Focusing on real data, such challenge can be attributed to the unpredictability and
+intricacies of the variety of biological and social factors neglected in simple compartmental
+models but ultimately shaping the long-term propagation of infectious diseases [12,13].
+Entropy 2024, 26, 888. https://doi.org/10.3390/e26100888
+https://www.mdpi.com/journal/entropy
+
+Entropy 2024, 26, 888
+2 of 15
+Along this line, multimodel forecasting efforts [14,15], integrating predictions from multiple
+frameworks with different underlying assumptions, have been recently proposed as a
+solution to partially overcome the former fundamental limitation and to extend the time
+horizon over which accurate forecasts can be made.
+Beyond external factors not included in their formulation, the intrinsic mathemat-
+ical properties of simple deterministic compartmental models also pose limitations for
+the reliability of their long-term epidemic forecasts. Recent works have shown that the
+parameter identification issue [16,17], measuring whether epidemiological parameters can
+be retrieved when calibrating models with limited data, represents an important source of
+uncertainty for epidemic forecasts. This issue is exacerbated when noisy points [18] or very
+early stages of the outbreak [19] are considered for calibration purposes, as trajectory degen-
+eracy ultimately makes divergent predictions compatible with these data. The latter issue
+hampers the accuracy of the predictions of key quantities in mathematical epidemiology
+such as the time and size of the epidemic peak or the duration of an epidemic wave [20].
+Recognizing the limitations of deterministic models, the role of stochasticity in epi-
+demic models has been also addressed over recent years [21–23]. For instance, stochastic
+Markovian models allow for capturing the uncertain course of epidemic trajectories in
+small size populations [24–27] and improving the calibration of epidemic frameworks to
+real noisy data through the use of adapted Kalman filters [28,29]. In general, accounting
+for the inherent stochastic dynamics in epidemic processes requires moving from a set
+of equations governing the time evolution of the expected number of cases to a master
+equation approach yielding a probabilistic ensemble of epidemic trajectories. One simple
+approach consists of introducing random fluctuations in the spreading dynamics to im-
+prove the compartmental differential equations [30], while more sophisticated frameworks
+rely on the use of quantum mechanics tools to study different dynamic systems [31,32] or
+the Doi–Peliti formalism to study the critical behaviour of epidemiological models using
+the Hamilton–Jacobi equations [33].
+Despite these novel approaches, determining the influence of the inherent stochasticity
+of epidemic processes on forecast uncertainty remains an open problem. To fill this gap, we
+follow previous works and propose a quantum-like formalism to model epidemic dynamics
+by extending the Doi–Peliti approach [34,35] to the classical susceptible–infected–susceptible
+(SIS) and susceptible–infected–recovered (SIR) models. By leveraging the Doi–Peliti for-
+malism, our paper aims at (i) unravelling hidden behaviours in classical deterministic
+compartmental models and (ii) showcasing how stochasticity shapes the uncertainty of
+epidemic outbreaks. In particular, the main contribution of this study is to reveal that the
+stochastic nature of epidemic processes hinders obtaining faithful long-term forecasts on
+the magnitude and position of the epidemic peak at early stages of an epidemic outbreak.
+This article is organized as follows. We first introduce the theoretical formalism of
+our work in Section 2, including the basic rules to describe the system and the Master
+Equation. Then, in Section 3, we present the main results of our work, related to the
+simulation of the Master Equation, the probability of finding minor outbreaks and the
+stochastic determinants for the uncertainty of epidemic forecasts. Finally, we discuss the
+implications of our findings and future research venues in Section 4.
+2. Doi–Peliti Approach to Compartmental Models
+In this section, we present the theoretical background of our work, both the classical
+compartmental models and Doi–Peliti formalism, with equations that lead to the description
+of this new approach. In both cases, we consider a closed population with N individuals,
+thus neglecting any changes in the population size as a result of birth–death processes.
+Regarding the structure of contacts, we restrict to the simplest scenario and follow a
+mean-field assumption considering well-mixed populations.
+
+Entropy 2024, 26, 888
+3 of 15
+2.1. Deterministic Equations for the SIS and SIR Models
+The most usual way to tackle the modelling of SIS and SIR dynamics is to consider a
+set of ordinary differential equations (ODEs) governing the time evolution of the expected
+occupation of the different compartments. In the simplest case, the SIS model assumes that
+each individual can be either in the Susceptible or in the Infected state and that transitions
+between them correspond to contagion and recovery processes. In particular, Susceptible
+individuals become infectious at a β rate upon contact with Infected individuals. Moreover,
+Infected individuals recover at a γ rate, without acquiring any immunity against the
+circulating pathogen. Denoting the occupation of the Susceptible (Infected) compartment
+by S (I), the deterministic equations capturing the SIS dynamics are as follows:
+d
+dtS = −βS I
+N + γI,
+d
+dt I = βS I
+N −γI.
+(1)
+The SIR model, instead, accounts for those infections conferring immunity to the host
+upon recovery. This aspect is included by assuming that infectious individuals recover at a
+γ rate and enter into a new compartment, the Removed state R, rather than returning to
+the Susceptible state. From these simple rules, the differential equations of the SIR model
+read as follows:
+d
+dtS = −βS I
+N ,
+d
+dt I = βS I
+N −γI,
+d
+dt R = γI.
+(2)
+2.2. The Doi–Peliti Master Equation
+Going beyond the traditional deterministic approach, epidemic dynamics can be
+interpreted as stochastic birth–death processes. In these models, individuals transition
+(or ‘die’) from one compartment to ‘be born’ into another. In this context, Doi–Peliti
+formalism [34,35] takes advantage of the quantum field theory to build a Markovian Master
+Equation (MME). This approach requires two fundamental components: the vectors, |φ⟩,
+describing the dynamical state of the system, and the creation–annihilation operators, a, a†,
+which create or annihilate individuals, respectively, in the compartments described in the
+epidemic models.
+Regarding the first component, we follow a probabilistic approach considering that
+the state of our system |φ⟩exists in the space in which the elements of the basis |ϕ⟩span,
+with each one representing a possible configuration of the model under consideration.
+Mathematically, we assume the following:
+|φ⟩= ∑
+ϕ
+P(ϕ)|ϕ⟩.
+(3)
+The elements |ϕ⟩of the basis depend on the compartmental model and are explained
+below for both the SIS and the SIR models. The second component concerns the ladder
+operators for each compartment, a and a†, creating or removing individuals, respectively.
+Assuming that |x⟩represents the element of the basis corresponding to an occupation
+number x of a given compartment, the previous operators are defined as follows:
+a†|x⟩= |x + 1⟩,
+(4)
+a|x⟩= x|x −1⟩.
+(5)
+Likewise, these operators follow some quantum mechanics principles: their eigenvalues
+allow us to write the states as |x⟩=
+ a†x|0⟩, and they satisfy the usual commutation
+rule
+
+a, a† = aa† −a†a = ˆI. Furthermore, it is also possible to define a number operator,
+ˆn = a†a, which returns the occupation number of the state ˆn|x⟩= x|x⟩.
+With these two ingredients, one can construct the Hamiltonian-governing different
+dynamics in systems with many-body interactions as outlined in [33,36]. Regardless of the
+chosen dynamics, the Doi–Peliti approach allows us to capture the evolution of the system
+
+Entropy 2024, 26, 888
+4 of 15
+state, |φ⟩, using a backward master equation (BME) [34,35], analogous to Schrödinger’s
+equation with an imaginary time as follows:
+d
+dt|φ⟩= H|φ⟩.
+(6)
+2.3. The Doi–Peliti Approach to the SIS Model
+In an SIS dynamics with a closed population of N individuals, the number of infected
+individuals I provides enough information to describe the state of the system |φSIS⟩, given
+the constraint S = N −I. Thus, the state |φSIS⟩can be written as a combination of all
+possible occupation numbers, {|I⟩}I=0,...,N, forming the following basis of the system:
+|φSIS⟩= ∑
+I
+P(I)|I⟩.
+(7)
+In the former linear combination, the coefficients P(I) = ⟨I|φSIS⟩measure the probability
+associated with each occupation number, unequivocally defining the state |φSIS⟩by the
+set {P(I)}I=0,...,N.
+To construct the Hamiltonian governing SIS dynamics, we consider different ladder
+operators acting on each compartment. We consider that the operators a, a† act on the
+susceptible states, whereas b, b† act on the infectious ones. Therefore, the operator
+ ab†
+models contagion processes, creating an infectious individual and removing a susceptible
+one, whereas
+ ba†
+captures recovery processes. Consequently, the Hamiltonian of the SIS
+dynamics, HSIS, reads as follows:
+HSIS = −β
+N nI
+
+nS −ab†
+−γ
+
+nI −ba†
+.
+(8)
+2.4. The Doi–Peliti Approach to the SIR Model
+The SIR model requires a basis that accounts for the occupation numbers of two of
+the three compartments (S, I, and R). Here, without loss of generality, we take the infected
+and susceptible occupation numbers to fully capture the system composition. Therefore,
+we define the state basis as {|S, I⟩}S, I=0,...,N; S+I≤N. Hence, the state |φSIR⟩is expressed
+as follows:
+|φSIR⟩= ∑
+S, I
+P(S, I)|S, I⟩,
+(9)
+with P(S, I) = ⟨S, I|φSIR⟩. Analogous to the SIS case, we assume that the set {P(S, I)}
+defines |φSIR⟩, simplifying the notation and the representation of the states.
+To construct the SIR Hamiltonian, we must define the ladder operators c and c† acting
+on the recovered compartment. In the SIR model, the transition of an infected individual
+moving to the recovered state
+ bc†
+replaces the transition to the susceptible state of the
+SIS model. Then, the Hamiltonian HSIR is as follows:
+HSIR = −β
+N nI
+
+nS −ab†
+−γ
+
+nI −bc†
+.
+(10)
+3. Results
+In this section, we present the main results of our work, derived from simulations of
+the Master Equation discussed earlier. The results are organized into three subsections: the
+dynamics of both models (Section 3.1), a formal analysis and computational solution for
+the probability of no-outbreak results (Section 3.2), and an examination of the predictability
+problem using entropy measures of temporal dynamics (Section 3.3).
+
+Entropy 2024, 26, 888
+5 of 15
+3.1. Dynamics of the Doi–Peliti Master Equation
+Figure 1 summarizes the two different approaches of classical compartmental models,
+highlighting the conceptual differences between both the determistic ODEs for the SIS and
+SIR models and their corresponding equations based on the Doi–Peliti approach.
+𝛾
+I
+S
+S
+I
+𝛽
+𝛾
+I
+S
+R
+I
+𝛽
+Differential equations
+Doi-Peliti formalism
+ሶ𝜌𝑆= 𝑓(𝜌𝑆, 𝜌𝐼) 
+ሶ𝜌𝐼= 𝑔(𝜌𝑆, 𝜌𝐼) 
+𝑎, 𝑎†
+𝑏, 𝑏†
+𝑑
+𝑑𝑡𝜑𝑆𝐼𝑆= ℋ𝑆𝐼𝑆𝜑𝑆𝐼𝑆
+Differential equations
+Doi-Peliti formalism
+ሶ𝜌𝑆= 𝑓(𝜌𝑆, 𝜌𝐼, 𝜌𝑅) 
+ℋ𝑆𝐼𝑅
+𝑎, 𝑎†
+𝑏, 𝑏†
+𝑑
+𝑑𝑡𝜑𝑆𝐼𝑅= ℋ𝑆𝐼𝑅𝜑𝑆𝐼𝑅
+ሶ𝜌𝐼= 𝑔(𝜌𝑆, 𝜌𝐼, 𝜌𝑅) 
+ሶ𝜌𝑅= ℎ(𝜌𝑆, 𝜌𝐼, 𝜌𝑅) 
+𝑐, 𝑐†
+(a)
+(b)
+ℋ𝑆𝐼𝑆
+Figure 1. Comparison between theoretical approaches to compartmental models based on differential
+equations and the Doi–Peliti equations for the SIS (Panel (a)) and SIR (Panel (b)) models. The
+classical approach consists of deriving a set of deterministic ODEs governing the time evolution
+of the expected occupation of each compartment m, denoted by ρm. Conversely, the Doi–Peliti
+approach involves a quantum-like approach, constructing the Hamiltonian for both dynamics from
+the ladder operators determining the occupation of each compartment and using the time-dependent
+Schrödinger equation for the evolution of the dynamical state of the system.
+To obtain the time evolution of epidemic outbreaks in both the SIS and the SIR model
+under the Doi–Peliti approach, we should use the matrix representation of the Hamiltonian
+operator and compute its elements Hx, x′ = ⟨x|H|x′⟩capturing the transitions between the
+possible configurations |x⟩and |x′⟩for each model. Once the Hamiltonian is defined, the
+analytical solution of Equation (6) can be readily obtained as follows [37]:
+|φ(t)⟩= eHt|φ(0)⟩,
+(11)
+where exp Ht represents the propagator of each dynamics.
+The computation of the system propagator for each time t might be cumbersome,
+especially for high-dimensional systems where the diagonalization of the Hamiltonian is
+computationally expensive. To overcome this limitation, we rely on the Markovian property
+of the master equation and consider the time evolution of the system over multiple discrete
+time steps of duration ∆t. In each time step, the state of the system is updated as follows:
+|φ(t + ∆t)⟩= eH∆t|φ(t)⟩.
+(12)
+Therefore, the time evolution of the system can be obtained as the subsequent action of a
+single propagator eH∆t on the updated state according to Equation (12), thus saving the
+computational time associated with the computation of the propagator. Throughout the
+manuscript, we assume ∆t = 0.1.
+As explained above, the evolution of epidemic outbreaks in the SIS model is fully
+characterized by monitoring the time evolution of the probabilities P(I(t)) of finding I
+individuals in the infected compartment at time t. Without any loss of information, let
+us instead focus on the probability of finding a fraction of population ρI(t) in such a
+compartment at time t, with ρI(t) = I(t)/N . Figure 2a represents the evolution of this set
+of probabilities for an epidemic triggered by a single infectious individual in a population of
+NSIS = 1000 individuals, characterized by β = 0.6, γ = 0.1, thus with a basic reproduction
+
+Entropy 2024, 26, 888
+6 of 15
+number R0 = β/γ = 6. We also represent the analytical solution of the deterministic ODE,
+Equation (1) in the same figure, governing the evolution of the SIS model (dashed line of
+Figure 2a).
+Figure 2. (a): Time evolution of the probability of finding a fraction ρI of individuals in the infected
+state P(ρI) (color code) for an SIS dynamics. (b,c) The time evolution of the probability of finding a
+fraction ρm of the population in the compartment m, P(ρm) (color code) for an SIR dynamics. The
+compartments shown are (b) the Infected compartment and (c) the Recovered compartment. The
+deterministic solutions of Equations (1) and (2) (dashed lines) are shown over the cloud probability
+to compare both frameworks. In panel (a), we consider a population of NSIS = 1000 individuals and,
+in panels (b,c), a population of NSIR = 100 individuals. In all panels, we fix the contagion rate to
+β = 0.6 and the recovery rate to γ = 0.1, yielding a basic reproduction number R0 = 6.
+The comparison between both probabilistic and deterministic approaches reveals
+the wealth of information typically overlooked by classical deterministic models. First,
+epidemic uncertainty is not uniform across time, being maximal at intermediate stages. For
+instance, at t = 15, the deterministic equations predicts a widespread epidemic (ρI ≃0.4),
+whereas the probabilistic ensemble of trajectories also shows a significant probability of
+finding a small epidemic outbreak ρI ≃0. The latter shows how the classical indicator,
+i.e., the expected fraction of population in the infected state, might not be a representative
+quantity to capture the stochastic transient dynamics of epidemic outbreaks. This behaviour
+cannot be reproduced by the deterministic model. Remarkably, this uncertainty shrinks
+around the deterministic value at later stages t > 30, showing the robustness of classical
+deterministic approaches in determining the metastable epidemic state of the system. Note,
+however, that the steady state of the stochastic system is always ρ∞
+I
+= 0. This occurs
+because the absence of infected individuals represents an absorbing state with a probability
+of occupation always increasing over time as a result of stochastic fluctuations destabilizing
+the metastable epidemic state.
+For the SIR model, we characterize the evolution of epidemic outbreaks by monitoring
+the occupation of both the infected and the recovered compartments. As the state of
+the system is described by {P(S, I)} (see Section 2.4), we should compute the marginal
+probabilities {P(I)(t)} and {P(R)(t)} as follows:
+P(I)
+= ∑
+S
+P(S, I),
+(13)
+P(R)
+=
+∑
+S,I|S+I=N−R
+P(S, I).
+(14)
+Figure 2b,c represent the time evolution of the infected and recovered compartments,
+respectively, considering a population of NSIR = 100 individuals due to computational
+
+Entropy 2024, 26, 888
+7 of 15
+memory limits, including the deterministic solution of Equation (2) with dashed lines. In
+these plots, we can observe that the Doi–Peliti approach reproduces the wave-like behaviour
+of the epidemic outbreaks under the SIR model. As in the case of the SIS model, we observe
+that epidemic uncertainty is not uniform across time and that the deterministic trajectories
+capture the time evolution of the expected value of the probability distributions yielded by
+the Doi–Peliti approach. Additionally, we observe a bimodal probability density function of
+the recovered individuals. While the region closer to the deterministic equations captures
+major epidemic outbreaks, the probabilistic cloud with negligible recovered population is a
+consequence of the stochastic effects driving the system to the absorbing state before any
+epidemic is observed in the population.
+Our results reveal that epidemic uncertainty is not uniform in a single epidemic
+trajectory for both the SIS and SIR models. To fully characterize the impact of stochasticity
+on epidemic dynamics, we now analyze the uncertainty of the order parameters of both
+models as a function of the basic reproduction number R0 of the disease, as shown in
+Figure 3. For the SIS model, Figure 3a represents the prevalence of the disease in the
+metastable epidemic state, at t = 1000 days, with a deterministic value that is given by
+ρSIS,met
+I
+= 1 −R−1
+0 . Conversely, for the SIR model, we analyze in Figure 3b the attack
+rate of the disease ρ∞
+R defined as the fraction of recovered individuals at equilibrium.
+The deterministic value for this parameter is obtained by solving the implicit equation
+ρ∞
+R = 1 −s0e−R0(ρ∞
+R −r0), where s0 and r0 represent the initial proportion of susceptible
+and recovered individuals in the population. In both cases, the Doi–Peliti framework
+proves that there is a high probability of observing the order parameters predicted by
+the deterministic ODEs. Notably, as previously stated, the SIR model reveals a notable
+feature: a non-negligible probability of having a minor outbreak in the stationary state,
+even for values of R0 > 1.0, as shown in Figure 3b. We further explore this phenomenon in
+Section 3.2.
+Figure 3. (a,b): Evolution of the cloud probability of the order parameters as R0 evolves, using the
+prevalence of the metastable epidemic state computed at t = 1000 days ρSIS,met
+I
+in the SIS model
+(Panel (a)) and the attack rate ρ∞
+R in the SIR model (Panel (b)). The deterministic solution for the order
+parameters of both models is also shown in both panels with dashed lines. (c) The evolution of the
+entropy as a function of R0 for the SIS (solid lines) and SIR (dashed lines) and three different initial
+conditions, varying the number of initially infected individuals I0 (color code). For the SIS model,
+we consider a population of NSIS = 1000 individuals and, for the SIR, a population of NSIR = 100
+individuals. In all panels, we fix the recovery rate to γ = 0.1 and modify the infection rate β, such
+that R0 ∈[0.8, 4.0].
+Qualitatively, Figure 3 reveals that the uncertainty of the predictions for the order
+parameter is not uniform but instead varies as a function of the basic reproduction number
+of the disease R0. To quantify such behaviour, we compute the entropy H of the marginal
+probability distributions for the occupation of a single compartment X in each epidemic
+model, denoted by P(X) as follows:
+
+Entropy 2024, 26, 888
+8 of 15
+H = −∑
+X
+P(X) log P(X),
+(15)
+where X stands for the infected (recovered) compartment I (R) in the case of the SIS
+(SIR) model.
+Figure 3c represents the evolution of entropy for both models as a function of R0
+and the number of individuals initially infected I0. First, we observed that entropy does
+not follow a monotonic dependence on R0 for the SIR model. Instead, entropy reaches a
+maximum value and then drops as R0 increases. This behaviour is driven by the presence
+of a no-outbreak probability, which significantly influences the system when R0 ∼1.0,
+leading to a greater uncertainty. As R0 grows further, the probability of a minor outbreak
+diminishes, and the cloud probability around ρ∞
+R ∼0 shrinks. Analogously, for the SIS
+model, there is a high probability of falling into the absorbing state in the vicinity of R0 ≃1,
+which starts decreasing with R0, favoring the occupation of the epidemic metastable state
+to the detriment of the absorbing state. This phenomenon is reflected by the increase in
+entropy observed for the SIS model with R0, which might give rise to a non-monotonic
+behaviour when the occupation of the metastable epidemic state becomes dominant over
+the absorbing one. Note that the entropy for the SIS model is analyzed at t = 1000 as
+in the steady state H∞
+SIS = 0, provided the absorbing state is the single equilibrium of
+the dynamics.
+3.2. The Probability of No-Outbreak in the Doi–Peliti Formalism
+The interplay between the stochastic nature of compartmental models and the exis-
+tence of absorbing states has been long studied in the mathematical epidemiology field. In
+1955, Whittle [38] derived the probability to find a minor outbreak caused by a pathogen
+with a given reproduction number R0. Using the theory of branching processes, the proba-
+bility of extinction of an outbreak given a number of I0 individuals, πNO(I0), is fulfilled
+as follows:
+πNO(I0) =
+βS0I0/N
+βS0I0/N + γI0
+πNO(I0 + 1) +
+γI0
+βS0I0/N + γI0
+πNO(I0 −1) .
+(16)
+Note that the two terms in the previous equation can be related to HSIR in the Doi–Peliti
+approach. In particular, βS0I0/N corresponds to the rate of transition H|S0,I0⟩,|S0−1,I0+1⟩,
+whereas the term γI0 corresponds to H|S0,I0⟩,|S0,I0−1⟩.
+Considering a small number of infectious individuals, we can assume S0 ≃N, turning
+Equation (16) into the following:
+πNO(I0) =
+R0
+R0 + 1πNO(I0 + 1) +
+1
+R0 + 1πNO(I0 −1)
+(17)
+For the simplest case I0 = 1, and bearing in mind that πNO(0) = 1, since no outbreak can
+take place without the initial infectious individuals, the equation is reduced to a quadratic
+form with the following roots:
+R0
+R0 + 1πNO(1)2 −πNO(1) +
+1
+R0 + 1 = 0 −→πNO(1) =
+
+
+
+1
+R0 < 1
+1
+R0
+R0 > 1
+(18)
+Finally, introducing a tree-like assumption [22] in the presence of multiple initially
+infected individuals, i.e., π2 = (π1)2, we can generalize the former equation as follows:
+πNO(I0) =
+
+
+
+
+
+1
+R0 < 1
+ 1
+R0
+I0
+R0 > 1
+(19)
+
+Entropy 2024, 26, 888
+9 of 15
+To validate this theoretical expression, we perform agent-based simulations relying
+on the τ-leap algorithm. In particular, we consider a population of N = 105 individuals
+and compute the probability of not observing an outbreak by varying the initial number
+of infected individuals I0 and the basic reproduction number of the pathogen R0. The
+probability of no outbreak πNO(I0) is computed as the fraction of simulations giving rise to
+minor outbreaks with little impact on the population. To compute such quantity, we classify
+an epidemic trajectory as a minor outbreak when less than 20% of the expected attack rate
+of the major outbreak, Rdet
+∞, has been infected throughout the dynamics. Mathematically,
+we assume that the attack rate Rminor
+∞
+of minor outbreaks fulfils Rminor
+∞
+≤0.2Rdet
+∞+ I0. Since
+no major outbreak can be reached when R0 < 1, we assume Rminor
+∞
+≤0.2N + I0 in this case.
+Figure 4 shows that the theoretical expression fairly captures the results from the stochastic
+simulations. Note that the choice of R∞
+minor is somehow arbitrary as there is not a unique
+way of defining the attack rate corresponding to a minor outbreak in the SIR model as a
+function of R0. Nonetheless, we have checked that the results remain consistent under
+other choices for R∞
+minor.
+Figure 4. Probability of generating minor epidemic outbreaks as a function of the basic reproduction
+number R0 and the number of individuals initially infected I0 (symbols and color code). Dashed
+lines represent theoretical estimations obtained from Equation (19). Filled dots represent integration
+in the region of low attack rates (see text for details) of the probability density function for recovered
+individuals obtained through the Doi–Peliti equations. Empty dots represent the results from
+agent-based simulations using the τ-leap algorithm. We simulate n = 1000 epidemic trajectories,
+considering that a minor outbreak is characterized by an attack rate Rminor
+∞
+< 0.20N + I0 if R0 < 1
+and Rminor
+∞
+< 0.05R∞+ I0 if R0 > 1.
+Despite the former agreement, performing agent-based simulations comes with a high
+computational cost. Obtaining significant results requires considering very large popula-
+tions to avoid finite size effects, and many outbreaks should be simulated to attain enough
+statistics to compare them with the theoretical predictions. In contrast, the Doi–Peliti equa-
+tions can be readily leveraged to compute the probability of minor outbreaks. To do so,
+we must restrict ourselves to the region of low attack rates and integrate the probability
+density function of the recovered individuals once the steady state has been reached, fix-
+ing the upper bound of integration to the values of Rminor
+∞
+considered in the agent-based
+simulations. Figure 4 confirms that the Doi–Peliti equations allow for characterizing the
+probability of observing minor outbreaks in the population without the need to perform
+any agent-based simulations.
+
+Entropy 2024, 26, 888
+10 of 15
+3.3. The Predictability Problem of the SIR Model
+Apart from capturing the probability of minor outbreaks, the Doi–Peliti equations can
+be leveraged to quantify how the inherent stochasticity of epidemic processes shapes the
+uncertainty of forecasts during an epidemic outbreak. This uncertainty does not come from
+the model complexity or trajectory degeneracy in the space of parameters but instead is a
+consequence of the existence of an underlying probabilistic ensemble of trajectories which
+can be generated with fixed epidemiological parameters and initial conditions.
+To tackle this problem, we generate a synthetic trajectory with the deterministic
+equations of the SIR model and assume that these data represent the actual time evolution
+of an epidemic outbreak with R0 = 6.0. To address how epidemic uncertainty changes over
+time, we run Equation (12), assuming that the initial conditions correspond to the epidemic
+state of the system across different time points of the epidemic trajectory. Note that, for
+each time step, starting the epidemic outbreak from an epidemic point resembles the effect
+of measurements in quantum mechanics (epidemic data), which change the probabilistic
+state of the system to a well-defined one.
+Figure 5 represents the time evolution of the probability density functions for the
+density of infected individuals assuming four different initial times: t0 = 0 (Panel a),
+t0 = tpeak/2 (Panel b), t0 = tpeak (Panel c), and t0 = 20 (Panel d). Several key insights
+can be drawn from this figure. First, the width of the probability cloud decreases as the
+initial condition time increases, indicating a reduction in the uncertainty present in the
+system. Moreover, the Doi–Peliti formalism reveals vastly different epidemic impacts
+around the epidemic peak, which shows how deterministic approaches overlook many
+possible epidemic scenarios [39]. Additionally, in Panels b–d, the probability of no outbreak
+disappears due to the large initial conditions.
+Figure 5. Time evolution of the probability of finding a fraction ρI of individuals in the infected
+compartment I, P(ρI) (color code), for the SIR dynamics of a pathogen with R0 = 6 propagating
+across a population of N = 100 individuals. The initial conditions to run the Doi–Peliti equations
+(cross symbol) are set according to the values of the deterministic epidemic trajectories at different
+stages t0 of the outbreak: (a) t0 = 0, (b) t0 = tpeak/2, (c) t0 = tpeak and (d) t0 = 20.
+To further quantify the time evolution of the predictability of the outbreak, we con-
+sider different initial time points and compute the entropy of the generated probability
+distributions of infected individuals at the epidemic peak, Hin f (tpeak). The latter reads
+as follows:
+
+Entropy 2024, 26, 888
+11 of 15
+Hin f (tpeak) = −∑
+I
+P
+
+I(tpeak)
+
+log P
+
+I(tpeak)
+
+(20)
+For the sake of generality, we perform the former analysis by considering several
+epidemic outbreaks characterized by different R0 values. For a fair comparison between
+epidemic scenarios, we consider the time points ˜t0 in terms of the relative difference
+between the time where forecasts are made and the time of the epidemic peak. In particular,
+we define ∆˜t0 =
+
+t0 −tpeak
+
+/tpeak with ∆˜t0 ∈[−1, 0].
+Figure 6a represents the time evolution of the epidemic uncertainty of the peak
+Hin f (tpeak) as a function of the time taken for forecasting purposes ∆˜t0. There, we ob-
+serve that the entropy Hin f initially rises around ∆˜t ≈−1, reaches a maximum, and then
+drops to zero at ∆˜t = 0. The initial rise in entropy may seem counterintuitive at first
+sight, but it is linked to the no-outbreak probability. When I0 is small (∆˜t0 ≈−1), there is
+a non-negligible probability of no outbreak (P0 ≡πNO(I0) > 0) present throughout the
+time series (Figure 5a). As ∆˜t0 grows, P0 decreases, leading to a less defined state (inset
+of Figure 6a). This loss of information about the state is reflected in the slight rise in the
+entropy. Once the initial conditions discard minor outbreaks, the uncertainty of forecasts
+decreases as they are made closer to the epidemic peak, thus replicating the observed
+phenomena in classical deterministic models [20].
+Figure 6. (a): Entropy of the marginal distribution of infected individuals at the epidemic peak
+Hin f (tpeak) as a function of the time from which forecasts are made ∆˜t0 and the reproduction number
+of the pathogen R0 (color code). The inset panel shows the time evolution of the marginal probability
+distribution for the fraction of population in the infected state at the epidemic peak P(ρI(tpeak)) (color
+code). (b) Relative position of the highest entropy observed in the epidemic trajectory ∆˜tHmax
+in f as a
+function of ∆˜t and the reproduction number of the pathogen R0 (color code). In all panels, time is
+measured in relative units to the position of the epidemic peak (see text for further details).
+In Figure 6b, we represent
+∆˜tHmax
+in f =
+
+tHmax
+in f −tpeak
+
+tpeak
+(21)
+against ∆˜t0, measuring the relative position of the maximum entropy found in the epidemic
+trajectory, tHmax
+in f , compared to the time at which the peak of infected individuals occurs.
+∆˜tHmax
+in f < 0 indicates that the maximum of entropy occurs before the peak of contagions,
+and ∆˜tHmax
+in f > 0 implies that the uncertainty is higher at later stages. At early times of the
+
+Entropy 2024, 26, 888
+12 of 15
+outbreak, we find ∆˜tHmax
+in f < 0, indicating that maximum uncertainty precedes the infection
+peak. Regardless of the basic reproduction number R0, the latter position is delayed
+as forecasts are performed at later stages. Interestingly, such delay is not linear with
+the forecasting time, highlighting a complex interplay between the underlying stochastic
+dynamics and the probabilistic output of epidemic processes in determining the uncertainty
+associated with epidemic forecasts.
+4. Discussion
+Compartmental models are widely used to characterize mathematically epidemic
+outbreaks, obtain short-term forecasts on their evolution, and design control policies
+to mitigate their impact on society [40,41]. These models usually rely on deterministic
+approaches based on ODEs to produce the expected time evolution of the number of cases
+in the population. Therefore, most of the epidemic trajectories obtained do not account
+for the stochastic nature of the underlying epidemiological processes driving the onset
+of infectious diseases. To overcome this limitation, in this work, we have developed a
+quantum-like approach, based on a Hamiltonian formulation of both the SIS and SIR
+dynamics through Doi–Peliti equations. Our approach provides a probabilistic description
+of the ensemble of possible epidemic trajectories yielded by the stochasticity of both
+contagion and recovery processes.
+The analysis of the probabilistic cloud of infections reveals interesting phenomena
+which cannot be observed through the lens of deterministic models. For the SIR model, we
+have first shown how such clouds typically present two disjoint areas with high density
+of trajectories, corresponding to the propagation of major and minor outbreaks in the
+population. Indeed, our results showed that the Doi–Peliti equations yield a fair estimation
+of probability that a given pathogen generates a minor outbreak without the need of
+performing computationally expensive agent-based simulations.
+Focusing on major outbreaks, our results show that the uncertainty of epidemic
+trajectories is not uniform across time, being maximal around the peak of contagions.
+This finding poses theoretical constraints to the accuracy of long-term forecasts on the
+position and magnitude of the epidemic peak. Indeed, for several pathogens with different
+infectiousness, we show how the forecasts uncertainty around the epidemic peak is only
+reduced when those are made considerably close to its position. Therefore, our results prove
+that the reliability of epidemic forecasts is not only limited by the intrinsic complexity of
+compartmental models [42,43] but also by the stochasticity of the epidemiological processes
+determining the onset of pathogens in the population.
+Regarding the limitations of the present work, one significant challenge is the amount
+of memory needed to store the propagators in the equations. These propagators are
+typically sparse as transitions between many epidemic states are not allowed given the
+definition of the ladder operators. Nonetheless, memory demands can become a limiting
+factor to analyze epidemic outbreaks in large size populations as the size of the propagators
+scales with the number of individuals N. From a practical point of view, both the compart-
+mental model describing the course of the disease and the assumptions on the structure
+of contacts should be improved to use our formalism in a real epidemic scenario [44].
+Factors such as political interventions, mobility patterns, demographic information, or
+spatial structure must be incorporated to account for more complex behaviours within the
+model [45]. However, yet improving the realism of the model, such refinements would also
+enlarge the propagators of the system considerably, as more information would be required
+to capture the evolution of any possible microstate in the system.
+In summary, our study highlights that the mathematical characterization of epidemic
+dynamics through deterministic ODEs misses very rich phenomena arising from the
+stochasticity of epidemic outbreaks. We believe our theoretical framework provides a
+solid ground for the future development of more complex models, leveraging advanced
+probabilistic models to refine our understanding of epidemic phenomena reported in agent-
+based simulations. For instance, the extension of this framework to networked populations
+
+Entropy 2024, 26, 888
+13 of 15
+could improve our understanding of the Griffiths phases [46,47] appearing close to the
+epidemic threshold in complex networks. Likewise, the Doi–Peliti equations on metapopu-
+lations could serve as a benchmark to characterize the so-called invasion threshold [48,49]
+of pathogens driven by epidemic mobility without the need for agent-based simulations.
+This ongoing development is promising for enhancing the predictive capabilities and im-
+proving our responses to future outbreaks, contributing to better public health outcomes
+and more accurate interventions.
+Author Contributions: Conceptualization, J.A.R.-V. and R.G.H.; methodology, J.A.R.-V., R.G.H.,
+J.G.-G. and D.S.-P.; software, J.A.R.-V. and P.G.-S.; validation, J.A.R.-V. and P.G.-S.; writing—original
+draft preparation, J.A.R.-V. and P.G.-S.; writing—review and editing, R.G.H., J.G.-G. and D.S.-P. All
+authors have read and agreed to the published version of the manuscript.
+Funding: P.G.S. and J.G.G. acknowledge financial support from the Departamento de Industria e Inno-
+vación del Gobierno de Aragón y Fondo Social Europeo (FENOL group grant E36-23R) and from Min-
+isterio de Ciencia e Innovación through project PID2020-113582GB-I00/AEI/10.13039/501100011033.
+P.G.S. acknowledges financial support from the European Union-NextGenerationEU and Servicio
+Público de Empleo Estatal through Programa Investigo 024-67. D.S.P. acknowledges financial sup-
+port through grants JDC2022-048339-I and PID2021-128005NB-C21 funded by the European Union
+“NextGenerationEU”/PRTR” and MCIN/AEI/10.13039/501100011033. J.A.R.-V. and R.G.H. ac-
+knowledge financial support from Universidad Nacional de Colombia, Centro de Excelencia en
+Computación Científica, through project HERMES 52625.
+Data Availability Statement: The original contributions presented in the study are included in the
+article, further inquiries can be directed to the corresponding author/s.
+Conflicts of Interest: The authors declare no conflicts of interest.
+References
+1.
+Morris, D.H.; Rossine, F.W.; Plotkin, J.B.; Levin, S.A. Optimal, near-optimal, and robust epidemic control. Commun. Phys. 2021,
+4, 78. [CrossRef]
+2.
+Castioni, P.; Gòmez, S.; Granell, C.; Arenas, A. Rebound in epidemic control: How misaligned vaccination timing amplifies
+infection peaks. arXiv 2024, arXiv:2405.17189.
+3.
+Kermack, W.; Mckendrick, A.G. A contribution to the mathematical theory of epidemics. Proc. R. Soc. Lond. Ser. A Contain. Pap.
+Math. Phys. Character 1927, 115, 700–721. [CrossRef]
+4.
+Diekmann, O.; Heesterbeek, J.; Metz, J. On the definition and the computation of the basic reproduction ratio R 0 in models for
+infectious diseases in heterogeneous populations. J. Math. Biol. 1990, 28, 365–382. [CrossRef]
+5.
+Desai, A.N.; Kraemer, M.U.; Bhatia, S.; Cori, A.; Nouvellet, P.; Herringer, M.; Cohn, E.L.; Carrion, M.; Brownstein, J.S.; Madoff,
+L.C.; et al. Real-time epidemic forecasting: Challenges and opportunities. Health Secur. 2019, 17, 268–275. [CrossRef]
+6.
+Moran, K.R.; Fairchild, G.; Generous, N.; Hickmann, K.; Osthus, D.; Priedhorsky, R.; Hyman, J.; Valle, S.Y.D. Epidemic Forecasting
+is Messier Than Weather Forecasting: The Role of Human Behavior and Internet Data Streams in Epidemic Forecast. J. Infect. Dis.
+2016, 214, S404–S408. [CrossRef]
+7.
+Krapivsky, P.; Redner, S. Epidemic forecast follies. npj Complex. 2024, 1, 7. [CrossRef]
+8.
+Penn, M.J.; Laydon, D.J.; Penn, J.; Whittaker, C.; Morgenstern, C.; Ratmann, O.; Mishra, S.; Pakkanen, M.S.; Donnelly,
+C.A.; Bhatt, S. Intrinsic randomness in epidemic modelling beyond statistical uncertainty.
+Commun. Phys. 2023, 6, 146.
+[CrossRef]
+9.
+Colizza, V.; Barrat, A.; Barthélemy, M.; Vespignani, A. Predictability and epidemic pathways in global outbreaks of infectious
+diseases: The SARS case study. BMC Med. 2007, 5, 34. [CrossRef]
+10.
+Datilo, P.M.; Ismail, Z.; Dare, J. A review of epidemic forecasting using artificial neural networks. Epidemiol. Health Syst. J. 2019,
+6, 132–143.
+11.
+Scarpino, S.V.; Petri, G. On the predictability of infectious disease outbreaks. Nat. Commun. 2019, 10, 898. [CrossRef] [PubMed]
+12.
+Bavel, J.J.V.; Baicker, K.; Boggio, P.S.; Capraro, V.; Cichocka, A.; Cikara, M.; Crockett, M.J.; Crum, A.J.; Douglas, K.M.; Druckman,
+J.N.; et al. Using social and behavioural science to support COVID-19 pandemic response. Nat. Hum. Behav. 2020, 4, 460–471.
+[CrossRef] [PubMed]
+13.
+Markov, P.V.; Ghafari, M.; Beer, M.; Lythgoe, K.; Simmonds, P.; Stilianakis, N.I.; Katzourakis, A. The evolution of SARS-CoV-2.
+Nat. Rev. Microbiol. 2023, 21, 361–379. [CrossRef] [PubMed]
+14.
+Shea, K.; Borchering, R.K.; Probert, W.J.; Howerton, E.; Bogich, T.L.; Li, S.L.; van Panhuis, W.G.; Viboud, C.; Aguás, R.; Belov, A.A.;
+et al. Multiple models for outbreak decision support in the face of uncertainty. Proc. Natl. Acad. Sci. USA 2023, 120, e2207537120.
+[CrossRef]
+
+Entropy 2024, 26, 888
+14 of 15
+15.
+Sherratt, K.; Gruson, H.; Johnson, H.; Niehus, R.; Prasse, B.; Sandmann, F.; Deuschel, J.; Wolffram, D.; Abbott, S.; Ullrich, A.;
+et al. Predictive performance of multi-model ensemble forecasts of COVID-19 across European nations. eLife 2023, 12, e81916.
+[CrossRef]
+16.
+Gallo, L.; Frasca, M.; Latora, V.; Russo, G. Lack of practical identifiability may hamper reliable predictions in COVID-19 epidemic
+models. Sci. Adv. 2022, 8, 5234. [CrossRef]
+17.
+Gutenkunst, R.N.; Waterfall, J.J.; Casey, F.P.; Brown, K.S.; Myers, C.R.; Sethna, J.P. Universally sloppy parameter sensitivities in
+systems biology models. PLoS Comput. Biol. 2007, 3, e189. [CrossRef]
+18.
+Melikechi, O.; Young, A.L.; Tang, T.; Bowman, T.; Dunson, D.; Johndrow, J. Limits of epidemic prediction using SIR models.
+J. Math. Biol. 2022, 85. [CrossRef]
+19.
+Case, B.K.; Young, J.G.; Hébert-Dufresne, L. Accurately summarizing an outbreak using epidemiological models takes time.
+R. Soc. Open Sci. 2023, 10, 230634. [CrossRef]
+20.
+Castro, M.; Ares, S.; Cuesta, J.A.; Manrubia, S. The turning point and end of an expanding epidemic cannot be precisely forecast.
+Proc. Natl. Acad. Sci. USA 2020, 117, 26190–26196. [CrossRef]
+21.
+Greenwood, P.E.; Gordillo, L.F. Stochastic Epidemic Modeling. In Mathematical and Statistical Estimation Approaches in Epidemiology;
+Springer: Dordrecht, The Netherlands, 2009; pp. 31–52. [CrossRef]
+22.
+Allen, L.J. A primer on stochastic epidemic models: Formulation, numerical simulation, and analysis. Infect. Dis. Model. 2017,
+2, 128–142. [CrossRef] [PubMed]
+23.
+Champredon, D.; Li, M.; Bolker, B.M.; Dushoff, J. Two approaches to forecast Ebola synthetic epidemics. Epidemics 2018, 22, 36–42.
+[CrossRef] [PubMed]
+24.
+Artalejo, J.R.; Economou, A.; Lopez-Herrero, M.J. Stochastic epidemic models revisited: Analysis of some continuous performance
+measures. J. Biol. Dyn. 2012, 6, 189–211. [CrossRef] [PubMed]
+25.
+Artalejo, J.; Economou, A.; Lopez-Herrero, M. The stochastic SEIR model before extinction: Computational approaches. Appl.
+Math. Comput. 2015, 265, 1026–1043. [CrossRef]
+26.
+Papageorgiou, V.E.; Tsaklidis, G. A stochastic SIRD model with imperfect immunity for the evaluation of epidemics. Appl. Math.
+Model. 2023, 124, 768–790. [CrossRef]
+27.
+Papageorgiou, V.E. Novel stochastic descriptors of a Markovian SIRD model for the assessment of the severity behind epidemic
+outbreaks. J. Frankl. Inst. 2024, 361, 107022. [CrossRef]
+28.
+Papageorgiou, V.E.; Tsaklidis, G. An improved epidemiological-unscented Kalman filter (hybrid SEIHCRDV-UKF) model for the
+prediction of COVID-19. Application on real-time data. Chaos Solitons Fractals 2023, 166, 112914. [CrossRef]
+29.
+Sebbagh, A.; Kechida, S. EKF-SIRD model algorithm for predicting the coronavirus (COVID-19) spreading dynamics. Sci. Rep.
+2022, 12, 13415. [CrossRef]
+30.
+Nakamura, G.M.; Martinez, A.S. Hamiltonian dynamics of the SIS epidemic model with stochastic fluctuations. Sci. Rep. 2019,
+9, 15841. [CrossRef]
+31.
+Merbis, W.; Domenico, M.D. Emergent information dynamics in many-body interconnected systems.
+Phys. Rev. E 2023,
+108, 014312. [CrossRef]
+32.
+Merbis, W.; de Domenico, M. Complex information dynamics of epidemic spreading in low-dimensional networks. arXiv 2023,
+arXiv:2305.05429.
+33.
+Visco, G.V.; Artime, O.; Nauta, J.; Scagliarini, T.; Domenico, M.D. Effective one-dimension reduction of multi-compartment
+complex systems dynamics. arXiv 2024, arXiv:2404.11366.
+34.
+Doi, M. Second quantization representation for classical many-particle system. J. Phys. A Math. Gen. 1976, 9, 1465. [CrossRef]
+35.
+Peliti, L. Path integral approach to birth-death processes on a lattice. J. Phys. 1985, 46, 1469–1483. [CrossRef]
+36.
+Dodd, P.J.; Ferguson, N.M. A many-body field theory approach to stochastic models in population biology. PLoS ONE 2009,
+4, e6855. [CrossRef]
+37.
+Dirac, P.A.M. The Principles of Quantum Mechanics; Clarendon Press: Oxford, UK, 1930.
+38.
+Whittle, P. The outcome of a stochastic epidemic—A note on Bailey’s paper. Biometrika 1955, 42, 116–122. [CrossRef]
+39.
+House, T.; Ross, J.V.; Sirl, D. How big is an outbreak likely to be? Methods for epidemic final-size calculation. Proc. R. Soc. A
+Math. Phys. Eng. Sci. 2013, 469, 20120436. [CrossRef]
+40.
+Arenas, A.; Gómez-Gardeñes, J.; Granell, C.; Soriano-Paños, D. Epidemic spreading: Tailored models for COVID-19. Europhys.
+News 2020, 51, 38–40. [CrossRef]
+41.
+Tolles, J.; Luong, T. Modeling epidemics with compartmental models. JAMA 2020, 323, 2515–2516. [CrossRef]
+42.
+Myasnikova, E.; Spirov, A. Relative sensitivity analysis of the predictive properties of sloppy models. J. Bioinform. Comput. Biol.
+2018, 16, 1840008. [CrossRef]
+43.
+Rosenkrantz, D.J.; Vullikanti, A.; Ravi, S.; Stearns, R.E.; Levin, S.; Poor, H.V.; Marathe, M.V. Fundamental limitations on efficiently
+forecasting certain epidemic measures in network models.
+Proc. Natl. Acad. Sci. USA 2022, 119, e2109228119. [CrossRef]
+[PubMed]
+44.
+Sudhakar, T.; Bhansali, A.; Walkington, J.; Puelz, D. The disutility of compartmental model forecasts during the COVID-19
+pandemic. Front. Epidemiol. 2024, 4, 1389617. [CrossRef] [PubMed]
+45.
+Estrada, E. COVID-19 and SARS-CoV-2. Modeling the present, looking at the future. Phys. Rep. 2020, 869, 1–51. [CrossRef]
+[PubMed]
+
+Entropy 2024, 26, 888
+15 of 15
+46.
+Cota, W.; Ferreira, S.C.; Ódor, G. Griffiths effects of the susceptible-infected-susceptible epidemic model on random power-law
+networks. Phys. Rev. E 2016, 93, 032322. [CrossRef]
+47.
+Cota, W.; Ódor, G.; Ferreira, S.C. Griffiths phases in infinite-dimensional, non-hierarchical modular networks. Sci. Rep. 2018,
+8, 9144. [CrossRef]
+48.
+Balcan, D.; Vespignani, A. Invasion threshold in structured populations with recurrent mobility patterns. J. Theor. Biol. 2012,
+293, 87–100. [CrossRef]
+49.
+Colizza, V.; Vespignani, A. Invasion threshold in heterogeneous metapopulation networks. Phys. Rev. Lett. 2007, 99, 148701.
+[CrossRef]
+Disclaimer/Publisher’s Note: The statements, opinions and data contained in all publications are solely those of the individual
+author(s) and contributor(s) and not of MDPI and/or the editor(s). MDPI and/or the editor(s) disclaim responsibility for any injury to
+people or property resulting from any ideas, methods, instructions or products referred to in the content.

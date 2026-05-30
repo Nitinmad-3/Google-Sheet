@@ -1,0 +1,709 @@
+Source-PDF: D:\Review\Paper\Clinical prediction bridge (your current query, improved)\highest priority clinical bridge directly about disease predictiondiagnosis\Quantum-Inspired Heuristic Algorithm for Secure Healthcare Prediction Using Blockchain Technology.pdf
+Relative-Path: Paper\Clinical prediction bridge (your current query, improved)\highest priority clinical bridge directly about disease predictiondiagnosis\Quantum-Inspired Heuristic Algorithm for Secure Healthcare Prediction Using Blockchain Technology.pdf
+--------------------------------------------------------------------------------
+
+IEEE JOURNAL OF BIOMEDICAL AND HEALTH INFORMATICS, VOL. 28, NO. 6, JUNE 2024
+3371
+Quantum-Inspired Heuristic Algorithm for
+Secure Healthcare Prediction Using
+Blockchain Technology
+Hirak Mazumdar
+, Member, IEEE, Chinmay Chakraborty
+, Senior Member, IEEE,
+Satheesh Bojja Venkatakrishnan
+, Senior Member, IEEE, Ajeet Kaushik
+, and Hardik A. Gohel
+Abstract—People’s health is adversely affected by en-
+vironmental changes and poor nutritional habits, empha-
+sizing the importance of health awareness. The health-
+care system encounters signiﬁcant challenges, including
+data insufﬁciency, threats, errors, and delays. To address
+these issues and advance medical care, we propose a
+secure healthcare prediction method, prioritizing patient
+privacy and data transmission efﬁciency. The Quantum-
+inspired heuristic algorithm combined with Kril Herd Op-
+timization (QKHO) is introduced for healthcare prediction,
+along with a comparison to the Deep Forward Neural Net-
+work (DFNN) optimized using Krill Herd Optimization (KHO)
+and Quantum-inspired heuristic algorithm combined with
+Kril Herd Optimization. The proposed QKHO model outper-
+forms conventional models and exhibits higher accuracy,
+precision, recall, and F1-score. Blockchain technology en-
+sures secure data transmission to the server, surpassing
+the security level of existing RSA and Difﬁe-Hellman algo-
+rithms.
+Index
+Terms—Healthcare
+prediction,
+biomedical,
+machine learning, quantum krill herd optimization (QKHO),
+deep forward neural network (DFNN) and blockchain.
+Manuscript received 14 May 2023; revised 22 June 2023 and 25
+July 2023; accepted 8 August 2023. Date of publication 11 August
+2023; date of current version 6 June 2024. This work was supported
+by the Applied Artiﬁcial Intelligence (AAI) laboratory at the University of
+Houston Victoria (UHV), through the Generous Summer and Internal
+Research Grants by the UHV’s Ofﬁce of Research and Sponsored
+Program(ORSP). (Corresponding author: Chinmay Chakraborty.)
+Hirak Mazumdar is with the School of Technology, Woxsen University,
+Hyderabad 502345, India (e-mail: hirak.mazumdar@woxsen.edu.in).
+Chinmay Chakraborty is with the Electronics and Communication
+Engineering, BIT Mesra, Mesra, Jharkhand 814142, India (e-mail: ccha-
+krabarty@bitmesra.ac.in).
+Satheesh Bojja Venkatakrishnan is with the Florida International Uni-
+versity, Miami, FL 33199 USA (e-mail: sbojjave@ﬁu.edu).
+Ajeet Kaushik is with the NanoBioTech Laboratory, Department of
+Environmental Engineering, Florida Polytechnic University, Lakeland,
+FL 33805 USA, and also with the School of Engineering, University
+of Petroleum and Energy Studies, Dehradun 248007, India (e-mail:
+akaushik@ﬂoridapoly.edu).
+Hardik A. Gohel is with the Applied AI Research Laboratory, De-
+partment of Computer Information Sciences, University of Houston at
+Victoria, Victoria, TX 77901 USA (e-mail: gohelh@uhv.edu).
+Digital Object Identiﬁer 10.1109/JBHI.2023.3304326
+I. INTRODUCTION
+A
+RTIFICIAL Intelligence (AI) has gained considerable mo-
+mentum in driving human intelligence processes, particu-
+larly in healthcare and the Internet of Things (IoT) domains [1],
+[2]. IoT is often integrated with AI-driven systems to monitor
+health statuses based on sensor output. Machine learning and
+deep learning algorithms help analyze images to detect diseases
+and maintain healthier environments. Centralized data used in
+these algorithms can create problems such as security issues,
+single points of failure, and increased latency. IoT is a critical
+technology connecting the physical and digital worlds [3], [4],
+[5].
+IoT technology enables machine-to-machine communication,
+allowing for data sharing without human intervention. Smart
+healthcare systems utilizing IoT can monitor patient progress
+and movement, including during clinical trials [6]. Blockchain
+technology has the potential to enhance healthcare domains
+through decentralization, heightened data protection and conﬁ-
+dentiality, patient control over health information, increased ac-
+cessibilityandresilience,transparency,trustworthiness,anddata
+validation. It has been particularly beneﬁcial in safely sharing
+COVID-19 data between clinical laboratories and hospitals [7],
+[8].
+Quantum computing enhances secure data processing in
+smart healthcare systems, while blockchain technology creates
+a shared archive of health information, improving safety and
+privacy. Quantum computing revolutionizes healthcare by an-
+alyzing Big Data and improving patient care, while securing
+blockchain systems for sensitive data storage. Integration of
+quantum computing in healthcare enables patient-centric ser-
+vices through the cloud [9].
+This study focuses on quantum models using quantum heuris-
+tic algorithms in healthcare applications. It presents a Deep
+Feedforward Neural Network (DFNN) optimized by Krill Herd
+Optimization (KHO) algorithm and Quantum Krill Herd Opti-
+mization for healthcare prediction. This system predicts normal
+or abnormal human conditions, securely transmitting abnormal
+data to servers using blockchain technology, ensuring hetero-
+geneity, incompleteness, timeliness,
+longevity, privacy, and
+ownership.
+The primary contributions of this study encompass the fol-
+lowing aspects:
+2168-2194 © 2023 IEEE. Personal use is permitted, but republication/redistribution requires IEEE permission.
+See https://www.ieee.org/publications/rights/index.html for more information.
+Authorized licensed use limited to: Rajshahi University Of Engineering and Technology. Downloaded on April 13,2026 at 18:13:37 UTC from IEEE Xplore.  Restrictions apply. 
+
+3372
+IEEE JOURNAL OF BIOMEDICAL AND HEALTH INFORMATICS, VOL. 28, NO. 6, JUNE 2024
+Fig. 1.
+Schematic diagram for proposed healthcare prediction using blockchain technologies.
+1) The article presents a healthcare prediction method to
+improve medical care by tackling health-support system
+challenges.
+2) The article proposes a healthcare prediction method using
+a Quantum-inspired heuristic algorithm with Kril Herd
+Optimization(QKHO)andadeepforwardneuralnetwork
+(DFNN) enhanced by a Kril Herd Optimization (KHO)
+algorithm.
+II. RELATED WORKS
+In this section, the literature on healthcare prediction and
+secure data transmission in the medical ﬁeld is discussed.
+Muthu et al. explored the use of IoT-based wearable sensors
+for healthcare forecasting and symptom analysis [10], aiming
+to address issues such as delayed transmission, data threats,
+and misdiagnosis. They proposed a generalized solution called
+GARIC, which uses regression rules to collect patient data
+from IoT. Chung and Jung developed a dynamic cluster model
+using a convolutional neural network for healthcare predic-
+tions [11], resulting in a signiﬁcant amount of high-quality
+data and improving the predictive model’s performance by
+13%.
+Big data analysis offers signiﬁcant opportunities for health
+predictions. Venkatesh et al. used the Big Data Predictive Ana-
+lytics Model with Naive Bayes (BPA-NB) [12] for large datasets,
+training on heart disease data and achieving 97.12% accuracy.
+However, cloud-hosted health management systems still face
+challenges handling extensive health data volumes for testing
+and organization.
+Kumar, Vimala, and Brito proposed cognitive technology
+for effective management and distribution of medical data in
+healthcare [13]. The Cognitive Data Transfer System (CDTM)
+signiﬁcantly improved data transmission for patients with poor
+health, enhancing accuracy, bandwidth, and CPU usage. Quan-
+tum technologies offer advancements in computing, addressing
+challengesinprocessingandanalyzingmedicalBigDatabeyond
+classical machine limits. Quantum computers utilize qubits,
+which allow faster solving of complex problems compared to
+classicalcomputersthatusebinarybits.Quantummachinelearn-
+ing (QML) combines quantum systems and machine learning
+techniques, providing speedups in various clinical analyses, bi-
+ological parameters, and imaging modalities, beneﬁting medical
+professionals [14].
+Guang et al. proposed an architecture for HER where an
+authentication method was provided but according to their per-
+formance it shows very poor in nature [15].
+The existing blockchain and traditional cryptographic meth-
+ods face vulnerabilities with the emergence of quantum comput-
+ers, which raises concerns about their ability to ensure sufﬁcient
+security. Consequently, the advancement of quantum blockchain
+machine learning techniques can bolster the algorithm’s security
+measures.
+III. BLOCKCHAIN-BASED SECURE HEALTHCARE PREDICTION
+MODEL USING DFNN
+A. Overview
+The proposed model utilizes IoT data and an enhanced deep
+feed-forward neural network (DFNN) for normal and abnormal
+data prediction. Krill herd optimization optimizes DFNN weight
+and bias, while DFNN and QKH algorithm ensure high accu-
+racy. Secure, quantum-level data transmission is achieved with
+blockchain technology.
+Authorized licensed use limited to: Rajshahi University Of Engineering and Technology. Downloaded on April 13,2026 at 18:13:37 UTC from IEEE Xplore.  Restrictions apply. 
+
+MAZUMDAR et al.: QUANTUM-INSPIRED HEURISTIC ALGORITHM FOR SECURE HEALTHCARE PREDICTION
+3373
+B. Healthcare Prediction Using DFNN
+The DFNN is a deep learning model that learns hierarchical
+data representations without using data transformation layers.
+It consists of input, hidden, and output layers, each with sev-
+eral interconnected processing units. The model is applied to
+two well-known datasets, including heart disease and thyroid
+datasets.
+The DFNN can be represented mathematically with input
+features [fm] and ‘O’. ‘OH’ indicates the output time for the
+hidden layer. As DFNN has multiple hidden layers, the main
+hidden layer’s load increases. Each ﬁrst hidden element output
+is multiplied by weights in the second hidden layer [16].
+The computation of the weighted values for the data within
+the initial hidden layer is carried out by employing (1):
+OH1(x = 1, 2, . . . , K) =
+ M
+
+m=1
+axmfm
+
++ Cx
+(1)
+Here, Cx is the bias, axm is the weight between the input feature
+and the ﬁrst hidden layer is represented, while M and K denote
+the quantity of hidden and input nodes within the primary hidden
+layer, respectively.
+Equation (2) provides the expression for the activation func-
+tion pertaining to the output of the initial hidden layer:
+G(OH1(x)) =
+1
+(1 + e−OH1(x))
+(2)
+Equation (3) outlines the functionality of the hidden layer at the
+nth position:
+OHn(q) =
+ K
+
+z=1
+aqzG(OHn−1(z))
+
++ Cq
+(3)
+Cq represents the bias for the hidden node at the qth position,
+while aqz signiﬁes the weight connecting the nth and (n −1)th
+hidden layers, both containing K hidden nodes.
+The activation function in (4) characterizes the output gener-
+ated by the nth hidden layer:
+G(OHn(q)) =
+1
+(1 + e−OHn(q))
+(4)
+In the output layer, the nth hidden layer’s output is multiplied
+by the interconnecting weights and combined with the bias Cp,
+as illustrated by (5):
+O(p) = G
+ K
+
+q=1
+apqG(OHn(q)) + Cp
+
+(5)
+In this case, apq denotes the weight connecting the nth hidden
+layer and the output layer, speciﬁcally between the pth and qth
+nodes.
+For the enhancement of the DFNN, it is essential to mini-
+mize the discrepancy between the model output and the desired
+output. The error measurement is determined by utilizing (6):
+Error = 1
+M
+M
+
+m=1
+(A(Om) −T(OT ))2
+(6)
+A(Om) represents the desired output, while T(OT ) signiﬁes the
+actual output. To diminish the error, the weight values need to
+undergo iterative adjustments.
+C. Fine-Tuning Phase
+The DFNN’s weight parameters are altered using the krill
+herd optimization (KHO) algorithm, inspired by Antarctic krill
+swarming behavior. Krill growth focuses on increasing density,
+ﬁnding food, and seeking high-food areas. A guiding target
+directs krill towards optimal conﬁgurations, resulting in low ob-
+jective function values near high density and nutrient separation.
+Hunting affects the swarm by decreasing density and separating
+krill from food sources.
+Initialization: During this phase, the solutions or krill are
+initialized. In the context of this work, the weight parameters of
+the DFNN need to be optimized. Thus, these weight parameters
+or solutions are initialized as follows [16]:
+Set = k1, k2, k3, . . . , kN
+(7)
+Here, kN denotes the Nth solution or krill, which can be deﬁned
+as:
+kN = vab, vbc, vcdN
+(8)
+In the equation, vab is the input-ﬁrst hidden layer weight, vbc is
+the weight between adjacent hidden layers, and vcd is the weight
+between the nth output and hidden layers with unique nodes c
+and d.
+Fitness calculation: Once the solutions are initialized, the
+ﬁtness function is estimated to evaluate each solution. In this
+work, the ﬁtness function is deﬁned as follows [17]:
+FN = min(Error)
+(9)
+Using this ﬁtness function, each solution is evaluated, and the
+solution with the minimum ﬁtness is selected as the optimal
+solution.
+Update the solution: The KH algorithm’s immediate state
+involves the separation and mass of krill, with the highest
+thickness indicating each person’s ﬁtness nutrition center. Three
+inﬂuential factors for individual krill include movement induced
+by other krill, foraging activity, and random diffusion.
+Movement prompted by other krill individuals: Krill individu-
+als aim for higher density while inﬂuenced by others’ movement.
+This motion, (Ωp), is assessed by three effects: local, target, and
+repulsive. For krill individual t:
+Y new
+t
+= δtY max
+t
++ uxY old
+t
+(10)
+δt =
+nt
+
+j=1
+(Fita −Fitb)
+(Fita −Fitb) ×
+(wa −wb)
+(|wa −wb| + rand(0, 1))
+
++ 2
+
+rand(0, 1) +
+iter
+itermax
+
+wbest
+a Fitbest
+a
+(11)
+Y max
+t
+: max induced motion, ux: inertia weight ([0,1]), Y old
+t
+:
+previous induced motion.
+Authorized licensed use limited to: Rajshahi University Of Engineering and Technology. Downloaded on April 13,2026 at 18:13:37 UTC from IEEE Xplore.  Restrictions apply. 
+
+3374
+IEEE JOURNAL OF BIOMEDICAL AND HEALTH INFORMATICS, VOL. 28, NO. 6, JUNE 2024
+Fig. 2.
+Comparison of classiﬁcation performance for heart disease datasets. (a) Comparison of standard metrices, such as precision, accuracy,
+recall, and F1-score. (b) The ROC-AUC curves. (c) Representation of the learning trajectory in terms of test accuracy and loss (Top four learning
+approaches with 500 epochs). (d) Depiction of the learning trajectory for test loss and accuracy, comparing the presence or absence of a quantum
+layer over 500 epochs. (e) The Confusion matrix for different learning approaches.
+Sensing distance (Esense):
+Esense =
+1
+5NTotal
+NTotal
+
+l=1
+|wa −wl|
+(12)
+Krill with distance less than Esense are neighbors.
+Calculate foraging activity: Foraging velocity depends on
+current and previous food location data for the ath krill personal:
+Y new
+Fa
+= 0.02 ×
+
+2 ×
+
+1 −
+iter
+itermax
+
+× wa ×
+ l = 1ntwa/Fitl
+ k = 1nt1/Fitb
+
+Authorized licensed use limited to: Rajshahi University Of Engineering and Technology. Downloaded on April 13,2026 at 18:13:37 UTC from IEEE Xplore.  Restrictions apply. 
+
+MAZUMDAR et al.: QUANTUM-INSPIRED HEURISTIC ALGORITHM FOR SECURE HEALTHCARE PREDICTION
+3375
+Fig. 3.
+Comparison of classiﬁcation performance for Thyroid disease datasets. (a) Comparison of standard metrices, such as precision, accuracy,
+recall, and F1-score. (b) The ROC-AUC curves. (c) Representation of the learning trajectory in terms of test accuracy and loss (Top four learning
+approaches with 500 epochs) (d) Depiction of the learning trajectory for test loss and accuracy, comparing the presence or absence of a quantum
+layer over 500 epochs. (e) The Confusion matrix for different learning approaches.
++ Fitabest × Sbest
+a
+	
++ wxf × Y Fa
+old
+(13)
+wxf: inertia weight of foraging motion.
+Calculate random diffusion: To increase population diversity,
+random dispersal is considered:
+Y new
+Da = α × Y max
+D
+(14)
+α: random directional vector in [−1, 1].
+Position update: The pth krill’s updated position can be ex-
+pressed as:
+wnew’
+a
+=wnew
+a
++
+
+Y new
+a
++Y new
+Fa +Y new
+Da
+
+×Pconstant
+nd
+
+j=1
+(Xj −Yj)
+(15)
+The qth component of the pth krill is:
+wa,j =
+
+wl,j
+if rand ≤C
+ua,j
+if rand < C
+(16)
+C denotes Crossover probability rate: 0.2Fitbest
+a .
+Authorized licensed use limited to: Rajshahi University Of Engineering and Technology. Downloaded on April 13,2026 at 18:13:37 UTC from IEEE Xplore.  Restrictions apply. 
+
+3376
+IEEE JOURNAL OF BIOMEDICAL AND HEALTH INFORMATICS, VOL. 28, NO. 6, JUNE 2024
+Algorithm 1: Quantum Krill Herd Algorithm [23].
+1:
+Input: h, ωn, ωf, Dmax, Vf, tmax, N max, J;
+2:
+Output: u;
+3:
+t = 1; δ ∈[0, 1];
+4:
+Evaluate individuals;
+5:
+Rank individuals; u′ as current best; Forj = 1 to h
+6:
+Calculate N new
+j
+, F new
+j
+, Dj;
+7:
+Update krill position;
+8:
+Quantum mutation if ΔJ ≥0;
+9:
+Update u, mutate inferior krill;
+10:
+t ←t + 1;
+11:
+Repeat if t ≤tmax, return u otherwise;
+Mutation operation: Mutation process is modeled by:
+wa,j = wbest,j + β(wm,j −wn,j)
+(17)
+wmod
+a,j =
+
+wnew
+a,j
+if rand ≤MR
+wa,j
+if rand > MR
+(18)
+Termination criteria: The algorithm halts after reaching the max
+iterations, selecting the solution with the highest ﬁtness value
+as the best weight parameters. Upon achieving the best exercise
+using the KHO algorithm, this solution is applied to the DFNN,
+forming the KHO-based weight improvement process.
+IV. QUANTUM-INSPIRED MACHINE LEARNING AND KRILL
+HERD ALGORITHM
+Machine learning technologies analyze large datasets using
+various techniques, with quantum machine learning (QML) fo-
+cusing on enhancing performance via quantum computers [18].
+Quantum computing addresses classical ML limitations, though
+noise may cause discrepancies [19]. Quantum neural networks
+(QNN) involve qubits or quantum kernels for dimensionality
+reduction [20].
+QMLcombinesMachineLearning,QuantumComputing,and
+Quantum Information for complex optimization problems [21].
+Nature-inspired algorithms like PSO, ACO, GA, and the krill
+herd (KH) method are used for tasks traditional methods can’t
+solve, including Quantum computation (QC)-based methods
+like QPSO [22].
+V. RESULTS AND DISCUSSIONS
+A. Performance Metrics
+Precision, accuracy, recall, and F1-score are used to evaluate
+the QKHO-based DFNN prediction model. TP, FP, TN, and FN
+determine these metrics [24].
+B. Healthcare Prediction Using Heart and Liver Datasets
+The effectiveness of various machine learning and deep learn-
+ing approaches in predicting healthcare outcomes was assessed
+using comprehensive datasets. Experiments were conducted
+on Google Collaboratory with TensorFlow 2.5.0 and Python
+3.10. Disease datasets were split into 70% for training and
+TABLE I
+ANALYSIS OF HEART DISEASE DATASET FOR DIFFERENT APPROACHES
+30% for testing. The quantum convolution layer was optimized
+using the Adam algorithm with a 0.0001 learning rate. UCI
+machine learning repository datasets were utilized, well-suited
+forreal-timehealthcareapplications.Quantummachinelearning
+experiments will evaluate the proposed algorithm’s real-time
+performance [25].
+1) Healthcare Prediction Using Heart Disease Dataset:
+A) Dataset description: This particular dataset consists of
+76 features; however, all available studies reveal that only a
+subset of 14 is utilized. Thus far, machine learning researchers
+have solely employed the Cleveland database. The “target”
+variable signiﬁes the occurrence of heart disease in an individ-
+ual, depicted as an integer varying from 0 (no presence) to 4
+(critical condition). With regard to the experiments involving
+the Cleveland database, the primary goal was to distinguish
+between the presence of heart disease (values 1, 2, 3, or 4) and
+its nonexistence (value 0).
+B) Performance analysis: Table I presents a thorough analy-
+sis of heart disease datasets using different prediction models:
+DFNN-QKHO, DFNN-KHO, DFNN, ANN, SVM, and KNN.
+These models are evaluated based on precision, recall, F1-score,
+and accuracy, utilizing input attributes like age, sex, and chest
+pain type from the heart disease dataset for both training and
+testing. Among the models, DFNN-QKHO stands out, achieving
+an impressive precision of 99.23% and an accuracy of 99.2%.
+By incorporating the quantum convolution layer (QKHO) to
+enhance the performance of DFNN, the proposed model sur-
+passes all conventional prediction models, making it a promising
+candidate for heart disease prediction.
+The F1-scores for each approach are provided in the ta-
+ble, with DFNN-QKHO obtaining the highest value of 0.99,
+followed closely by DFNN-KHO (0.98), DFNN (0.96), ANN
+(0.95), KNN (0.95), and SVM (0.92). Additionally, the recall
+of DFNN-QKHO signiﬁcantly improves compared to other
+traditional prediction models discussed in the research. These
+ﬁndings demonstrate the effectiveness of the proposed DFNN-
+QKHO model in accurately identifying positive cases while
+maintaining high precision.
+To further illustrate the comparison and performance of the
+models, several ﬁgures are presented. Fig. 2(a) showcases a
+visual comparison of commonly used metrics, while Fig. 2(b)
+displays the ROC-AUC curve, where DFNN-QKHO achieves
+an exceptional score of 0.99, indicating excellent predictive
+power. In Fig. 2(c) and (d), the learning trajectories for test
+accuracy and loss are compared between different algorithms
+and the presence or absence of the quantum convolution layer,
+respectively. Finally, Fig. 2(e) presents the Confusion Matrix
+generated from test data, highlighting the superior performance
+Authorized licensed use limited to: Rajshahi University Of Engineering and Technology. Downloaded on April 13,2026 at 18:13:37 UTC from IEEE Xplore.  Restrictions apply. 
+
+MAZUMDAR et al.: QUANTUM-INSPIRED HEURISTIC ALGORITHM FOR SECURE HEALTHCARE PREDICTION
+3377
+Fig. 4.
+Futuristic application of secured healthcare technology.
+Fig. 5.
+Security level vs data size.
+TABLE II
+ANALYSIS OF THYROID DISEASE DATASET FOR DIFFERENT APPROACHES
+of DFNN-QKHO over DFNN-KHO and traditional algorithms.
+This model exhibits enhanced accuracy by misclassifying only
+a minimal number of cases, making it a promising advancement
+in heart disease prediction.
+2) Healthcare Prediction Using Thyroid Disease Dataset:
+A) Dataset description: The Thyroid Disease Dataset includes
+2800 training instances and 972 test instances. From this dataset,
+29 or so attributes are utilized. These attributes are represented
+as either Boolean or continuously valued.
+B) Performance analysis: Table II presents a performance
+analysis and comparison of predictive models applied to the
+Thyroid disease dataset. The models considered include DFNN-
+QKHO, DFNN-KHO, DFNN, ANN, SVM, and KNN, assessed
+based on precision, recall, F1-score, and accuracy. Input at-
+tributes from the Thyroid disease dataset were used for training
+and evaluation. The ﬁndings show that the DFNN-QKHO model
+achieved a precision of 100% and an accuracy of 99.9%. It
+outperformed other models in terms of F1-score and recall,
+scoring 0.99 and 99.56% respectively. The ROC curve for the
+DFNN-QKHO model scored an impressive 0.99, indicating
+excellent performance.
+The learning curves for the top four algorithms (ANN, DFNN,
+DFNN-KHO, and DFNN-QKHO) are depicted in Fig. 3(c), and
+(d) illustrates the learning curves for test accuracy and loss, both
+with and without the quantum convolution layer. The confusion
+matrix in Fig. 3(e) showcases the performance of the proposed
+datasets. The DFNN-QKHO model outperforms the DFNN-
+KHO model and other conventional algorithms. Among the
+3682 data points analyzed, the DFNN-QKHO model correctly
+classiﬁed all cases, with only one misclassiﬁcation. Conversely,
+the DFNN-KHO model had 30 misclassiﬁcations.
+Overall, the results indicate that the proposed DFNN-QKHO
+model yields superior performance compared to other models,
+showcasing its potential for accurate prediction in the context of
+the Thyroid disease dataset.
+3) Analysis of Security for the Blockchain Technique: Data
+transmission security is examined. Blockchain will securely
+send predicted data to the server. We also implemented RSA
+and Difﬁe-Hellman. As shown in Fig. 5, blockchain technol-
+ogy achieves 96.25% security while RSA and Difﬁe-Hellman
+achieve 87% and 85% for 5 MB data. Data size decreases
+Authorized licensed use limited to: Rajshahi University Of Engineering and Technology. Downloaded on April 13,2026 at 18:13:37 UTC from IEEE Xplore.  Restrictions apply. 
+
+3378
+IEEE JOURNAL OF BIOMEDICAL AND HEALTH INFORMATICS, VOL. 28, NO. 6, JUNE 2024
+securityrapidly.Blockchaintechnologyachieves98.2%security
+for 25 MB data, while RSA and Difﬁe-Hellman achieve 77.5%
+and 73.8%.
+VI. CONCLUSION
+We present an improved deep forward neural network
+(DFNN) for healthcare prediction in this study. Krill herd
+optimization (KHO) optimizes DFNN weight parameters. We
+suggested combining DFNN with Quantum Krill Herd for
+greater precision, leading to improved machine learning model
+accuracy. Blockchain technology sent forecasted human health
+data to the server safely. DFNN-QKHO was compared to other
+models in accuracy and F1-score. The proposed QKHO-DFNN
+model achieved high accuracy on various datasets. Blockchain
+technology improves system security. Point-of-care biosensors
+in a public health emergency management network may be
+used to manage COVID-19 in the future. Data clouding may
+help develop hospital-on-chip (HOC) modules. QML can be
+used in intelligent sensor systems by incorporating 2D mate-
+rials with IoMT and IoTs to design future sensors technology.
+Fig:4 showcases the use of futuristic blockchain technology to
+ensure data security in healthcare. Future research aims towards
+improving the algorithm’s efﬁciency in the realms of security
+and accuracy. The goal is to apply the proposed methodology
+within actual healthcare systems, ensuring it is cost-effective
+and feasible for real-life implementation. In addition to this,
+future investigations will explore the algorithm’s applicability
+on different datasets related to various diseases such as tumors
+and liver-related conditions.
+ACKNOWLEDGMENT
+The authors gratefully acknowledge the support and resources
+provided by the Applied Artiﬁcial Intelligence (AAI) labora-
+tory at the University of Houston Victoria (UHV), through the
+generous summer and internal research grants to Dr. Hardik A.
+Gohel by the UHV’s Ofﬁce of Research and Sponsored Program
+(ORSP).
+REFERENCES
+[1] F. Chen, P. Deng, J. Wan, D. Zhang, A. V. Vasilakos, and X. Rong, “Data
+mining for the Internet of Things: Literature review and challenges,” Int.
+J. Distrib. Sensor Netw., vol. 11, no. 8, 2015, Art. no. 431047.
+[2] H. Mazumdar et al., “Sequential and comprehensive algorithm for fault
+detection in semiconductor sensors,” Appl. Sci., vol. 11, no. 21, 2021,
+Art. no. 10419.
+[3] T. N. Pham, M.-F. Tsai, D. B. Nguyen, C.-R. Dow, and D.-J. Deng, “A
+cloud-based smart-parking system based on Internet-of-Things technolo-
+gies,” IEEE Access, vol. 3, pp. 1581–1591, 2015.
+[4] T. K. Dash, C. Chakraborty, S. Mahapatra, and G. Panda, “Gradient
+boosting machine and efﬁcient combination of features for speech-based
+detection of COVID-19,” IEEE J. Biomed. Health Inform., vol. 26, no. 11,
+pp. 5364–5371, Nov. 2022.
+[5] J. Amin, M. Sharif, N. Gul, S. Kadry, and C. Chakraborty, “Quantum
+machine learning architecture for COVID-19 classiﬁcation based on syn-
+thetic data generation using conditional adversarial neural network,” Cogn.
+Comput., vol. 14, no. 5, pp. 1677–1688, 2022.
+[6] T. Shaown, I. Hasan, M. M. R. Mim, and M. S. Hossain, “IoT-based
+portable ECG monitoring system for smart healthcare,” in Proc. 1st Int.
+Conf. Adv. Sci., Eng. Robot. Technol., 2019, pp. 1–5.
+[7] S. B. Othman, F. A. Almalki, C. Chakraborty, and H. Sakli, “Privacy-
+preserving aware data aggregation for IoT-based healthcare with
+green computing technologies,” Comput. Elect. Eng., vol. 101, 2022,
+Art. no. 108025.
+[8] K. Wachira, H. O. Absaloms, and J. M. Mbuthia, “A triumvirate blended
+learning method for embedded computational devices used in the Internet
+of Things: A case study,” in Proc. 2nd Int. Conf. Inf. Technol., Inf. Syst.
+Elect. Eng., 2017, pp. 495–496.
+[9] M. Bhavin, S. Tanwar, N. Sharma, S. Tyagi, and N. Kumar, “Blockchain
+and quantum blind signature-based hybrid scheme for healthcare 5.0
+applications,” J. Inf. Secur. Appl., vol. 56, 2021, Art. no. 102673.
+[10] B. Muthu et al., “Iot based wearable sensor for diseases prediction and
+symptom analysis in healthcare sector,” Peer-Peer Netw. Appl., vol. 13,
+pp. 2123–2134, 2020.
+[11] K. Chung and H. Jung, “Knowledge-based dynamic cluster model for
+healthcare management using a convolutional neural network,” Inf. Tech-
+nol. Manage., vol. 21, pp. 41–50, 2020.
+[12] R. C. V. Balasubramanian and M. Kaliappan, “Development of Big Data
+predictive analytics model for disease prediction using machine learning
+technique,” J. Med. Syst., vol. 43, pp. 1–8, 2019.
+[13] M. A. Kumar, R. Vimala, and Kr Aravind Britto, “A cognitive technol-
+ogy based healthcare monitoring system and medical data transmission,”
+Measurement, vol. 146, pp. 322–332, 2019.
+[14] I. Kerenidis, J. Landman, A. Luongo, and A. Prakash, “q-means: A
+quantum algorithm for unsupervised machine learning,” in Proc. Adv.
+Neural Inf. Process. Syst., 2019, pp. 4136–4146.
+[15] P. Rebentrost, M. Mohseni, and S. Lloyd, “Quantum support vector ma-
+chine for Big Data classiﬁcation,” Phys. Rev. Lett., vol. 113, no. 13, 2014,
+Art. no. 130503.
+[16] A. Deshpande and Krishna K. Warhade, “Hybrid features enabled adaptive
+butterﬂy based deep learning approach for human activity recognition,”
+in Proc. Mach. Vis. Augmented Intell.–Theory Appl., Springer, 2021,
+pp. 341–363.
+[17] A. Maheshwari et al., “Data congestion prediction in sensors based IoT
+network,” J. Sci. Ind. Res., vol. 80, no. 12, pp. 1091–1095, 2022.
+[18] E. Tang, “A quantum-inspired classical algorithm for recommendation
+systems,” in Proc. 51st Annu. ACM SIGACT Symp. Theory Comput., 2019,
+pp. 217–228.
+[19] S. McArdle, X. Yuan, and S. Benjamin, “Error-mitigated digital quantum
+simulation,” Phys. Rev. Lett., vol. 122, no. 18, 2019, Art. no. 180501.
+[20] W. Huggins, P. Patil, B. Mitchell, K. Birgitta Whaley, and E. Miles
+Stoudenmire, “Towards quantum machine learning with tensor networks,”
+Quantum Sci. Technol., vol. 4, no. 2, 2019, Art. no. 024001.
+[21] X. Tu et al., “Image-to-video generation via 3D facial dynamics,” IEEE
+Trans. Circuits Syst. Video Technol., vol. 32, no. 4, pp. 1805–1819,
+Apr. 2022.
+[22] C. Ciliberto et al., “Quantum machine learning: A classical perspective,”
+Proc. Roy. Soc. A, Math. Phys. Eng. Sci., vol. 474, no. 2209, 2018,
+Art. no. 20170551.
+[23] J. Carolan et al., “Universal linear optics,” Science, vol. 349, no. 6249,
+pp. 711–716, 2015.
+[24] D. S. Abdelminaam, F. H. Ismail, M. Taha, A. Taha, E. H. Houssein,
+and A. Nabil, “CoAID-DEEP: An optimized intelligent framework for
+automated detecting COVID-19 misleading information on twitter,” IEEE
+Access, vol. 9, pp. 27840–27867, 2021.
+[25] M. Kelly, R. Longjohn, and K. Nottingham, “The UCI machine learning
+repository,” [Online]. Available: https://archive.ics.uci.edu
+Authorized licensed use limited to: Rajshahi University Of Engineering and Technology. Downloaded on April 13,2026 at 18:13:37 UTC from IEEE Xplore.  Restrictions apply. 

@@ -1,0 +1,1184 @@
+Source-PDF: D:\Review\Paper\Clinical prediction bridge (your current query, improved)\highest priority clinical bridge directly about disease predictiondiagnosis\Quantum algorithm for quicker clinical prognostic analysis an application and experimental study using CT scan images of COVID-19 patients.pdf
+Relative-Path: Paper\Clinical prediction bridge (your current query, improved)\highest priority clinical bridge directly about disease predictiondiagnosis\Quantum algorithm for quicker clinical prognostic analysis an application and experimental study using CT scan images of COVID-19 patients.pdf
+--------------------------------------------------------------------------------
+
+Sengupta and Srivastava BMC Med Inform Decis Mak          (2021) 21:227  
+https://doi.org/10.1186/s12911-021-01588-6
+RESEARCH ARTICLE
+Quantum algorithm for quicker 
+clinical prognostic analysis: an application 
+and experimental study using CT scan images 
+of COVID‑19 patients
+Kinshuk Sengupta1,2,3*   and Praveen Ranjan Srivastava2,3 
+Abstract 
+Background:  In medical diagnosis and clinical practice, diagnosing a disease early is crucial for accurate treatment, 
+lessening the stress on the healthcare system. In medical imaging research, image processing techniques tend to be 
+vital in analyzing and resolving diseases with a high degree of accuracy. This paper establishes a new image classifica-
+tion and segmentation method through simulation techniques, conducted over images of COVID-19 patients in India, 
+introducing the use of Quantum Machine Learning (QML) in medical practice.
+Methods:  This study establishes a prototype model for classifying COVID-19, comparing it with non-COVID pneu-
+monia signals in Computed tomography (CT) images. The simulation work evaluates the usage of quantum machine 
+learning algorithms, while assessing the efficacy for deep learning models for image classification problems, and 
+thereby establishes performance quality that is required for improved prediction rate when dealing with complex 
+clinical image data exhibiting high biases.
+Results:  The study considers a novel algorithmic implementation leveraging quantum neural network (QNN). The 
+proposed model outperformed the conventional deep learning models for specific classification task. The perfor-
+mance was evident because of the efficiency of quantum simulation and faster convergence property solving for an 
+optimization problem for network training particularly for large-scale biased image classification task. The model run-
+time observed on quantum optimized hardware was 52 min, while on K80 GPU hardware it was 1 h 30 min for similar 
+sample size. The simulation shows that QNN outperforms DNN, CNN, 2D CNN by more than 2.92% in gain in accuracy 
+measure with an average recall of around 97.7%.
+Conclusion:  The results suggest that quantum neural networks outperform in COVID-19 traits’ classification task, 
+comparing to deep learning w.r.t model efficacy and training time. However, a further study needs to be conducted 
+to evaluate implementation scenarios by integrating the model within medical devices.
+Keywords:  Medical imaging and analysis, Artificial intelligence, Quantum neural networks, Medical informatics
+© The Author(s) 2021. Open Access This article is licensed under a Creative Commons Attribution 4.0 International License, which 
+permits use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the 
+original author(s) and the source, provide a link to the Creative Commons licence, and indicate if changes were made. The images or 
+other third party material in this article are included in the article’s Creative Commons licence, unless indicated otherwise in a credit line 
+to the material. If material is not included in the article’s Creative Commons licence and your intended use is not permitted by statutory 
+regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder. To view a copy of this 
+licence, visit http://​creat​iveco​mmons.​org/​licen​ses/​by/4.​0/. The Creative Commons Public Domain Dedication waiver (http://​creat​iveco​
+mmons.​org/​publi​cdoma​in/​zero/1.​0/) applies to the data made available in this article, unless otherwise stated in a credit line to the data.
+Background
+In the clinical trial and drug discovery process, the role 
+of statistical analytics and machine learning has been 
+shown to be significant, especially in biological imag-
+ing and analysis, commonly used at various stages, from 
+preclinical R&D to clinical trials, solving problems like 
+Open Access
+*Correspondence:  efpm01.004@iimrohtak.ac.in
+1 Microsoft Corporation, New Delhi, India
+Full list of author information is available at the end of the article
+
+Page 2 of 14
+Sengupta and Srivastava BMC Med Inform Decis Mak          (2021) 21:227 
+sputum detection [1], image augmentation [2] and other 
+applications, such as nucleus counting [3]. In the recent 
+past, substantial research work have been proposed stud-
+ying various classical machine learning and deep learning 
+methods applied to an image that assists scientists and 
+medical practitioners in analyzing and seeing inorganic 
+growth or accumulation of tissues, cells, and subcellular 
+components in CT scans, along with a more technology-
+oriented solution in the space of wearable technology 
+[4] and tele-health care services to discover COVID-19 
+[5]. An example of detecting brain tumors through deep 
+learning methods has been studied by researchers [6] and 
+diverse COVID-19 diagnosis research work using deep 
+learning and traditional machine learning methods as 
+shown in Table  1. Currently, with evolving COVID-19 
+mutants it is now becoming extremely important to lev-
+erage faster and accurate solutions for clinical discovery, 
+prompting therefore our study to understand the evolu-
+tion in terms of offering medical imaging solutions for 
+factor detection of mutant variants [7].
+There has been active research in biomedical image 
+analysis using deep learning methods, whereby deep 
+learning seems to have outperformed most com-
+puter vision problems for instance [8]. Nevertheless, 
+Table 1  Empirical research for detecting COVID-19 using deep learninga
+a Refer to Abbreviations for detailed nomenclature
+Model proposed
+Study
+Dataset size
+Training 
+samples 
+sufficiency
+Model performance
+MODE (Multi-objective differential evolu-
+tion) based CNN
+Singh et al. [47]
+1000 + CT images
+ +  +  + 
+Accuracy—90.6%
+UNET +  + 
+Chen et al. [44]
+46,000 + CT images
+ +  +  + 
+Accuracy—95.24%
+Sensitivity—100%
+Specificity—93.55%
+Stacked Two CNN three dimensional for 
+classification and VNET for Segmenta-
+tion
+Xu et al. [43]
+19,000 + CT Images with COVID-19, 1175 
+healthy samples
+ +  +  + 
+Accuracy—86.70%
+COVNet + ResNet 50 for classification and 
+U-Net for segmentation
+Li et al. [35]
+4000 + CT Samples
+ +  +  + 
+Sensitivity—90.0%
+Specificity—96.0%
+Transfer Learning + ResNet 50 for classifi-
+cation and UNet +  + (3D) for segmenta-
+tion
+Jin et al. [10]
+1100 + total samples with 730 positive 
+samples
+ +  + 
+AUC—0.991
+Sensitivity—97.4%
+Specificity—92.2%
+Inception with Transfer Learning tech-
+nique
+Wang et al. [32]
+450 + CT scans of confirmed COVID-19
+ + 
+Accuracy—82.9%
+Sensitivity—84.0%
+Specificity—80.5%
+Neural Networks with ResNET 50, atten-
+tion technique and Feature Pyramid 
+Network
+Song et al. [42]
+750 + Images
+ + 
+Accuracy—86.0%
+F-Score—87.0%
+Sensitivity—93.0%
+Deep Conv Net(2D) on ResNet-50 for clas-
+sification and UNet for segmentation
+Gozes et al. [41]
+50 + patients’ samples
+ + 
+AUC—0.996
+Sensitivity—98.2%
+Specificity—92.2%
+VBNet neural network to
+Segment COVID-19 infection regions in 
+CT scans
+Shan et al. [13]
+200 + CT scan samples
+ + 
+Dice Coef.—91.6%
+2D CNN
+Jin et al. [10]
+970 CT Scan samples
+ + 
+Accuracy—94.0%
+AUC—0.979
+SVM + Wavelet transformation
+Barstugan et al. [39]
+150 CT Scan Samples
+ + 
+Accuracy—99.68%
+Deep CNN(3D) for classification and U-Net 
+for segmentation
+Zheng et al. [46]
+500 + Samples
+ + 
+AUC-ROC—0.959
+DCNN
+Heinrich et al. [31]
+500 + Samples
+ + 
+Dice Coef.—71.0%
+CNN-LSTM
+Islam et al. [60]
+4000 + X-ray Samples
+ +  +  + 
+AUC—0.992
+Sensitivity—99.3%
+Specificity—98.9%
+VGG-19-RNN
+Zabirul Islam et al. [59]
+6000 + x-ray samples(sample with CoViD, 
+pneumonia and normal cases)
+ +  +  + 
+Accuracy—99.9%
+AUC—99.9%
+Recall -99.8%
+Ensemble DCCNs
+Singh [1]
+6000 + (sample with CoViD, tuberculosis, 
+pneumonia)
+ +  +  + 
+Accuracy—99.2%
+
+Page 3 of 14
+Sengupta and Srivastava BMC Med Inform Decis Mak          (2021) 21:227 
+	
+computer vision techniques have shown vast opportuni-
+ties in numerous application areas, especially in medi-
+cal research and healthcare [9]. Medical imaging does 
+provide better visibility than standard medical records’ 
+data assessment, such as solving for Diabetic Retinopa-
+thy [10]. High-resolution images analyzed can provide 
+any growth details on actuals, on a day-to-day basis, 
+helping a medical practitioner to evaluate the situation 
+quickly and provide a better treatment. It is apparent to 
+be mentioned that the success of leveraging deep learn-
+ing over traditional machine learning methods have 
+been studied along with wide area of application in the 
+medical domain [11]. Moreover, recent developments of 
+quantum computing, vis a vis its application of quantum 
+algorithm in varied domains, has now opened up new 
+research areas for further optimizing classical machine 
+learning problems [12]. In fact, recently, researchers from 
+Massachusetts Institute of Technology (MIT) created an 
+algorithm to overcome the challenges of developing com-
+putationally efficient and performing algorithms in order 
+to solve several medical imaging problems [13].
+The domain of medical science needs significant devel-
+opment for making sense of an analysis generated from 
+an image. Previous studies dealing with this topic, have 
+discussed the varied applications of machine learning, 
+deep learning, and quantum algorithms in drug discov-
+ery and screening process, thereby solving problems 
+that include compound property and activity prediction, 
+using multitask DNN on 12,000 compounds [14]. Impor-
+tantly, Quantum is a new paradigm today, with multiple 
+applications being evaluated to solve problems in the 
+fields of optimizing deep learning or machine learning 
+tasks, finance [15], drug discovery [16], along with help-
+ing in shedding light on various clinical research [17]. 
+Table 2 enlists extant literature that has dealt with drug 
+discovery.
+Although, there have been other studies that have 
+deliberated upon the success of employing deep learning 
+in drug discovery [16] and MRI image analysis for brain 
+tumors, and for detecting and segmenting pneumonia 
+traces using classical machine learning models [6] or 
+leveraging deep learning in biomedical image segmenta-
+tion applications [18]. The core purpose of this paper is 
+to evaluate and provide empirical evidence for applying 
+Quantum algorithms in medical imaging and drug dis-
+covery problems.
+Quantum machine learning
+The recent developments of Quantum Enhanced Learn-
+ing [19], fusing AI and ML to obtain significant optimal 
+solutions for boosting algorithmic performance has given 
+rise to a new area of research termed ‘Quantum Machine 
+Learning’ (QML), which has effectively evolved from the 
+theory of quantum computing. The concept behind lever-
+aging quantum computing for machine learning tasks is 
+to inherently achieve solution parallelism [20], achieved 
+for optimal constraint solving, using Moore’s law [21]. 
+Quantum algorithms are centered on the concept of 
+Boolean algebra (e.g., OR, AND, and NOT gates) and 
+quantum physics. The data storage layout is established 
+Table 2  Previously studied applications of machine learning in drug discovery and medical diagnosis
+a Refer to Abbreviations for detailed nomenclature
+Description of study
+Author
+Methodsa
+Skin cancer detection
+Kadampur and Al Riyaee [9]
+DNN
+Protein structure prediction
+Torrisi et al. [18]
+DL-CNN, DL-RNN
+Cuneiform Dehydration Method for Medical Diagnosis
+Baranov [50]
+Image Filtering, thresholding, Gaussian blur
+Quantitative structure–activity relationship analysis in drug discovery
+Uesawa [51]
+Deep learning
+Quantum chemical properties analysis
+Gilmer et al. [52]
+Message passing neural network (MPNN)
+Predicting compound property and activity
+Mayr et al. [27]
+Multitask DNN
+Predicting pharmacological properties of drugs and for drug repurpos-
+ing leveraging transcriptomic data from the LINCS project
+Aliper et al. [53]
+DNN
+Automatic molecular structure learning
+Merkwirth and Lengauer [54]
+Lusci et al. [55]
+DNN and RNN
+Method to model drug induced liver injury (DILI)
+Xu et al. [56]
+UGRNN
+Neural fingerprints of the compound
+Duvenaud et al. [57]
+Graph CNN
+Predicting the ligand–protein interactions
+Gomes et al. [48]
+CNN, DNN
+Predicting the reactions and retrosynthetic analysis
+Liu et al. [36]
+Neural sequence to sequence model and 
+Monte-Carlo tree search
+Drug discovery with on short learning
+Altae-Tran et al. [58]
+LSTM
+Visual Screening from protein–ligand complex
+Pereira et al. [49]
+DNN
+Facilitating probe selection for gene-expression arrays
+Tobler et al. [3]
+Naïve Bayes, neural nets
+
+Page 4 of 14
+Sengupta and Srivastava BMC Med Inform Decis Mak          (2021) 21:227 
+from Quantum bit (Qb) or qubits1 that depends on the-
+oretical foundations of electron spin [22]. Importantly, 
+quantum methods in addition can translate other than 1’s 
+or 0’s such as complex information or negative values. A 
+typical model development flow diagram is demonstrated 
+in Fig. 1, explaining the basic control flow difference of 
+classical machine learning versus Quantum machine 
+learning algorithms.
+The need for quantum algorithms
+QML is considered as one of the future areas of research 
+in deep learning algorithms. The two key tasks QML can 
+better perform when compared to classical deep learning 
+techniques include:
+1.	 Optimization [23] and Gibbs Sampling [24].
+2.	 Enhance learning algorithms like Bayesian networks 
+[25], Tensors, and search.
+QML’s ability to deal with large-scale biased datasets 
+yield faster complexity factors for major classical com-
+puting and machine learning tasks, consuming thereby 
+Fig. 1  Execution block diagram of classical machine learning/deep learning versus quantum machine learning algorithm designing (refer to 
+Table 4. for algorithmic details on QML)
+1  Refer to Abbreviations for detailed nomenclature.
+
+Page 5 of 14
+Sengupta and Srivastava BMC Med Inform Decis Mak          (2021) 21:227 
+	
+less space and time. Effectively, it uses quantum anneal-
+ers and tunneling for loss function minimization tasks, 
+solving thereby complex problems of finding super-local 
+minima, and a close approximation of global minima. 
+In fact, multiple methods within the QML strategy are 
+based on fast quantum algorithms for linear algebra, 
+and semi-definitive or constraint-specific problems like 
+optimization, as in the case of neural network models 
+for weight adjustment, during both search and optimiza-
+tion tasks, similar to gradient descent-based optimizer. 
+Assuming the task is to optimize a linear function of 
+MxM matrix(X), over a parallel space with constraints(c), 
+the solver has runtime complexity of O(c(c2 + nω + cns)
+logO(1)(cnR/ϵ)) [26]. Notably, herein, ϵ is denoted as 
+an approximation factor, while s denotes sparsity, and 
+R represents a range that is bound to yield an optimal 
+matrix(X). Notably, these proven methods outperform 
+classical optimization methods, yielding thereby com-
+plexity of O (ncs(Rr/ϵ)4 + ns(Rr/ϵ)7) as proposed by 
+Arora and Kale [27]. The proposed optimizers in turn, 
+tend to improve the overall solution convergence for any 
+machine learning problems.
+This paper looks to address two major research ques-
+tions, while evaluating the application of QML in specific 
+practice, specifically focusing upon medical image diag-
+nostics and/or drug discovery,
+RQ1  Are quantum algorithms suited for large-scale 
+classification problems in medical image diagnostics 
+dealing and industrial applications?
+RQ2  Can quantum algorithms outperform classifica-
+tion or segmentation tasks in comparison with classical 
+deep learning methods w.r.t model efficacy, biased train-
+ing, and inferencing performance on high-resolution 
+clinical image data?
+The research questions would further provide sup-
+port to exemplify the application of quantum theory in 
+optimizing deep learning techniques to achieve superior 
+performance in solution convergence and quality of the 
+model. Another important aspect to emphasize on sup-
+porting production deployment is selecting appropri-
+ate quantum hardware for training, while deploying the 
+model for real-time inferencing in health informatics 
+applications, which is discussed later in this paper under 
+the experiment section.
+Application of quantum machine learning
+The foundation of QML targets to solve research foun-
+dation problems in mathematical analysis to generalize 
+quantum to improve classical learning tasks with poten-
+tial optimization to speed of execution. Some of the task’s 
+researchers are leveraging includes quantum techniques 
+in Quantum Simulation [28], applied around nano-
+tech, bio-medical imaging, physical chemistry, and with 
+quantum systems tasks, such as search [29], which fur-
+ther provides polynomial speed, as compared to classical 
+algorithms for other varied scenarios.
+Method
+The section discusses the methodology followed for 
+building the model, provide details on overall data col-
+lection process followed, key modeling process imbibed 
+for the study, and analysis performed with quantum 
+networks.
+Quantum neural network model
+This study conducted an experimental analysis with a 
+new variant of a learning model to further take advan-
+tage of quantum computing devices to perform learning 
+tasks with quantum data [30]. We assumed that Quan-
+volutional neural network or Quantum neural network 
+(QNN) would solve classical deep learning problems 
+to be computationally faster from the design paradigm. 
+Figure 2a illustrates the QNN architecture, which would 
+help in understanding the Quantum network design 
+methodology. Further, for simulation, we benchmarked 
+the QNN model across other studies from extant lit-
+erature. The rationale behind this exercise was to help 
+in exploring varied application scenarios in the medical 
+image analysis task that is presented in subsequent sec-
+tions. Notably, the process of designing QNN has been 
+described in Table 3 and has been elaborated upon in the 
+subsequent sections.
+The proposed system is illustrated below in Fig.  2b. 
+From a practical implementation perspective, the model 
+accepts input image rescaled to 4 × 4 size before being 
+fed into the Unitary matrix to obtain features at different 
+channel. Further the features were leveraged to create a 
+quantum circuit model, thereafter, followed by compiling 
+the model using a loss function and optimizer using Ten-
+sorFlow Keras model utility library.
+Data and pre‑processing
+This section discusses the data collection process and the 
+pre-processing activities that were conducted during the 
+experiments. Notably herein, the relative transformation 
+measures were required for modeling a QML algorithm. 
+Additionally, this section consists of two sub-sections; 
+the first, describes the data collection process, along with 
+the larger data schema, while the second, discusses the 
+affirmative steps that are taken for pre-processing in pre-
+modeling stages.
+
+Page 6 of 14
+Sengupta and Srivastava BMC Med Inform Decis Mak          (2021) 21:227 
+Data collection
+The model development and verification for quantum 
+deep learning-based image classification would require 
+a large sample set for the quantum machine to per-
+form. As a pre-requisite step, learning models require 
+a significant amount of training dataset for building 
+an efficient model [32], thus a through process was 
+followed for sampling the image files to eliminate any 
+representational biases. Hereafter, this study combined 
+data shared by semanticscholar.com, along with the 
+Fig. 2  a QNN Architecture [31]. b The proposed model
+Table 3  Algorithm design stages for quanvolutional neural network
+a Refer to Abbreviations for detailed nomenclature
+Stage 1: An input image with small region of interest is embedded into a quantum circuit. An example of a 2 × 22 × 2 square region
+Stage 2: A quantum computation, associated with a unitary matrix(Ua) in Fig. 3, is performed on the system. A Cirq could generate the unitary, most 
+quantum operations have a unitary matrix representation applied to the gate, operations and circuit that represents an object
+Stage 3: The system is then quantified by obtaining the list of classical expected values
+Stage 4: Similar to the classical convolution layer, each expected value is mapped to a different channel of a single output pixel
+Stage 5: The process is iteratively executing across different regions of the image. A full input image scan is viable by re-positioning an output object 
+positioned a multi-channel image
+Stage 6: The quantum convolution layer would additionally abide to quantum or classical layers
+
+Page 7 of 14
+Sengupta and Srivastava BMC Med Inform Decis Mak          (2021) 21:227 
+	
+research work done by Chen et  al. [33], and Jin et  al. 
+[34].
+The data collection process adopted a strategy to 
+collect CT scan samples of varied age groups, ranging 
+from 20–30, 30–45, 45–60, and above 60 years of age, 
+with both positive and negative samples. Key sources 
+were identified, based on represented data statistics 
+(Table 4), along with other open dataset sources from 
+Microsoft open research database, Google dataset 
+search, Stanford, and MIT datasets. Notably, the data 
+search process ensured that the data resolutions were 
+consistent across all the sources. The preferred resolu-
+tion range of images were chosen (256 × 256 and 448 × 
+448), because image resolution does play a vital role in 
+deep learning space, and often, high-resolution images 
+do go on to impact model training performance and 
+efficacy to a great extent [35].
+Figures  3a, b and 4, adopted from Shi et  al. [36]; 
+Li et  al. [37]; and Hani et  al. [38] represent classical 
+CoViD-19 and non-COVID-19 (influenzas and virus 
+pneumonia) scans. Based on this, we discuss the overall 
+Table 4  Dataset
+Dataset description
+Data statistics
+Source
+CT scans for COVID-19
+349 CT images of 216 patients
+https://​github.​com/​UCSD-​AI4H/​COVID-​CT
+SIRM COVID-19 database
+Sample < 50 images
+https://​www.​sirm.​org/​en/​2020/​03/​31/​COVID-​19-​case-4/
+Radiopedia COVID dataset
+Sample < 50 images
+https://​radio​pedia.​com
+Eurorad dataset
+Sample < 50 images
+https://​www.​euror​ad.​org/​case/​16689
+Center for artificial intelligence in medicine 
+and imaging
+More than 5000 + sample images of patients
+https://​aimi.​stanf​ord.​edu/​resou​rces/​COVID​19#​data
+Total samples selected
+ ~ 10,000 + 
+Fig. 3  a Sample CT scan image illustrating small to medium patches forming with each week’s diagnosis. b Sample CT scan image of CoViD-19 
+diagnosed
+
+Page 8 of 14
+Sengupta and Srivastava BMC Med Inform Decis Mak          (2021) 21:227 
+finding that was observed from CT scans taken through 
+a specific time duration.
+The sample data illustrated in Fig.  3a is identified as 
+CoViD-19 positive. A significant growth in building 
+patches was observed in the lungs over 10 days during 
+quarantine (day 5 and day 15 scan). The scan of day 20 
+showed the formation of a dense mucus that was concen-
+trated across the lungs. Figure 3b illustrates mucus, seg-
+mented across a small patch growth across two weeks of 
+supervision. An evaluation dataset of non-CoViD-19 suf-
+fering from pneumonia and influenza was also sourced 
+for validation of the model results.
+Pre‑processing and normalization
+Importantly, the datasets that were used come from mul-
+tiple sources; the process of data normalization included 
+comparing the homogeneity of data sources, while fur-
+ther calibrating the images to the required scale for 
+modeling. The study leveraged upon color models of an 
+abstract mathematical model, describing the way colors 
+can effectively be represented as tuples of numbers that 
+are useful in viewing conditions. Once the image was 
+thoroughly analyzed, the dataset was normalized using 
+erosion and dilation [39], leveraging upon OpenCV 
+library, a morphological transformation method, primar-
+ily used for handling noise, or detecting intensity col-
+lisions. Further, image de-noising (Buades et  al. 2011) 
+and scaling was done, using Python-OpenCV library, 
+which in turn, was implemented to the entire dataset for 
+standardization, with the help of fast Nl Means Denois-
+ing function for colored images, where the source image 
+input of 8-bit 3-channel images were provided with tem-
+plate window size of 7 pixels and 21-pixel, and hColor of 
+10 in order to remove the colored noise; post this, they 
+were kept into consideration for the completion of the 
+de-noising process. Notably herein, de-noising generally 
+impacts the image segmentation process in the overall 
+modeling situation.
+Handling representation and measuring bias in image 
+dataset
+The section discusses the impact of measuring bias that 
+depicts the systematic value distortion, which takes place 
+when an issue with a specific device is utilized to visu-
+alize and observe an image quality from a training per-
+spective. Importantly, this type of bias is hard to replicate 
+with sampling technique, and thus requires a manual 
+review of the colored images, being used for training [40]. 
+This study further leverages upon bootstrapping resam-
+pling technique [41] with different ratios to assemble the 
+required representation of the dataset for experiments.
+Experiments
+In this section, the data pre-processing, model imple-
+mentation, and evaluation methods have been explained. 
+The experiment processes involved choosing a base 
+model for initial trials and develop the same using the 
+data collected. Based on various performance criteria 
+compared between QNN, QCNN,2 Hybrid CNN with a 
+single filter and Hybrid CNN with multiple filters (Fig. 5) 
+from the simplicity of circuit design and performance 
+measurement, QNN was chosen for remaining bench-
+marking during the trials. Furthermore, the experiments 
+were performed using TensorFlow Quantum (TFQ), and 
+a python framework for QML development. Notably, 
+we leveraged upon D-wave Leap and TensorFlow Quan-
+tum Framework as a platform for training and evaluat-
+ing the experimental setup. The estimated wait time for 
+problem submission was 1–10 s on a 2041 qubits system, 
+Fig. 4  CT scan of two patients of 45-year and 48-years of age with influenza virus pneumonia and Goodpasture syndrome shows bilateral 
+ground-glass opacities in contrast to COVD-19 patients (Hani et al. 2020)
+2  Refer to Abbreviations.
+
+Page 9 of 14
+Sengupta and Srivastava BMC Med Inform Decis Mak          (2021) 21:227 
+	
+under 13.5 qubit temperature (mK). Detailed specifica-
+tions of the platform may be referred from D-wave and 
+TensorFlow.3
+TFQ’s core focus area is generally on quantum data, 
+and a hybrid quantum-classical model. Various compo-
+nents that need to be followed to build a quantum circuit 
+within the TensorFlow environment have been described 
+below,
+a.	 Circuit—Cirq is used to design the quantum circuit 
+(Fig.  6). Cirq4 is a python framework for writing, 
+optimizing quantum circuits executing in quantum 
+hardware.
+b.	 Pauli Sum—the linear combinations of tensor prod-
+ucts of Pauli operators5 defined in Cirq is represented 
+by Pauli sum, operations like circuits, create batches 
+of operators of varying size are of such type.
+The experiments performed, involved various fea-
+ture engineering and transformation stages applied to 
+design. Since the quantum machine cannot handle the 
+large size of the image, we re-scaled it to 4 × 4 at the data 
+processing stage. The overall image calibration steps per-
+formed are stated as below,
+1.	 Input raw data using Keras
+2.	 Filtering the dataset to only 3 s and 6 s
+3.	 Downscales the images to fit in a quantum hardware.
+4.	 Treating and removing contradictory examples
+5.	 Convert binary images to Cirq circuits
+6.	 Convert the Cirq circuits to a TensorFlow quantum 
+circuits
+In QML, a pixel is represented as a qubit, wherein each 
+stage would actually depend on the pixel value. The pro-
+cess of encoding the data into the Quantum circuit was 
+iterated at multiple threshold values, in the range [0.5, 
+0.6, 0.7]. A circuit at 0.5 threshold is represented in Fig. 7, 
+and which effectively is a form of 2-layer circuit design 
+for binary classification problems. In terms of model 
+development, various iterations were performed to 
+Fig. 5  A quantum CNN: hybrid Convolution with multiple quantum filters
+Fig. 6  A quantum circuit
+3  https://​www.​dwave​sys.​com; https://​www.​tenso​rflow.​org/​quant​um/​conce​pts
+4  Refer to Abbreviations for detailed nomenclature.
+5  Refer to definition of pauli operators in nomenclature section.
+
+Page 10 of 14
+Sengupta and Srivastava BMC Med Inform Decis Mak          (2021) 21:227 
+optimize the general performance of the model through a 
+range of hyper-parametrization testing at various epochs.
+Finally, the experiment encompassed creating a 2-lay-
+ered model (Fig. 7) fitting the data-circuit size, including 
+both preparation and readout operations. In fact, this 
+method could possibly be compared to running a small 
+recurring neural network across pixels. Notably herein, 
+each layer uses n instances of the same gate, with each 
+of the data qubits acting on the readout qubit. Addition-
+ally, the model building process further used hinge loss 
+as a loss function, along with adaptive learning rate opti-
+mization (ADAM) optimizer instead of stochastic gradi-
+ent descent-based optimizer, which was computationally 
+inexpensive, and possibly even easier to implement. The 
+experimentation process was conducted with different 
+epoch and batch sizes, and the results are presented in 
+the following sections; notably, the overall model param-
+eters are shown in Table 5 below.
+Evaluation criteria
+This paper presents validation loss and validation accu-
+racy as evaluation criteria for the QNN model, whereby 
+the selected metric is ‘hinge loss’ for the experiment, as 
+the problem formulation alludes to a binary classification 
+problem [42]. Importantly, the ‘hinge loss’ represents the 
+difference in prediction from actuals. Moreover, since 
+validation loss is not used to update weights in general, 
+it possibly serves as the right measure of any neural net-
+work model. A hinge loss6 i.e., l(y) is calculated by com-
+paring prediction (y) with the actual target for prediction 
+(t), followed by subtracting the value from 1, while com-
+puting thereafter the maximum value between 0 and the 
+result of the earlier computation.
+Fig. 7  The circuit from the training samples in the first iteration of the 2-layer circuit
+Table 5  QNN parameter
+Parameter(s)
+Value
+Layer
+PQC
+Output shape
+(None, 1)
+Param
+32
+Model
+Sequential
+Loss function
+Hinge
+Optimizer
+ADAM
+Evaluation metrics
+Hinge accuracy
+Table 6  Loss score and hinge accuracy
+Epoch
+Loss
+Hinge accuracy
+Validation loss
+Val hinge 
+accuracy
+1/10
+0.6566
+0.7534
+0.3870
+0.8160
+2/10
+0.3568
+0.8263
+0.3348
+0.8311
+3/10
+0.3281
+0.8497
+0.3269
+0.8579
+4/10
+0.2994
+0.9061
+0.2894
+0.8769
+5/10
+0.2707
+0.9542
+0.2594
+0.8978
+6/10
+0.2707
+0.9582
+0.2293
+0.9188
+7/10
+0.2133
+0.9586
+0.1993
+0.9397
+8/10
+0.1872
+0.9582
+0.1692
+0.9607
+9/10
+0.1872
+0.9582
+0.1692
+0.9607
+10/10
+0.1821
+0.9692
+0.1691
+0.9657
+6  Refer to Abbreviations for detailed nomenclature.
+
+Page 11 of 14
+Sengupta and Srivastava BMC Med Inform Decis Mak          (2021) 21:227 
+	
+Results
+To conclude the experimentation process and bench-
+marking with other relevant methods adopted for 
+detecting COVID-19 patients, the model built, used a 
+9500-training dataset, encompassing an evaluation con-
+ducted over 1500 validation sample sets. The efficacy 
+and the performance evaluation criteria are based on 
+experiments performed with three, five and ten epochs 
+and similar batch sizes. The key metrices taken into 
+the consideration are loss and hinge accuracy shown in 
+Table 6 and confusion matrix shown in Table 7.
+The change in epoch lowers the loss score, while 
+improving the overall hinge accuracy. The change in 
+accuracy score sees a significant lift after the third epoch, 
+and gradually improves, reducing thereby the loss to 
+0.1559; notably, the percentage score of the change of 
+loss is shown in the analysis in Fig. 8. The overall preci-
+sion of the implemented model is 97.11%, whereas recall 
+is 97.76% respectively.
+While comparing the traditional deep learning model 
+with QNN (Fig. 9), the latter obtained a 2.92% lift from 
+the 2D CNN model, trained for classification problems in 
+the CT scan data set of COVID-19 patients. The analysis 
+further describes the efficiency of the overall system to 
+scale classification models, whereby the total time to train 
+the model with 9500 images was observed to be 52 min 
+on quantum optimized hardware, while compared to an 
+experiment using CNN on K80 GPU Instance.
+Discussion
+The study does entail certain limitations; for instance, the 
+dataset and the training time comparison were limited to 
+available samples. The images collected were limited to 
+CT-Scan with a focus on identifying discoverable patches 
+denoting COVID-19 infection. Further, a detailed study 
+is required to incorporate signals that may occur in a CT-
+Scan image tending to non-COVID signals to make the 
+model more robust on detection. Further, this study is 
+limited to a minimum viable solution model that would 
+possibly need additional research to take the present ver-
+sion of the model into readily deployable services mode, 
+within the ambit of the biomedical device ecosystem 
+from an end-to-end technology implementation stand-
+point, supporting thereby large-scale usage in clinical 
+trials.
+The crucial point of discussion from a future research 
+standpoint would be around how to leverage the power 
+of quantum algorithms on hardware and localize it to 
+biomedical devices for seamless analysis. This study did 
+demonstrate a substantial advantage to overall medical 
+imaging problems, using quantum learning techniques, 
+while also implementing classical learning models in the 
+context for performance and efficacy in improved model 
+implementations. The model demonstrates robustness 
+while comparing the overall recall value, as any incor-
+rect misclassification of CoViD-19 infected patient could 
+lead to reduction in the overall significances of the pre-
+dicted outcome further deferring accurate medical diag-
+nosis when compared to a wrongly classified patient with 
+pneumonia or other viral infection that may show similar 
+strains.
+Table 7  Confusion matrix
+Actual Values
+Predicted Values
+Positive
+Negative
+Positive
+874
+26
+Negative
+20
+580
+Total Evaluation Sample
+1500
+0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+1
+2
+3
+4
+5
+6
+7
+8
+9 10
+Loss Score
+Epoch
+Loss
+Val Loss
+Fig. 8  Change in loss per epoch (training and validation)
+90.6
+86.7
+82.9
+86.01
+94.01
+96.92
+75
+80
+85
+90
+95
+100
+MODE
+Stacked
+CNN
+Transfer
+Learning
+NN with
+Resnet
+2D CNN
+QNN
+% Accuracy
+Fig. 9  Comparison of various DL models versus QNN
+
+Page 12 of 14
+Sengupta and Srivastava BMC Med Inform Decis Mak          (2021) 21:227 
+While the study also discussed the aspects of hardware 
+requirements for training and evaluation of such models, 
+significant research is still under process, whereby there 
+has been an attempt to launch an economical cloud plat-
+form for quantum hardware simulation and modeling. 
+Further, this study provides scope for new development 
+area of edge-quantum computing, and opens up research 
+dialogues around faster diagnostics, and easy interpreta-
+tion of quantum algorithms in the medical world.
+Conclusion
+In this study, we proposed a quantum neural learning 
+model to classify patients with COVID-19 infection, 
+leveraging upon computed tomography scan images in 
+medical diagnosis. The suggested model attained optimal 
+degree of model efficacy during an experimental com-
+parison, yielding 96.92% of accuracy overall, leveraging 
+9500 + CT-Scan sample images. Additionally, the overall 
+computation time for training the model recorded was 
+52 min, with the entire sample, along with the inferenc-
+ing time recorded, which was a minute per image. This 
+overall model training time was significantly less as com-
+pared to classical CNN model building with similar sam-
+ples, using quantum hardware. Our results thereby yield 
+not only a significant lift in the overall accuracy, but also 
+optimizes upon the execution time. The model could be 
+further deployed in clinical trials and medical diagnoses, 
+which have a significant impact on overall decision sup-
+port for treating patients with early symptoms. Moreo-
+ver, a medical practitioner could also leverage upon our 
+framework for quicker diagnostics, helping him/her to 
+follow-up with the right treatment, and thereby save a 
+life.
+The impact of this paper not only quantifies the abil-
+ity of QML, but also would help clinical scientists build 
+diagnostic tools applied to drug discovery and disease 
+identification problems with much faster analytical capa-
+bility using quantum hardware. The study further pro-
+vides prospects to evaluate quantum algorithms for more 
+complex problems pertaining to image segmentation.
+Abbreviations
+DL: Deep learning; CNN: Convolutional neural network; QNN: Quantum neural 
+network; QCNN: Quantum convolutional neural network; ADAM: Adaptive 
+learning rate optimization; MODE: Multi-objective differential evolution; 
+RNN: Recurring neural networks; AUC-ROC: Area under the curve-receiver 
+operating curve; DNN: Deep neural network; LSTM: Long short-term memory; 
+CT: Computed tomography; CXR: Chest x-ray; Unitary Matrix(U): In Quantum 
+mechanics, the Hermitian adjoint of a matrix is denoted by a dagger (†) 
+and the equation is represented by U†U = UU† = I, comparable with linear 
+algebra equation U*U = UU* = I, when composite square matrix U is unitary, if 
+conjugate transpose U* is inverse; Pauli Sum: Calculate and simplify the sum of 
+Pauli operators (I, X, Y, Z) according to Pauli algebra rules; Circuit: It represents 
+Quantum model, a sequence of quantum gates for performing a series of 
+computations; Hinge Loss Formula: L(y) l(y) = max(0,1 − t*y); Qubit: A qubit 
+is a basic unit of quantum information representing information as 0 or 1; 
+CoViD-19: Coronavirus disease.
+Acknowledgements
+Not Applicable.
+Authors’ contributions
+KS staged the overall conceptualization of the problem, performed data 
+collection and experimentation. Dr. PRS validated key metrics and revised the 
+manuscript from a quality perspective. Both authors have read and approved 
+the final manuscript.
+Funding
+Not Applicable.
+Availability of data and materials
+The datasets generated and/or analyzed during the current study are available 
+in the GitHub repository, https://​bit.​ly/​3xGUS​8Q. The dataset does not consist 
+of any confidential data.
+Declarations
+Ethics approval and consent to participate
+Not Applicable. The data leveraged in the study were obtained from open-
+source databases, no additional approval is required.
+Consent for publication
+Not applicable.
+Competing interests
+KS is full-time Data Scientist at Microsoft Corporation India. All other authors 
+declare they have no conflict of interest.
+Author details
+1 Microsoft Corporation, New Delhi, India. 2 Department of Information System, 
+Indian Institute of Management, Rohtak, India. 3 City Southern Bypass, Sunaria, 
+Rohtak, Haryana 124010, India. 
+Received: 4 September 2020   Accepted: 18 July 2021
+References
+	1.	
+Niu J, Shi Y, Cai M, Cao Z, Wang D, Zhang Z, Zhang X. Detection of sputum 
+by interpreting the time-frequency distribution of respiratory sound sig-
+nal using image processing techniques. Bioinformatics. 2017;34(5):820–7. 
+https://​doi.​org/​10.​1093/​bioin​forma​tics/​btx652.
+	2.	
+Bloice M, Roth P, Holzinger A. Biomedical image augmentation using 
+Augmentor. Bioinformatics. 2019;35(21):4522–4. https://​doi.​org/​10.​1093/​
+bioin​forma​tics/​btz259.
+	3.	
+Shu J, Liu J, Zhang Y, Fu H, Ilyas M, Faraci G, et al. Marker controlled super-
+pixel nuclei segmentation and automatic counting on immunohisto-
+chemistry staining images. Bioinformatics. 2020;36(10):3225–33. https://​
+doi.​org/​10.​1093/​bioin​forma​tics/​btaa1​07.
+	4.	
+Milon Islam Md, Saifuddin Mahmud LJ, Muhammad Md, Islam R, Noorud-
+din S, Ayon SI. Wearable technology to assist the patients infected with 
+novel coronavirus (COVID-19). SN Comput Sci. 2020;1(6):320.
+	5.	
+Ullah SMA, Milon Islam Md, Mahmud S, Sheikh Nooruddin SM, Raju 
+TU, Rezwanul Haque Md. Scalable telehealth services to combat novel 
+coronavirus (COVID-19) pandemic. SN Comput Sci. 2020;2(1):18.
+	6.	
+Lather M, Singh P. Investigating brain tumor segmentation and detection 
+techniques. Procedia Comput Sci. 2020;167:121–30. https://​doi.​org/​10.​
+1016/j.​procs.​2020.​03.​189.
+	7.	
+Staff S. Covid-19: Double mutant strain could be considered a variant of 
+concern, says top scientist (2021). Retrieved 15 April 2021, from https://​
+scroll.​in/​latest/​992323/​covid-​19-​double-​mutant-​strain-​could-​be-​consi​
+dered-a-​varia​nt-​of-​conce​rn-​says-​top-​scien​tist
+	8.	
+Zhou S, Greenspan H, Davatzikos C, Duncan J, Van Ginneken B, Madab-
+hushi A, Prince J, Rueckert D. Summers R. A review of deep learning in 
+
+Page 13 of 14
+Sengupta and Srivastava BMC Med Inform Decis Mak          (2021) 21:227 
+	
+medical imaging: imaging traits, technology trends, case studieswith 
+progress highlights, and future promises. 2020.
+	9.	
+Gao J, Yang Y, Lin P, Park DS. Computer vision in healthcare applications. J 
+Healthc Eng. 2018;
+	10.	 Porwal P, Pachade S, Kokare M, Deshmukh G, Son J, Bae W, et al. IDRiD: 
+diabetic retinopathy—segmentation and grading challenge. Med Image 
+Anal. 2020;59: 101561. https://​doi.​org/​10.​1016/j.​media.​2019.​101561.
+	11.	 Altaf F, Islam SMS, Akhtar N, Janjua NK. “Going deep in medical image 
+analysis: Concepts, methods, challenges and future directions”. IEEE 
+Access. 2019;7:99540–72.
+	12.	 Acampora G. Quantum machine intelligence. Quantum Mach Intell. 
+2019;1(1–2):1–3. https://​doi.​org/​10.​1007/​s42484-​019-​00006-5.
+	13.	 Kiani B, Villanyi A, Lloyd S. Quantum medical imaging algorithms; 2020. 
+arXiv.org. Retrieved 23 May 2020, from https://​arxiv.​org/​abs/​2004.​
+02036.
+	14.	 Mayr A, Klambauer G, Unterthiner T, Hochreiter S. Deeptox: toxicity 
+prediction using deep learning. Front Environ Sci. 2016. https://​doi.​
+org/​10.​3389/​fenvs.​2015.​00080.
+	15.	 Orús R, Mugel S, Lizaso E. Quantum computing for finance: overview 
+and prospects. Rev Phys. 2019;4: 100028. https://​doi.​org/​10.​1016/j.​
+revip.​2019.​100028.
+	16.	 Chen H, Engkvist O, Wang Y, Olivecrona M, Blaschke T. The rise of deep 
+learning in drug discovery. Drug Discovery Today. 2018;23(6):1241–50. 
+https://​doi.​org/​10.​1016/j.​drudis.​2018.​01.​039.
+	17.	 Solenov D, Brieler J, Scherrer JF. The potential of quantum computing 
+and machine learning to advance clinical research and change the 
+practice of medicine. Mo Med. 2018;115(5):463–7.
+	18.	 Rizwan I, Haque I, Neubert J. Deep learning approaches to biomedical 
+image segmentation. Inform Med Unlocked. 2020;18: 100297. https://​
+doi.​org/​10.​1016/j.​imu.​2020.​100297.
+	19.	 Dunjko V, Taylor J, Briegel H. Quantum-enhanced machine learning. 
+Phys Rev Lett. 2016;117(13). https://​doi.​org/​10.​1103/​physr​evlett.​117.​
+130501
+	20.	 Laumann T, Snyder A, Mitra A, Gordon E, Gratton C, Adeyemo B, 
+Gilmore A, Nelson S, Berg J, Greene D, McCarthy J, Tagliazucchi E, Laufs 
+H, Schlaggar B, Dosenbach N, Petersen S. On the stability of BOLD fMRI 
+correlations. Cerebral Cortex. 2016.
+	21.	 Moore G. Cramming more components onto integrated circuits, 
+Reprinted from Electronics, volume 38, number 8, April 19, 1965, 
+pp.114 ff. IEEE Solid-State Circuits Soc Newslett. 2006;11(3):33–35.
+	22.	 Yanofsky N. An introduction to quantum computing. Proof Comput 
+Agency. 2011. https://​doi.​org/​10.​1007/​978-​94-​007-​0080-2_​10.
+	23.	 Imtiyaz S. Quantum adiabatic evolution for global optimization in big 
+data; 2020. arXiv.org. Retrieved 23 May 2020, from https://​arxiv.​org/​
+abs/​1805.​11479.
+	24.	 Chowdhury AN, Somma RD. Quantum algorithms for Gibbs sampling 
+and hitting-time estimation. Quantum Info Comput. 2017;17:1–2.
+	25.	 Moreira C, Wichert A. Quantum-like Bayesian networks for modeling 
+decision making. Front Psychol. 2016. https://​doi.​org/​10.​3389/​fpsyg.​
+2016.​00011.
+	26.	 Lee YT, Sidford A, Wong SC-W. A faster cutting plane method and its 
+implications for combinatorial and convex optimization. In: Proceed-
+ings of 2015 IEEE 56th Annual Symposium on Foundations of Com-
+puter Science (FOCS), Berkeley, CA. New York: IEEE; 2015, p. 1049–1065
+	27.	 Arora S, Kale S. A combinatorial, primal-dual approach to semidefinite 
+programs. In: Proceedings of of the 39th Annual ACM Symposium on 
+Theory of Computing, San Diego, CA. New York: ACM; 2007, p. 227–236
+	28.	 Georgescu I, Ashhab S, Nori F. Quantum simulation. Rev Modern Phys. 
+2014;86(1):153–85. https://​doi.​org/​10.​1103/​revmo​dphys.​86.​153.
+	29.	 de Lacy K, Noakes L, Twamley J, Wang J. Controlled quantum 
+search. Quantum Inf Process. 2018;17(10). https://​doi.​org/​10.​1007/​
+s11128-​018-​2031-6
+	30.	 Sentís G, Monràs A, Muñoz-Tapia R, Calsamiglia J, Bagan E. Unsupervised 
+classification of quantum data. Phys Revi X. 2019;9(4).
+	31.	 Henderson M, Shakya S, Pradhan S, Cook T. Quanvolutional neural net-
+works: powering imagerecognition with quantum circuits. 2019. [online] 
+arXiv.org. Available at: [Accessed 21 July 2021].
+	32.	 Vabalas A, Gowen E, Poliakoff E, Casson A. Machine learning algorithm 
+validation with a limited sample size. PLoS ONE. 2019;14(11): e0224365. 
+https://​doi.​org/​10.​1371/​journ​al.​pone.​02243​65.
+	33.	 Chen J, Wu L, Zhang J, Zhang L, Gong D, Zhao Y et al. Deep learning-
+based model for detecting 2019 novel coronavirus pneumonia on high-
+resolution computed tomography: a prospective study; 2020. https://​doi.​
+org/​10.​1101/​2020.​02.​25.​20021​568
+	34.	 Jin S, Wang B, Xu H, Luo C, Wei L, Zhao W et al. AI-assisted CT imaging 
+analysis for COVID-19 screening: building and deploying a medical AI 
+system in four weeks; 2020. https://​doi.​org/​10.​1101/​2020.​03.​19.​20039​354
+	35.	 Sabottke C, Spieler B. The effect of image resolution on deep learning 
+in radiography. Radiol Artif Intell. 2020;2(1):e190015. https://​doi.​org/​10.​
+1148/​ryai.​20191​90015
+	36.	 Shi H, Han X, Jiang N, Cao Y, Alwalid O, Gu J, et al. Radiological findings 
+from 81 patients with COVID-19 pneumonia in Wuhan, China: a descrip-
+tive study. Lancet Infect Dis. 2020;20(4):425–34. https://​doi.​org/​10.​1016/​
+s1473-​3099(20)​30086-4.
+	37.	 Li L, Qin L, Xu Z, Yin Y, Wang X, Kong B, et al. Artificial intelligence distin-
+guishes COVID-19 from community acquired pneumonia on chest CT. 
+Radiology. 2020. https://​doi.​org/​10.​1148/​radiol.​20202​00905.
+	38.	 Hani C, Trieu N, Saab I, Dangeard S, Bennani S, Chassagnon G, Revel M. 
+COVID-19 pneumonia: a review of typical CT findings and differential 
+diagnosis. Diagn Interv Imaging. 2020;101(5):263–8. https://​doi.​org/​10.​
+1016/j.​diii.​2020.​03.​014.
+	39.	 Sreedhar K. Enhancement of images using morphological transforma-
+tions. Int J Comput Sci Inf Technol. 2012;4(1):33–50. https://​doi.​org/​10.​
+5121/​ijcsit.​2012.​4103.
+	40.	 Hu X, Wang H, Vegesana A, Dube S, Yu K, Kao G, et al. Crowdsourcing 
+detection of sampling biases in image datasets. Proc Web Conf. 2020. 
+https://​doi.​org/​10.​1145/​33664​23.​33800​63.
+	41.	 Wanyan T, Zhang J, Ding Y. Azad A, Wang Z, Glicksberg B. Bootstrapping 
+your own positive sample: contrastive learning with electronic health 
+record data (2021). [online] arXiv.org. <https://​arxiv.​org/​abs/​2104.​02932​
+v1> Accessed 7 July 2021.
+	42.	 Liang S, Sun R, Lee JD, Srikant R. Adding one neuron can eliminate all 
+bad local minima. In: 32nd Conference on Neural Information Processing 
+Systems (NeurIPS 2018), Montréal, Canada; 2018
+	43.	 Singh D, Kumar V, Vaishali et al. Classification of COVID-19 patients from 
+chest CT images using multi-objective differential evolution–based con-
+volutional neural networks. Eur J Clin Microbiol Infect Dis. 2020. https://​
+doi.​org/​10.​1007/​s10096-​020-​03901-z
+	44.	 Xu X, Jiang X, Ma C, Du P, Li X, Lv S et al. Deep learning system to screen 
+coronavirus disease 2019 pneumonia; 2020. arXiv.org. Retrieved 22 May 
+2020, from https://​arxiv.​org/​abs/​2002.​09334​v1.
+	45.	 Buades A, Coll B, Morel J. Non-Local means denoising. Image Process 
+Line. 2011;1:208–212.
+	46.	 Song Y, Zheng S, Li L, Zhang X, Zhang X, Huang Z et al. Deep learning 
+enables accurate diagnosis of novel coronavirus (COVID-19) with CT 
+images; 2020. https://​doi.​org/​10.​1101/​2020.​02.​23.​20026​930
+	47.	 Shan F, Gao Y, Wang J, Shi W, Shi N, Han M et al. Lung infection quanti-
+fication of COVID-19 in CT images with deep learning; 2020. arXiv.org. 
+Retrieved 22 May 2020, from https://​arxiv.​org/​abs/​2003.​04655.
+	48.	 Barstugan M, Ozkaya U, Ozturk S. Coronavirus (COVID-19) classification 
+using CT images by machine learning methods; 2020. arXiv.org. Retrieved 
+22 May 2020, from https://​arxiv.​org/​abs/​2003.​09424​v1.
+	49.	 Heinrich MP, Blendowski M, Oktay O. TernaryNet: faster deep model infer-
+ence without GPUs for medical 3D segmentation using sparse and binary 
+convolutions. Int J CARS. 2018;13:1311–20. https://​doi.​org/​10.​1007/​
+s11548-​018-​1797-4.
+	50.	 Islam MM, Islam MZ, Asraf A, Ding W. Diagnosis of COVID-19 from X-rays 
+using combined CNN-RNN architecture with transfer learning; 2020
+	51.	 Zabirul Islam M, Islam MM, Asraf A. A combined deep CNN-LSTM network 
+for the detection of novel coronavirus (COVID-19) using X-ray images. 
+Inform Med Unlocked 2020; 20:100412
+	52.	 Singh D, Kumar V, Kaur M. Densely connected convolutional networks-
+based COVID-19 screening model. Appl Intell. 2021
+	53.	 Kadampur M, Al Riyaee S. Skin cancer detection: applying a deep learning 
+based model driven architecture in the cloud for classifying dermal cell 
+images. Inform Med Unlocked. 2020;18: 100282. https://​doi.​org/​10.​1016/j.​
+imu.​2019.​100282.
+	54.	 Baranov M. Image processing of biological liquids films for medical diag-
+nostics. J Electron Sci Technol. 2020. https://​doi.​org/​10.​1016/j.​jnlest.​2020.​
+100027.
+
+Page 14 of 14
+Sengupta and Srivastava BMC Med Inform Decis Mak          (2021) 21:227 
+•
+ 
+fast, convenient online submission
+ 
+•
+  
+thorough peer review by experienced researchers in your ﬁeld
+• 
+ 
+rapid publication on acceptance
+• 
+ 
+support for research data, including large and complex data types
+•
+  
+gold Open Access which fosters wider collaboration and increased citations 
+ 
+maximum visibility for your research: over 100M website views per year 
+•
+  
+At BMC, research is always in progress.
+Learn more biomedcentral.com/submissions
+Ready to submit your research
+Ready to submit your research ?  Choose BMC and benefit from: 
+?  Choose BMC and benefit from: 
+	55.	 Uesawa Y. Quantitative structure–activity relationship analysis using deep 
+learning based on a novel molecular image input technique. Bioorg Med 
+Chem Lett. 2018;28(20):3400–3. https://​doi.​org/​10.​1016/j.​bmcl.​2018.​08.​
+032.
+	56.	 Gilmer J, Schoenholz S, Riley P, Vinyals O, Dahl G. Neural Message Passing 
+for Quantum Chemistry. arXiv.org. Retrieved 22 May 2020, from https://​
+arxiv.​org/​abs/​1704.​01212.
+	57.	 Aliper A, Plis S, Artemov A, Ulloa A, Mamoshina P, Zhavoronkov A. Deep 
+learning applications for predicting pharmacological properties of 
+drugs and drug repurposing using transcriptomic data. Mol Pharm. 
+2016;13(7):2524–30. https://​doi.​org/​10.​1021/​acs.​molph​armac​eut.​6b002​
+48.
+	58.	 Merkwirth C, Lengauer T. Automatic generation of complementary 
+descriptors with molecular graph networks. J Chem Inform Model. 
+2005;45(5):1159–68. https://​doi.​org/​10.​1021/​ci049​613b.
+	59.	 Islam MM, Azmat Ullah SM, Mahmud S, Taslim Uddin Raju SM. Breathing 
+aid devices to support novel coronavirus (COVID-19) infected patients. 
+SN Comput Sci. 2020;1(5):274.
+	60.	 Islam MM, Karray F, Alhajj R, Zeng J. A review on deep learning tech-
+niques for the diagnosis of novel coronavirus (COVID-19). IEEE Access. 
+2021;9:30551–72.
+Publisher’s Note
+Springer Nature remains neutral with regard to jurisdictional claims in pub-
+lished maps and institutional affiliations.

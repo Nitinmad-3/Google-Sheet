@@ -1,0 +1,1607 @@
+Source-PDF: D:\Review\Paper\Clinical prediction bridge (your current query, improved)\clinical imaging diagnosis with quantumhybrid\Error mitigation enables PET radiomic cancer characterization on quantum computers.pdf
+Relative-Path: Paper\Clinical prediction bridge (your current query, improved)\clinical imaging diagnosis with quantumhybrid\Error mitigation enables PET radiomic cancer characterization on quantum computers.pdf
+--------------------------------------------------------------------------------
+
+Vol:.(1234567890)
+European Journal of Nuclear Medicine and Molecular Imaging (2023) 50:3826–3837
+https://doi.org/10.1007/s00259-023-06362-6
+1 3
+ORIGINAL ARTICLE
+Error mitigation enables PET radiomic cancer characterization 
+on quantum computers
+S. Moradi1 · Clemens Spielvogel2 · Denis Krajnc3 · C. Brandner1 · S. Hillmich4 · R. Wille5 · T. Traub‑Weidinger2 · X. Li2 · 
+M. Hacker2 · W. Drexler3 · L. Papp1 
+Received: 21 March 2023 / Accepted: 24 July 2023 / Published online: 4 August 2023 
+© The Author(s) 2023
+Abstract
+Background  Cancer is a leading cause of death worldwide. While routine diagnosis of cancer is performed mainly with 
+biopsy sampling, it is suboptimal to accurately characterize tumor heterogeneity. Positron emission tomography (PET)-driven 
+radiomic research has demonstrated promising results when predicting clinical endpoints. This study aimed to investigate 
+the added value of quantum machine learning both in simulator and in real quantum computers utilizing error mitigation 
+techniques to predict clinical endpoints in various PET cancer patients.
+Methods  Previously published PET radiomics datasets including 11C-MET PET glioma, 68GA-PSMA-11 PET prostate and 
+lung 18F-FDG PET with 3-year survival, low-vs-high Gleason risk and 2-year survival as clinical endpoints respectively were 
+utilized in this study. Redundancy reduction with 0.7, 0.8, and 0.9 Spearman rank thresholds (SRT), followed by selecting 
+8 and 16 features from all cohorts, was performed, resulting in 18 dataset variants. Quantum advantage was estimated by 
+Geometric Difference (GDQ) score in each dataset variant. Five classic machine learning (CML) and their quantum versions 
+(QML) were trained and tested in simulator environments across the dataset variants. Quantum circuit optimization and error 
+mitigation were performed, followed by training and testing selected QML methods on the 21-qubit IonQ Aria quantum 
+computer. Predictive performances were estimated by test balanced accuracy (BACC) values.
+Results  On average, QML outperformed CML in simulator environments with 16-features (BACC 70% and 69%, respec-
+tively), while with 8-features, CML outperformed QML with + 1%. The highest average QML advantage was + 4%. The GDQ 
+scores were ≤ 1.0 in all the 8-feature cases, while they were > 1.0 when QML outperformed CML in 9 out of 11 cases. The 
+test BACC of selected QML methods and datasets in the IonQ device without error mitigation (EM) were 69.94% BACC, 
+while EM increased test BACC to 75.66% (76.77% in noiseless simulators).
+Conclusions  We demonstrated that with error mitigation, quantum advantage can be achieved in real existing quantum 
+computers when predicting clinical endpoints in clinically relevant PET cancer cohorts. Quantum advantage can already be 
+achieved in simulator environments in these cohorts when relying on QML.
+Keywords  Cancer · Quantum computing · Machine learning · Radiomics · PET
+Introduction
+To date, cancer remains one of the major causes of deaths 
+worldwide, as in 2020, approximately 20 million new cases 
+were identified. The routine diagnosis of cancer is performed 
+by invasive biopsy sampling which is considered inaccu-
+rate [1], given that cancers are heterogeneous; thus, small 
+biopsy samples cannot accurately characterize the whole 
+stage of the given lesion [2]. In addition, biopsies are pain-
+ful, increase risk of infection, and in general, may reduce the 
+quality of life of patients [3]. Positron emission tomography 
+(PET)/computer tomography (CT) and recently PET/mag-
+netic resonance imaging (MRI) hybrid imaging techniques 
+ *	 L. Papp 
+	
+laszlo.papp@meduniwien.ac.at
+1	
+Applied Quantum Computing Group, Center for Medical 
+Physics and Biomedical Engineering, Medical University 
+of Vienna, Waehringer Guertel 18‑20, T1090 Vienna, Austria
+2	
+Division of Nuclear Medicine, Medical University of Vienna, 
+Vienna, Austria
+3	
+Center for Medical Physics and Biomedical Engineering, 
+Medical University of Vienna, Vienna, Austria
+4	
+Institute for Integrated Circuits, Johannes Kepler University 
+Linz, Linz, Austria
+5	
+Chair for Design Automation, Technical University 
+of Munich, Munich, Germany
+
+3827
+European Journal of Nuclear Medicine and Molecular Imaging (2023) 50:3826–3837	
+1 3
+have been playing a crucial role in in vivo cancer detection 
+and characterization settings [4–6]. Radiomics is the pro-
+cess of extracting numerical features from medical images 
+in order to characterize diseases in vivo [7]. Recent advance-
+ments in the field of PET radiomics combined with machine 
+learning approaches have remonstrated promising results in 
+predicting clinical end-points [2, 4, 8–10]. Nevertheless, 
+radiomic models are challenged by factors related to meta-
+bolic variations across patients in PET, as well as variations 
+in imaging, delineation, and radiomic feature extraction 
+parameters [7]. While the Imaging Biomarker Standardiza-
+tion Initiative (IBSI) [11] has helped to standardize the pro-
+cess of performing feature extraction from medical images, 
+the recently reported joint EANM/SNMMI guideline for 
+radiomics in nuclear medicine lays out the foundations 
+of quantitative radiomics on a wide spectrum of analysis 
+aspects to characterize diseases in vivo [7]. Still, various 
+challenges remain on the level of small training datasets, 
+combined with complex and difficult-to interpret prediction 
+models that do not support the process of clinical adoption. 
+Consistently, to date, the wide-scale clinical adoption of AI-
+driven approaches relying on PET in cancer patients is yet 
+to be witnessed [12].
+Quantum computing is an emerging field with the prom-
+ise to revolutionize computationally complex problems such 
+as modeling and simulation, optimization, and artificial 
+intelligence (AI) [13]. While classical computers operate 
+with bits that can either have values 0 or 1, quantum com-
+puting operates with qubits that can represent both 0 and 
+1 values with a probabilistic outcome, by encoding com-
+plex information [13, 14]. Relying on quantum phenom-
+ena such as interference, superposition, and entanglement, 
+the so-called quantum circuits can model complex real-life 
+computational problems with simple qubit gate calculations 
+[15]. While the public perception of quantum advantage is 
+associated to superior computing speed, quantum advantage 
+has many different forms. Specifically, one may encode an 
+N-dimensional vector to log2N number of qubits, which 
+results in speedup as well as in a much simpler quantum 
+algorithmic complexity compared to its classic computing 
+counterpart [13, 16]. This simplified search space naturally 
+aids the training process of quantum machine learning 
+(QML) approaches compared to their classic computing 
+counterparts [13, 14]. Consistently, various QML studies 
+have demonstrated the feasibility to both estimate [14] and 
+to achieve [13, 17, 18] a higher predictive performance 
+when relying on quantum ML approaches compared to 
+classic ML [19]. Recently, it has also been demonstrated 
+that QML requires less training data than classic ML does 
+to build high-performing predictive models [20]. To date, 
+various quantum algorithms (a.k.a. quantum circuits) have 
+been proposed on existing, so-called noisy intermediate 
+scale quantum computers (NISQ) [15]. Nevertheless, most 
+problem fields cannot efficiently utilize NISQs due to their 
+low qubit count and high noise levels [15]. Ongoing activi-
+ties in this regard focus on proposing and implementing 
+error mitigation techniques that can counter-balance quan-
+tum gate as well as measurement errors [21–24]. In gen-
+eral, the majority of quantum computing research focuses 
+on extending the number of qubits and minimizing noise 
+in future quantum hardware and tend to underestimate the 
+importance of existing NISQs as they are challenging to 
+scale [15]. In contrast, the mentioned advantageous proper-
+ties of quantum computing render it an interesting candidate 
+to further advance PET radiomic research.
+In light of the challenges radiomics and machine learning 
+is facing in the field of cancer research, we hypothesize that 
+by relying on existing NISQs combined with novel error mit-
+igation techniques, quantum advantage can be achieved in 
+clinically relevant cancer cohorts. Therefore, this study had 
+the following objectives: (a) to compare classic and quan-
+tum ML predictive performances relying on cross-validation 
+techniques when predicting clinical endpoints in various 
+cancer patients; (b) to investigate whether the magnitude of 
+quantum advantage in light of QML predictive performance 
+can be accurately estimated in the cancer datasets prior to 
+engaging with NISQs; and (c) to investigate the feasibility 
+of utilizing a real quantum computer combined with novel 
+error mitigation techniques for QML prediction in the col-
+lected cancer datasets.
+Methods
+Dataset
+This study relied on a three, previously published PET radi-
+omic cancer cohorts. All cohorts were composed of imag-
+ing biomarker standardization initiative (IBSI)-conform 
+PET radiomic features [11] and their respective clinical 
+endpoints to predict: A [68 Ga]Ga-PSMA-11 (PSMA-11) 
+radiomic dataset containing 121 delineated lesions with 
+low-vs-high lesion risk [2, 9], 84 11C-Methionine (MET) 
+glioma cases with 3-year survival [9, 25], and 335 18F-FDG 
+PET lung cases with 2-year survival clinical endpoints [9, 
+26]. All radiomic datasets underwent redundancy reduction 
+with correlation matrix analysis and Spearman rank thresh-
+olds (SRT) of 0.7, 0.8, and 0.9 [9], where in case of redun-
+dant Spearman rank clusters, the feature with the highest 
+variance was selected. For detailed patient characteristics 
+and the IBSI-conform imaging and radiomic steps, see the 
+respective reports of the cohorts. For the CONSORT dia-
+gram of this study, see Fig. 1. For the Checklist for Artificial 
+Intelligence in Medical Imaging (CLAIM) guidelines [27], 
+see Supplemental K.
+
+3828
+	
+European Journal of Nuclear Medicine and Molecular Imaging (2023) 50:3826–3837
+1 3
+Fig. 1   CONSORT diagram of the study. Overall, three retrospectively 
+available and previously reported cohorts were included, composed 
+of Imaging Biomarker Standardization Initiative (IBSI) [11] conform 
+PET radiomic features to predict cohort-specific clinical endpoints, 
+specifically, Gleason low-vs-high risk from prostate, 3-year survival 
+from glioma and 2-year survival from lung cancer cases. After per-
+forming redundancy reduction via correlation matrix and Spearman 
+ranking thresholds (SRT) of 0.7, 0.8, and 0.9 [9], each dataset with 
+its SRT-specific variant undergoes a tenfold cross-validation train-test 
+split with 80–20% train-test ratio. The cross-validation split is harmo-
+nized, to maintain the same split across the different SRT variants. 
+Feature selection with R-squared ranking is performed in the train 
+subsets to result in eight and 16 features per-cohort, per-SRT and per-
+fold [28]. Estimation of quantum advantage scores across the train 
+subsets is performed via Geometric Difference (GD) score [14]. In 
+addition, classic (CML) and quantum machine learning (QML) pre-
+diction models are built to predict clinical endpoints based on the 
+training subsets of data variants. Predictive performance comparison 
+of CML and QML methods is performed through the test subsets of 
+the cross-validation scheme relying on confusion matrix analytics 
+and balanced accuracy (BACC). Statistical significance in-between 
+the GD scores and the test BACC values of QML approaches across 
+the tenfolds is performed by Pearson correlation coefficient analysis. 
+Preliminary analysis is performed with the first fold of the prostate 
+cohort with 8-features and 0.7 SRT where quantum circuit optimiza-
+tion is done in simulator environment, followed by building predic-
+tion models of selected QML methods in the 21-qubit IonQ Aria 
+real quantum device with and without error mitigation techniques. 
+Predictive performance estimation with and without error mitigation 
+as well as in a noiseless simulator environment is performed on the 
+test subsets. The best performing QML approach with error mitiga-
+tion is selected and the first fold of all cohorts and their 8, 16 feature 
+as well as their SRT variants undergo the same 21-qubit IonQ Aria 
+evaluation with and without error mitigation. cSVM — classic ker-
+nel support vector machine; cGP — classic kernel Gaussian process; 
+cNN — classic neural network; cKNN — classic k-nearest neighbor; 
+qsSVM — simplified quantum kernel support vector machine; qSVM 
+— quantum kernel support vector machine; qGP — quantum kernel 
+Gaussian process; qNN — quantum neural network; qDC — quantum 
+distance classifier
+
+3829
+European Journal of Nuclear Medicine and Molecular Imaging (2023) 50:3826–3837	
+1 3
+Cross‑validation scheme
+Tenfold cross-validation scheme with 80:20% train-to-
+test ratio in each cohort was utilized to estimate predictive 
+model performances in this study. The train-test split was 
+performed to ensure that no sample from the same patient is 
+assigned to the given fold’s train and test split concurrently 
+in order to avoid patient-level data leakage [9]. The test set 
+was balanced in each fold for all cohorts.
+Feature ranking and selection
+Feature ranking and selection of 8 as well as 16 features in 
+each training subset of each cohort and their three SRT vari-
+ants was performed for further analysis [28]. These numbers 
+were chosen to satisfy two requirements: on the one hand, to 
+minimize the chances of overfitting while building predictive 
+models according to the curse of dimensionality rule [10, 
+29]. On the other hand, to ensure that the number of fea-
+tures encoded to quantum circuits is 2N (N > 1), which was to 
+result in an optimal number of qubits for the chosen classic-
+to-quantum encoding step and subsequent quantum machine 
+learning (QML) [30]. In case the given SRT resulted in less 
+than 8 or 16 number of features in any of the cohorts, zero-
+padding was applied before encoding to the required number 
+of quantum bits [31]. After performing the feature ranking 
+and selection phase, this study had 3 cohorts × 3 SRT × 2 
+feature/qubit count = 18 dataset variants.
+Quantum machine learning
+Quantum machine learning requires classical data to be 
+encoded to quantum states. In order to minimize quan-
+tum circuit complexity (a.k.a. the number of quantum gate 
+operations), the encoding circuit itself can be optimized. 
+For quantum encoding optimization, this study relied on 
+the Limited memory Broyden–Fletcher–Goldfarb–Shanno 
+(LBFGS) method executed on the Qiskit-Pennylane simula-
+tor in combination with PyTorch-compatible quantum nodes 
+(see Appendix B of the supplementary material for details 
+of our tested encoding optimization strategies). The ampli-
+tude encoding scheme was utilized to encode 8 features to 
+log2(8) = 3 and 16 features to log2(16) = 4 number of qubits, 
+respectively [30, 32].
+After encoding, the quantum state processing circuit 
+parts were optimized by gate decomposition approaches to 
+minimize the number of gates manifesting superposition, 
+entanglement, and interference for QML (see Appendix C of 
+the supplement for details). QML approaches were utilized 
+to train quantum predictive models in each fold relying on 
+the Qiskit-Azure simulator environment considering IonQ 
+simulator as backend [33]: A simplified quantum kernel 
+support vector machine (qsSVM) [13], a quantum kernel 
+support vector machine (qSVM) utilizing optimization [34, 
+35], a quantum kernel Gaussian process (qGP) [36], a quan-
+tum neural network (qNN) [37], and a quantum distance 
+classifier (qDC) [13]. The two quantum SVM variants were 
+involved to investigate the effect of optimization vs. no opti-
+mization in-between qSVM and qsSVM approaches, respec-
+tively (see Appendix D and E for details of the utilized QML 
+approaches including their quantum circuit diagrams, behav-
+ior, and parameter sets and see Sec. Access for accessing the 
+source code utilized to build QML prediction models for this 
+study). For detailed parameters of quantum ML algorithms, 
+see Appendix F of the supplement.
+Classic machine learning
+Classic kernel support vector machine (cSVM) [38], clas-
+sic kernel Gaussian process (cGP) [39], classic neural net-
+work (cNN) [40], and classic k-nearest neighbor (ckNN) 
+[41] machine learning approaches were built on the training 
+subsets across the cross-validation scheme relying on the 
+Python software package scikit-learn [42]. The choice of 
+these approaches was followed by guidelines as reported in 
+[43] in order to ensure a fair comparison of quantum-classic 
+ML approaches. The ckNN approach was the classic variant 
+of qDS with the difference of qDS operating with k = 1 and 
+ckNN with k = 5 nearest neighbors. For detailed parameters 
+of classic ML algorithms, see Appendix F of the supple-
+mentary material (see Sec. Access for accessing the source 
+code utilized to build CML prediction models for this study).
+Performance evaluation
+All quantum and classic ML models built in this study were 
+cross-validated by relying on the same cross-validation split 
+configurations of all 18 dataset variants to avoid test perfor-
+mance fluctuations due to method-specific random splits. 
+Each quantum and classic predictive models were evaluated 
+based on the given test set samples by the calculation of 
+confusion matrix (CM) analytics per-model and per-fold in 
+the given dataset variant. The number of true positive (TP), 
+false positive (FP), true negative (TN), and false negative 
+(FN) cases was calculated for each confusion matrix, from 
+which balanced accuracy (BACC) was calculated. The mean 
+BACC were calculated together with their 95% confidence 
+intervals (CI) across the tenfolds for each quantum and clas-
+sic predictive models.
+Estimation of quantum advantage
+The Geometric Difference (GDQ) score was utilized to 
+estimate the magnitude of quantum advantage [14] in 
+each tenfold training subsets of the 18 dataset variants, 
+relying on the Qiskit simulator environment [44]. The 
+
+3830
+	
+European Journal of Nuclear Medicine and Molecular Imaging (2023) 50:3826–3837
+1 3
+GDQ is a measurement which characterizes the power of 
+data regarding quantum ML predictability without the 
+need to engage with any actual quantum computers and 
+QML approaches. For estimation of the Geometric Dif-
+ference scores and its physical meaning, see Appendix A 
+of the supplement. In case GDQ > 1.0, a higher predictive 
+performance is likely in quantum ML models compared 
+to their CML counterparts. In case GDQ ≤ 1.0, the given 
+dataset will not result in higher QML predictive perfor-
+mance compared to CML [14]. The average QML and 
+CML test balanced accuracy values (qBACC and cBACC, 
+respectively) were calculated across test subsets of the 
+cross-validation folds and the difference balanced accu-
+racy (dBACC = qBACC – cBACC) was calculated. The 
+significance of dependency in-between GDQ and dBACC 
+was calculated by Pearson correlation coefficient analysis 
+where p < 0.05 was considered as significance threshold. 
+In addition to the above, we estimated the required amount 
+of classical computing needs to approximate GDQ = 1.0 
+compared to surpassing it with quantum ML (see Appen-
+dix A of the supplement for details).
+Quantum error mitigation
+Since existing NISQ devices are noisy, their outputs are 
+subjects of both gate and measurement errors [15, 45]. 
+Therefore, the output needs to undergo error mitigation. 
+This process can be described as a classical regression prob-
+lem between noiseless simulator vs. noisy NISQ measure-
+ment values. This study utilized a classical random forest 
+regression algorithm [42] to mitigate quantum errors on the 
+21-qubit IonQ Aria device (see Appendix G of the supple-
+ment for more details about the IonQ quantum device). In 
+order to estimate the effect of the proposed error mitigation 
+technique and to identify which QML approach benefits 
+the most from such technique, a two-step approach was fol-
+lowed. First as a preliminary analysis, the first fold from the 
+prostate cohort with 8 features and 0.7 SRT was selected and 
+the 21-qubit IonQ Aria quantum computer was utilized to 
+train and test qDC, qGP, and qsSVM prediction models with 
+and without error mitigation (EM). The qSVM and qNN 
+approaches were excluded from this step due to resource 
+constraints when relying on the IonQ device. For details 
+of the EM techniques, see Appendix H. The test balanced 
+accuracy (BACC) performance evaluation results of qDC, 
+qGP, and qsSVM relying on the simulator environment were 
+compared to the 21-qubit IonQ device test BACC results to 
+estimate the effect of EM. The second step selected the QML 
+approach which yielded the highest test BACC on the IonQ 
+device considering both no EM and with EM, and repeated 
+the analysis on the first fold of all the 18 dataset variants on 
+the IonQ device with and without EM.
+Results
+Performance evaluation
+Predictive performance evaluation over test subsets of the uti-
+lized cross-validation scheme revealed that on average, both 
+QML and CML approaches yielded 64–73% balanced accuracy 
+(BACC) ranges across all cohorts and their SRT configurations 
+with 8-features and 3-qubits. Nevertheless, CML outperformed 
+QML in 5 out of 9 experiments, QML outperformed CML in 1 
+case and in 3 cases, the BACC was equal in-between QML and 
+CML (Table 1). In contrast, the QML and CML approaches 
+in case of 16-features and 4-qubits yielded an average BACC 
+range of 64–78% and 64–75%, respectively. Here, QML out-
+performed CML in 5 out of 9 cases, while CML outperformed 
+QML in 2 cases and in 2 cases QML and CML yielded identi-
+cal BACC results (Table 2). On average, confidence intervals 
+(CI) across all QML and CML methods were 3.58 for QML 
+and 3.91 for CML with 8-features and 3-qubits, and they were 
+2.86 for QML and 3.85 for CML with 16-features and 4-qubits. 
+The highest average QML test BACC advantage was + 4% 
+with 16-features and 4-qubits, respectively (see Tables 1 and 
+2 for detailed predictive performance evaluation results of the 
+included quantum and classic ML approaches with 8 and 16 
+features (3 and 4 qubits, respectively)).
+Estimation of quantum advantage
+The tenfold averaged GDQ scores across all cohorts and their 
+three SRT variants was 0.48–5.63) with 8-features and 3-qubits 
+(Table 1). In contrast, the tenfold averaged GDQ scores within 
+16-features and 4-qubits were 1.08–7.17 (Table 2). These GDQ 
+distributions were in line with the respective QML-vs-CML 
+predictive performances across the 8-feature, 3-qubit and the 
+16-feature, 4-qubit experiments (see Section “Performance 
+evaluation”). Results of the Pearson correlation indicated that 
+there is a non-significant medium positive relationship between 
+GDQ and dBACC (r = 0.366, p = 0.136). When differentiating 
+cases with the GDQ ≤ 1.0 threshold, the relationship of the 
+GDQ scores and dBACCs across the experiments become 
+more prominent. As such, all GDQ ≤ 1.0 cases were all with 
+8-features and 3-qubits, and in these cases, QML did not yield 
+superior performance over CML (Fig. 2). In case GDQ > 1.0, 
+QML on average outperformed CML in 9 out of 11 dataset 
+variant executions. The two 16-feature 4-qubit experiments that 
+failed in light of GDQ > 1.0 and QML advantage were associ-
+ated to 0.9 SRT from the lung and prostate datasets, respec-
+tively. According to our classical kernel-based ML algorithms, 
+the prediction performance which could become comparable 
+to QML in light of GDQ requires classical kernel calculations 
+with approximately 10-times higher complexity compared to 
+QML kernels (see Appendix A of the supplement).
+
+3831
+European Journal of Nuclear Medicine and Molecular Imaging (2023) 50:3826–3837	
+1 3
+Quantum error mitigation
+The average test balanced accuracy (BACC) in noiseless 
+simulator environments was 72.73% for qsSVM, qGP, and 
+qDC approaches in the selected prostate train-test split. In 
+contrast, the test BACC on the IonQ device without error 
+mitigation (EM) was in the range of 59.09–68.18% for the 
+selected QML methods. Utilizing the proposed EM tech-
+nique on IonQ yielded identical results to the noiseless 
+simulator test performances in the qsSVM and qDC algo-
+rithms (Table 3). Since qsSVM had the highest BACC when 
+considering both no EM and with EM cases, this method 
+was utilized in the second evaluation phase, where all 18 
+dataset variants were involved in the analysis on IonQ with 
+and without EM. Here, all 18 except two error mitigated 
+qsSVM test BACC results were identical with the noiseless 
+simulator environments. The two cases where predictive 
+performance decreased were in the prostate cohort with 0.8 
+SRT in both 8 and 16 feature variants. On average, IonQ 
+test BACC performance values without EM were 69.94%, 
+while they were 75.66% with EM (76.17 in noiseless simu-
+lator environments) (see Table 4 for the detailed compara-
+tive results and see Fig. 3 for an example inner product plot 
+with 8 and 16 features (3 and 4 qubits, respectively) without 
+and with EM vs. noiseless simulator environments).
+Discussion
+In this study, we proposed a comprehensive approach to 
+optimize quantum circuits combined with error mitigation. 
+These approaches made quantum machine learning (QML) 
+in clinically relevant PET radiomic datasets feasible in 
+both simulator and real quantum hardware. In addition, we 
+Table 1   Test balanced accuracy (BACC) predictive performance 
+values of quantum and classic ML approaches in the collected 
+cohorts and their three different Spearman rank threshold variants 
+(0.7, 0.8, and 0.9) with 8 features (3-qubits) executed in noiseless 
+simulator environments. Quantum ML and classic ML-specific 
+values represent average (µ) test BACC and their respective 95% 
+confidence intervals (CI) across the tenfolds of each respective 
+dataset configuration. GDQ represents the average Geometric Dif-
+ference score across tenfolds of the given dataset variant. Average 
+QML and average CML µ and CI values (bold) represent the aver-
+age of all respective QML and CML values in the given dataset 
+variant. SRT, Spearman rank threshold; qDC, quantum distance 
+classifier; qNN, quantum neural network; qsSVM, simplified quan-
+tum kernel support vector machine; qSVM, quantum kernel sup-
+port vector machine; qGP, quantum kernel Gaussian process; 
+cKNN, classic k-nearest neighbor; cNN, classic neural network; 
+cSVM, classic kernel support vector machine; cGP, classic kernel 
+Gaussian process
+8 features/3-qubits
+Glioma
+Lung
+Prostate
+SRT
+0.9
+0.8
+0.7
+0.9
+0.8
+0.7
+0.9
+0.8
+0.7
+GDQ
+3.75
+0.66
+0.55
+5.63
+0.52
+0.74
+0.87
+0.48
+0.46
+qDC
+µ
+69
+66
+59
+68
+64
+65
+68
+70
+66
+CI
+2.49
+2.93
+5.68
+3.85
+2.12
+3.89
+3.37
+3.56
+3.80
+qNN
+µ
+73
+73
+63
+73
+67
+63
+65
+64
+63
+CI
+5.99
+4.25
+3.61
+3.32
+3.97
+2.93
+1.97
+2.47
+2.08
+qsSVM
+µ
+73
+71
+71
+73
+68
+64
+67
+65
+65
+CI
+5.47
+4.39
+5.58
+3.05
+2.96
+2.58
+1.78
+1.36
+2.38
+qSVM
+µ
+78
+74
+68
+73
+67
+65
+67
+67
+65
+CI
+7.32
+3.81
+5.68
+3.32
+4.40
+2.71
+2.32
+3.20
+2.67
+qGP
+µ
+73
+72
+62
+68
+65
+64
+69
+67
+66
+CI
+4.07
+5.55
+4.99
+4.21
+4.32
+2.60
+2.47
+2.32
+3.32
+Average QML
+µ
+73
+71
+65
+71
+66
+64
+67
+67
+65
+CI
+5.07
+4.19
+5.11
+3.55
+3.55
+2.94
+2.38
+2.58
+2.85
+ckNN
+µ
+67
+70
+66
+67
+69
+63
+69
+70
+65
+CI
+5.54
+4.36
+7.08
+3.57
+3.33
+2.18
+2.80
+3.27
+3.03
+cNN
+µ
+71
+75
+71
+75
+70
+65
+65
+66
+67
+CI
+5.02
+4.22
+6.56
+3.10
+3.24
+5.16
+1.97
+3.04
+3.94
+cSVM
+µ
+72
+75
+78
+73
+70
+65
+67
+67
+67
+CI
+5.55
+4.22
+4.99
+2.89
+3.56
+2.46
+1.78
+4.21
+3.27
+cGP
+µ
+73
+73
+68
+68
+68
+65
+71
+67
+67
+CI
+5.86
+4.90
+5.14
+4.11
+4.11
+3.59
+1.97
+2.59
+4.16
+Average CML
+µ
+71
+73
+71
+71
+69
+64
+68
+67
+67
+CI
+5.49
+4.42
+5.94
+3.42
+3.56
+3.35
+2.13
+3.28
+3.60
+
+3832
+	
+European Journal of Nuclear Medicine and Molecular Imaging (2023) 50:3826–3837
+1 3
+compared results derived using QML with their classic ML 
+(CML) counterparts, while ensuring a fair comparison by 
+following the guidelines in [43].
+Our findings confirm that quantum advantage can be effi-
+ciently estimated without engaging with quantum computing 
+by relying on the previously proposed geometric difference 
+(GDQ) score as defined in [14]. According to the above, we 
+found that in case GDQ > 1.0, QML can outperform CML 
+already in simulator environments with up to + 4% balanced 
+accuracy (BACC) and with a narrowed confidence inter-
+val (CI), implying improved robustness of QML. Further-
+more, our quantum circuit optimization and error mitigation 
+approaches resulted in feasible QML circuit evaluations in 
+real quantum hardware when relying on simple circuits and 
+minimum amount of circuit measurements.
+On average, the Geometric Difference (GDQ) scores 
+through the dataset variants were higher than 1.0 with 
+16-features and 4-qubits, implying a high likelihood of 
+achieving QML advantage. When GDQ > 1.0 and QML failed 
+to overperform CML, the underlying dataset had SRT 0.9, 
+which is logical, as such a high SRT increases the number of 
+redundant radiomic features, thus, the chances of overfit [7, 
+46, 47]. At the same time, all inferior QML approaches that 
+had GDQ ≤ 1.0 were built with 8-features and 3-qubits. Cor-
+relating GDQ scores with QML-CML relative test BACCs 
+demonstrated that in case GDQ > 1.0, relatively high GDQ 
+scores (e.g., > 5.0) do not necessarily yield higher-perform-
+ing QML approaches compared to CML. According to the 
+above, proposing feature ranking approaches for QML solely 
+building on the maximization of GDQ is not advised, as fea-
+ture redundancy and ML-specific behavior also have to be 
+accounted for. Our study also found that with the utilized 
+kernels, in case classical GDQ < 1.0, CML can only achieve 
+the same result as QML with a GDQ ~ 1.0 on the expense of 
+Table 2   Test balanced accuracy (BACC) predictive performance 
+values of quantum and classic ML approaches in the collected 
+cohorts and their three different Spearman rank threshold variants 
+(0.7, 0.8, and 0.9) with 16 features (4-qubits) executed in noise-
+less simulator environments. Quantum ML and classic ML-spe-
+cific values represent average (µ) test BACC and their respective 
+95% confidence intervals (CI) across the tenfolds of each respec-
+tive dataset configuration. GDQ represents the average Geomet-
+ric Difference score across tenfolds of the given dataset variant. 
+Average QML and average CML µ and CI values (bold) represent 
+the average of all respective QML and CML values in the given 
+dataset variant. SRT, Spearman rank threshold; qDC, quantum dis-
+tance classifier; qNN, quantum neural network; qsSVM, simplified 
+quantum kernel support vector machine; qSVM, quantum kernel 
+support vector machine; qGP, quantum kernel Gaussian process; 
+cKNN, classic k-nearest neighbor; cNN, classic neural network; 
+cSVM, classic kernel support vector machine; cGP, classic kernel 
+Gaussian process
+16 features/4-qubits
+Glioma
+Lung
+Prostate
+SRT
+0.9
+0.8
+0.7
+0.9
+0.8
+0.7
+0.9
+0.8
+0.7
+GDQ
+3.20
+2.43
+2.33
+5.21
+2.47
+1.08
+8.33
+7.17
+1.36
+qDC
+µ
+74
+70
+69
+70
+68
+64
+70
+68
+69
+CI
+2.93
+0.04
+4.25
+2.56
+2.71
+1.51
+2.67
+4.29
+3.62
+qNN
+µ
+76
+73
+73
+71
+70
+63
+68
+65
+66
+CI
+3.81
+0.02
+3.27
+2.06
+3.81
+3.18
+2.08
+3.77
+2.72
+qsSVM
+µ
+79
+73
+69
+70
+69
+64
+65
+65
+66
+CI
+3.65
+0.05
+5.47
+2.19
+2.32
+2.58
+1.19
+2.32
+3.03
+qSVM
+µ
+78
+77
+77
+74
+70
+63
+68
+65
+68
+CI
+3.61
+0.03
+4.07
+2.92
+4.17
+2.98
+2.30
+2.98
+3.37
+qGP
+µ
+83
+74
+66
+73
+72
+66
+70
+67
+65
+CI
+4.52
+0.04
+5.14
+3.56
+3.69
+2.88
+4.25
+2.91
+3.03
+Average QML
+µ
+78
+73
+71
+72
+70
+64
+68
+66
+67
+CI
+3.71
+0.04
+4.44
+2.66
+3.34
+2.62
+2.50
+3.25
+3.16
+ckNN
+µ
+74
+66
+62
+70
+67
+63
+69
+66
+67
+CI
+5.68
+5.68
+6.06
+3.65
+4.44
+2.70
+2.47
+3.03
+3.94
+cNN
+µ
+73
+71
+75
+76
+70
+64
+68
+65
+68
+CI
+4.90
+4.39
+4.87
+3.60
+3.56
+4.47
+4.20
+3.71
+3.37
+cSVM
+µ
+74
+75
+74
+75
+70
+64
+68
+65
+65
+CI
+5.68
+0.05
+6.18
+3.72
+3.98
+4.57
+3.98
+3.53
+2.72
+cGP
+µ
+80
+71
+64
+74
+70
+65
+69
+61
+66
+CI
+4.36
+0.05
+4.90
+3.37
+3.76
+2.70
+4.16
+2.74
+3.32
+Average CML
+µ
+75
+71
+69
+73
+69
+64
+69
+64
+67
+CI
+5.16
+2.54
+5.50
+3.59
+3.93
+3.61
+3.70
+3.25
+3.34
+
+3833
+European Journal of Nuclear Medicine and Molecular Imaging (2023) 50:3826–3837	
+1 3
+approximately 10-times more computational costs. In gen-
+eral, quantum encoding does not create additional or added 
+information from classical data, but the encoding step itself 
+may transform classical data into quantum states where the 
+data is better separable. This phenomena can be estimated by 
+the GDQ score. Overall, we wish to emphasize that GDQ is 
+the property of the data and not the QML or CML algorithm; 
+hence, a weak correlation of increasing GDQ vs. QML BACC 
+(p = 0.136) was demonstrated in our experiments.
+When comparing the overall test performance of QML 
+and CML methods relying on the cross-validation scheme, 
+we identified a clear trend towards a higher BACC and in 
+comparison with CML while increasing robustness in CI 
+ranges as well.
+Test predictive performance comparison of QML algo-
+rithms revealed that quantum kernel methods (3-qubits BACC: 
+62–78%, 4-qubits BACC: 63–83%) were outperforming qNN 
+(3-qubits BACC: 63–73%, 4-qubits BACC: 63–76%), which 
+is in accordance to prior findings, demonstrating that quantum 
+kernel-based training models can solve supervised classifica-
+tion tasks better or equally than qNN learning models for small 
+data samples [17]. The above measurements were performed in 
+simulator environments that are executed on classical hardware 
+and software. This implies that quantum advantage in clinically 
+relevant radiomic datasets may be achieved without the need 
+to use real quantum hardware. Nevertheless, this is only true 
+due to the low feature and qubit counts as well as the relatively 
+small data size which is a generic property of many cancer 
+cohorts [7]. Indeed, this property of QML advantage has been 
+demonstrated in other studies [20]. A low feature count also 
+supports the explainability of ML models and the process of 
+biomarker identification in general [7, 47].
+While the above quantum advantage in simulator environ-
+ments is encouraging, it is important to understand that real, 
+noiseless quantum hardware may provide a higher fidelity 
+than any simulator. Over time, NISQs will become less and 
+less noisy. Real quantum hardware has properties such as 
+Fig. 2   Average Geometric Difference (GDQ) scores (across folds per-
+cohort and per-SRT) and average quantum-classic balanced accuracy 
+differences (dBACC) plotted across the collected cohorts and their 
+configurations (8 and 16 features, 0.7, 0.8, and 0.9 SRT). Results 
+confirm that in case GDQ ≤ 1.0, quantum advantage is not achieved 
+in 7 out of 7 experiments, and that all those cases are with 8-fea-
+tures (orange), while in case of GDQ > 1.0, quantum advantage can 
+be achieved 9 out of 11 experiments. The majority of these cases are 
+with 16-features (blue), while two cases are with 8-features (green)
+Table 3   Test balanced accuracy (BACC) values of qsSVM, qGP, and 
+qDC quantum ML approaches in noiseless simulator environments 
+and on the IonQ Aria device without error mitigation (EM) and with 
+EM. The dataset used for the analysis was the first fold from the pros-
+tate cohort, 8 features (3 qubits) and Spearman rank threshold 0.7. 
+qsSVM, simplified quantum kernel support vector machine; qGP, 
+quantum kernel Gaussian process; qDC, quantum distance classifier
+QML approach
+Qiskit simulator
+IonQ no EM
+IonQ with EM
+qsSVM
+72.73
+68.18
+72.73
+qGP
+72.73
+59.09
+68.18
+qDC
+72.73
+63.64
+72.73
+Table 4   Test qsSVM balanced accuracy (BACC) performance val-
+ues of all included cohorts, feature counts, and their Spearman rank 
+threshold variants when relying on noiseless simulator, the IonQ Aria 
+device without error mitigation (EM) and with EM. BACC values 
+are measured from the first fold of each dataset variant in a hold-out 
+train-test scenario. Last row (bold) demonstrates the average BACC 
+across all cohorts and feature/qubit configurations in the given quan-
+tum environment
+Feature/qubit count
+Cohort
+SRT
+Simulator
+No EM
+With EM
+16 features/4 qubits
+Glioma
+0.9
+83.33
+75.00
+83.33
+0.8
+83.33
+75.00
+83.33
+0.7
+83.33
+66.67
+83.33
+Lung
+0.9
+73.08
+73.08
+73.08
+0.8
+73.08
+73.08
+73.08
+0.7
+71.15
+69.23
+71.15
+Prostate
+0.9
+72.73
+68.18
+72.73
+0.8
+72.73
+63.64
+68.18
+0.7
+72.73
+68.18
+72.73
+8 features/3 qubits
+Glioma
+0.9
+83.33
+75.00
+83.33
+0.8
+83.33
+75.00
+83.33
+0.7
+83.33
+75.00
+83.33
+Lung
+0.9
+76.92
+73.08
+76.92
+0.8
+76.92
+71.15
+76.92
+0.7
+63.46
+57.69
+63.46
+Prostate
+0.9
+72.73
+68.18
+72.73
+0.8
+72.73
+63.64
+68.18
+0.7
+72.73
+68.18
+72.73
+Average
+76.17
+69.94
+75.66
+
+3834
+	
+European Journal of Nuclear Medicine and Molecular Imaging (2023) 50:3826–3837
+1 3
+interference, superposition, and entanglement that cannot 
+be simulated on a classical hardware with the same fidelity. 
+This implies that future noiseless or error-corrected quantum 
+hardware has the potential to further advance the predictive 
+performance of QML approaches, when exploiting quantum 
+phenomena. This, however, will have to be evaluated and 
+confirmed as part of future research, once noiseless or error-
+corrected quantum hardware is available. Here, our utilized 
+quantum circuit optimization approach [48] combined with 
+learning-based error mitigation (EM) techniques [49] yielded 
+comparable test performance in the quantum simplified SVM 
+(qsSVM) approach to the noiseless simulator results in both 3 
+and 4 qubit configurations (8 and 16 features, respectively). In 
+contrast, the quantum kernel Gaussian process (qGP) QML 
+approach underperformed even when relying on EM (BACC: 
+69% in IonQ with EM, 73% on simulator). While the quantum 
+distance classifier (qDC) yielded identical results with qsSVM 
+with EM and in simulator (BACC: 73%), qDC did slightly 
+underperform on IonQ without EM (BACC: 64%). The reasons 
+of this are manifold: The qsSVM runs only once and with a 
+so-called Swap-test circuit. In comparison, the qGP runs three-
+times with Swap-test, while the qDC runs once, but with the 
+so-called Hadamard-test, requiring a more complex circuit [13, 
+20]. It is crucial to understand what tests can be combined with 
+what QML algorithms when utilizing real quantum hardware. 
+As such, swap test can result in information loss by the means 
+of the sign of the train-test inner products that are required for 
+the prediction [50]. Nevertheless, Swap-test can be combined 
+with qsSVM and qGP because they operate with positive semi-
+definite kernel matrices [30]. In contrast, the qDC approach 
+requires the sign of the inner products to be preserved, which 
+can be achieved with Hadamard-tests that are in return, more 
+complex. The relevance of quantum circuit complexity and well 
+as the number of its measurements manifests in the noisy nature 
+of existing quantum hardware, also referred to as noisy interme-
+diate scale quantum systems (NISQ). This noise can degrade 
+the output result of quantum circuits, affecting QML predic-
+tive performance. Therefore, when relying on NISQs, these 
+effects need to be mitigated. As such, non-mitigated results 
+in our study represent a wide-range of test BACCs (59–68%), 
+while we successfully achieved the highest test BACC of 73% 
+being identical with noiseless simulator results with the qsSVM 
+and qDC algorithms relying on our mitigation techniques in the 
+IonQ Aria device. In this regard, our research demonstrates that 
+even when utilizing circuit optimization and error mitigation 
+in combination with radiomic data, the understanding of what 
+QML algorithms and what circuit tests shall be and can be 
+utilized together is imperative.
+Our study has multiple implications in the field of in vivo 
+disease characterization, particularly when focusing on 
+Fig. 3   Examples of noiseless simulator vs. IonQ device measurements 
+without and with error mitigation (EM) in the first fold of the prostate 
+dataset with 8 (A) and 16 (B) features (3 and 4 qubits, respectively), 
+and with 0.7 Spearman rank threshold. Note that the x-axis is aligned to 
+the range of the simulator measurements, while the y-axes are specific 
+to the given IonQ measurements. Units of both x- and y-axes denote 
+the inner product of train and test sets after encoding. These values 
+move in the range of 0.0–1.0. Value 0.0 means that there is no correla-
+tion between the given train and test sample, while value 1.0 means that 
+they perfectly correlate. The distribution of the plots implies how simi-
+lar simulator and measured results are. A perfect noiseless distribution 
+would map the coordinates to the diagonal (y = x) of the plot
+
+3835
+European Journal of Nuclear Medicine and Molecular Imaging (2023) 50:3826–3837	
+1 3
+radiomic studies. First, relying on GDQ estimations [14], future 
+research can estimate whether it makes sense to approach the 
+given radiomics task in the quantum computing domain (test 
+if GDQ > 1.0). Second, when a quantum advantage is antici-
+pated, widely available simulator environments combined with 
+appropriate kernel methods can yield superior predictive per-
+formances with QML compared to CML, which is especially 
+emphasized with small data. Third, when engaging with real 
+quantum hardware is an option, the high-fidelity of NISQs 
+relying on appropriate classic-to-quantum data encoding 
+results in simpler, robust, and potentially interpretable models 
+due to encoding N radiomic features with log2(N) number of 
+qubits. This can also support endeavors to combine shallow 
+and deep radiomic as well as non-imaging features together 
+[7] to potentially yield high-performing QML holistic models. 
+In this case, our circuit optimization technique combined with 
+error mitigation can support researchers to minimize noise in 
+existing NISQs and potentially, to even achieve higher predic-
+tive performance compared to simulators in case high-fidelity 
+NISQ devices become widely available.
+This study had limitations. First, it only operated with single 
+center cohorts; however, it was utilizing cross-validation to esti-
+mate the performance and to compare a wide-range of classic 
+and quantum ML approaches and with different SRTs as well 
+as feature counts. Second, due to restricted access to the IonQ 
+device, the effects of circuit optimization and error mitigation 
+could only be demonstrated with selected QML approaches 
+and for one train-test setting, thus, in a hold-out validation sce-
+nario. Nevertheless, the essence of our findings in the context 
+of utilizing NISQs in a feasible way was not related to this 
+limitation. Last, while additional CML approaches could have 
+been involved in our study, those either do not yet have a QML 
+variant, of their QML variant — such as quantum random for-
+ests — is not designed to be executable on existing NISQs [51].
+Conclusions
+We conclude that in case measurable conditions apply, quan-
+tum advantage can be demonstrated in clinically relevant 
+cancer imaging cohorts relying on classic radiomic features 
+and quantum machine learning. In the near-term, additional 
+quantum machine learning predictive performance improve-
+ments may be achieved when relying on circuit optimization 
+and error mitigation techniques in real quantum hardware, 
+having much higher fidelity gates.
+Supplementary Information  The online version contains supplemen-
+tary material available at https://​doi.​org/​10.​1007/​s00259-​023-​06362-6.
+Acknowledgements  We acknowledge support from Microsoft Azure 
+Quantum for providing access to the IonQ 21-qubit Aria quantum hard-
+ware used in this paper as part of the access grant titled “Tumor Char-
+acterization with Quantum Image Analysis and AI,” 2022 (PI: L. Papp).
+Funding  Open access funding provided by Medical University of 
+Vienna. This project was funded by the Medical University of Vienna 
+(MUV), Center for Medical Physics and Biomedical Engineering under 
+the umbrella of the Focus-M-2022 grant “Quantum Image Analysis” 
+(PI: L. Papp) at MUV.
+Data availability  Data is available from the respective corresponding 
+authors of the studies this work relied on to perform its retrospective 
+analysis. Data generated by this study is available from the correspond-
+ing author.
+Declarations 
+Ethical approval  All procedures performed in studies involving human 
+participants were in accordance with the ethical standards of the insti-
+tutional and/or national research committee and with the 1964 Helsinki 
+declaration and its later amendments or comparable ethical standards. 
+This article does not contain any studies with animals performed by 
+any of the authors.
+Informed consent  Informed consent was obtained from all individual 
+participants included in the study.
+Conflict of interest  The authors declare no competing interests.
+Access  For accessing the source code of quantum machine learning 
+executions this study relied on, refer to: https://​github.​com/​sassa​n72/​
+learn​ing-​with-​Quant​um-​machi​nes
+Open Access   This article is licensed under a Creative Commons Attri-
+bution 4.0 International License, which permits use, sharing, adapta-
+tion, distribution and reproduction in any medium or format, as long 
+as you give appropriate credit to the original author(s) and the source, 
+provide a link to the Creative Commons licence, and indicate if changes 
+were made. The images or other third party material in this article are 
+included in the article's Creative Commons licence, unless indicated 
+otherwise in a credit line to the material. If material is not included in 
+the article's Creative Commons licence and your intended use is not 
+permitted by statutory regulation or exceeds the permitted use, you will 
+need to obtain permission directly from the copyright holder. To view a 
+copy of this licence, visit http://​creat​iveco​mmons.​org/​licen​ses/​by/4.​0/.
+References
+	 1.	 Mottet N, Bellmunt J, Bolla M, Briers E, Cumberbatch MG, De 
+Santis M et al. EAU-ESTRO-SIOG guidelines on prostate cancer. 
+Part 1: screening, diagnosis, and local treatment with curative 
+intent. Eur Urol [Internet]. 2017;71(4):618–29. Available from: 
+https://​linki​nghub.​elsev​ier.​com/​retri​eve/​pii/​S0302​28381​63047​
+05. Accessed 7 Feb 2023.
+	 2.	 Papp L, Spielvogel CP, Grubmüller B, Grahovac M, Krajnc D, 
+Ecsedi B et al. Supervised machine learning enables non-invasive 
+lesion characterization in primary prostate cancer with [68Ga]
+Ga-PSMA-11 PET/MRI. Eur J Nucl Med Mol Imaging [Internet]. 
+2020; Available from:http://​link.​sprin​ger.​com/​10.​1007/​s00259-​
+020-​05140-y. Accessed 7 Feb 2023.
+	 3.	 Ahmed HU, El-Shater Bosaily A, Brown LC, Gabe R, Kaplan R, 
+Parmar MK et al. Diagnostic accuracy of multi-parametric MRI 
+and TRUS biopsy in prostate cancer (PROMIS): a paired validat-
+ing confirmatory study. Lancet [Internet]. 2017;389(10071):815–
+22. Available from: http://​linki​nghub.​elsev​ier.​com/​retri​eve/​pii/​
+S0140​67361​63240​11. Accessed 7 Feb 2023.
+
+3836
+	
+European Journal of Nuclear Medicine and Molecular Imaging (2023) 50:3826–3837
+1 3
+	 4.	 Hartenbach M, Hartenbach S, Bechtloff W, Danz B, Kraft K, Kle-
+menz B et al. Combined PET/MRI improves diagnostic accuracy 
+in patients with prostate cancer: a prospective diagnostic trial. 
+Clin Cancer Res [Internet]. 2014;20(12):3244–53 Available from: 
+http://​clinc​ancer​res.​aacrj​ourna​ls.​org/​cgi/​doi/​10.​1158/​1078-​0432.​
+CCR-​13-​2653. Accessed 7 Feb 2023.
+	 5.	 Liu C, Liu T, Zhang N, Liu Y, Li N, Du P, et al. 68Ga-PSMA-617 PET/
+CT: a promising new technique for predicting risk stratification and 
+metastatic risk of prostate cancer patients. Eur J Nucl Med Mol Imag-
+ing [Internet]. 2018 Oct 2;45(11):1852–61. Available from: http://​
+link.​sprin​ger.​com/​10.​1007/​s00259-​018-​4037-9. Accessed 7 Feb 
+2023.
+	 6.	 Afshar-Oromieh A, Avtzi E, Giesel FL, Holland-Letz T, Linhart 
+HG, Eder M et al. The diagnostic value of PET/CT imaging with 
+the 68Ga-labelled PSMA ligand HBED-CC in the diagnosis of 
+recurrent prostate cancer. Eur J Nucl Med Mol Imaging [Internet]. 
+2015;42(2):197–209. Available from: http://​link.​sprin​ger.​com/​10.​
+1007/​s00259-​014-​2949-6. Accessed 7 Feb 2023.
+	 7.	 Hatt M, Krizsan AK, Rahmim A, Bradshaw TJ, Costa PF, For-
+gacs A, et al. Joint EANM/SNMMI guideline on radiomics 
+in nuclear medicine. Eur J Nucl Med Mol Imaging [Internet]. 
+2023;50(2):352–75. Available from: https://​link.​sprin​ger.​com/​10.​
+1007/​s00259-​022-​06001-6. Accessed 7 Feb 2023
+	 8.	 Cysouw MCF, Jansen BHE, van de Brug T, Oprea-Lager DE, 
+Pfaehler E, de Vries BM et al. Machine learning-based analysis 
+of [18F]DCFPyL PET radiomics for risk stratification in primary 
+prostate cancer. Eur J Nucl Med Mol Imaging [Internet]. 2020. 
+Available from. http://​link.​sprin​ger.​com/​10.​1007/​s00259-​020-​
+04971-z. Accessed 7 Feb 2023.
+	 9.	 Grahovac M, Spielvogel CP, Krajnc D, Ecsedi B, Traub-Weidinger 
+T, Rasul S, et al. Machine learning predictive performance evalu-
+ation of conventional and fuzzy radiomics in clinical cancer 
+imaging cohorts. Eur J Nucl Med Mol Imaging [Internet]. 2023. 
+Available from. https://​link.​sprin​ger.​com/​10.​1007/​s00259-​023-​
+06127-1. Accessed 7 Feb 2023.
+	10.	 Krajnc D, Papp L, Nakuz TS, Magometschnigg HF, Grahovac M, 
+Spielvogel CP et al. Breast tumor characterization using [18F]
+FDG-PET/CT imaging combined with data preprocessing and 
+radiomics. Cancers (Basel) [Internet]. 2021;13(6). Available 
+from: https://​www.​mdpi.​com/​2072-​6694/​13/6/​1249. Accessed 7 
+Feb 2023.
+	11.	 Zwanenburg A, Leger S, Vallières M, Löck S, Initiative for the 
+IBS. Image biomarker standardisation initiative. arXiv [Internet]. 
+2016;(November). Available from: http://​arxiv.​org/​abs/​1612.​
+07003. Accessed 7 Feb 2023.
+	12.	 Ibrahim A, Primakov S, Beuque M, Woodruff HC, Halilaj I, Wu G 
+et al. Radiomics for precision medicine: current challenges, future 
+prospects, and the proposal of a new framework. Methods [Inter-
+net]. 2021;188:20–9. Available from: https://​linki​nghub.​elsev​ier.​
+com/​retri​eve/​pii/​S1046​20232​03011​10. Accessed 7 Feb 2023.
+	13.	 Moradi S, Brandner C, Spielvogel C, Krajnc D, Hillmich S, Wille 
+R et al. Clinical data classification with noisy intermediate scale 
+quantum computers. Sci Rep [Internet]. 2022;12(1):1851. Avail-
+able from: https://​www.​nature.​com/​artic​les/​s41598-​022-​05971-
+9. Accessed 7 Feb 2023.
+	14.	 Huang H-Y, Broughton M, Mohseni M, Babbush R, Boixo S, 
+Neven H et al. Power of data in quantum machine learning. Nat 
+Commun [Internet]. 2021;12(1):2631. Available from: http://​
+www.​nature.​com/​artic​les/​s41467-​021-​22539-9. Accessed 7 Feb 
+2023.
+	15.	 Preskill J. Quantum computing in the NISQ era and beyond. 
+Quantum [Internet]. 2018;2:79. Available from: https://​quant​um-​
+journ​al.​org/​papers/​q-​2018-​08-​06-​79/. Accessed 7 Feb 2023.
+	16.	 Elron N, Eldar YC. Optimal encoding of classical information in 
+a quantum medium. 2006; Available from: http://​arxiv.​org/​abs/​
+quant-​ph/​06010​10. Accessed 7 Feb 2023.
+	17.	 Schuld M. Supervised quantum machine learning models are 
+kernel methods. 2021; Available from: http://​arxiv.​org/​abs/​2101.​
+11020. Accessed 7 Feb 2023.
+	18.	 Rebentrost P, Mohseni M, Lloyd S. Quantum support vector 
+machine for big data classification. Phys Rev Lett [Internet]. 
+2014;113(13):130503. Available from: https://​link.​aps.​org/​doi/​10.​
+1103/​PhysR​evLett.​113.​130503. Accessed 7 Feb 2023.
+	19.	 Cerezo M, Verdon G, Huang H-Y, Cincio L, Coles PJ. Challenges 
+and opportunities in quantum machine learning. Nat Comput Sci 
+[Internet]. 2022;2(9):567–76. Available from: https://​www.​nature.​
+com/​artic​les/​s43588-​022-​00311-3. Accessed 7 Feb 2023.
+	20.	 Caro MC, Huang H-Y, Cerezo M, Sharma K, Sornborger A, Cin-
+cio L et al. Generalization in quantum machine learning from few 
+training data. Nat Commun [Internet]. 2022;13(1):4919. Avail-
+able from: https://​www.​nature.​com/​artic​les/​s41467-​022-​32550-
+3. Accessed 7 Feb 2023.
+	21.	 Li Y, Benjamin SC. Efficient variational quantum simulator 
+incorporating active error minimization. Phys Rev X [Internet]. 
+2017;7(2):021050. Available from: http://​link.​aps.​org/​doi/​10.​
+1103/​PhysR​evX.7.​021050. Accessed 7 Feb 2023.
+	22.	 Temme K, Bravyi S, Gambetta JM. Error mitigation for 
+short-depth quantum circuits. Phys Rev Lett [Internet]. 
+2017;119(18):180509. Available from: https://​link.​aps.​org/​doi/​
+10.​1103/​PhysR​evLett.​119.​180509. Accessed 7 Feb 2023.
+	23.	 Endo S, Benjamin SC, Li Y. Practical quantum error miti-
+gation for near-future applications. Phys Rev X [Internet]. 
+2018;8(3):031027. Available from: https://​link.​aps.​org/​doi/​10.​
+1103/​PhysR​evX.8.​031027. Accessed 7 Feb 2023.
+	24.	 Kandala A, Temme K, Córcoles AD, Mezzacapo A, Chow 
+JM, Gambetta JM. Error mitigation extends the computa-
+tional reach of a noisy quantum processor. Nature [Internet]. 
+2019;567(7749):491–5. Available from: http://​www.​nature.​com/​
+artic​les/​s41586-​019-​1040-7. Accessed 7 Feb 2023.
+	25.	 Papp L, Pötsch N, Grahovac M, Schmidbauer V, Woehrer A, 
+Preusser M, et al. Glioma survival prediction with combined 
+analysis of in vivo 11C-MET PET features, ex vivo features, and 
+patient features by supervised machine learning. J Nucl Med. 
+2018;59(6):892–9.
+	26.	 Zhao M, Kluge K, Papp L, Grahovac M, Yang S, Jiang C et al. 
+Multi-lesion radiomics of PET/CT for non-invasive survival strati-
+fication and histologic tumor risk profiling in patients with lung 
+adenocarcinoma. Eur Radiol [Internet]. 2022;32(10):7056–67. 
+Available from: https://​link.​sprin​ger.​com/​10.​1007/​s00330-​022-​
+08999-7. Accessed 7 Feb 2023.
+	27.	 Mongan J, Moy L, Kahn CE. Checklist for Artificial Intelligence in 
+Medical Imaging (CLAIM): a guide for authors and reviewers. Radiol 
+Artif Intell [Internet]. 2020;2(2):e200029. Available from: http://​pubs.​
+rsna.​org/​doi/​10.​1148/​ryai.​20202​00029. Accessed 7 Feb 2023.
+	28.	 Krajnc D, Spielvogel CP, Grahovac M, Ecsedi B, Rasul S, Poetsch 
+N et al. Automated data preparation for in vivo tumor characteri-
+zation with machine learning. Front Oncol [Internet]. 2022;12. 
+Available from: https://​www.​front​iersin.​org/​artic​les/​10.​3389/​fonc.​
+2022.​10179​11/​full. Accessed 7 Feb 2023.
+	29.	 Verleysen M, François D. The curse of dimensionality in 
+data mining and time series prediction. Analysis [Internet]. 
+2005;3512:758–70. Available from: http://​link.​sprin​ger.​com/​10.​
+1007/​11494​669_​93. Accessed 7 Feb 2023.
+	30.	 Schuld M, Petruccione F. Supervised learning with quantum com-
+puters [Internet]. Cham: Springer International Publishing; 2018. 
+(Quantum Science and Technology). Available from: http://​link.​
+sprin​ger.​com/​10.​1007/​978-3-​319-​96424-9. Accessed 7 Feb 2023.
+	31.	 Schuld M, Bocharov A, Svore K, Wiebe N. Circuit-centric quan-
+tum classifiers. 2018; Available from: http://​arxiv.​org/​abs/​1804.​
+00633. Accessed 7 Feb 2023.
+	32.	 Johri S, Debnath S, Mocherla A, SINGK A, Prakash A, Kim J et al. 
+Nearest centroid classification on a trapped ion quantum computer. 
+
+3837
+European Journal of Nuclear Medicine and Molecular Imaging (2023) 50:3826–3837	
+1 3
+npj Quantum Inf [Internet]. 2021;7(1):122. Available from: https://​
+www.​nature.​com/​artic​les/​s41534-​021-​00456-5. Accessed 7 Feb 
+2023.
+	33.	 Microsoft. Azure Quantum [Internet]. Available from: https://​
+azure.​micro​soft.​com/​en-​us/​servi​ces/​quant​um/. Accessed 7 Feb 
+2023.
+	34.	 Havlíček V, Córcoles AD, Temme K, Harrow AW, Kandala A, 
+Chow JM et al. Supervised learning with quantum-enhanced fea-
+ture spaces. Nature [Internet]. 2019;567(7747):209–12. Avail-
+able from: http://​www.​nature.​com/​artic​les/​s41586-​019-​0980-2. 
+Accessed 7 Feb 2023.
+	35.	 Schuld M, Killoran N. Quantum machine learning in feature 
+Hilbert spaces. Phys Rev Lett [Internet]. 2019;122(4):040504. 
+Available from: https://​link.​aps.​org/​doi/​10.​1103/​PhysR​evLett.​
+122.​040504. Accessed 7 Feb 2023.
+	36.	 Zhao Z, Fitzsimons JK, Osborne MA, Roberts SJ, Fitzsimons JF. 
+Quantum algorithms for training Gaussian processes. Phys Rev A 
+[Internet]. 2019;100(1):012304. Available from: https://​link.​aps.​
+org/​doi/​10.​1103/​PhysR​evA.​100.​012304. Accessed 7 Feb 2023.
+	37.	 Schuld M, Bocharov A, Svore KM, Wiebe N. Circuit-centric 
+quantum classifiers. Phys Rev A [Internet]. 2020;101(3):032308. 
+Available from: https://​link.​aps.​org/​doi/​10.​1103/​PhysR​evA.​101.​
+032308. Accessed 7 Feb 2023.
+	38.	 Chang C-C, Lin C-J. LIBSVM. ACM Trans Intell Syst Technol 
+[Internet]. 2011;2(3):1–27. Available from: https://​dl.​acm.​org/​doi/​
+10.​1145/​19611​89.​19611​99. Accessed 7 Feb 2023.
+	39.	 Rasmussen CE, Williams CKI. Gaussian processes for machine 
+learning [Internet]. MIT Press, Massachusetts Institute of Tech-
+nology. 2006. Available from: http://​gauss​ianpr​ocess.​org/​gpml/. 
+Accessed 7 Feb 2023.
+	40.	 Pattern recognition and machine learning. J Electron Imaging 
+[Internet]. 2007;16(4):049901. Available from: http://​elect​ronic​
+imagi​ng.​spied​igita​llibr​ary.​org/​artic​le.​aspx?​doi=​10.​1117/1.​28191​
+19. Accessed 7 Feb 2023.
+	41.	 Zhang Z. Introduction to machine learning: k-nearest neighbors. 
+Ann Transl Med [Internet]. 2016;4(11):218–218. Available from: 
+http://​atm.​amegr​oups.​com/​artic​le/​view/​10170/​11310. Accessed 7 
+Feb 2023.
+	42.	 Pedregosa F, Varoquaux G, Gramfort A, Michel V, Thirion B, 
+Grisel O, et al. Scikit-learn: machine learning in Python. 2012; 
+Available from: http://​arxiv.​org/​abs/​1201.​0490. Accessed 7 Feb 
+2023.
+	43.	 Wiebe N. Key questions for the quantum machine learner to ask 
+themselves. New J Phys [Internet]. 2020;22(9):091001. Avail-
+able from: https://​iopsc​ience.​iop.​org/​artic​le/​10.​1088/​1367-​2630/​
+abac39. Accessed 7 Feb 2023.
+	44.	 Aleksandrowicz G, others. Qiskit: an open-source framework for 
+quantum computing. 2019; Available from:https://​zenodo.​org/​
+record/​25621​11. Accessed 7 Feb 2023.
+	45.	 Urbanek M, Nachman B, Pascuzzi VR, He A, Bauer CW, de 
+Jong WA. Mitigating depolarizing noise on quantum comput-
+ers with noise-estimation circuits. Phys Rev Lett [Internet]. 
+2021;127(27):270502. Available from: https://​link.​aps.​org/​doi/​
+10.​1103/​PhysR​evLett.​127.​270502. Accessed 7 Feb 2023.
+	46.	 Parmar C, Grossmann P, Rietveld D, Rietbergen MM, Lambin P, 
+Aerts HJWL. Radiomic machine-learning classifiers for prognos-
+tic biomarkers of head and neck cancer. Front Oncol [Internet]. 
+2015;5. Available from: http://​journ​al.​front​iersin.​org/​Artic​le/​10.​
+3389/​fonc.​2015.​00272/​abstr​act. Accessed 7 Feb 2023.
+	47.	 Hatt M, Tixier F, Pierce L, Kinahan PE, Le Rest CC, Visvikis 
+D. Characterization of PET/CT images using texture analysis: 
+the past, the present… any future? Eur J Nucl Med Mol Imaging 
+[Internet]. 2017 Jan 6;44(1):151–65. Available from: http://​link.​
+sprin​ger.​com/​10.​1007/​s00259-​016-​3427-0. Accessed 7 Feb 2023.
+	48.	 Khatri S, LaRose R, Poremba A, Cincio L, Sornborger AT, Coles 
+PJ. Quantum-assisted quantum compiling. Quantum [Internet]. 
+2019 May 13;3:140. Available from: https://​quant​um-​journ​al.​org/​
+papers/​q-​2019-​05-​13-​140/. Accessed 7 Feb 2023.
+	49.	 Strikis A, Qin D, Chen Y, Benjamin SC, Li Y. Learning-
+based quantum error mitigation. PRX Quantum [Internet]. 
+2021;2(4):040330. Available from: https://​link.​aps.​org/​doi/​10.​
+1103/​PRXQu​antum.2.​040330. Accessed 7 Feb 2023.
+	50.	 Wiebe N, Kapoor A, Svore K. Quantum algorithms for nearest-
+neighbor methods for supervised and unsupervised learning. 
+2014; Available from: http://​arxiv.​org/​abs/​1401.​2142. Accessed 
+7 Feb 2023.
+	51.	 Lu S, Braunstein SL. Quantum decision tree classifier. Quantum 
+Inf Process [Internet]. 2014;13(3):757–70. Available from: http://​
+link.​sprin​ger.​com/​10.​1007/​s11128-​013-​0687-5. Accessed 7 Feb 
+2023.
+Publisher's note  Springer Nature remains neutral with regard to 
+jurisdictional claims in published maps and institutional affiliations.
