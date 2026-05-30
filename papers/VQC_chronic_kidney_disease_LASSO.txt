@@ -1,0 +1,24 @@
+Title: Variational quantum classifier-based early identification and classification of chronic kidney disease using sparse autoencoder and LASSO shrinkage
+DOI: 10.7717/peerj-cs.2789
+Authors: P. Parthasarathi, Haya Mesfer Alshahrani, K. Venkatachalam, Jaehyuk Cho
+Journal: PeerJ Computer Science (2025) 11:e2789
+
+ABSTRACT
+A quantum machine learning (QML) based technique is presented to help with the early diagnosis and prognosis of chronic kidney disease (CKD). The proposed research comprises four phases: data pre-processing (Kalman filter + normalization), data augmentation (sparse autoencoders), feature selection (LASSO shrinkage), and classification (Variational Quantum Classifier). Evaluated on the UCI CKD dataset (400 patients, 25 attributes). Achieved 99.2% classification accuracy.
+
+METHODS
+Phase 1: Kalman filter for missing values + min-max normalization.
+Phase 2: Sparse autoencoder data augmentation with KL divergence loss + L1 regularization.
+Phase 3: LASSO shrinkage feature selection — 13 of 25 features selected.
+Phase 4: VQC using Qiskit RawFeatureVector encoding + RealAmplitudes ansatz (3 layers, full entanglement) + COBYLA optimizer + CrossEntropy loss.
+
+RESULTS
+Without feature selection: VQC accuracy 98.2%, precision 97.2%, recall 97.5%, F1 97.9%, AUC-ROC 97.6%.
+With LASSO feature selection: VQC accuracy 99.2%, precision 98.3%, recall 98.5%, F1 98.9%, AUC-ROC 99.1%.
+Comparison: outperforms SVM (92.8%), Random Forest (90.7%), Logistic Regression (93.9%), MLP (94.8%), RBFN (96.3%), QSVM (97.8%).
+
+CONCLUSION
+VQC with LASSO feature selection achieves 99.2% accuracy for CKD classification, surpassing all compared classical and quantum baselines. Establishes groundwork for quantum-assisted medical AI systems.
+
+LIMITATIONS
+Quantum circuits susceptible to noise; scalability restricted by qubit/gate complexity; data encoding overhead; VQC training time increased vs classical due to current hardware limitations; tested only on UCI CKD dataset.

@@ -1,0 +1,21 @@
+Title: IoT driven smart health monitoring for heart disease prediction using quantum kernel enhanced sardine diffusion and CNN
+DOI: 10.1038/s41598-025-99990-x
+Authors: Dibas Kumar Hembram, Satya Narayan Tripathy, CH Narsimha Reddy, Debabrata Dansana, Quadri Noorulhasan Naveed, Shafat khan, Mohammed Kareemullah, Addisu Frinjo Emma
+Journal: Scientific Reports (2025) 15:17306
+
+ABSTRACT
+Heart disease is one of the major causes of death worldwide. This article proposes a novel IoT-based Quantum Kernel-Enhanced Sardine Diffusion Attention Network (Qua-KSar-DCK-ArNet) for real-time prediction of heart disease. The system continuously monitors heart-related data via IoT sensors. Quantum Clustering with k-Means is applied to cluster the data, Z-score Min-Max Normalization for preprocessing, and Fast Point Transformer for feature extraction. The system achieves an accuracy of 99%.
+
+METHODS
+IoT data collection → Quantum Clustering with k-Means → Z-score Min-Max Normalization → Fast Point Transformer feature extraction → Qua-KSar-DCK-ArNet classification (Q2CNN + DKAN optimized by Sardine Optimization Algorithm). Dataset: UCI ML Repository heart failure clinical records (299 records, 11 features). Train/test: 70%/30%.
+
+RESULTS
+Qua-KSar-DCK-ArNet: Accuracy 99.98%, Precision 99.34%, Recall 99.56%, F1-score 96.34% (abnormal cases).
+Overall: Accuracy 99.97%, Recall 98.47%, Precision 99.59%, F1-score 99.46%, MSE 0.01.
+Training accuracy: 99.9%, execution time: 0.1s.
+
+CONCLUSION
+The proposed system achieves impressive 99% accuracy enabling real-time diagnosis and improved patient outcomes. Future work will integrate additional physiological data and enhance deep learning techniques.
+
+LIMITATIONS
+Data security, computational complexity, and system scalability must be addressed for widespread implementation; tested on small UCI dataset (299 records); quantum components simulated rather than run on real hardware.

@@ -1,0 +1,23 @@
+Title: Quantum-assisted federated intelligent diagnosis algorithm with variational training supported by 5G networks
+DOI: 10.1038/s41598-024-71826-0
+Authors: Arnaldo Rafael Camara Araujo, Ogobuchi Daniel Okey, Muhammad Saadi, Pablo Adasme, Renata Lopes Rosa, Demóstenes Zegarra Rodríguez
+Journal: Scientific Reports (2024) 14:26333
+
+ABSTRACT
+In the realm of intelligent healthcare, there is a growing ambition to reshape medical services through the integration of artificial intelligence (AI). A Quantum-Assisted Federated Intelligent Diagnosis Algorithm (β-QuAFIDA) is proposed, applied into real medical data. Leveraging the capabilities of the 5G mobile network, this approach works the connection between Internet of Medical Things (IoMT) devices through the 5G, synchronizing training and updating the server model without disrupting their real-world applications.
+
+METHODS
+β-QuAFIDA uses a nested loop: inner loop trains β-VQE to approximate expectation values; outer loop trains to reduce relative entropy towards target. Implemented using PennyLane with PyTorch. Evaluated on Fetal Health Dataset (2126 CTG records). Dataset split: 80% training, 20% testing.
+
+RESULTS
+Central trained Variational QNN: Training 84.76%, Testing 83.90%.
+Variational QNN using β-QuAFIDA (2 clients): Testing 83.98%.
+Variational QNN using β-QuAFIDA (4 clients): Testing 84.13%.
+Variational QNN using β-QuAFIDA (8 clients): Testing 83.75%.
+Fidelity under noise: BF=0.9958, PF=0.9983, AD=0.9775, DN=0.9993.
+
+CONCLUSION
+The β-QuAFIDA algorithm exhibits significant promise for enhancing fetal health prediction within the domain of federated quantum machine learning, demonstrating robustness even in noisy environments.
+
+LIMITATIONS
+Sensitivity to choice of heuristic parameters R and α; tested on single dataset; scalability to larger/more complex healthcare datasets not yet demonstrated.

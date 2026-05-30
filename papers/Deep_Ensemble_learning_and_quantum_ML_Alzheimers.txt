@@ -1,0 +1,22 @@
+Title: Deep Ensemble learning and quantum machine learning approach for Alzheimer's disease detection
+DOI: 10.1038/s41598-024-61452-1
+Authors: Abebech Jenber Belay, Yelkal Mulualem Walle, Melaku Bitew Haile
+Journal: Scientific Reports (2024) 14:14196
+
+ABSTRACT
+Alzheimer disease (AD) is among the most chronic neurodegenerative diseases that threaten global public health. Early diagnosis of AD is a suitable action for timely intervention and medication. In this study, we proposed an ensemble deep learning model based on quantum machine learning classifiers to classify Alzheimer's disease. The ADNI I and ADNI II datasets are merged. Features extracted using customized VGG16 and ResNet50 are fed to a quantum machine learning classifier to classify non-demented, very mild, mild, and moderate demented. Performance evaluated using accuracy, AUC, F1-score, precision, and recall; reported best accuracy 99.89 and F1-score 98.37.
+
+METHODS
+Merge ADNI1+ADNI2 MRI images; preprocess (crop, resize 128x128, filtering, augmentation); extract and concatenate deep features via customized VGG16 and ResNet50; encode features with 5-qubit quantum feature map; classify using QSVM (Qiskit) and compare with classical SVM.
+
+RESULTS
+Proposed VGGNet+ResNet+QSVM achieved Accuracy 99.89%, Precision 99.25%, Recall 99.23%, F1 99.13%, AUC 99.99.
+VGGNet+QSVM Accuracy 95.65%, ResNet+QSVM 91.56%.
+Ensemble+SVM Accuracy 86.78%.
+End-to-end Ensemble DL Accuracy 90.58%.
+
+CONCLUSION
+Ensemble deep feature extraction combined with QSVM markedly improves 4-class AD stage classification over classical SVM and end-to-end DL baselines; suggests quantum ML can improve classification performance for AD MRI staging.
+
+LIMITATIONS
+Quantum setup details limited (exact hardware vs simulator not clearly specified beyond '5 qubit quantum hardware or simulator'); uses Kaggle-derived ADNI subsets and resized 2D images which may limit generalizability; clinical deployment not validated.
